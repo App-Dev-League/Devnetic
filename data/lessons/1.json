@@ -1,0 +1,7 @@
+[{
+	"type": "multiple_choice",
+	"question": "What is the output of the following code?",
+	"code_template": "[[green]]// console.log(\"hello\");[[/]]\n[[white]]console.[[/]][[lightblue]]log[[/]][[white]]([[/]][[orange]]\"world\"[[/]][[white]]);[[/]]",
+	"answers": ["hello world", "hello", "world", "helloworld"],
+	"correct": 2
+}]

@@ -1,0 +1,301 @@
+<!doctype HTML>
+<html lang="en">
+	<head>
+		<script src="/tApp.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<style>
+			/* Initialization */
+			@font-face {
+				font-family: 'Nunito';
+				src: url("/assets/fonts/Nunito/Nunito-Regular.ttf");
+			}
+			@font-face {
+				font-family: 'Nunito-SemiBold';
+				src: url("/assets/fonts/Nunito/Nunito-SemiBold.ttf");
+			}
+			@font-face {
+				font-family: 'Nunito-Bold';
+				src: url("/assets/fonts/Nunito/Nunito-Bold.ttf");
+			}
+			@font-face {
+				font-family: 'Nunito-ExtraBold';
+				src: url("/assets/fonts/Nunito/Nunito-ExtraBold.ttf");
+			}
+			:root {
+				--black: #121212;
+				--shadow: 0 0 26px 0 #aaaaaa;
+				
+				--gray: #2c3e50;
+				
+				--white: #efefef;
+				
+				--orange: #f39c12;
+				--orange-selected: #e67e22;
+				
+				--green: #2ecc71;
+				--green-selected: #27ae60;
+				
+				--blue: #3498db;
+				--blue-selected: #2980b9;
+				
+				--purple: #9b59b6;
+				--purple-selected: #8e44ad;
+			}
+			* {
+				color: var(--white);
+				font-family: 'Nunito', sans-serif;
+			}
+			html, body {
+				margin: 0;
+				padding: 0;
+				background-color: var(--black);
+			}
+			
+			/* Loader File */
+			header {
+				width: 100%;
+				height: 50px;
+				margin: 0;
+				padding: 0;
+				position: relative;
+				background-color: var(--blue);
+				border-radius: 0 0 15px 15px;
+			}
+			header > a.logo {
+				margin: 0;
+				font-size: 1.7em;
+				position: absolute;
+				left: 20px;
+				top: 50%;
+				transform: translate(0, -50%);
+				text-decoration: none;
+			}
+			header > a.logo > img {
+				margin: 0;
+				height: 40px;
+				display: inline-block;
+				vertical-align: middle;
+			}
+			header > a.logo > span {
+				display: inline-block;
+				vertical-align: middle;
+				font-family: 'Nunito-Bold', sans-serif;
+			}
+			header > h3.username {
+				margin: 0;
+				font-size: 2em;
+				font-family: 'Nunito-ExtraBold', sans-serif;
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%);
+			}
+			header > p.score {
+				margin: 0;
+				font-size: 1.4em;
+				font-family: 'Nunito-SemiBold', sans-serif;
+				position: absolute;
+				right: 20px;
+				top: 50%;
+				transform: translate(0, -50%);
+			}
+			tapp-main {
+				width: 100%;
+				height: calc(100% - 100px);
+			}
+			
+			/* code colors */
+			.c-red {
+				color: #e74c3c;
+			}
+			.c-darkred {
+				color: #c0392b;
+			}
+			.c-lightorange {
+				color: #f39c12;
+			}
+			.c-orange {
+				color: #e67e22;
+			}
+			.c-darkorange {
+				color: #d35400;
+			}
+			.c-yellow {
+				color: #f1c40f;
+			}
+			.c-green {
+				color: #2ecc71;
+			}
+			.c-darkgreen {
+				color: #27ae60;
+			}
+			.c-turquoise {
+				color: #1abc9c;
+			}
+			.c-darkturquoise {
+				color: #16a085;
+			}
+			.c-lightblue {
+				color: #3498db;
+			}
+			.c-blue {
+				color: #2980b9;
+			}
+			.c-lightpurple {
+				color: #9b59b6;
+			}
+			.c-purple {
+				color: #8e44ad;
+			}
+			.c-white {
+				color: #ffffff;
+			}
+			
+			/* index.html */
+			.home-row {
+				margin-top: 50px;
+				text-align: center;
+			}
+			.home-row > h3 {
+				margin: 0;
+				font-size: 1.5em;
+				font-family: 'Nunito-Bold', sans-serif;
+			}
+			.home-lesson {
+				display: inline-block;
+				margin: 0;
+				font-size: 1.2em;
+				text-align: center;
+				font-family: 'Nunito-Bold', sans-serif;
+				text-decoration: none;
+				border: 3px solid var(--white);
+				width: calc(25% - 44px);
+				margin: 20px;
+				border-radius: 10px;
+				cursor: pointer;
+				transform: scale(1);
+				transition: background-color 0.15s ease-in-out,
+							border 0.15s ease-in-out,
+							color 0.15s ease-in-out,
+							transform 0.15s ease-in-out;
+			}
+			.home-lesson:active {
+				transform: scale(0.96);
+			}
+			.home-lesson-complete {
+				border: 3px solid var(--green);
+				background-color: var(--green);
+			}
+			.home-lesson-progress {
+				border: 3px solid var(--blue);
+				background-color: var(--blue);
+			}
+			.home-lesson:hover {
+				background-color: var(--white);
+			}
+			.home-lesson:hover > p {
+				color: var(--black);
+			}
+			.home-lesson-complete:hover {
+				border: 3px solid var(--green-selected);
+				background-color: var(--green-selected);
+			}
+			.home-lesson-complete:hover > p {
+				color: var(--white);
+			}
+			.home-lesson-progress:hover {
+				border: 3px solid var(--blue-selected);
+				background-color: var(--blue-selected);
+			}
+			.home-lesson-progress:hover > p {
+				color: var(--white);
+			}
+			.mc-answer:active {
+				transform: scale(0.96);
+			}
+			
+			/* multiple_choice.html */
+			.mc-question {
+				margin: 0;
+				margin-top: 50px;
+				font-size: 1.8em;
+				text-align: center;
+				font-family: 'Nunito-Bold', sans-serif;
+			}
+			.mc-codeblock {
+				max-width: calc(100% - 50px);
+				width: 1000px;
+				margin-top: 50px;
+				height: calc(100vh - 400px);
+				background-color: var(--gray);
+				margin-left: 50%;
+				transform: translate(-50%);
+				border-radius: 20px;
+				padding: 20px;
+				overflow: auto;
+			}
+			.mc-codeblock > pre {
+				margin: 0;
+			}
+			.mc-answer-container {
+				margin-top: 50px;
+			}
+			.mc-answer {
+				display: inline-block;
+				margin: 0;
+				font-size: 1.2em;
+				text-align: center;
+				font-family: 'Nunito-Bold', sans-serif;
+				width: calc(25% - 44px);
+				margin: 20px;
+				border-radius: 10px;
+				cursor: pointer;
+				transform: scale(1);
+				transition: background-color 0.15s ease-in-out,
+							transform 0.15s ease-in-out;
+			}
+			.mc-answer:active {
+				transform: scale(0.96);
+			}
+			.mc-answer-0 {
+				background-color: var(--orange);
+			}
+			.mc-answer-0:hover {
+				background-color: var(--orange-selected);
+			}
+			.mc-answer-1 {
+				background-color: var(--green);
+			}
+			.mc-answer-1:hover {
+				background-color: var(--green-selected);
+			}
+			.mc-answer-2 {
+				background-color: var(--blue);
+			}
+			.mc-answer-2:hover {
+				background-color: var(--blue-selected);
+			}
+			.mc-answer-3 {
+				background-color: var(--purple);
+			}
+			.mc-answer-3:hover {
+				background-color: var(--purple-selected);
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<a class="logo" href="#/">
+				<img src="/assets/img/icon1.png" />
+				<img src="/assets/img/icon2.png" />
+				<span>Devnetic</span>
+			</a>
+			<h3 class="username">Guest</h3>
+			<p class="score">0 XP, 0 Coins</p>
+		</header>
+		<tapp-main>
+			
+		</tapp-main>
+		<script src="/config.js"></script>
+	</body>
+</html>
