@@ -15,6 +15,7 @@ function getLessonPosition(lesson) {
 }
 
 function codeTemplateToCode(template) {
+	template = tApp.escape(template);
 	template = template.replaceAll("[[/]]", '</span>');
 	template = template.replaceAll("[[red]]", '<span class="c-red">');
 	template = template.replaceAll("[[darkred]]", '<span class="c-darkred">');
@@ -33,6 +34,70 @@ function codeTemplateToCode(template) {
 	template = template.replaceAll("[[white]]", '<span class="c-white">');
 	template = template.replaceAll("[\\[", '[[');
 	return template;
+}
+
+class MultipleChoiceOption extends tApp.Component {
+	constructor(state, parent) {
+		super(state, parent);
+	}
+	render(props) {
+		return `<div class="mc-answer mc-answer-{{state.index}}" onclick="{{_this}}.update();">
+	<p>{{{ tApp.escape({{_parent}}.parent.state.multiple_choice.answers[state.index]) }}}</p>
+</div>`;
+	}
+	update() {
+		console.log(this.state.index);
+	}
+}
+
+class MultipleChoice extends tApp.Component {
+	constructor(state, parent) {
+		super(state, parent);
+		if(this.state.options == null) {
+			this.state.options = {};
+		}
+		if(this.state.options[0] == null) {
+			this.state.options[0] = new MultipleChoiceOption({index: 0}, this);
+		}
+		if(this.state.options[1] == null) {
+			this.state.options[1] = new MultipleChoiceOption({index: 1}, this);
+		}
+		if(this.state.options[2] == null) {
+			this.state.options[2] = new MultipleChoiceOption({index: 2}, this);
+		}
+		if(this.state.options[3] == null) {
+			this.state.options[3] = new MultipleChoiceOption({index: 3}, this);
+		}
+	}
+	render(props) {
+		return `<div>
+	<h1 class="mc-question">{{{ tApp.escape(parent.state.multiple_choice.question) }}}</h1>
+	<div class="mc-codeblock">
+		<pre>{{ parent.state.multiple_choice.code }}</pre>
+	</div>
+	<div class="mc-answer-container">
+		${this.state.options[0]}
+		${this.state.options[1]}
+		${this.state.options[2]}
+		${this.state.options[3]}
+	</div>
+</div>`;
+	}
+}
+
+class LessonPage extends tApp.Component {
+	constructor(state, parent) {
+		super(state, parent);
+	}
+	render(props) {
+		return `${this.state.component}`;
+	}
+	setComponent(component) {
+		if(this.state.component != null) {
+			this.state.component.destroy();
+		}
+		this.state.component = component;
+	}
 }
 
 tApp.configure({
@@ -65,14 +130,18 @@ tApp.route("#/learn/<lesson>/", function(request) {
 	tApp.redirect(`#/learn/${request.data.lesson}/${getLessonPosition(request.data.lesson)}/`);
 });
 
+let lessonPage = new LessonPage();
 tApp.route("#/learn/<lesson>/<position>", function(request) {
 	getLessonData(request.data.lesson, request.data.position).then((data) => {
 		data.code = codeTemplateToCode(data.code_template);
 		
 		if(data.type == "multiple_choice") {
-			tApp.renderTemplate("/views/multiple_choice.html", data);
+			lessonPage.setComponent(new MultipleChoice({}, lessonPage));
+			lessonPage.setState("multiple_choice", data);
+			tApp.renderTemplateHTML("{{ lessonPage }}", {lessonPage: lessonPage.toString()});
 		}
 	}).catch((err) => {
+		// console.error(err);
 		tApp.renderPath("#/404");
 	})
 });

@@ -9,7 +9,7 @@ class tApp {
 	static currentHash = "/";
 	static debugComponentTiming;
 	static get version() {
-		return "v0.10.3";
+		return "v0.10.5";
 	}
 	static configure(params) {
 		if(params == null) {
@@ -612,6 +612,10 @@ class tApp {
 			if(component.parent != null) {
 				parentState = component.parent.state;
 			}
+			let parentId = null;
+			if(component.parent != null) {
+				parentId = component.parent.id;
+			}
 			let count = htmlToDOMCount(rendered);
 			if(count != 1) {
 				throw "tAppComponentError: Component render output must contain exactly one node/element but can contain subnodes/subelements. To resolve this issue, wrap the entire output of the render in a div or another grouping element. If you only have one node/element, unintentional whitespace at the beginning or end of the render output could be the source of the issue since whitespace can be interpreted as a text node/element.";
@@ -623,9 +627,11 @@ class tApp {
 				props: props,
 				state: component.state,
 				parent: {
-					state: parentState
+					state: parentState,
+					id: parentId
 				},
-				_this: "tApp.getComponent(this.getAttribute('tapp-component'))"
+				_this: "tApp.getComponent(this.getAttribute('tapp-component'))",
+				_parent: `tApp.getComponent("${parentId}")`
 			}, component.id);
 		} else {
 			function trim(str) {
@@ -1050,7 +1056,7 @@ tApp.Component = class {
 	#children;
 	constructor(state, parent = "global") {
 		this.#id = new Date().toJSON() + "::" + Math.random().toString(36).substr(2) + "::" + Math.random().toString(36).substr(2);
-		if(parent != "") {
+		if(parent != null) {
 			if(typeof parent == "string") {
 				this.#parent = tApp.getComponent(parent);
 			} else {
@@ -1144,7 +1150,7 @@ tApp.GlobalComponent = (function() {
 	class GlobalComponent extends tApp.Component {
 		#id;
 		constructor(state, parent) {
-			super(state, "");
+			super(state, null);
 		}
 		render(props) {
 			return "<div></div>";
