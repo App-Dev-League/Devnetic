@@ -9,7 +9,7 @@ class tApp {
 	static currentHash = "/";
 	static debugComponentTiming;
 	static get version() {
-		return "v0.10.6";
+		return "v0.10.7";
 	}
 	static configure(params) {
 		if(params == null) {
@@ -410,6 +410,17 @@ class tApp {
 		}
 		return tApp.eval(tApp.optionsToEval(data) + `let _____tApp_____result = (function() {return eval("${code.replaceAll("\"", "\\\"")}")})();${tApp.restoreOptions(data)}[_____tApp_____result, _____tApp_____returnOptions]`);
 	}
+	static getComponentFromDOM(domElement) {
+		let component = null;
+		while((domElement != null && domElement.nodeName.substring(0, 1) != "#") && domElement.getAttribute('tapp-component') == null) {
+			domElement = domElement.parentNode;
+		}
+		if(domElement == null || domElement.nodeName.substring(0, 1) == "#") {
+			return null;
+		} else {
+			return tApp.getComponent(domElement.getAttribute('tapp-component'));
+		}
+	}
 	static getComponent(id) {
 		return tApp.components[id];
 	}
@@ -548,20 +559,28 @@ class tApp {
 							} else {
 								let nextNotNull;
 								for(let j = i; nextNotNull == null && j < beforeChildren.length; j++) {
-									if(beforeChildren[j] != null) {
+									if(beforeChildren[j] != null && beforeChildren[j].nodeName != "#text") {
 										nextNotNull = beforeChildren[j];
 									}
 								}
 								if(nextNotNull == null) {
 									let prevNotNull;
 									for(let j = i; prevNotNull == null && j < beforeChildren.length; j--) {
-										if(beforeChildren[j] != null) {
+										if(beforeChildren[j] != null && beforeChildren[j].nodeName != "#text") {
 											prevNotNull = beforeChildren[j];
 										}
 									}
-									prevNotNull.insertAdjacentElement("afterend", afterChildren[i]);
+									if(afterChildren[i].nodeName == "#text") {
+										prevNotNull.insertAdjacentText("afterend", afterChildren[i].nodeValue);
+									} else {
+										prevNotNull.insertAdjacentElement("afterend", afterChildren[i]);
+									}
 								} else {
-									nextNotNull.insertAdjacentElement("beforebegin", afterChildren[i]);
+									if(afterChildren[i].nodeName == "#text") {
+										nextNotNull.insertAdjacentText("beforebegin", afterChildren[i].nodeValue);
+									} else {
+										nextNotNull.insertAdjacentElement("beforebegin", afterChildren[i]);
+									}
 								}
 							}
 						} else if(afterChildren[i] == null) {
@@ -633,7 +652,7 @@ class tApp {
 					state: parentState,
 					id: parentId
 				},
-				_this: "tApp.getComponent(this.getAttribute('tapp-component'))",
+				_this: "tApp.getComponentFromDOM(this)",
 				_parent: `tApp.getComponent("${parentId}")`
 			}, component.id);
 		} else {

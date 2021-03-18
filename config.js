@@ -84,8 +84,10 @@ class MultipleChoice extends tApp.Component {
 	</div>
 	{% else if(parent.state.multiple_choice.selectedAnswer == parent.state.multiple_choice.correct) %}
 	<h1 class="mc-question">Correct!</h1>
+	<center><button onclick="{{_this}}.parent.setState('multiple_choice.selectedAnswer', null);" style="color: black">Back</button></center>
 	{% else %}
 	<h1 class="mc-question">Incorrect!</h1>
+	<center><button onclick="{{_this}}.parent.setState('multiple_choice.selectedAnswer', null);" style="color: black">Back</button></center>
 	{% endif %}
 </div>`;
 	}
@@ -96,7 +98,9 @@ class LessonPage extends tApp.Component {
 		super(state, parent);
 	}
 	render(props) {
-		return `${this.state.component}`;
+		return `<div>
+	${this.state.component}
+</div>`;
 	}
 	setComponent(component) {
 		if(this.state.component != null) {
