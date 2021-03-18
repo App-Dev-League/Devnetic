@@ -3,5 +3,5 @@
 	"question": "What is the output of the following code?",
 	"code_template": "[[blue]]<p>[[/]][[white]]Hello, world![[/]][[blue]]</p>[[/]]",
 	"answers": ["<p>Hello, world!</p>", "Hello, world!", "Hello", "<p>"],
-	"correct": 2
+	"correct": 1
 }]

@@ -9,7 +9,7 @@ class tApp {
 	static currentHash = "/";
 	static debugComponentTiming;
 	static get version() {
-		return "v0.10.5";
+		return "v0.10.6";
 	}
 	static configure(params) {
 		if(params == null) {
@@ -424,6 +424,9 @@ class tApp {
 			delete tApp.components[id];
 			return true;
 		}
+	}
+	static updateDOM() {
+		tApp.updateComponent(tApp.GlobalComponent);
 	}
 	static updateComponent(component) {
 		let updateStartTime;
@@ -1121,7 +1124,7 @@ tApp.Component = class {
 			return state;
 		}
 		this.state = recursivelySetState(key, val, this.state);
-		tApp.updateComponent(tApp.GlobalComponent);
+		tApp.updateDOM();
 		return val;
 	}
 	render(props) {

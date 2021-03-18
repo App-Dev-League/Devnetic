@@ -46,7 +46,7 @@ class MultipleChoiceOption extends tApp.Component {
 </div>`;
 	}
 	update() {
-		console.log(this.state.index);
+		this.parent.parent.setState("multiple_choice.selectedAnswer", this.state.index);
 	}
 }
 
@@ -71,6 +71,7 @@ class MultipleChoice extends tApp.Component {
 	}
 	render(props) {
 		return `<div>
+	{% if(parent.state.multiple_choice.selectedAnswer == null) %}
 	<h1 class="mc-question">{{{ tApp.escape(parent.state.multiple_choice.question) }}}</h1>
 	<div class="mc-codeblock">
 		<pre>{{ parent.state.multiple_choice.code }}</pre>
@@ -81,6 +82,11 @@ class MultipleChoice extends tApp.Component {
 		${this.state.options[2]}
 		${this.state.options[3]}
 	</div>
+	{% else if(parent.state.multiple_choice.selectedAnswer == parent.state.multiple_choice.correct) %}
+	<h1 class="mc-question">Correct!</h1>
+	{% else %}
+	<h1 class="mc-question">Incorrect!</h1>
+	{% endif %}
 </div>`;
 	}
 }
