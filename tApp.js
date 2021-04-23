@@ -9,7 +9,7 @@ class tApp {
 	static currentHash = "/";
 	static debugComponentTiming;
 	static get version() {
-		return "v0.10.7";
+		return "v0.10.10";
 	}
 	static configure(params) {
 		if(params == null) {
@@ -86,6 +86,9 @@ class tApp {
 			tApp.routes[path] = renderFunction;
 		} else {
 			throw "tAppError: Invalid path, the path can only be \"/\" or start with \"#\".";
+		}
+		if(tApp.started) {
+			tApp.updatePage(window.location.hash);
 		}
 	}
 	static getCachedPage(fullPath) {
@@ -375,6 +378,20 @@ class tApp {
 			return entityMap[s];
 		});
 	}
+	static unescape(string) {
+		let entityMap = {
+			"&lt;": "<",
+			"&gt;": ">",
+			'&quot;': '"',
+			'&#39;': "'",
+			"&amp;": "&"
+		};
+		let keys = Object.keys(entityMap);
+		for(let i = 0; i < keys.length; i++) {
+			string = string.replaceAll(keys[i], entityMap[keys[i]]);
+		}
+		return string;
+	}
 	static eval(code) {
 		return (function(code) {
 			return eval(code);
@@ -470,124 +487,122 @@ class tApp {
 			return true;
 		}
 		function convertNode(before, after) {
-			if(before.attributes != null && after.attributes != null) {
-				let removeAttributes = [];
-				let updateAttributes = [];
-				let beforeAttributes = [...before.attributes];
-				let afterAttributes = [...after.attributes];
-				if((after.value != null && after.value != "") || (before.value != null && before.value != "")) {
-					if((after.value == "" || after.value == null) && (before.value != "" || before.value != null)) {
-						removeAttributes.push({nodeName: "value", nodeValue: ""});
-					} else if(after.value != before.value) {
-						updateAttributes.push({nodeName: "value", nodeValue: after.value});
-					}
-				}
-				for(let i = 0; i < beforeAttributes.length; i++) {
-					if(beforeAttributes[i].nodeName != "value") {
-						let afterAttribute = afterAttributes.find(attribute => attribute.nodeName == beforeAttributes[i].nodeName);
-						if(afterAttribute == null) {
-							removeAttributes.push(beforeAttributes[i]);
-						} else if(afterAttribute.nodeValue != beforeAttributes[i].nodeValue) {
-							updateAttributes.push(beforeAttributes[i]);
-						}
-					}
-				}
-				for(let i = 0; i < afterAttributes.length; i++) {
-					if(afterAttributes[i].nodeName != "value") {
-						let beforeAttribute = beforeAttributes.find(attribute => attribute.nodeName == afterAttributes[i].nodeName);
-						if(beforeAttribute == null) {
-							updateAttributes.push(afterAttributes[i]);
-						}
-					}
-				}
-				for(let i = 0; i < removeAttributes.length; i++) {
-					if(removeAttributes[i].nodeName == "value") {
-						before.value = "";
-					} else {
-						before.removeAttribute(removeAttributes[i].nodeName);
-					}
-				}
-				for(let i = 0; i < updateAttributes.length; i++) {
-					if(updateAttributes[i].nodeName == "value") {
-						before.value = updateAttributes[i].nodeValue;
-					} else {
-						before.setAttribute(updateAttributes[i].nodeName, updateAttributes[i].nodeValue);
-					}
-				}
-			}
-			if(before.nodeName == "#text" && after.nodeName == "#text") {
-				before.textContent = after.textContent;
-			}
-			
-			if(after.childNodes.length == 0 || after.childNodes.length == 1 && after.childNodes[0].nodeName == "#text") {
-				before.innerHTML = after.innerHTML;
+			if(before.nodeName != after.nodeName) {
+				after.outerHTML = before.outerHTML;
 			} else {
-				if(compareChildren(before, after)) {
-					for(let i = 0; i < after.childNodes.length; i++) {
-						convertNode(before.childNodes[i], after.childNodes[i])
+				if(before.attributes != null && after.attributes != null) {
+					let removeAttributes = [];
+					let updateAttributes = [];
+					let beforeAttributes = [...before.attributes];
+					let afterAttributes = [...after.attributes];
+					if((after.value != null && after.value != "") || (before.value != null && before.value != "")) {
+						if((after.value == "" || after.value == null) && (before.value != "" || before.value != null)) {
+							removeAttributes.push({nodeName: "value", nodeValue: ""});
+						} else if(after.value != before.value) {
+							updateAttributes.push({nodeName: "value", nodeValue: after.value});
+						}
 					}
-				} else {
-					let beforeChildren = [...before.childNodes];
-					let afterChildren = [...after.childNodes];
-					let beforeChildrenPersist = [...before.childNodes];
-					let afterChildrenPersist = [...after.childNodes];
-					let pointerBefore = 0;
-					let pointerAfter = 0;
-					while(pointerBefore < beforeChildren.length || pointerAfter < afterChildren.length) {
-						if(pointerBefore >= beforeChildren.length) {
-							beforeChildren.splice(pointerBefore, 0, null);
-						} else if(pointerAfter >= afterChildren.length) {
-							afterChildren.splice(pointerAfter, 0, null);
-						} else {
-							if(beforeChildren[pointerBefore].nodeName != afterChildren[pointerAfter].nodeName) {
-								if(beforeChildrenPersist.length > afterChildrenPersist.length) {
-									afterChildren.splice(pointerAfter, 0, null);
-								} else {
-									beforeChildren.splice(pointerBefore, 0, null);
-								}
+					for(let i = 0; i < beforeAttributes.length; i++) {
+						if(beforeAttributes[i].nodeName != "value") {
+							let afterAttribute = afterAttributes.find(attribute => attribute.nodeName == beforeAttributes[i].nodeName);
+							if(afterAttribute == null) {
+								removeAttributes.push(beforeAttributes[i]);
+							} else if(afterAttribute.nodeValue != beforeAttributes[i].nodeValue) {
+								updateAttributes.push(beforeAttributes[i]);
 							}
 						}
-						pointerBefore++;
-						pointerAfter++;
 					}
-					for(let i = 0; i < beforeChildren.length; i++) {
-						let nullBefore = beforeChildren.length == beforeChildren.filter(el => el == null || el.nodeName == "#text").length;
-						if(beforeChildren[i] == null && afterChildren[i] == null) {
-						} else if(beforeChildren[i] == null) {
-							if(nullBefore) {
-								before.appendChild(afterChildren[i]);
+					for(let i = 0; i < afterAttributes.length; i++) {
+						if(afterAttributes[i].nodeName != "value") {
+							let beforeAttribute = beforeAttributes.find(attribute => attribute.nodeName == afterAttributes[i].nodeName);
+							if(beforeAttribute == null) {
+								updateAttributes.push(afterAttributes[i]);
+							}
+						}
+					}
+					for(let i = 0; i < removeAttributes.length; i++) {
+						if(removeAttributes[i].nodeName == "value") {
+							before.value = "";
+						} else {
+							before.removeAttribute(removeAttributes[i].nodeName);
+						}
+					}
+					for(let i = 0; i < updateAttributes.length; i++) {
+						if(updateAttributes[i].nodeName == "value") {
+							before.value = updateAttributes[i].nodeValue;
+						} else {
+							before.setAttribute(updateAttributes[i].nodeName, updateAttributes[i].nodeValue);
+						}
+					}
+				}
+				if(before.nodeName == "#text" && after.nodeName == "#text") {
+					before.textContent = after.textContent;
+				}
+				
+				if(after.childNodes.length == 0 || after.childNodes.length == 1 && after.childNodes[0].nodeName == "#text") {
+					before.innerHTML = after.innerHTML;
+				} else {
+					if(compareChildren(before, after)) {
+						for(let i = 0; i < after.childNodes.length; i++) {
+							convertNode(before.childNodes[i], after.childNodes[i])
+						}
+					} else {
+						let beforeChildren = [...before.childNodes];
+						let afterChildren = [...after.childNodes];
+						let beforeChildrenPersist = [...before.childNodes];
+						let afterChildrenPersist = [...after.childNodes];
+						let pointerBefore = 0;
+						let pointerAfter = 0;
+						while(pointerBefore < beforeChildren.length || pointerAfter < afterChildren.length) {
+							if(pointerBefore >= beforeChildren.length) {
+								beforeChildren.splice(pointerBefore, 0, null);
+							} else if(pointerAfter >= afterChildren.length) {
+								afterChildren.splice(pointerAfter, 0, null);
 							} else {
-								let nextNotNull;
-								for(let j = i; nextNotNull == null && j < beforeChildren.length; j++) {
-									if(beforeChildren[j] != null && beforeChildren[j].nodeName != "#text") {
-										nextNotNull = beforeChildren[j];
+								if(beforeChildren[pointerBefore].nodeName != afterChildren[pointerAfter].nodeName) {
+									if(beforeChildrenPersist.length > afterChildrenPersist.length) {
+										afterChildren.splice(pointerAfter, 0, null);
+									} else {
+										beforeChildren.splice(pointerBefore, 0, null);
 									}
 								}
-								if(nextNotNull == null) {
-									let prevNotNull;
-									for(let j = i; prevNotNull == null && j < beforeChildren.length; j--) {
-										if(beforeChildren[j] != null && beforeChildren[j].nodeName != "#text") {
-											prevNotNull = beforeChildren[j];
+							}
+							pointerBefore++;
+							pointerAfter++;
+						}
+						for(let i = 0; i < beforeChildren.length; i++) {
+							let nullBefore = beforeChildren.length == beforeChildren.filter(el => el == null || el.nodeName == "#text").length;
+							if(beforeChildren[i] == null && afterChildren[i] == null) {
+							} else if(beforeChildren[i] == null) {
+								if(nullBefore) {
+									before.appendChild(afterChildren[i]);
+								} else {
+									let nextNotNull;
+									for(let j = i; nextNotNull == null && j < beforeChildren.length; j++) {
+										if(beforeChildren[j] != null) {
+											nextNotNull = beforeChildren[j];
 										}
 									}
-									if(afterChildren[i].nodeName == "#text") {
-										prevNotNull.insertAdjacentText("afterend", afterChildren[i].nodeValue);
+									if(nextNotNull == null) {
+										let prevNotNull;
+										for(let j = i; prevNotNull == null && j < beforeChildren.length; j--) {
+											if(beforeChildren[j] != null) {
+												prevNotNull = beforeChildren[j];
+											}
+										}
+										prevNotNull.after(afterChildren[i]);
+										beforeChildren[i] = afterChildren[i];
 									} else {
-										prevNotNull.insertAdjacentElement("afterend", afterChildren[i]);
-									}
-								} else {
-									if(afterChildren[i].nodeName == "#text") {
-										nextNotNull.insertAdjacentText("beforebegin", afterChildren[i].nodeValue);
-									} else {
-										nextNotNull.insertAdjacentElement("beforebegin", afterChildren[i]);
+										nextNotNull.before(afterChildren[i]);
+										beforeChildren[i] = afterChildren[i];
 									}
 								}
+							} else if(afterChildren[i] == null) {
+								beforeChildren[i].remove();
+								beforeChildren[i] = null;
+							} else {
+								convertNode(beforeChildren[i], afterChildren[i]);
 							}
-						} else if(afterChildren[i] == null) {
-							beforeChildren[i].remove();
-							beforeChildren[i] = null;
-						} else {
-							convertNode(beforeChildren[i], afterChildren[i]);
 						}
 					}
 				}
@@ -611,14 +626,18 @@ class tApp {
 	}
 	static compileComponent(component, props = {}, parent = "global") {
 		function htmlToDOM(html) {
-			if(html.includes("<body")) {
-				return new DOMParser().parseFromString(html, "text/html").childNodes[0];
+			if(html.includes("</html>")) {
+				return new DOMParser().parseFromString(html, "text/html").children[0];
+			} else if(html.includes("</head>")) {
+				return new DOMParser().parseFromString(html, "text/html").body.parentNode.children[0];
+			} else if(html.includes("</body>")) {
+				return new DOMParser().parseFromString(html, "text/html").body.parentNode.children[1];
 			} else {
 				return new DOMParser().parseFromString(html, "text/html").body.childNodes[0];
 			}
 		}
 		function htmlToDOMCount(html) {
-			if(html.includes("<body")) {
+			if(html.includes("</body>")) {
 				return new DOMParser().parseFromString(html, "text/html").childNodes.length;
 			} else {
 				return new DOMParser().parseFromString(html, "text/html").body.childNodes.length;
@@ -645,6 +664,24 @@ class tApp {
 			let domRendered = htmlToDOM(rendered);
 			domRendered.setAttribute("tapp-component", component.id);
 			rendered = domRendered.outerHTML;
+			let it = rendered.matchAll(new RegExp("{{{[\\s|\\t]*(.+?(?=}}}))[\\s|\\t]*}}}", "g"));
+			let next = it.next();
+			while(!next.done) {
+				rendered = rendered.replace(next.value[0], tApp.unescape(next.value[0]));
+				next = it.next();
+			}
+			it = rendered.matchAll(new RegExp("{%[\\s|\\t]*(.+?(?=%}))[\\s|\\t]*%}", "g"));
+			next = it.next();
+			while(!next.done) {
+				rendered = rendered.replace(next.value[0], tApp.unescape(next.value[0]));
+				next = it.next();
+			}
+			it = rendered.matchAll(new RegExp("\\[\\[[\\s|\\t]*(.+?(?=\\]\\]))[\\s|\\t]*\\]\\]", "g"));
+			next = it.next();
+			while(!next.done) {
+				rendered = rendered.replace(next.value[0], tApp.unescape(next.value[0]));
+				next = it.next();
+			}
 			return tApp.compileTemplate(rendered, {
 				props: props,
 				state: component.state,
@@ -730,7 +767,7 @@ class tApp {
 					tmpLoader = str[i];
 				} else if(tmpLoader == "{{{" || tmpLoader == "[[") {
 					if(tmpLoader == "{{{" && str[i] == "\n") {
-						newStrList.push(";");
+						//newStrList.push(";");
 					} else if(tmpLoader == "[[" && str[i] == "\n") {
 						
 					} else {
@@ -760,7 +797,7 @@ class tApp {
 						tmpLoader = "";
 					}
 					if(newLineStack[newLineStack.length - 1] == "{{{" && str[i] == "\n") {
-						newStrList.push(";");
+						//newStrList.push(";");
 					} else if(newLineStack[newLineStack.length - 1] == "[[" && str[i] == "\n") {
 						
 					} else {
@@ -1165,6 +1202,9 @@ tApp.Component = class {
 	}
 	toString() {
 		return tApp.compileComponent(this);
+	}
+	elements() {
+		return document.querySelectorAll(`[tapp-component="${this.#id}"]`);
 	}
 }
 

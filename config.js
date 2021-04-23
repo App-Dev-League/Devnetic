@@ -41,12 +41,33 @@ class MultipleChoiceOption extends tApp.Component {
 		super(state, parent);
 	}
 	render(props) {
-		return `<div class="mc-answer mc-answer-{{state.index}}" onclick="{{_this}}.update();">
-	<p>{{{ tApp.escape({{_parent}}.parent.state.multiple_choice.answers[state.index]) }}}</p>
+		return `<div class="mc-answer mc-answer-${this.state.index}" onclick="{{_this}}.update();">
+	<p>${tApp.escape(this.parent.parent.state.multiple_choice.answers[this.state.index])}</p>
 </div>`;
 	}
 	update() {
 		this.parent.parent.setState("multiple_choice.selectedAnswer", this.state.index);
+	}
+}
+
+class ExplanationModel extends tApp.Component {
+	constructor(state, parent) {
+		super(state, parent);
+		if(this.state.title == null) {
+			this.state.title = "";
+		}
+		if(this.state.description == null) {
+			this.state.description = "";
+		}
+	}
+	render(props) {
+		return `<div class="explanation-wrapper">
+	<div class="explanation-modal">
+		<h3>${tApp.escape(this.state.title)}</h3>
+		<p>${tApp.escape(this.state.description)}</h3>
+		<button onclick="{{_this}}.parent.parent.setState('multiple_choice.selectedAnswer', null);" style="color: black">Try Again</button>
+	</div>
+</div>`;
 	}
 }
 
@@ -68,28 +89,40 @@ class MultipleChoice extends tApp.Component {
 		if(this.state.options[3] == null) {
 			this.state.options[3] = new MultipleChoiceOption({index: 3}, this);
 		}
+		if(this.state.explanation == null) {
+			this.state.explanation = new ExplanationModel({}, this);
+		}
 	}
 	render(props) {
-		return `<div>
-	{% if(parent.state.multiple_choice.selectedAnswer == null) %}
-	<h1 class="mc-question">{{{ tApp.escape(parent.state.multiple_choice.question) }}}</h1>
+		let returnStr = `<div>
+	<h1 class="mc-question">${tApp.escape(this.parent.state.multiple_choice.question)}</h1>
 	<div class="mc-codeblock">
-		<pre>{{ parent.state.multiple_choice.code }}</pre>
+		<pre>${this.parent.state.multiple_choice.code}</pre>
 	</div>
 	<div class="mc-answer-container">
 		${this.state.options[0]}
 		${this.state.options[1]}
 		${this.state.options[2]}
 		${this.state.options[3]}
-	</div>
-	{% else if(parent.state.multiple_choice.selectedAnswer == parent.state.multiple_choice.correct) %}
-	<h1 class="mc-question">Correct!</h1>
-	<center><button onclick="{{_this}}.parent.setState('multiple_choice.selectedAnswer', null);" style="color: black">Back</button></center>
-	{% else %}
-	<h1 class="mc-question">Incorrect!</h1>
-	<center><button onclick="{{_this}}.parent.setState('multiple_choice.selectedAnswer', null);" style="color: black">Back</button></center>
-	{% endif %}
-</div>`;
+	</div>`;
+		if(this.parent.state.multiple_choice.selectedAnswer != null) {
+			returnStr += this.state.explanation.toString();
+			if(this.parent.state.multiple_choice.selectedAnswer == this.parent.state.multiple_choice.correct) {
+				this.state.explanation.state.title = "Correct!";
+				/*returnStr = `<div>
+		<h1 class="mc-question">Correct!</h1>
+		<center><button onclick="{{_this}}.parent.setState('multiple_choice.selectedAnswer', null);" style="color: black">Back</button></center>
+	</div>`;*/
+			} else {
+				this.state.explanation.state.title = "Incorrect!";
+				/*returnStr = `<div>
+		<h1 class="mc-question">Incorrect!</h1>
+		<center><button onclick="{{_this}}.parent.setState('multiple_choice.selectedAnswer', null);" style="color: black">Back</button></center>
+	</div>`;*/
+			}
+		}
+		returnStr += "</div>";
+		return returnStr;
 	}
 }
 
@@ -104,9 +137,9 @@ class LessonPage extends tApp.Component {
 	}
 	setComponent(component) {
 		if(this.state.component != null) {
-			this.state.component.destroy();
+			//this.state.component.destroy();
 		}
-		this.state.component = component;
+		this.setState("component", component);
 	}
 }
 
@@ -141,16 +174,20 @@ tApp.route("#/learn/<lesson>/", function(request) {
 });
 
 let lessonPage = new LessonPage();
+let multipleChoice = new MultipleChoice({}, lessonPage);
 tApp.route("#/learn/<lesson>/<position>", function(request) {
 	getLessonData(request.data.lesson, request.data.position).then((data) => {
 		data.code = codeTemplateToCode(data.code_template);
 		
 		if(data.type == "multiple_choice") {
-			lessonPage.setComponent(new MultipleChoice({}, lessonPage));
 			lessonPage.setState("multiple_choice", data);
-			tApp.renderTemplateHTML("{{ lessonPage }}", {lessonPage: lessonPage.toString()});
+			lessonPage.setComponent(multipleChoice);
+			tApp.renderTemplateHTML("{{ lessonPage }}", {
+				lessonPage: lessonPage.toString()
+			});
 		}
 	}).catch((err) => {
+		console.log(err);
 		// console.error(err);
 		tApp.renderPath("#/404");
 	})
