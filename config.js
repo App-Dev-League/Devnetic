@@ -59,13 +59,20 @@ class ExplanationModel extends tApp.Component {
 		if(this.state.description == null) {
 			this.state.description = "";
 		}
+		if(this.state.retry == null) {
+			this.state.retry = true;
+		}
 	}
 	render(props) {
 		return `<div class="explanation-wrapper">
 	<div class="explanation-modal">
 		<h3>${tApp.escape(this.state.title)}</h3>
 		<p>${tApp.escape(this.state.description)}</h3>
+		{% if(state.retry) %}
 		<button onclick="{{_this}}.parent.parent.setState('multiple_choice.selectedAnswer', null);" style="color: black">Try Again</button>
+		{% else %}
+		<button onclick="{{_this}}.parent.parent.next();" style="color: black">Next</button>
+		{% endif %}
 	</div>
 </div>`;
 	}
@@ -106,20 +113,22 @@ class MultipleChoice extends tApp.Component {
 		${this.state.options[3]}
 	</div>`;
 		if(this.parent.state.multiple_choice.selectedAnswer != null) {
-			returnStr += this.state.explanation.toString();
 			if(this.parent.state.multiple_choice.selectedAnswer == this.parent.state.multiple_choice.correct) {
 				this.state.explanation.state.title = "Correct!";
+				this.state.explanation.state.retry = false;
 				/*returnStr = `<div>
 		<h1 class="mc-question">Correct!</h1>
 		<center><button onclick="{{_this}}.parent.setState('multiple_choice.selectedAnswer', null);" style="color: black">Back</button></center>
 	</div>`;*/
 			} else {
 				this.state.explanation.state.title = "Incorrect!";
+				this.state.explanation.state.retry = true;
 				/*returnStr = `<div>
 		<h1 class="mc-question">Incorrect!</h1>
 		<center><button onclick="{{_this}}.parent.setState('multiple_choice.selectedAnswer', null);" style="color: black">Back</button></center>
 	</div>`;*/
 			}
+			returnStr += this.state.explanation.toString();
 		}
 		returnStr += "</div>";
 		return returnStr;
@@ -140,6 +149,11 @@ class LessonPage extends tApp.Component {
 			//this.state.component.destroy();
 		}
 		this.setState("component", component);
+	}
+	next() {
+		if(this.state.next != null) {
+			window.location.hash = this.state.next;
+		}
 	}
 }
 
@@ -180,7 +194,8 @@ tApp.route("#/learn/<lesson>/<position>", function(request) {
 		data.code = codeTemplateToCode(data.code_template);
 		
 		if(data.type == "multiple_choice") {
-			lessonPage.setState("multiple_choice", data);
+			lessonPage.state.multiple_choice = data;
+			lessonPage.state.next = "#/learn/" + request.data.lesson + "/" + (parseInt(request.data.position) + 1);
 			lessonPage.setComponent(multipleChoice);
 			tApp.renderTemplateHTML("{{ lessonPage }}", {
 				lessonPage: lessonPage.toString()

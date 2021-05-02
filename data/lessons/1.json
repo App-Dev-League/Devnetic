@@ -4,4 +4,10 @@
 	"code_template": "[[blue]]<p>[[/]][[white]]Hello, world![[/]][[blue]]</p>[[/]]",
 	"answers": ["<p>Hello, world!</p>", "Hello", "Hello, world!", "<p>"],
 	"correct": 2
+}, {
+	"type": "multiple_choice",
+	"question": "What is the correct description of the following code?",
+	"code_template": "[[blue]]<button>[[/]][[white]]Increase counter[[/]][[blue]]</button>[[/]]",
+	"answers": ["Not valid code", "Button with text 'Increase counter'", "Text element 'Increase counter'", "Button that increases counter"],
+	"correct": 1
 }]
