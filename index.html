@@ -311,12 +311,46 @@
 				top: 50%;
 				left: 50%;
 				transform: translate(-50%, -50%);
-				padding: 50px;
+				padding: 30px;
+				padding-bottom: 20px;
 				background-color: var(--black);
 				box-shadow: 0 0 26px 0 var(--black);
 				border-radius: 15px;
 				width: 500px;
 				max-width: calc(100% - 50px);
+			}
+			.explanation-modal h3 {
+				font-size: 2em;
+				margin: 0;
+			}
+			.explanation-modal button {
+				border: 0;
+				outline: 0;
+				border-radius: 10px;
+				padding-left: 20px;
+				padding-right: 20px;
+				padding-top: 10px;
+				padding-bottom: 10px;
+				margin-top: 20px;
+				cursor: pointer;
+				transform: scale(1);
+				transition: background-color 0.15s ease-in-out,
+							transform 0.15s ease-in-out;
+			}
+			.explanation-modal button:active {
+				transform: scale(0.96);
+			}
+			.explanation-modal .button-correct {
+				background-color: var(--green);
+			}
+			.explanation-modal .button-correct:hover {
+				background-color: var(--green-selected);
+			}
+			.explanation-modal .button-incorrect {
+				background-color: var(--orange);
+			}
+			.explanation-modal .button-incorrect:hover {
+				background-color: var(--orange-selected);
 			}
 		</style>
 	</head>

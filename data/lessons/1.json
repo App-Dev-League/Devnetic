@@ -2,12 +2,29 @@
 	"type": "multiple_choice",
 	"question": "What is the output of the following code?",
 	"code_template": "[[lightpurple]]<p>[[/]][[white]]Hello, world![[/]][[lightpurple]]</p>[[/]]",
-	"answers": ["<p>Hello, world!</p>", "Hello", "Hello, world!", "<p>"],
-	"correct": 2
+	"answers": [
+		"<p>Hello, world!</p>",
+		"Hello",
+		"Hello, world!",
+		"<p>"
+	],
+	"correct": 2,
+	"descriptions": [
+		"Since <p> and </p> are html tags, they are not directly displayed on the screen.",
+		"It seems that you missed some words. Remember that everything between <p>...</p> is displayed on the screen.",
+		"Everything between <p>...</p> is displayed as text to the screen. Good job!",
+		"Since <p> is an html tag, it is not directly displayed on the screen. Rather, the text between the opening and closing tag is displayed."
+	]
 }, {
 	"type": "multiple_choice",
 	"question": "What is the correct description of the following code?",
 	"code_template": "[[lightpurple]]<button>[[/]][[white]]Increase counter[[/]][[lightpurple]]</button>[[/]]",
 	"answers": ["Not valid code", "A button with the text 'Increase counter'", "A text element 'Increase counter'", "A button that increases a counter"],
-	"correct": 1
+	"correct": 1,
+	"descriptions": [
+		"The <button> tag is indeed a valid HTML tag. Hint, the tag explains itself.",
+		"Amazing work! The tag with text inside just displays a button with that text and does not have any underlying logic (like increasing a counter).",
+		"Remember, <p> is the tag for text elements. Hint, the <button> tag explains itself.",
+		"Any text within HTML tags is purely for display purposes and does not change the underlying logic of the tag."
+	]
 }]
