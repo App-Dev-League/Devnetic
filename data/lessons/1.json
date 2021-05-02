@@ -1,13 +1,13 @@
 [{
 	"type": "multiple_choice",
 	"question": "What is the output of the following code?",
-	"code_template": "[[blue]]<p>[[/]][[white]]Hello, world![[/]][[blue]]</p>[[/]]",
+	"code_template": "[[lightpurple]]<p>[[/]][[white]]Hello, world![[/]][[lightpurple]]</p>[[/]]",
 	"answers": ["<p>Hello, world!</p>", "Hello", "Hello, world!", "<p>"],
 	"correct": 2
 }, {
 	"type": "multiple_choice",
 	"question": "What is the correct description of the following code?",
-	"code_template": "[[blue]]<button>[[/]][[white]]Increase counter[[/]][[blue]]</button>[[/]]",
-	"answers": ["Not valid code", "Button with text 'Increase counter'", "Text element 'Increase counter'", "Button that increases counter"],
+	"code_template": "[[lightpurple]]<button>[[/]][[white]]Increase counter[[/]][[lightpurple]]</button>[[/]]",
+	"answers": ["Not valid code", "A button with the text 'Increase counter'", "A text element 'Increase counter'", "A button that increases a counter"],
 	"correct": 1
 }]

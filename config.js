@@ -106,11 +106,13 @@ class MultipleChoice extends tApp.Component {
 	<div class="mc-codeblock">
 		<pre>${this.parent.state.multiple_choice.code}</pre>
 	</div>
-	<div class="mc-answer-container">
-		${this.state.options[0]}
-		${this.state.options[1]}
-		${this.state.options[2]}
-		${this.state.options[3]}
+	<div class="mc-answer-table">
+		<div class="mc-answer-container">
+			${this.state.options[0]}
+			${this.state.options[1]}
+			${this.state.options[2]}
+			${this.state.options[3]}
+		</div>
 	</div>`;
 		if(this.parent.state.multiple_choice.selectedAnswer != null) {
 			if(this.parent.state.multiple_choice.selectedAnswer == this.parent.state.multiple_choice.correct) {
