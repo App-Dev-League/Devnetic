@@ -37,6 +37,7 @@ const { install, installAll, require, requireBrowser, _getInstalledData } = (fun
 			if(options == null || options.constructor != Object) {
 				options = {};
 			}
+			options = {...options};
 			if(options.node_modules == null || typeof options.node_modules != "string") {
 				options.node_modules = "/node_modules/";
 			}

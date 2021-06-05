@@ -1,10 +1,12 @@
 (async () => {
 	await installAll([
-		"./components/ExplanationModal.js",
-		"./components/LessonPage.js",
-		"./components/MultipleChoice.js",
-		"./components/MultipleChoiceOption.js"
-	]);
+		"ExplanationModal.js",
+		"LessonPage.js",
+		"MultipleChoice.js",
+		"MultipleChoiceOption.js"
+	], {
+		path: "./components/"
+	});
 
 	const MultipleChoice = require("./components/MultipleChoice.js");
 	const LessonPage = require("./components/LessonPage.js");
