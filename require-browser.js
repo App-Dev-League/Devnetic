@@ -166,7 +166,11 @@ const { install, installAll, require, requireBrowser, _getInstalledData } = (fun
 		});
 	}
 
-	const absolute = (rel, base = window.location.href) => {
+	const getLocation = () => {
+		return window.location.href.substring(0, window.location.href.length - window.location.hash.length);
+	}
+
+	const absolute = (rel, base = getLocation()) => {
 		if(rel.includes("://")) {
 			return rel;
 		}
