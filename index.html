@@ -24,10 +24,11 @@
 			}
 			:root {
 				--black: #121212;
-				--shadow: 0 0 26px 0 #aaaaaa;
+				--shadow: 0 0 26px 0 #000000;
+				--shadow-active: 0 0 16px 0 #000000;
 				
 				--gray: #2c3e50;
-				--darkgray: #2b3a4a;
+				--darkgray: #191919;
 				
 				--white: #efefef;
 				
@@ -230,6 +231,7 @@
 				margin-top: 50px;
 				height: calc(100vh - 400px);
 				background-color: var(--darkgray);
+				box-shadow: var(--shadow);
 				margin-left: 50%;
 				transform: translate(-50%);
 				border-radius: 20px;
@@ -298,27 +300,89 @@
 			.mc-answer-3:hover {
 				background-color: var(--purple-selected);
 			}
-			
+
+			/* short_answer */
+			.short-answer-container {
+				width: 100%;
+				max-width: 1065px;
+				margin-left: 50%;
+				transform: translate(-50%, 0);
+			}
+			.short-answer-input {
+				width: calc(100% - 135px);
+				margin-top: 40px;
+				margin-left: 10px;
+				margin-right: 10px;
+				display: inline-block;
+				background-color: var(--black);
+				color: var(--white);
+				border: 5px solid var(--blue);
+				border-radius: 10px;
+				font-size: 1.2em;
+				padding: 5px;
+				box-sizing: border-box;
+				box-shadow: var(--shadow);
+			}
+			.short-answer-input:focus {
+				outline: 0;
+			}
+			.short-answer-button {
+				width: 100px;
+				margin-top: 40px;
+				display: inline-block;
+				text-align: center;
+				padding: 5px;
+				box-sizing: border-box;
+				background-color: var(--blue);
+				color: var(--white);
+				border: 5px solid var(--blue);
+				border-radius: 10px;
+				font-size: 1.2em;
+				cursor: pointer;
+				box-shadow: var(--shadow);
+				transition: background-color 0.15s ease-in-out,
+							border 0.15s ease-in-out,
+							transform 0.15s ease-in-out,
+							box-shadow 0.15s ease-in-out;
+			}
+			.short-answer-button:hover {
+				background-color: var(--blue-selected);
+				border: 5px solid var(--blue-selected);
+			}
+			.short-answer-button:active {
+				transform: scale(0.96);
+				box-shadow: var(--shadow-active);
+			}
+
+			/* explanation */
 			.explanation-wrapper {
 				position: fixed;
 				top: 0;
 				left: 0;
 				width: 100%;
 				height: 100%;
-				background-color: rgba(0, 0, 0, 0.35);
+				background-color: rgba(0, 0, 0, 0.5);
+				transition: background-color 0.15s ease-in-out;
+			}
+			.explanation-wrapper-inactive {
+				background-color: rgba(0, 0, 0, 0) !important;
+				display: none;
 			}
 			.explanation-modal {
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				transform: translate(-50%, -50%);
 				padding: 30px;
 				padding-bottom: 20px;
 				background-color: var(--black);
-				box-shadow: 0 0 26px 0 var(--black);
+				box-shadow: var(--shadow);
 				border-radius: 15px;
 				width: 500px;
 				max-width: calc(100% - 50px);
+				opacity: 1;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%) scale(1);
+				transition: opacity 0.15s ease-in-out,
+							scale 0.15s ease-in-out;
 			}
 			.explanation-modal h3 {
 				font-size: 2em;
@@ -334,12 +398,15 @@
 				padding-bottom: 10px;
 				margin-top: 20px;
 				cursor: pointer;
+				box-shadow: var(--shadow);
 				transform: scale(1);
 				transition: background-color 0.15s ease-in-out,
+							box-shadow 0.15s ease-in-out,
 							transform 0.15s ease-in-out;
 			}
 			.explanation-modal button:active {
 				transform: scale(0.96);
+				box-shadow: var(--shadow-active);
 			}
 			.explanation-modal .button-correct {
 				background-color: var(--green);
@@ -352,6 +419,14 @@
 			}
 			.explanation-modal .button-incorrect:hover {
 				background-color: var(--orange-selected);
+			}
+			.explanation-modal-inactive {
+				transform: translate(-50%, -50%) scale(0.9) !important;
+				opacity: 0 !important;
+			}
+
+			input {
+				color: black;
 			}
 		</style>
 	</head>

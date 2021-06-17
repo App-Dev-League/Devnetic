@@ -3,13 +3,15 @@
 		"ExplanationModal.js",
 		"LessonPage.js",
 		"MultipleChoice.js",
-		"MultipleChoiceOption.js"
+		"MultipleChoiceOption.js",
+		"ShortAnswer.js"
 	], {
 		path: "./components/"
 	});
 
-	const MultipleChoice = require("./components/MultipleChoice.js");
 	const LessonPage = require("./components/LessonPage.js");
+	const MultipleChoice = require("./components/MultipleChoice.js");
+	const ShortAnswer = require("./components/ShortAnswer.js");
 
 	function getLessonData(lesson, position) {
 		return new Promise(async (resolve, reject) => {
@@ -81,21 +83,25 @@
 
 	let lessonPage = new LessonPage();
 	let multipleChoice = new MultipleChoice({}, lessonPage);
+	let shortAnswer = new ShortAnswer({}, lessonPage);
 	tApp.route("#/learn/<lesson>/<position>", function(request) {
 		getLessonData(request.data.lesson, request.data.position).then((data) => {
 			data.code = codeTemplateToCode(data.code_template);
-			
+			lessonPage.state.multiple_choice = null;
+			lessonPage.state.short_answer = null;
 			if(data.type == "multiple_choice") {
 				lessonPage.state.multiple_choice = data;
 				lessonPage.state.next = "#/learn/" + request.data.lesson + "/" + (parseInt(request.data.position) + 1);
 				lessonPage.setComponent(multipleChoice);
-				tApp.renderTemplateHTML("{{ lessonPage }}", {
-					lessonPage: lessonPage.toString()
-				});
+			} else if(data.type == "short_answer") {
+				lessonPage.state.short_answer = data;
+				lessonPage.state.next = "#/learn/" + request.data.lesson + "/" + (parseInt(request.data.position) + 1);
+				lessonPage.setComponent(shortAnswer);
 			}
+			tApp.render(lessonPage.toString());
 		}).catch((err) => {
-			console.log(err);
-			// console.error(err);
+			// console.log(err);
+			console.error(err);
 			tApp.renderPath("#/404");
 		})
 	});

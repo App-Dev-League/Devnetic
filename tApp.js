@@ -508,7 +508,7 @@ class tApp {
 							if(afterAttribute == null) {
 								removeAttributes.push(beforeAttributes[i]);
 							} else if(afterAttribute.nodeValue != beforeAttributes[i].nodeValue) {
-								updateAttributes.push(beforeAttributes[i]);
+								updateAttributes.push(afterAttributes[i]);
 							}
 						}
 					}
@@ -535,12 +535,14 @@ class tApp {
 						}
 					}
 				}
-				if(before.nodeName == "#text" && after.nodeName == "#text") {
+				if(before.nodeName == "#text" && after.nodeName == "#text" && before.textContent != after.textContent) {
 					before.textContent = after.textContent;
 				}
 				
 				if(after.childNodes.length == 0 || after.childNodes.length == 1 && after.childNodes[0].nodeName == "#text") {
-					before.innerHTML = after.innerHTML;
+					if(before.innerHTML != after.innerHTML) {
+						before.innerHTML = after.innerHTML;
+					}
 				} else {
 					if(compareChildren(before, after)) {
 						for(let i = 0; i < after.childNodes.length; i++) {
@@ -825,6 +827,9 @@ class tApp {
 		let stateStack = [];
 		let newList = [];
 		let newHTML = "";
+		function shouldCheckLine() {
+			return (tokenStack[tokenStack.length - 1] == "IF" && stateStack[stateStack.length - 1].result) || tokenStack[tokenStack.length - 1] == null || (tokenStack[tokenStack.length - 1] == "WHILE" && stateStack[stateStack.length - 1].result);
+		}
 		for(let i = 0; i < splitLines.length; i++) {
 			let trimmed = trim(splitLines[i]);
 			if(tokenStack[tokenStack.length - 1] == "IF" && trimmed.replaceAll(" ", "").replaceAll("\t", "") == "{%endif%}") {
@@ -840,7 +845,7 @@ class tApp {
 				}
 			} else if(trimmed.substring(0, 2) == "{%" && trimmed.substring(trimmed.length - 2, trimmed.length) == "%}") {
 				let parsedStatement = trim(trimmed.substring(2, trimmed.length - 2));
-				if(["if ", "if\t", "if("].includes(parsedStatement.substring(0, 3))) {
+				if(["if ", "if\t", "if("].includes(parsedStatement.substring(0, 3)) && shouldCheckLine()) {
 					tokenStack.push("IF");
 					let condition = trim(parsedStatement.substring(2));
 					stateStack.push({
@@ -887,7 +892,7 @@ class tApp {
 						startLine: i
 					});
 				}
-			} else if((tokenStack[tokenStack.length - 1] == "IF" && stateStack[stateStack.length - 1].result) || tokenStack[tokenStack.length - 1] == null || (tokenStack[tokenStack.length - 1] == "WHILE" && stateStack[stateStack.length - 1].result)) {
+			} else if(shouldCheckLine()) {
 				let newRes = splitLines[i];
 				let it = newRes.matchAll(new RegExp("{{{@[\\s|\\t]*(.+?(?=}}}))[\\s|\\t]*}}}", "g"));
 				let next = it.next();

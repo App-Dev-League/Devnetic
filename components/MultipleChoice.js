@@ -24,10 +24,11 @@ class MultipleChoice extends tApp.Component {
 		}
 	}
 	render(props) {
-		let returnStr = `<div>
-	<h1 class="mc-question">${tApp.escape(this.parent.state.multiple_choice.question)}</h1>
+		if(this.parent.state.multiple_choice != null && this.parent.state.multiple_choice.question != null) {
+			let returnStr = `<div>
+	<h1 class="mc-question">${tApp.escape(this.parent.state.multiple_choice.question || "")}</h1>
 	<div class="mc-codeblock">
-		<pre>${this.parent.state.multiple_choice.code}</pre>
+		<pre>${this.parent.state.multiple_choice.code || ""}</pre>
 	</div>
 	<div class="mc-answer-table">
 		<div class="mc-answer-container">
@@ -37,29 +38,28 @@ class MultipleChoice extends tApp.Component {
 			${this.state.options[3]}
 		</div>
 	</div>`;
-		if(this.parent.state.multiple_choice.selectedAnswer != null) {
-			let multiple_choice = this.parent.state.multiple_choice;
-			this.state.explanation.state.description = multiple_choice.descriptions[multiple_choice.selectedAnswer];
-			
-			if(multiple_choice.selectedAnswer == multiple_choice.correct) {
-				this.state.explanation.state.title = "Correct!";
-				this.state.explanation.state.retry = false;
-				/*returnStr = `<div>
-		<h1 class="mc-question">Correct!</h1>
-		<center><button onclick="{{_this}}.parent.setState('multiple_choice.selectedAnswer', null);" style="color: black">Back</button></center>
-	</div>`;*/
+			if(this.parent.state.multiple_choice.selectedAnswer != null) {
+				let multiple_choice = this.parent.state.multiple_choice;
+				this.state.explanation.state.description = multiple_choice.descriptions[multiple_choice.selectedAnswer];
+				
+				if(multiple_choice.selectedAnswer == multiple_choice.correct) {
+					this.state.explanation.state.title = "Correct!";
+					this.state.explanation.state.retry = false;
+				} else {
+					this.state.explanation.state.title = "Incorrect!";
+					this.state.explanation.state.retry = true;
+				}
 			} else {
-				this.state.explanation.state.title = "Incorrect!";
-				this.state.explanation.state.retry = true;
-				/*returnStr = `<div>
-		<h1 class="mc-question">Incorrect!</h1>
-		<center><button onclick="{{_this}}.parent.setState('multiple_choice.selectedAnswer', null);" style="color: black">Back</button></center>
-	</div>`;*/
+				this.state.explanation.state.title = "";
 			}
-			returnStr += this.state.explanation.toString();
+			returnStr += "<div>" + this.state.explanation.toString() + "</div>";
+			returnStr += "</div>";
+			return returnStr;
 		}
-		returnStr += "</div>";
-		return returnStr;
+		return "<div></div>";
+	}
+	closeModal() {
+		this.parent.setState("multiple_choice.selectedAnswer", null);
 	}
 }
 

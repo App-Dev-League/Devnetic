@@ -27,4 +27,14 @@
 		"Remember, <p> is the tag for text elements. Hint, the <button> tag explains itself.",
 		"Any text within HTML tags is purely for display purposes and does not change the underlying logic of the tag."
 	]
+}, {
+	"type": "short_answer",
+	"question": "What is printed to the screen when the following code is run?",
+	"code_template": "[[lightblue]]console[[/]][[white]].[[/]][[turquoise]]log[[/]][[white]]([[/]][[green]]\"1\"[[/]][[orange]] + [[/]][[lightorange]]1[[/]][[white]]);[[/]]",
+	"answers": ["11"],
+	"descriptions": {
+		"2": "Careful... concatenating a string and an integer does not cast the string to an integer.",
+		"11": "Correct! When concatenating a string with an integer, the integer is cast to a string, and normal string concatenation occurs."
+	},
+	"description_default": "Remember how concatenating a string and an integer works? Hint: the string is not cast to an integer."
 }]

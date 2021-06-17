@@ -3,9 +3,12 @@ class MultipleChoiceOption extends tApp.Component {
 		super(state, parent);
 	}
 	render(props) {
-		return `<div class="mc-answer mc-answer-${this.state.index}" onclick="{{_this}}.update();">
+		if(this.parent.parent.state.multiple_choice != null) {
+			return `<div class="mc-answer mc-answer-${this.state.index}" onclick="{{_this}}.update();">
 	<p>${tApp.escape(this.parent.parent.state.multiple_choice.answers[this.state.index])}</p>
 </div>`;
+		}
+		return "<div></div>";
 	}
 	update() {
 		this.parent.parent.setState("multiple_choice.selectedAnswer", this.state.index);
