@@ -845,18 +845,23 @@ class tApp {
 				}
 			} else if(trimmed.substring(0, 2) == "{%" && trimmed.substring(trimmed.length - 2, trimmed.length) == "%}") {
 				let parsedStatement = trim(trimmed.substring(2, trimmed.length - 2));
-				if(["if ", "if\t", "if("].includes(parsedStatement.substring(0, 3)) && shouldCheckLine()) {
+				if(["if ", "if\t", "if("].includes(parsedStatement.substring(0, 3))) {
 					tokenStack.push("IF");
 					let condition = trim(parsedStatement.substring(2));
+					let additional = true;
+					if(tokenStack[tokenStack.length - 2] == "IF" || tokenStack[tokenStack.length - 2] == "WHILE") {
+						additional = stateStack[stateStack.length - 1].result;
+					}
 					stateStack.push({
-						result: tApp.eval(tApp.optionsToEval(options) + condition)
+						result: tApp.eval(tApp.optionsToEval(options) + condition) && additional,
+						additional: additional
 					});
 					stateStack[stateStack.length - 1].executed = stateStack[stateStack.length - 1].result;
 				} else if(["elseif ", "elseif\t", "elseif("].includes(parsedStatement.substring(0, 7))) {
 					if(tokenStack[tokenStack.length - 1] == "IF") {
 						if(!stateStack[stateStack.length - 1].executed) {
 							let condition = trim(parsedStatement.substring(6));
-							stateStack[stateStack.length - 1].result = tApp.eval(tApp.optionsToEval(options) + condition);
+							stateStack[stateStack.length - 1].result = tApp.eval(tApp.optionsToEval(options) + condition) && stateStack[stateStack.length - 1].additional;
 							stateStack[stateStack.length - 1].executed = stateStack[stateStack.length - 1].result;
 						} else {
 							stateStack[stateStack.length - 1].result = false;
@@ -868,7 +873,7 @@ class tApp {
 					if(tokenStack[tokenStack.length - 1] == "IF") {
 						if(!stateStack[stateStack.length - 1].executed) {
 							let condition = trim(parsedStatement.substring(7));
-							stateStack[stateStack.length - 1].result = tApp.eval(tApp.optionsToEval(options) + condition);
+							stateStack[stateStack.length - 1].result = tApp.eval(tApp.optionsToEval(options) + condition) && stateStack[stateStack.length - 1].additional;
 							stateStack[stateStack.length - 1].executed = stateStack[stateStack.length - 1].result;
 						} else {
 							stateStack[stateStack.length - 1].result = false;
@@ -878,7 +883,7 @@ class tApp {
 					}
 				} else if(trimmed.replaceAll(" ", "").replaceAll("\t", "") == "{%else%}") {
 					if(tokenStack[tokenStack.length - 1] == "IF") {
-						stateStack[stateStack.length - 1].result = !stateStack[stateStack.length - 1].executed;
+						stateStack[stateStack.length - 1].result = !stateStack[stateStack.length - 1].executed && stateStack[stateStack.length - 1].additional;
 						stateStack[stateStack.length - 1].executed = stateStack[stateStack.length - 1].result;
 					} else {
 						throw "tAppError: Else missing an if-statement on line " + (i + 1) + ".";

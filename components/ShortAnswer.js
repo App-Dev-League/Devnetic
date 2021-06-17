@@ -6,19 +6,19 @@ class ShortAnswer extends tApp.Component {
 		if(this.state.explanation == null) {
 			this.state.explanation = new ExplanationModal({}, this);
 		}
-		if(this.state.value == null) {
-			this.state.value = "";
-		}
 	}
 	render(props) {
 		if(this.parent.state.short_answer != null) {
+			if(this.parent.state.short_answer.value == null) {
+				this.parent.state.short_answer.value = "";
+			}
 			let returnStr = `<div>
 	<h1 class="mc-question">${tApp.escape(this.parent.state.short_answer.question || "")}</h1>
 	<div class="mc-codeblock">
 		<pre>${this.parent.state.short_answer.code || ""}</pre>
 	</div>
 	<div class="short-answer-container">
-		<input class="short-answer-input" type="text" oninput="{{_this}}.setState('value', this.value)" value="${tApp.escape(this.state.value)}" />
+		<input class="short-answer-input" type="text" oninput="{{_this}}.parent.setState('short_answer.value', this.value)" value="${tApp.escape(this.parent.state.short_answer.value)}" />
 		<button class="short-answer-button" onclick="{{_this}}.update();">Submit</button>
 	</div>`;
 			if(this.parent.state.short_answer.selectedAnswer != null) {
@@ -42,7 +42,7 @@ class ShortAnswer extends tApp.Component {
 		return "<div></div>";
 	}
 	update() {
-		this.parent.setState("short_answer.selectedAnswer", this.state.value);
+		this.parent.setState("short_answer.selectedAnswer", this.parent.state.short_answer.value);
 	}
 	closeModal() {
 		this.parent.setState("short_answer.selectedAnswer", null);
