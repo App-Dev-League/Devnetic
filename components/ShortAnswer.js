@@ -3,12 +3,13 @@ const ExplanationModal = require("./ExplanationModal.js");
 class ShortAnswer extends tApp.Component {
 	constructor(state, parent) {
 		super(state, parent);
-		if(this.state.explanation == null) {
-			this.state.explanation = new ExplanationModal({}, this);
-		}
 	}
 	render(props) {
 		if(this.parent.state.short_answer != null) {
+			this.state.explanation = new ExplanationModal({
+				points: this.parent.state.short_answer.points,
+				coins: this.parent.state.short_answer.coins
+			}, this);
 			if(this.parent.state.short_answer.value == null) {
 				this.parent.state.short_answer.value = "";
 			}
