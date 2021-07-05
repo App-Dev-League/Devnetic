@@ -13,8 +13,11 @@ class LessonPage extends tApp.Component {
 		}
 		this.setState("component", component);
 	}
-	next() {
+	async next() {
 		if(this.state.next != null) {
+			await this.state.Database.updateState(this.state.lesson, this.state.position);
+			let score = await this.state.Database.getScore();
+			document.querySelector("#score").innerHTML = `${score.points} XP, ${score.coins} Coins`;
 			window.location.hash = this.state.next;
 		}
 	}
