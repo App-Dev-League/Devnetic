@@ -1,5 +1,6 @@
 const ExplanationModal = require("./ExplanationModal.js");
 const MultipleChoiceOption = require("./MultipleChoiceOption.js");
+const shuffleArray = require("../utils/shuffleArray.js");
 
 class MultipleChoice extends tApp.Component {
 	constructor(state, parent) {
@@ -26,6 +27,7 @@ class MultipleChoice extends tApp.Component {
 				points: this.parent.state.multiple_choice.points,
 				coins: this.parent.state.multiple_choice.coins
 			}, this);
+			this.state.options = shuffleArray([this.state.options[0], this.state.options[1], this.state.options[2], this.state.options[3]]);
 			let returnStr = `<div>
 	<h1 class="mc-question">${tApp.escape(this.parent.state.multiple_choice.question || "")}</h1>
 	<div class="codeblock mc-codeblock">

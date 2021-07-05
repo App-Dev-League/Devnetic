@@ -4,7 +4,11 @@ class MultipleChoiceOption extends tApp.Component {
 	}
 	render(props) {
 		if(this.parent.parent.state.multiple_choice != null) {
-			return `<div class="mc-answer mc-answer-${this.state.index}" onclick="{{_this}}.update();">
+			let colorIndex = this.parent.state.options.findIndex(option => option == this);
+			if(colorIndex < 0) {
+				colorIndex = this.state.index;
+			}
+			return `<div class="mc-answer mc-answer-${colorIndex}" onclick="{{_this}}.update();">
 	<p>${tApp.escape(this.parent.parent.state.multiple_choice.answers[this.state.index])}</p>
 </div>`;
 		}

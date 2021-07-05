@@ -11,7 +11,9 @@
 	});
 
 	await installAll([
-		"codeTemplateToCode.js"
+		"codeTemplateToCode.js",
+		"shuffleArray.js",
+		"Database.js",
 	], {
 		path: "./utils/"
 	});
@@ -21,6 +23,7 @@
 	const MultipleChoice = require("./components/MultipleChoice.js");
 	const ShortAnswer = require("./components/ShortAnswer.js");
 	const codeTemplateToCode = require("./utils/codeTemplateToCode.js");
+	const Database = require("./utils/Database.js");
 
 	function getLessonData(lesson, position) {
 		return new Promise(async (resolve, reject) => {
