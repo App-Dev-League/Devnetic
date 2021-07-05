@@ -30,13 +30,13 @@ class ExplanationModal extends tApp.Component {
 						{% if((state.points != null && state.points > 0) || (state.coins != null && state.coins > 0)) %}
 							<p>
 							{% if(state.points != null && state.points > 0) %}
-							+{{ state.points }} points
+							+{{ state.points }} XP
 							{% endif %}
 
 							{% if((state.points != null && state.points > 0) && (state.coins != null && state.coins > 0)) %}
 							<br>
 							{% endif %}
-							
+
 							{% if(state.coins != null && state.coins > 0) %}
 							+{{ state.coins }} coins
 							{% endif %}
