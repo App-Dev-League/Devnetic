@@ -1,4 +1,29 @@
 [{
+	"type": "information",
+	"title": "HTML Tags:",
+	"elements": [
+		{
+			"type": "text",
+			"content": "Below is a sample HTML tag:"
+		},
+		{
+			"type": "code",
+			"content": "[[lightpurple]]<tag>[[/]]content[[lightpurple]]</tag>[[/]]"
+		},
+		{
+			"type": "text",
+			"content": "As you can see, a line of basic HTML code consists of an opening tag, content, and a closing tag."
+		},
+		{
+			"type": "code",
+			"content": "[[lightpurple]]<p>[[/]][[white]]Hello, world![[/]][[lightpurple]]</p>[[/]]"
+		},
+		{
+			"type": "text",
+			"content": "In the above code, a paragraph tag ([[lightpurple]]<p>[[/]]) is used to display the text \"Hello, world!\" on the screen."
+		}
+	]
+}, {
 	"type": "multiple_choice",
 	"question": "What is the output of the following code?",
 	"code_template": "[[lightpurple]]<p>[[/]][[white]]Hello, world![[/]][[lightpurple]]</p>[[/]]",
@@ -14,7 +39,9 @@
 		"It seems that you missed some words. Remember that everything between <p>...</p> is displayed on the screen.",
 		"Everything between <p>...</p> is displayed as text to the screen. Good job!",
 		"Since <p> is an html tag, it is not directly displayed on the screen. Rather, the text between the opening and closing tag is displayed."
-	]
+	],
+	"points": 5,
+	"coins": 1
 }, {
 	"type": "multiple_choice",
 	"question": "What is the correct description of the following code?",
@@ -26,7 +53,9 @@
 		"Amazing work! The tag with text inside just displays a button with that text and does not have any underlying logic (like increasing a counter).",
 		"Remember, <p> is the tag for text elements. Hint, the <button> tag explains itself.",
 		"Any text within HTML tags is purely for display purposes and does not change the underlying logic of the tag."
-	]
+	],
+	"points": 5,
+	"coins": 1
 }, {
 	"type": "short_answer",
 	"question": "What is printed to the screen when the following code is run?",
@@ -36,5 +65,7 @@
 		"2": "Careful... concatenating a string and an integer does not cast the string to an integer.",
 		"11": "Correct! When concatenating a string with an integer, the integer is cast to a string, and normal string concatenation occurs."
 	},
-	"description_default": "Remember how concatenating a string and an integer works? Hint: the string is not cast to an integer."
+	"description_default": "Remember how concatenating a string and an integer works? Hint: the string is not cast to an integer.",
+	"points": 10,
+	"coins": 3
 }]

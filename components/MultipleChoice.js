@@ -27,7 +27,7 @@ class MultipleChoice extends tApp.Component {
 		if(this.parent.state.multiple_choice != null && this.parent.state.multiple_choice.question != null) {
 			let returnStr = `<div>
 	<h1 class="mc-question">${tApp.escape(this.parent.state.multiple_choice.question || "")}</h1>
-	<div class="mc-codeblock">
+	<div class="codeblock mc-codeblock">
 		<pre>${this.parent.state.multiple_choice.code || ""}</pre>
 	</div>
 	<div class="mc-answer-table">

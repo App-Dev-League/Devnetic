@@ -2,6 +2,7 @@
 	await installAll([
 		"ExplanationModal.js",
 		"LessonPage.js",
+		"Information.js",
 		"MultipleChoice.js",
 		"MultipleChoiceOption.js",
 		"ShortAnswer.js"
@@ -9,9 +10,17 @@
 		path: "./components/"
 	});
 
+	await installAll([
+		"codeTemplateToCode.js"
+	], {
+		path: "./utils/"
+	});
+
 	const LessonPage = require("./components/LessonPage.js");
+	const Information = require("./components/Information.js");
 	const MultipleChoice = require("./components/MultipleChoice.js");
 	const ShortAnswer = require("./components/ShortAnswer.js");
+	const codeTemplateToCode = require("./utils/codeTemplateToCode.js");
 
 	function getLessonData(lesson, position) {
 		return new Promise(async (resolve, reject) => {
@@ -27,28 +36,6 @@
 
 	function getLessonPosition(lesson) {
 		return 0;
-	}
-
-	function codeTemplateToCode(template) {
-		template = tApp.escape(template);
-		template = template.replaceAll("[[/]]", '</span>');
-		template = template.replaceAll("[[red]]", '<span class="c-red">');
-		template = template.replaceAll("[[darkred]]", '<span class="c-darkred">');
-		template = template.replaceAll("[[lightorange]]", '<span class="c-lightorange">');
-		template = template.replaceAll("[[orange]]", '<span class="c-orange">');
-		template = template.replaceAll("[[darkorange]]", '<span class="c-darkorange">');
-		template = template.replaceAll("[[yellow]]", '<span class="c-yellow">');
-		template = template.replaceAll("[[green]]", '<span class="c-green">');
-		template = template.replaceAll("[[darkgreen]]", '<span class="c-darkgreen">');
-		template = template.replaceAll("[[turquoise]]", '<span class="c-turquoise">');
-		template = template.replaceAll("[[darkturquoise]]", '<span class="c-darkturquoise">');
-		template = template.replaceAll("[[lightblue]]", '<span class="c-lightblue">');
-		template = template.replaceAll("[[blue]]", '<span class="c-blue">');
-		template = template.replaceAll("[[lightpurple]]", '<span class="c-lightpurple">');
-		template = template.replaceAll("[[purple]]", '<span class="c-purple">');
-		template = template.replaceAll("[[white]]", '<span class="c-white">');
-		template = template.replaceAll("[\\[", '[[');
-		return template;
 	}
 
 	tApp.configure({
@@ -82,20 +69,25 @@
 	});
 
 	let lessonPage = new LessonPage();
+	let information = new Information({}, lessonPage);
 	let multipleChoice = new MultipleChoice({}, lessonPage);
 	let shortAnswer = new ShortAnswer({}, lessonPage);
 	tApp.route("#/learn/<lesson>/<position>", function(request) {
 		getLessonData(request.data.lesson, request.data.position).then((data) => {
-			data.code = codeTemplateToCode(data.code_template);
+			if(data.code_template != null) {
+				data.code = codeTemplateToCode(data.code_template);
+			}
 			lessonPage.state.multiple_choice = null;
 			lessonPage.state.short_answer = null;
-			if(data.type == "multiple_choice") {
+			lessonPage.state.next = "#/learn/" + request.data.lesson + "/" + (parseInt(request.data.position) + 1);
+			if(data.type == "information") {
+				lessonPage.state.information = data;
+				lessonPage.setComponent(information);
+			} else if(data.type == "multiple_choice") {
 				lessonPage.state.multiple_choice = data;
-				lessonPage.state.next = "#/learn/" + request.data.lesson + "/" + (parseInt(request.data.position) + 1);
 				lessonPage.setComponent(multipleChoice);
 			} else if(data.type == "short_answer") {
 				lessonPage.state.short_answer = data;
-				lessonPage.state.next = "#/learn/" + request.data.lesson + "/" + (parseInt(request.data.position) + 1);
 				lessonPage.setComponent(shortAnswer);
 			}
 			tApp.render(lessonPage.toString());

@@ -14,7 +14,7 @@ class ShortAnswer extends tApp.Component {
 			}
 			let returnStr = `<div>
 	<h1 class="mc-question">${tApp.escape(this.parent.state.short_answer.question || "")}</h1>
-	<div class="mc-codeblock">
+	<div class="codeblock mc-codeblock">
 		<pre>${this.parent.state.short_answer.code || ""}</pre>
 	</div>
 	<div class="short-answer-container">
