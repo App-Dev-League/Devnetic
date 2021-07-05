@@ -23,6 +23,7 @@
 	const MultipleChoice = require("./components/MultipleChoice.js");
 	const ShortAnswer = require("./components/ShortAnswer.js");
 	const codeTemplateToCode = require("./utils/codeTemplateToCode.js");
+	const shuffleArray = require("./utils/shuffleArray.js");
 	const Database = require("./utils/Database.js");
 
 	function getLessonData(lesson, position) {
@@ -87,6 +88,22 @@
 				lessonPage.state.information = data;
 				lessonPage.setComponent(information);
 			} else if(data.type == "multiple_choice") {
+				let shuffled = shuffleArray([...data.answers]);
+				let indexList = [];
+				for(let i = 0; i < shuffled.length; i++) {
+					indexList.push(data.answers.findIndex(answer => answer === shuffled[i]));
+				}
+				let answers = [];
+				for(let i = 0; i < indexList.length; i++) {
+					answers.push(data.answers[indexList[i]]);
+				}
+				let descriptions = [];
+				for(let i = 0; i < indexList.length; i++) {
+					descriptions.push(data.descriptions[indexList[i]]);
+				}
+				data.answers = answers;
+				data.descriptions = descriptions;
+				data.correct = indexList.findIndex(index => index === data.correct);
 				lessonPage.state.multiple_choice = data;
 				lessonPage.setComponent(multipleChoice);
 			} else if(data.type == "short_answer") {

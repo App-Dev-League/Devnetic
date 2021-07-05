@@ -46,7 +46,7 @@
 	"type": "multiple_choice",
 	"question": "What is the correct description of the following code?",
 	"code_template": "[[lightpurple]]<button>[[/]][[white]]Increase counter[[/]][[lightpurple]]</button>[[/]]",
-	"answers": ["Not valid code", "A button with the text 'Increase counter'", "A text element 'Increase counter'", "A button that increases a counter"],
+	"answers": ["Not valid code", "A button with the text \"Increase counter\"", "A text element \"Increase counter\"", "A button that increases a counter"],
 	"correct": 1,
 	"descriptions": [
 		"The <button> tag is indeed a valid HTML tag. Hint, the tag explains itself.",
