@@ -5,7 +5,9 @@
 		"Information.js",
 		"MultipleChoice.js",
 		"MultipleChoiceOption.js",
-		"ShortAnswer.js"
+		"ShortAnswer.js",
+		"SnippetUnlock.js",
+		"Congratulations.js"
 	], {
 		path: "./components/"
 	});
@@ -22,6 +24,8 @@
 	const Information = require("./components/Information.js");
 	const MultipleChoice = require("./components/MultipleChoice.js");
 	const ShortAnswer = require("./components/ShortAnswer.js");
+	const SnippetUnlock = require("./components/SnippetUnlock.js");
+	const Congratulations = require("./components/Congratulations.js");
 	const codeTemplateToCode = require("./utils/codeTemplateToCode.js");
 	const shuffleArray = require("./utils/shuffleArray.js");
 	const Database = require("./utils/Database.js");
@@ -60,44 +64,58 @@
 	let information = new Information({}, lessonPage);
 	let multipleChoice = new MultipleChoice({}, lessonPage);
 	let shortAnswer = new ShortAnswer({}, lessonPage);
+	let snippetUnlock = new SnippetUnlock({}, lessonPage);
+	let congratulations = new Congratulations({}, lessonPage);
 	tApp.route("#/learn/<lesson>/<position>", function(request) {
-		Database.getLessonData(request.data.lesson, request.data.position).then((data) => {
-			if(data.code_template != null) {
-				data.code = codeTemplateToCode(data.code_template);
+		Database.getLessonData(request.data.lesson, request.data.position).then((res) => {
+			let data = res[0];
+			let type = res[1];
+			if(type == "lesson") {
+				if(data.code_template != null) {
+					data.code = codeTemplateToCode(data.code_template);
+				}
+				lessonPage.state.multiple_choice = null;
+				lessonPage.state.short_answer = null;
+				lessonPage.state.Database = Database;
+				lessonPage.state.next = "#/learn/" + request.data.lesson + "/" + (parseInt(request.data.position) + 1);
+				lessonPage.state.lesson = request.data.lesson;
+				lessonPage.state.position = request.data.position;
+				if(data.type == "information") {
+					lessonPage.state.information = data;
+					lessonPage.setComponent(information);
+				} else if(data.type == "multiple_choice") {
+					let shuffled = shuffleArray([...data.answers]);
+					let indexList = [];
+					for(let i = 0; i < shuffled.length; i++) {
+						indexList.push(data.answers.findIndex(answer => answer === shuffled[i]));
+					}
+					let answers = [];
+					for(let i = 0; i < indexList.length; i++) {
+						answers.push(data.answers[indexList[i]]);
+					}
+					let descriptions = [];
+					for(let i = 0; i < indexList.length; i++) {
+						descriptions.push(data.descriptions[indexList[i]]);
+					}
+					data.answers = answers;
+					data.descriptions = descriptions;
+					data.correct = indexList.findIndex(index => index === data.correct);
+					lessonPage.state.multiple_choice = data;
+					lessonPage.setComponent(multipleChoice);
+				} else if(data.type == "short_answer") {
+					lessonPage.state.short_answer = data;
+					lessonPage.setComponent(shortAnswer);
+				} else if(data.type == "snippet_unlock") {
+					lessonPage.state.snippet_unlock = data;
+					lessonPage.setComponent(snippetUnlock);
+				} else if(data.type == "congratulations") {
+					lessonPage.state.congratulations = data;
+					lessonPage.setComponent(congratulations);
+				}
+				tApp.render(lessonPage.toString());
+			} else {
+				alert("Error! Unknown type " + type);
 			}
-			lessonPage.state.multiple_choice = null;
-			lessonPage.state.short_answer = null;
-			lessonPage.state.Database = Database;
-			lessonPage.state.next = "#/learn/" + request.data.lesson + "/" + (parseInt(request.data.position) + 1);
-			lessonPage.state.lesson = request.data.lesson;
-			lessonPage.state.position = request.data.position;
-			if(data.type == "information") {
-				lessonPage.state.information = data;
-				lessonPage.setComponent(information);
-			} else if(data.type == "multiple_choice") {
-				let shuffled = shuffleArray([...data.answers]);
-				let indexList = [];
-				for(let i = 0; i < shuffled.length; i++) {
-					indexList.push(data.answers.findIndex(answer => answer === shuffled[i]));
-				}
-				let answers = [];
-				for(let i = 0; i < indexList.length; i++) {
-					answers.push(data.answers[indexList[i]]);
-				}
-				let descriptions = [];
-				for(let i = 0; i < indexList.length; i++) {
-					descriptions.push(data.descriptions[indexList[i]]);
-				}
-				data.answers = answers;
-				data.descriptions = descriptions;
-				data.correct = indexList.findIndex(index => index === data.correct);
-				lessonPage.state.multiple_choice = data;
-				lessonPage.setComponent(multipleChoice);
-			} else if(data.type == "short_answer") {
-				lessonPage.state.short_answer = data;
-				lessonPage.setComponent(shortAnswer);
-			}
-			tApp.render(lessonPage.toString());
 		}).catch((err) => {
 			// console.log(err);
 			console.error(err);

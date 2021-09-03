@@ -68,7 +68,7 @@ const Database = {
 			let parsedData = await data.json().catch((err) => {
 				reject(err);
 			});
-			resolve(parsedData[position]);
+			resolve([parsedData.pages[position], parsedData.type]);
 		});
 	},
 	getLessonPosition: function(lesson) {

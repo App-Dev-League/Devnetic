@@ -62,9 +62,12 @@
 				height: 50px;
 				margin: 0;
 				padding: 0;
-				position: relative;
+				position: fixed;
+				top: 0;
+				left: 0;
 				background-color: var(--blue);
 				border-radius: 0 0 15px 15px;
+				z-index: 10;
 			}
 			header > a.logo {
 				margin: 0;
@@ -107,8 +110,13 @@
 				transform: translate(0, -50%);
 			}
 			tapp-main {
+				position: absolute;
+				top: 50px;
+				left: 0;
 				width: 100%;
-				height: calc(100% - 100px);
+				/*height: calc(100% - 100px);*/
+				z-index: 5;
+				padding-bottom: 50px;
 			}
 			
 			/* code colors */
@@ -153,6 +161,12 @@
 			}
 			.c-purple {
 				color: #8e44ad;
+			}
+			.c-lightgray {
+				color: #c9c9c9;
+			}
+			.c-gray {
+				color: #aba9a9;
 			}
 			.c-white {
 				color: #ffffff;
