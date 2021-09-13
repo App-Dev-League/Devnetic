@@ -1,7 +1,7 @@
 (async () => {
 	await installAll([
 		"ExplanationModal.js",
-		"LessonPage.js",
+		"ModulePage.js",
 		"Information.js",
 		"MultipleChoice.js",
 		"MultipleChoiceOption.js",
@@ -20,7 +20,7 @@
 		path: "./utils/"
 	});
 
-	const LessonPage = require("./components/LessonPage.js");
+	const ModulePage = require("./components/ModulePage.js");
 	const Information = require("./components/Information.js");
 	const MultipleChoice = require("./components/MultipleChoice.js");
 	const ShortAnswer = require("./components/ShortAnswer.js");
@@ -56,33 +56,34 @@
 		tApp.renderFile("./views/index.html");
 	});
 
-	tApp.route("#/learn/<lesson>/", async function(request) {
-		tApp.redirect(`#/learn/${request.data.lesson}/${await Database.getLessonPosition(request.data.lesson)}/`);
+	tApp.route("#/learn/<module>/", async function(request) {
+		tApp.redirect(`#/learn/${request.data.module}/${await Database.getModulePosition(request.data.module)}/`);
 	});
 
-	let lessonPage = new LessonPage();
-	let information = new Information({}, lessonPage);
-	let multipleChoice = new MultipleChoice({}, lessonPage);
-	let shortAnswer = new ShortAnswer({}, lessonPage);
-	let snippetUnlock = new SnippetUnlock({}, lessonPage);
-	let congratulations = new Congratulations({}, lessonPage);
-	tApp.route("#/learn/<lesson>/<position>", function(request) {
-		Database.getLessonData(request.data.lesson, request.data.position).then((res) => {
+	let modulePage = new ModulePage();
+	let information = new Information({}, modulePage);
+	let multipleChoice = new MultipleChoice({}, modulePage);
+	let shortAnswer = new ShortAnswer({}, modulePage);
+	let snippetUnlock = new SnippetUnlock({}, modulePage);
+	let congratulations = new Congratulations({}, modulePage);
+
+	tApp.route("#/learn/<module>/<position>", function(request) {
+		Database.getModuleData(request.data.module, request.data.position).then((res) => {
 			let data = res[0];
 			let type = res[1];
-			if(type == "lesson") {
+			if(type == "lesson" || type == "project") {
 				if(data.code_template != null) {
 					data.code = codeTemplateToCode(data.code_template);
 				}
-				lessonPage.state.multiple_choice = null;
-				lessonPage.state.short_answer = null;
-				lessonPage.state.Database = Database;
-				lessonPage.state.next = "#/learn/" + request.data.lesson + "/" + (parseInt(request.data.position) + 1);
-				lessonPage.state.lesson = request.data.lesson;
-				lessonPage.state.position = request.data.position;
+				modulePage.state.multiple_choice = null;
+				modulePage.state.short_answer = null;
+				modulePage.state.Database = Database;
+				modulePage.state.next = "#/learn/" + request.data.module + "/" + (parseInt(request.data.position) + 1);
+				modulePage.state.module = request.data.module;
+				modulePage.state.position = request.data.position;
 				if(data.type == "information") {
-					lessonPage.state.information = data;
-					lessonPage.setComponent(information);
+					modulePage.state.information = data;
+					modulePage.setComponent(information);
 				} else if(data.type == "multiple_choice") {
 					let shuffled = shuffleArray([...data.answers]);
 					let indexList = [];
@@ -100,19 +101,19 @@
 					data.answers = answers;
 					data.descriptions = descriptions;
 					data.correct = indexList.findIndex(index => index === data.correct);
-					lessonPage.state.multiple_choice = data;
-					lessonPage.setComponent(multipleChoice);
+					modulePage.state.multiple_choice = data;
+					modulePage.setComponent(multipleChoice);
 				} else if(data.type == "short_answer") {
-					lessonPage.state.short_answer = data;
-					lessonPage.setComponent(shortAnswer);
+					modulePage.state.short_answer = data;
+					modulePage.setComponent(shortAnswer);
 				} else if(data.type == "snippet_unlock") {
-					lessonPage.state.snippet_unlock = data;
-					lessonPage.setComponent(snippetUnlock);
+					modulePage.state.snippet_unlock = data;
+					modulePage.setComponent(snippetUnlock);
 				} else if(data.type == "congratulations") {
-					lessonPage.state.congratulations = data;
-					lessonPage.setComponent(congratulations);
+					modulePage.state.congratulations = data;
+					modulePage.setComponent(congratulations);
 				}
-				tApp.render(lessonPage.toString());
+				tApp.render(modulePage.toString());
 			} else {
 				alert("Error! Unknown type " + type);
 			}
