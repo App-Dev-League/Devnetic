@@ -7,7 +7,8 @@
 		"MultipleChoiceOption.js",
 		"ShortAnswer.js",
 		"SnippetUnlock.js",
-		"Congratulations.js"
+		"Congratulations.js",
+		"CodeEditor.js"
 	], {
 		path: "./components/"
 	});
@@ -26,6 +27,8 @@
 	const ShortAnswer = require("./components/ShortAnswer.js");
 	const SnippetUnlock = require("./components/SnippetUnlock.js");
 	const Congratulations = require("./components/Congratulations.js");
+	const CodeEditor = require("./components/CodeEditor.js");
+
 	const codeTemplateToCode = require("./utils/codeTemplateToCode.js");
 	const shuffleArray = require("./utils/shuffleArray.js");
 	const Database = require("./utils/Database.js");
@@ -66,6 +69,7 @@
 	let shortAnswer = new ShortAnswer({}, modulePage);
 	let snippetUnlock = new SnippetUnlock({}, modulePage);
 	let congratulations = new Congratulations({}, modulePage);
+	let codeEditor = new CodeEditor({}, modulePage);
 
 	tApp.route("#/learn/<module>/<position>", function(request) {
 		Database.getModuleData(request.data.module, request.data.position).then((res) => {
@@ -112,10 +116,14 @@
 				} else if(data.type == "congratulations") {
 					modulePage.state.congratulations = data;
 					modulePage.setComponent(congratulations);
+				} else if(data.type == "code_editor") {
+					modulePage.state.code_editor = data;
+					modulePage.setComponent(codeEditor);
 				}
 				tApp.render(modulePage.toString());
 			} else {
-				alert("Error! Unknown type " + type);
+				tApp.renderPath("#/404");
+				console.error("Unknown type " + type);
 			}
 		}).catch((err) => {
 			// console.log(err);
