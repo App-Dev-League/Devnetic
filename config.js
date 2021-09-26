@@ -1,14 +1,19 @@
 (async () => {
 	await installAll([
+		"CodeEditor.js",
+		"CodePreview.js",
+		"Congratulations.js",
+		"Editor.js",
 		"ExplanationModal.js",
-		"ModulePage.js",
 		"Information.js",
+		"Instructions.js",
+		"ModulePage.js",
 		"MultipleChoice.js",
 		"MultipleChoiceOption.js",
 		"ShortAnswer.js",
+		"SnippetsPanel.js",
 		"SnippetUnlock.js",
-		"Congratulations.js",
-		"CodeEditor.js"
+		"TabbedView.js"
 	], {
 		path: "./components/"
 	});

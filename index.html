@@ -502,6 +502,80 @@
 			input {
 				color: black;
 			}
+
+			.code-editor {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: calc(50% - 3px);
+				height: calc(100vh - 50px);
+				padding-left: 15px;
+				padding-right: 15px;
+				box-sizing: border-box;
+			}
+
+			.vertical-divider {
+				position: absolute;
+				left: 50%;
+				top: 0;
+				width: 6px;
+				height: calc(100vh - 50px);
+				background-color: var(--blue);
+			}
+
+			.project-module-tabs {
+				position: absolute;
+				left: calc(50% + 3px);
+				top: 0;
+				width: calc(50% - 3px);
+				height: calc(100vh - 50px);
+				padding-left: 15px;
+				padding-right: 15px;
+				box-sizing: border-box;
+			}
+
+			.tab-group > .tab {
+				display: inline-block;
+				padding-top: 10px;
+				padding-bottom: 10px;
+				padding-left: 5px;
+				padding-right: 5px;
+				border-radius: 10px 10px 0 0;
+				margin-right: 5px;
+				margin-top: 15px;
+				background-color: var(--darkgray);
+				cursor: pointer;
+				-webkit-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+			}
+
+			.tab-group > .tab:active:not(.tab-selected) {
+				/*background-color: var(--gray);*/
+			}
+
+			.tab-group > .tab-selected:active {
+				/*background-color: var(--blue-selected);*/
+			}
+
+			.tab-group > .tab-selected {
+				/*background-color: var(--blue);*/
+				background-color: var(--gray);
+			}
+
+			.selected-tab {
+				background-color: var(--gray);
+				transform: translate(0, -50px);
+				padding-left: 10px;
+				padding-right: 10px;
+				height: calc(100% - 75px);
+				border-radius: 0 15px 15px 15px;
+			}
+
+			.selected-tab > div {
+				transform: translate(0, 15px);
+			}
 		</style>
 	</head>
 	<body>
