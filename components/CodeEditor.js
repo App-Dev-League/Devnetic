@@ -39,10 +39,10 @@ class CodeEditor extends tApp.Component {
 					component: this.state.instructions
 				}, {
 					name: "Preview",
-					component: this.state.instructions
+					component: this.state.codePreview
 				}, {
 					name: "Snippets",
-					component: this.state.instructions
+					component: this.state.snippetsPanel
 				}]
 			}, this);
 		}
