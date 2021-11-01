@@ -22,6 +22,7 @@
 		"codeTemplateToCode.js",
 		"shuffleArray.js",
 		"Database.js",
+		"codeEditor.js"
 	], {
 		path: "./utils/"
 	});
