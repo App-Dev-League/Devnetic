@@ -1,32 +1,20 @@
 const codeTemplateToCode = require("../utils/codeTemplateToCode.js");
-const codeEditorHelp = require("../utils/codeEditor.js");
+const codeEditorHelper = require("../utils/codeEditor.js");
 
+
+// ways to use codeEditorHelper: (all methods are synchronous)
+/*
+codeEditorHelper.updateLanguage("new language")
+codeEditorHelper.updateContent("New content to be displayed")
+let value = codeEditorHelper.getValue()
+*/
 class Editor extends tApp.Component {
 	constructor(state, parent) {
 		super(state, parent);
 	}
 	render(props) {
-		if (window.loadedEditor !== true) {
-			window.loadedEditor = true
-			loadRequire.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@0.29.1/min/vs' } });
-			loadRequire(['vs/editor/editor.main'], function () {
-				window.codeEditor = monaco.editor.create(document.getElementById('code-container'), {
-					value: `<!DOCTYPE>
-	
-	<html>
-	</html>
-						`,
-					language: 'html',
-					theme: "vs-dark",
-					automaticLayout: true
-				});
-			});
-		}
-
 		return `<div class="code-editor">
-			<div id="code-container" style="width:100%;height:96%;border:1px solid grey; margin-top: 20px"></div>
-			<script>
-			</script>
+			<iframe id="code-frame" style="width: 100%; height: 100%; border: none" src="/assets/html/code-editor.html"></iframe>
 		</div>`;
 	}
 
