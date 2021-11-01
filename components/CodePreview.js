@@ -10,19 +10,28 @@ class CodePreview extends tApp.Component {
 		}
 	}
 	render(props) {
-		function loadCoad(){
-			setTimeout(function(){
-				try {
-					document.getElementById("preview").srcdoc = codeEditorHelper.getValue();
-				}catch(err){
-					return loadCoad()
-				}
-				loadCoad();
-			}, 1000)
+		function loadCode(){
+			try {
+				document.getElementById("preview").srcdoc = codeEditorHelper.getValue();
+			}catch(err){
+				setTimeout(loadCode, 500);
+			}
 		}
-		if (window.startedRefresh !== true) {
-			loadCoad()
+		loadCode();
+		function addEvent(){
+			try {
+				document.getElementById("code-frame").contentWindow.document.addEventListener("keydown", function(e) {
+					if (e.key === 's' && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
+					  e.preventDefault();
+					  document.getElementById("preview").srcdoc = codeEditorHelper.getValue();
+					}
+				  }, false);
+			}catch(err){
+				setTimeout(addEvent, 500)
+			}
 		}
+		addEvent()
+
 		window.startedRefresh = true
 		return `<div style="margin-top: 45px; height: 95%; background: white"><iframe style="width: 98%; height: 100%" id="preview" srcdoc='Loading...'></iframe></div>`;
 	}
