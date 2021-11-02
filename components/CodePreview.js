@@ -33,7 +33,7 @@ class CodePreview extends tApp.Component {
 		addEvent()
 
 		window.startedRefresh = true
-		return `<div style="margin-top: 45px; height: 95%; background: white"><iframe style="width: 98%; height: 100%" id="preview" srcdoc='Loading...'></iframe></div>`;
+		return `<div style="margin-top: 10px; height: 95%; background: white"><iframe style="width: 98%; height: 100%" id="preview" srcdoc='Loading...'></iframe></div>`;
 	}
 }
 
