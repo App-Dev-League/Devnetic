@@ -9,6 +9,14 @@ const editorFunctions = {
     },
     getValue: function() {
         return document.getElementById("code-frame").contentWindow.codeEditor.getValue()
+    },
+    insertAtCursor: function(content) {
+        document.getElementById("code-frame").contentWindow.codeEditor.trigger('keyboard', 'type', {text: content});
+        return true;
+    },
+    format: function() {
+        document.getElementById("code-frame").contentWindow.codeEditor.getAction('editor.action.formatDocument').run();
+        return true;
     }
 }
 

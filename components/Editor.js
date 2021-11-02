@@ -7,6 +7,7 @@ const codeEditorHelper = require("../utils/codeEditor.js");
 codeEditorHelper.updateLanguage("new language")
 codeEditorHelper.updateContent("New content to be displayed")
 let value = codeEditorHelper.getValue()
+codeEditorHelper.insertAtCursor("asdf")
 */
 class Editor extends tApp.Component {
 	constructor(state, parent) {

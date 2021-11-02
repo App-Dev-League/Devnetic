@@ -1,10 +1,8 @@
 <!doctype HTML>
 <html lang="en">
 	<head>
-		<script src="https://unpkg.com/monaco-editor@0.29.1/min/vs/loader.js"></script>
-		<script>
-			window.loadRequire = require;
-		</script>
+		<link rel="stylesheet" href="//unpkg.com/@highlightjs/cdn-assets@11.3.1/styles/github-dark.min.css">
+		<script src="//unpkg.com/@highlightjs/cdn-assets@11.3.1/highlight.min.js"></script>
 		<script src="/tApp.js"></script>
 		<script src="/require-browser.js"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -577,10 +575,25 @@
 				height: calc(100% - 75px);
 				border-radius: 0 15px 15px 15px;
 				margin-top: 50px;
+				overflow-y: auto;
 			}
 
 			.selected-tab > div {
 				transform: translate(0, 15px);
+			}
+			.snippet-code * {
+				margin: 0 !important;
+			}
+			.snippet-code pre code {
+				padding-left: 20px;
+				border-radius: 20px;
+				cursor: pointer;
+				padding-top: 0;
+				padding-bottom: 0;
+			}
+			.snippet-title {
+				font-size: 1.5em;
+				font-weight: bold;
 			}
 		</style>
 	</head>
@@ -597,5 +610,11 @@
 			
 		</tapp-main>
 		<script src="/config.js?v=3"></script>
+		<script>
+			window.addEventListener("click", function(){
+				hljs.highlightAll();
+
+			})
+		</script>
 	</body>
 </html>
