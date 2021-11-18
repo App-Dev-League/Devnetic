@@ -42,7 +42,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "Use the preview tab to see the webpage displayed, and use the snippets tab to insert a snippet. Click the move on button when you are ready to move to the next page."
+                    "content": "Hit CTRL+S to update the preview, and use the preview tab to see the webpage displayed, and use the snippets tab to insert a snippet. Click the move on button when you are ready to move to the next page."
                 }
             ],
             "hints":
