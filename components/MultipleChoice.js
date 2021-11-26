@@ -22,10 +22,15 @@ class MultipleChoice extends tApp.Component {
 	}
 	render(props) {
 		if(this.parent.state.multiple_choice != null && this.parent.state.multiple_choice.question != null) {
-			this.state.explanation = new ExplanationModal({
-				points: this.parent.state.multiple_choice.points,
-				coins: this.parent.state.multiple_choice.coins
-			}, this);
+			if(this.state.explanation == null) {
+				this.state.explanation = new ExplanationModal({
+					points: this.parent.state.multiple_choice.points,
+					coins: this.parent.state.multiple_choice.coins
+				}, this);
+			} else {
+				this.state.explanation.state.points = this.parent.state.multiple_choice.points;
+				this.state.explanation.state.coins = this.parent.state.multiple_choice.coins;
+			}
 			let returnStr = `<div>
 	<h1 class="mc-question">${tApp.escape(this.parent.state.multiple_choice.question || "")}</h1>
 	<div class="codeblock mc-codeblock">
