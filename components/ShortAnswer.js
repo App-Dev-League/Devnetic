@@ -1,4 +1,5 @@
 const ExplanationModal = require("./ExplanationModal.js");
+const Input = require("./Input.js");
 
 class ShortAnswer extends tApp.Component {
 	constructor(state, parent) {
@@ -6,10 +7,21 @@ class ShortAnswer extends tApp.Component {
 	}
 	render(props) {
 		if(this.parent.state.short_answer != null) {
-			this.state.explanation = new ExplanationModal({
-				points: this.parent.state.short_answer.points,
-				coins: this.parent.state.short_answer.coins
-			}, this);
+			if(this.state.explanation == null) {
+				this.state.explanation = new ExplanationModal({
+					points: this.parent.state.short_answer.points,
+					coins: this.parent.state.short_answer.coins
+				}, this);
+			} else {
+				this.state.explanation.state.points = this.parent.state.short_answer.points;
+				this.state.explanation.state.coins = this.parent.state.short_answer.coins;
+			}
+			if(this.state.input == null) {
+				this.state.input = new Input({
+					classList: ["short-answer-input"],
+					type: "text"
+				});
+			}
 			if(this.parent.state.short_answer.value == null) {
 				this.parent.state.short_answer.value = "";
 			}
@@ -19,7 +31,7 @@ class ShortAnswer extends tApp.Component {
 		<pre>${this.parent.state.short_answer.code || ""}</pre>
 	</div>
 	<div class="short-answer-container">
-		<input class="short-answer-input" type="text" oninput="{{_this}}.parent.setState('short_answer.value', this.value)" value="${tApp.escape(this.parent.state.short_answer.value)}" />
+		${this.state.input}
 		<button class="short-answer-button" onclick="{{_this}}.update();">Submit</button>
 	</div>`;
 			if(this.parent.state.short_answer.selectedAnswer != null) {
@@ -43,7 +55,7 @@ class ShortAnswer extends tApp.Component {
 		return "<div></div>";
 	}
 	update() {
-		this.parent.setState("short_answer.selectedAnswer", this.parent.state.short_answer.value);
+		this.parent.setState("short_answer.selectedAnswer", this.state.input.state.value);
 	}
 	closeModal() {
 		this.parent.setState("short_answer.selectedAnswer", null);

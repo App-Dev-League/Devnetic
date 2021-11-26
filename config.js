@@ -6,6 +6,7 @@
 		"Editor.js",
 		"ExplanationModal.js",
 		"Information.js",
+		"Input.js",
 		"Instructions.js",
 		"ModulePage.js",
 		"MultipleChoice.js",
@@ -115,6 +116,7 @@
 					modulePage.setComponent(multipleChoice);
 				} else if(data.type == "short_answer") {
 					modulePage.state.short_answer = data;
+					shortAnswer.state.input = null;
 					modulePage.setComponent(shortAnswer);
 				} else if(data.type == "snippet_unlock") {
 					modulePage.state.snippet_unlock = data;

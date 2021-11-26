@@ -8,6 +8,10 @@ class tApp {
 	static database;
 	static currentHash = "/";
 	static debugComponentTiming;
+	static debugComponentRendering;
+	static updateQueue = [];
+	static queueTimer = 10;
+	static optimizedUpdating = true;
 	static get version() {
 		return "v0.10.10";
 	}
@@ -454,11 +458,27 @@ class tApp {
 		}
 	}
 	static updateDOM() {
-		tApp.updateComponent(tApp.GlobalComponent);
+		tApp.updateComponent(tApp.GlobalComponent, true);
 	}
-	static updateComponent(component) {
+	static queueUpdateComponent(component, timer = tApp.queueTimer) {
+		if(!tApp.updateQueue.includes(component.id)) {
+			tApp.updateQueue.push(component.id);
+			setTimeout(() => {
+				tApp.updateQueue.splice(tApp.updateQueue.findIndex(el => el == component.id), 1);
+				tApp.updateComponent(component, true);
+			}, timer);
+		}
+	}
+	static updateComponent(component, topLevel = false) {
+		if(tApp.debugComponentRendering != null) {
+			if(typeof tApp.debugComponentRendering == "function") {
+				tApp.debugComponentRendering(component, topLevel);
+			} else if(tApp.debugComponentRendering) {
+				console.log("update", component, topLevel);
+			}
+		}
 		let updateStartTime;
-		if(tApp.debugComponentTiming != null && component.id == "global") {
+		if(tApp.debugComponentTiming != null && topLevel) {
 			updateStartTime = new Date().getTime();
 		}
 		component.componentWillUpdate();
@@ -618,7 +638,7 @@ class tApp {
 		for(let i = 0; i < component.children.length; i++) {
 			tApp.updateComponent(component.children[i]);
 		}
-		if(tApp.debugComponentTiming != null && component.id == "global") {
+		if(tApp.debugComponentTiming != null && topLevel) {
 			if(typeof tApp.debugComponentTiming == "function") {
 				tApp.debugComponentTiming((new Date().getTime() - updateStartTime))
 			} else if(tApp.debugComponentTiming) {
@@ -1175,7 +1195,7 @@ tApp.Component = class {
 			return true;
 		}
 	}
-	setState(key, val) {
+	setState(key, val, timer = tApp.queueTimer) {
 		function recursivelySetState(key, val, state) {
 			if(key.includes(".")) {
 				let keyList = key.split(".");
@@ -1190,7 +1210,11 @@ tApp.Component = class {
 			return state;
 		}
 		this.state = recursivelySetState(key, val, this.state);
-		tApp.updateDOM();
+		if(tApp.optimizedUpdating) {
+			tApp.queueUpdateComponent(this, timer);
+		} else {
+			tApp.updateDOM();
+		}
 		return val;
 	}
 	render(props) {
