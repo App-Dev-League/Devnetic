@@ -1,3 +1,5 @@
+const ModuleComponent = require("./ModuleComponent.js");
+
 const codeTemplateToCode = require("../utils/codeTemplateToCode.js");
 const Editor = require("./Editor.js");
 const SnippetsPanel = require("./SnippetsPanel.js");
@@ -5,7 +7,7 @@ const Instructions = require("./Instructions.js");
 const CodePreview = require("./CodePreview.js");
 const TabbedView = require("./TabbedView.js");
 
-class CodeEditor extends tApp.Component {
+class CodeEditor extends ModuleComponent {
 	constructor(state, parent) {
 		super(state, parent);
 		if(this.state.editor == null) {
@@ -48,8 +50,8 @@ class CodeEditor extends tApp.Component {
 		}
 	}
 	render(props) {
-		if(this.parent.state.data != null) {
-			this.state.instructions.state.elements = this.parent.state.data.elements;
+		if(this.data() != null) {
+			this.state.instructions.state.elements = this.data().elements;
 			return `<div>
 						${this.state.editor}
 						<div class="vertical-divider"></div>

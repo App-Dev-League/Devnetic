@@ -8,6 +8,7 @@
 		"Information.js",
 		"Input.js",
 		"Instructions.js",
+		"ModuleComponent.js",
 		"ModulePage.js",
 		"MultipleChoice.js",
 		"MultipleChoiceOption.js",

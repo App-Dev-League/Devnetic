@@ -1,7 +1,9 @@
+const ModuleComponent = require("./ModuleComponent.js");
+
 const ExplanationModal = require("./ExplanationModal.js");
 const MultipleChoiceOption = require("./MultipleChoiceOption.js");
 
-class MultipleChoice extends tApp.Component {
+class MultipleChoice extends ModuleComponent {
 	constructor(state, parent) {
 		super(state, parent);
 		if(this.state.options == null) {
@@ -21,20 +23,20 @@ class MultipleChoice extends tApp.Component {
 		}
 	}
 	render(props) {
-		if(this.parent.state.data != null && this.parent.state.data.question != null) {
+		if(this.data() != null && this.data().question != null) {
 			if(this.state.explanation == null) {
 				this.state.explanation = new ExplanationModal({
-					points: this.parent.state.data.points,
-					coins: this.parent.state.data.coins
+					points: this.data().points,
+					coins: this.data().coins
 				}, this);
 			} else {
-				this.state.explanation.state.points = this.parent.state.data.points;
-				this.state.explanation.state.coins = this.parent.state.data.coins;
+				this.state.explanation.state.points = this.data().points;
+				this.state.explanation.state.coins = this.data().coins;
 			}
 			let returnStr = `<div>
-	<h1 class="mc-question">${tApp.escape(this.parent.state.data.question || "")}</h1>
+	<h1 class="mc-question">${tApp.escape(this.data().question || "")}</h1>
 	<div class="codeblock mc-codeblock">
-		<pre>${this.parent.state.data.code || ""}</pre>
+		<pre>${this.data().code || ""}</pre>
 	</div>
 	<div class="mc-answer-table">
 		<div class="mc-answer-container">
@@ -44,8 +46,8 @@ class MultipleChoice extends tApp.Component {
 			${this.state.options[3]}
 		</div>
 	</div>`;
-			if(this.parent.state.data.selectedAnswer != null) {
-				let data = this.parent.state.data;
+			if(this.data().selectedAnswer != null) {
+				let data = this.data();
 				this.state.explanation.state.description = data.descriptions[data.selectedAnswer];
 				
 				if(data.selectedAnswer == data.correct) {
