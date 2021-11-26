@@ -48,8 +48,8 @@ class CodeEditor extends tApp.Component {
 		}
 	}
 	render(props) {
-		if(this.parent.state.code_editor != null) {
-			this.state.instructions.state.elements = this.parent.state.code_editor.elements;
+		if(this.parent.state.data != null) {
+			this.state.instructions.state.elements = this.parent.state.data.elements;
 			return `<div>
 						${this.state.editor}
 						<div class="vertical-divider"></div>

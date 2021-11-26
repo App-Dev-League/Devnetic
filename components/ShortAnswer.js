@@ -6,15 +6,15 @@ class ShortAnswer extends tApp.Component {
 		super(state, parent);
 	}
 	render(props) {
-		if(this.parent.state.short_answer != null) {
+		if(this.parent.state.data != null) {
 			if(this.state.explanation == null) {
 				this.state.explanation = new ExplanationModal({
-					points: this.parent.state.short_answer.points,
-					coins: this.parent.state.short_answer.coins
+					points: this.parent.state.data.points,
+					coins: this.parent.state.data.coins
 				}, this);
 			} else {
-				this.state.explanation.state.points = this.parent.state.short_answer.points;
-				this.state.explanation.state.coins = this.parent.state.short_answer.coins;
+				this.state.explanation.state.points = this.parent.state.data.points;
+				this.state.explanation.state.coins = this.parent.state.data.coins;
 			}
 			if(this.state.input == null) {
 				this.state.input = new Input({
@@ -22,23 +22,23 @@ class ShortAnswer extends tApp.Component {
 					type: "text"
 				});
 			}
-			if(this.parent.state.short_answer.value == null) {
-				this.parent.state.short_answer.value = "";
+			if(this.parent.state.data.value == null) {
+				this.parent.state.data.value = "";
 			}
 			let returnStr = `<div>
-	<h1 class="mc-question">${tApp.escape(this.parent.state.short_answer.question || "")}</h1>
+	<h1 class="mc-question">${tApp.escape(this.parent.state.data.question || "")}</h1>
 	<div class="codeblock mc-codeblock">
-		<pre>${this.parent.state.short_answer.code || ""}</pre>
+		<pre>${this.parent.state.data.code || ""}</pre>
 	</div>
 	<div class="short-answer-container">
 		${this.state.input}
 		<button class="short-answer-button" onclick="{{_this}}.update();">Submit</button>
 	</div>`;
-			if(this.parent.state.short_answer.selectedAnswer != null) {
-				let short_answer = this.parent.state.short_answer;
-				this.state.explanation.state.description = short_answer.descriptions[short_answer.selectedAnswer] || short_answer.description_default;
+			if(this.parent.state.data.selectedAnswer != null) {
+				let data = this.parent.state.data;
+				this.state.explanation.state.description = data.descriptions[data.selectedAnswer] || data.description_default;
 				
-				if(short_answer.answers.includes(short_answer.selectedAnswer)) {
+				if(data.answers.includes(data.selectedAnswer)) {
 					this.state.explanation.state.title = "Correct!";
 					this.state.explanation.state.retry = false;
 				} else {
@@ -55,10 +55,10 @@ class ShortAnswer extends tApp.Component {
 		return "<div></div>";
 	}
 	update() {
-		this.parent.setState("short_answer.selectedAnswer", this.state.input.state.value);
+		this.parent.setState("data.selectedAnswer", this.state.input.state.value);
 	}
 	closeModal() {
-		this.parent.setState("short_answer.selectedAnswer", null);
+		this.parent.setState("data.selectedAnswer", null);
 	}
 }
 

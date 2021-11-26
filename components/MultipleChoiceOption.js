@@ -3,15 +3,15 @@ class MultipleChoiceOption extends tApp.Component {
 		super(state, parent);
 	}
 	render(props) {
-		if(this.parent.parent.state.multiple_choice != null) {
+		if(this.parent.parent.state.data != null) {
 			return `<div class="mc-answer mc-answer-${this.state.index}" onclick="{{_this}}.update();">
-	<p>${tApp.escape(this.parent.parent.state.multiple_choice.answers[this.state.index])}</p>
+	<p>${tApp.escape(this.parent.parent.state.data.answers[this.state.index])}</p>
 </div>`;
 		}
 		return "<div></div>";
 	}
 	update() {
-		this.parent.parent.setState("multiple_choice.selectedAnswer", this.state.index);
+		this.parent.parent.setState("data.selectedAnswer", this.state.index);
 	}
 }
 

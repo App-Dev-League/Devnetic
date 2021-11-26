@@ -70,13 +70,9 @@
 		tApp.redirect(`#/learn/${request.data.module}/${await Database.getModulePosition(request.data.module)}/`);
 	});
 
-	let modulePage = new ModulePage();
-	let information = new Information({}, modulePage);
-	let multipleChoice = new MultipleChoice({}, modulePage);
-	let shortAnswer = new ShortAnswer({}, modulePage);
-	let snippetUnlock = new SnippetUnlock({}, modulePage);
-	let congratulations = new Congratulations({}, modulePage);
-	let codeEditor = new CodeEditor({}, modulePage);
+	let modulePage = new ModulePage({
+		Database: Database
+	});
 
 	tApp.route("#/learn/<module>/<position>", function(request) {
 		Database.getModuleData(request.data.module, request.data.position).then((res) => {
@@ -86,15 +82,11 @@
 				if(data.code_template != null) {
 					data.code = codeTemplateToCode(data.code_template);
 				}
-				modulePage.state.multiple_choice = null;
-				modulePage.state.short_answer = null;
-				modulePage.state.Database = Database;
 				modulePage.state.next = "#/learn/" + request.data.module + "/" + (parseInt(request.data.position) + 1);
 				modulePage.state.module = request.data.module;
 				modulePage.state.position = request.data.position;
 				if(data.type == "information") {
-					modulePage.state.information = data;
-					modulePage.setComponent(information);
+					modulePage.setComponent(new Information({}, modulePage), data);
 				} else if(data.type == "multiple_choice") {
 					let shuffled = shuffleArray([...data.answers]);
 					let indexList = [];
@@ -112,21 +104,15 @@
 					data.answers = answers;
 					data.descriptions = descriptions;
 					data.correct = indexList.findIndex(index => index === data.correct);
-					modulePage.state.multiple_choice = data;
-					modulePage.setComponent(multipleChoice);
+					modulePage.setComponent(new MultipleChoice({}, modulePage), data);
 				} else if(data.type == "short_answer") {
-					modulePage.state.short_answer = data;
-					shortAnswer.state.input = null;
-					modulePage.setComponent(shortAnswer);
+					modulePage.setComponent(new ShortAnswer({}, modulePage), data);
 				} else if(data.type == "snippet_unlock") {
-					modulePage.state.snippet_unlock = data;
-					modulePage.setComponent(snippetUnlock);
+					modulePage.setComponent(new SnippetUnlock({}, modulePage), data);
 				} else if(data.type == "congratulations") {
-					modulePage.state.congratulations = data;
-					modulePage.setComponent(congratulations);
+					modulePage.setComponent(new Congratulations({}, modulePage), data);
 				} else if(data.type == "code_editor") {
-					modulePage.state.code_editor = data;
-					modulePage.setComponent(codeEditor);
+					modulePage.setComponent(new CodeEditor({}, modulePage), data);
 				}
 				tApp.render(modulePage.toString());
 			} else {

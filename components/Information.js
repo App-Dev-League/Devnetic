@@ -5,10 +5,10 @@ class Information extends tApp.Component {
 		super(state, parent);
 	}
 	render(props) {
-		if(this.parent.state.information != null) {
+		if(this.parent.state.data != null) {
 			return `<div>
-	<h1 class="info-title">${tApp.escape(this.parent.state.information.title || "")}</h1>
-	${(this.parent.state.information.elements || []).map(element => {
+	<h1 class="info-title">${tApp.escape(this.parent.state.data.title || "")}</h1>
+	${(this.parent.state.data.elements || []).map(element => {
 		if(element.type == "code") {
 			return `<div class="codeblock info-codeblock">
 	<pre>${codeTemplateToCode(element.content || "")}</pre>

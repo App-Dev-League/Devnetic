@@ -5,12 +5,12 @@ class SnippetUnlock extends tApp.Component {
 		super(state, parent);
 	}
 	render(props) {
-		if(this.parent.state.snippet_unlock != null) {
+		if(this.parent.state.data != null) {
 			return `<div>
-	<h1 class="info-title">Snippet Unlocked: ${tApp.escape(this.parent.state.snippet_unlock.name || "")}!</h1>
-	<pre class="info-text">${codeTemplateToCode(this.parent.state.snippet_unlock.description || "")}</pre>
+	<h1 class="info-title">Snippet Unlocked: ${tApp.escape(this.parent.state.data.name || "")}!</h1>
+	<pre class="info-text">${codeTemplateToCode(this.parent.state.data.description || "")}</pre>
 	<div class="codeblock info-codeblock">
-		<pre>${codeTemplateToCode(this.parent.state.snippet_unlock.code_template || "")}</pre>
+		<pre>${codeTemplateToCode(this.parent.state.data.code_template || "")}</pre>
 	</div>
 	<button class="info-button" onclick="{{_this}}.parent.next();">Continue</button>
 </div>`;

@@ -21,20 +21,20 @@ class MultipleChoice extends tApp.Component {
 		}
 	}
 	render(props) {
-		if(this.parent.state.multiple_choice != null && this.parent.state.multiple_choice.question != null) {
+		if(this.parent.state.data != null && this.parent.state.data.question != null) {
 			if(this.state.explanation == null) {
 				this.state.explanation = new ExplanationModal({
-					points: this.parent.state.multiple_choice.points,
-					coins: this.parent.state.multiple_choice.coins
+					points: this.parent.state.data.points,
+					coins: this.parent.state.data.coins
 				}, this);
 			} else {
-				this.state.explanation.state.points = this.parent.state.multiple_choice.points;
-				this.state.explanation.state.coins = this.parent.state.multiple_choice.coins;
+				this.state.explanation.state.points = this.parent.state.data.points;
+				this.state.explanation.state.coins = this.parent.state.data.coins;
 			}
 			let returnStr = `<div>
-	<h1 class="mc-question">${tApp.escape(this.parent.state.multiple_choice.question || "")}</h1>
+	<h1 class="mc-question">${tApp.escape(this.parent.state.data.question || "")}</h1>
 	<div class="codeblock mc-codeblock">
-		<pre>${this.parent.state.multiple_choice.code || ""}</pre>
+		<pre>${this.parent.state.data.code || ""}</pre>
 	</div>
 	<div class="mc-answer-table">
 		<div class="mc-answer-container">
@@ -44,11 +44,11 @@ class MultipleChoice extends tApp.Component {
 			${this.state.options[3]}
 		</div>
 	</div>`;
-			if(this.parent.state.multiple_choice.selectedAnswer != null) {
-				let multiple_choice = this.parent.state.multiple_choice;
-				this.state.explanation.state.description = multiple_choice.descriptions[multiple_choice.selectedAnswer];
+			if(this.parent.state.data.selectedAnswer != null) {
+				let data = this.parent.state.data;
+				this.state.explanation.state.description = data.descriptions[data.selectedAnswer];
 				
-				if(multiple_choice.selectedAnswer == multiple_choice.correct) {
+				if(data.selectedAnswer == data.correct) {
 					this.state.explanation.state.title = "Correct!";
 					this.state.explanation.state.retry = false;
 				} else {
@@ -65,7 +65,7 @@ class MultipleChoice extends tApp.Component {
 		return "<div></div>";
 	}
 	closeModal() {
-		this.parent.setState("multiple_choice.selectedAnswer", null);
+		this.parent.setState("data.selectedAnswer", null);
 	}
 }
 

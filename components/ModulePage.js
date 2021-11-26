@@ -7,10 +7,11 @@ class ModulePage extends tApp.Component {
 	${this.state.component}
 </div>`;
 	}
-	setComponent(component) {
+	setComponent(component, data) {
 		if(this.state.component != null) {
-			//this.state.component.destroy();
+			this.state.component.destroy();
 		}
+		this.state.data = data;
 		this.setState("component", component);
 	}
 	async next() {
