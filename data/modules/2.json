@@ -81,7 +81,8 @@
                             "lowercase",
                             "remove-tabs",
                             "remove-newlines",
-                            "remove-trailing-spaces"
+                            "remove-trailing-spaces",
+                            "convert-to-double-quotes"
                         ],
                         "value": "<!doctype html><html lang=\"en\"><head></head><body></body></html>"
                     }
