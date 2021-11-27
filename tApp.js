@@ -314,7 +314,7 @@ class tApp {
 				}
 			}).catch((err) => {
 				if(cachedPage == null) {
-					reject(response);
+					reject(err);
 				}
 			});
 			if(!ignoreCache && cachedPage != null) {
@@ -364,9 +364,14 @@ class tApp {
 		nodeScriptReplace(tApp.config.target);
 	}
 	static renderFile(path) {
-		tApp.get(path).then((res) => {
-			res.clone().text().then((text) => {
-				tApp.render(text);
+		return new Promise(async (resolve, reject) => {
+			tApp.get(path).then((res) => {
+				res.clone().text().then((text) => {
+					tApp.render(text);
+					resolve();
+				});
+			}).catch((err) => {
+				reject(err);
 			});
 		});
 	}
@@ -957,9 +962,13 @@ class tApp {
 		tApp.render(html);
 	}
 	static renderTemplate(path, options) {
-		tApp.get(path).then((res) => {
-			res.clone().text().then((text) => {
-				tApp.renderTemplateHTML(text, options);
+		return new Promise(async (resolve, reject) => {
+			tApp.get(path).then((res) => {
+				res.clone().text().then((text) => {
+					tApp.renderTemplateHTML(text, options);
+				});
+			}).catch((err) => {
+				reject(err);
 			});
 		});
 	}

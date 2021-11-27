@@ -67,24 +67,43 @@
 	tApp.route("#/", function(request) {
 		tApp.renderFile("./views/index.html");
 	});
+	tApp.route("#/track/<track>", function(request) {
+		tApp.renderFile(`./views/${request.data.track}.html`).catch((err) => {
+			tApp.renderPath("#/404");
+		});
+	});
 
-	tApp.route("#/learn/<module>/", async function(request) {
-		tApp.redirect(`#/learn/${request.data.module}/${await Database.getModulePosition(request.data.module)}/`);
+	tApp.route("#/learn/<track>/<module>/", async function(request) {
+		tApp.redirect(`#/learn/${request.data.track}/${request.data.module}/${await Database.getModulePosition(request.data.track, request.data.module)}/`);
 	});
 
 	let modulePage = new ModulePage({
 		Database: Database
 	});
 
-	tApp.route("#/learn/<module>/<position>", function(request) {
-		Database.getModuleData(request.data.module, request.data.position).then((res) => {
-			let data = res[0];
-			let type = res[1];
-			if(type == "lesson" || type == "project") {
+	tApp.route("#/learn/<track>/<module>/<position>", function(request) {
+		request.data.module = parseInt(request.data.module);
+		request.data.position = parseInt(request.data.position);
+		Database.getModuleData(request.data.track, request.data.module, request.data.position).then((res) => {
+			let { data, type, moduleLength, next } = res;
+			if(request.data.position >= moduleLength) {
+				if(next.hasNext) {
+					alert("You have already completed this module! We will now take you to the next module.");
+					tApp.redirect(`#/learn/${request.data.track}/${next.module}/${next.position}`);
+				} else {
+					alert("You have already completed all modules! We will now take you back to the main page.");
+					tApp.redirect(`#/`);
+				}
+			} else if(type == "lesson" || type == "project") {
 				if(data.code_template != null) {
 					data.code = codeTemplateToCode(data.code_template);
 				}
-				modulePage.state.next = "#/learn/" + request.data.module + "/" + (parseInt(request.data.position) + 1);
+				if(next.hasNext) {
+					modulePage.state.next = `#/learn/${request.data.track}/${next.module}/${next.position}`;
+				} else {
+					modulePage.state.next = `#/`;
+				}
+				modulePage.state.track = request.data.track;
 				modulePage.state.module = request.data.module;
 				modulePage.state.position = request.data.position;
 				if(data.type == "information") {

@@ -5,17 +5,20 @@ const Database = {
 		localStorage.removeItem("score");
 		localStorage.removeItem("actions");
 	},
-	updateState: function(moduleNum, position) {
+	updateState: function(track, moduleNum, position) {
 		return new Promise(async (resolve, reject) => {
 			localStorage.setItem("module", moduleNum);
 			localStorage.setItem("position", position);
-			let [data, module_type] = await Database.getModuleData(moduleNum, position);
+			let { data } = await Database.getModuleData(track, moduleNum, position);
 			let actions = await Database.getActions();
-			if(actions[moduleNum] == null) {
-				actions[moduleNum] = [];
+			if(actions[track] == null) {
+				actions[track] = [];
 			}
-			if(actions[moduleNum][position] == null) {
-				actions[moduleNum][position] = {
+			if(actions[track][moduleNum] == null) {
+				actions[track][moduleNum] = [];
+			}
+			if(actions[track][moduleNum][position] == null) {
+				actions[track][moduleNum][position] = {
 					points: data.points || 0,
 					coins: data.coins || 0
 				};
@@ -30,16 +33,17 @@ const Database = {
 	},
 	getActions: function() {
 		return new Promise(async (resolve, reject) => {
-			let actions = [];
+			let actions = {};
 			if(localStorage.getItem("actions") == null) {
 				await Database.setActions(actions);
 			}
 			try {
 				actions = JSON.parse(localStorage.getItem("actions"));
+				resolve(actions);
 			} catch(err) {
-				await Database.setActions(actions);
+				await Database.setActions({});
+				resolve({});
 			}
-			resolve(actions);
 		});
 	},
 	setActions: function(actions) {
@@ -71,24 +75,58 @@ const Database = {
 			resolve(true);
 		});
 	},
-	getModuleData: function(moduleNum, position) {
+	getModuleData: function(track, moduleNum, position) {
 		return new Promise(async (resolve, reject) => {
-			let data = await tApp.get(`/data/modules/${moduleNum}.json`).catch((err) => {
+			let data = await tApp.get(`/data/modules/${track}/${moduleNum}.json`).catch((err) => {
 				reject(err);
 			});
 			let parsedData = await data.json().catch((err) => {
 				reject(err);
 			});
-			resolve([parsedData.pages[position], parsedData.type]);
+			if(position < parsedData.pages.length - 1) {
+				resolve({
+					data: parsedData.pages[position],
+					type: parsedData.type,
+					moduleLength: parsedData.pages.length,
+					next: {
+						hasNext: true,
+						module: moduleNum,
+						position: position + 1
+					}
+				});
+			} else {
+				tApp.get(`/data/modules/${track}/${moduleNum + 1}.json`).then(() => {
+					resolve({
+						data: parsedData.pages[position],
+						type: parsedData.type,
+						moduleLength: parsedData.pages.length,
+						next: {
+							hasNext: true,
+							module: moduleNum + 1,
+							position: 0
+						}
+					});
+				}).catch((err) => {
+					resolve({
+						data: parsedData.pages[position],
+						type: parsedData.type,
+						moduleLength: parsedData.pages.length,
+						next: {
+							hasNext: false
+						}
+					});
+				});
+			}
+			
 		});
 	},
-	getModulePosition: function(moduleNum) {
+	getModulePosition: function(track, moduleNum) {
 		return new Promise(async (resolve, reject) => {
 			let actions = await Database.getActions();
-			if(actions[moduleNum] == null) {
+			if(actions[track] == null || actions[track][moduleNum] == null) {
 				resolve(0);
 			} else {
-				resolve(actions[moduleNum].length);
+				resolve(actions[track][moduleNum].length);
 			}
 		});
 	}
