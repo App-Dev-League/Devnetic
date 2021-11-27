@@ -640,9 +640,11 @@ class tApp {
 		for(let i = 0; i < els.length; i++) {
 			convertNode(els[i], compiled);
 		}
+		component.componentHasUpdated();
 		for(let i = 0; i < component.children.length; i++) {
 			tApp.updateComponent(component.children[i]);
 		}
+		component.componentChildrenHaveUpdated();
 		if(tApp.debugComponentTiming != null && topLevel) {
 			if(typeof tApp.debugComponentTiming == "function") {
 				tApp.debugComponentTiming((new Date().getTime() - updateStartTime))
@@ -1230,6 +1232,12 @@ tApp.Component = class {
 		throw "tAppComponentError: Render method must be overridden.";
 	}
 	componentWillUpdate() {
+		
+	}
+	componentHasUpdated() {
+		
+	}
+	componentChildrenHaveUpdated() {
 		
 	}
 	destroy() {
