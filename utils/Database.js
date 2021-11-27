@@ -1,10 +1,4 @@
 const Database = {
-	clear: function() {
-		localStorage.removeItem("module");
-		localStorage.removeItem("position");
-		localStorage.removeItem("score");
-		localStorage.removeItem("actions");
-	},
 	updateState: function(track, moduleNum, position) {
 		return new Promise(async (resolve, reject) => {
 			localStorage.setItem("module", moduleNum);
@@ -142,6 +136,37 @@ const Database = {
 	setCode: function(storage_id, code) {
 		return new Promise(async (resolve, reject) => {
 			localStorage.setItem(`code::${storage_id}`, code);
+			resolve(true);
+		});
+	},
+	removeCode: function(storage_id) {
+		return new Promise(async (resolve, reject) => {
+			localStorage.removeItem(`code::${storage_id}`);
+			resolve(true);
+		});
+	},
+	clearBasicData: function() {
+		return new Promise(async (resolve, reject) => {
+			localStorage.removeItem("module");
+			localStorage.removeItem("position");
+			localStorage.removeItem("score");
+			localStorage.removeItem("actions");
+			resolve(true);
+		});
+	},
+	clearAllCode: function() {
+		return new Promise(async (resolve, reject) => {
+			let storage_ids = Object.keys(localStorage).filter(key => key.startsWith("code::")).map(key => key.substring(6));
+			for(let i = 0; i < storage_ids.length; i++) {
+				await Database.removeCode(storage_ids[i]);
+			}
+			resolve(true);
+		});
+	},
+	clearAll: function() {
+		return new Promise(async (resolve, reject) => {
+			await Database.clearBasicData();
+			await Database.clearAllCode();
 			resolve(true);
 		});
 	}
