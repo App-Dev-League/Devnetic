@@ -77,13 +77,13 @@
 			{
 				"html": "<p>{{ snippet.attributes.content }}</p>",
 				"attributes":
-				{
-					"content":
+				[
 					{
+						"id": "content",
 						"label": "Content",
 						"type": "input"
 					}
-				}
+				]
 			}
 		},
 		{

@@ -21,10 +21,11 @@
 	});
 
 	await installAll([
-		"codeTemplateToCode.js",
-		"shuffleArray.js",
 		"Database.js",
-		"codeEditor.js"
+		"codeEditor.js",
+		"codeTemplateToCode.js",
+		"compileSnippet.js",
+		"shuffleArray.js"
 	], {
 		path: "./utils/"
 	});
