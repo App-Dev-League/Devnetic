@@ -141,31 +141,6 @@ const Database = {
 			resolve(true);
 		});
 	},
-	clearBasicData: function() {
-		return new Promise(async (resolve, reject) => {
-			localStorage.removeItem("module");
-			localStorage.removeItem("position");
-			localStorage.removeItem("score");
-			localStorage.removeItem("actions");
-			resolve(true);
-		});
-	},
-	clearAllCode: function() {
-		return new Promise(async (resolve, reject) => {
-			let storage_ids = Object.keys(localStorage).filter(key => key.startsWith("code::")).map(key => key.substring(6));
-			for(let i = 0; i < storage_ids.length; i++) {
-				await Database.removeCode(storage_ids[i]);
-			}
-			resolve(true);
-		});
-	},
-	clearAll: function() {
-		return new Promise(async (resolve, reject) => {
-			await Database.clearBasicData();
-			await Database.clearAllCode();
-			resolve(true);
-		});
-	},
 	getSnippetIds: function() {
 		return new Promise(async (resolve, reject) => {
 			let snippet_ids = [];
@@ -236,6 +211,42 @@ const Database = {
 				}
 			}
 			resolve(snippets);
+		});
+	},
+	clearBasicData: function() {
+		return new Promise(async (resolve, reject) => {
+			localStorage.removeItem("module");
+			localStorage.removeItem("position");
+			localStorage.removeItem("score");
+			localStorage.removeItem("actions");
+			resolve(true);
+		});
+	},
+	clearAllCode: function() {
+		return new Promise(async (resolve, reject) => {
+			let storage_ids = Object.keys(localStorage).filter(key => key.startsWith("code::")).map(key => key.substring(6));
+			for(let i = 0; i < storage_ids.length; i++) {
+				await Database.removeCode(storage_ids[i]);
+			}
+			resolve(true);
+		});
+	},
+	clearAllSnippets: function() {
+		return new Promise(async (resolve, reject) => {
+			let snippet_ids = Object.keys(localStorage).filter(key => key.startsWith("snippet::")).map(key => key.substring(9));
+			for(let i = 0; i < snippet_ids.length; i++) {
+				await Database.removeSnippet(snippet_ids[i]);
+			}
+			localStorage.removeItem("snippet_ids");
+			resolve(true);
+		});
+	},
+	clearAll: function() {
+		return new Promise(async (resolve, reject) => {
+			await Database.clearBasicData();
+			await Database.clearAllCode();
+			await Database.clearAllSnippets();
+			resolve(true);
 		});
 	}
 }
