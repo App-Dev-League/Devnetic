@@ -129,6 +129,21 @@ const Database = {
 				resolve(actions[track][moduleNum].length);
 			}
 		});
+	},
+	getCode: function(storage_id) {
+		return new Promise(async (resolve, reject) => {
+			if(localStorage.getItem(`code::${storage_id}`) == null) {
+				resolve("");
+			} else {
+				resolve(localStorage.getItem(`code::${storage_id}`));
+			}
+		});
+	},
+	setCode: function(storage_id, code) {
+		return new Promise(async (resolve, reject) => {
+			localStorage.setItem(`code::${storage_id}`, code);
+			resolve(true);
+		});
 	}
 }
 
