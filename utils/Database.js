@@ -126,11 +126,7 @@ const Database = {
 	},
 	getCode: function(storage_id) {
 		return new Promise(async (resolve, reject) => {
-			if(localStorage.getItem(`code::${storage_id}`) == null) {
-				resolve("");
-			} else {
-				resolve(localStorage.getItem(`code::${storage_id}`));
-			}
+			resolve(localStorage.getItem(`code::${storage_id}`));
 		});
 	},
 	setCode: function(storage_id, code) {
@@ -168,6 +164,78 @@ const Database = {
 			await Database.clearBasicData();
 			await Database.clearAllCode();
 			resolve(true);
+		});
+	},
+	getSnippetIds: function() {
+		return new Promise(async (resolve, reject) => {
+			let snippet_ids = [];
+			if(localStorage.getItem("snippet_ids") == null) {
+				await Database.setSnippetIds(snippet_ids);
+			}
+			try {
+				snippet_ids = JSON.parse(localStorage.getItem("snippet_ids"));
+				resolve(snippet_ids);
+			} catch(err) {
+				await Database.setSnippetIds([]);
+				resolve([]);
+			}
+		});
+	},
+	setSnippetIds: function(snippet_ids) {
+		return new Promise(async (resolve, reject) => {
+			localStorage.setItem("snippet_ids", JSON.stringify(snippet_ids));
+			resolve(true)
+		});
+	},
+	getSnippet: function(snippet_id) {
+		return new Promise(async (resolve, reject) => {
+			try {
+				let parsed = JSON.parse(localStorage.getItem(`snippet::${snippet_id}`));
+				resolve(parsed);
+			} catch(err) {
+				resolve(null);
+			}
+		});
+	},
+	setSnippet: function(snippet) {
+		return new Promise(async (resolve, reject) => {
+			localStorage.setItem("snippet::" + snippet.id, JSON.stringify(snippet));
+			resolve(true);
+		});
+	},
+	storeSnippet: function(snippet) {
+		return new Promise(async (resolve, reject) => {
+			let snippet_ids = await Database.getSnippetIds();
+			if(snippet_ids.findIndex(id => id == snippet.id) < 0) {
+				snippet_ids.push(snippet.id);
+				await Database.setSnippetIds(snippet_ids);
+				await Database.setSnippet(snippet);
+			}
+			resolve(true);
+		});
+	},
+	removeSnippet: function(snippet_id) {
+		return new Promise(async (resolve, reject) => {
+			localStorage.removeItem("snippet::" + snippet_id);
+			let snippet_ids = await Database.getSnippetIds();
+			if(snippet_ids.findIndex(id => id == snippet_id) >= 0) {
+				snippet_ids.splice(snippet_ids.findIndex(id => id == snippet_id), 1);
+				await Database.setSnippetIds(snippet_ids);
+			}
+			resolve(true);
+		});
+	},
+	getAllSnippets: function() {
+		return new Promise(async (resolve, reject) => {
+			let snippet_ids = await Database.getSnippetIds();
+			let snippets = [];
+			for(let i = 0; i < snippet_ids.length; i++) {
+				let snippet = await Database.getSnippet(snippet_ids[i]);
+				if(snippet != null) {
+					snippets.push(snippet);
+				}
+			}
+			resolve(snippets);
 		});
 	}
 }

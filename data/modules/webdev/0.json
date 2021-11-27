@@ -70,17 +70,20 @@
 		},
 		{
 			"type": "snippet_unlock",
-			"name": "Paragraph Tag",
+			"name": "Paragraph Tag (Basic)",
 			"code_template": "[[lightpurple]]<p>[[/]][[white]]text[[/]][[lightpurple]]</p>[[/]]",
 			"description": "A paragraph tag ([[lightpurple]]<p>[[/]]) is used to display text on the screen.",
 			"snippet":
 			{
-				"html": "<p>{{ snippet.attributes.content }}</p>",
+				"name": "Paragraph Tag (Basic)",
+				"id": "paragraph-tag-basic",
+				"example": "<p>text</p>",
+				"html": "<p>{{ snippet.attributes.text }}</p>",
 				"attributes":
 				[
 					{
-						"id": "content",
-						"label": "Content",
+						"id": "text",
+						"label": "Text",
 						"type": "input"
 					}
 				]
