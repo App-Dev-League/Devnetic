@@ -32,7 +32,6 @@ class codeBlock extends tApp.Component {
         }
         window.codeBlockHelper = codeBlockHelper;
         this.codeId = generateString(30);
-        window.debug = this;
         var codeId = this.codeId;
 		return `
 				<div class="snippet-code">

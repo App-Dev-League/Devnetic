@@ -29,15 +29,15 @@
 			"type": "code_editor",
 			"storage_id":
 			[
-				"webdev-0-index.html"
+				"webdev-0-index.html", "webdev-1-index.html"
 			],
 			"files":
 			[
-				"index.html"
+				"index.html", "secondary.html"
 			],
 			"default":
 			[
-				"<hi></hi>"
+				"<hi></hi>", "<test></test>"
 			],
 			"display_type": "web",
 			"elements":

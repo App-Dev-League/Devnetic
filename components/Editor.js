@@ -1,6 +1,7 @@
 const codeTemplateToCode = require("../utils/codeTemplateToCode.js");
 const codeEditorHelper = require("../utils/codeEditor.js");
 const DB = require("../utils/Database.js");
+const TabbedView = require("./TabbedView.js");
 
 // ways to use codeEditorHelper: (all methods are synchronous)
 /*
@@ -10,21 +11,18 @@ let value = codeEditorHelper.getValue()
 codeEditorHelper.insertAtCursor("asdf")
 */
 
-// things to do: add tabindex and tabs to code editor
 class Editor extends tApp.Component {
 	constructor(state, parent) {
 		super(state, parent);
 	}
 	render(props) {
-		
+
 		var parentThis = this
 		var tabindex = this.state.tabindex
-		console.log(tabindex)
 		async function loadCodeFromDb() {
-			console.log(parentThis.parent.data().storage_id[tabindex])
-			let text = await DB.getCode(parentThis.parent.data().storage_id[tabindex]);
+			let text = await DB.getCode(parentThis.parent.parent.data().storage_id[tabindex]);
 			if (text === null) {
-				text = parentThis.parent.data().default[tabindex]
+				text = parentThis.parent.parent.data().default[tabindex]
 				document.getElementById("code-editor-status").innerText = "Ready"
 			}
 			document.getElementById("code-frame").contentWindow.codeEditor.getModel().setValue(text);
@@ -48,26 +46,33 @@ class Editor extends tApp.Component {
 			loadCode();
 			function addEvent() {
 				try {
-					document.querySelectorAll(".tab")[1].addEventListener("click", handleClicks)
-					function handleClicks(){
-						setTimeout(function(){
+					document.querySelectorAll(".tab").forEach(element => {
+						if (element.innerText === "Preview"){
+							element.addEventListener("click", handleClicks)
+						}
+					})
+					function handleClicks() {
+						setTimeout(function () {
 							if (document.getElementById("preview")) document.getElementById("preview").srcdoc = codeEditorHelper.getValue();
 						}, 100)
 					}
-					document.getElementById("code-editor-run-btn").onclick = async function(){
+					document.getElementById("code-editor-run-btn").onclick = async function () {
 						document.getElementById("code-editor-status").innerText = "Saving..."
-							await DB.setCode(parentThis.parent.data().storage_id[tabindex], codeEditorHelper.getValue())
-							if (document.getElementById("preview")) document.getElementById("preview").srcdoc = codeEditorHelper.getValue();
-							setTimeout(function () {
-								document.getElementById("code-editor-status").innerText = "Ready"
-							}, 500)
+						await DB.setCode(parentThis.parent.parent.data().storage_id[tabindex], codeEditorHelper.getValue())
+						if (document.getElementById("preview")) document.getElementById("preview").srcdoc = codeEditorHelper.getValue();
+						setTimeout(function () {
+							document.getElementById("code-editor-status").innerText = "Ready"
+						}, 500)
 					}
 					document.getElementById("code-frame").contentWindow.document.addEventListener("keydown", async function (e) {
 						window.codeEditorSaved = false;
+						if (e.keyCode === 82 && e.ctrlKey) {
+							window.codeEditorSaved = true;
+						}
 						if (e.key === 's' && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
 							e.preventDefault();
 							document.getElementById("code-editor-status").innerText = "Saving..."
-							await DB.setCode(parentThis.parent.data().storage_id[tabindex], codeEditorHelper.getValue())
+							await DB.setCode(parentThis.parent.parent.data().storage_id[tabindex], codeEditorHelper.getValue())
 							if (document.getElementById("preview")) document.getElementById("preview").srcdoc = codeEditorHelper.getValue();
 							window.codeEditorSaved = true;
 							setTimeout(function () {
@@ -106,5 +111,50 @@ class Editor extends tApp.Component {
 
 }
 
+class TabbedEditor extends tApp.Component {
+	constructor(state, parent) {
+		super(state, parent);
+		window.debug = this
+		this.state.tabbedView = "Loading..."
+		var tabs = [];
+		this.state.tabs = tabs;
+		this.x = false;
+	}
+	render() {
+		var goodThis = this;
+		var tabs = [];
 
-module.exports = Editor;
+		function getData() {
+			if (goodThis.x === true) return;
+			goodThis.x = true;
+			if (goodThis.parent.data() === undefined) {
+				return setTimeout(getData, 100)
+			} else {
+				var data = goodThis.parent.data()
+				for (var i = 0; i < data.files.length; i++) {
+					if (goodThis.state[data.storage_id[i]] == null) {
+						console.log("Created new editor instance: ", data.storage_id[i])
+						goodThis.state[data.storage_id[i]] = new Editor({ tabindex: i }, goodThis)
+					}
+					tabs.push({
+						name: data.files[i],
+						component: goodThis.state[data.storage_id[i]]
+					})
+					goodThis.state.tabs = tabs;
+				}
+				if (goodThis.state.tabbedView == "Loading...") {
+					goodThis.state.tabbedView = new TabbedView({
+						tabs: tabs
+					}, goodThis);
+				}
+				//goodThis.render()
+			}
+		}
+		getData()
+		return `<div style="position: absolute; left: 0; width: 100%; transform: translateX(-50%);">
+			${this.state.tabbedView}
+		</div>`;
+	}
+}
+
+module.exports = TabbedEditor;
