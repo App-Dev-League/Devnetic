@@ -13,7 +13,7 @@
 				},
 				{
 					"type": "code",
-					"content": "[[lightpurple]]<tag>[[/]]content[[lightpurple]]</tag>[[/]]"
+					"content": "<tag>content</tag>"
 				},
 				{
 					"type": "text",
@@ -21,7 +21,7 @@
 				},
 				{
 					"type": "code",
-					"content": "[[lightpurple]]<p>[[/]][[white]]Hello, world![[/]][[lightpurple]]</p>[[/]]"
+					"content": "<p>Hello, world!</p>"
 				},
 				{
 					"type": "text",
@@ -32,7 +32,7 @@
 		{
 			"type": "multiple_choice",
 			"question": "What is the output of the following code?",
-			"code_template": "[[lightpurple]]<p>[[/]][[white]]Hello, world![[/]][[lightpurple]]</p>[[/]]",
+			"code_template": "<p>Hello, world!</p>",
 			"answers":
 			[
 				"<p>Hello, world!</p>",
@@ -54,7 +54,7 @@
 		{
 			"type": "short_answer",
 			"question": "What text is displayed on the screen?",
-			"code_template": "[[lightpurple]]<p>[[/]][[white]]text[[/]][[lightpurple]]</p>[[/]]",
+			"code_template": "<p>text</p>",
 			"answers":
 			[
 				"text"
@@ -71,7 +71,7 @@
 		{
 			"type": "snippet_unlock",
 			"name": "Paragraph Tag (Basic)",
-			"code_template": "[[lightpurple]]<p>[[/]][[white]]text[[/]][[lightpurple]]</p>[[/]]",
+			"code_template": "<p>text</p>",
 			"description": "A paragraph tag ([[lightpurple]]<p>[[/]]) is used to display text on the screen.",
 			"snippet":
 			{
@@ -139,7 +139,7 @@
 				},
 				{
 					"type": "code",
-					"content": "[[lightpurple]]<tag>[[/]]content[[lightpurple]]</tag>[[/]]"
+					"content": "<tag>content</tag>"
 				},
 				{
 					"type": "text",
@@ -147,7 +147,7 @@
 				},
 				{
 					"type": "code",
-					"content": "[[lightpurple]]<p>[[/]][[white]]Hello, world![[/]][[lightpurple]]</p>[[/]]"
+					"content": "<p>Hello, world!</p>"
 				},
 				{
 					"type": "text",
@@ -155,7 +155,7 @@
 				},
 				{
 					"type": "code",
-					"content": "[[lightpurple]]<button>[[/]][[white]]Click me![[/]][[lightpurple]]</button>[[/]]"
+					"content": "<button>Click me!</button>"
 				},
 				{
 					"type": "text",
@@ -163,7 +163,7 @@
 				},
 				{
 					"type": "code",
-					"content": "[[lightblue]]console[[/]][[white]].[[/]][[turquoise]]log[[/]][[white]]([[/]][[green]]\"1\"[[/]][[orange]] + [[/]][[lightorange]]1[[/]][[white]]);[[/]] [[gray]]// 11[[/]]"
+					"content": "console.log(\"1\" + 1); // 11"
 				},
 				{
 					"type": "text",

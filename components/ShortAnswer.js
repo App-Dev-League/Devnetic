@@ -2,6 +2,8 @@ const ModuleComponent = require("./ModuleComponent.js");
 
 const ExplanationModal = require("./ExplanationModal.js");
 const Input = require("./Input.js");
+const codeBlock = require("./codeBlock.js");
+const codeBlockHelper = require("../utils/codeBlocks.js");
 
 class ShortAnswer extends ModuleComponent {
 	constructor(state, parent) {
@@ -29,8 +31,9 @@ class ShortAnswer extends ModuleComponent {
 			}
 			let returnStr = `<div>
 	<h1 class="mc-question">${tApp.escape(this.data().question || "")}</h1>
-	<div class="codeblock mc-codeblock">
-		<pre>${this.data().code || ""}</pre>
+	<div class="codeblock-wrapper mc-codeblock">
+		${new codeBlock({code: this.data().code || ""})}
+
 	</div>
 	<div class="short-answer-container">
 		${this.state.input}

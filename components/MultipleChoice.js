@@ -2,6 +2,7 @@ const ModuleComponent = require("./ModuleComponent.js");
 
 const ExplanationModal = require("./ExplanationModal.js");
 const MultipleChoiceOption = require("./MultipleChoiceOption.js");
+const codeBlock = require("./codeBlock.js");
 
 class MultipleChoice extends ModuleComponent {
 	constructor(state, parent) {
@@ -35,8 +36,8 @@ class MultipleChoice extends ModuleComponent {
 			}
 			let returnStr = `<div>
 	<h1 class="mc-question">${tApp.escape(this.data().question || "")}</h1>
-	<div class="codeblock mc-codeblock">
-		<pre>${this.data().code || ""}</pre>
+	<div class="mc-codeblock codeblock-wrapper">
+		${new codeBlock({code: this.data().code || ""})}
 	</div>
 	<div class="mc-answer-table">
 		<div class="mc-answer-container">

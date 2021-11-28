@@ -1,20 +1,21 @@
 const ModuleComponent = require("./ModuleComponent.js");
 
 const codeTemplateToCode = require("../utils/codeTemplateToCode.js");
+const codeBlock = require("./codeBlock.js");
 
 class SnippetUnlock extends ModuleComponent {
 	constructor(state, parent) {
 		super(state, parent);
 	}
 	render(props) {
-		if(this.data() != null) {
+		if (this.data() != null) {
 			this.parent.state.Database.storeSnippet(this.data().snippet);
 			return `<div>
 	<h1 class="info-title">Snippet Unlocked: ${tApp.escape(this.data().name || "")}!</h1>
 	<pre class="info-text">${codeTemplateToCode(this.data().description || "")}</pre>
-	<div class="codeblock info-codeblock">
-		<pre>${codeTemplateToCode(this.data().code_template || "")}</pre>
-	</div>
+	<div class="codeblock-wrapper">
+	${new codeBlock({ code: this.data().code }, this)}
+		</div>
 	<button class="info-button" onclick="{{_this}}.parent.next();">Continue</button>
 </div>`;
 		}
