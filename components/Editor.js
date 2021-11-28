@@ -10,18 +10,22 @@ let value = codeEditorHelper.getValue()
 codeEditorHelper.insertAtCursor("asdf")
 */
 
-// things to do: add the "saving/saved" indicators
+// things to do: add tabindex and tabs to code editor
 class Editor extends tApp.Component {
 	constructor(state, parent) {
 		super(state, parent);
 	}
 	render(props) {
+		
 		var parentThis = this
+		var tabindex = this.state.tabindex
+		console.log(tabindex)
 		async function loadCodeFromDb() {
-			console.log(parentThis.parent.data().storage_id[0])
-			let text = await DB.getCode(parentThis.parent.data().storage_id[0]);
+			console.log(parentThis.parent.data().storage_id[tabindex])
+			let text = await DB.getCode(parentThis.parent.data().storage_id[tabindex]);
 			if (text === null) {
-				text = parentThis.parent.data().default[0]
+				text = parentThis.parent.data().default[tabindex]
+				document.getElementById("code-editor-status").innerText = "Ready"
 			}
 			document.getElementById("code-frame").contentWindow.codeEditor.getModel().setValue(text);
 			document.getElementById("code-frame").contentWindow.codeEditor.getAction("editor.action.formatDocument").run();
@@ -34,6 +38,12 @@ class Editor extends tApp.Component {
 				} catch (err) {
 					setTimeout(loadCode, 500);
 				}
+				window.addEventListener('beforeunload', function (e) {
+					if (window.codeEditorSaved === false) {
+						e.preventDefault();
+						e.returnValue = '';
+					}
+				});
 			}
 			loadCode();
 			function addEvent() {
@@ -46,23 +56,26 @@ class Editor extends tApp.Component {
 					}
 					document.getElementById("code-editor-run-btn").onclick = async function(){
 						document.getElementById("code-editor-status").innerText = "Saving..."
-							await DB.setCode(parentThis.parent.data().storage_id[0], codeEditorHelper.getValue())
+							await DB.setCode(parentThis.parent.data().storage_id[tabindex], codeEditorHelper.getValue())
 							if (document.getElementById("preview")) document.getElementById("preview").srcdoc = codeEditorHelper.getValue();
 							setTimeout(function () {
 								document.getElementById("code-editor-status").innerText = "Ready"
 							}, 500)
 					}
 					document.getElementById("code-frame").contentWindow.document.addEventListener("keydown", async function (e) {
+						window.codeEditorSaved = false;
 						if (e.key === 's' && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
 							e.preventDefault();
 							document.getElementById("code-editor-status").innerText = "Saving..."
-							await DB.setCode(parentThis.parent.data().storage_id[0], codeEditorHelper.getValue())
+							await DB.setCode(parentThis.parent.data().storage_id[tabindex], codeEditorHelper.getValue())
 							if (document.getElementById("preview")) document.getElementById("preview").srcdoc = codeEditorHelper.getValue();
+							window.codeEditorSaved = true;
 							setTimeout(function () {
 								document.getElementById("code-editor-status").innerText = "Ready"
 							}, 500)
 						}
 					}, false);
+					window.codeEditorSaved = true;
 				} catch (err) {
 					console.log(err)
 					setTimeout(addEvent, 500)
