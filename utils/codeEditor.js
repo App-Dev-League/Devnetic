@@ -21,5 +21,11 @@ function format() {
 	document.getElementById("code-frame").contentWindow.codeEditor.getAction('editor.action.formatDocument').run();
 	return true;
 }
-
-module.exports = { updateLanguage, updateContent, getValue, insertAtCursor, format };
+function getCurrentEditorIndex(){
+	return document.getElementById("code-frame").contentWindow.currentEditorIndex;
+}
+function setCurrentEditorIndex(index){
+	document.getElementById("code-frame").contentWindow.currentEditorIndex = index;
+	return true
+}
+module.exports = { updateLanguage, updateContent, getValue, insertAtCursor, format, getCurrentEditorIndex, setCurrentEditorIndex };

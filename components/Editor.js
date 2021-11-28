@@ -16,9 +16,9 @@ class Editor extends tApp.Component {
 		super(state, parent);
 	}
 	render(props) {
-
 		var parentThis = this
 		var tabindex = this.state.tabindex
+		console.log("Editor number " + tabindex + " is rendering")
 		async function loadCodeFromDb() {
 			let text = await DB.getCode(parentThis.parent.parent.data().storage_id[tabindex]);
 			if (text === null) {
@@ -46,8 +46,9 @@ class Editor extends tApp.Component {
 			loadCode();
 			function addEvent() {
 				try {
+					codeEditorHelper.setCurrentEditorIndex(tabindex)
 					document.querySelectorAll(".tab").forEach(element => {
-						if (element.innerText === "Preview"){
+						if (element.innerText === "Preview") {
 							element.addEventListener("click", handleClicks)
 						}
 					})
@@ -72,7 +73,7 @@ class Editor extends tApp.Component {
 						if (e.key === 's' && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
 							e.preventDefault();
 							document.getElementById("code-editor-status").innerText = "Saving..."
-							await DB.setCode(parentThis.parent.parent.data().storage_id[tabindex], codeEditorHelper.getValue())
+							await DB.setCode(parentThis.parent.parent.data().storage_id[codeEditorHelper.getCurrentEditorIndex()], codeEditorHelper.getValue())
 							if (document.getElementById("preview")) document.getElementById("preview").srcdoc = codeEditorHelper.getValue();
 							window.codeEditorSaved = true;
 							setTimeout(function () {
@@ -90,13 +91,20 @@ class Editor extends tApp.Component {
 
 			window.startedRefresh = true
 		}
+
 		if (document.getElementById("code-frame")) {
-			document.getElementById("code-frame").contentWindow.addEventListener("message", function (event) {
-				if (event.data.message === "monacoloaded") {
-					loadCodeFromDb()
-					addThings()
-				}
-			}, false);
+			if (window.monacoAlreadyLoaded === true) {
+				loadCodeFromDb()
+				addThings()
+			}else{
+				document.getElementById("code-frame").contentWindow.addEventListener("message", function (event) {
+					if (event.data.message === "monacoloaded") {
+						window.monacoAlreadyLoaded = true;
+						loadCodeFromDb()
+						addThings()
+					}
+				}, false);
+			}
 		}
 		return `<div>
 		<div class="code-editor-options">
@@ -147,7 +155,7 @@ class TabbedEditor extends tApp.Component {
 						tabs: tabs
 					}, goodThis);
 				}
-				//goodThis.render()
+				console.log(tabs)
 			}
 		}
 		getData()
