@@ -11,7 +11,7 @@ class CodeEditor extends ModuleComponent {
 	constructor(state, parent) {
 		super(state, parent);
 		if(this.state.editor == null) {
-			this.state.editor = new Editor();
+			this.state.editor = new Editor({}, this);
 		}
 		if(this.state.snippetsPanel == null) {
 			this.state.snippetsPanel = new SnippetsPanel({}, this);

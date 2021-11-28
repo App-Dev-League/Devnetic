@@ -4,6 +4,7 @@
 <script src="https://unpkg.com/monaco-editor@0.29.1/min/vs/loader.js"></script>
 		<script>
 			window.loadRequire = require;
+			window.monacoLoaded = function(){}
 		</script>
 <script>
     loadRequire.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@0.29.1/min/vs' } });
@@ -18,5 +19,6 @@
 					theme: "vs-dark",
 					automaticLayout: true
 				});
+				window.postMessage({ message: "monacoloaded", value: "pog" }, "*");
 			});
 </script>
