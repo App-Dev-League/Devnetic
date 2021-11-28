@@ -17,7 +17,7 @@
 				},
 				{
 					"type": "code",
-					"content": "[[lightpurple]]<tag>[[/]]content[[lightpurple]]</tag>[[/]]"
+					"content": "<tag>content</tag>"
 				},
 				{
 					"type": "text",
