@@ -15,7 +15,8 @@
 		"ShortAnswer.js",
 		"SnippetsPanel.js",
 		"SnippetUnlock.js",
-		"TabbedView.js"
+		"TabbedView.js",
+		"codeBlock.js"
 	], {
 		path: "./components/"
 	});
@@ -25,7 +26,8 @@
 		"codeEditor.js",
 		"codeTemplateToCode.js",
 		"compileSnippet.js",
-		"shuffleArray.js"
+		"shuffleArray.js",
+		"codeBlocks.js"
 	], {
 		path: "./utils/"
 	});

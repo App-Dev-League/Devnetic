@@ -1,9 +1,13 @@
 const codeTemplateToCode = require("../utils/codeTemplateToCode.js");
 const codeEditorHelper = require("../utils/codeEditor.js");
+const codeBlock = require("./codeBlock.js")
 
 class SnippetsPanel extends tApp.Component {
 	constructor(state, parent) {
 		super(state, parent);
+		if(this.state.codeBlock == null) {
+			this.state.codeBlock = new codeBlock();
+		}
 	}
 	render(props) {
 		var snippets = [
@@ -64,13 +68,9 @@ document.getElementById("asdf").style.background = "blue"
 		return `<div class="snippets-panel">
 		${snippets.map(element => {
 			element.code = element.code.replaceAll("<", "&lt").replaceAll(">", "&gt;")
-			return `<span class="snippet-title">${element.name}</span>
-				<div class="snippet-code" onclick='document.getElementById("code-frame").contentWindow.codeEditor.trigger("keyboard", "type", {text: this.children[0].children[0].innerText.replaceAll("\t", "")}); document.getElementById("code-frame").contentWindow.codeEditor.getAction("editor.action.formatDocument").run();'>
-					<pre>
-					<code>
-${element.code}
-					</code>
-					</pre>
+			return `<span class="snippet-title" style="margin-bottom: 10px; display: block">${element.name}</span>
+				<div class="snippet-code pointer" style="margin-bottom: 20px" onclick='document.getElementById("code-frame").contentWindow.codeEditor.trigger("keyboard", "type", {text: this.children[0].children[0].innerText.replaceAll("\t", "")}); document.getElementById("code-frame").contentWindow.codeEditor.getAction("editor.action.formatDocument").run();'>
+					${new codeBlock({code: element.code})}
 				</div>
 				`
 		}).join("")}
