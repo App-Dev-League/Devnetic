@@ -38,6 +38,20 @@ class Editor extends tApp.Component {
 			loadCode();
 			function addEvent() {
 				try {
+					document.querySelectorAll(".tab")[1].addEventListener("click", handleClicks)
+					function handleClicks(){
+						setTimeout(function(){
+							if (document.getElementById("preview")) document.getElementById("preview").srcdoc = codeEditorHelper.getValue();
+						}, 100)
+					}
+					document.getElementById("code-editor-run-btn").onclick = async function(){
+						document.getElementById("code-editor-status").innerText = "Saving..."
+							await DB.setCode(parentThis.parent.data().storage_id[0], codeEditorHelper.getValue())
+							if (document.getElementById("preview")) document.getElementById("preview").srcdoc = codeEditorHelper.getValue();
+							setTimeout(function () {
+								document.getElementById("code-editor-status").innerText = "Ready"
+							}, 500)
+					}
 					document.getElementById("code-frame").contentWindow.document.addEventListener("keydown", async function (e) {
 						if (e.key === 's' && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
 							e.preventDefault();
@@ -50,6 +64,7 @@ class Editor extends tApp.Component {
 						}
 					}, false);
 				} catch (err) {
+					console.log(err)
 					setTimeout(addEvent, 500)
 				}
 			}
@@ -67,7 +82,8 @@ class Editor extends tApp.Component {
 		}
 		return `<div>
 		<div class="code-editor-options">
-			<span id="code-editor-status" style="display: inline-block; margin-left: 23px; margin-top: 10px">Downloading code...</span>
+			<span id="code-editor-status" style="display: inline-block; margin-left: 23px; margin-top: 10px;">Downloading code...</span>
+			<span id="code-editor-run-btn" class="home-module home-module-complete" style="margin: 0; width: fit-content; padding-left: 20px; padding-right: 20px; margin-left: 20px; position: relative; z-index: 10">Run</span>
 		</div>
 		<div class="code-editor">
 			<iframe id="code-frame" style="width: 100%; height: 100%; border: none" src="/assets/html/code-editor.html"></iframe>
