@@ -25,43 +25,53 @@ class Editor extends tApp.Component {
 			}
 			document.getElementById("code-frame").contentWindow.codeEditor.getModel().setValue(text);
 			document.getElementById("code-frame").contentWindow.codeEditor.getAction("editor.action.formatDocument").run();
+			document.getElementById("code-editor-status").innerText = "Ready"
 		}
-		function addThings(){
-			function loadCode(){
+		function addThings() {
+			function loadCode() {
 				try {
 					document.getElementById("preview").srcdoc = codeEditorHelper.getValue();
-				}catch(err){
+				} catch (err) {
 					setTimeout(loadCode, 500);
 				}
 			}
 			loadCode();
-			function addEvent(){
+			function addEvent() {
 				try {
-					document.getElementById("code-frame").contentWindow.document.addEventListener("keydown", function(e) {
+					document.getElementById("code-frame").contentWindow.document.addEventListener("keydown", async function (e) {
 						if (e.key === 's' && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
-						  e.preventDefault();
-						  document.getElementById("preview").srcdoc = codeEditorHelper.getValue();
-						  DB.setCode(parentThis.parent.data().storage_id[0], codeEditorHelper.getValue())
+							e.preventDefault();
+							document.getElementById("code-editor-status").innerText = "Saving..."
+							await DB.setCode(parentThis.parent.data().storage_id[0], codeEditorHelper.getValue())
+							if (document.getElementById("preview")) document.getElementById("preview").srcdoc = codeEditorHelper.getValue();
+							setTimeout(function () {
+								document.getElementById("code-editor-status").innerText = "Ready"
+							}, 500)
 						}
-					  }, false);
-				}catch(err){
+					}, false);
+				} catch (err) {
 					setTimeout(addEvent, 500)
 				}
 			}
 			addEvent()
-	
+
 			window.startedRefresh = true
 		}
-		if (document.getElementById("code-frame")){
-			document.getElementById("code-frame").contentWindow.addEventListener("message", function(event){
+		if (document.getElementById("code-frame")) {
+			document.getElementById("code-frame").contentWindow.addEventListener("message", function (event) {
 				if (event.data.message === "monacoloaded") {
 					loadCodeFromDb()
 					addThings()
 				}
 			}, false);
 		}
-		return `<div class="code-editor">
+		return `<div>
+		<div class="code-editor-options">
+			<span id="code-editor-status" style="display: inline-block; margin-left: 23px; margin-top: 10px">Downloading code...</span>
+		</div>
+		<div class="code-editor">
 			<iframe id="code-frame" style="width: 100%; height: 100%; border: none" src="/assets/html/code-editor.html"></iframe>
+		</div>
 		</div>`;
 	}
 
