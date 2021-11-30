@@ -29,4 +29,4 @@ To create a new snippet, create an element in the flow with type "snippet_unlock
     }
 }
 ``` 
-The "attributes" attribute is an array with objects containing all of the snippet's parameters. 
+The "attributes" attribute is an array with objects containing all of the snippet's parameters. All of the ID's must be different, and currently, only type "input" is supported
