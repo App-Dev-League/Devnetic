@@ -52,6 +52,7 @@ class CodeEditor extends ModuleComponent {
 	render(props) {
 		if(this.data() != null) {
 			this.state.instructions.state.elements = this.data().elements;
+			this.state.instructions.state.hints = this.data().hints;
 			return `<div>
 						${this.state.editor}
 						<div class="vertical-divider"></div>
