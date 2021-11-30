@@ -18,9 +18,6 @@ class codeBlock extends tApp.Component {
     }
 
 	render(props) {
-        setTimeout(function(){
-            codeBlockHelper.updateCodeBlock(document.getElementById(this.codeId))
-        }, 1000)
         const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         function generateString(length) {
             let result = '';

@@ -78,7 +78,7 @@
 				"name": "Paragraph Tag (Basic)",
 				"id": "paragraph-tag-basic",
 				"example": "<p>text</p>",
-				"html": "<p>{{ snippet.attributes.text }}</p>",
+				"html": "<p>{{text}}</p>",
 				"attributes":
 				[
 					{
