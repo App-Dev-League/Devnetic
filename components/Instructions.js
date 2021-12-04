@@ -34,9 +34,9 @@ class Instructions extends tApp.Component {
 							} else {
 								return `<pre class="info-text">${codeTemplateToCode(part.content || "")}</pre>`;
 							}
-						})}
+						}).join("")}
 					</div>`
-				})}
+				}).join("")}
 				<button class="short-answer-button" style="width: fit-content; margin-top: 20px" onclick="document.querySelectorAll('.hint')[window.currentHint].classList.remove('none'); if(window.maxHints !== window.currentHint){ window.currentHint++}else{this.classList.add('btndisabled')}">Get a hint!</button>
 			</div>
 		</div>`;
