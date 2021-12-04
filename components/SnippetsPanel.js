@@ -58,13 +58,14 @@ class SnippetsPanel extends tApp.Component {
 		${this.state.snippets.map(element => {
 			element.example = element.example.replaceAll("<", "&lt").replaceAll(">", "&gt;")
 			return `<span class="snippet-title" style="margin-bottom: 10px; display: block">${element.name}</span>
-				<div class="snippet-code pointer" style="margin-bottom: 20px" onclick='{{_this}}.parent.children[1].showModal("${element.id}")'>
+				<div class="snippet-code pointer snippet-btn" style="margin-bottom: 20px" onclick='{{_this}}.parent.children[1].showModal("${element.id}")'>
 					${new codeBlock({ code: element.example })}
 				</div>
 				`
 		}).join("")}
 		<div id="snippets-modal" class="none">
 			<div class="explanation-modal" style="left: 0; top: 25vh;">
+			<span style="float: right; position: relative; top: -15px; left: 10px; font-weight: bold; cursor: pointer" onclick="document.getElementById('snippets-modal').classList.add('none')">X</span>
 				<center>
 					<h3>Incorrect!</h3>
 					<div class="inputs">
@@ -79,4 +80,3 @@ class SnippetsPanel extends tApp.Component {
 
 module.exports = SnippetsPanel;
 
-//document.getElementById("code-frame").contentWindow.codeEditor.trigger("keyboard", "type", {text: this.children[0].children[0].innerText.replaceAll("\t", "")}); document.getElementById("code-frame").contentWindow.codeEditor.getAction("editor.action.formatDocument").run();
