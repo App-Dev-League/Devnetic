@@ -17,7 +17,7 @@ To create a new snippet, create an element in the flow with type "snippet_unlock
         "name": "Paragraph Tag (Basic)",
         "id": "paragraph-tag-basic",
         "example": "<p>text</p>",
-        "html": "<p>{{text}}</p>",
+        "html": "<p>{{snippet.attributes.text}}</p>",
         "attributes":
         [
             {

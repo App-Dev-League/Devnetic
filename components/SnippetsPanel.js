@@ -2,6 +2,7 @@ const codeTemplateToCode = require("../utils/codeTemplateToCode.js");
 const codeEditorHelper = require("../utils/codeEditor.js");
 const codeBlock = require("./codeBlock.js")
 const DB = require("../utils/Database.js");
+const compileSnippet = require("../utils/compileSnippet.js");
 
 class SnippetsPanel extends tApp.Component {
 	constructor(state, parent) {
@@ -13,10 +14,8 @@ class SnippetsPanel extends tApp.Component {
 		var parentThis = this
 		async function getSnippets() {
 			let snippetIds = await DB.getSnippetIds()
-			console.log(snippetIds)
 			snippetIds.forEach(async function (id) {
 				let snippet = await DB.getSnippet(id)
-				console.log(snippet)
 				parentThis.state.snippets.push(snippet)
 			})
 			parentThis.state.snippets
@@ -43,13 +42,12 @@ class SnippetsPanel extends tApp.Component {
 		let inputs = document.querySelectorAll(".insert-snippet-input")
 		let snippetId = document.getElementById("snippets-modal").dataset.snippetId
 		let snippet = this.state.snippets.find(snippet => snippet.id == snippetId)
-		let code = snippet.html
-		console.log("as;dlkfja;sdlkfj;asldkjf")
 
+		var params = [];
 		inputs.forEach(input => {
-			code = code.replaceAll(`{{${input.id.slice(21)}}}`, input.value)
+			params.push(input.value)
 		})
-
+		code = compileSnippet(snippet, params)
 		document.getElementById("code-frame").contentWindow.codeEditor.trigger("keyboard", "type", {text: code.replaceAll("\t", "")}); 
 		document.getElementById("code-frame").contentWindow.codeEditor.getAction("editor.action.formatDocument").run();
 
