@@ -65,7 +65,7 @@ class SnippetsPanel extends tApp.Component {
 		}).join("")}
 		<div id="snippets-modal" class="none">
 			<div class="explanation-modal" style="left: 0; top: 25vh;">
-			<span style="float: right; position: relative; top: -15px; left: 10px; font-weight: bold; cursor: pointer" onclick="document.getElementById('snippets-modal').classList.add('none')">X</span>
+			<span style="float: right; position: relative; top: -15px; left: 10px; font-weight: bold; cursor: pointer" onclick="document.getElementById('snippets-modal').classList.add('none')">x</span>
 				<center>
 					<h3>Incorrect!</h3>
 					<div class="inputs">
