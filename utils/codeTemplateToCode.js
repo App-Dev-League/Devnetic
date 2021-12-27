@@ -21,6 +21,9 @@ function codeTemplateToCode(template) {
 	template = template.replaceAll("[\\[", '[[');
 	template = template.replaceAll("[[b]]", '<span class="c-bold">');
 	template = template.replaceAll("[[h3]]", '<span class="c-h3">');
+	template = template.replaceAll("[[monospace]]", '<span class="c-monospace">');
+	template = template.replaceAll("[[ ]]", '&nbsp;&nbsp;&nbsp;&nbsp;');
+	
 	return template;
 }
 

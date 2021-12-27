@@ -21,7 +21,7 @@ class Information extends ModuleComponent {
 			if (element.height) return `<div style="width: 100%; height: ${element.height}px; background-color: rgba(0,0,0,0)"></div>`;
 			else return `<div style="width: 100%; height: 20px; background-color: rgba(0,0,0,0)"></div>`;
 		} else if (element.type == "image"){
-			return `<div class="image-wrapper info-text"><img src="${element.src}" style="width: 90%; display: block; margin-left: auto; margin-right: auto"></div>`
+			return `<div class="image-wrapper info-text"><img src="${element.src}" style="width: ${element.width || "90%;"}; display: block; margin-left: auto; margin-right: auto"></div>`
 		} else {
 			return `<pre class="info-text">${codeTemplateToCode(element.content || "")}</pre>`;
 		}
