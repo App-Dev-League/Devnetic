@@ -191,6 +191,28 @@
             ]
         },
         {
+			"type": "multiple_choice",
+			"question": "What could be included in the below tag?",
+			"code_template": "<head>\n</head>",
+			"answers":
+			[
+				"The header of the website",
+				"The main webpage",
+				"The webpage's metadata",
+				"The website's footer"
+			],
+			"correct": 2,
+			"descriptions":
+			[
+				"Incorrect! The header of the webpage should be included in the body!",
+				"Incorrect, the main webpage should all be included in the body!",
+				"Correct! The head tags is used to include metadata about the website like it's title and descriptions",
+				"That doesn't seem correct! Try again"
+			],
+			"points": 5,
+			"coins": 1
+		},
+        {
             "type": "information",
 			"title": "Week 1 - Basic HTML Tags",
             "elements": [
@@ -313,7 +335,7 @@
 			],
 			"descriptions":
 			{
-				"<h1>text<h1>": "Remember that you must have a closing tag!",
+				"<h1>hello world!</h1>": "Correct! The largest heading is <h1>",
 				"<h1>Hello World!</h1>": "Correct! The largest heading is <h1>"
 			},
 			"description_default": "What is the correct syntax for Heading tags? What is the largest heading tag?.",
@@ -363,6 +385,66 @@
 			],
 			"points": 5,
 			"coins": 1
+		},
+        {
+			"type": "snippet_unlock",
+			"name": "Heading Tags",
+			"code_template": "<h2>text</h2>",
+			"description": "A Heading tag ([[lightpurple]]<h1>[[/]]) is used to display text as headings/subheadings on screen",
+			"snippet":
+			{
+				"name": "Heading Tags",
+				"id": "heading-tags-all",
+				"example": "<h2>text</h2>",
+				"html": "<h{{snippet.attributes.size}}>{{snippet.attributes.text}}</h{{snippet.attributes.size}}>",
+				"attributes":
+				[
+					{
+						"id": "text",
+						"label": "Text",
+						"type": "input"
+					},
+                    {
+						"id": "size",
+						"label": "Size (1-6)",
+						"type": "input"
+					}
+				]
+			}
+		},
+        {
+			"type": "snippet_unlock",
+			"name": "Line Break",
+			"code_template": "<br>",
+			"description": "A Line Break tag ([[lightpurple]]<br>[[/]]) is used to break text into multiple lines",
+			"snippet":
+			{
+				"name": "Line Break",
+				"id": "line-break",
+				"example": "<br>",
+				"html": "<br>",
+				"attributes":
+				[
+					
+				]
+			}
+		},
+        {
+			"type": "snippet_unlock",
+			"name": "Divisions",
+			"code_template": "<div></div>",
+			"description": "A division tag ([[lightpurple]]<div>[[/]]) is used to divide areas of the webpage",
+			"snippet":
+			{
+				"name": "Divisions",
+				"id": "div-tag",
+				"example": "<div></div>",
+				"html": "<div></div>",
+				"attributes":
+				[
+					
+				]
+			}
 		},
         {
 			"type": "information",
@@ -484,6 +566,182 @@
                     "src": "/data/modules/assets2/2-8-3.png"
                 }
 			]
+		},
+        {
+			"type": "multiple_choice",
+			"question": "What are the two main attributes of the below tag?",
+			"code_template": "<img ____=\" \" ____=\" \">",
+			"answers":
+			[
+				"src and alt",
+				"source and alt",
+				"description and src",
+				"description and source"
+			],
+			"correct": 0,
+			"descriptions":
+			[
+				"Correct! We use src to set the image's source and alt to set the description of the image",
+				"Incorrect, remember that some attributes in HTML are simplified",
+				"Incorrect! Description is the wrong attribute name, but you're on the correct track!",
+				"Incorrect! Try again"
+			],
+			"points": 5,
+			"coins": 1
+		},
+        {
+			"type": "short_answer",
+			"question": "Create an image with a source of https://www.demo.com/test.png and a description of \"A funny image\"",
+			"code_template": "<img>",
+			"answers":
+			[
+				"<img src=\"https://www.demo.com/test.png\" alt=\"A funny image\">",
+                "<img src=\"https://www.demo.com/test.png\"alt=\"A funny image\">",
+				"<img alt=\"A funny image\" src=\"https://www.demo.com/test.png\">",             
+				"<img alt=\"A funny image\"src=\"https://www.demo.com/test.png\">"                
+			],
+			"descriptions":
+			{
+				"<img src=\"https://www.demo.com/test.png\" alt=\"A funny image\">": "Correct! That is the correct syntax for creating images in HTML",
+				"<img src=\"https://www.demo.com/test.png\"alt=\"A funny image\">": "Correct! That is the correct syntax for creating images in HTML",
+                "<img alt=\"A funny image\" src=\"https://www.demo.com/test.png\">": "Correct! That is the correct syntax for creating images in HTML",
+                "<img alt=\"A funny image\"src=\"https://www.demo.com/test.png\">": "Correct! That is the correct syntax for creating images in HTML"
+			},
+			"description_default": "Remember that the two main attributes are src and alt",
+			"points": 10,
+			"coins": 3
+		},
+        {
+			"type": "snippet_unlock",
+			"name": "Image tag",
+			"code_template": "<img src=\"\" alt=\"\">",
+			"description": "An img tag ([[lightpurple]]<h1>[[/]]) is used to display images on screen",
+			"snippet":
+			{
+				"name": "Image tag",
+				"id": "image-tag",
+				"example": "<img src=\"\" alt=\"\">",
+				"html": "<img src=\"{{snippet.attributes.src}}\" alt=\"{{snippet.attributes.alt}}\">",
+				"attributes":
+				[
+					{
+						"id": "src",
+						"label": "Image Source (in url format)",
+						"type": "input"
+					},
+                    {
+						"id": "alt",
+						"label": "Image description",
+						"type": "input"
+					}
+				]
+			}
+		},
+        {
+			"type": "short_answer",
+			"question": "How would we make a hyperlink to https://google.com with text \"Google\"?",
+			"code_template": "<a></a>",
+			"answers":
+			[
+				"<a href=\"https://google.com\">Google</a>"              
+			],
+			"descriptions":
+			{
+				"<a href=\"https://google.com\">Google</a>": "Correct!"
+			},
+			"description_default": "Remember that anchor tags have the \"href\" attribute",
+			"points": 10,
+			"coins": 3
+		},
+        {
+			"type": "snippet_unlock",
+			"name": "Anchor tag",
+			"code_template": "<a href=\"\">Text</a>",
+			"description": "An anchor tag ([[lightpurple]]<a></a>[[/]]) is used to create hyperlinks",
+			"snippet":
+			{
+				"name": "Anchor Tag",
+				"id": "anchor-tag",
+				"example": "<a href=\"\">Text</a>",
+				"html": "<a href=\"{{snippet.attributes.href}}\">{{snippet.attributes.text}}</a>",
+				"attributes":
+				[
+					{
+						"id": "text",
+						"label": "Text",
+						"type": "input"
+					},
+                    {
+						"id": "src",
+						"label": "URL",
+						"type": "input"
+					}
+				]
+			}
+		},
+        {
+			"type": "multiple_choice",
+			"question": "Which tag is used for list items?",
+			"code_template": "",
+			"answers":
+			[
+				"<li></li>",
+				"<ul></ul>",
+				"<ol></ol>",
+				"<itm></itm>"
+			],
+			"correct": 0,
+			"descriptions":
+			[
+				"Correct! \"li\" stands for List Item",
+				"Incorrect, remember that \"ul\" stands for Unordered List",
+				"Incorrect, remember that \"ol\" stands for Ordered List",
+				"Incorrect, that tag does not exist in HTML!"
+			],
+			"points": 5,
+			"coins": 1
+		},
+        {
+			"type": "snippet_unlock",
+			"name": "Unordered List",
+			"code_template": "<ul><li></li></ul>",
+			"description": "An Unordered list is used to create bulleted lists or lists that aren't ordered",
+			"snippet":
+			{
+				"name": "Unordered List",
+				"id": "unordered-list",
+				"example": "<ul>\n    <li>Item</li>\n</ul>",
+				"html": "<ul>\n    <li>{{snippet.attributes.text}}</li>\n</ul>",
+				"attributes":
+				[
+					{
+						"id": "text",
+						"label": "Text",
+						"type": "input"
+					}
+				]
+			}
+		},
+        {
+			"type": "snippet_unlock",
+			"name": "Ordered List",
+			"code_template": "<ol><li></li></ol>",
+			"description": "An Ordered list is used to create numbered lists, or lists that require order",
+			"snippet":
+			{
+				"name": "Ordered List",
+				"id": "ordered-list",
+				"example": "<ol>\n    <li>Item</li>\n</ol>",
+				"html": "<ol>\n    <li>{{snippet.attributes.text}}</li>\n</ol>",
+				"attributes":
+				[
+					{
+						"id": "text",
+						"label": "Text",
+						"type": "input"
+					}
+				]
+			}
 		}
 	]
 }

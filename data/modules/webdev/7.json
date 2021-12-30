@@ -4,12 +4,12 @@
 	[
 		{
 			"type": "information",
-			"title": "Week 6 - TOPIC HERE",
+			"title": "Week 6 - REST API and Express JS",
 			"elements":
 			[
 				{
 					"type": "text",
-					"content": "The week 6 lesson module has not yet been created."
+					"content": "[[h3]]Introduction[[/]]"
 				}
 			]
 		}
