@@ -22,8 +22,10 @@ function codeTemplateToCode(template) {
 	template = template.replaceAll("[[b]]", '<span class="c-bold">');
 	template = template.replaceAll("[[h3]]", '<span class="c-h3">');
 	template = template.replaceAll("[[monospace]]", '<span class="c-monospace">');
+	template = template.replaceAll("[[`]]", '<span class="c-monospace">');
 	template = template.replaceAll("[[ ]]", '&nbsp;&nbsp;&nbsp;&nbsp;');
-	
+	template = template.replaceAll("[[a]]", "<a target='_blank' class='generated-link url' data-linked='no''>")
+	template = template.replaceAll("[[/a]]", "</a>")
 	return template;
 }
 
