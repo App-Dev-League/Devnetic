@@ -203,6 +203,45 @@
 			]
 		},
 		{
+			"type": "short_answer",
+			"question": "What is the type of request viewable by standard browsers?",
+			"code_template": "",
+			"answers":
+			[
+				"get",
+				"GET"
+			],
+			"descriptions":
+			{
+				"get": "Correct! GET requests are viewable by standard browsers",
+				"GET": "Correct! GET requests are viewable by standard browsers"
+			},
+			"description_default": "Standard browsers make what type of request? Hint: They ___ resources from the server",
+			"points": 10,
+			"coins": 2
+		},
+		{
+			"type": "snippet_unlock",
+			"name": "Express.JS requests",
+			"code_template": "app.post(\"/endpointname\", (req, res) => {res.send(\"Hello World!\")})",
+			"description": "All Express.JS requests",
+			"snippet":
+			{
+				"name": "Express.JS requests",
+				"id": "expressjs-requests",
+				"example": "app.get(\"/endpointname\", (req, res) => {res.send(\"Hello World!\")})",
+				"html": "app.{{snippet.attributes.type}}(\"/endpointname\", (req, res) => {res.send(\"Hello World!\")})",
+				"attributes":
+				[
+					{
+						"id": "type",
+						"label": "Request type: (get, post, etc.)",
+						"type": "input"
+					}
+				]
+			}
+		},
+		{
 			"type": "information",
 			"title": "Week 6 - Express.JS req Object",
 			"elements": [
