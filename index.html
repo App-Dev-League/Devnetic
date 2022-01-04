@@ -768,8 +768,9 @@
 		setTimeout(function(){
 			document.querySelectorAll(".generated-link").forEach(element => {
 				if (element.dataset.linked === 'no') {
-					element.dataset.linked === "yes";
-					element.href = element.innerText
+					element.dataset.linked = "yes";
+					if (!element.innerText.startsWith("http")) element.href = "//"+element.innerText
+					else element.href = element.innerText
 				}
 			})
 		}, 100)
