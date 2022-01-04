@@ -23,7 +23,8 @@ class ShortAnswer extends ModuleComponent {
 			if(this.state.input == null) {
 				this.state.input = new Input({
 					classList: ["short-answer-input"],
-					type: "text"
+					type: "text",
+					autofocus: true
 				});
 			}
 			if(this.data().value == null) {
