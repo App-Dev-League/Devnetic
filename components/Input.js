@@ -12,7 +12,7 @@ class Input extends tApp.Component {
 		}
 	}
 	render(props) {
-		return `<input class="${this.state.classList.join(" ")}" type="${this.state.type}" oninput="{{_this}}.setState('value', this.value)" value="${tApp.escape(this.state.value)}" />`;
+		return `<input class="${this.state.classList.join(" ")}" type="${this.state.type}" ${this.state.autofocus ? "autofocus" : ""} oninput="{{_this}}.setState('value', this.value)" value="${tApp.escape(this.state.value)}"/>`;
 	}
 }
 
