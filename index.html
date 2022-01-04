@@ -202,6 +202,9 @@
 			padding-top: 2px;
 			padding-bottom: 2px;
 		}
+		.url {
+			color: #3498db;
+		}
 		.c-lightpurple {
 			color: #db84ff;
 		}
@@ -741,6 +744,8 @@
 	</style>
 </head>
 
+
+
 <body>
 	<header>
 		<a class="logo" href="#/">
@@ -758,3 +763,21 @@
 
 </html>
 
+<script>
+	var observer = new MutationObserver(function(mutations){
+		setTimeout(function(){
+			document.querySelectorAll(".generated-link").forEach(element => {
+				if (element.dataset.linked === 'no') {
+					element.dataset.linked === "yes";
+					element.href = element.innerText
+				}
+			})
+		}, 100)
+	})
+
+
+	observer.observe(document.querySelector("body > tapp-main"), {
+		childList: true
+	})
+
+</script>
