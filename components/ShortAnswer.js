@@ -3,7 +3,6 @@ const ModuleComponent = require("./ModuleComponent.js");
 const ExplanationModal = require("./ExplanationModal.js");
 const Input = require("./Input.js");
 const codeBlock = require("./codeBlock.js");
-const codeBlockHelper = require("../utils/codeBlocks.js");
 
 class ShortAnswer extends ModuleComponent {
 	constructor(state, parent) {
