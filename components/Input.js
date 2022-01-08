@@ -15,7 +15,7 @@ class Input extends tApp.Component {
 		}
 	}
 	render(props) {
-		return `<input class="${this.state.classList.join(" ")}" type="${this.state.type}" ${this.state.properties.join(" ")} oninput="{{_this}}.setState('value', this.value)" onkeydown="if(event.key==='Enter'){tApp.getComponentFromDOM(document.getElementsByClassName('short-answer-container')[0]).update()}" value="${tApp.escape(this.state.value)}"/>`;
+		return `<input class="${this.state.classList.join(" ")}" type="${this.state.type}" ${this.state.properties.join(" ")} oninput="{{_this}}.setState('value', this.value)" onkeydown="if(event.key==='Enter'){tApp.getComponentFromDOM(document.querySelector('.short-answer-container')).update()}" value="${tApp.escape(this.state.value)}"/>`;
 	}
 }
 
