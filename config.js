@@ -27,7 +27,8 @@
 		"codeTemplateToCode.js",
 		"compileSnippet.js",
 		"shuffleArray.js",
-		"codeBlocks.js"
+		"codeBlocks.js",
+		"plugins.js"
 	], {
 		path: "./utils/"
 	});
