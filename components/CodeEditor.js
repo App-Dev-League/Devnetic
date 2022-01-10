@@ -6,6 +6,7 @@ const SnippetsPanel = require("./SnippetsPanel.js");
 const Instructions = require("./Instructions.js");
 const CodePreview = require("./CodePreview.js");
 const TabbedView = require("./TabbedView.js");
+const PluginPanel = require("./PluginPanel.js")
 
 class CodeEditor extends ModuleComponent {
 	constructor(state, parent) {
@@ -21,6 +22,9 @@ class CodeEditor extends ModuleComponent {
 		}
 		if(this.state.codePreview == null) {
 			this.state.codePreview = new CodePreview({}, this);
+		}
+		if(this.state.pluginPanel == null) {
+			this.state.pluginPanel = new PluginPanel({}, this);
 		}
 		if(this.state.tabbedView == null) {
 			// this.state.tabbedView = new TabbedView({
@@ -45,6 +49,9 @@ class CodeEditor extends ModuleComponent {
 				}, {
 					name: "Snippets",
 					component: this.state.snippetsPanel
+				}, {
+					name: "Plugins",
+					component: this.state.pluginPanel
 				}]
 			}, this);
 		}

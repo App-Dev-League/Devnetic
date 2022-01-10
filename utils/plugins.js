@@ -20,13 +20,31 @@ module.exports = {
         console.log("Successfully loaded plugin " + pluginId);
         return true
     },
-    async download(pluginId) {
+    async download(pluginId, cont, done) {
         console.log("Starting download of plugin " + pluginId);
+
         let code = await fetch("/assets/plugins/" + pluginId + "/" + pluginId+".min.js");
-        code = await code.text();
+        let tmpcode = code.clone()
+
+        if (cont) cont(code.clone())
+
+        const reader = code.body.getReader();
+        let bytesReceived = 0;
+        let code_size = Number(code.headers.get('content-length'));
+        while (true) {
+            const result = await reader.read();
+            if (result.done) {
+                console.log('Fetch complete');
+                break;
+            }
+            bytesReceived += result.value.length;
+        }
+
+        code = await tmpcode.text()
         var compressed = LZString.compressToUTF16(code)
         localStorage.setItem("plugin::" + pluginId, compressed);
         console.log("Successfully downloaded plugin " + pluginId);
+        if (done) done(true)
         return true;
     },
     unload(pluginId){
@@ -40,5 +58,20 @@ module.exports = {
     remove(pluginId){
         localStorage.removeItem("plugin::" + pluginId);
         console.log("Successfully removed plugin " + pluginId);
+    },
+    availablePlugins(){
+        // this function does NOT return the plugins that are already downloaded, but instead returns all plugins that are available for download! (including ones that are downloaded)
+        return [
+            {
+                name: "Brython",
+                description: "This plugin allows you to run python in the browser!",
+                image: "/assets/plugins/brython/brython.svg",
+                id: "brython"
+            }
+        ]
+    },
+    checkPluginStatus(pluginId){
+        if (localStorage.getItem("plugin::" + pluginId) !== null) return true
+        else return false;
     }
 }

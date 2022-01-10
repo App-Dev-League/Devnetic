@@ -16,7 +16,8 @@
 		"SnippetsPanel.js",
 		"SnippetUnlock.js",
 		"TabbedView.js",
-		"codeBlock.js"
+		"codeBlock.js",
+		"PluginPanel.js"
 	], {
 		path: "./components/"
 	});
