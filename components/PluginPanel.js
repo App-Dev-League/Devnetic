@@ -23,6 +23,8 @@ class PluginPanel extends tApp.Component {
                     break;
                 }
                 bytesReceived += result.value.length;
+                plugin.querySelector("h5").innerText = "Installing..."
+                plugin.querySelector(".loading-bar-container").style.opacity = 1;
                 plugin.querySelector(".loading-bar").style.width = Math.round(bytesReceived/code_size*100)+"%";
             }
         }, function(){
@@ -45,7 +47,7 @@ class PluginPanel extends tApp.Component {
 	render(props) {
 		return `<div>
         ${plugins.availablePlugins().map(plugin => {
-                return `<div id="plugin-list-${plugin.id}">
+                return `<div id="plugin-list-${plugin.id}" style="margin-bottom: 20px">
                     <img src="${plugin.image}" style="width: 60px; display: inline-block"/>
                     <div style="display: inline-block; margin-left: 20px; vertical-align: top">
                         <div>

@@ -67,6 +67,14 @@ module.exports = {
                 description: "This plugin allows you to run python in the browser!",
                 image: "/assets/plugins/brython/brython.svg",
                 id: "brython"
+                //https://brython.info/
+            },
+            {
+                name: "CaptCC",
+                description: "This plugin allows you to run basic C code in the browser!",
+                image: "/assets/plugins/captCC/captCC.svg",
+                id: "captCC"
+                //https://github.com/Captainarash/CaptCC
             }
         ]
     },
