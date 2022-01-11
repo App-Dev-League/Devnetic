@@ -75,6 +75,13 @@ module.exports = {
                 image: "/assets/plugins/captCC/captCC.svg",
                 id: "captCC"
                 //https://github.com/Captainarash/CaptCC
+            },
+            {
+                name: "JS-CPP",
+                description: "This plugin compiles C++ code to Javascript!",
+                image: "/assets/plugins/jscpp/jscpp.svg",
+                id: "jscpp",
+                //https://github.com/felixhao28/JSCPP
             }
         ]
     },
