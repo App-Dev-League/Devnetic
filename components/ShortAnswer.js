@@ -23,7 +23,11 @@ class ShortAnswer extends ModuleComponent {
 				this.state.input = new Input({
 					classList: ["short-answer-input"],
 					type: "text",
-					properties: ["autofocus"]
+					properties: {
+						"autofocus": "", 
+						"onkeydown": "{{_this}}.state.update()"
+					},
+					update: () => {if(event.key === "Enter"){this.update()}}
 				});
 			}
 			if(this.data().value == null) {
