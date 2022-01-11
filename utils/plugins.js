@@ -82,6 +82,13 @@ module.exports = {
                 image: "/assets/plugins/jscpp/jscpp.svg",
                 id: "jscpp",
                 //https://github.com/felixhao28/JSCPP
+            },
+            {
+                name: "Typescript",
+                description: "This plugin allows you to run typescript in the browser!",
+                image: "/assets/plugins/typescript/typescript.svg",
+                id: "typescript",
+                //https://jsfiddle.net/k78t436y/
             }
         ]
     },
