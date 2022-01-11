@@ -22,6 +22,7 @@ class Input extends tApp.Component {
 			class="${this.state.classList.join(" ")}" 
 			type="${this.state.type}" 
 			value="${tApp.escape(this.state.value)}"
+			oninput="{{_this}}.setState('value', this.value)"
 			${Object.keys(this.state.properties).map(i => `${i}="${this.state.properties[i]}"`).join(" ")}
 		/>`;
 	}

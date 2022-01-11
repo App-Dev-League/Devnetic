@@ -25,7 +25,7 @@ class ShortAnswer extends ModuleComponent {
 					type: "text",
 					properties: {
 						"autofocus": "", 
-						"onkeydown": "{{_this}}.state.update()"
+						"onkeyup": "{{_this}}.state.update()"
 					},
 					update: () => {if(event.key === "Enter"){this.update()}}
 				});
