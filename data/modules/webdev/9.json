@@ -120,15 +120,243 @@
 				},
 				{
 					"type": "text",
-					"content": "[[ ]][[ ]]◆ [[`]]componentDidMount()[[/]] allows you to run JS when as soon as the component is rendered for the first time  - This is a lifecycle method"
+					"content": "[[ ]][[ ]]◆ [[`]]componentDidMount()[[/]] allows you to run JS when as soon as the component is rendered for the first time  - This is a [[red]]lifecycle method[[/]]"
 				},
 				{
 					"type": "text",
-					"content": "[[ ]][[ ]]◆ [[`]]componentWillUnmount()[[/]] allows you to run JS (to free up resources) when the component is about to be removed - This is a lifecycle method"
+					"content": "[[ ]][[ ]]◆ [[`]]componentWillUnmount()[[/]] allows you to run JS (to free up resources) when the component is about to be removed - This is a [[red]]lifecycle method[[/]]"
 				},
 				{
 					"type": "text",
 					"content": "[[ ]][[ ]]◆ [[`]]render()[[/]] - what you put your return [html] statement in"
+				},
+				{
+					"type": "image",
+					"src": "/data/modules/webdev-assets/img9/3-0.png",
+					"width": "60%"
+				}
+			]
+		},
+		{
+			"type": "multiple_choice",
+			"question": "What is the method that runs when the component is first rendered?",
+			"code_template": "________(){\n    // run when component is first rendered\n}",
+			"answers":
+			[
+				"componentWillMount()",
+				"componentHasMounted()",
+				"componentDidMount()",
+				"componentMounted()"
+			],
+			"correct": 2,
+			"descriptions":
+			[
+				"Incorrect. This is method is run right after the component is rendered for the first time.",
+				"Incorrect. This is not the correct syntax",
+				"Correct! This is the correct syntax",
+				"Incorrect. This is not the correct syntax"
+			],
+			"points": 5,
+			"coins": 1
+		},
+		{
+			"type": "information",
+			"title": "Week 8 - React states",
+			"elements": [
+				{
+					"type": "text",
+					"content": "➔ React states allow for us to quickly update text in the DOM without manually forcing React to re-render."
+				},
+				{
+					"type": "text",
+					"content": "➔ In the “constructor” method inside of React classes, you can add "
+				},
+				{
+					"type": "code",
+					"content": "this.state = {“a JS object key”: “a value”};"
+				},
+				{
+					"type": "text",
+					"content": "[[ ]][[ ]]◆ You can ONLY add new keys/values to the “state” object in the constructor!"
+				},
+				{
+					"type": "text",
+					"content": "➔ To update something in the “state” variable, use [[`]]this.setState({“key”: “new value”});[[/]]"
+				},
+				{
+					"type": "text",
+					"content": "➔ To read something in the “state” variable, use [[`]]this.state[“your key”][[/]]"
+				},
+				{
+					"type": "text",
+					"content": "[[ ]][[ ]]◆ (Note: you cannot use this method to update the “state” variable)"
+				},
+				{
+					"type": "image",
+					"src": "/data/modules/webdev-assets/img9/4-0.png"
+				},
+				{
+					"type": "divider"
+				},
+				{
+					"type": "text",
+					"content": "React States (In Functional Components)"
+				},
+				{
+					"type": "text",
+					"content": "➔ This creates two variables, one is the state itself, and the other is the function used to set new values to that state"
+				},
+				{
+					"type": "code",
+					"content": "const [count, setCount] = useState(0);"
+				}
+			]
+		},
+		{
+			"type": "short_answer",
+			"question": "How would run the following Pseudocode? (In a class component)",
+			"code_template": "set-state of \"time\" to 10",
+			"answers":
+			[
+				"this.setState({\"time\": 10})",
+				"this.setState({\"time\":10})"
+			],
+			"descriptions":
+			{
+				"this.setState({\"time\": 10})": "Correct! This is the correct syntax for setting state in class components",
+				"this.setState({\"time\":10})": "Correct! This is the correct syntax for setting state in class components."
+			},
+			"description_default": "remember you must use the \"this\" variable and the \"setState\" method",
+			"points": 10,
+			"coins": 3
+		},
+		{
+			"type": "information",
+			"title": "Week 8 - Handling events in React",
+			"elements": [
+				{
+					"type": "text",
+					"content": "➔ In React.JS, handling events is very similar to HTML. For example, [[`]]onclick=“myFunction()”[[/]] becomes [[`]]onClick={myFunction}[[/]]"
+				},
+				{
+					"type": "text",
+					"content": "➔ All event handlers become camelCased, (onscroll -> onScroll)"
+				},
+				{
+					"type": "text",
+					"content": "➔ If the current component is a class, then the event handler becomes [[`]]onclick={this.myFunction}[[/]] You will also need to bind the function in the constructor of the class with [[`]]this.myFunction = this.myFunction.bind(this)[[/]]. (We bind “this” to the function so the function will be able to access the correct “this” variable). Then, define the function as [[`]]myFunction() {yourStuff;}[[/]] "
+				},
+				{
+					"type": "text",
+					"content": "➔ Preventing default actions in React.JS is different than HTML. In React.JS, you have to add [[`]]event.preventDefault();[[/]] in the function that is being called."
+				},
+				{
+					"type": "image",
+					"src": "/data/modules/webdev-assets/img9/5-0.png"
+				}
+			]
+		},
+		{
+			"type": "information",
+			"title": "Week 8 - React repetitions and keys",
+			"elements": [
+				{
+					"type": "text",
+					"content": "➔ In React, you can easily make lists with a for-loop! (kinda)"
+				},
+				{
+					"type": "text",
+					"content": "➔ To get started, first create an array of items "
+				},
+				{
+					"type": "text",
+					"content": "➔ ([[`]]var things = [“hi”, “foo”, “bar”, “hello”][[/]]) inside of the “render” method in a component"
+				},
+				{
+					"type": "text",
+					"content": "➔ The array.map function allows us to loop through an array and get all of the values. We can apply the to React too, and loop through an array of items and render them!"
+				},
+				{
+					"type": "text",
+					"content": "➔ Use [[`]]things.map((thing, index) => {<h1 key={index}>{thing}</h1>})[[/]] to loop through the “things” array "
+				},
+				{
+					"type": "code",
+					"content": "render() {\n    var things = [\"hi\", \"foo\", \"bar\", \"hello\"]\n    return (\n        things.map((thing) => {\n            <h1 key={thing}>{thing}</h1>\n        }) \n    )\n}"
+				},
+				{
+					"type": "text",
+					"content": "    Note! The element that you are repetitively looping over needs a “key” attribute. This can be anything you want, just make sure it’s unique. You can then use the key later to get the element"
+				}
+			]
+		},
+		{
+			"type": "information",
+			"title": "Week 8 - React.JS forms",
+			"elements": [
+				{
+					"type": "text",
+					"content": "➔ React.JS forms are quite different from traditional HTML forms. React forms essential work by updating the component state everytime an input changes, and when the user clicks the submit button, it takes the states and you can do things with the data stored in the states"
+				},
+				{
+					"type": "text",
+					"content": "➔ For example, let’s create a form with a submit handler of [[`]]{this.handleSubmit}[[/]]"
+				},
+				{
+					"type": "text",
+					"content": "➔ Next, let’s create an HTML text input box with the current state bound to it’s “value” attribute, and an onChange handler of [[`]]{this.handleChange}[[/]] "
+				},
+				{
+					"type": "text",
+					"content": "➔ Finally, let’s create an HTML submit button with a value of “submit button”"
+				},
+				{
+					"type": "text",
+					"content": "➔ We’re not out of the woods yet! We still need to create the [[`]]states[[/]] variable, and create the two [[`]]handleSubmit[[/]] and [[`]]handleChange[[/]] functions."
+				},
+				{
+					"type": "code",
+					"content": "class navbar extends React.Component {\n    constructor(props) {\n        super(props);\n        this.state = { value: '' };\n        this.handleChange = this.handleChange.bind(this);\n        this.handleSubmit = this.handleSubmit.bind(this);\n    }\n    handleChange(event) {\n        this.setState({ value: event.target.value });\n    }\n    handleSubmit(event) {\n        alert(this.state.value);\n        event.preventDefault();\n    }\n    render() {\n        return (\n            <form onSubmit={this.handleSubmit}>\n                <input type=\"text\" value={this.state.value} onChange={this.handleChange} />\n                <input type=\"submit\" value=\"Submit Button\" />\n            </form>\n        );\n    }\n}",
+					"lang": "jsx"
+				}
+			]
+		},
+		{
+			"type": "information",
+			"title": "Week 8 - Lifting React states (making states more global)",
+			"elements": [
+				{
+					"type": "text",
+					"content": "➔ Sometimes, in React, you may want to make one state available to more than one component. (You want one component to change another’s text)"
+				},
+				{
+					"type": "text",
+					"content": "➔ This can be accomplished by raising React states. There’s no new special syntax here, it’s just the concept. "
+				},
+				{
+					"type": "text",
+					"content": "➔ To accomplish this, first create a parent component. This will store all of the states. Next, bind and create a function called [[`]]handleChanges(changes)[[/]] Inside this, make it update a state (any state) based off of changes. Lastly, create a state in this component with a key called [[`]]value.[[/]]"
+				},
+				{
+					"type": "code",
+					"content": "class parent extends React.Component {\n    constructor(props) {\n        super(props);\n        this.handleChanges = this.handleChanges.bind(this);\n        this.state = { value: 'something' };\n    }\n    handleChanges(newValue) {\n        this.setState({ value: newValue });\n    }\n    render() {\n        return (\n            <div>\n                <Component1 onChangeParent={this.handleChanges} />\n            </div>\n        );\n    }\n}",
+					"name": "Parent Component",
+					"lang": "jsx"
+				},
+				{
+					"type": "text",
+					"content": "➔ Finally, import and use a non-existent (for now) component called component1. Pass a prop to it called [[`]]onChangeParent[[/]] with value of [[`]]{this.handleChanges}[[/]] "
+				},
+				{
+					"type": "text",
+					"content": "➔ Congrats! Now, inside component1, once you call [[`]]this.props.onChangeParent(“newStateValue”)[[/]], it will update the states in the parent component!"
+				},
+				{
+					"type": "code",
+					"content": "class Component1 extends React.Component {\n    constructor(props) {\n        super(props);\n    }\n    render() {\n        this.props.onChangeParent(\"newStateValue\")\n        return;\n    }\n}",
+					"lang": "jsx",
+					"name": "Child Component"
+				
 				}
 			]
 		}

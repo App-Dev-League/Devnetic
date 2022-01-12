@@ -12,15 +12,8 @@ Just copy everything, and it should be visible in VS CODE or you're favorite cod
 //     Allows to dynamically render content
 // `
 var text = `
-In React, the React Framework will render everything into an HTML file, typically a div with id “root” in the “index.html” file
-To render an HTML element in ReactJS, use 
-ReactDOM.render([HTML code], [HTML element describing where to render])
-In “main.jsx” (under the “src” folder), replace all of the code with the following:
-First we import all of the required
-NPM modules
-Then, we create an element and 
-ReactDOM.render it into the HTML file
-named “index.html”
+Finally, import and use a non-existent (for now) component called component1. Pass a prop to it called onChangeParent with value of {this.handleChanges} 
+Congrats! Now, inside component1, once you call this.props.onChangeParent(“newStateValue”), it will update the states in the parent component!
 `
 
 String.prototype.replaceAll = function (find, replace) {
