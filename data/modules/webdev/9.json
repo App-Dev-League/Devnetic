@@ -1,15 +1,134 @@
 {
 	"type": "lesson",
-	"pages":
-	[
+	"pages": [
 		{
 			"type": "information",
-			"title": "Week 8 - TOPIC HERE",
-			"elements":
-			[
+			"title": "Week 8 - Advanced React.JS/JSX",
+			"elements": [
 				{
 					"type": "text",
-					"content": "The week 8 lesson module has not yet been created."
+					"content": "[[h3]]Why React?[[/]]"
+				},
+				{
+					"type": "text",
+					"content": "➔ React.JS makes it easy to reuse components of a website (navbar, footer, etc.)"
+				},
+				{
+					"type": "text",
+					"content": "➔ React brings the benefits of Node.JS into the frontend. You can use any NPM package you want!"
+				},
+				{
+					"type": "text",
+					"content": "➔ React.JS makes it easy to make fast updates to a website (like displaying stock market data)"
+				},
+				{
+					"type": "image",
+					"src": "/data/modules/webdev-assets/img9/0-0.png"
+				},
+				{
+					"type": "divider"
+				},
+				{
+					"type": "text",
+					"content": "[[h3]]React Components[[/]]"
+				},
+				{
+					"type": "text",
+					"content": "➔ React components allow for us to quickly re-use common components (like a navbar)"
+				},
+				{
+					"type": "text",
+					"content": "➔ When you are writing code inside of a component, you can treat it like it’s own HTML website! (If you have a class named “hello” in one component, but also another element with the “hello” class in a different component, they will not interfere with one another."
+				},
+				{
+					"type": "text",
+					"content": "➔ Components are a bit like Javascript functions. You can pass parameters in by using React “props”, and you [[`]]return[[/]] the HTML/JSX code!"
+				}
+			]
+		},
+		{
+			"type": "information",
+			"title": "Week 8 - Creating your first React Component",
+			"elements": [
+				{
+					"type": "text",
+					"content": "➔ Once you navigate to your replit, replicate the filesystem to the right. Mainly, pay attention to the “components” folder - this is where we’ll be putting all of our components"
+				},
+				{
+					"type": "text",
+					"content": "➔ After this, navigate to the “header.jsx” file and import the React module and the header.module.css file."
+				},
+				{
+					"type": "text",
+					"content": "➔ Then, create a function with a return function inside returning some HTML! Once you’re satisfied, export the function, (since remember, this is treated as a JS module)"
+				},
+				{
+					"type": "text",
+					"content": "➔ If you don’t see anything yet, don’t worry. We still need to navigate to “main.jsx” and import the “Header” module and stick it into the DOM."
+				},
+				{
+					"type": "image",
+					"src": "/data/modules/webdev-assets/img9/1-0.png"
+				}
+			]
+		},
+		{
+			"type": "information",
+			"title": "Week 8 - Passing parameters (props) into your React component",
+			"elements": [
+				{
+					"type": "text",
+					"content": "➔ To further increase a component’s reusability, pass parameters using react props"
+				},
+				{
+					"type": "text",
+					"content": "➔ In a function, props can be accessed in the first function parameter."
+				},
+				{
+					"type": "text",
+					"content": "➔ To pass a prop to a component, use the component with a HTML attribute. For example, [[`]]<Navbar mood=“hi”/>[[/]]"
+				},
+				{
+					"type": "image",
+					"src": "/data/modules/webdev-assets/img9/2-0.png"
+				}
+			]
+		},
+		{
+			"type": "information",
+			"title": "Week 8 - React classes/lifecycles",
+			"elements": [
+				{
+					"type": "text",
+					"content": "➔ Let’s take a quick detour and talk about React.JS classes. While functions get the job done easily, they don’t allow for much customization. "
+				},
+				{
+					"type": "text",
+					"content": "➔ In React Classes, the declaratory syntax is"
+				},
+				{
+					"type": "code",
+					"content": "class yourName extends React.Component {}"
+				},
+				{
+					"type": "text",
+					"content": "➔ In React Classes, there are many methods, and most notably:"
+				},
+				{
+					"type": "text",
+					"content": "[[ ]][[ ]]◆ [[`]]constructor(props)[[/]] allows you to get/set props/states/anything in the “this” variable"
+				},
+				{
+					"type": "text",
+					"content": "[[ ]][[ ]]◆ [[`]]componentDidMount()[[/]] allows you to run JS when as soon as the component is rendered for the first time  - This is a lifecycle method"
+				},
+				{
+					"type": "text",
+					"content": "[[ ]][[ ]]◆ [[`]]componentWillUnmount()[[/]] allows you to run JS (to free up resources) when the component is about to be removed - This is a lifecycle method"
+				},
+				{
+					"type": "text",
+					"content": "[[ ]][[ ]]◆ [[`]]render()[[/]] - what you put your return [html] statement in"
 				}
 			]
 		}
