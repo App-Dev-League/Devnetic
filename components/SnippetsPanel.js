@@ -54,7 +54,7 @@ class SnippetsPanel extends tApp.Component {
 		document.getElementById("snippets-modal").classList.add("none")
 	}
 	render(props) {
-		return `<div class="snippets-panel">
+		return `<div class="snippets-panel" id="snippets-panel">
 		${this.state.snippets.map(element => {
 			element.example = element.example.replaceAll("<", "&lt").replaceAll(">", "&gt;")
 			return `<span class="snippet-title" style="margin-bottom: 10px; display: block">${element.name}</span>
@@ -63,17 +63,6 @@ class SnippetsPanel extends tApp.Component {
 				</div>
 				`
 		}).join("")}
-		<div id="snippets-modal" class="none">
-			<div class="explanation-modal" style="left: 0; top: 25vh;">
-			<span style="float: right; position: relative; top: -15px; left: 10px; font-weight: bold; cursor: pointer" onclick="document.getElementById('snippets-modal').classList.add('none')">x</span>
-				<center>
-					<h3>Incorrect!</h3>
-					<div class="inputs">
-					</div>
-					<button class="button-correct" onclick="tApp.getComponentFromDOM(this).parent.children[1].insertModal()">Insert</button>
-				</center>
-			</div>
-		</div>
 		</div>`;
 	}
 }

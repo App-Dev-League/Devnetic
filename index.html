@@ -561,7 +561,8 @@
       left: 50%;
       transform: translate(-50%, -50%) scale(1);
       transition: opacity 0.15s ease-in-out,
-        scale 0.15s ease-in-out;
+      scale 0.15s ease-in-out;
+      z-index: 10;
     }
 
     .explanation-modal h3 {
@@ -765,8 +766,8 @@
     }
 
     .selected-tab {
-      overflow-y: visible !important;
-      overflow-x: visible !important;
+      overflow-y: auto !important;
+      overflow-x: auto !important;
     }
   </style>
 </head>
@@ -785,6 +786,17 @@
   <tapp-main>
 
   </tapp-main>
+  <div id="snippets-modal" class="none">
+    <div class="explanation-modal">
+      <span style="float: right; position: relative; top: -15px; left: 10px; font-weight: bold; cursor: pointer" onclick="document.getElementById('snippets-modal').classList.add('none')">x</span>
+      <center>
+        <h3>Incorrect!</h3>
+        <div class="inputs">
+        </div>
+        <button class="button-correct" onclick="tApp.getComponentFromDOM(document.getElementById(" snippets-panel")).parent.children[1].insertModal()">Insert</button>
+      </center>
+    </div>
+  </div>
   <script src="/config.js?v=3"></script>
 </body>
 
