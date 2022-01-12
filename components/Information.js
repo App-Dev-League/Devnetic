@@ -15,7 +15,7 @@ class Information extends ModuleComponent {
 	${(this.data().elements || []).map(element => {
 		if(element.type == "code") {
 			return `<div class="codeblock-wrapper">
-			${new codeBlock({code: codeBlockHelper.escapeHtml(element.content || "")})}
+			${new codeBlock({code: codeBlockHelper.escapeHtml(element.content || ""), language: element.lang, name: element.name})}
 </div>`
 		} else if (element.type == "divider"){
 			if (element.height) return `<div style="width: 100%; height: ${element.height}px; background-color: rgba(0,0,0,0)"></div>`;

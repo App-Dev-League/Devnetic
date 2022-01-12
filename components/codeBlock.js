@@ -30,9 +30,12 @@ class codeBlock extends tApp.Component {
         window.codeBlockHelper = codeBlockHelper;
         this.codeId = generateString(30);
         var codeId = this.codeId;
+        var language = ""
+        if (this.state.language) language = "language-"+this.state.language;
 		return `
 				<div class="snippet-code">
-					<pre id="${this.codeId}">
+                <span style="position: relative; display: block; text-align: center; top: 25px; z-index: 1; font-weight: bold;">${this.state.name || ""}</span>
+					<pre id="${this.codeId}" class="${language}">
 ${this.state.code}
 					</pre>
 				</div>`;
