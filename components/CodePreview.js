@@ -9,7 +9,7 @@ class CodePreview extends tApp.Component {
 	render(props) {
 		window.plugins = plugins;
 		if (document.getElementById("preview")) document.getElementById("preview").srcdoc = codeEditorHelper.getValue();
-		return `<div style="margin-top: 10px; height: 95%; background: white"><iframe style="width: 98%; height: 100%" id="preview" srcdoc='Loading...'></iframe></div>`;
+		return `<div style="margin-top: 10px; height: 95%; background: white" id="preview-container"><iframe style="width: 98%; height: 100%" id="preview" srcdoc='Loading...'></iframe></div>`;
 	}
 }
 

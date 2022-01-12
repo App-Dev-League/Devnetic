@@ -29,15 +29,15 @@
 			"type": "code_editor",
 			"storage_id":
 			[
-				"webdev-0-index.html", "webdev-1-index.html"
+				"webdev-0-index.html", "webdev-1-index.html", "webdev-1-main.py"
 			],
 			"files":
 			[
-				"index.html", "secondary.html"
+				"index.html", "secondary.html", "main.py"
 			],
 			"default":
 			[
-				"<hi></hi>", "<test></test>"
+				"<hi></hi>", "<test></test>", "print(\"Hello World\")"
 			],
 			"display_type": "web",
 			"elements":

@@ -54,12 +54,12 @@ class PluginPanel extends tApp.Component {
         ${plugins.availablePlugins().map(plugin => {
                 return `<div id="plugin-list-${plugin.id}" style="margin-bottom: 20px">
                     <img src="${plugin.image}" style="width: 60px; display: inline-block"/>
-                    <div style="display: inline-block; margin-left: 20px; vertical-align: top">
+                    <div style="display: inline-block; margin-left: 20px; vertical-align: top; width: 80%">
                         <div>
                             <h3 style="margin-bottom: 0; margin-top: 0; display: inline-block">${plugin.name}</h3>
                             ${plugins.checkPluginStatus(plugin.id) ? `<h5 style="display: inline-block; margin: 0; margin-left: 30px; transform: translateY(-2px); font-size: 0.8em; padding: 0 5px; line-height: 14px; background-color: #b12c2c; cursor: pointer" onclick="{{_this}}.uninstall('${plugin.id}')">Uninstall</h5>` : `<h5 style="display: inline-block; margin: 0; margin-left: 30px; transform: translateY(-2px); font-size: 0.8em; padding: 0 5px; line-height: 14px; background-color: #2BA143; cursor: pointer" onclick="{{_this}}.install('${plugin.id}')">Install</h5>`}
                             <h6 style="display: inline-block; margin: 0; margin-left: 20px">${Math.round(this.state.pluginSizes[plugin.id]/1000)} KB</h6>
-                            </div>
+                        </div>
                         <p style="margin-top: 0; margin-bottom: 0">${plugin.description}</p>
                         <div class="loading-bar-container" style="margin-top: 5px; opacity: 0">
                             <div class="loading-bar" style="width: 0%"></div>

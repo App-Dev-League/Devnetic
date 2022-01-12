@@ -54,18 +54,54 @@ class Editor extends tApp.Component {
 					})
 					function handleClicks() {
 						setTimeout(function () {
-							if (document.getElementById("preview")) document.getElementById("preview").srcdoc = codeEditorHelper.getValue();
+							let fileType = parentThis.parent.parent.data().storage_id[tabindex].split('.').pop().toLowerCase()
+							updatePreview(fileType)
 						}, 100)
 					}
 					document.getElementById("code-editor-run-btn").onclick = async function () {
 						document.getElementById("code-editor-status").innerText = "Saving..."
 						await DB.setCode(parentThis.parent.parent.data().storage_id[tabindex], codeEditorHelper.getValue())
-						if (document.getElementById("preview")) document.getElementById("preview").srcdoc = codeEditorHelper.getValue();
+						let fileType = parentThis.parent.parent.data().storage_id[tabindex].split('.').pop().toLowerCase()
+						updatePreview(fileType)
 						setTimeout(function () {
 							document.getElementById("code-editor-status").innerText = "Ready"
 						}, 500)
 					}
-					document.getElementById("code-frame").contentWindow.document.addEventListener("keydown", async function (e) {
+					function updatePreview(fileType){
+						if (!window.lastUpdatePreview) window.lastUpdatePreview = 0
+						if (window.lastUpdatePreview + 100 > Date.now()) return;
+						window.lastUpdatePreview = Date.now()
+
+						if (fileType === "html"){
+							if (document.getElementById("preview")) document.getElementById("preview").srcdoc = codeEditorHelper.getValue();
+						}else if (fileType === "cpp"){
+							plugins.load("jscpp")
+							console.log("running cpp")
+							var code = "#include <iostream>"+
+										"using namespace std;"+
+										"int main() {"+
+										"    int a;"+
+										"    cin >> a;"+
+										"    cout << a << endl;"+
+										"    return 0;"+
+										"}"
+							;
+							var input = "4321";
+							var output = "";
+							var config = {
+								stdio: {
+									write: function(s) {
+										output += s;
+									}
+								}
+							};
+							var exitCode = JSCPP.run(code, input, config);
+							alert(output + "\nprogram exited with code " + exitCode);
+						}else if (fileType === "py"){
+							
+						}
+					}
+					document.getElementById("code-frame").contentWindow.document.onkeydown =  async function (e) {
 						window.codeEditorSaved = false;
 						if (e.keyCode === 82 && e.ctrlKey) {
 							window.codeEditorSaved = true;
@@ -74,13 +110,14 @@ class Editor extends tApp.Component {
 							e.preventDefault();
 							document.getElementById("code-editor-status").innerText = "Saving..."
 							await DB.setCode(parentThis.parent.parent.data().storage_id[codeEditorHelper.getCurrentEditorIndex()], codeEditorHelper.getValue())
-							if (document.getElementById("preview")) document.getElementById("preview").srcdoc = codeEditorHelper.getValue();
+							let fileType = parentThis.parent.parent.data().storage_id[tabindex].split('.').pop().toLowerCase()
+							if (fileType === "html") updatePreview(fileType)
 							window.codeEditorSaved = true;
 							setTimeout(function () {
 								document.getElementById("code-editor-status").innerText = "Ready"
 							}, 500)
 						}
-					}, false);
+					}
 					window.codeEditorSaved = true;
 				} catch (err) {
 					console.log(err)
