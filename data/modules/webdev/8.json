@@ -1,15 +1,503 @@
 {
 	"type": "lesson",
-	"pages":
-	[
+	"pages": [
 		{
 			"type": "information",
-			"title": "Week 7 - TOPIC HERE",
-			"elements":
-			[
+			"title": "Week 7 - JSX and React Intro",
+			"elements": [
 				{
 					"type": "text",
-					"content": "The week 7 lesson module has not yet been created."
+					"content": "[[h3]]What is React?[[/]]"
+				},
+				{
+					"type": "text",
+					"content": "➔ JavaScript front-end framework"
+				},
+				{
+					"type": "text",
+					"content": "➔ Developed by Facebook"
+				},
+				{
+					"type": "text",
+					"content": "➔ Easier to display dynamic content compared to Vanilla JS"
+				},
+				{
+					"type": "text",
+					"content": "➔ Changes info dynamically, allowing users to repeat HTML code for several purposes"
+				},
+				{
+					"type": "image",
+					"src": "/data/modules/webdev-assets/img8/0-0.png",
+					"width": "30%"
+				},
+				{
+					"type": "text",
+					"content": "[[h3]]ReactJS vs HTML[[/]]"
+				},
+				{
+					"type": "text",
+					"content": "➔ In HTML, to update text, you would have to query the element in JS and then change it."
+				},
+				{
+					"type": "text",
+					"content": "➔ With React, you only need to change one variable to update the text!"
+				},
+				{
+					"type": "text",
+					"content": "➔ In HTML, it’s hard to reuse code, while in React, just create Components! "
+				},
+				{
+					"type": "image",
+					"src": "/data/modules/webdev-assets/img8/0-1.png",
+					"width": "40%"
+				},
+				{
+					"type": "text",
+					"content": "[[h3]]What is JSX?[[/]]"
+				},
+				{
+					"type": "text",
+					"content": "➔ Stands for JavaScript XML"
+				},
+				{
+					"type": "text",
+					"content": "➔ Allows user to write HTML into React"
+				},
+				{
+					"type": "text",
+					"content": "➔ Part of React’s syntax"
+				},
+				{
+					"type": "text",
+					"content": "➔ Allows user to split HTML code into multiple components"
+				},
+				{
+					"type": "text",
+					"content": "➔ Provides a visual aid for web development"
+				},
+				{
+					"type": "image",
+					"src": "/data/modules/webdev-assets/img8/0-2.png",
+					"width": "40%"
+				}
+			]
+		},
+		{
+			"type": "information",
+			"title": "Week 7 - JSX and React Intro",
+			"elements": [
+				{
+					"type": "text",
+					"content": "[[h3]]Basic JSX Syntax[[/]]"
+				},
+				{
+					"type": "text",
+					"content": "➔ Almost exactly like HTML"
+				},
+				{
+					"type": "text",
+					"content": "[[ ]][[ ]]◆ Few minor differences"
+				},
+				{
+					"type": "text",
+					"content": "[[ ]][[ ]]◆ Differences allow for more functionality"
+				},
+				{
+					"type": "text",
+					"content": "[[ ]][[ ]]◆ All HTML attributes get camelCased"
+				},
+				{
+					"type": "text",
+					"content": "[[ ]][[ ]][[ ]][[ ]]● [[`]]onclick[[/]] turns into [[`]]onClick[[/]]"
+				},
+				{
+					"type": "text",
+					"content": "➔ The user can display variables in JSX syntax"
+				},
+				{
+					"type": "text",
+					"content": "[[ ]][[ ]]◆ Allows to dynamically render content"
+				},
+				{
+					"type": "image",
+					"src": "/data/modules/webdev-assets/img8/1-0.png"
+				},
+				{
+					"type": "text",
+					"content": "[[h3]]Things to Keep in Mind[[/]]"
+				},
+				{
+					"type": "text",
+					"content": "➔ Unlike HTML, in React, if you forget to add a closing “div” tag, your program will throw an error! This makes it easy to see where errors are."
+				},
+				{
+					"type": "text",
+					"content": "➔ All tags in HTML are supported in React, but HTML tags that don’t have closing tags ([[`]]<br>[[/]], [[`]]<img>[[/]], etc.) must have closing tags in React!"
+				},
+				{
+					"type": "text",
+					"content": "➔ React supports server-side and client-side rendering! Server-side rendering will be slower for big websites, but may let your site appear higher in search engine results"
+				},
+				{
+					"type": "text",
+					"content": "➔ JSX syntax requires just one parent element. You can have whatever you want inside, but remember: Only one parent element!"
+				}
+			]
+		},
+		{
+			"type": "information",
+			"title": "Week 7 - JSX Syntax",
+			"elements": [
+				{
+					"type": "text",
+					"content": "[[h3]]ReactDOM.render[[/]]"
+				},
+				{
+					"type": "text",
+					"content": "➔ Allows user to render elements in a container"
+				},
+				{
+					"type": "text",
+					"content": "➔ Most commonly found in Index.JS file in the project"
+				},
+				{
+					"type": "text",
+					"content": "➔ In the example below, “element” will be rendered and displayed on the HTML element that has ID = “root”"
+				},
+				{
+					"type": "image",
+					"src": "/data/modules/webdev-assets/img8/2-0.png"
+				},
+				{
+					"type": "divider"
+				},
+				{
+					"type": "text",
+					"content": "[[h3]]React Components[[/]]"
+				},
+				{
+					"type": "text",
+					"content": "➔ React components allow user to reuse HTML"
+				},
+				{
+					"type": "text",
+					"content": "➔ Two types of components"
+				},
+				{
+					"type": "text",
+					"content": "[[ ]][[ ]]◆ Class components"
+				},
+				{
+					"type": "text",
+					"content": "[[ ]][[ ]]◆ Functional components - More modern "
+				},
+				{
+					"type": "text",
+					"content": "➔ Class components work as “classes” that render HTML"
+				},
+				{
+					"type": "text",
+					"content": "[[ ]][[ ]]◆ They require the use of the render() method"
+				},
+				{
+					"type": "text",
+					"content": "➔ Functional components are functions that return JSX"
+				},
+				{
+					"type": "text",
+					"content": "[[ ]][[ ]]◆ Within the function, the user can add variables, hooks, etc."
+				},
+				{
+					"type": "text",
+					"content": "➔ How to create a component:"
+				},
+				{
+					"type": "text",
+					"content": "[[ ]][[ ]]◆ Create a function of any name (must be capitalized)"
+				},
+				{
+					"type": "text",
+					"content": "[[ ]][[ ]]◆ Add a “return” statement, which returns JSX code"
+				},
+				{
+					"type": "image",
+					"src": "/data/modules/webdev-assets/img8/2-1.png"
+				}
+			]
+		},
+		{
+			"type": "multiple_choice",
+			"question": "How would we create a React element with class \"main\"?",
+			"code_template": ".main {\n    color: red\n}",
+			"answers":
+			[
+				"<element class=\"main\"></element>",
+				"<element className=\"main\"></element>",
+				"<element class={main}></element>",
+				"<element className={main}></element>"
+			],
+			"correct": 1,
+			"descriptions":
+			[
+				"That would be correct if we were working with normal HTML",
+				"Great work! React camelCases classNames!",
+				"Remember that the curly brackets {} are only used when injecting variables into text!",
+				"Remember that the curly brackets {} are only used when injecting variables into text!"
+			],
+			"points": 5,
+			"coins": 1
+		},
+		{
+			"type": "short_answer",
+			"question": "What is printed to the screen when the following code is run?",
+			"code_template": "const variable = \"{Hello World}\";\nReactDOM.render(<h1>{variable}</h1>, document.getElementById(\"root\"))",
+			"answers":
+			[
+				"{Hello World}"
+			],
+			"descriptions":
+			{
+				"{Hello World}": "Great job! The curly brackets are displayed because the string literally has the curly brackets",
+				"Hello World": "Close! Try paying attention to the variable contents"
+			},
+			"description_default": "Remember that in React.JS, curly brackets are used when injecting variables into text!",
+			"points": 10,
+			"coins": 3
+		},
+		{
+			"type": "snippet_unlock",
+			"name": "JSX Functional Component",
+			"code_template": "function ComponentName() {\n    return <h1>Hello World</h1>\n}",
+			"description": "A functional component is a type of React.JS component",
+			"snippet":
+			{
+				"name": "JSX Functional Component",
+				"id": "functional-component",
+				"example": "function ComponentName() {\n    return <h1>Hello World</h1>\n}",
+				"html": "function {{snippet.attributes.name}}() {\n    return <h1>Hello World</h1>\n}</p>",
+				"attributes":
+				[
+					{
+						"id": "name",
+						"label": "Component Name",
+						"type": "input"
+					}
+				]
+			}
+		},
+		{
+			"type": "snippet_unlock",
+			"name": "JSX Class Component",
+			"code_template": "class ComponentName extends React.Component {\n    render(){\n[[ ]][[ ]]return <h1>Hello World</h1>\n    }\n}",
+			"description": "A functional component is a type of React.JS component",
+			"snippet":
+			{
+				"name": "JSX Class Component",
+				"id": "class-component",
+				"example": "class ComponentName extends React.Component {\n    render(){\n         return <h1>Hello World</h1>\n    }\n}",
+				"html": "class {{snippet.attributes.name}} extends React.Component {\nrender(){\nreturn <h1>Hello World</h1>\n}\n}",
+				"attributes":
+				[
+					{
+						"id": "name",
+						"label": "Component Name",
+						"type": "input"
+					}
+				]
+			}
+		},
+		{
+			"type": "information",
+			"title": "Week 7 - JSX Syntax (Continued)",
+			"elements": [
+				{
+					"type": "text",
+					"content": "[[h3]]JSX Attributes[[/]]"
+				},
+				{
+					"type": "text",
+					"content": "➔ Components can contain custom attributes"
+				},
+				{
+					"type": "text",
+					"content": "[[ ]][[ ]]◆ For instance, if the user wants to pass any value, they can pass it as an attribute"
+				},
+				{
+					"type": "text",
+					"content": "[[ ]][[ ]]◆ These are called props"
+				},
+				{
+					"type": "text",
+					"content": "➔ Here’s how to create an attribute:"
+				},
+				{
+					"type": "image",
+					"src": "/data/modules/webdev-assets/img8/3-0.png"
+				},
+				{
+					"type": "text",
+					"content": "➔ We first created a functional component, but this time we added a parameter called “props” in the function"
+				},
+				{
+					"type": "text",
+					"content": "➔ Now, whenever we use this component, we add the attribute onto the component"
+				},
+				{
+					"type": "divider"
+				},
+				{
+					"type": "text",
+					"content": "[[h3]]JSX Create Element[[/]]"
+				},
+				{
+					"type": "text",
+					"content": "➔ Whenever the user creates components, they get compiled into “React.createElement”"
+				},
+				{
+					"type": "text",
+					"content": "➔ React.createElement contains 3 properties"
+				},
+				{
+					"type": "text",
+					"content": "[[ ]][[ ]]◆ Name of the element"
+				},
+				{
+					"type": "text",
+					"content": "[[ ]][[ ]]◆ An object containing all the attributes"
+				},
+				{
+					"type": "text",
+					"content": "[[ ]][[ ]]◆ A string with the element’s content"
+				},
+				{
+					"type": "text",
+					"content": "➔ Let’s take the previous example:"
+				},
+				{
+					"type": "image",
+					"src": "/data/modules/webdev-assets/img8/3-1.png",
+					"width": "60%"
+				},
+				{
+					"type": "text",
+					"content": "➔ That component compiles into the React.createElement code, as shown below:"
+				},
+				{
+					"type": "image",
+					"src": "/data/modules/webdev-assets/img8/3-2.png",
+					"width": "60%"
+				},
+				{
+					"type": "divider"
+				},
+				{
+					"type": "text",
+					"content": "[[h3]]Virtual DOM[[/]]"
+				},
+				{
+					"type": "text",
+					"content": "➔ React needs to be able to dynamically update content"
+				},
+				{
+					"type": "text",
+					"content": "➔ HTML has “Real DOM,” so it cannot dynamically update"
+				},
+				{
+					"type": "text",
+					"content": "➔ Therefore, React uses “Virtual DOM”"
+				},
+				{
+					"type": "text",
+					"content": "➔ The Virtual DOM is kept in memory"
+				},
+				{
+					"type": "text",
+					"content": "➔ It represents the UI itself"
+				},
+				{
+					"type": "text",
+					"content": "➔ This Virtual DOM is constantly syncing with the “Real DOM”"
+				},
+				{
+					"type": "text",
+					"content": "➔ This process happens through a React library called “ReactDOM”"
+				}
+			]
+		},
+		{
+			"type": "short_answer",
+			"question": "How would we include and pass a prop named “weather” with value “sunny” to the component below?",
+			"code_template": "function ShowWeather(props){\n    return <h1>The weather is: {props.weather}</h1>\n}",
+			"answers":
+			[
+				"<ShowWeather weather=\"sunny\"/>"
+			],
+			"descriptions":
+			{
+				"<ShowWeather weather=\"sunny\"/>": "Correct! That is the correct way to pass props into a component"
+			},
+			"description_default": "Remember that you include a component by using <ComponentName /> and pass props into like you would do when assigning attributes in HTML",
+			"points": 10,
+			"coins": 3
+		},
+		{
+			"type": "information",
+			"title": "Creating a new React workspace",
+			"elements": [
+				{
+					"type": "text",
+					"content": "[[h3]]Setting up the Repl[[/]]"
+				},
+				{
+					"type": "text",
+					"content": "➔ Go to Replit.com and create/login to your account"
+				},
+				{
+					"type": "text",
+					"content": "➔ After you do this, click the new repl button, and make a React.JS repl"
+				},
+				{
+					"type": "text",
+					"content": "➔ This will create a starter ReactJS template that you can customize later. Go ahead and click “Run”. In React, all of your edits are automatically displayed    - even without refreshing the page!"
+				},
+				{
+					"type": "text",
+					"content": "➔ After running, you should see something like this: "
+				},
+				{
+					"type": "image",
+					"src": "/data/modules/webdev-assets/img8/4-0.png"
+				}
+			]
+		},
+		{
+			"type": "information",
+			"title": "Hello World with React.JS",
+			"elements": [
+				{
+					"type": "text",
+					"content": "➔ In React, the React Framework will render everything into an HTML file, typically a div with id “root” in the “index.html” file"
+				},
+				{
+					"type": "text",
+					"content": "➔ To render an HTML element in ReactJS, use [[`]]ReactDOM.render([HTML code], [HTML element describing where to render])[[/]]"
+				},
+				{
+					"type": "text",
+					"content": "➔ In “main.jsx” (under the “src” folder), replace all of the code with the following:"
+				},
+				{
+					"type": "image",
+					"src": "/data/modules/webdev-assets/img8/5-0.png",
+					"width": "70%"
+				},
+				{
+					"type": "text",
+					"content": "➔ First we import all of the required NPM modules"
+				},
+				{
+					"type": "text",
+					"content": "➔ Then, we create an element and [[`]]ReactDOM.render[[/]] it into the HTML file named “index.html”"
 				}
 			]
 		}
