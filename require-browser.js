@@ -16,7 +16,7 @@ const requireExecute = (code) => {
 		return moduleExports;
 		})();`);
 }
-
+window.downloadFileCount = 0;
 const requireExecuteBrowser = (code) => {
 	let script = document.createElement('script');
 	script.type = 'text/javascript';
@@ -155,6 +155,8 @@ const { install, installAll, require, requireBrowser, _getInstalledData } = (fun
 					}
 				})
 			}
+			window.downloadFileCount++
+			window.newFileCallback()
 		});
 	}
 
