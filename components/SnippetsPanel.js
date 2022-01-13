@@ -25,6 +25,7 @@ class SnippetsPanel extends tApp.Component {
 			let snippetIds = await DB.getSnippetIds()
 			for (let id of snippetIds) {
 				let snippet = await DB.getSnippet(id)
+				if (!snippet.category) snippet.category = "Miscellaneous"
 				parentThis.state.snippets.push(snippet)
 			}
 			let currentCategory = ""
