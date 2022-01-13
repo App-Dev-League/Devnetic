@@ -79,6 +79,9 @@ class SnippetsPanel extends tApp.Component {
 			newElement.style = "display: block; text-align: center"
 			newElement.innerHTML = "We couldn't find any snippets that matched your query :(<br><h6 style='display: block; text-align: center'>You may need to unlock this snippet</h6>"
 			document.getElementById("snippets-panel").appendChild(newElement)
+		}else{
+			let prev = document.getElementById("snippets-panel-no-result");
+			if (prev) prev.parentNode.removeChild(prev)
 		}
 	}
 	render(props) {
