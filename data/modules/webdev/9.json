@@ -219,7 +219,9 @@
 			"answers":
 			[
 				"this.setState({\"time\": 10})",
-				"this.setState({\"time\":10})"
+				"this.setState({\"time\":10})",
+				"this.setState({time:10})",
+				"this.setState({time: 10})"
 			],
 			"descriptions":
 			{
