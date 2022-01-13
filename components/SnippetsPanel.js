@@ -14,13 +14,29 @@ class SnippetsPanel extends tApp.Component {
 			this.state.showSnippets = this.state.snippets
 		}
 		var parentThis = this
+		function groupArrayOfObjects(list, key) {
+			return list.reduce(function(rv, x) {
+			  (rv[x[key]] = rv[x[key]] || []).push(x);
+			  return rv;
+			}, {});
+		  };
+		  
 		async function getSnippets() {
 			let snippetIds = await DB.getSnippetIds()
-			snippetIds.forEach(async function (id) {
+			for (let id of snippetIds) {
 				let snippet = await DB.getSnippet(id)
 				parentThis.state.snippets.push(snippet)
+			}
+			let currentCategory = ""
+			var grouped = {}
+			grouped = groupArrayOfObjects(parentThis.state.snippets,"category");
+			var temp = []
+			Object.entries(grouped).forEach(([key, value]) => {
+				temp.push({categoryName: key})
+				temp = temp.concat(value)
 			})
-			parentThis.state.snippets
+			parentThis.state.snippets = temp
+			parentThis.setState("showSnippets", parentThis.state.snippets)
 		}
 		getSnippets()
 	}
@@ -59,6 +75,7 @@ class SnippetsPanel extends tApp.Component {
 		query = query.toLowerCase()
 		let showSnippets = []
 		this.state.snippets.forEach(element => {
+			if (element.categoryName) return;
 			let name = element.name.toLowerCase()
 			if (name.includes(query)) {
 				showSnippets.push(element)
@@ -88,6 +105,9 @@ class SnippetsPanel extends tApp.Component {
 		return `<div class="snippets-panel" id="snippets-panel">
 		<input placeholder="Search..." class="short-answer-input" style="margin-top: 0; margin-bottom: 20px; font-size: 1em; border: 2px solid var(--blue);" onkeyup="{{_this}}.parent.children[1].showSearch(this.value)">
 		${this.state.showSnippets.map(element => {
+			if (element.categoryName) {
+				return `<h2 style="margin-top: 20px; margin-bottom: 10px;">${element.categoryName}</h2>`
+			}
 			element.example = element.example.replaceAll("<", "&lt;").replaceAll(">", "&gt;")
 			return `<div class="snippet-block" id="snippet-id-${element.id}">
 			<span class="snippet-title" style="margin-bottom: 10px; display: block">${element.name}</span>
