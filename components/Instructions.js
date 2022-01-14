@@ -14,7 +14,7 @@ class Instructions extends tApp.Component {
 			${(this.state.elements || []).map(element => {
 				if(element.type == "code") {
 					return `
-								${new codeBlock({code: codeBlockHelper.escapeHtml(element.content || "")})} 
+								${new codeBlock({code: codeBlockHelper.escapeHtml(element.content || ""), language: element.lang, name: element.name})} 
 							`
 				} else {
 					return `<pre class="info-text">${codeTemplateToCode(element.content || "")}</pre>`;
@@ -29,7 +29,7 @@ class Instructions extends tApp.Component {
 						${element.elements.map(part => {
 							if(part.type == "code") {
 								return `
-											${new codeBlock({code: codeBlockHelper.escapeHtml(part.content || "")})} 
+											${new codeBlock({code: codeBlockHelper.escapeHtml(part.content || ""), language: element.lang, name: element.name})} 
 										`
 							} else {
 								return `<pre class="info-text">${codeTemplateToCode(part.content || "")}</pre>`;

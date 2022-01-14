@@ -37,7 +37,7 @@ class MultipleChoice extends ModuleComponent {
 			let returnStr = `<div>
 	<h1 class="mc-question">${tApp.escape(this.data().question || "")}</h1>
 	<div class="mc-codeblock codeblock-wrapper">
-		${new codeBlock({code: this.data().code || ""})}
+		${new codeBlock({code: this.data().code || "", language: element.lang, name: element.name})}
 	</div>
 	<div class="mc-answer-table">
 		<div class="mc-answer-container">

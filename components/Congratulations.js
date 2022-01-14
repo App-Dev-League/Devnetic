@@ -15,7 +15,7 @@ class Congratulations extends ModuleComponent {
 	${(this.data().elements || []).map(element => {
 		if(element.type == "code") {
 			return `<div class="codeblock-wrapper">
-	${new codeBlock({code: codeBlockHelper.escapeHtml(element.content || "")}, this)}
+	${new codeBlock({code: codeBlockHelper.escapeHtml(element.content || ""), language: element.lang, name: element.name}, this)}
 </div>`
 		} else {
 			return `<pre class="info-text">${codeTemplateToCode(element.content || "")}</pre>`;
