@@ -156,9 +156,8 @@
                     "content": "➔ Head: Container for everything that isn’t displayed as content"
                 },
                 {
-                    "type": "image",
-                    "src": "/data/modules/webdev-assets/img2/3-0.png",
-                    "width": "50%"
+                    "type": "code",
+                    "content": "<!DOCTYPE html>\n<html>\n\n<head>\n  <meta charset=\"utf-8\">\n  <title>My test page</title>\n</head>\n\n<body>\n  <p>This is my page</p>\n</body>\n\n</html>"
                 },
                 {
                     "type": "divider"
@@ -180,9 +179,15 @@
                     "content": "[[b]]➔ Body: Contains all content that is displayed on the page[[/]]"
                 },
                 {
-                    "type": "image",
-                    "src": "/data/modules/webdev-assets/img2/3-1.png",
-                    "width": "100%"
+                    "type": "code",
+                    "content": "<meta charset=\"utf-8\">\n<title>My test page</title>"
+                },
+                {
+                    "type": "divider"
+                },
+                {
+                    "type": "code",
+                    "content": "<body>\n  Displayed content tags go here\n</body>"
                 }
             ]
         },
