@@ -71,20 +71,12 @@ const Database = {
 	},
 	getModuleData: function(track, moduleNum, position) {
 		return new Promise(async (resolve, reject) => {
-			if (!window.currentModule) window.currentModule = {}
-			var parsedData
-			if (window.currentModule.module === track+moduleNum) {
-				parsedData = window.currentModule.data
-			}else{
-				let data = await tApp.get(`/data/modules/${track}/${moduleNum}.json`).catch((err) => {
-					reject(err);
-				});
-				parsedData = await data.json().catch((err) => {
-					reject(err);
-				});
-			}
-			window.currentModule.module = track+moduleNum;
-			window.currentModule.data = parsedData
+			let data = await tApp.get(`/data/modules/${track}/${moduleNum}.json`).catch((err) => {
+				reject(err);
+			});
+			let parsedData = await data.json().catch((err) => {
+				reject(err);
+			});
 			if(position < parsedData.pages.length - 1) {
 				resolve({
 					data: parsedData.pages[position],
