@@ -804,6 +804,7 @@
   <tapp-main>
     <script>
       window.newFileCallback = function() {
+        window.downloadFileCount++
         document.getElementById("loading-filecount").innerHTML = window.downloadFileCount+"/23";
         document.getElementById("loading-loading-bar").style.width = (window.downloadFileCount/23)*100+"%";
       }

@@ -63,6 +63,7 @@ const { install, installAll, require, requireBrowser, _getInstalledData } = (fun
 				}
 				if(options.reinstall || cache[options.name] == null) {
 					fetch(filename).then(async (res) => {
+						if (window.newFileCallback) window.newFileCallback()
 						if(res.status == 200) {
 							res.text().then(async (data) => {
 								let pathList = filename.split("/");
@@ -155,8 +156,6 @@ const { install, installAll, require, requireBrowser, _getInstalledData } = (fun
 					}
 				})
 			}
-			window.downloadFileCount++
-			window.newFileCallback()
 		});
 	}
 
