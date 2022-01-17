@@ -4,12 +4,343 @@
 	[
 		{
 			"type": "information",
-			"title": "Week 3 - TOPIC HERE",
+			"title": "Week 3 - JavaScript",
 			"elements":
 			[
 				{
 					"type": "text",
-					"content": "The week 3 lesson module has not yet been created."
+					"content": "JavaScript is a web programming language for..."
+				},
+				{
+					"type": "text",
+					"content": "  - Full stack development (client-side execution + server-side scripting)"
+				},
+				{
+					"type": "text",
+					"content": "  - Creating animations, graphics, pop-ups, interactive material, etc."
+				},
+				{
+					"type": "text",
+					"content": "  - Execute complex logic, calculations, and algorithms for the web page to use"
+				},
+				{
+					"type": "text",
+					"content": "  - Keep constant communication with the server and decrease taskload"
+				}
+			]
+		},
+		{
+			"type": "information",
+			"title": "Week 3 - JavaScript Statements",
+			"elements":
+			[
+				{
+					"type": "text",
+					"content": "A JavaScript statement is a line of code that executes a single action. They include values, operators, keywords, expressions, comments, etc."
+				},
+				{
+					"type": "code",
+					"content": "console.log('Intro to JS');\ndocument.write('reply').innerHTML = 'no';\nlet a = 1;"
+				},
+				{
+					"type": "text",
+					"content": "JavaScript comments are used for documentation of code and improving readability. Comments ignored by the JavaScript interpreter. Use [[monospace]]//[[/]] for single line comments and [[monospace]]/**/[[/]] for multi-line comments."
+				},
+				{
+					"type": "code",
+					"content": "// this is a single-line comment\n/*\nthis\nis\na\nmulti-line\ncomment\n*/"
+				}
+			]
+		},
+		{
+			"type": "information",
+			"title": "Week 3 - JavaScript Variables",
+			"elements":
+			[
+				{
+					"type": "text",
+					"content": "Variables store values that can be used or modified by code."
+				},
+				{
+					"type": "text",
+					"content": "Literals are actual data or values which the variables can contain. Assign variables to the literal using the assignment operator, [[monospace]]=[[/]]. Declared using [[monospace]]let[[/]]/[[monospace]]var[[/]] and the identifier (variable name). Modify the value of a variable by re-assigning it with the [[monospace]]=[[/]] operator."
+				},
+				{
+					"type": "text",
+					"content": "Declared using let/var and the identifier (variable name)."
+				},
+				{
+					"type": "image",
+					"src": "/data/modules/webdev-assets/img4/2-0.png",
+					"width": "40%"
+				},
+				{
+					"type": "text",
+					"content": "The enviromment that can store and access variables is the variable's scope."
+				},
+				{
+					"type": "text",
+					"content": "  - -Ex. Global variables are in a global environment/scope, so any part of the program can access it"
+				},
+				{
+					"type": "text",
+					"content": "  - Block scope means that only code within the block can access variables defined within that block"
+				},
+				{
+					"type": "text",
+					"content": "  - [[monospace]]var[[/]] is function scoped: will access the variable from the next highest environment/function it exists in (any variable defined by var is defined throughout the program)"
+				},
+				{
+					"type": "text",
+					"content": "  - [[monospace]]let[[/]] is block scoped: accessing variables defined outside the block containing the let declaration will raise an error"
+				},
+				{
+					"type": "text",
+					"content": "You can directly call the variable to access its value."
+				},
+				{
+					"type": "text",
+					"content": "Declare constants with the [[monospace]]const[[/]] keyword. Constants must be assigned during declaration and cannot be reassigned. Constants are block-scoped just like variables declared with [[monospace]]let[[/]]. "
+				}
+			]
+		},
+		{
+			"type": "information",
+			"title": "Week 3 - JavaScript Methods and Data Types",
+			"elements":
+			[
+				{
+					"type": "text",
+					"content": "Similar to properties, but instead of storing a value, they can execute an action and/or return a value. They are called using the dot operator (.) and the method name, followed by parentheses after the method name and arguments if required. For example [[monospace]]console.log()[[/]]."
+				},
+				{
+					"type": "text",
+					"content": "JS is loosely typed/dynamic, meaning variables can hold or be assigned to any type. Use the [[monospace]]typeof[[/]] operator to check the type of a value or variable."
+				},
+				{
+					"type": "code",
+					"content": "let answer = 3;\nanswer = true;\nconsole.log(answer);"	
+				},
+				{
+					"type": "text",
+					"content": "Strings can contain any number of characters inside single or double quotes. Strings can be concatenated using the [[monospace]]+[[/]] operator like [[monospace]]'hi' + 'bye'[[/]]. The backslash turns special characters into strings. Using \\’ or \\” will prevent the string from breaking."
+				},
+				{
+					"type": "image",
+					"src": "/data/modules/webdev-assets/img4/3-0.png",
+					"width": "40%"
+				},
+				{
+					"type": "text",
+					"content": "[[monospace]]\\n[[/]] for newline, [[monospace]]\r[[/]] for carriage return, and [[monospace]]\t[[/]] for tab are special characters."
+				},
+				{
+					"type": "text",
+					"content": "Template literals can allow substitution of variables and expression evaluation."
+				},
+				{
+					"type": "image",
+					"src": "/data/modules/webdev-assets/img4/3-1.png",
+					"width": "30%"
+				}
+			]
+		},
+		{
+			"title": "Week 3 - JavaScript Numbers, Booleans, Properties, and Arithmetic",
+			"type": "information",
+			"elements":
+			[
+				{
+					"type": "text",
+					"content": "Numbers can be any numeric value, stored as a 64 bit floating point (JS does not differentiate between integer, floats (decimal values), unsigned (only positive)/signed(can be both positive/negative), etc. unlike other languages). They range from -2^53 + 1 to 2^53 - 1. Operations with float/decimal numbers can have precision error because all floats are stored as an integer multiplied by 2 to the power of another integer (base 2) which can change the actual value. Comparison for floats: check if the difference of the two numbers is less than a precision threshold; ex. [[monospace]]Math.abs(x - y) < 0.0001;[[/]]"
+				},
+				{
+					"type": "text",
+					"content": "Booleans can only either be [[monospace]]true[[/]] or [[monospace]]false[[/]]. They are useful for if statements."
+				},
+				{
+					"type": "text",
+					"content": "The JavaScript console is a message/output window display for developers. It can be used for debugging and to show error/security/network messages. It's accessed in a browser by right clicking and hitting \"inspect\". Log a message to the console with [[monospace]]console.log('message')[[/]]. Clear the console with [[monospace]]console.clear()[[/]]."
+				},
+				{
+					"type": "text",
+					"content": "Properties are data contained by the instance of an object or type. An instance’s properties can be accessed using the dot operator (.) and the name of the property. For example, the [[monospace]]length[[/]] property of a string."
+				},
+				{
+					"type": "image",
+					"src": "/data/modules/webdev-assets/img4/4-0.png",
+					"width": "30%"
+				},
+				{
+					"type": "text",
+					"content": "JavaScript arithmetic operators evaluate mathematical expressions."
+				},
+				{
+					"type": "text",
+					"content": "  - Addition: [[monospace]]x + y[[/]]"
+				},
+				{
+					"type": "text",
+					"content": "  - Subtraction: [[monospace]]x - y[[/]]"
+				},
+				{
+					"type": "text",
+					"content": "  - Multiplication: [[monospace]]x * y[[/]]"
+				},
+				{
+					"type": "text",
+					"content": "  - Division: [[monospace]]x / y[[/]]"
+				},
+				{
+					"type": "text",
+					"content": "  - Remainder: [[monospace]]x % y[[/]]"
+				},
+				{
+					"type": "text",
+					"content": "  - Exponentiation: [[monospace]]x ** y[[/]]"
+				},
+				{
+					"type": "image",
+					"src": "/data/modules/webdev-assets/img4/4-1.png",
+					"width": "30%"
+				}
+			]
+		},
+		{
+			"title": "Week 3 - JavaScript Comparisons",
+			"type": "information",
+			"elements":
+			[
+				{
+					"type": "text",
+					"content": "JavaScript comparison objects compare values and return a boolean."
+				},
+				{
+					"type": "text",
+					"content": "  - Equal value: =="
+				},
+				{
+					"type": "text",
+					"content": "  - Equal value and type: ==="
+				},
+				{
+					"type": "text",
+					"content": "  - Not equal: !="
+				},
+				{
+					"type": "text",
+					"content": "  - Less than: <"
+				},
+				{
+					"type": "text",
+					"content": "  - Greater than: >"
+				},
+				{
+					"type": "text",
+					"content": "  - Less than or equal to: <="
+				},
+				{
+					"type": "text",
+					"content": "  - Greater than or equal to: >="
+				},
+				{
+					"type": "image",
+					"src": "/data/modules/webdev-assets/img4/5-0.png",
+					"width": "30%"
+				}
+			]
+		},
+		{
+			"type": "information",
+			"title": "Week 3 - JavaScript Conditionals",
+			"elements":
+			[
+				{
+					"type": "text",
+					"content": "Conditionals check if a condition is true and executes a code block if so."
+				},
+				{
+					"type": "image",
+					"src": "/data/modules/webdev-assets/img4/6-0.png",
+					"width":"20%"
+				},
+				{
+					"type": "image",
+					"src": "/data/modules/webdev-assets/img4/6-1.png",
+					"width":"40%"
+				},
+				{
+					"type": "text",
+					"content": "[[monospace]]else[[/]] and [[monospace]]else if[[/]] statements can be added to run code blocks if the if first conditional is false."
+				},
+				{
+					"type": "image",
+					"src": "/data/modules/webdev-assets/img4/6-2.png",
+					"width":"20%"
+				},
+				{
+					"type": "image",
+					"src": "/data/modules/webdev-assets/img4/6-3.png",
+					"width":"30%"
+				}
+			]
+		},
+		{
+			"title": "Week 3 - JavaScript Functions",
+			"type": "information",
+			"elements":
+			[
+				{
+					"type": "text",
+					"content": "Functions define a reusable block of code. They are efficient and improve code readibility. Instead of repeating code for the same action, functions can be used for the same results."
+				},
+				{
+					"type": "image",
+					"src": "/data/modules/webdev-assets/img4/7-0.png",
+					"width": "40%"
+				},
+				{
+					"type": "text",
+					"content": "This funciton can be called like [[monospace]]name('x', 'y')[[/]]."
+				}
+			]
+		},
+		{
+			"title": "Week 3 - DOM",
+			"type": "information",
+			"elements":
+			[
+				{
+					"type": "text",
+					"content": "The [[monospace]]document[[/]] object provides functionality for editing, retrieving, and detecting events in the HTML document. These are just a few common ways of editing HTML content, there are other methods to insert HTML or text into the document (innerText, createElement, etc.)"
+				},
+				{
+					"type": "image",
+					"src": "/data/modules/webdev-assets/img4/8-0.png"
+				},
+				{
+					"type": "image",
+					"src": "/data/modules/webdev-assets/img4/8-1.png"
+				}
+			]
+		},
+		{
+			"title": "Week 3 - jQuery",
+			"type": "information",
+			"elements":
+			[
+				{
+					"type": "text",
+					"content": "jQuery is most deployed JS library for many years (currently around 80% of the 10 million most popular websites use jQuery). It simplifies DOM manipulation/navigation, event-handling, CSS animation, Ajax, etc. and works on a wide range of browsers. To import jQuery, add the following script tag to your HTML:"
+				},
+				{
+					"type": "code",
+					"content": "<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js\"></script>"
+				},
+				{
+					"type": "image",
+					"src": "/data/modules/webdev-assets/img4/9-0.png" ,
+					"width": "45%"
 				}
 			]
 		}
