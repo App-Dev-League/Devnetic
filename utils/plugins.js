@@ -62,6 +62,13 @@ module.exports = {
         // this function does NOT return the plugins that are already downloaded, but instead returns all plugins that are available for download! (including ones that are downloaded)
         return [
             {
+                name: "Resizable Editor",
+                description: "This plugin allows you to resize the editor window, as well as re-arange the tabs.",
+                image: "/assets/plugins/betterEditor/betterEditor.png",
+                id: "betterEditor",
+                //https://interactjs.io/
+            },
+            {
                 name: "Brython",
                 description: "This plugin allows you to run python in the browser!",
                 image: "/assets/plugins/brython/brython.svg",
