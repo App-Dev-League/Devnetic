@@ -81,8 +81,9 @@
 	tApp.route("#/preview/html/<id>", async function (request) {
 		let id = request.data.id
 		let html = await Database.getCode(id);
+		if (!html) tApp.render("<h4>We couldn't find your file!</h4>")
 		html = html.replace(/"/g, '&quot;')
-		tApp.render(`<div><script></script><iframe id="preview" srcdoc="${html}" style="width: 100vw; height: calc(100vh - 50px); border: none; background: white; position: fixed; z-index: 500; top: 50px; left 0; display: block"></iframe></div>`);
+		tApp.render(`<div><style>header{display: none !important}</style><script></script><iframe id="preview" srcdoc="${html}" style="width: 100vw; height: 100vh; border: none; background: white; position: fixed; z-index: 500; top: 0; left 0; display: block"></iframe></div>`);
 	})
 	let modulePage = new ModulePage({
 		Database: Database
