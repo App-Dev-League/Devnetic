@@ -113,7 +113,7 @@ class SnippetsPanel extends tApp.Component {
 			return `<div class="snippet-block" id="snippet-id-${element.id}">
 			<span class="snippet-title" style="margin-bottom: 10px; display: block">${element.name}</span>
 				<div class="snippet-code pointer snippet-btn" style="margin-bottom: 20px" onclick='{{_this}}.parent.children[1].showModal("${element.id}")'>
-					${new codeBlock({ code: element.example, language: element.lang, name: element.name})}
+					${new codeBlock({ code: element.example, language: element.lang})}
 				</div>
 			</div>
 				`
