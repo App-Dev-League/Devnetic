@@ -78,6 +78,20 @@
 	tApp.route("#/learn/<track>/<module>/", async function(request) {
 		tApp.redirect(`#/learn/${request.data.track}/${request.data.module}/${await Database.getModulePosition(request.data.track, request.data.module)}/`);
 	});
+	window.DB = Database;
+	tApp.route("#/preview/html/<id>/autoupdate", async function (request) {
+		let id = request.data.id
+		let html = await Database.getCode(id);
+		if (!html) tApp.render("<h4>We couldn't find your file!</h4>")
+		html = html.replace(/"/g, '&quot;')
+		tApp.render(`<div>
+		<script>
+		window.addEventListener('storage', async function(event) {
+			document.getElementById("preview").srcdoc = await window.DB.getCode("${id}")
+		})
+		</script>
+		<style>header{display: none !important}</style><script></script><iframe id="preview" srcdoc="${html}" style="width: 100vw; height: 100vh; border: none; background: white; position: fixed; z-index: 500; top: 0; left 0; display: block"></iframe></div>`);
+	})
 	tApp.route("#/preview/html/<id>", async function (request) {
 		let id = request.data.id
 		let html = await Database.getCode(id);
