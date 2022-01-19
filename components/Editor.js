@@ -73,7 +73,9 @@ class Editor extends tApp.Component {
 						window.lastUpdatePreview = Date.now()
 
 						if (fileType === "html"){
-							if (document.getElementById("preview")) document.getElementById("preview").srcdoc = codeEditorHelper.getValue();
+							if (document.getElementById("preview")){
+								tApp.getComponentFromDOM(document.querySelector(".preview-wrapper")).parent.children[3].update(codeEditorHelper.getValue())
+							}
 						}
 					}
 					document.getElementById("code-frame").contentWindow.document.onkeydown =  async function (e) {
