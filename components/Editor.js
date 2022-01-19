@@ -2,7 +2,7 @@ const codeTemplateToCode = require("../utils/codeTemplateToCode.js");
 const codeEditorHelper = require("../utils/codeEditor.js");
 const DB = require("../utils/Database.js");
 const TabbedView = require("./TabbedView.js");
-
+const plugins = require("../utils/plugins.js");
 // ways to use codeEditorHelper: (all methods are synchronous)
 /*
 codeEditorHelper.updateLanguage("new language")
@@ -139,6 +139,11 @@ class Editor extends tApp.Component {
 						window.monacoAlreadyLoaded = true;
 						loadCodeFromDb()
 						addThings()
+						try {
+							plugins.load("betterEditor")
+						}catch(err){
+							
+						}
 					}
 				}, false);
 			}

@@ -35,6 +35,8 @@ class PluginPanel extends tApp.Component {
         }, function(){
             plugin.querySelector(".loading-bar-container").style.opacity = 0;
             pluginpanel.setState("update", "update")
+            let x = plugins.availablePlugins().find(plugin => plugin.id == id)
+            if (x.onInstall) eval(x.onInstall)
         })
     }
     uninstall(id){
