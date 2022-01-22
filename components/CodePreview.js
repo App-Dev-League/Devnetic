@@ -1,5 +1,6 @@
 const codeTemplateToCode = require("../utils/codeTemplateToCode.js");
 const codeEditorHelper = require("../utils/codeEditor.js");
+window.codeEditorHelper = codeEditorHelper
 const plugins = require("../utils/plugins.js");
 
 class CodePreview extends tApp.Component {

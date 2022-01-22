@@ -16,7 +16,10 @@ class Editor extends tApp.Component {
 		super(state, parent);
 	}
 	render(props) {
-
+		let languages = {
+			"html": "html",
+			"py": "python"
+		}
 		var parentThis = this
 		var tabindex = this.state.tabindex
 
@@ -170,12 +173,16 @@ sys.stderr = print
 			if (window.monacoAlreadyLoaded === true) {
 				loadCodeFromDb()
 				addThings()
+				let fileType = parentThis.parent.parent.data().storage_id[tabindex].split('.').pop().toLowerCase()
+				codeEditorHelper.updateLanguage(languages[fileType])
 			}else{
 				document.getElementById("code-frame").contentWindow.addEventListener("message", function (event) {
 					if (event.data.message === "monacoloaded") {
 						window.monacoAlreadyLoaded = true;
 						loadCodeFromDb()
 						addThings()
+						let fileType = parentThis.parent.parent.data().storage_id[tabindex].split('.').pop().toLowerCase()
+						codeEditorHelper.updateLanguage(languages[fileType])
 						try {
 							plugins.load("betterEditor")
 						}catch(err){
