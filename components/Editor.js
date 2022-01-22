@@ -132,7 +132,12 @@ sys.stderr = print
 							s.innerHTML = preScript+"\n"+codeEditorHelper.getValue();
 							s.classList = "queued-python-script";
 							document.body.appendChild(s)
-							plugins.load("brython")
+							try{
+								plugins.load("brython")
+							}catch(err){
+								window.consoleLogs.push(["We couldn't find the necessary plugins to run python files! Please install brython in the plugins panel."])
+								document.getElementById("console-bridge").click()
+							}
 							try{
 								brython({pythonpath: ["/assets/plugins/brython/modules/"], cache: true, debug: 1})
 							}catch(err){
@@ -192,7 +197,7 @@ sys.stderr = print
 				}, false);
 			}
 		}
-		return `<div>
+		return `<div id="code-editor-tab">
 		<div class="code-editor-options">
 			<span id="code-editor-status" style="display: inline-block; margin-left: 23px; margin-top: 10px;">Downloading code...</span>
 			<span id="code-editor-run-btn" class="home-module home-module-complete" style="margin: 0; width: fit-content; padding-left: 20px; padding-right: 20px; margin-left: 20px; position: relative; z-index: 10">Run</span>
