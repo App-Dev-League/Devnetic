@@ -16,8 +16,10 @@ class Editor extends tApp.Component {
 		super(state, parent);
 	}
 	render(props) {
+
 		var parentThis = this
 		var tabindex = this.state.tabindex
+
 		console.log("Editor number " + tabindex + " is rendering")
 		async function loadCodeFromDb() {
 			let text = await DB.getCode(parentThis.parent.parent.data().storage_id[tabindex]);
@@ -72,6 +74,11 @@ class Editor extends tApp.Component {
 						if (window.lastUpdatePreview + 100 > Date.now()) return;
 						window.lastUpdatePreview = Date.now()
 
+						if (window.lastTab !== tabindex) {
+							document.getElementById("console-bridge").dispatchEvent(new Event('change'));
+						}
+						window.lastTab = tabindex;
+
 						if (fileType === "html"){
 							if (document.getElementById("preview")) document.getElementById("preview").srcdoc = codeEditorHelper.getValue();
 						}else if (fileType === "cpp"){
@@ -98,7 +105,37 @@ class Editor extends tApp.Component {
 							var exitCode = JSCPP.run(code, input, config);
 							alert(output + "\nprogram exited with code " + exitCode);
 						}else if (fileType === "py"){
-							
+							document.getElementById("console-bridge").dispatchEvent(new Event('change'));
+							window.consoleLogs = []
+							try{
+								let remove = document.querySelector(".queued-python-script")
+								if (remove) remove.parentElement.removeChild(remove)
+								plugins.unload("brython")
+							}catch(err){}
+							let s = document.createElement("script");
+							window.consoleLogs.push(["Starting python emulator..."])
+							document.getElementById("console-bridge").click()
+							let preScript = `
+import sys
+import browser
+_print = print
+def print(*args, **kw):
+	browser.window.consoleLogs.append(args)
+	browser.window.document.getElementById("console-bridge").click()
+	_print(*args, **kw)
+sys.stderr = print
+							`
+							s.type = "text/python";
+							s.innerHTML = preScript+"\n"+codeEditorHelper.getValue();
+							s.classList = "queued-python-script";
+							document.body.appendChild(s)
+							plugins.load("brython")
+							try{
+								brython({pythonpath: ["/assets/plugins/brython/modules/"], cache: true, debug: 1})
+							}catch(err){
+								window.consoleLogs.push([err.toString(), err.stack])
+								document.getElementById("console-bridge").click()
+							}
 						}
 					}
 					document.getElementById("code-frame").contentWindow.document.onkeydown =  async function (e) {

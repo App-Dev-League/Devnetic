@@ -1,4 +1,5 @@
 function updateLanguage(language) {
+	if (!document.getElementById("code-frame")) return false
 	document.getElementById("code-frame").contentWindow.monaco.editor.setModelLanguage(document.getElementById("code-frame").contentWindow.monaco.editor.getModels()[0], language)
 	return true;
 }

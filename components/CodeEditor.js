@@ -60,7 +60,7 @@ class CodeEditor extends ModuleComponent {
 		if(this.data() != null) {
 			this.state.instructions.state.elements = this.data().elements;
 			this.state.instructions.state.hints = this.data().hints;
-			return `<div>
+			return `<div id="code-editor-component">
 						${this.state.editor}
 						<div class="vertical-divider"></div>
 						${this.state.tabbedView}

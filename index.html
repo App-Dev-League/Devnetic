@@ -801,6 +801,15 @@
 			background-color: #3498db;
 			transition: width 0.5s;
 		}
+    .preview-mode-console iframe {
+      display: none;
+    }
+    .preview-mode-console {
+      background-color: black !important;
+      padding: 20px;
+      color: white;
+      font-family: monospace;
+    }
   </style>
 </head>
 
@@ -841,6 +850,7 @@
     </div>
   </div>
   <script src="/config.js?v=3"></script>
+  <input id="console-bridge" style="width: 0; height: 0;">
 </body>
 
 </html>
@@ -868,6 +878,9 @@
 <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.3.1/styles/atom-one-dark.min.css">
 
 <script>
+
+  window.consoleLogs = []
+
   var observer = new MutationObserver(function(mutations) {
     setTimeout(function() {
       document.querySelectorAll(".generated-link").forEach(element => {
