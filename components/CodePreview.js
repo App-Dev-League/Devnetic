@@ -30,6 +30,14 @@ class CodePreview extends tApp.Component {
 					let input = document.createElement("input");
 					input.classList.add("console-input");
 					input.placeholder = "Type here. Press enter to send."
+					input.disabled = true;
+					input.addEventListener("keyup", function(event){
+						if (event.keyCode === 13) {
+							window.consoleLogs.push(["> " + input.value])
+							document.getElementById("console-bridge").click()
+							document.getElementById("python-execution-thread").contentWindow.document.getElementById("python-sandbox-bridge").click()
+						}
+					})
 					document.getElementById("preview-container").querySelector(".console-wrapper").appendChild(input)
 				}
 				let newLogs = window.consoleLogs[window.consoleLogs.length - 1];
@@ -50,7 +58,6 @@ class CodePreview extends tApp.Component {
 				document.getElementById("preview-container").querySelector(".console-wrapper").appendChild(t)
 				let wrapper = document.querySelector(".console-wrapper")
 				var isScrolledToBottom = wrapper.scrollHeight - wrapper.clientHeight <= wrapper.scrollTop + 40;
-				console.log(isScrolledToBottom)
 				if(isScrolledToBottom) wrapper.scrollTop = wrapper.scrollHeight - wrapper.clientHeight;
 			}
 			bridge.onchange = function () {

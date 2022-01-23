@@ -111,22 +111,37 @@ class Editor extends tApp.Component {
 							document.getElementById("console-bridge").dispatchEvent(new Event('change'));
 							window.consoleLogs = []
 							try{
-								let remove = document.querySelector(".queued-python-script")
-								if (remove) remove.parentElement.removeChild(remove)
+								let remove = document.querySelector("#python-execution-thread")
+								if (remove){
+									remove.parentElement.removeChild(remove)
+								}
 								plugins.unload("brython")
 							}catch(err){}
 							window.consoleLogs.push(["Starting python emulator..."])
 							document.getElementById("console-bridge").click()
+							let main = Math.random().toString(36).substring(7)
 							let preScript = `
 import sys
 import browser
+from browser import aio
 _print = print
 def print(*args, **kw):
 	browser.window.newLog(args)
-	_print(*args, **kw)
 sys.stderr = print
+async def input(text):
+	print(text)
+	browser.window.enableInput()
+	await aio.event(browser.window.document.getElementById("python-sandbox-bridge"), "click")
+	value = browser.window.getInput()
+	browser.window.disableInput()
+	return value
+async def ${main}():
 `
-let postScript = codeEditorHelper.getValue()
+const indentRegex = false ? /^/gm : /^(?!\s*$)/gm;
+let postScript = codeEditorHelper.getValue().replace(indentRegex, '    ').replace(/time\.sleep(?=(?:(?:[^"]*"){2})*[^"]*$)/g, "await aio.sleep").replace(/input(?=(?:(?:[^"]*"){2})*[^"]*$)/g, "await input")
+let pps = `
+aio.run(${main}())
+`
 							try{
 								if (!window.__BRYTHON__) {
 									plugins.load("brython")	
@@ -138,7 +153,8 @@ let postScript = codeEditorHelper.getValue()
 							}
 							try {
 								window.URL = window.URL || window.webkitURL;
-								let code =  preScript+"\n"+postScript
+								let code =  preScript+"\n"+postScript+"\n"+pps
+								console.log(code)
 								let pureJs = __BRYTHON__.python_to_js(code)
 								if (document.getElementById("python-execution-thread")){
 									let elem = document.getElementById("python-execution-thread")
@@ -149,7 +165,11 @@ let postScript = codeEditorHelper.getValue()
 								iframe.style.height = 0
 								iframe.id = "python-execution-thread"
 								iframe.srcdoc = `
-								<html></html>
+								<html>
+									<body>
+										<div id="python-sandbox-bridge"></div>
+									</body>
+								</html>
 								<script>
 								${plugins.getCode("brython")}
 								</script>
@@ -165,6 +185,16 @@ let postScript = codeEditorHelper.getValue()
 									window.document.getElementById("console-bridge").click()
 								}
 								iframe.contentWindow.pyjsCode = code
+								iframe.contentWindow.enableInput = function(){
+									document.querySelector(".console-input").disabled = false
+								}
+								iframe.contentWindow.disableInput = function(){
+									document.querySelector(".console-input").disabled = true
+									document.querySelector(".console-input").value = ""
+								}
+								iframe.contentWindow.getInput = function(){
+									return document.querySelector(".console-input").value
+								}
 							}catch(err){
 								window.consoleLogs.push([err.toString(), err.stack])
 								document.getElementById("console-bridge").click()
