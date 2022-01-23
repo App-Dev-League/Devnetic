@@ -19,6 +19,11 @@ module.exports = {
         console.log("Successfully loaded plugin " + pluginId);
         return true
     },
+    getCode(pluginId) {        
+        let plugin = localStorage.getItem("plugin::" + pluginId);
+        var code = LZString.decompressFromUTF16(plugin)
+        return code
+    },
     async download(pluginId, cont, done) {
         console.log("Starting download of plugin " + pluginId);
 

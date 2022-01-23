@@ -14,9 +14,19 @@ class CodePreview extends tApp.Component {
 				if (!document.getElementById("preview-container")) return;
 				document.getElementById("preview-container").classList = ["preview-mode-console"]
 				if (!document.getElementById("preview-container").querySelector(".console-wrapper")) {
-					let d = document.createElement("div");
-					d.className = "console-wrapper";
+					let d = document.createElement("pre");
+					d.classList = ["console-wrapper"];
 					document.getElementById("preview-container").appendChild(d)
+					let stop = document.createElement("button");
+					stop.classList = ["console-stop"];
+					stop.innerText = "Stop";
+					stop.onclick = function () {
+						let elem = document.getElementById("python-execution-thread")
+						elem.parentElement.removeChild(elem)
+						window.consoleLogs.push(["Forced python execution thread to quit"])
+						document.getElementById("console-bridge").click()
+					}
+					document.getElementById("preview-container").querySelector(".console-wrapper").appendChild(stop)
 				}
 				let newLogs = window.consoleLogs[window.consoleLogs.length - 1];
 				let t = document.createElement("span");
@@ -33,6 +43,8 @@ class CodePreview extends tApp.Component {
 					}
 				}
 				t.innerText = newLogs.join("  ");
+				//console.log(Math.random())
+				//document.getElementById("preview-container").querySelector(".console-wrapper").innerHTML = "\n\n\n\n"+Math.random()
 				document.getElementById("preview-container").querySelector(".console-wrapper").appendChild(t)
 			}
 			bridge.onchange = function () {

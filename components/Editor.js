@@ -115,7 +115,6 @@ class Editor extends tApp.Component {
 								if (remove) remove.parentElement.removeChild(remove)
 								plugins.unload("brython")
 							}catch(err){}
-							let s = document.createElement("script");
 							window.consoleLogs.push(["Starting python emulator..."])
 							document.getElementById("console-bridge").click()
 							let preScript = `
@@ -123,26 +122,53 @@ import sys
 import browser
 _print = print
 def print(*args, **kw):
-	browser.window.consoleLogs.append(args)
-	browser.window.document.getElementById("console-bridge").click()
+	browser.window.newLog(args)
 	_print(*args, **kw)
 sys.stderr = print
-							`
-							s.type = "text/python";
-							s.innerHTML = preScript+"\n"+codeEditorHelper.getValue();
-							s.classList = "queued-python-script";
-							document.body.appendChild(s)
+`
+let postScript = codeEditorHelper.getValue()
 							try{
-								plugins.load("brython")
+								if (!window.__BRYTHON__) {
+									plugins.load("brython")	
+									brython({pythonpath: ["/assets/plugins/brython/modules/"], cache: true, debug: 1})
+								}
 							}catch(err){
 								window.consoleLogs.push(["We couldn't find the necessary plugins to run python files! Please install brython in the plugins panel."])
 								document.getElementById("console-bridge").click()
 							}
-							try{
+							try {
+								window.URL = window.URL || window.webkitURL;
+								let code =  preScript+"\n"+postScript
+								let pureJs = __BRYTHON__.python_to_js(code)
+								if (document.getElementById("python-execution-thread")){
+									let elem = document.getElementById("python-execution-thread")
+									elem.parentElement.removeChild(elem)
+								}
+								let iframe = document.createElement("iframe")
+								iframe.style.width = 0
+								iframe.style.height = 0
+								iframe.id = "python-execution-thread"
+								iframe.srcdoc = `
+								<html></html>
+								<script>
+								${plugins.getCode("brython")}
+								</script>
+								<script>
 								brython({pythonpath: ["/assets/plugins/brython/modules/"], cache: true, debug: 1})
+								eval(__BRYTHON__.python_to_js(window.pyjsCode))
+								</script>
+								`
+								document.body.appendChild(iframe)
+								iframe.contentWindow.newLog = function(log){
+									console.log("python-log", log)
+									window.consoleLogs.push(log)
+									window.document.getElementById("console-bridge").click()
+								}
+								iframe.contentWindow.pyjsCode = code
 							}catch(err){
 								window.consoleLogs.push([err.toString(), err.stack])
 								document.getElementById("console-bridge").click()
+								throw err
 							}
 						}
 					}
