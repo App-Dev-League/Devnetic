@@ -27,6 +27,10 @@ class CodePreview extends tApp.Component {
 						document.getElementById("console-bridge").click()
 					}
 					document.getElementById("preview-container").querySelector(".console-wrapper").appendChild(stop)
+					let input = document.createElement("input");
+					input.classList.add("console-input");
+					input.placeholder = "Type here. Press enter to send."
+					document.getElementById("preview-container").querySelector(".console-wrapper").appendChild(input)
 				}
 				let newLogs = window.consoleLogs[window.consoleLogs.length - 1];
 				let t = document.createElement("span");
@@ -43,9 +47,11 @@ class CodePreview extends tApp.Component {
 					}
 				}
 				t.innerText = newLogs.join("  ");
-				//console.log(Math.random())
-				//document.getElementById("preview-container").querySelector(".console-wrapper").innerHTML = "\n\n\n\n"+Math.random()
 				document.getElementById("preview-container").querySelector(".console-wrapper").appendChild(t)
+				let wrapper = document.querySelector(".console-wrapper")
+				var isScrolledToBottom = wrapper.scrollHeight - wrapper.clientHeight <= wrapper.scrollTop + 40;
+				console.log(isScrolledToBottom)
+				if(isScrolledToBottom) wrapper.scrollTop = wrapper.scrollHeight - wrapper.clientHeight;
 			}
 			bridge.onchange = function () {
 				if (!document.getElementById("preview-container")) return;
@@ -89,7 +95,7 @@ class CodePreview extends tApp.Component {
 			};
 		}
 		if (document.getElementById("preview")) document.getElementById("preview").srcdoc = codeEditorHelper.getValue();
-		return `<div style="margin-top: 10px; height: 95%; background: white" id="preview-container"><iframe style="width: 98%; height: 100%" id="preview" srcdoc='Loading...'></iframe></div>`;
+		return `<div style="margin-top: 10px; height: 95%; background: white; overflow: hidden" id="preview-container"><iframe style="width: 98%; height: 100%" id="preview" srcdoc='Loading...'></iframe></div>`;
 	}
 }
 
