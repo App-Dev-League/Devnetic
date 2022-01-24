@@ -10,6 +10,16 @@ codeEditorHelper.updateContent("New content to be displayed")
 let value = codeEditorHelper.getValue()
 codeEditorHelper.insertAtCursor("asdf")
 */
+function makeid(length) {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * 
+ charactersLength));
+   }
+   return result;
+}
 
 class Editor extends tApp.Component {
 	constructor(state, parent) {
@@ -119,7 +129,7 @@ class Editor extends tApp.Component {
 							}catch(err){}
 							window.consoleLogs.push(["Starting python emulator..."])
 							document.getElementById("console-bridge").click()
-							let main = Math.random().toString(36).substring(7)
+							let main = makeid(10)
 							let preScript = `
 import sys
 import browser
@@ -139,6 +149,21 @@ async def ${main}():
 `
 const indentRegex = false ? /^/gm : /^(?!\s*$)/gm;
 let postScript = codeEditorHelper.getValue().replace(indentRegex, '    ').replace(/time\.sleep(?=(?:(?:[^"]*"){2})*[^"]*$)/g, "await aio.sleep").replace(/input(?=(?:(?:[^"]*"){2})*[^"]*$)/g, "await input")
+postScript = postScript.replace(/    def/g, "    async def")
+postScript = postScript.replace(/....[a-zA-Z]+\([^\)]*\)(\.[^\)]*\))?/g, function(matched){
+	console.log(matched)
+	if (matched.startsWith("def ")) return matched
+	
+	if (matched.slice(4).startsWith("print(")) return matched
+	if (matched.slice(4).startsWith("input(")) return matched
+	if (matched.slice(4).startsWith("int(")) return matched
+	if (matched.slice(4).startsWith("str(")) return matched
+	if (matched.slice(4).startsWith("range(")) return matched
+	if (matched.slice(4).startsWith("float(")) return matched
+	if (matched.slice(3).startsWith(".")) return matched
+	if (matched.startsWith("ait ")) return matched
+	return matched.substring(0, 4)+"await aio.run("+matched.slice(4)+")"
+})
 let pps = `
 aio.run(${main}())
 `
