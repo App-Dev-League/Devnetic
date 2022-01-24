@@ -83,6 +83,11 @@
 	window.DB = Database;
 	tApp.route("#/preview/html/<id>/autoupdate", async function (request) {
 		let id = request.data.id
+		if (!id.endsWith(".html")) {
+			return tApp.render(`
+			<h1>Error</h1>
+			<p>Currently, HTML files are only supported in window preview mode :(</p>`);	
+		}
 		let html = await Database.getCode(id);
 		if (!html) tApp.render("<h4>We couldn't find your file!</h4>")
 		html = html.replace(/"/g, '&quot;')

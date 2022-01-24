@@ -91,7 +91,11 @@ class Editor extends tApp.Component {
 							document.getElementById("console-bridge").dispatchEvent(new Event('change'));
 						}
 						window.lastTab = tabindex;
-
+						if (document.getElementById("preview")){
+							try{
+								tApp.getComponentFromDOM(document.querySelector(".preview-wrapper")).parent.children[3].update(codeEditorHelper.getValue())
+							} catch (err) {}
+						}
 						if (fileType === "html"){
 							if (document.getElementById("preview")) document.getElementById("preview").srcdoc = codeEditorHelper.getValue();
 						}else if (fileType === "cpp"){
