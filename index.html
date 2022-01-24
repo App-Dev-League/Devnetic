@@ -728,7 +728,7 @@
     }
 
     .snippet-title {
-      font-size: 1.5em;
+      margin-left: 10px;
       font-weight: bold;
     }
 
@@ -785,7 +785,6 @@
       border-radius: 10px;
       transform: translate(-50%, -50%);
       background-color: var(--darkgray);
-      opacity: 0.5;
       z-index: 100;
     }
     .loading-bar-container {
@@ -828,6 +827,13 @@
       color: white;
       border: none;
       border-bottom: 1px solid white;
+    .pop-out-icon-preview {
+      position: absolute;
+      width: 20px;
+      cursor: pointer;
+      right: 0;
+      top: -27%;
+      margin-top: 3px;
     }
   </style>
 </head>
@@ -846,6 +852,7 @@
   <tapp-main>
     <script>
       window.newFileCallback = function() {
+        window.downloadFileCount++
         document.getElementById("loading-filecount").innerHTML = window.downloadFileCount+"/23";
         document.getElementById("loading-loading-bar").style.width = (window.downloadFileCount/23)*100+"%";
       }

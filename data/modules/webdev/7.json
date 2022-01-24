@@ -231,6 +231,7 @@
 				"id": "expressjs-requests",
 				"example": "app.get(\"/endpointname\", (req, res) => {res.send(\"Hello World!\")})",
 				"html": "app.{{snippet.attributes.type}}(\"/endpointname\", (req, res) => {res.send(\"Hello World!\")})",
+				"category": "API",
 				"attributes":
 				[
 					{

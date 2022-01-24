@@ -275,6 +275,7 @@
 				"id": "functional-component",
 				"example": "function ComponentName() {\n    return <h1>Hello World</h1>\n}",
 				"html": "function {{snippet.attributes.name}}() {\n    return <h1>Hello World</h1>\n}</p>",
+				"category": "JSX",
 				"attributes":
 				[
 					{
@@ -296,6 +297,7 @@
 				"id": "class-component",
 				"example": "class ComponentName extends React.Component {\n    render(){\n         return <h1>Hello World</h1>\n    }\n}",
 				"html": "class {{snippet.attributes.name}} extends React.Component {\nrender(){\nreturn <h1>Hello World</h1>\n}\n}",
+				"category": "JSX",
 				"attributes":
 				[
 					{

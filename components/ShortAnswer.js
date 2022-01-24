@@ -33,7 +33,7 @@ class ShortAnswer extends ModuleComponent {
 			let returnStr = `<div>
 	<h1 class="mc-question">${tApp.escape(this.data().question || "")}</h1>
 	<div class="codeblock-wrapper mc-codeblock">
-		${new codeBlock({code: this.data().code || ""})}
+		${new codeBlock({code: this.data().code || "", language: this.data().lang, name: this.data().name})}
 
 	</div>
 	<div class="short-answer-container">
