@@ -1,0 +1,176 @@
+{
+	"type": "project",
+	"pages":
+	[
+		{
+			"type": "information",
+			"title": "Sample intro to python project",
+			"elements":
+			[
+				{
+					"type": "text",
+					"content": "There will be several practice problems in this slideshow for students to solve"
+				},
+				{
+					"type": "text",
+					"content": "The problem statement will be given in the first slide, and the second slide will code of a possible solution"
+				},
+				{
+					"type": "text",
+					"content": "Note: there are multiple ways to solve a problem, so if your code does not look exactly like the solution, make sure to check if the idea and the output of the code is the same"
+				}
+			]
+		},
+		{
+			"type": "code_editor",
+			"storage_id":
+			[
+				"introCs-0-0.py"
+			],
+			"files":
+			[
+				"problem_1.py"
+			],
+			"default":
+			[
+				"print(\"Hello World\")"
+			],
+			"display_type": "web",
+			"elements":
+			[
+				{
+					"type": "text",
+					"content": "Write code that prompts a user to enter a number as an input, and print out to the console 1 if the number is odd, and 0 if the number is even"
+				},
+				{
+					"type": "text",
+					"content": "Assume that 0 is even"
+				}
+			],
+			"hints":
+			[
+				{
+					"elements":
+					[
+						{
+							"type": "text",
+							"content": "Make sure to include a [[gray]]<!DOCTYPE>[[/]] first, then add opening and closing [[lightpurple]]<html>[[/]] tags. Within the two [[lightpurple]]<html>[[/]] tags, add an opening and closing [[lightpurple]]<head>[[/]] tag and then an opening and closing [[lightpurple]]<body>[[/]] tag."
+						}
+					]
+				},
+				{
+					"elements":
+					[
+						{
+							"type": "text",
+							"content": "Here is the solution:"
+						},
+						{
+							"type": "code",
+							"content": "<!DOCTYPE html>\n<html lang=\"en\">\n\t<head></head>\n\t<body></body>\n</html>"
+						}
+					]
+				}
+			],
+			"validation":
+			[
+				{
+					"validate": true,
+                    "type": "validate-output",
+					"actions":
+					[
+                        {
+                            "run": "introCs-0-0.py",
+                            "editorIndex": 0
+                        },
+						{
+                            "input": "0",
+                            "runwhen": "in 1 outputs"
+                        },
+                        {
+                            "expect": 0,
+                            "runwhen": "in 1 outputs",
+                            "filters": [
+                                "lowercase",
+                                "trim",
+                                "parseFloat"
+                            ],
+                            "onerror": "Expected output 0 for input 0"
+                        }
+					]
+				},
+                {
+					"validate": true,
+                    "type": "validate-output",
+					"actions":
+					[
+                        {
+                            "run": "introCs-0-0.py",
+                            "editorIndex": 0
+                        },
+                        {
+                            "input": "5",
+                            "runwhen": "in 1 outputs"
+                        },
+                        {
+                            "expect": 1,
+                            "runwhen": "in 1 outputs",
+                            "filters": [
+                                "lowercase",
+                                "trim",
+                                "parseFloat"
+                            ],
+                            "onerror": "Expected output 1 for input 5"
+                        }
+					]
+				},
+                {
+					"validate": true,
+                    "type": "validate-output",
+					"actions":
+					[
+                        {
+                            "run": "introCs-0-0.py",
+                            "editorIndex": 0
+                        },
+                        {
+                            "input": "4",
+                            "runwhen": "in 1 outputs"
+                        },
+                        {
+                            "expect": 0,
+                            "runwhen": "in 1 outputs",
+                            "filters": [
+                                "lowercase",
+                                "trim",
+                                "parseFloat"
+                            ],
+                            "onerror": "Expected output 0 for input 4"
+                        }
+					]
+				}
+			],
+			"points": 5,
+			"coins": 1
+		},
+		{
+			"type": "congratulations",
+			"title": "Congratulations!",
+			"elements":
+			[
+				{
+					"type": "text",
+					"content": "In this module, you learned how to create your own personal website using HTML!"
+				},
+				{
+					"type": "code",
+					"content": "[[gray]]<!DOCTYPE html>[[/]]\n[[lightpurple]]<html [[/]][[orange]]lang[[/]][[gray]]=[[/]][[/]][[green]]\"en\"[[/]][[lightpurple]]>[[/]][[/]]\n\t[[lightpurple]]<head>[[/]][[lightpurple]]</head>[[/]]\n\t[[lightpurple]]<body>[[/]][[lightpurple]]</body>[[/]]\n[[lightpurple]]</html>[[/]]"
+				},
+				{
+					"type": "text",
+					"content": "In the next module, you will learn about CSS so that you can make your websites look great!"
+				}
+			]
+		}
+	]
+}

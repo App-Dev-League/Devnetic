@@ -155,7 +155,6 @@ const indentRegex = false ? /^/gm : /^(?!\s*$)/gm;
 let postScript = codeEditorHelper.getValue().replace(indentRegex, '    ').replace(/time\.sleep(?=(?:(?:[^"]*"){2})*[^"]*$)/g, "await aio.sleep").replace(/input(?=(?:(?:[^"]*"){2})*[^"]*$)/g, "await input")
 postScript = postScript.replace(/    def/g, "    async def")
 postScript = postScript.replace(/....[a-zA-Z]+\([^\)]*\)(\.[^\)]*\))?/g, function(matched){
-	console.log(matched)
 	if (matched.startsWith("def ")) return matched
 	
 	if (matched.slice(4).startsWith("print(")) return matched
@@ -183,7 +182,7 @@ aio.run(${main}())
 							try {
 								window.URL = window.URL || window.webkitURL;
 								let code =  preScript+"\n"+postScript+"\n"+pps
-								console.log(code)
+								//console.log(code)
 								let pureJs = __BRYTHON__.python_to_js(code)
 								if (document.getElementById("python-execution-thread")){
 									let elem = document.getElementById("python-execution-thread")

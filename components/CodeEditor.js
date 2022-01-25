@@ -11,22 +11,22 @@ const PluginPanel = require("./PluginPanel.js")
 class CodeEditor extends ModuleComponent {
 	constructor(state, parent) {
 		super(state, parent);
-		if(this.state.editor == null) {
+		if (this.state.editor == null) {
 			this.state.editor = new Editor({}, this);
 		}
-		if(this.state.snippetsPanel == null) {
+		if (this.state.snippetsPanel == null) {
 			this.state.snippetsPanel = new SnippetsPanel({}, this);
 		}
-		if(this.state.instructions == null) {
+		if (this.state.instructions == null) {
 			this.state.instructions = new Instructions({}, this);
 		}
-		if(this.state.codePreview == null) {
+		if (this.state.codePreview == null) {
 			this.state.codePreview = new CodePreview({}, this);
 		}
-		if(this.state.pluginPanel == null) {
+		if (this.state.pluginPanel == null) {
 			this.state.pluginPanel = new PluginPanel({}, this);
 		}
-		if(this.state.tabbedView == null) {
+		if (this.state.tabbedView == null) {
 			// this.state.tabbedView = new TabbedView({
 			// 	tabs: [{
 			// 		name: "Instructions",
@@ -56,8 +56,105 @@ class CodeEditor extends ModuleComponent {
 			}, this);
 		}
 	}
+	async checknext() {
+		function sleep(ms) {
+			return new Promise(resolve => setTimeout(resolve, ms));
+		}
+		let parentThis = this;
+		async function main() {
+			function waitForXInputs(count) {
+				return new Promise((resolve, reject) => {
+					let soFar = 0;
+					let elem = document.querySelector(".console-wrapper");
+					console.log("asdf", elem)
+					const callback = function (mutationsList, observer) {
+						let changed = false;
+						for (let mutation of mutationsList) {
+							if (mutation.type === 'childList') {
+								changed = true
+							}
+						}
+						if (changed === true) soFar++;
+						if (soFar === count) {
+							resolve(true)
+							observer.disconnect()
+						}
+					};
+
+					const observer = new MutationObserver(callback);
+					observer.observe(elem, { childList: true, subtree: true });
+				})
+			}
+			let data = parentThis.data()
+			let good = true;
+			for (let i in data.validation) {
+				let tester = data.validation[i]
+				if (tester.validate !== true) continue;
+				for (let p in tester.actions) {
+					let action = tester.actions[p];
+					console.log(action)
+					let runwhen = action.runwhen
+					if (action.run) {
+						let index = action.editorIndex
+						// switching to correct editor
+						document.querySelectorAll(".project-module-tabs")[0].children[0].children[index].click()
+						// switching to the preview tab
+						document.querySelectorAll(".project-module-tabs")[1].children[0].children[1].click()
+						window.consoleLogs.push(["Launching tester..."])
+						document.getElementById("console-bridge").click()
+						// clicking run btn
+						document.getElementById("code-editor-run-btn").click()
+						await sleep(1000)
+					} else if (action.input) {
+						if (runwhen.startsWith("in") && runwhen.endsWith("outputs")) {
+							runwhen = parseInt(runwhen.replace("in", "").replace("outputs", ""))
+							await waitForXInputs(runwhen)
+						}
+						document.querySelector(".console-input").value = action.input
+						// pressing enter key
+						let ke = new KeyboardEvent('keyup', {
+							bubbles: true, cancelable: true, keyCode: 13
+						});
+						document.querySelector(".console-input").dispatchEvent(ke);
+					} else if (action.expect) {
+						if (runwhen.startsWith("in") && runwhen.endsWith("outputs")) {
+							runwhen = parseInt(runwhen.replace("in", "").replace("outputs", ""))
+							await waitForXInputs(runwhen)
+						}
+						let latest = window.consoleLogs[window.consoleLogs.length - 1]
+						if (action.filters) {
+							action.filters.forEach(element => {
+								if (element === "lowerCase") latest = latest.toLowerCase()
+								if (element === "trim") latest = latest.toString().trim()
+								if (element === "parseFloat") latest = parseFloat(latest)
+								if (element === "parseInt") latest = parseInt(latest)
+								if (element === "number") latest = Number(latest)
+							})
+						}
+						if (latest !== action.expect) {
+							good = false;
+							window.consoleLogs.push(["Tester returned following problems: " + action.onerror])
+							document.getElementById("console-bridge").click()
+							return false;
+						}
+					}
+				}
+			}
+			return true;
+		}
+		let results = await main()
+		if (results === false) {
+			window.consoleLogs.push(["Test cases failed :( try re-writing your code."])
+			document.getElementById("console-bridge").click()
+		}else{
+			window.consoleLogs.push(["Test cases passed! Moving you to the next lesson..."])
+			document.getElementById("console-bridge").click()
+			await sleep(1000)
+			parentThis.parent.next()
+		}
+	}
 	render(props) {
-		if(this.data() != null) {
+		if (this.data() != null) {
 			this.state.instructions.state.elements = this.data().elements;
 			this.state.instructions.state.hints = this.data().hints;
 			return `<div id="code-editor-component">
