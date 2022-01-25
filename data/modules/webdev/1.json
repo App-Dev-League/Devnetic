@@ -115,7 +115,7 @@
 				},
 				{
 					"type": "code",
-					"content": "[[gray]]<!DOCTYPE html>[[/]]\n[[lightpurple]]<html [[/]][[orange]]lang[[/]][[gray]]=[[/]][[/]][[green]]\"en\"[[/]][[lightpurple]]>[[/]][[/]]\n\t[[lightpurple]]<head>[[/]][[lightpurple]]</head>[[/]]\n\t[[lightpurple]]<body>[[/]][[lightpurple]]</body>[[/]]\n[[lightpurple]]</html>[[/]]"
+					"content": "<!DOCTYPE html>\n<html lang=\"en\">\n\t<head></head>\n\t<body></body>\n</html>"
 				},
 				{
 					"type": "text",
