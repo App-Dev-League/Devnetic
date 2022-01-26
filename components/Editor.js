@@ -157,12 +157,12 @@ postScript = postScript.replace(/    def/g, "    async def")
 postScript = postScript.replace(/....[a-zA-Z]+\([^\)]*\)(\.[^\)]*\))?/g, function(matched){
 	if (matched.startsWith("def ")) return matched
 	
-	if (matched.slice(4).startsWith("print(")) return matched
-	if (matched.slice(4).startsWith("input(")) return matched
-	if (matched.slice(4).startsWith("int(")) return matched
-	if (matched.slice(4).startsWith("str(")) return matched
-	if (matched.slice(4).startsWith("range(")) return matched
-	if (matched.slice(4).startsWith("float(")) return matched
+	let builtins = ["abs(","aiter(","all(","any(","anext(","ascii(","bin(","bool(","breakpoint(","bytearray(","bytes(","callable(","chr(","classmethod(","compile(","complex(","delattr(","dict(","dir(","divmod(","enumerate(","eval(","exec(","filter(","float(","format(","frozenset(","getattr(","globals(","hasattr(","hash(","help(","hex(","id(","input(","int(","isinstance(","issubclass(","iter(","len(","list(","locals(","map(","max(","memoryview(","min(","next(","object(","oct(","open(","ord(","pow(","print(","property(","range(","repr(","reversed(","round(","set(","setattr(","slice(","sorted(","staticmethod(","str(","sum(","super(","tuple(","type(","vars("]
+
+	for (let i in builtins){
+		if (matched.slice(4).startsWith(builtins[i])) return matched
+	}
+
 	if (matched.slice(3).startsWith(".")) return matched
 	if (matched.startsWith("ait ")) return matched
 	return matched.substring(0, 4)+"await aio.run("+matched.slice(4)+")"
@@ -170,6 +170,8 @@ postScript = postScript.replace(/....[a-zA-Z]+\([^\)]*\)(\.[^\)]*\))?/g, functio
 let pps = `
 aio.run(${main}())
 `
+
+
 							try{
 								if (!window.__BRYTHON__) {
 									plugins.load("brython")	
