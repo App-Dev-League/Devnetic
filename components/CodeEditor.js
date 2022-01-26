@@ -93,7 +93,6 @@ class CodeEditor extends ModuleComponent {
 				if (tester.validate !== true) continue;
 				for (let p in tester.actions) {
 					let action = tester.actions[p];
-					console.log(action)
 					let runwhen = action.runwhen
 					if (action.run) {
 						let index = action.editorIndex
@@ -122,6 +121,7 @@ class CodeEditor extends ModuleComponent {
 						if (runwhen.startsWith("in") && runwhen.endsWith("outputs")) {
 							runwhen = parseInt(runwhen.replace("in", "").replace("outputs", ""))
 							logIndex += runwhen
+							console.log(runwhen)
 							await waitForXInputs(runwhen)
 						}
 						console.log("logindex",logIndex+1)

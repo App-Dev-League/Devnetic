@@ -265,6 +265,43 @@
                             "onerror": "Expected output 0 for inputs 10 and 2"
                         }
 					]
+				},
+                {
+					"validate": true,
+                    "type": "validate-output",
+					"actions":
+					[
+                        {
+                            "run": "introCs-0-1.py",
+                            "editorIndex": 0
+                        },
+						{
+                            "input": "50",
+                            "runwhen": "in 1 outputs"
+                        },
+						{
+                            "input": "9",
+                            "runwhen": "in 1 outputs"
+                        },
+                        {
+                            "expect": 5,
+                            "runwhen": "in 1 outputs",
+                            "filters": [
+                                "extract_numbers",
+                                "parseFloat"
+                            ],
+                            "onerror": "Expected output 5 for inputs 50 and 9"
+                        },
+                        {
+                            "expect": 5,
+                            "runwhen": "immediately",
+                            "filters": [
+                                "extract_numbers",
+                                "parseFloat"
+                            ],
+                            "onerror": "Expected output 0 for inputs 50 and 9"
+                        }
+					]
 				}
 			],
 			"points": 5,
