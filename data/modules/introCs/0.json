@@ -110,13 +110,13 @@
                         },
                         {
                             "expect": 1,
-                            "runwhen": "in 1 outputs",
+                            "runwhen": "in 2 outputs",
                             "filters": [
                                 "lowercase",
                                 "trim",
                                 "parseFloat"
                             ],
-                            "onerror": "Expected output 1 for input 5"
+                            "onerror": "Expected output 1 for input 5 but instead got {{output}}"
                         }
                     ]
                 },
@@ -217,7 +217,7 @@
                         },
                         {
                             "input": "10",
-                            "runwhen": "in 2 outputs"
+                            "runwhen": "in 1 outputs"
                         },
                         {
                             "input": "2",
@@ -225,7 +225,7 @@
                         },
                         {
                             "expect": 5,
-                            "runwhen": "in 1 outputs",
+                            "runwhen": "in 2 outputs",
                             "filters": [
                                 "extract_numbers",
                                 "parseFloat"
@@ -314,8 +314,7 @@
                         },
                         {
                             "setVar": "listLength",
-                            "runwhen": "in 2 outputs",
-                            "add": -1,
+                            "runwhen": "in 1 outputs",
                             "filters": [
                                 "extract_numbers",
                                 "parseFloat"
@@ -328,7 +327,6 @@
                         {
                             "expect": "number",
                             "runwhen": "in 1 outputs",
-                            "add": -1,
                             "filters": [
                                 "extract_numbers",
                                 "parseFloat",

@@ -53,8 +53,7 @@ module.exports = {
     },
     unload(pluginId){
         var element = document.getElementById("plugin-" + pluginId)
-        console.log(element)
-        if (!element) throw "Error: plugin "+pluginId+" was never loaded@"
+        if (!element) throw "Error: plugin "+pluginId+" was never loaded"
         element.remove()
         delete window.pluginList[pluginId];
         console.log("Successfully unloaded plugin " + pluginId);

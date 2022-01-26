@@ -34,6 +34,7 @@ class CodePreview extends tApp.Component {
 						elem.parentElement.removeChild(elem)
 						window.consoleLogs.push(["Forced python execution thread to quit"])
 						document.getElementById("console-bridge").click()
+						if (window.newLogCallback) window.newLogCallback(["Forced python execution thread to quit"])
 					}
 					document.getElementById("preview-container").querySelector(".console-wrapper").appendChild(stop)
 					let input = document.createElement("input");
@@ -44,6 +45,7 @@ class CodePreview extends tApp.Component {
 						if (event.keyCode === 13) {
 							window.consoleLogs.push(["> " + input.value])
 							document.getElementById("console-bridge").click()
+							if (window.newLogCallback) window.newLogCallback(["> " + input.value])
 							document.getElementById("python-execution-thread").contentWindow.document.getElementById("python-sandbox-bridge").click()
 						}
 					})

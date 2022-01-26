@@ -61,11 +61,41 @@ class CodeEditor extends ModuleComponent {
 			return new Promise(resolve => setTimeout(resolve, ms));
 		}
 		let parentThis = this;
+		var stopManagingQueue = false;
 		async function main() {
-			function waitForXInputs(count) {
+			window.newLogCallback = function(msg){
+				if (!window.logQueue) window.logQueue = []
+				logQueue.push(msg)
+			}
+			async function manageLogQueue(){
+				while (true) {
+					await sleep(20);
+					if (stopManagingQueue) break;
+					if (window.logQueue.length > 0) {
+						let msg = window.logQueue.shift()
+						if (window.newLogListener) window.newLogListener(msg)
+					}
+				}
+			}
+			manageLogQueue();
+			function waitForXInputs(count, elem, debug) {
 				return new Promise((resolve, reject) => {
 					let soFar = 0;
-					let elem = document.querySelector(".console-wrapper");
+					if (!elem) elem = document.querySelector(".console-wrapper"); 
+					const callback = function (mutationsList, observer) {
+						let changed = true;
+						if (changed === true) soFar++;
+						if (soFar === count) {
+							resolve(true)
+						}
+					};
+					window.newLogListener = callback;
+				})
+			}
+			function waitForChildChanges(count, elem, debug) {
+				return new Promise((resolve, reject) => {
+					let soFar = 0;
+					if (!elem) elem = document.querySelector(".console-wrapper"); 
 					const callback = function (mutationsList, observer) {
 						let changed = false;
 						for (let mutation of mutationsList) {
@@ -74,6 +104,7 @@ class CodeEditor extends ModuleComponent {
 							}
 						}
 						if (changed === true) soFar++;
+						if (debug === true) console.log("Current sofar: "+soFar)
 						if (soFar === count) {
 							resolve(true)
 							observer.disconnect()
@@ -119,20 +150,25 @@ class CodeEditor extends ModuleComponent {
 						document.querySelectorAll(".project-module-tabs")[1].children[0].children[1].click()
 						window.consoleLogs.push(["Launching tester..."])
 						document.getElementById("console-bridge").click()
+						if (window.newLogCallback) window.newLogCallback(["Launching tester..."])
 						// clicking run btn
 						document.getElementById("code-editor-run-btn").click()
-						await sleep(1000)
+						await waitForChildChanges(1, document.querySelectorAll(".selected-tab")[1])
+						await waitForChildChanges(1, document.getElementById("preview-container"))
 					} else if (action.input) {
 						if (runwhen.startsWith("in") && runwhen.endsWith("outputs")) {
 							runwhen = parseInt(runwhen.replace("in", "").replace("outputs", ""))
 							logIndex += runwhen
+							console.log("wating"+runwhen)
 							await waitForXInputs(runwhen)
+							console.log("done wating ")
 						}
 						action.input = action.input.replaceAll(/(?<={{)(.*)(?=}})/g, function(e) {
 							let tmpFunction = new Function("testVars", `return ${e}`)
 							console.log(tmpFunction(testVars))
 							return tmpFunction(testVars)
 						}).replaceAll("{{", "").replaceAll("}}", "")
+						await sleep(100)
 						document.querySelector(".console-input").value = action.input
 						// pressing enter key
 						let ke = new KeyboardEvent('keyup', {
@@ -143,11 +179,11 @@ class CodeEditor extends ModuleComponent {
 						if (runwhen.startsWith("in") && runwhen.endsWith("outputs")) {
 							runwhen = parseInt(runwhen.replace("in", "").replace("outputs", ""))
 							logIndex += runwhen
-							console.log(runwhen)
-							await waitForXInputs(runwhen)
+							console.log("waiting for "+runwhen)
+							await waitForXInputs(runwhen, undefined, true)
+							console.log("done waiting for it")
 						}
 						if (!action.add) action.add = 1
-						console.log("logindex",logIndex+action.add)
 						let latest = window.consoleLogs[logIndex+action.add]
 						if (action.filters) {
 							latest = applyFilters(action.filters, latest)
@@ -156,17 +192,15 @@ class CodeEditor extends ModuleComponent {
 							good = false;
 							window.consoleLogs.push(["Tester returned following problems: " + action.onerror.replaceAll("{{output}}", latest)])
 							document.getElementById("console-bridge").click()
+							if (window.newLogCallback) window.newLogCallback(["Tester returned following problems: " + action.onerror.replaceAll("{{output}}", latest)])
 							return false;
 						}
 					} else if (action.setVar) {
 						if (runwhen.startsWith("in") && runwhen.endsWith("outputs")) {
 							runwhen = parseInt(runwhen.replace("in", "").replace("outputs", ""))
-							logIndex += runwhen
-							console.log(runwhen)
 							await waitForXInputs(runwhen)
 						}
 						if (!action.add) action.add = 1
-						console.log("logindex",logIndex+action.add)
 						let latest = window.consoleLogs[logIndex+action.add]
 						if (action.filters) {
 							latest = applyFilters(action.filters, latest)
@@ -178,12 +212,15 @@ class CodeEditor extends ModuleComponent {
 			return true;
 		}
 		let results = await main()
+		stopManagingQueue = true
 		if (results === false) {
 			window.consoleLogs.push(["Test cases failed :( try re-writing your code."])
 			document.getElementById("console-bridge").click()
+			if (window.newLogCallback) window.newLogCallback(["Test cases failed :( try re-writing your code."])
 		}else{
 			window.consoleLogs.push(["Test cases passed! Moving you to the next lesson..."])
 			document.getElementById("console-bridge").click()
+			if (window.newLogCallback) window.newLogCallback(["Test cases passed! Moving you to the next lesson..."])
 			await sleep(1000)
 			parentThis.parent.next()
 		}

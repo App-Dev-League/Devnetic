@@ -60,6 +60,8 @@ class Editor extends tApp.Component {
 			}
 			loadCode();
 			function addEvent() {
+				if (window.addedEditorEventListeners) return
+				window.addedEditorEventListeners = true;
 				try {
 					codeEditorHelper.setCurrentEditorIndex(tabindex)
 					document.querySelectorAll(".tab").forEach(element => {
@@ -70,7 +72,7 @@ class Editor extends tApp.Component {
 					function handleClicks() {
 						setTimeout(function () {
 							let fileType = parentThis.parent.parent.data().storage_id[tabindex].split('.').pop().toLowerCase()
-							updatePreview(fileType)
+							if (fileType === "html") updatePreview(fileType)
 						}, 100)
 					}
 					document.getElementById("code-editor-run-btn").onclick = async function () {
@@ -132,7 +134,9 @@ class Editor extends tApp.Component {
 								plugins.unload("brython")
 							}catch(err){}
 							window.consoleLogs.push(["Starting python emulator..."])
+							console.log("Starting python emulator")
 							document.getElementById("console-bridge").click()
+							if (window.newLogCallback) window.newLogCallback(["Starting python emulator..."])
 							let main = makeid(10)
 							let preScript = `
 import sys
@@ -180,6 +184,7 @@ aio.run(${main}())
 							}catch(err){
 								window.consoleLogs.push(["We couldn't find the necessary plugins to run python files! Please install brython in the plugins panel."])
 								document.getElementById("console-bridge").click()
+								if (window.newLogCallback) window.newLogCallback(["We couldn't find the necessary plugins to run python files! Please install brython in the plugins panel."])
 							}
 							try {
 								window.URL = window.URL || window.webkitURL;
@@ -213,6 +218,7 @@ aio.run(${main}())
 									console.log("python-log", log)
 									window.consoleLogs.push(log)
 									window.document.getElementById("console-bridge").click()
+									if (window.newLogCallback) window.newLogCallback(log)
 								}
 								iframe.contentWindow.pyjsCode = code
 								iframe.contentWindow.enableInput = function(){
@@ -228,6 +234,7 @@ aio.run(${main}())
 							}catch(err){
 								window.consoleLogs.push([err.toString(), err.stack])
 								document.getElementById("console-bridge").click()
+								if (window.newLogCallback) window.newLogCallback([err.toString(), err.stack])
 								throw err
 							}
 						}
