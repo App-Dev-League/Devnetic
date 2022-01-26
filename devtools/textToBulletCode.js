@@ -12,8 +12,9 @@ Just copy everything, and it should be visible in VS CODE or you're favorite cod
 //     Allows to dynamically render content
 // `
 var text = `
-Finally, import and use a non-existent (for now) component called component1. Pass a prop to it called onChangeParent with value of {this.handleChanges} 
-Congrats! Now, inside component1, once you call this.props.onChangeParent(“newStateValue”), it will update the states in the parent component!
+Create a list of numbers that is a random length
+Prompt the user to select an element within the range of the list (don’t manually count list and type the number, use python function in the command)
+Print out the element of the list the user selected
 `
 
 String.prototype.replaceAll = function (find, replace) {

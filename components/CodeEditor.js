@@ -84,10 +84,27 @@ class CodeEditor extends ModuleComponent {
 					observer.observe(elem, { childList: true, subtree: true });
 				})
 			}
+			function applyFilters(filters, latest) {
+				filters.forEach(element => {
+					if (element === "lowerCase") latest = latest.toLowerCase()
+					if (element === "trim") latest = latest.toString().trim()
+					if (element === "parseFloat") latest = parseFloat(latest)
+					if (element === "parseInt") latest = parseInt(latest)
+					if (element === "number") latest = Number(latest)
+					if (element === "extract_numbers") {
+						var numberPattern = /\d+/g;
+						latest = latest.toString().match( numberPattern )[0]
+					}
+					if (element === "typeof") latest = typeof latest
+				})
+				return latest;
+			}
 			let data = parentThis.data()
 			let good = true;
-			let logIndex = 0
+			let logIndex = 0;
+			var testVars = {};
 			for (let i in data.validation) {
+				testVars = {}
 				logIndex = 0
 				let tester = data.validation[i]
 				if (tester.validate !== true) continue;
@@ -111,6 +128,11 @@ class CodeEditor extends ModuleComponent {
 							logIndex += runwhen
 							await waitForXInputs(runwhen)
 						}
+						action.input = action.input.replaceAll(/(?<={{)(.*)(?=}})/g, function(e) {
+							let tmpFunction = new Function("testVars", `return ${e}`)
+							console.log(tmpFunction(testVars))
+							return tmpFunction(testVars)
+						}).replaceAll("{{", "").replaceAll("}}", "")
 						document.querySelector(".console-input").value = action.input
 						// pressing enter key
 						let ke = new KeyboardEvent('keyup', {
@@ -124,27 +146,32 @@ class CodeEditor extends ModuleComponent {
 							console.log(runwhen)
 							await waitForXInputs(runwhen)
 						}
-						console.log("logindex",logIndex+1)
-						let latest = window.consoleLogs[logIndex+1]
+						if (!action.add) action.add = 1
+						console.log("logindex",logIndex+action.add)
+						let latest = window.consoleLogs[logIndex+action.add]
 						if (action.filters) {
-							action.filters.forEach(element => {
-								if (element === "lowerCase") latest = latest.toLowerCase()
-								if (element === "trim") latest = latest.toString().trim()
-								if (element === "parseFloat") latest = parseFloat(latest)
-								if (element === "parseInt") latest = parseInt(latest)
-								if (element === "number") latest = Number(latest)
-								if (element === "extract_numbers") {
-									var numberPattern = /\d+/g;
-									latest = latest.toString().match( numberPattern )[0]
-								}
-							})
+							latest = applyFilters(action.filters, latest)
 						}
 						if (latest !== action.expect) {
 							good = false;
-							window.consoleLogs.push(["Tester returned following problems: " + action.onerror])
+							window.consoleLogs.push(["Tester returned following problems: " + action.onerror.replaceAll("{{output}}", latest)])
 							document.getElementById("console-bridge").click()
 							return false;
 						}
+					} else if (action.setVar) {
+						if (runwhen.startsWith("in") && runwhen.endsWith("outputs")) {
+							runwhen = parseInt(runwhen.replace("in", "").replace("outputs", ""))
+							logIndex += runwhen
+							console.log(runwhen)
+							await waitForXInputs(runwhen)
+						}
+						if (!action.add) action.add = 1
+						console.log("logindex",logIndex+action.add)
+						let latest = window.consoleLogs[logIndex+action.add]
+						if (action.filters) {
+							latest = applyFilters(action.filters, latest)
+						}
+						testVars[action.setVar] = latest
 					}
 				}
 			}

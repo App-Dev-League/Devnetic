@@ -1,97 +1,86 @@
 {
-	"type": "project",
-	"pages":
-	[
-		{
-			"type": "information",
-			"title": "Sample intro to python project",
-			"elements":
-			[
-				{
-					"type": "text",
-					"content": "There will be several practice problems in this slideshow for students to solve"
-				},
-				{
-					"type": "text",
-					"content": "The problem statement will be given in the first slide, and the second slide will code of a possible solution"
-				},
-				{
-					"type": "text",
-					"content": "Note: there are multiple ways to solve a problem, so if your code does not look exactly like the solution, make sure to check if the idea and the output of the code is the same"
-				}
-			]
-		},
-		{
-			"type": "code_editor",
-			"storage_id":
-			[
-				"introCs-0-0.py"
-			],
-			"files":
-			[
-				"problem_1.py"
-			],
-			"default":
-			[
-				"print(\"Hello World\")"
-			],
-			"display_type": "web",
-			"elements":
-			[
-				{
-					"type": "text",
-					"content": "Write code that prompts a user to enter a number as an input, and print out to the console 1 if the number is odd, and 0 if the number is even"
-				},
-				{
-					"type": "text",
-					"content": "Assume that 0 is even"
-				}
-			],
-			"hints":
-			[
-				{
-					"elements":
-					[
-						{
-							"type": "text",
-							"content": "The python syntax for getting user input is yourVariable = input(\"your prompt\")"
-						},
+    "type": "project",
+    "pages": [
+        {
+            "type": "information",
+            "title": "Sample intro to python project",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "There will be several practice problems in this slideshow for students to solve"
+                },
+                {
+                    "type": "text",
+                    "content": "The problem statement will be given in the first slide, and the second slide will code of a possible solution"
+                },
+                {
+                    "type": "text",
+                    "content": "Note: there are multiple ways to solve a problem, so if your code does not look exactly like the solution, make sure to check if the idea and the output of the code is the same"
+                }
+            ]
+        },
+        {
+            "type": "code_editor",
+            "storage_id": [
+                "introCs-0-0.py"
+            ],
+            "files": [
+                "problem_1.py"
+            ],
+            "default": [
+                "print(\"Hello World\")"
+            ],
+            "display_type": "web",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "Write code that prompts a user to enter a number as an input, and print out to the console 1 if the number is odd, and 0 if the number is even"
+                },
+                {
+                    "type": "text",
+                    "content": "Assume that 0 is even"
+                }
+            ],
+            "hints": [
+                {
+                    "elements": [
                         {
-							"type": "text",
-							"content": "The python syntax for turning strings to integers is int(\"number\")"
-						},
+                            "type": "text",
+                            "content": "The python syntax for getting user input is yourVariable = input(\"your prompt\")"
+                        },
                         {
-							"type": "text",
-							"content": "The python syntax for getting remainder remainder = number % anotherNumber"
-						}
-					]
-				},
-				{
-					"elements":
-					[
-						{
-							"type": "text",
-							"content": "Here is the solution:"
-						},
-						{
-							"type": "code",
-							"content": "<!DOCTYPE html>\n<html lang=\"en\">\n\t<head></head>\n\t<body></body>\n</html>"
-						}
-					]
-				}
-			],
-			"validation":
-			[
-				{
-					"validate": true,
+                            "type": "text",
+                            "content": "The python syntax for turning strings to integers is int(\"number\")"
+                        },
+                        {
+                            "type": "text",
+                            "content": "The python syntax for getting remainder remainder = number % anotherNumber"
+                        }
+                    ]
+                },
+                {
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "Here is the solution:"
+                        },
+                        {
+                            "type": "code",
+                            "content": "<!DOCTYPE html>\n<html lang=\"en\">\n\t<head></head>\n\t<body></body>\n</html>"
+                        }
+                    ]
+                }
+            ],
+            "validation": [
+                {
+                    "validate": true,
                     "type": "validate-output",
-					"actions":
-					[
+                    "actions": [
                         {
                             "run": "introCs-0-0.py",
                             "editorIndex": 0
                         },
-						{
+                        {
                             "input": "0",
                             "runwhen": "in 1 outputs"
                         },
@@ -105,13 +94,12 @@
                             ],
                             "onerror": "Expected output 0 for input 0"
                         }
-					]
-				},
+                    ]
+                },
                 {
-					"validate": true,
+                    "validate": true,
                     "type": "validate-output",
-					"actions":
-					[
+                    "actions": [
                         {
                             "run": "introCs-0-0.py",
                             "editorIndex": 0
@@ -130,13 +118,12 @@
                             ],
                             "onerror": "Expected output 1 for input 5"
                         }
-					]
-				},
+                    ]
+                },
                 {
-					"validate": true,
+                    "validate": true,
                     "type": "validate-output",
-					"actions":
-					[
+                    "actions": [
                         {
                             "run": "introCs-0-0.py",
                             "editorIndex": 0
@@ -155,94 +142,84 @@
                             ],
                             "onerror": "Expected output 0 for input 4"
                         }
-					]
-				}
-			],
-			"points": 5,
-			"coins": 1
-		},
-		{
-			"type": "information",
-			"title": "Problem #2: Quotient and Remainder",
-			"elements":
-			[
-				{
-					"type": "text",
-					"content": "Write code that prompts a user to enter two numbers, and print out the quotient and remainder from dividing the first number by the second separately"
-				}
-			]
-		},
+                    ]
+                }
+            ],
+            "points": 5,
+            "coins": 1
+        },
         {
-			"type": "code_editor",
-			"storage_id":
-			[
-				"introCs-0-1.py"
-			],
-			"files":
-			[
-				"problem_2.py"
-			],
-			"default":
-			[
-				"print(\"Hello World\")"
-			],
-			"display_type": "web",
-			"elements":
-			[
-				{
-					"type": "text",
-					"content": "Write code that prompts a user to enter two numbers, and print out the quotient and remainder from dividing the first number by the second separately"
-				}
-			],
-			"hints":
-			[
-				{
-					"elements":
-					[
-						{
-							"type": "text",
-							"content": "The python syntax for getting user input is yourVariable = input(\"your prompt\")"
-						},
+            "type": "information",
+            "title": "Problem #2: Quotient and Remainder",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "Write code that prompts a user to enter two numbers, and print out the quotient and remainder from dividing the first number by the second separately"
+                }
+            ]
+        },
+        {
+            "type": "code_editor",
+            "storage_id": [
+                "introCs-0-1.py"
+            ],
+            "files": [
+                "problem_2.py"
+            ],
+            "default": [
+                "print(\"Hello World\")"
+            ],
+            "display_type": "web",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "Write code that prompts a user to enter two numbers, and print out the quotient and remainder from dividing the first number by the second separately"
+                }
+            ],
+            "hints": [
+                {
+                    "elements": [
                         {
-							"type": "text",
-							"content": "The python syntax for turning strings to integers is int(\"number\")"
-						},
+                            "type": "text",
+                            "content": "The python syntax for getting user input is yourVariable = input(\"your prompt\")"
+                        },
                         {
-							"type": "text",
-							"content": "The python syntax for getting remainder remainder = number % anotherNumber"
-						}
-					]
-				},
-				{
-					"elements":
-					[
-						{
-							"type": "text",
-							"content": "Here is the solution:"
-						},
-						{
-							"type": "code",
-							"content": "<!DOCTYPE html>\n<html lang=\"en\">\n\t<head></head>\n\t<body></body>\n</html>"
-						}
-					]
-				}
-			],
-			"validation":
-			[
-				{
-					"validate": true,
+                            "type": "text",
+                            "content": "The python syntax for turning strings to integers is int(\"number\")"
+                        },
+                        {
+                            "type": "text",
+                            "content": "The python syntax for getting remainder remainder = number % anotherNumber"
+                        }
+                    ]
+                },
+                {
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "Here is the solution:"
+                        },
+                        {
+                            "type": "code",
+                            "content": "<!DOCTYPE html>\n<html lang=\"en\">\n\t<head></head>\n\t<body></body>\n</html>"
+                        }
+                    ]
+                }
+            ],
+            "validation": [
+                {
+                    "validate": true,
                     "type": "validate-output",
-					"actions":
-					[
+                    "actions": [
                         {
                             "run": "introCs-0-1.py",
                             "editorIndex": 0
                         },
-						{
+                        {
                             "input": "10",
                             "runwhen": "in 2 outputs"
                         },
-						{
+                        {
                             "input": "2",
                             "runwhen": "in 1 outputs"
                         },
@@ -253,7 +230,7 @@
                                 "extract_numbers",
                                 "parseFloat"
                             ],
-                            "onerror": "Expected output 5 for inputs 10 and 2"
+                            "onerror": "Expected output 5 for inputs 10 and 2, but instead got {{output}}"
                         },
                         {
                             "expect": 0,
@@ -262,50 +239,107 @@
                                 "extract_numbers",
                                 "parseFloat"
                             ],
-                            "onerror": "Expected output 0 for inputs 10 and 2"
+                            "onerror": "Expected output 0 for inputs 10 and 2, but instead got {{output}}"
                         }
-					]
-				},
+                    ]
+                }
+            ],
+            "points": 5,
+            "coins": 1
+        },
+        {
+            "type": "code_editor",
+            "storage_id": [
+                "introCs-0-2.py"
+            ],
+            "files": [
+                "problem_3.py"
+            ],
+            "default": [
+                "print(\"Hello World\")"
+            ],
+            "display_type": "web",
+            "elements": [
                 {
-					"validate": true,
-                    "type": "validate-output",
-					"actions":
-					[
+                    "type": "text",
+                    "content": "➔ Create a list of numbers that is a random length"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Prompt the user to select an element within the range of the list (don’t manually count list and type the number, use python function in the command)"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Print out the element of the list the user selected"
+                }
+            ],
+            "hints": [
+                {
+                    "elements": [
                         {
-                            "run": "introCs-0-1.py",
+                            "type": "text",
+                            "content": "The python syntax for getting user input is yourVariable = input(\"your prompt\")"
+                        },
+                        {
+                            "type": "text",
+                            "content": "The python syntax for turning strings to integers is int(\"number\")"
+                        },
+                        {
+                            "type": "text",
+                            "content": "The python syntax for getting remainder remainder = number % anotherNumber"
+                        }
+                    ]
+                },
+                {
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "Here is the solution:"
+                        },
+                        {
+                            "type": "code",
+                            "content": "<!DOCTYPE html>\n<html lang=\"en\">\n\t<head></head>\n\t<body></body>\n</html>"
+                        }
+                    ]
+                }
+            ],
+            "validation": [
+                {
+                    "validate": true,
+                    "type": "validate-output",
+                    "actions": [
+                        {
+                            "run": "introCs-0-2.py",
                             "editorIndex": 0
                         },
-						{
-                            "input": "50",
-                            "runwhen": "in 1 outputs"
-                        },
-						{
-                            "input": "9",
-                            "runwhen": "in 1 outputs"
+                        {
+                            "setVar": "listLength",
+                            "runwhen": "in 2 outputs",
+                            "add": -1,
+                            "filters": [
+                                "extract_numbers",
+                                "parseFloat"
+                            ]
                         },
                         {
-                            "expect": 5,
+                            "input": "{{Math.floor(Math.random() * testVars.listLength)}}",
+                            "runwhen": "immediately"
+                        },
+                        {
+                            "expect": "number",
                             "runwhen": "in 1 outputs",
+                            "add": -1,
                             "filters": [
                                 "extract_numbers",
-                                "parseFloat"
-                            ],
-                            "onerror": "Expected output 5 for inputs 50 and 9"
-                        },
-                        {
-                            "expect": 5,
-                            "runwhen": "immediately",
-                            "filters": [
-                                "extract_numbers",
-                                "parseFloat"
-                            ],
-                            "onerror": "Expected output 0 for inputs 50 and 9"
+                                "parseFloat",
+                                "typeof"
+                            ]
                         }
-					]
-				}
-			],
-			"points": 5,
-			"coins": 1
-		}
-	]
+                    ]
+                }
+            ],
+            "points": 5,
+            "coins": 1
+        }
+    ]
 }
