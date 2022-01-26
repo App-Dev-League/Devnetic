@@ -66,7 +66,6 @@ class CodeEditor extends ModuleComponent {
 				return new Promise((resolve, reject) => {
 					let soFar = 0;
 					let elem = document.querySelector(".console-wrapper");
-					console.log("asdf", elem)
 					const callback = function (mutationsList, observer) {
 						let changed = false;
 						for (let mutation of mutationsList) {
@@ -87,7 +86,9 @@ class CodeEditor extends ModuleComponent {
 			}
 			let data = parentThis.data()
 			let good = true;
+			let logIndex = 0
 			for (let i in data.validation) {
+				logIndex = 0
 				let tester = data.validation[i]
 				if (tester.validate !== true) continue;
 				for (let p in tester.actions) {
@@ -108,6 +109,7 @@ class CodeEditor extends ModuleComponent {
 					} else if (action.input) {
 						if (runwhen.startsWith("in") && runwhen.endsWith("outputs")) {
 							runwhen = parseInt(runwhen.replace("in", "").replace("outputs", ""))
+							logIndex += runwhen
 							await waitForXInputs(runwhen)
 						}
 						document.querySelector(".console-input").value = action.input
@@ -119,9 +121,11 @@ class CodeEditor extends ModuleComponent {
 					} else if (action.expect) {
 						if (runwhen.startsWith("in") && runwhen.endsWith("outputs")) {
 							runwhen = parseInt(runwhen.replace("in", "").replace("outputs", ""))
+							logIndex += runwhen
 							await waitForXInputs(runwhen)
 						}
-						let latest = window.consoleLogs[window.consoleLogs.length - 1]
+						console.log("logindex",logIndex+1)
+						let latest = window.consoleLogs[logIndex+1]
 						if (action.filters) {
 							action.filters.forEach(element => {
 								if (element === "lowerCase") latest = latest.toLowerCase()
@@ -129,6 +133,10 @@ class CodeEditor extends ModuleComponent {
 								if (element === "parseFloat") latest = parseFloat(latest)
 								if (element === "parseInt") latest = parseInt(latest)
 								if (element === "number") latest = Number(latest)
+								if (element === "extract_numbers") {
+									var numberPattern = /\d+/g;
+									latest = latest.toString().match( numberPattern )[0]
+								}
 							})
 						}
 						if (latest !== action.expect) {
