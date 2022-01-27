@@ -339,7 +339,6 @@ class TabbedEditor extends tApp.Component {
 						tabs: tabs
 					}, goodThis);
 				}
-				console.log(tabs)
 			}
 		}
 		getData()

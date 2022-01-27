@@ -227,6 +227,12 @@ class CodeEditor extends ModuleComponent {
 	}
 	render(props) {
 		if (this.data() != null) {
+			if (document.getElementById("code-editor-tab")) {
+				delete window.monacoAlreadyLoaded 
+				delete window.addedEditorEventListeners
+				tApp.getComponentFromDOM(document.getElementById("code-editor-tab")).parent.setState("rerender", Date.now())
+			}
+
 			this.state.instructions.state.elements = this.data().elements;
 			this.state.instructions.state.hints = this.data().hints;
 			return `<div id="code-editor-component">
