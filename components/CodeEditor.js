@@ -7,6 +7,7 @@ const Instructions = require("./Instructions.js");
 const CodePreview = require("./CodePreview.js");
 const TabbedView = require("./TabbedView.js");
 const PluginPanel = require("./PluginPanel.js")
+const codeEditorHelper = require("../utils/codeEditor.js");
 
 class CodeEditor extends ModuleComponent {
 	constructor(state, parent) {
@@ -63,11 +64,11 @@ class CodeEditor extends ModuleComponent {
 		let parentThis = this;
 		var stopManagingQueue = false;
 		async function main() {
-			window.newLogCallback = function(msg){
+			window.newLogCallback = function (msg) {
 				if (!window.logQueue) window.logQueue = []
 				logQueue.push(msg)
 			}
-			async function manageLogQueue(){
+			async function manageLogQueue() {
 				while (true) {
 					await sleep(20);
 					if (stopManagingQueue) break;
@@ -81,7 +82,7 @@ class CodeEditor extends ModuleComponent {
 			function waitForXInputs(count, elem, debug) {
 				return new Promise((resolve, reject) => {
 					let soFar = 0;
-					if (!elem) elem = document.querySelector(".console-wrapper"); 
+					if (!elem) elem = document.querySelector(".console-wrapper");
 					const callback = function (mutationsList, observer) {
 						let changed = true;
 						if (changed === true) soFar++;
@@ -95,7 +96,7 @@ class CodeEditor extends ModuleComponent {
 			function waitForChildChanges(count, elem, debug) {
 				return new Promise((resolve, reject) => {
 					let soFar = 0;
-					if (!elem) elem = document.querySelector(".console-wrapper"); 
+					if (!elem) elem = document.querySelector(".console-wrapper");
 					const callback = function (mutationsList, observer) {
 						let changed = false;
 						for (let mutation of mutationsList) {
@@ -104,7 +105,7 @@ class CodeEditor extends ModuleComponent {
 							}
 						}
 						if (changed === true) soFar++;
-						if (debug === true) console.log("Current sofar: "+soFar)
+						if (debug === true) console.log("Current sofar: " + soFar)
 						if (soFar === count) {
 							resolve(true)
 							observer.disconnect()
@@ -118,15 +119,18 @@ class CodeEditor extends ModuleComponent {
 			function applyFilters(filters, latest) {
 				filters.forEach(element => {
 					if (element === "lowerCase") latest = latest.toLowerCase()
-					if (element === "trim") latest = latest.toString().trim()
-					if (element === "parseFloat") latest = parseFloat(latest)
-					if (element === "parseInt") latest = parseInt(latest)
-					if (element === "number") latest = Number(latest)
-					if (element === "extract_numbers") {
+					else if (element === "trim") latest = latest.toString().trim()
+					else if (element === "parseFloat") latest = parseFloat(latest)
+					else if (element === "parseInt") latest = parseInt(latest)
+					else if (element === "number") latest = Number(latest)
+					else if (element === "extract_numbers") {
 						var numberPattern = /\d+/g;
-						latest = latest.toString().match( numberPattern )[0]
+						latest = latest.toString().match(numberPattern)[0]
 					}
-					if (element === "typeof") latest = typeof latest
+					else if (element === "typeof") latest = typeof latest;
+					else if (element === "remove-tabs") latest = latest.replaceAll("\t", "")
+					else if (element === "remove-newlines") latest = latest.replace(/(\r\n|\n|\r)/gm, "");
+					else if (element === "convert-to-double-quotes") latest = latest.replaceAll("\'", "\"")
 				})
 				return latest;
 			}
@@ -139,73 +143,87 @@ class CodeEditor extends ModuleComponent {
 				logIndex = 0
 				let tester = data.validation[i]
 				if (tester.validate !== true) continue;
-				for (let p in tester.actions) {
-					let action = tester.actions[p];
-					let runwhen = action.runwhen
-					if (action.run) {
-						let index = action.editorIndex
+				if (tester.type === "validate-output") {
+					for (let p in tester.actions) {
+						let action = tester.actions[p];
+						let runwhen = action.runwhen
+						if (action.run) {
+							let index = action.editorIndex
+							// switching to correct editor
+							document.querySelectorAll(".project-module-tabs")[0].children[0].children[index].click()
+							// switching to the preview tab
+							document.querySelectorAll(".project-module-tabs")[1].children[0].children[1].click()
+							window.consoleLogs.push(["Launching tester..."])
+							document.getElementById("console-bridge").click()
+							if (window.newLogCallback) window.newLogCallback(["Launching tester..."])
+							// clicking run btn
+							document.getElementById("code-editor-run-btn").click()
+							await waitForChildChanges(1, document.querySelectorAll(".selected-tab")[1])
+							await waitForChildChanges(1, document.getElementById("preview-container"))
+						} else if (action.input) {
+							if (runwhen.startsWith("in") && runwhen.endsWith("outputs")) {
+								runwhen = parseInt(runwhen.replace("in", "").replace("outputs", ""))
+								logIndex += runwhen
+								console.log("wating" + runwhen)
+								await waitForXInputs(runwhen)
+								console.log("done wating ")
+							}
+							action.input = action.input.replaceAll(/(?<={{)(.*)(?=}})/g, function (e) {
+								let tmpFunction = new Function("testVars", `return ${e}`)
+								console.log(tmpFunction(testVars))
+								return tmpFunction(testVars)
+							}).replaceAll("{{", "").replaceAll("}}", "")
+							await sleep(100)
+							document.querySelector(".console-input").value = action.input
+							// pressing enter key
+							let ke = new KeyboardEvent('keyup', {
+								bubbles: true, cancelable: true, keyCode: 13
+							});
+							document.querySelector(".console-input").dispatchEvent(ke);
+						} else if (action.expect) {
+							if (runwhen.startsWith("in") && runwhen.endsWith("outputs")) {
+								runwhen = parseInt(runwhen.replace("in", "").replace("outputs", ""))
+								logIndex += runwhen
+								console.log("waiting for " + runwhen)
+								await waitForXInputs(runwhen, undefined, true)
+								console.log("done waiting for it")
+							}
+							if (!action.add) action.add = 1
+							let latest = window.consoleLogs[logIndex + action.add]
+							if (action.filters) {
+								latest = applyFilters(action.filters, latest)
+							}
+							if (latest !== action.expect) {
+								good = false;
+								window.consoleLogs.push(["Tester returned following problems: " + action.onerror.replaceAll("{{output}}", latest)])
+								document.getElementById("console-bridge").click()
+								if (window.newLogCallback) window.newLogCallback(["Tester returned following problems: " + action.onerror.replaceAll("{{output}}", latest)])
+								return false;
+							}
+						} else if (action.setVar) {
+							if (runwhen.startsWith("in") && runwhen.endsWith("outputs")) {
+								runwhen = parseInt(runwhen.replace("in", "").replace("outputs", ""))
+								await waitForXInputs(runwhen)
+							}
+							if (!action.add) action.add = 1
+							let latest = window.consoleLogs[logIndex + action.add]
+							if (action.filters) {
+								latest = applyFilters(action.filters, latest)
+							}
+							testVars[action.setVar] = latest
+						}
+					}
+				} else if (tester.type === "validate-code") {
+					for (let p in tester.correct) {
 						// switching to correct editor
-						document.querySelectorAll(".project-module-tabs")[0].children[0].children[index].click()
+						document.querySelectorAll(".project-module-tabs")[0].children[0].children[tester.editorIndex].click()
 						// switching to the preview tab
 						document.querySelectorAll(".project-module-tabs")[1].children[0].children[1].click()
-						window.consoleLogs.push(["Launching tester..."])
-						document.getElementById("console-bridge").click()
-						if (window.newLogCallback) window.newLogCallback(["Launching tester..."])
-						// clicking run btn
-						document.getElementById("code-editor-run-btn").click()
-						await waitForChildChanges(1, document.querySelectorAll(".selected-tab")[1])
-						await waitForChildChanges(1, document.getElementById("preview-container"))
-					} else if (action.input) {
-						if (runwhen.startsWith("in") && runwhen.endsWith("outputs")) {
-							runwhen = parseInt(runwhen.replace("in", "").replace("outputs", ""))
-							logIndex += runwhen
-							console.log("wating"+runwhen)
-							await waitForXInputs(runwhen)
-							console.log("done wating ")
-						}
-						action.input = action.input.replaceAll(/(?<={{)(.*)(?=}})/g, function(e) {
-							let tmpFunction = new Function("testVars", `return ${e}`)
-							console.log(tmpFunction(testVars))
-							return tmpFunction(testVars)
-						}).replaceAll("{{", "").replaceAll("}}", "")
-						await sleep(100)
-						document.querySelector(".console-input").value = action.input
-						// pressing enter key
-						let ke = new KeyboardEvent('keyup', {
-							bubbles: true, cancelable: true, keyCode: 13
-						});
-						document.querySelector(".console-input").dispatchEvent(ke);
-					} else if (action.expect) {
-						if (runwhen.startsWith("in") && runwhen.endsWith("outputs")) {
-							runwhen = parseInt(runwhen.replace("in", "").replace("outputs", ""))
-							logIndex += runwhen
-							console.log("waiting for "+runwhen)
-							await waitForXInputs(runwhen, undefined, true)
-							console.log("done waiting for it")
-						}
-						if (!action.add) action.add = 1
-						let latest = window.consoleLogs[logIndex+action.add]
-						if (action.filters) {
-							latest = applyFilters(action.filters, latest)
-						}
-						if (latest !== action.expect) {
-							good = false;
-							window.consoleLogs.push(["Tester returned following problems: " + action.onerror.replaceAll("{{output}}", latest)])
-							document.getElementById("console-bridge").click()
-							if (window.newLogCallback) window.newLogCallback(["Tester returned following problems: " + action.onerror.replaceAll("{{output}}", latest)])
-							return false;
-						}
-					} else if (action.setVar) {
-						if (runwhen.startsWith("in") && runwhen.endsWith("outputs")) {
-							runwhen = parseInt(runwhen.replace("in", "").replace("outputs", ""))
-							await waitForXInputs(runwhen)
-						}
-						if (!action.add) action.add = 1
-						let latest = window.consoleLogs[logIndex+action.add]
-						if (action.filters) {
-							latest = applyFilters(action.filters, latest)
-						}
-						testVars[action.setVar] = latest
+						await sleep(500)
+						let element = tester.correct[p];
+						let expected = element.value;
+						let actual = applyFilters(element.apply, codeEditorHelper.getValue());
+						if (expected !== actual) return false;
 					}
 				}
 			}
@@ -213,11 +231,12 @@ class CodeEditor extends ModuleComponent {
 		}
 		let results = await main()
 		stopManagingQueue = true
+		console.log("test results", results)
 		if (results === false) {
 			window.consoleLogs.push(["Test cases failed :( try re-writing your code."])
 			document.getElementById("console-bridge").click()
 			if (window.newLogCallback) window.newLogCallback(["Test cases failed :( try re-writing your code."])
-		}else{
+		} else {
 			window.consoleLogs.push(["Test cases passed! Moving you to the next lesson..."])
 			document.getElementById("console-bridge").click()
 			if (window.newLogCallback) window.newLogCallback(["Test cases passed! Moving you to the next lesson..."])
@@ -228,7 +247,7 @@ class CodeEditor extends ModuleComponent {
 	render(props) {
 		if (this.data() != null) {
 			if (document.getElementById("code-editor-tab")) {
-				delete window.monacoAlreadyLoaded 
+				delete window.monacoAlreadyLoaded
 				delete window.addedEditorEventListeners
 				tApp.getComponentFromDOM(document.getElementById("code-editor-tab")).parent.setState("rerender", Date.now())
 			}

@@ -85,18 +85,19 @@
 				{
 					"validate": true,
                     "type": "validate-code",
+                    "editorIndex": 0,
 					"correct":
 					[
 						{
 							"apply":
 							[
-								"lowercase",
+								"lowerCase",
 								"remove-tabs",
 								"remove-newlines",
-								"remove-trailing-spaces",
+								"trim",
 								"convert-to-double-quotes"
 							],
-							"value": "<!doctype html><html lang=\"en\"><head></head><body></body></html>"
+							"value": "<!doctype html><html><head></head><body></body></html>"
 						}
 					]
 				}
