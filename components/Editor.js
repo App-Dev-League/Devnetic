@@ -141,6 +141,7 @@ class Editor extends tApp.Component {
 							let preScript = `
 import sys
 import browser
+import traceback
 from browser import aio
 _print = print
 def print(*args, **kw):
@@ -172,14 +173,17 @@ postScript = postScript.replace(/....[a-zA-Z]+\([^\)]*\)(\.[^\)]*\))?/g, functio
 	return matched.substring(0, 4)+"await aio.run("+matched.slice(4)+")"
 })
 let pps = `
-aio.run(${main}())
+try:
+	aio.run(${main}())
+except Exception:
+    print(traceback.format_exc())
 `
 
 
 							try{
 								if (!window.__BRYTHON__) {
 									plugins.load("brython")	
-									brython({pythonpath: ["/assets/plugins/brython/modules/"], cache: true, debug: 1})
+									brython({pythonpath: ["/assets/plugins/brython/modules/"], cache: true, debug: 0})
 								}
 							}catch(err){
 								window.consoleLogs.push(["We couldn't find the necessary plugins to run python files! Please install brython in the plugins panel."])
@@ -189,7 +193,6 @@ aio.run(${main}())
 							try {
 								window.URL = window.URL || window.webkitURL;
 								let code =  preScript+"\n"+postScript+"\n"+pps
-								//console.log(code)
 								let pureJs = __BRYTHON__.python_to_js(code)
 								if (document.getElementById("python-execution-thread")){
 									let elem = document.getElementById("python-execution-thread")
@@ -209,13 +212,12 @@ aio.run(${main}())
 								${plugins.getCode("brython")}
 								</script>
 								<script>
-								brython({pythonpath: ["/assets/plugins/brython/modules/"], cache: true, debug: 1})
+								brython({pythonpath: ["/assets/plugins/brython/modules/"], cache: true, debug: 0})
 								eval(__BRYTHON__.python_to_js(window.pyjsCode))
 								</script>
 								`
 								document.body.appendChild(iframe)
 								iframe.contentWindow.newLog = function(log){
-									console.log("python-log", log)
 									window.consoleLogs.push(log)
 									window.document.getElementById("console-bridge").click()
 									if (window.newLogCallback) window.newLogCallback(log)

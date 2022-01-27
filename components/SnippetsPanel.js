@@ -104,7 +104,7 @@ class SnippetsPanel extends tApp.Component {
 	}
 	render(props) {
 		return `<div class="snippets-panel" id="snippets-panel">
-		<input placeholder="Search..." class="short-answer-input" style="margin-top: 0; margin-bottom: 20px; font-size: 1em; border: 2px solid var(--blue);" onkeyup="console.log({{_this}}); {{_this}}.parent.children[1].showSearch(this.value)">
+		<input placeholder="Search..." class="short-answer-input" style="margin-top: 0; margin-bottom: 20px; font-size: 1em; border: 2px solid var(--blue);" onkeyup="{{_this}}.parent.children[1].showSearch(this.value)">
 		${this.state.showSnippets.map(element => {
 			if (element.categoryName) {
 				return `<h2 style="margin-top: 20px; margin-bottom: 10px;">${element.categoryName}</h2>`

@@ -164,13 +164,10 @@ class CodeEditor extends ModuleComponent {
 							if (runwhen.startsWith("in") && runwhen.endsWith("outputs")) {
 								runwhen = parseInt(runwhen.replace("in", "").replace("outputs", ""))
 								logIndex += runwhen
-								console.log("wating" + runwhen)
 								await waitForXInputs(runwhen)
-								console.log("done wating ")
 							}
 							action.input = action.input.replaceAll(/(?<={{)(.*)(?=}})/g, function (e) {
 								let tmpFunction = new Function("testVars", `return ${e}`)
-								console.log(tmpFunction(testVars))
 								return tmpFunction(testVars)
 							}).replaceAll("{{", "").replaceAll("}}", "")
 							await sleep(100)
@@ -184,9 +181,7 @@ class CodeEditor extends ModuleComponent {
 							if (runwhen.startsWith("in") && runwhen.endsWith("outputs")) {
 								runwhen = parseInt(runwhen.replace("in", "").replace("outputs", ""))
 								logIndex += runwhen
-								console.log("waiting for " + runwhen)
 								await waitForXInputs(runwhen, undefined, true)
-								console.log("done waiting for it")
 							}
 							if (!action.add) action.add = 1
 							let latest = window.consoleLogs[logIndex + action.add]

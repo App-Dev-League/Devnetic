@@ -10,11 +10,9 @@ class codeBlock extends tApp.Component {
         }, 100)
 	}
     componentHasUpdated(){
-        console.log("CodeBlock Component has loaded!")
         codeBlockHelper.updateCodeBlock(document.getElementById(this.codeId))
     }
     componentWillUpdate(){
-        console.log("Component will be updated")
     }
 
 	render(props) {
