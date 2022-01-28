@@ -136,11 +136,12 @@ class CodeEditor extends ModuleComponent {
 			}
 			function setInput(text) {
 				return new Promise(async (resolve, reject) => {
-					for (let i = 0; i<100; i++) {
+					for (let i = 0; i<1000; i++) {
 						await sleep(10)
 						if (!document.querySelector(".console-input")) continue
 						document.querySelector(".console-input").value = text
 						resolve(true)
+						break
 					}
 					reject("Could not set input")
 				})
@@ -188,7 +189,7 @@ class CodeEditor extends ModuleComponent {
 								return tmpFunction(testVars)
 							}).replaceAll("{{", "").replaceAll("}}", "")
 							//await sleep(500)
-							document.querySelector(".console-input").value = action.input
+							//document.querySelector(".console-input").value = action.input
 							await setInput(action.input)
 							// pressing enter key
 							let ke = new KeyboardEvent('keyup', {
