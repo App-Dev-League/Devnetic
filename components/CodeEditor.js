@@ -68,13 +68,21 @@ class CodeEditor extends ModuleComponent {
 				if (!window.logQueue) window.logQueue = []
 				logQueue.push(msg)
 			}
+			// the problem is that sometimes there isn't a listener for the log queue event. Normally, on startup there should be two messages of "uh oh there wasn't a listener"
+			// but, on problem times, there's three.
 			async function manageLogQueue() {
 				while (true) {
-					await sleep(20);
+					await sleep(100);
 					if (stopManagingQueue) break;
 					if (window.logQueue.length > 0) {
 						let msg = window.logQueue.shift()
 						if (window.newLogListener) window.newLogListener(msg)
+						else {
+							console.log("Uh oh there wasn't a listener for my beautiful log. The log was " + msg)
+							if (msg !== "The log was Launching tester..." && msg !== "Starting python emulator..." ) {
+								window.logQueue.unshift(msg);
+							}
+						}
 					}
 				}
 			}
@@ -172,7 +180,7 @@ class CodeEditor extends ModuleComponent {
 							document.getElementById("code-editor-run-btn").click()
 							await waitForChildChanges(1, document.querySelectorAll(".selected-tab")[1])
 							await waitForChildChanges(1, document.getElementById("preview-container"));
-							for (let i = 0; i<100; i++) {
+							for (let i = 0; i<1000; i++) {
 								await sleep(100)
 								if (!document.querySelector(".console-wrapper")) continue
 								else break;
@@ -182,6 +190,7 @@ class CodeEditor extends ModuleComponent {
 							if (runwhen.startsWith("in") && runwhen.endsWith("outputs")) {
 								runwhen = parseInt(runwhen.replace("in", "").replace("outputs", ""))
 								logIndex += runwhen
+								console.log(logIndex, runwhen)
 								await waitForXInputs(runwhen)
 							}
 							action.input = action.input.replaceAll(/(?<={{)(.*)(?=}})/g, function (e) {
