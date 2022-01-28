@@ -37,6 +37,8 @@ class CodePreview extends tApp.Component {
 						if (window.newLogCallback) window.newLogCallback(["Forced python execution thread to quit"])
 					}
 					document.getElementById("preview-container").querySelector(".console-wrapper").appendChild(stop)
+				}
+				if (!document.getElementById("preview-container").querySelector(".console-input")) {
 					let input = document.createElement("input");
 					input.classList.add("console-input");
 					input.placeholder = "Type here. Press enter to send."

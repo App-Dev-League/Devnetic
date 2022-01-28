@@ -134,6 +134,17 @@ class CodeEditor extends ModuleComponent {
 				})
 				return latest;
 			}
+			function setInput(text) {
+				return new Promise(async (resolve, reject) => {
+					for (let i = 0; i<100; i++) {
+						await sleep(10)
+						if (!document.querySelector(".console-input")) continue
+						document.querySelector(".console-input").value = text
+						resolve(true)
+					}
+					reject("Could not set input")
+				})
+			}
 			let data = parentThis.data()
 			let good = true;
 			let logIndex = 0;
@@ -159,7 +170,13 @@ class CodeEditor extends ModuleComponent {
 							// clicking run btn
 							document.getElementById("code-editor-run-btn").click()
 							await waitForChildChanges(1, document.querySelectorAll(".selected-tab")[1])
-							await waitForChildChanges(1, document.getElementById("preview-container"))
+							await waitForChildChanges(1, document.getElementById("preview-container"));
+							for (let i = 0; i<100; i++) {
+								await sleep(100)
+								if (!document.querySelector(".console-wrapper")) continue
+								else break;
+							}
+							console.log("waiting for console wrapper changes")
 						} else if (action.input) {
 							if (runwhen.startsWith("in") && runwhen.endsWith("outputs")) {
 								runwhen = parseInt(runwhen.replace("in", "").replace("outputs", ""))
@@ -170,8 +187,9 @@ class CodeEditor extends ModuleComponent {
 								let tmpFunction = new Function("testVars", `return ${e}`)
 								return tmpFunction(testVars)
 							}).replaceAll("{{", "").replaceAll("}}", "")
-							await sleep(100)
+							//await sleep(500)
 							document.querySelector(".console-input").value = action.input
+							await setInput(action.input)
 							// pressing enter key
 							let ke = new KeyboardEvent('keyup', {
 								bubbles: true, cancelable: true, keyCode: 13

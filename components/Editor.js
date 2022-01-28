@@ -193,7 +193,6 @@ except Exception:
 							try {
 								window.URL = window.URL || window.webkitURL;
 								let code =  preScript+"\n"+postScript+"\n"+pps
-								let pureJs = __BRYTHON__.python_to_js(code)
 								if (document.getElementById("python-execution-thread")){
 									let elem = document.getElementById("python-execution-thread")
 									elem.parentElement.removeChild(elem)
@@ -211,14 +210,27 @@ except Exception:
 								<script>
 								${plugins.getCode("brython")}
 								</script>
+								<script type="text/python">
+${code}
+								</script>
 								<script>
-								brython({pythonpath: ["/assets/plugins/brython/modules/"], cache: true, debug: 0})
-								eval(__BRYTHON__.python_to_js(window.pyjsCode))
+								console.oldLog = console.log
+								console.log = function(){
+									window.newLog(arguments)
+								}
+								console.error = function(){
+									window.newLog(arguments)
+								}
+								brython({pythonpath: ["/assets/plugins/brython/modules/"], cache: true, debug: 1})
 								</script>
 								`
 								document.body.appendChild(iframe)
 								iframe.contentWindow.newLog = function(log){
-									window.consoleLogs.push(log)
+									let arrLog = []
+									for (let i in log) {
+										arrLog.push(log[i])
+									}
+									window.consoleLogs.push(arrLog)
 									window.document.getElementById("console-bridge").click()
 									if (window.newLogCallback) window.newLogCallback(log)
 								}
