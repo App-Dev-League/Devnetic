@@ -13,12 +13,9 @@ class Input extends tApp.Component {
 		if(this.state.type == null) {
 			this.state.type = "text";
 		}
-		if (this.state.onChange == null) {
-			this.state.onChange = function() {};
-		}
 	}
 	render(props) {
-		return `<input class="${this.state.classList.join(" ")}" type="${this.state.type}" ${this.state.properties.join(" ")} oninput="{{_this}}.setState('value', this.value); {{_this}}.state.onChange()" value="${tApp.escape(this.state.value)}"/>`;
+		return `<input class="${this.state.classList.join(" ")}" type="${this.state.type}" ${this.state.properties.join(" ")} oninput="{{_this}}.setState('value', this.value)" value="${tApp.escape(this.state.value)}"/>`;
 	}
 }
 
