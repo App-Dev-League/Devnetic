@@ -32,9 +32,9 @@ class CodePreview extends tApp.Component {
 					stop.onclick = function () {
 						let elem = document.getElementById("python-execution-thread")
 						elem.parentElement.removeChild(elem)
-						window.consoleLogs.push(["Forced python execution thread to quit"])
+						window.consoleLogs.push(["Forced execution thread to quit"])
 						document.getElementById("console-bridge").click()
-						if (window.newLogCallback) window.newLogCallback(["Forced python execution thread to quit"])
+						if (window.newLogCallback) window.newLogCallback(["Forced execution thread to quit"])
 					}
 					document.getElementById("preview-container").querySelector(".console-wrapper").appendChild(stop)
 				}
