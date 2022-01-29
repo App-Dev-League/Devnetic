@@ -338,6 +338,111 @@
             ],
             "points": 5,
             "coins": 1
+        },
+        {
+            "type": "code_editor",
+            "storage_id": [
+                "introCs-0-3.py"
+            ],
+            "files": [
+                "problem_4.py"
+            ],
+            "default": [
+                "print(\"Hello World\")"
+            ],
+            "display_type": "web",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "➔ Write a program that asks a user to input two sentences, and print them combined, however, separated by a period and a space before the second sentence."
+                }
+            ],
+            "hints": [
+                {
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "The python syntax for getting user input is yourVariable = input(\"your prompt\")"
+                        },
+                        {
+                            "type": "text",
+                            "content": "The python syntax for turning strings to integers is int(\"number\")"
+                        },
+                        {
+                            "type": "text",
+                            "content": "The python syntax for getting remainder remainder = number % anotherNumber"
+                        }
+                    ]
+                },
+                {
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "Here is the solution:"
+                        },
+                        {
+                            "type": "code",
+                            "content": "<!DOCTYPE html>\n<html lang=\"en\">\n\t<head></head>\n\t<body></body>\n</html>"
+                        }
+                    ]
+                }
+            ],
+            "validation": [
+                {
+                    "validate": true,
+                    "type": "validate-output",
+                    "actions": [
+                        {
+                            "run": "introCs-0-3.py",
+                            "editorIndex": 0
+                        },
+                        {
+                            "input": "Hello World",
+                            "runwhen": "in 1 outputs"
+                        },
+                        {
+                            "input": "More specifically, the Python World!",
+                            "runwhen": "in 1 outputs"
+                        },
+                        {
+                            "expect": "Hello World. More specifically, the Python World!",
+                            "runwhen": "in 2 outputs",
+                            "filters": [
+                                "trim"
+                            ],
+                            "onerror": "Expected output: Hello World. More specifically, the Python World!"
+                        }
+                    ]
+                },
+                {
+                    "validate": true,
+                    "type": "validate-output",
+                    "actions": [
+                        {
+                            "run": "introCs-0-3.py",
+                            "editorIndex": 0
+                        },
+                        {
+                            "input": "a85vrytp9aw837rtp",
+                            "runwhen": "in 1 outputs"
+                        },
+                        {
+                            "input": "3w68trs357aw48gt7z",
+                            "runwhen": "in 1 outputs"
+                        },
+                        {
+                            "expect": "a85vrytp9aw837rtp. 3w68trs357aw48gt7z",
+                            "runwhen": "in 2 outputs",
+                            "filters": [
+                                "trim"
+                            ],
+                            "onerror": "That didn't seem to work! Expected output: a85vrytp9aw837rtp. 3w68trs357aw48gt7z"
+                        }
+                    ]
+                }
+            ],
+            "points": 5,
+            "coins": 1
         }
     ]
 }
