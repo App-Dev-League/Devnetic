@@ -321,7 +321,7 @@
                             ]
                         },
                         {
-                            "input": "{{Math.floor(Math.random() * testVars.listLength)}}",
+                            "input": "{{Math.floor(Math.random() * {{tester.variables.listLength}})}}",
                             "runwhen": "immediately"
                         },
                         {

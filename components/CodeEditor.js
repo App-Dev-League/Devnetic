@@ -69,7 +69,7 @@ class CodeEditor extends ModuleComponent {
 				logQueue.push(msg)
 			}
 			// the problem is that sometimes there isn't a listener for the log queue event. Normally, on startup there should be two messages of "uh oh there wasn't a listener"
-			// but, on problem times, there's three.
+			// but, on problem times, there's three. (fixed)
 			async function manageLogQueue() {
 				while (true) {
 					await sleep(100);
@@ -193,12 +193,15 @@ class CodeEditor extends ModuleComponent {
 								console.log(logIndex, runwhen)
 								await waitForXInputs(runwhen)
 							}
+							action.input = tApp.compileTemplate(action.input, {
+								tester: {
+									variables: testVars
+								}
+							});
 							action.input = action.input.replaceAll(/(?<={{)(.*)(?=}})/g, function (e) {
 								let tmpFunction = new Function("testVars", `return ${e}`)
 								return tmpFunction(testVars)
 							}).replaceAll("{{", "").replaceAll("}}", "")
-							//await sleep(500)
-							//document.querySelector(".console-input").value = action.input
 							await setInput(action.input)
 							// pressing enter key
 							let ke = new KeyboardEvent('keyup', {
