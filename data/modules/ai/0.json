@@ -1,17 +1,50 @@
 {
-	"type": "lesson",
-	"pages":
-	[
-		{
-			"type": "information",
-			"title": "Week 1 - TOPIC HERE",
-			"elements":
-			[
-				{
-					"type": "text",
-					"content": "The week 1 lesson module has not yet been created."
-				}
-			]
-		}
-	]
+    "type": "lesson",
+    "pages": [
+        {
+            "type": "information",
+            "title": "Week 1 - Python Review",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "[[h3]]Why Python?[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ One of the most popular introductory languages"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Intuitive and readable with simple to traverse code"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Ton of libraries for performing statistical analysis, machine learning, and more"
+                },
+               
+                {
+                    "type": "text",
+                    "content": "[[h3]]Inputs, Outputs, and Comments[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ You can print values in Python using the print() method"
+                },
+                {
+                    "type": "image",
+                    "src": "/data/modules/ai-assets/img0/comments.png",
+                    "width": "40%",
+                    "float": "right"
+                },
+                {
+                    "type": "text",
+                    "content":"➔ To get an input, use the input() function as shown to the right"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Comments are lines that are notes for you and don’t do anything; to add comments, use a # before the comment"
+                }
+            ]
+        }
+    ]
 }
