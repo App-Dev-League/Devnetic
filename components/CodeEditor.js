@@ -199,8 +199,8 @@ class CodeEditor extends ModuleComponent {
 								}
 							});
 							action.input = action.input.replaceAll(/(?<={{)(.*)(?=}})/g, function (e) {
-								let tmpFunction = new Function("testVars", `return ${e}`)
-								return tmpFunction(testVars)
+								let tmpFunction = new Function("tester", `return ${e}`)
+								return tmpFunction({variables: testVars})
 							}).replaceAll("{{", "").replaceAll("}}", "")
 							await setInput(action.input)
 							// pressing enter key
