@@ -1,17 +1,244 @@
 {
-	"type": "lesson",
-	"pages":
-	[
-		{
-			"type": "information",
-			"title": "Week 5 - TOPIC HERE",
-			"elements":
-			[
-				{
-					"type": "text",
-					"content": "The week 5 lesson module has not yet been created."
-				}
-			]
-		}
-	]
+  "type": "lesson",
+  "pages": [
+    {
+      "type": "information",
+      "title": "Week 5 - Intro to Neural Networks",
+      "elements": [
+        {
+          "type": "text",
+          "content": "[[h3]]What is a Neural Network?[[/]]"
+        },
+        {
+          "type": "text",
+          "content": "➔ Inspired by the human brain, a neural network is a machine learning algorithm which can be used for nearly all machine learning tasks."
+        },
+        {
+          "type": "text",
+          "content": "➔ A Neural Network consists of neurons, weights, biases, and layers."
+        },
+        {
+          "type": "image",
+          "src": "/data/modules/ai-assets/img4/0-0.png",
+          "width": "40%"
+        },
+        {
+          "type": "text",
+          "content": "[[h3]]Anatomy of a Neural Network[[/]]"
+        },
+        {
+          "type": "image",
+          "src": "/data/modules/ai-assets/img4/0-1.png",
+          "width": "40%"
+        }
+      ]
+    },
+    {
+      "type": "information",
+      "title": "Week 5 - Feedforward Process",
+      "elements": [
+        {
+          "type": "text",
+          "content": "[[h3]]Getting to the outputs[[/]]"
+        },
+        {
+          "type": "image",
+          "src": "/data/modules/ai-assets/img4/1-0.png",
+          "width": "25%",
+          "float": "right"
+        },
+        {
+          "type": "text",
+          "content": "➔ We start by taking the inputs and multiplying them by all connected weights (arrows in picture)."
+        },
+        {
+          "type": "text",
+          "content": "➔ Then we take these multiplied inputs and put them into respective neurons (circles)."
+        },
+        {
+          "type": "text",
+          "content": "➔ The neuron adds up every input it gets, and runs an activation function (more later)."
+        },
+        {
+          "type": "text",
+          "content": "➔ Do this process for every layer (there can be many middle/\"hidden\" layers)."
+        },
+        {
+          "type": "text",
+          "content": "[[h3]]Example[[/]]"
+        },
+        {
+          "type": "text",
+          "content": "➔ Let’s take an oversimplified example with two inputs, one hidden layer with two nodes and one output. There is no activation function here. The diagram below shows all the feedforward processing."
+        },
+        {
+          "type": "image",
+          "src": "/data/modules/ai-assets/img4/1-1.png",
+          "width": "60%",
+          "float": "left"
+        }
+      ]
+    },
+    {
+      "type": "information",
+      "title": "Week 5 - Biases and Activation Functions",
+      "elements": [
+        {
+          "type": "text",
+          "content": "[[h3]]Biases[[/]]"
+        },
+        {
+          "type": "image",
+          "src": "/data/modules/ai-assets/img4/2-0.png",
+          "width": "15%",
+          "float": "right"
+        },
+        {
+          "type": "text",
+          "content": "➔ Consider a scenario where all the inputs are zero. No matter what the weights are, the output will always be zero."
+        },
+        {
+          "type": "text",
+          "content": "➔ In many cases, we don’t want a zero when all inputs are zero. To fix this, we add another fixed input known as the bias."
+        },
+        {
+          "type": "text",
+          "content": "    This happens at every single layer."
+        },
+
+        {
+          "type": "image",
+          "src": "/data/modules/ai-assets/img4/2-1.png",
+          "width": "25%",
+          "float": "right"
+        },
+        {
+          "type": "text",
+          "content": "[[h3]]Activation Function[[/]]"
+        },
+        {
+          "type": "text",
+          "content": "➔ Activation functions help Neural Nets identify patterns in data."
+        },
+        {
+          "type": "text",
+          "content": "➔ Sigmoid"
+        },
+        {
+          "type": "text",
+          "content": "    ◆ Non-linear function that is used for binary classification."
+        },
+        {
+          "type": "text",
+          "content": "    ◆ Produces a value between 0-1."
+        },
+        {
+          "type": "text",
+          "content": "    ◆ Used on the output layer."
+        },
+        {
+          "type": "image",
+          "src": "/data/modules/ai-assets/img4/2-2.png",
+          "width": "25%",
+          "float": "right"
+        },
+        {
+          "type": "text",
+          "content": "➔ Softmax"
+        },
+        {
+          "type": "text",
+          "content": "   ◆ Similar to Sigmoid, but all values always add up to 1."
+        },
+        {
+          "type": "text",
+          "content": "   ◆ Used for multi-class classification."
+        },
+        {
+          "type": "text",
+          "content": "➔ ReLu."
+        },
+        {
+          "type": "text",
+          "content": "    ◆ Linear function used on input and hidden layers."
+        }
+      ]
+    },
+    {
+      "type": "information",
+      "title": "Week 5 - Applications",
+      "elements": [
+        {
+          "type": "text",
+          "content": "[[h3]]Using Neural Networks for ML[[/]]"
+        },
+        {
+          "type": "image",
+          "src": "/data/modules/ai-assets/img4/3-0.png",
+          "width": "25%",
+          "float": "right"
+        },
+        {
+          "type": "text",
+          "content": "➔ Supervised Learning - Find the optimal combinations of weights that minimizes some error metric."
+        },
+        {
+          "type": "text",
+          "content": "➔ Reinforcement Learning (Neuroevolution) - generate many random neural networks, judge their"
+        },
+        {
+          "type": "text",
+          "content": "      fitness, and evolve them."
+        },
+        {
+          "type": "text",
+          "content": "➔ Unsupervised learning - neural networks can often find hidden patterns in data."
+        },
+        {
+          "type": "text",
+          "content": "[[h3]]Backpropagation and Gradient Descent[[/]]"
+        },
+        {
+          "type": "text",
+          "content": "➔ This is the mathematics that powers supervised Neural Network algorithms."
+        },
+        {
+          "type": "text",
+          "content": "➔ Gradient descent - Neural networks find the gradient that minimizes error. Error can be calculated many different ways."
+        },
+        {
+          "type": "text",
+          "content": "➔ Backpropagation - Allows us to calculate the gradient which will produce that error reduction."
+        },
+        {
+          "type": "text",
+          "content": "[[h3]]Neuroevolution Crash Course[[/]]"
+        },
+        {
+          "type": "text",
+          "content": "➔ Other than backpropagation and gradient descent, neuroevolution is another way to use neural networks."
+        },
+        {
+          "type": "text",
+          "content": "➔ In a basic sense, neurevolution initializes many randomly weighted neural networks, and picks the ones that are most effective at some task."
+        },
+        {
+          "type": "text",
+          "content": "➔ Then, the networks are evolved like genomes to produce a better agent over time."
+        },
+        {
+          "type": "image",
+          "src": "/data/modules/ai-assets/img4/3-1.png",
+          "width": "40%",
+          "float": "left"
+        },
+        {
+          "type": "image",
+          "src": "/data/modules/ai-assets/img4/3-2.png",
+          "width": "49%",
+          "float": "right"
+        }
+      ]
+    }
+  ]
 }
