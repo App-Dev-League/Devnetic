@@ -1,0 +1,129 @@
+{
+    "type": "lesson",
+    "pages": [
+        {
+            "type": "information",
+            "title": "Week 1 - Python Review",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "[[h3]]Why Python?[[/]]"
+                },
+                {
+                    "type": "image",
+                    "src": "/data/modules/ai-assets/img0/0-0.png",
+                    "width": "40%",
+                    "float": "right"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ One of the most popular introductory languages"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Intuitive and readable with simple to traverse code"
+                },
+                
+                {
+                    "type": "text",
+                    "content": "➔ Ton of libraries for performing statistical analysis, machine learning, and more"
+                },
+                
+                {
+                    "type": "text",
+                    "content": "[[h3]]Inputs, Outputs, and Comments[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ You can print values in Python using the print() method"
+                },
+                {
+                    "type": "text",
+                    "content":"➔ To get an input, use the input() function as shown to the right"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Comments are lines that are notes for you and don’t do anything; to add comments, use a # before the comment"
+                }
+            ]
+        },
+        {
+            "type": "information",
+            "title": "Week 1 - Python Review",
+            "elements": [
+                {
+                    "type": "image",
+                    "src": "/data/modules/ai-assets/img0/1-0.png",
+                    "width": "40%",
+                    "float": "right"
+                },
+                {
+                    "type": "text",
+                    "content": "[[h3]]Object Types[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Assign variables using variable_name = value"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Python automatically assigns types: Numbers, Booleans, Strings, Lists, and None"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Create your own custom object types using classes!"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Check the type of any variable using the type() function"
+                },
+                {
+                    "type": "text",
+                    "content":"➔ Check if a type matches a variable using isinstance()"
+                },
+
+
+                {
+                    "type": "text",
+                    "content": "[[h3]]Number Operators[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ x + y: The sum of two numbers"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ x - y: The difference of two numbers"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ x * y: The product of two numbers"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ x / y: The quotient of two numbers"
+                },
+                {
+                    "type": "text",
+                    "content":"➔ x // y: The quotient of two numbers rounded down to an integer"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ x % y: “modulo”, The remainder when x is divided by y"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ x ** y: x raised to the y power"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ -x: x in its negated form (-1 * x)"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ abs(x): The absolute value of a number"
+                }
+            ]
+        }
+    ]
+}
