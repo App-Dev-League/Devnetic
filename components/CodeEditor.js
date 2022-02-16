@@ -173,7 +173,7 @@ class CodeEditor extends ModuleComponent {
 							document.querySelectorAll(".project-module-tabs")[0].children[0].children[index].click()
 							// switching to the preview tab
 							document.querySelectorAll(".project-module-tabs")[1].children[0].children[1].click()
-							window.consoleLogs.push(["Launching tester..."])
+							//window.consoleLogs.push(["Launching tester..."])
 							document.getElementById("console-bridge").click()
 							if (window.newLogCallback) window.newLogCallback(["Launching tester..."])
 							// clicking run btn
