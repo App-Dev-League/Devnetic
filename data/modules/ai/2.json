@@ -1,0 +1,17 @@
+{
+	"type": "lesson",
+	"pages":
+	[
+		{
+			"type": "information",
+			"title": "Week 3 - TOPIC HERE",
+			"elements":
+			[
+				{
+					"type": "text",
+					"content": "The week 3 lesson module has not yet been created."
+				}
+			]
+		}
+	]
+}
