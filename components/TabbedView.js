@@ -12,17 +12,28 @@ class TabbedView extends tApp.Component {
 		if(this.state.selected == null) {
 			this.state.selected = 0;
 		}
+		if(this.state.currentTabComponent == null) {
+			this.state.currentTabComponent = this.state.tabs[0].component;
+		}
 	}
+	updateTab(index) {
+		this.setState('selected', index);
+		if (this.state.forceReRender === true) {
+			document.querySelector(`[tapp-component="${this.id}"]`).querySelector(".selected-tab").innerHTML = ""
+		}
+		this.setState("currentTabComponent", this.state.tabs[index].component);
+	}
+
 	render(props) {
 		return `<div class="project-module-tabs">
 			<div class="tab-group">
 				${this.state.tabs.map((tab, index) => {
-					return `<div class="tab${index == this.state.selected ? " tab-selected" : ""}" onclick="{{_this}}.setState('selected', ${index});">${tab.name}</div>`;
+					return `<div class="tab${index == this.state.selected ? " tab-selected" : ""}" onclick="{{_this}}.updateTab(${index})">${tab.name}</div>`;
 				}).join("")}
 			</div>
 			<div class="selected-tab">
 				${
-					this.state.tabs[this.state.selected].component
+					this.state.currentTabComponent
 				}
 			</div>
 		</div>`;
