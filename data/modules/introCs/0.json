@@ -110,7 +110,7 @@
                         },
                         {
                             "expect": 1,
-                            "runwhen": "in 2 outputs",
+                            "runwhen": "in 1 outputs",
                             "filters": [
                                 "lowercase",
                                 "trim",
@@ -326,7 +326,7 @@
                         },
                         {
                             "expect": "number",
-                            "runwhen": "in 1 outputs",
+                            "runwhen": "in 2 outputs",
                             "filters": [
                                 "extract_numbers",
                                 "parseFloat",

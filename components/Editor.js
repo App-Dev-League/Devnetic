@@ -216,6 +216,7 @@ ${code}
 								<script>
 								console.oldLog = console.log
 								console.log = function(){
+									console.oldLog("err")
 									window.newLog(arguments)
 								}
 								console.error = function(){

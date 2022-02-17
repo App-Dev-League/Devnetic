@@ -53,7 +53,8 @@ class CodeEditor extends ModuleComponent {
 				}, {
 					name: "Plugins",
 					component: this.state.pluginPanel
-				}]
+				}],
+				forceReRender: true
 			}, this);
 		}
 	}
@@ -74,6 +75,7 @@ class CodeEditor extends ModuleComponent {
 				while (true) {
 					await sleep(100);
 					if (stopManagingQueue) break;
+					if (!window.logQueue) continue;
 					if (window.logQueue.length > 0) {
 						let msg = window.logQueue.shift()
 						if (window.newLogListener) window.newLogListener(msg)
@@ -155,7 +157,6 @@ class CodeEditor extends ModuleComponent {
 				})
 			}
 			let data = parentThis.data()
-			let good = true;
 			let logIndex = 0;
 			var testVars = {};
 			for (let i in data.validation) {
@@ -164,6 +165,7 @@ class CodeEditor extends ModuleComponent {
 				let tester = data.validation[i]
 				if (tester.validate !== true) continue;
 				if (tester.type === "validate-output") {
+					await sleep(1)
 					for (let p in tester.actions) {
 						let action = tester.actions[p];
 						let runwhen = action.runwhen
@@ -186,6 +188,7 @@ class CodeEditor extends ModuleComponent {
 								else break;
 							}
 							console.log("waiting for console wrapper changes")
+							
 						} else if (action.input) {
 							if (runwhen.startsWith("in") && runwhen.endsWith("outputs")) {
 								runwhen = parseInt(runwhen.replace("in", "").replace("outputs", ""))
