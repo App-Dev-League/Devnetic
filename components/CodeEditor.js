@@ -274,9 +274,10 @@ class CodeEditor extends ModuleComponent {
 		}catch(err) {
 			document.body.classList.remove("tester-testing")
 			stopManagingQueue = true
-			window.consoleLogs.push(["A server error occured while validating your code! This most likely means that something is wrong with your code."])
+			console.log("An error was encountered while validating code", err)
+			window.consoleLogs.push(["A server error occured while validating your code! This most likely means that something is wrong with your code. Try reloading the page"])
 			document.getElementById("console-bridge").click()
-			if (window.newLogCallback) window.newLogCallback(["A server error occured while validating your code! This most likely means that something is wrong with your code."])
+			if (window.newLogCallback) window.newLogCallback(["A server error occured while validating your code! This most likely means that something is wrong with your code. Try reloading the page"])
 			return
 		}
 		document.body.classList.remove("tester-testing")
