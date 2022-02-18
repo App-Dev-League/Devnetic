@@ -9,7 +9,7 @@ class CodePreview extends tApp.Component {
 	}
 	update(value){
 		let x = tApp.getComponentFromDOM(document.querySelector("tapp-main").children[0].children[0]).data().storage_id
-		if (document.getElementById("preview")) document.getElementById("preview").srcdoc = value
+		if (document.getElementById("preview") && value) document.getElementById("preview").srcdoc = value
 		document.getElementById("popout").href = `#/preview/html/${x[codeEditorHelper.getCurrentEditorIndex()]}/autoupdate`
 		document.getElementById("popout").onclick = function() {
 			window.open(`#/preview/html/${tApp.getComponentFromDOM(document.querySelector("tapp-main").children[0].children[0]).data().storage_id[codeEditorHelper.getCurrentEditorIndex()]}/autoupdate`,'1',`width=${window.innerWidth},height=${window.innerHeight},toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0`);

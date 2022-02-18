@@ -60,22 +60,25 @@ class Editor extends tApp.Component {
 			}
 			loadCode();
 			function addEvent() {
+				codeEditorHelper.setCurrentEditorIndex(parentThis.parent.state.tabbedView.state.selected)
+				if (document.getElementById("preview-container"))tApp.getComponentFromDOM(document.getElementById("preview-container")).update()
 				if (window.addedEditorEventListeners) return
 				window.addedEditorEventListeners = true;
 				try {
-					codeEditorHelper.setCurrentEditorIndex(tabindex)
 					document.querySelectorAll(".tab").forEach(element => {
 						if (element.innerText === "Preview") {
 							element.addEventListener("click", handleClicks)
 						}
 					})
 					function handleClicks() {
+						tabindex = codeEditorHelper.getCurrentEditorIndex()
 						setTimeout(function () {
 							let fileType = parentThis.parent.parent.data().storage_id[tabindex].split('.').pop().toLowerCase()
 							if (fileType === "html") updatePreview(fileType)
 						}, 100)
 					}
 					document.getElementById("code-editor-run-btn").onclick = async function () {
+						tabindex = codeEditorHelper.getCurrentEditorIndex()
 						document.getElementById("code-editor-status").innerText = "Saving..."
 						await DB.setCode(parentThis.parent.parent.data().storage_id[tabindex], codeEditorHelper.getValue())
 						let fileType = parentThis.parent.parent.data().storage_id[tabindex].split('.').pop().toLowerCase()
@@ -85,6 +88,7 @@ class Editor extends tApp.Component {
 						}, 500)
 					}
 					function updatePreview(fileType){
+						tabindex = codeEditorHelper.getCurrentEditorIndex()
 						if (!window.lastUpdatePreview) window.lastUpdatePreview = 0
 						if (window.lastUpdatePreview + 100 > Date.now()) return;
 						window.lastUpdatePreview = Date.now()
@@ -255,6 +259,7 @@ ${code}
 						}
 					}
 					document.getElementById("code-frame").contentWindow.document.onkeydown =  async function (e) {
+						tabindex = codeEditorHelper.getCurrentEditorIndex()
 						window.codeEditorSaved = false;
 						if (e.keyCode === 82 && e.ctrlKey) {
 							window.codeEditorSaved = true;
