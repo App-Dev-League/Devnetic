@@ -166,6 +166,14 @@ class CodeEditor extends ModuleComponent {
 				if (tester.validate !== true) continue;
 				if (tester.type === "validate-output") {
 					document.body.classList.add("tester-testing")
+					let testingMessages = [
+						'Testing your code against test cases to make sure your code meets the requirements...',
+						'Making sure your code meets all the requirements...',
+						'Checking whether or not your code does what it\'s supposed to do...',
+						'Making sure your code is working as intended...',
+						'Comparing your code\'s output to the expected output...',
+					]
+					document.body.setAttribute('data-before', testingMessages[Math.floor(Math.random() * testingMessages.length)]);
 					await sleep(1)
 					for (let p in tester.actions) {
 						let action = tester.actions[p];
