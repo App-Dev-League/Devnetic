@@ -165,6 +165,7 @@ class CodeEditor extends ModuleComponent {
 				let tester = data.validation[i]
 				if (tester.validate !== true) continue;
 				if (tester.type === "validate-output") {
+					document.body.classList.add("tester-testing")
 					await sleep(1)
 					for (let p in tester.actions) {
 						let action = tester.actions[p];
@@ -223,7 +224,6 @@ class CodeEditor extends ModuleComponent {
 								latest = applyFilters(action.filters, latest)
 							}
 							if (latest !== action.expect) {
-								good = false;
 								window.consoleLogs.push(["Tester returned following problems: " + action.onerror.replaceAll("{{output}}", latest)])
 								document.getElementById("console-bridge").click()
 								if (window.newLogCallback) window.newLogCallback(["Tester returned following problems: " + action.onerror.replaceAll("{{output}}", latest)])
@@ -242,6 +242,7 @@ class CodeEditor extends ModuleComponent {
 							testVars[action.setVar] = latest
 						}
 					}
+					document.body.classList.remove("tester-testing")
 				} else if (tester.type === "validate-code") {
 					for (let p in tester.correct) {
 						// switching to correct editor
@@ -255,10 +256,22 @@ class CodeEditor extends ModuleComponent {
 						if (expected !== actual) return false;
 					}
 				}
+				document.body.classList.remove("tester-testing")
 			}
 			return true;
 		}
-		let results = await main()
+		var results
+		try {
+			results = await main()
+		}catch(err) {
+			document.body.classList.remove("tester-testing")
+			stopManagingQueue = true
+			window.consoleLogs.push(["A server error occured while validating your code! This most likely means that something is wrong with your code."])
+			document.getElementById("console-bridge").click()
+			if (window.newLogCallback) window.newLogCallback(["A server error occured while validating your code! This most likely means that something is wrong with your code."])
+			return
+		}
+		document.body.classList.remove("tester-testing")
 		stopManagingQueue = true
 		console.log("test results", results)
 		if (results === false) {
