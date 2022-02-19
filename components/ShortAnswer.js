@@ -25,7 +25,7 @@ class ShortAnswer extends ModuleComponent {
 					classList: ["short-answer-input"],
 					type: "text",
 					properties: ["autofocus"]
-				});
+				}, this);
 			}
 			if(this.data().value == null) {
 				this.data().value = "";
