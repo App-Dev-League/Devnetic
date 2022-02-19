@@ -283,14 +283,25 @@ class CodeEditor extends ModuleComponent {
 		document.body.classList.remove("tester-testing")
 		stopManagingQueue = true
 		console.log("test results", results)
+		let fileType = tApp.getComponentFromDOM(document.getElementById("code-editor-component")).data().storage_id[codeEditorHelper.getCurrentEditorIndex()].split('.').pop().toLowerCase();
 		if (results === false) {
-			window.consoleLogs.push(["Test cases failed :( try re-writing your code."])
-			document.getElementById("console-bridge").click()
-			if (window.newLogCallback) window.newLogCallback(["Test cases failed :( try re-writing your code."])
+			if (fileType === "html") {
+				await sleep(300)
+				document.getElementById("preview").srcdoc = "Test cases failed :( try re-writing your code."
+			} else {
+				window.consoleLogs.push(["Test cases failed :( try re-writing your code."])
+				document.getElementById("console-bridge").click()
+				if (window.newLogCallback) window.newLogCallback(["Test cases failed :( try re-writing your code."])
+			}
 		} else {
-			window.consoleLogs.push(["Test cases passed! Moving you to the next lesson..."])
-			document.getElementById("console-bridge").click()
-			if (window.newLogCallback) window.newLogCallback(["Test cases passed! Moving you to the next lesson..."])
+			if (fileType === "html") {
+				await sleep(300)
+				document.getElementById("preview").srcdoc = "Test cases passed! Moving you to the next lesson..."
+			} else {
+				window.consoleLogs.push(["Test cases passed! Moving you to the next lesson..."])
+				document.getElementById("console-bridge").click()
+				if (window.newLogCallback) window.newLogCallback(["Test cases passed! Moving you to the next lesson..."])
+			}
 			await sleep(1000)
 			parentThis.parent.next()
 		}
