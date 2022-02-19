@@ -34,6 +34,12 @@ class Editor extends tApp.Component {
 		var tabindex = this.state.tabindex
 
 		console.log("Editor number " + tabindex + " is rendering")
+		if (document.getElementById("code-editor-run-btn") && parentThis.parent.parent.data().storage_id[tabindex].split('.').pop().toLowerCase() === "html") {
+			setTimeout(function(){
+				document.getElementById("code-editor-run-btn").click()
+			}, 100)
+		}
+
 		async function loadCodeFromDb() {
 			let text = await DB.getCode(parentThis.parent.parent.data().storage_id[tabindex]);
 			if (text === null) {
