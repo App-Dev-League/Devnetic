@@ -180,7 +180,7 @@ class CodeEditor extends ModuleComponent {
 					for (let p in tester.actions) {
 						let action = tester.actions[p];
 						let runwhen = action.runwhen
-						if (action.run) {
+						if (typeof action.run !== "undefined") {
 							let index = action.editorIndex
 							// switching to correct editor
 							document.querySelectorAll(".project-module-tabs")[0].children[0].children[index].click()
@@ -200,7 +200,7 @@ class CodeEditor extends ModuleComponent {
 							}
 							console.log("waiting for console wrapper changes")
 
-						} else if (action.input) {
+						} else if (typeof action.input !== "undefined") {
 							if (runwhen.startsWith("in") && runwhen.endsWith("outputs")) {
 								runwhen = parseInt(runwhen.replace("in", "").replace("outputs", ""))
 								logIndex += runwhen
@@ -222,10 +222,11 @@ class CodeEditor extends ModuleComponent {
 								bubbles: true, cancelable: true, keyCode: 13
 							});
 							document.querySelector(".console-input").dispatchEvent(ke);
-						} else if (action.expect) {
+						} else if (typeof action.expect !== "undefined") {
 							if (runwhen.startsWith("in") && runwhen.endsWith("outputs")) {
 								runwhen = parseInt(runwhen.replace("in", "").replace("outputs", ""))
 								logIndex += runwhen
+								console.log(logIndex, runwhen)
 								await waitForXInputs(runwhen, undefined, true)
 							}
 							if (!action.add) action.add = 1
@@ -239,7 +240,7 @@ class CodeEditor extends ModuleComponent {
 								if (window.newLogCallback) window.newLogCallback(["Tester returned following problems: " + action.onerror.replaceAll("{{output}}", latest)])
 								return false;
 							}
-						} else if (action.setVar) {
+						} else if (typeof action.setVar !== "undefined") {
 							if (runwhen.startsWith("in") && runwhen.endsWith("outputs")) {
 								runwhen = parseInt(runwhen.replace("in", "").replace("outputs", ""))
 								await waitForXInputs(runwhen)

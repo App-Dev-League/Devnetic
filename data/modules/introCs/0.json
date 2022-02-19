@@ -234,7 +234,7 @@
                         },
                         {
                             "expect": 0,
-                            "runwhen": "immediately",
+                            "runwhen": "in 1 outputs",
                             "filters": [
                                 "extract_numbers",
                                 "parseFloat"
