@@ -909,7 +909,7 @@
       width: 400px;
       min-height: 70px;
       z-index: 10;
-      transition: all 1s;
+      transition: background-color 1s, opacity 1s, transform 1s, bottom 1s;
       padding: 10px;
       border-radius: 2px;
       box-shadow: var(--shadow);
@@ -918,6 +918,7 @@
     }
     .editor-alert-modal:hover {
      background-color: #262A31;
+     z-index: 900 !important;
     }
     .editor-alert-modal .text {
       font-size: 0.7em;
@@ -1045,6 +1046,14 @@
   .codicon-notifications-clear:before {
     content: '\ea76';
     color: white;
+  }
+  .codicon-error:before {
+    content: "\ea87";
+    color: #ff4d4d;
+  }
+  .codicon-pass:before {
+    content: "\eba4";
+    color: #2A9941;
   }
 </style>
 <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.3.1/styles/atom-one-dark.min.css">

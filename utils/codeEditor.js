@@ -29,7 +29,7 @@ function setCurrentEditorIndex(index){
 	document.getElementById("code-frame").contentWindow.currentEditorIndex = index;
 	return true
 }
-function showAlertModal(message, buttons){
+function showAlertModal(message, buttons, icon){
 	let template = document.getElementById("editor-alert-modal-template");
 	let clone = template.cloneNode(true);
 	let container = document.getElementById("editor-alert-modal-containers");
@@ -41,6 +41,8 @@ function showAlertModal(message, buttons){
 	clone.style.display = "block";
 	clone.style.bottom = "0";
 	clone.style.opacity = "0";
+	clone.style.zIndex = 10+newIndex;
+	if (icon) clone.querySelector(".codicon.codicon-info").classList =  "codicon "+icon;
 	setTimeout(function(){
 		clone.style.opacity = "1"
 		clone.style.bottom = 10+newIndex*100+"px";

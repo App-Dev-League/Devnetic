@@ -83,7 +83,7 @@ class CodeEditor extends ModuleComponent {
 						if (window.newLogListener) window.newLogListener(msg)
 						else {
 							console.log("Uh oh there wasn't a listener for my beautiful log. The log was " + msg)
-							if (msg !== "The log was Launching tester..." && msg !== "Starting python emulator..." ) {
+							if (msg !== "The log was Launching tester..." && msg !== "Starting python emulator...") {
 								window.logQueue.unshift(msg);
 							}
 						}
@@ -148,7 +148,7 @@ class CodeEditor extends ModuleComponent {
 			}
 			function setInput(text) {
 				return new Promise(async (resolve, reject) => {
-					for (let i = 0; i<1000; i++) {
+					for (let i = 0; i < 1000; i++) {
 						await sleep(10)
 						if (!document.querySelector(".console-input")) continue
 						document.querySelector(".console-input").value = text
@@ -193,13 +193,13 @@ class CodeEditor extends ModuleComponent {
 							document.getElementById("code-editor-run-btn").click()
 							await waitForChildChanges(1, document.querySelectorAll(".selected-tab")[1])
 							await waitForChildChanges(1, document.getElementById("preview-container"));
-							for (let i = 0; i<1000; i++) {
+							for (let i = 0; i < 1000; i++) {
 								await sleep(100)
 								if (!document.querySelector(".console-wrapper")) continue
 								else break;
 							}
 							console.log("waiting for console wrapper changes")
-							
+
 						} else if (action.input) {
 							if (runwhen.startsWith("in") && runwhen.endsWith("outputs")) {
 								runwhen = parseInt(runwhen.replace("in", "").replace("outputs", ""))
@@ -214,7 +214,7 @@ class CodeEditor extends ModuleComponent {
 							});
 							action.input = action.input.replaceAll(/(?<={{)(.*)(?=}})/g, function (e) {
 								let tmpFunction = new Function("tester", `return ${e}`)
-								return tmpFunction({variables: testVars})
+								return tmpFunction({ variables: testVars })
 							}).replaceAll("{{", "").replaceAll("}}", "")
 							await setInput(action.input)
 							// pressing enter key
@@ -273,7 +273,7 @@ class CodeEditor extends ModuleComponent {
 		var results
 		try {
 			results = await main()
-		}catch(err) {
+		} catch (err) {
 			document.body.classList.remove("tester-testing")
 			stopManagingQueue = true
 			console.log("An error was encountered while validating code", err)
@@ -285,27 +285,15 @@ class CodeEditor extends ModuleComponent {
 		document.body.classList.remove("tester-testing")
 		stopManagingQueue = true
 		console.log("test results", results)
-		let fileType = tApp.getComponentFromDOM(document.getElementById("code-editor-component")).data().storage_id[codeEditorHelper.getCurrentEditorIndex()].split('.').pop().toLowerCase();
 		if (results === false) {
-			if (fileType === "html") {
-				await sleep(300)
-				document.getElementById("preview").srcdoc = "Test cases failed :( try re-writing your code."
-			} else {
-				window.consoleLogs.push(["Test cases failed :( try re-writing your code."])
-				document.getElementById("console-bridge").click()
-				if (window.newLogCallback) window.newLogCallback(["Test cases failed :( try re-writing your code."])
-			}
+			codeEditorHelper.showAlertModal("Test cases failed :( try re-writing your code.", [{
+				text: "Ok", onclick: function () { codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index')) }
+			}], "codicon-error")
 		} else {
-			if (fileType === "html") {
-				await sleep(300)
-				document.getElementById("preview").srcdoc = "Test cases passed! Moving you to the next lesson..."
-			} else {
-				window.consoleLogs.push(["Test cases passed! Moving you to the next lesson..."])
-				document.getElementById("console-bridge").click()
-				if (window.newLogCallback) window.newLogCallback(["Test cases passed! Moving you to the next lesson..."])
-			}
-			await sleep(1000)
-			parentThis.parent.next()
+			codeEditorHelper.showAlertModal("Congratulations! Your code passed the requirements! Your code will be saved, so feel free to come back and continue working!", [
+				{ text: "Move on", onclick: function () { parentThis.parent.next(); codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index')) } },
+				{ text: "Keep coding", onclick: function () { codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index')) } }
+			], "codicon-pass")
 		}
 	}
 	render(props) {
