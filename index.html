@@ -899,6 +899,60 @@
       left: 50%;
       transform: translate(-50%, -50%);
     }
+    .codicon {
+      font-family: "Codicon";
+    }
+    .editor-alert-modal {
+      position: absolute;
+      background-color: #21252B;
+      right: 20px;
+      width: 400px;
+      min-height: 70px;
+      z-index: 10;
+      transition: all 1s;
+      padding: 10px;
+      border-radius: 2px;
+      box-shadow: var(--shadow);
+      font-size: 1.2em;
+      bottom: 10px;
+    }
+    .editor-alert-modal:hover {
+     background-color: #262A31;
+    }
+    .editor-alert-modal .text {
+      font-size: 0.7em;
+      vertical-align: top;
+    }
+    .editor-alert-modal button {
+      background-color: #4D78CC;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      margin-left: 10px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .editor-alert-modal button:hover {
+      filter: brightness(115%);
+    }
+    .editor-alert-modal .editor-alert-modal-footer {
+      margin-top: 5px;
+      display: block;
+      text-align: right;
+      margin-right: 10px;
+    }
+    .editor-alert-modal .codicon-notifications-clear {
+      font-size: 0.9em;
+      cursor: pointer;
+      position: absolute;
+      right: 10px;
+      border-radius: 5px;
+      padding: 1px;
+      transition: background 0.5s;
+    }
+    .editor-alert-modal .codicon-notifications-clear:hover {
+      background-color: rgba(255,255,255,0.1);
+    }
   </style>
 </head>
 
@@ -941,6 +995,16 @@
             </center>
         </div>
     </div>
+    <div id="editor-alert-modal-containers">
+      <div class="editor-alert-modal" id="editor-alert-modal-template" style="display: none;">
+        <span class="codicon codicon-info"></span>
+        <span class="codicon codicon-notifications-clear" onclick="window.codeEditorHelper.removeAlertModal(this.parentElement.getAttribute('data-editor-alert-modal-index'))"></span>
+        <span class="text">Editor Loading...</span>
+        <div class="editor-alert-modal-footer">
+
+        </div>
+      </div>
+    </div>
   </div>
   <script src="/config.js?v=3"></script>
   <input id="console-bridge" style="width: 0; height: 0;">
@@ -967,6 +1031,21 @@
         font-family: 'Nunito-ExtraBold';
         src: url("/assets/fonts/Nunito/Nunito-ExtraBold.ttf");
     }
+    @font-face {
+      font-family: 'Codicon';
+      src: url("/assets/fonts/codicon.ttf");
+    }
+</style>
+<!-- Codicon font stuff -->
+<style>
+  .codicon-info:before {
+    content: '\ea74';
+    color: #3794ff;
+  }
+  .codicon-notifications-clear:before {
+    content: '\ea76';
+    color: white;
+  }
 </style>
 <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.3.1/styles/atom-one-dark.min.css">
 

@@ -11,14 +11,14 @@ let value = codeEditorHelper.getValue()
 codeEditorHelper.insertAtCursor("asdf")
 */
 function makeid(length) {
-    var result           = '';
-    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-    var charactersLength = characters.length;
-    for ( var i = 0; i < length; i++ ) {
-      result += characters.charAt(Math.floor(Math.random() * 
- charactersLength));
-   }
-   return result;
+	var result = '';
+	var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+	var charactersLength = characters.length;
+	for (var i = 0; i < length; i++) {
+		result += characters.charAt(Math.floor(Math.random() *
+			charactersLength));
+	}
+	return result;
 }
 
 class Editor extends tApp.Component {
@@ -26,6 +26,7 @@ class Editor extends tApp.Component {
 		super(state, parent);
 	}
 	render(props) {
+		var shownNoPluginMessage = false;
 		let languages = {
 			"html": "html",
 			"py": "python"
@@ -35,7 +36,7 @@ class Editor extends tApp.Component {
 
 		console.log("Editor number " + tabindex + " is rendering")
 		if (document.getElementById("code-editor-run-btn") && parentThis.parent.parent.data().storage_id[tabindex].split('.').pop().toLowerCase() === "html") {
-			setTimeout(function(){
+			setTimeout(function () {
 				document.getElementById("code-editor-run-btn").click()
 			}, 100)
 		}
@@ -67,7 +68,37 @@ class Editor extends tApp.Component {
 			loadCode();
 			function addEvent() {
 				codeEditorHelper.setCurrentEditorIndex(parentThis.parent.state.tabbedView.state.selected)
-				if (document.getElementById("preview-container"))tApp.getComponentFromDOM(document.getElementById("preview-container")).update()
+
+				tabindex = codeEditorHelper.getCurrentEditorIndex()
+				let checkFileType = parentThis.parent.parent.data().storage_id[tabindex].split('.').pop().toLowerCase();
+				var requiredPlugins = {
+					"py": "brython",
+					"html": false
+				}
+				if (!window.alertModals) {
+					window.alertModals = {
+						pluginFileRequired: {}
+					}
+				}
+				if (plugins.checkPluginStatus(requiredPlugins[checkFileType]) === false && requiredPlugins[checkFileType] !== false && !window.alertModals.pluginFileRequired[checkFileType]) {
+					window.alertModals.pluginFileRequired[checkFileType] = true;
+					codeEditorHelper.showAlertModal(`This file extention (.${checkFileType}) requires the ${requiredPlugins[checkFileType]} plugin to run`, [
+						{text: "Install", onclick: function(){
+							document.querySelectorAll(".project-module-tabs")[1].children[0].children[3].click()
+							codeEditorHelper.removeAlertModal(this.parentElement.getAttribute('data-editor-alert-modal-index'))
+							setTimeout(function(){
+								if (document.getElementById("plugin-list-"+requiredPlugins[checkFileType]).querySelector("h5").innerText !== "Install") return;
+								document.getElementById("plugin-list-"+requiredPlugins[checkFileType]).querySelector("h5").click()
+							}, 100)
+						}},
+						{text: "Don't Install", onclick: function(){
+							codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index'))
+						}}
+					])
+				}
+
+
+				if (document.getElementById("preview-container")) tApp.getComponentFromDOM(document.getElementById("preview-container")).update()
 				if (window.addedEditorEventListeners) return
 				window.addedEditorEventListeners = true;
 				try {
@@ -93,7 +124,7 @@ class Editor extends tApp.Component {
 							document.getElementById("code-editor-status").innerText = "Ready"
 						}, 500)
 					}
-					function updatePreview(fileType){
+					function updatePreview(fileType) {
 						tabindex = codeEditorHelper.getCurrentEditorIndex()
 						if (!window.lastUpdatePreview) window.lastUpdatePreview = 0
 						if (window.lastUpdatePreview + 100 > Date.now()) return;
@@ -103,49 +134,54 @@ class Editor extends tApp.Component {
 							document.getElementById("console-bridge").dispatchEvent(new Event('change'));
 						}
 						window.lastTab = tabindex;
-						if (document.getElementById("preview")){
-							try{
+						if (document.getElementById("preview")) {
+							try {
 								tApp.getComponentFromDOM(document.querySelector(".preview-wrapper")).parent.children[3].update(codeEditorHelper.getValue())
-							} catch (err) {}
+							} catch (err) { }
 						}
-						if (fileType === "html"){
+						if (fileType === "html") {
 							if (document.getElementById("preview")) document.getElementById("preview").srcdoc = codeEditorHelper.getValue();
-						}else if (fileType === "cpp"){
+						} else if (fileType === "cpp") {
 							plugins.load("jscpp")
 							console.log("running cpp")
-							var code = "#include <iostream>"+
-										"using namespace std;"+
-										"int main() {"+
-										"    int a;"+
-										"    cin >> a;"+
-										"    cout << a << endl;"+
-										"    return 0;"+
-										"}"
-							;
+							var code = "#include <iostream>" +
+								"using namespace std;" +
+								"int main() {" +
+								"    int a;" +
+								"    cin >> a;" +
+								"    cout << a << endl;" +
+								"    return 0;" +
+								"}"
+								;
 							var input = "4321";
 							var output = "";
 							var config = {
 								stdio: {
-									write: function(s) {
+									write: function (s) {
 										output += s;
 									}
 								}
 							};
 							var exitCode = JSCPP.run(code, input, config);
 							alert(output + "\nprogram exited with code " + exitCode);
-						}else if (fileType === "py"){
+						} else if (fileType === "py") {
 							document.getElementById("console-bridge").dispatchEvent(new Event('change'));
 							window.consoleLogs = []
-							try{
+							try {
 								let remove = document.querySelector("#python-execution-thread")
-								if (remove){
+								if (remove) {
 									remove.parentElement.removeChild(remove)
 								}
 								plugins.unload("brython")
-							}catch(err){}
+							} catch (err) { }
 							window.consoleLogs.push(["Starting python emulator..."])
-							console.log("Starting python emulator")
 							document.getElementById("console-bridge").click()
+							if (plugins.checkPluginStatus("brython") === false) {
+								window.consoleLogs.push(["Running python files requires the brython plugin! Install it first in the plugins tab"])
+								document.getElementById("console-bridge").click()
+								return;
+							}
+							console.log("Starting python emulator")
 							if (window.newLogCallback) window.newLogCallback(["Starting python emulator..."])
 							let main = makeid(10)
 							let preScript = `
@@ -166,23 +202,23 @@ async def input(text):
 	return value
 async def ${main}():
 `
-const indentRegex = false ? /^/gm : /^(?!\s*$)/gm;
-let postScript = codeEditorHelper.getValue().replace(indentRegex, '    ').replace(/time\.sleep(?=(?:(?:[^"]*"){2})*[^"]*$)/g, "await aio.sleep").replace(/input(?=(?:(?:[^"]*"){2})*[^"]*$)/g, "await input")
-postScript = postScript.replace(/    def/g, "    async def")
-postScript = postScript.replace(/....[a-zA-Z]+\([^\)]*\)(\.[^\)]*\))?/g, function(matched){
-	if (matched.startsWith("def ")) return matched
-	
-	let builtins = ["abs(","aiter(","all(","any(","anext(","ascii(","bin(","bool(","breakpoint(","bytearray(","bytes(","callable(","chr(","classmethod(","compile(","complex(","delattr(","dict(","dir(","divmod(","enumerate(","eval(","exec(","filter(","float(","format(","frozenset(","getattr(","globals(","hasattr(","hash(","help(","hex(","id(","input(","int(","isinstance(","issubclass(","iter(","len(","list(","locals(","map(","max(","memoryview(","min(","next(","object(","oct(","open(","ord(","pow(","print(","property(","range(","repr(","reversed(","round(","set(","setattr(","slice(","sorted(","staticmethod(","str(","sum(","super(","tuple(","type(","vars("]
+							const indentRegex = false ? /^/gm : /^(?!\s*$)/gm;
+							let postScript = codeEditorHelper.getValue().replace(indentRegex, '    ').replace(/time\.sleep(?=(?:(?:[^"]*"){2})*[^"]*$)/g, "await aio.sleep").replace(/input(?=(?:(?:[^"]*"){2})*[^"]*$)/g, "await input")
+							postScript = postScript.replace(/    def/g, "    async def")
+							postScript = postScript.replace(/....[a-zA-Z]+\([^\)]*\)(\.[^\)]*\))?/g, function (matched) {
+								if (matched.startsWith("def ")) return matched
 
-	for (let i in builtins){
-		if (matched.slice(4).startsWith(builtins[i])) return matched
-	}
+								let builtins = ["abs(", "aiter(", "all(", "any(", "anext(", "ascii(", "bin(", "bool(", "breakpoint(", "bytearray(", "bytes(", "callable(", "chr(", "classmethod(", "compile(", "complex(", "delattr(", "dict(", "dir(", "divmod(", "enumerate(", "eval(", "exec(", "filter(", "float(", "format(", "frozenset(", "getattr(", "globals(", "hasattr(", "hash(", "help(", "hex(", "id(", "input(", "int(", "isinstance(", "issubclass(", "iter(", "len(", "list(", "locals(", "map(", "max(", "memoryview(", "min(", "next(", "object(", "oct(", "open(", "ord(", "pow(", "print(", "property(", "range(", "repr(", "reversed(", "round(", "set(", "setattr(", "slice(", "sorted(", "staticmethod(", "str(", "sum(", "super(", "tuple(", "type(", "vars("]
 
-	if (matched.slice(3).startsWith(".")) return matched
-	if (matched.startsWith("ait ")) return matched
-	return matched.substring(0, 4)+"await aio.run("+matched.slice(4)+")"
-})
-let pps = `
+								for (let i in builtins) {
+									if (matched.slice(4).startsWith(builtins[i])) return matched
+								}
+
+								if (matched.slice(3).startsWith(".")) return matched
+								if (matched.startsWith("ait ")) return matched
+								return matched.substring(0, 4) + "await aio.run(" + matched.slice(4) + ")"
+							})
+							let pps = `
 try:
 	aio.run(${main}())
 except Exception:
@@ -190,20 +226,20 @@ except Exception:
 `
 
 
-							try{
+							try {
 								if (!window.__BRYTHON__) {
-									plugins.load("brython")	
-									brython({pythonpath: ["/assets/plugins/brython/modules/"], cache: true, debug: 0})
+									plugins.load("brython")
+									brython({ pythonpath: ["/assets/plugins/brython/modules/"], cache: true, debug: 0 })
 								}
-							}catch(err){
+							} catch (err) {
 								window.consoleLogs.push(["We couldn't find the necessary plugins to run python files! Please install brython in the plugins panel."])
 								document.getElementById("console-bridge").click()
 								if (window.newLogCallback) window.newLogCallback(["We couldn't find the necessary plugins to run python files! Please install brython in the plugins panel."])
 							}
 							try {
 								window.URL = window.URL || window.webkitURL;
-								let code =  preScript+"\n"+postScript+"\n"+pps
-								if (document.getElementById("python-execution-thread")){
+								let code = preScript + "\n" + postScript + "\n" + pps
+								if (document.getElementById("python-execution-thread")) {
 									let elem = document.getElementById("python-execution-thread")
 									elem.parentElement.removeChild(elem)
 								}
@@ -236,7 +272,7 @@ ${code}
 								</script>
 								`
 								document.body.appendChild(iframe)
-								iframe.contentWindow.newLog = function(log){
+								iframe.contentWindow.newLog = function (log) {
 									let arrLog = []
 									for (let i in log) {
 										arrLog.push(log[i])
@@ -246,17 +282,17 @@ ${code}
 									if (window.newLogCallback) window.newLogCallback(log)
 								}
 								iframe.contentWindow.pyjsCode = code
-								iframe.contentWindow.enableInput = function(){
+								iframe.contentWindow.enableInput = function () {
 									document.querySelector(".console-input").disabled = false
 								}
-								iframe.contentWindow.disableInput = function(){
+								iframe.contentWindow.disableInput = function () {
 									document.querySelector(".console-input").disabled = true
 									document.querySelector(".console-input").value = ""
 								}
-								iframe.contentWindow.getInput = function(){
+								iframe.contentWindow.getInput = function () {
 									return document.querySelector(".console-input").value
 								}
-							}catch(err){
+							} catch (err) {
 								window.consoleLogs.push([err.toString(), err.stack])
 								document.getElementById("console-bridge").click()
 								if (window.newLogCallback) window.newLogCallback([err.toString(), err.stack])
@@ -264,7 +300,7 @@ ${code}
 							}
 						}
 					}
-					document.getElementById("code-frame").contentWindow.document.onkeydown =  async function (e) {
+					document.getElementById("code-frame").contentWindow.document.onkeydown = async function (e) {
 						tabindex = codeEditorHelper.getCurrentEditorIndex()
 						window.codeEditorSaved = false;
 						if (e.keyCode === 82 && e.ctrlKey) {
@@ -299,7 +335,7 @@ ${code}
 				addThings()
 				let fileType = parentThis.parent.parent.data().storage_id[tabindex].split('.').pop().toLowerCase()
 				codeEditorHelper.updateLanguage(languages[fileType])
-			}else{
+			} else {
 				document.getElementById("code-frame").contentWindow.addEventListener("message", function (event) {
 					if (event.data.message === "monacoloaded") {
 						window.monacoAlreadyLoaded = true;
@@ -309,8 +345,8 @@ ${code}
 						codeEditorHelper.updateLanguage(languages[fileType])
 						try {
 							plugins.load("betterEditor")
-						}catch(err){
-							
+						} catch (err) {
+
 						}
 					}
 				}, false);

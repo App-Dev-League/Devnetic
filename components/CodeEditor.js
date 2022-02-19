@@ -9,6 +9,8 @@ const TabbedView = require("./TabbedView.js");
 const PluginPanel = require("./PluginPanel.js")
 const codeEditorHelper = require("../utils/codeEditor.js");
 
+window.codeEditorHelper = codeEditorHelper;
+
 class CodeEditor extends ModuleComponent {
 	constructor(state, parent) {
 		super(state, parent);
