@@ -14,7 +14,7 @@ object = []
 for q in data['kahoot']['questions']:
     curr = {"type": "multiple_choice", "question": q['question'], "descriptions": [ "Desc1", "Desc2", "Desc3","Desc4"],"points": 5,"coins": 1, "answers": []}
     for choice in q['choices']:
-        curr["answers"].append(choice['answer'].replace('&nbsp;', ' ').replace("''", ""))
+        curr["answers"].append(choice['answer'].replace('&nbsp;', ' '))
         if choice['correct']:
             curr["correct"] = len(curr["answers"]) - 1
     object.append(curr)
