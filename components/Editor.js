@@ -29,7 +29,8 @@ class Editor extends tApp.Component {
 		var shownNoPluginMessage = false;
 		let languages = {
 			"html": "html",
-			"py": "python"
+			"py": "python",
+			"md": "markdown"
 		}
 		var parentThis = this
 		var tabindex = this.state.tabindex
@@ -73,7 +74,8 @@ class Editor extends tApp.Component {
 				let checkFileType = parentThis.parent.parent.data().storage_id[tabindex].split('.').pop().toLowerCase();
 				var requiredPlugins = {
 					"py": "brython",
-					"html": false
+					"html": false,
+					"md": "showdown"
 				}
 				if (!window.alertModals) {
 					window.alertModals = {
@@ -297,6 +299,21 @@ ${code}
 								document.getElementById("console-bridge").click()
 								if (window.newLogCallback) window.newLogCallback([err.toString(), err.stack])
 								throw err
+							}
+						} else if (fileType === "md") {
+							if (document.getElementById("preview")) {
+								try {
+									plugins.load("showdown")
+								} catch(err) {
+									codeEditorHelper.showAlertModal("Markdown plugin not found! You must install it before you can render markdown files.", [{
+										text: "Ok", onclick: function () { codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index')) }
+									}], "codicon-error")
+									return;
+								}
+								let md = codeEditorHelper.getValue();
+								var converter = new showdown.Converter();
+								let html = converter.makeHtml(md);
+								document.getElementById("preview").srcdoc = html
 							}
 						}
 					}

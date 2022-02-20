@@ -22,13 +22,16 @@
         {
             "type": "code_editor",
             "storage_id": [
-                "introCs-0-0.py"
+                "introCs-0-0-0.py",
+                "introCs-0-0-1.md"
             ],
             "files": [
-                "problem_1.py"
+                "problem_1.py",
+                "test.md"
             ],
             "default": [
-                "print(\"Hello World\")"
+                "print(\"Hello World\")",
+                "# Hello Markdown world!"
             ],
             "display_type": "web",
             "elements": [
@@ -77,7 +80,7 @@
                     "type": "validate-output",
                     "actions": [
                         {
-                            "run": "introCs-0-0.py",
+                            "run": "introCs-0-0-0.py",
                             "editorIndex": 0
                         },
                         {
@@ -101,7 +104,7 @@
                     "type": "validate-output",
                     "actions": [
                         {
-                            "run": "introCs-0-0.py",
+                            "run": "introCs-0-0-0.py",
                             "editorIndex": 0
                         },
                         {
@@ -125,7 +128,7 @@
                     "type": "validate-output",
                     "actions": [
                         {
-                            "run": "introCs-0-0.py",
+                            "run": "introCs-0-0-0.py",
                             "editorIndex": 0
                         },
                         {
@@ -161,7 +164,7 @@
         {
             "type": "code_editor",
             "storage_id": [
-                "introCs-0-1.py"
+                "introCs-0-1-0.py"
             ],
             "files": [
                 "problem_2.py"
@@ -212,7 +215,7 @@
                     "type": "validate-output",
                     "actions": [
                         {
-                            "run": "introCs-0-1.py",
+                            "run": "introCs-0-1-0.py",
                             "editorIndex": 0
                         },
                         {
@@ -250,7 +253,7 @@
         {
             "type": "code_editor",
             "storage_id": [
-                "introCs-0-2.py"
+                "introCs-0-2-0.py"
             ],
             "files": [
                 "problem_3.py"
@@ -309,7 +312,7 @@
                     "type": "validate-output",
                     "actions": [
                         {
-                            "run": "introCs-0-2.py",
+                            "run": "introCs-0-2-0.py",
                             "editorIndex": 0
                         },
                         {
@@ -342,7 +345,7 @@
         {
             "type": "code_editor",
             "storage_id": [
-                "introCs-0-3.py"
+                "introCs-0-0.py"
             ],
             "files": [
                 "problem_4.py"
@@ -393,7 +396,7 @@
                     "type": "validate-output",
                     "actions": [
                         {
-                            "run": "introCs-0-3.py",
+                            "run": "introCs-0-3-0.py",
                             "editorIndex": 0
                         },
                         {
@@ -419,7 +422,7 @@
                     "type": "validate-output",
                     "actions": [
                         {
-                            "run": "introCs-0-3.py",
+                            "run": "introCs-0-3-0.py",
                             "editorIndex": 0
                         },
                         {

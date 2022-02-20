@@ -100,6 +100,12 @@ module.exports = {
                 image: "/assets/plugins/typescript/typescript.svg",
                 id: "typescript",
                 //https://jsfiddle.net/k78t436y/
+            },
+            {
+                name: "Markdown",
+                description: "This plugin allows you to render markdown code in the browser!",
+                image: "/assets/plugins/showdown/markdown-logo.png",
+                id: "showdown"
             }
         ]
     },
