@@ -131,7 +131,7 @@ class SnippetsPanel extends tApp.Component {
 				</div>
 			</div>
 				`
-		}).join("")}
+		}).join(" ")}
 		</div>`;
 	}
 }

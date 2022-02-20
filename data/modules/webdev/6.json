@@ -59,9 +59,8 @@
 					"content": "➔ Uses the command line"
 				},
 				{
-					"type": "image",
-					"src": "/data/modules/webdev-assets/img6/2-0.png",
-					"width": "40%"
+					"type": "code",
+					"content": "npm install <package name>"
 				}
 			]
 		},
@@ -80,12 +79,7 @@
 				},
 				{
 					"type": "text",
-					"content": "2. Run n[[monospace]]pm install file-system[[/]] to install the file-system package. "
-				},
-				{
-					"type": "image",
-					"src": "/data/modules/webdev-assets/img6/2-0.png",
-					"width": "40%"
+					"content": "2. Run [[monospace]]npm install file-system[[/]] to install the file-system package. "
 				},
 				{
 					"type": "text",
@@ -96,9 +90,8 @@
 					"content": "Now, we must run our code to see if it actually works. In contrast to JavaScript, you run code using the [[monospace]]node[[/]] command, rather than through the browser."
 				},
 				{
-					"type": "image",
-					"src": "/data/modules/webdev-assets/img6/2-1.png",
-					"width": "40%"
+					"type": "code",
+					"content": "node filename.js"
 				}
 			]
 		},
@@ -111,18 +104,16 @@
 					"content": "In order to use the package we just installed, we need to import it in our code. To do that we can use CommonJS modules or ES6 modules. ES6 modules are more complicated, so we will use CommonJS. We are creating a constant variable called fs, and assigning it to the return value of the require function. Now, our fs variable has all the functions and properties so that we can start to read and write files using JavaScript."
 				},
 				{
-					"type": "image",
-					"src": "/data/modules/webdev-assets/img6/3-0.png",
-					"width": "40%"
+					"type": "code",
+					"content": "const fs = require('file-system');"
 				},
 				{
 					"type": "text",
 					"content": "In order to move on, we need to first understand paths on your computer. When working with projects, we usually use relative paths. Relative paths look something like this"
 				},
 				{
-					"type": "image",
-					"src": "/data/modules/webdev-assets/img6/3-1.png",
-					"width": "40%"
+					"type": "code",
+					"content": "\"file.txt\"\n\"./file.txt\"\n\"../file.txt\""
 				},
 				{
 					"type": "text",
@@ -133,9 +124,8 @@
 					"content": "Why use modules? Sometimes you want to put functions into other files to reduce the clutter. You can create another file and add your functions there. Through [[monospace]]module.exports[[/]], functions can be exported to be used in other files."
 				},
 				{
-					"type": "image",
-					"src": "/data/modules/webdev-assets/img6/3-2.png",
-					"width": "60%"
+					"type": "code",
+					"content": "module.exports.greet = (name) => { console.log(`Hello ${name}`) };"
 				}
 			]
 		},
@@ -165,19 +155,15 @@
 			"question": "If util.js is in the parent directory, how what is its relative path?",
 			"answers": 
 			[
-				"util.js",
-				"./util.js",
-				"../util.js",
-				"../util.js/."
+				"../util.js"
 			],
 			"correct": 2,
-			"descriptions": [
-				"Incorrect. This would work if util.js was in the currect directory",
-				"Incorrect. This would work if util.js was in the currect directory",
-				"Correct! Good job.",
-				"Incorrect. The [[monospace]].[[/]] at the end would mean [[monospace]]../utils.js[[/]] is a directory"
+			"descriptions": {
+				"util.js": "Incorrect. This would work if util.js was in the current directory",
+				"./util.js": "Incorrect. This would work if util.js was in the current directory",
+				"../util.js": "Correct! The \"..\" means parent directory."
 
-			],
+			},
 			"description_default": "How do you access parent directories? How do you access a file inside a directory?",
 			"points": 10,
 			"coins": 1
@@ -246,7 +232,7 @@
 					"content": "Lastly, you how to use about relative paths."
 				},
 				{
-					"type": "text",
+					"type": "code",
 					"content": "require('../file.js').greet"
 				}
 			]
