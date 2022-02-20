@@ -338,6 +338,136 @@
           "float": "right"
         }
       ]
+    },
+    {
+      "type": "multiple_choice",
+      "question": "What is a Convolutional Neural Network?",
+      "descriptions": ["Desc1", "Desc2", "Desc3", "Desc4"],
+      "points": 5,
+      "coins": 1,
+      "answers": [
+        "A subset of Artificial Neural Networks that allow us to work with images",
+        "A superset of Neural Networks that includes is the best way to do AI",
+        "A subset of Artificial Neural Networks for camera work ",
+        "The basic structure required for any image processing with code"
+      ],
+      "correct": 0
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Which of these are applications of CNNs?",
+      "descriptions": ["Desc1", "Desc2", "Desc3", "Desc4"],
+      "points": 5,
+      "coins": 1,
+      "answers": [
+        "Image Recognition",
+        "Recommender Systems",
+        "Image Classification",
+        "Medical Image Analysis"
+      ],
+      "correct": 3
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Why should you use CNNs over regular Neural Networks?",
+      "descriptions": ["Desc1", "Desc2", "Desc3", "Desc4"],
+      "points": 5,
+      "coins": 1,
+      "answers": [
+        "CNNs overfit data",
+        "It is much faster in training time",
+        "Neural Netwroks underfit data",
+        "It captures a lot of spatial dependencies hidden in normal Neural Networks"
+      ],
+      "correct": 3
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Which of these is not an attribute of an image?",
+      "descriptions": ["Desc1", "Desc2", "Desc3", "Desc4"],
+      "points": 5,
+      "coins": 1,
+      "answers": ["Color channels", "Width", "Heights", "Frame"],
+      "correct": 3
+    },
+    {
+      "type": "multiple_choice",
+      "question": "What is a convolution?",
+      "descriptions": ["Desc1", "Desc2", "Desc3", "Desc4"],
+      "points": 5,
+      "coins": 1,
+      "answers": [
+        "A process to flatten an image",
+        "A filter applied to an image",
+        "A way to compress an image",
+        "A method to process images using CNNs"
+      ],
+      "correct": 1
+    },
+    {
+      "type": "multiple_choice",
+      "question": "How many convolutional layers can a CNN have?",
+      "descriptions": ["Desc1", "Desc2", "Desc3", "Desc4"],
+      "points": 5,
+      "coins": 1,
+      "answers": ["1", "3", "5", "As many as needed"],
+      "correct": 3
+    },
+    {
+      "type": "multiple_choice",
+      "question": "What does the pooling layer do?",
+      "descriptions": ["Desc1", "Desc2", "Desc3", "Desc4"],
+      "points": 5,
+      "coins": 1,
+      "answers": [
+        "Pools all the convolutions and sums the kernels up to create a large kernel",
+        "It pools together many imagesfor processing",
+        "Grabs the most dominant features of an image such as edges",
+        "It gets the features from a convolution and puts them in an array"
+      ],
+      "correct": 2
+    },
+    {
+      "type": "multiple_choice",
+      "question": "What is the Fully Connected Layer in a CNN similar to?",
+      "descriptions": ["Desc1", "Desc2", "Desc3", "Desc4"],
+      "points": 5,
+      "coins": 1,
+      "answers": [
+        "An array",
+        "A \"regular\" Neural Network",
+        "An object",
+        "A hidden layer"
+      ],
+      "correct": 1
+    },
+    {
+      "type": "multiple_choice",
+      "question": "What is a bounding box?",
+      "descriptions": ["Desc1", "Desc2", "Desc3", "Desc4"],
+      "points": 5,
+      "coins": 1,
+      "answers": [
+        "Imaginary rectangle that wraps a target object to be detected",
+        "A line that segregates an object in an image from other images",
+        "A box that sets the limit for the area that an object can be detected in",
+        "A box dran by a CNN that defined pixels with a set of similar features"
+      ],
+      "correct": 0
+    },
+    {
+      "type": "multiple_choice",
+      "question": "What is segmentation",
+      "descriptions": ["Desc1", "Desc2", "Desc3", "Desc4"],
+      "points": 5,
+      "coins": 1,
+      "answers": [
+        "Drawing a line to group together pixels that share similar characteristics",
+        "Segmenting the image into areas to define where an object can be detected",
+        "Drawing a box around a detected object",
+        "Creating an image split into two segments to analyze differences"
+      ],
+      "correct": 0
     }
   ]
 }
