@@ -244,6 +244,100 @@
           "float": "right"
         }
       ]
+    },
+    {
+      "type": "information",
+      "title": "Week 6 - Object Detection and Localization",
+      "elements": [
+        {
+          "type": "text",
+          "content": "[[h3]]The Goal[[/]]"
+        },
+        {
+          "type": "text",
+          "content": "➔ Draw a bounding box (next slide) around the recognized object"
+        },
+        {
+          "type": "text",
+          "content": "➔ Identify the recognized object according to determined labels"
+        },
+        {
+          "type": "text",
+          "content": "➔ Predict these with a high accuracy rate"
+        },
+        {
+          "type": "text",
+          "content": "➔ For example - Identify cars in a given image"
+        },
+        {
+          "type": "image",
+          "src": "/data/modules/ai-assets/img5/3-0.png",
+          "width": "49%",
+          "float": "left"
+        },
+        {
+          "type": "image",
+          "src": "/data/modules/ai-assets/img5/3-1.png",
+          "width": "42%",
+          "float": "right"
+        },
+        {
+          "type": "text",
+          "content": "[[h3]]Bounding Boxes[[/]]"
+        },
+        {
+          "type": "text",
+          "content": "➔ Imaginary rectangle that wraps a target object to be detected"
+        },
+        {
+          "type": "text",
+          "content": "➔ This helps us create a collision box for the object and we can track changes and compare objects to each other"
+        },
+        {
+          "type": "text",
+          "content": "➔ This is one of the most popular image annotation techniques because it reduces costs and increases efficiency"
+        },
+        {
+          "type": "image",
+          "src": "/data/modules/ai-assets/img5/3-2.png",
+          "width": "49%",
+          "float": "left"
+        },
+        {
+          "type": "image",
+          "src": "/data/modules/ai-assets/img5/3-3.png",
+          "width": "43%",
+          "float": "right"
+        },
+        {
+          "type": "text",
+          "content": "[[h3]]Segmentation[[/]]"
+        },
+        {
+          "type": "text",
+          "content": "➔ Since an image is just a collection of pixels, we can group pixels in the image and label them as objects after using bounding boxes to define the location"
+        },
+        {
+          "type": "text",
+          "content": "➔ Pixels that are grouped together share similar characteristics"
+        },
+        {
+          "type": "text",
+          "content": "➔ This helps in areas like cancer detection, self-driving cars and more that need to separate objects precisely"
+        },
+        {
+          "type": "image",
+          "src": "/data/modules/ai-assets/img5/3-4.png",
+          "width": "49%",
+          "float": "left"
+        },
+        {
+          "type": "image",
+          "src": "/data/modules/ai-assets/img5/3-5.png",
+          "width": "44%",
+          "float": "right"
+        }
+      ]
     }
   ]
 }
