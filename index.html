@@ -915,6 +915,7 @@
       box-shadow: var(--shadow);
       font-size: 1.2em;
       bottom: 10px;
+      overflow: hidden;
     }
     .editor-alert-modal:hover {
      background-color: #262A31;
@@ -955,6 +956,18 @@
     }
     .editor-alert-modal .codicon-notifications-clear:hover {
       background-color: rgba(255,255,255,0.1);
+    }
+    .editor-alert-modal .editor-alert-modal-loading-bar-wrapper {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 5px;
+      left: 0;
+    }
+    .editor-alert-modal .editor-alert-modal-loading-bar {
+      height: 100%;
+      background-color: #4D78CC;
+      transition: width 0.5s;
     }
   </style>
 </head>
@@ -1005,6 +1018,9 @@
         <span class="text">Editor Loading...</span>
         <div class="editor-alert-modal-footer">
 
+        </div>
+        <div class="editor-alert-modal-loading-bar-wrapper">
+          <div class="editor-alert-modal-loading-bar" style="width: 0%;"></div>
         </div>
       </div>
     </div>
