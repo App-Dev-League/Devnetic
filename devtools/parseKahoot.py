@@ -18,4 +18,5 @@ for q in data['kahoot']['questions']:
         if choice['correct']:
             curr["correct"] = len(curr["answers"]) - 1
     object.append(curr)
-print(object)
+
+print(json.dumps(object))
