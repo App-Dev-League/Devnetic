@@ -409,7 +409,10 @@ class TabbedEditor extends tApp.Component {
 					}
 					tabs.push({
 						name: data.files[i],
-						component: goodThis.state[data.storage_id[i]]
+						component: goodThis.state[data.storage_id[i]],
+						tabDataset: {
+							storage_id: data.storage_id[i]
+						}
 					})
 					goodThis.state.tabs = tabs;
 				}

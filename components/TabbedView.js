@@ -28,7 +28,12 @@ class TabbedView extends tApp.Component {
 		return `<div class="project-module-tabs">
 			<div class="tab-group">
 				${this.state.tabs.map((tab, index) => {
-					return `<div class="tab${index == this.state.selected ? " tab-selected" : ""}" onclick="{{_this}}.updateTab(${index})">${tab.name}</div>`;
+					let dataset = tab.tabDataset || {};
+					let stringDataset = ""
+					Object.entries(dataset).forEach(([key, value]) => {
+						stringDataset += `data-${key}="${value}" `
+					})
+					return `<div class="tab${index == this.state.selected ? " tab-selected" : ""}" ${stringDataset} onclick="{{_this}}.updateTab(${index})">${tab.name}</div>`;
 				}).join("")}
 			</div>
 			<div class="selected-tab">

@@ -30,31 +30,23 @@ class CodeEditor extends ModuleComponent {
 			this.state.pluginPanel = new PluginPanel({}, this);
 		}
 		if (this.state.tabbedView == null) {
-			// this.state.tabbedView = new TabbedView({
-			// 	tabs: [{
-			// 		name: "Instructions",
-			// 		component: this.state.instructions
-			// 	}, {
-			// 		name: "Preview",
-			// 		component: this.state.codePreview
-			// 	}, {
-			// 		name: "Snippets",
-			// 		component: this.state.snippetsPanel
-			// 	}]
-			// }, this);
 			this.state.tabbedView = new TabbedView({
 				tabs: [{
 					name: "Instructions",
-					component: this.state.instructions
+					component: this.state.instructions,
+					tabDataset: {tabname: "instructions"}
 				}, {
 					name: "Preview",
-					component: this.state.codePreview
+					component: this.state.codePreview,
+					tabDataset: {tabname: "preview"}
 				}, {
 					name: "Snippets",
-					component: this.state.snippetsPanel
+					component: this.state.snippetsPanel,
+					tabDataset: {tabname: "snippets"}
 				}, {
 					name: "Plugins",
-					component: this.state.pluginPanel
+					component: this.state.pluginPanel,
+					tabDataset: {tabname: "plugins"}
 				}],
 				forceReRender: true
 			}, this);
@@ -181,11 +173,11 @@ class CodeEditor extends ModuleComponent {
 						let action = tester.actions[p];
 						let runwhen = action.runwhen
 						if (typeof action.run !== "undefined") {
-							let index = action.editorIndex
 							// switching to correct editor
-							document.querySelectorAll(".project-module-tabs")[0].children[0].children[index].click()
+							document.querySelectorAll(".project-module-tabs")[0].children[0].querySelector(`[data-storage_id='${action.run}']`).click()
+							await sleep(100)
 							// switching to the preview tab
-							document.querySelectorAll(".project-module-tabs")[1].children[0].children[1].click()
+							document.querySelectorAll(".project-module-tabs")[1].children[0].querySelector(`[data-tabname='preview']`).click()
 							//window.consoleLogs.push(["Launching tester..."])
 							document.getElementById("console-bridge").click()
 							if (window.newLogCallback) window.newLogCallback(["Launching tester..."])
@@ -257,9 +249,9 @@ class CodeEditor extends ModuleComponent {
 				} else if (tester.type === "validate-code") {
 					for (let p in tester.correct) {
 						// switching to correct editor
-						document.querySelectorAll(".project-module-tabs")[0].children[0].children[tester.editorIndex].click()
+						document.querySelectorAll(".project-module-tabs")[0].children[0].querySelector(`[data-storage_id='${tester.fileStorageId}']`).click()
 						// switching to the preview tab
-						document.querySelectorAll(".project-module-tabs")[1].children[0].children[1].click()
+						document.querySelectorAll(".project-module-tabs")[1].children[0].querySelector(`[data-tabname='preview']`).click()
 						await sleep(500)
 						let element = tester.correct[p];
 						let expected = element.value;
