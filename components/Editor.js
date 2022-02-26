@@ -286,6 +286,7 @@ ${code}
 								iframe.contentWindow.pyjsCode = code
 								iframe.contentWindow.enableInput = function () {
 									document.querySelector(".console-input").disabled = false
+									document.querySelector(".console-input").focus()
 								}
 								iframe.contentWindow.disableInput = function () {
 									document.querySelector(".console-input").disabled = true
