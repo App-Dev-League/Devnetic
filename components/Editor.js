@@ -31,7 +31,8 @@ class Editor extends tApp.Component {
 			"html": "html",
 			"py": "python",
 			"md": "markdown",
-			"js": "javascript"
+			"js": "javascript",
+			"jsx": "javascript"
 		}
 		var parentThis = this
 		var tabindex = this.state.tabindex
@@ -77,7 +78,8 @@ class Editor extends tApp.Component {
 					"py": "brython",
 					"html": false,
 					"md": "showdown",
-					"js": false
+					"js": false,
+					"jsx": "react"
 				}
 				if (!window.alertModals) {
 					window.alertModals = {
@@ -376,6 +378,25 @@ try{
 								window.document.getElementById("console-bridge").click()
 								return false;
 							}
+						} else if (fileType === "jsx") {
+							let code = codeEditorHelper.getValue();
+							if (document.getElementById("preview")){
+								let src = `
+								<html>
+									<body>
+										<div id="root"></div>
+										<script>
+											${plugins.getCode("react")}
+										</script>
+										<script>
+											${code}
+										</script>
+									</body>
+								</html>
+								`
+								document.getElementById("preview").srcdoc = src;
+							}
+
 						}
 					}
 					document.getElementById("code-frame").contentWindow.document.onkeydown = async function (e) {

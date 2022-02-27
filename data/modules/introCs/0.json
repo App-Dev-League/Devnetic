@@ -24,17 +24,20 @@
             "storage_id": [
                 "introCs-0-0-0.py",
                 "introCs-0-0-1.md",
-                "introCs-0-0-2.js"
+                "introCs-0-0-2.js",
+                "introCs-0-0-3.jsx"
             ],
             "files": [
                 "problem_1.py",
                 "test.md",
-                "hello_world.js"
+                "hello_world.js",
+                "react_example.jsx"
             ],
             "default": [
                 "print(\"Hello World\")",
                 "# Hello Markdown world!",
-                "console.log(\"Hello World\")"
+                "console.log(\"Hello World\")",
+                "// The root element's ID is root"
             ],
             "display_type": "web",
             "elements": [

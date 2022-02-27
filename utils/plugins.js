@@ -115,6 +115,12 @@ module.exports = {
                 description: "This plugin allows you to render markdown code in the browser!",
                 image: "/assets/plugins/showdown/markdown-logo.png",
                 id: "showdown"
+            },
+            {
+                name: "ReactJS",
+                description: "This plugin allows you to create and preview a ReactJS website!",
+                image: "/assets/plugins/react/react.svg",
+                id: "react"
             }
         ]
     },
