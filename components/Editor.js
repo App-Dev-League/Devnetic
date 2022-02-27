@@ -411,6 +411,7 @@ try{
 							await DB.setCode(parentThis.parent.parent.data().storage_id[codeEditorHelper.getCurrentEditorIndex()], codeEditorHelper.getValue())
 							let fileType = parentThis.parent.parent.data().storage_id[tabindex].split('.').pop().toLowerCase()
 							if (fileType === "html") updatePreview(fileType)
+							else if (fileType === "jsx") updatePreview(fileType)
 							window.codeEditorSaved = true;
 							setTimeout(function () {
 								document.getElementById("code-editor-status").innerText = "Ready"
