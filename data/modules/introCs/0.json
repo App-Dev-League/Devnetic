@@ -23,15 +23,18 @@
             "type": "code_editor",
             "storage_id": [
                 "introCs-0-0-0.py",
-                "introCs-0-0-1.md"
+                "introCs-0-0-1.md",
+                "introCs-0-0-2.js"
             ],
             "files": [
                 "problem_1.py",
-                "test.md"
+                "test.md",
+                "hello_world.js"
             ],
             "default": [
                 "print(\"Hello World\")",
-                "# Hello Markdown world!"
+                "# Hello Markdown world!",
+                "console.log(\"Hello World\")"
             ],
             "display_type": "web",
             "elements": [

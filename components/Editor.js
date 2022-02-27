@@ -30,7 +30,8 @@ class Editor extends tApp.Component {
 		let languages = {
 			"html": "html",
 			"py": "python",
-			"md": "markdown"
+			"md": "markdown",
+			"js": "javascript"
 		}
 		var parentThis = this
 		var tabindex = this.state.tabindex
@@ -75,7 +76,8 @@ class Editor extends tApp.Component {
 				var requiredPlugins = {
 					"py": "brython",
 					"html": false,
-					"md": "showdown"
+					"md": "showdown",
+					"js": false
 				}
 				if (!window.alertModals) {
 					window.alertModals = {
@@ -315,6 +317,64 @@ ${code}
 								var converter = new showdown.Converter();
 								let html = converter.makeHtml(md);
 								document.getElementById("preview").srcdoc = html
+							}
+						} else if (fileType === "js") {
+							document.getElementById("console-bridge").dispatchEvent(new Event('change'));
+							window.consoleLogs = []
+							try {
+								let remove = document.querySelector("#python-execution-thread")
+								if (remove) {
+									remove.parentElement.removeChild(remove)
+								}
+								plugins.unload("brython")
+							} catch (err) { }
+							window.consoleLogs.push(["Starting javascript engine..."])
+							document.getElementById("console-bridge").click()
+							let code = codeEditorHelper.getValue()
+							if (document.getElementById("python-execution-thread")) {
+								let elem = document.getElementById("python-execution-thread")
+								elem.parentElement.removeChild(elem)
+							}
+							let iframe = document.createElement("iframe")
+							iframe.style.width = 0
+							iframe.style.height = 0
+							iframe.id = "python-execution-thread"
+							iframe.srcdoc = `
+							<html>
+								<body>
+									<div id="python-sandbox-bridge"></div>
+								</body>
+							</html>
+							<script>
+console.oldLog = console.log
+console.log = function(){
+	window.newLog(arguments)
+}
+console.error = function(){
+	window.newLog(arguments)
+}
+try{
+	${code}
+}catch(err){
+	console.error(err)
+}
+							</script>
+							`
+							document.body.appendChild(iframe)
+							iframe.contentWindow.newLog = function (log) {
+								let arrLog = []
+								for (let i in log) {
+									arrLog.push(log[i])
+								}
+								window.consoleLogs.push(arrLog)
+								window.document.getElementById("console-bridge").click()
+								if (window.newLogCallback) window.newLogCallback(log)
+							}
+							iframe.contentWindow.onerror=function(err) {
+								err = err.toString()
+								window.consoleLogs.push([err])
+								window.document.getElementById("console-bridge").click()
+								return false;
 							}
 						}
 					}
