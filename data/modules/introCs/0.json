@@ -37,7 +37,7 @@
                 "print(\"Hello World\")",
                 "# Hello Markdown world!",
                 "console.log(\"Hello World\")",
-                "// The root element's ID is root"
+                "// The dom container's element ID is root\nconst domContainer = document.querySelector('#root');"
             ],
             "display_type": "web",
             "elements": [
