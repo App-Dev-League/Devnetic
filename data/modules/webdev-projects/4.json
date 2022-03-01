@@ -406,7 +406,77 @@
                             "filters": [
                                 "trim"
                             ],
-                            "onerror": "Expected output 0 for input 4"
+                            "onerror": "Uh oh! The Mad Libs function didn't work. We expected the sentence to be 'The happy dog jump over the moon.'"
+                        }
+                    ]
+                },
+                {
+                    "validate": true,
+                    "type": "validate-output",
+                    "actions": [
+                        {
+                            "run": "webdev-4-0-0.js",
+                            "editorIndex": 0
+                        },
+                        {
+                            "exec": "madLibs(\"sad\", \"monkey\", \"cried\", \"eggs\")",
+                            "runwhen": "immediately"
+                        },
+                        {
+                            "expect": "The sad monkey cried over the eggs.",
+                            "runwhen": "immediately",
+                            "filters": [
+                                "trim"
+                            ],
+                            "onerror": "The Mad Libs function didn't work. We expected the sentence to be 'The sad monkey cried over the eggs.'"
+                        }
+                    ]
+                },
+                {
+                    "validate": true,
+                    "type": "validate-output",
+                    "actions": [
+                        {
+                            "run": "webdev-4-0-0.js",
+                            "editorIndex": 0
+                        },
+                        {
+                            "exec": "coinFlip(\"heads\")",
+                            "runwhen": "immediately"
+                        },
+                        {
+                            "expect": "object",
+                            "runwhen": "immediately",
+                            "filters": [
+                                "typeof"
+                            ],
+                            "onerror": "We expected a string to be logged when run! Instead, we got a {{output}}"
+                        }
+                    ]
+                },
+                {
+                    "validate": true,
+                    "type": "validate-output",
+                    "actions": [
+                        {
+                            "run": "webdev-4-0-0.js",
+                            "editorIndex": 0
+                        },
+                        {
+                            "exec": "rockPaperScissors(\"rock\")",
+                            "runwhen": "immediately"
+                        },
+                        {
+                            "expect": "",
+                            "runwhen": "immediately",
+                            "reject": {
+                                "filters": [
+                                    "toString",
+                                    "includes Uncaught"
+                                ],
+                                "expect": false
+                            },
+                            "onerror": "An error was thrown!"
                         }
                     ]
                 }

@@ -137,7 +137,9 @@ class CodeEditor extends ModuleComponent {
 					else if (element === "typeof") latest = typeof latest;
 					else if (element === "remove-tabs") latest = latest.replaceAll("\t", "")
 					else if (element === "remove-newlines") latest = latest.replace(/(\r\n|\n|\r)/gm, "");
-					else if (element === "convert-to-double-quotes") latest = latest.replaceAll("\'", "\"")
+					else if (element === "convert-to-double-quotes") latest = latest.replaceAll("\'", "\"");
+					else if (element.startsWith("includes")) latest = latest.includes(element.replace("includes ", ""));
+					else if (element === "toString") latest = latest.toString();
 				})
 				return latest;
 			}
@@ -227,14 +229,24 @@ class CodeEditor extends ModuleComponent {
 							if (!action.add) action.add = 1
 							console.log(logIndex, action.add)
 							let latest = window.consoleLogs[logIndex + action.add]
-							if (action.filters) {
-								latest = applyFilters(action.filters, latest)
-							}
-							if (latest !== action.expect) {
-								window.consoleLogs.push(["Tester returned following problems: " + action.onerror.replaceAll("{{output}}", latest)])
-								document.getElementById("console-bridge").click()
-								if (window.newLogCallback) window.newLogCallback(["Tester returned following problems: " + action.onerror.replaceAll("{{output}}", latest)])
-								return false;
+							if (!action.reject) {
+								if (action.filters) {
+									latest = applyFilters(action.filters, latest)
+								}
+								if (latest !== action.expect) {
+									window.consoleLogs.push(["Tester returned following problems: " + action.onerror.replaceAll("{{output}}", latest)])
+									document.getElementById("console-bridge").click()
+									if (window.newLogCallback) window.newLogCallback(["Tester returned following problems: " + action.onerror.replaceAll("{{output}}", latest)])
+									return false;
+								}
+							} else {
+								latest = applyFilters(action.reject.filters, latest)
+								if (latest !== action.reject.expect) {
+									window.consoleLogs.push(["Tester returned following problems: " + action.onerror.replaceAll("{{output}}", latest)])
+									document.getElementById("console-bridge").click()
+									if (window.newLogCallback) window.newLogCallback(["Tester returned following problems: " + action.onerror.replaceAll("{{output}}", latest)])
+									return false;
+								}
 							}
 						} else if (typeof action.setVar !== "undefined") {
 							if (runwhen.startsWith("in") && runwhen.endsWith("outputs")) {
