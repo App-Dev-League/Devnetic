@@ -12,9 +12,9 @@ Just copy everything, and it should be visible in VS CODE or you're favorite cod
 //     Allows to dynamically render content
 // `
 var text = `
-Create a list of numbers that is a random length
-Prompt the user to select an element within the range of the list (don’t manually count list and type the number, use python function in the command)
-Print out the element of the list the user selected
+Generate random number.
+Use number to choose “heads” or “tails”.
+Compare the user’s and computer’s choice and determine winner.
 `
 
 String.prototype.replaceAll = function (find, replace) {

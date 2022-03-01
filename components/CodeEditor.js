@@ -53,6 +53,9 @@ class CodeEditor extends ModuleComponent {
 		}
 	}
 	async checknext() {
+		if (this.data().validation.length === 0) {
+			return this.parent.next()
+		}
 		function sleep(ms) {
 			return new Promise(resolve => setTimeout(resolve, ms));
 		}
@@ -222,6 +225,7 @@ class CodeEditor extends ModuleComponent {
 								await waitForXInputs(runwhen, undefined, true)
 							}
 							if (!action.add) action.add = 1
+							console.log(logIndex, action.add)
 							let latest = window.consoleLogs[logIndex + action.add]
 							if (action.filters) {
 								latest = applyFilters(action.filters, latest)
@@ -243,6 +247,21 @@ class CodeEditor extends ModuleComponent {
 								latest = applyFilters(action.filters, latest)
 							}
 							testVars[action.setVar] = latest
+						} else if (typeof action.exec !== "undefined") {
+							if (runwhen.startsWith("in") && runwhen.endsWith("outputs")) {
+								runwhen = parseInt(runwhen.replace("in", "").replace("outputs", ""))
+								logIndex += runwhen
+								console.log(logIndex, runwhen)
+								await waitForXInputs(runwhen)
+							}
+							let currentScript = document.getElementById("python-execution-thread").contentWindow.document.querySelector("script").innerHTML;
+							let scriptTag = document.getElementById("python-execution-thread").contentWindow.document.querySelector("script")
+							currentScript += "\n" + action.exec;
+							scriptTag.parentElement.removeChild(scriptTag);
+							let newScriptTag = document.getElementById("python-execution-thread").contentWindow.document.createElement("script");
+							newScriptTag.innerHTML = currentScript;
+							await sleep(100)
+							document.getElementById("python-execution-thread").contentWindow.document.body.appendChild(newScriptTag);
 						}
 					}
 					document.body.classList.remove("tester-testing")
@@ -299,6 +318,7 @@ class CodeEditor extends ModuleComponent {
 
 			this.state.instructions.state.elements = this.data().elements;
 			this.state.instructions.state.hints = this.data().hints;
+			this.state.instructions.state.nextText = this.data().validation.length > 0 ? "Validate code & move on" : "Move on";
 			return `<div id="code-editor-component">
 						${this.state.editor}
 						<div class="vertical-divider"></div>

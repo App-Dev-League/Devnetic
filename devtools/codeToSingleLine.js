@@ -1,17 +1,19 @@
 var code = `
-<!DOCTYPE html>
-<html>
-
-<head>
-  <meta charset="utf-8">
-  <title>My test page</title>
-</head>
-
-<body>
-  <p>This is my page</p>
-</body>
-
-</html>
+function coinFlip(userChoice) {
+  userChoice = userChoice.toLowerCase();
+  if (!["heads", "tails"].includes(userChoice)) {
+    return "Invalid option. Must be 'heads' or 'tails'";
+  }
+  var winner;
+  var computerChoice = Math.floor(Math.random() * 2) === 0 ? "heads" : "tails";
+  if (userChoice === computerChoice) {
+    winner = "user";
+    coinFlipScore++;
+  } else {
+    winner = "computer";
+  }
+  return \`The user chose \${userChoice}, and the computer chose \${computerChoice}, so the winner is \${winner} and your score is \${coinFlipScore}\`
+}
 `
 
 if (code.startsWith("\n")) code = code.slice(1)

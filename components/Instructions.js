@@ -20,7 +20,7 @@ class Instructions extends tApp.Component {
 					return `<pre class="info-text">${codeTemplateToCode(element.content || "")}</pre>`;
 				}
 			}).join("")}
-			<button class="info-button" onclick="{{_this}}.parent.checknext();">Validate code & move on</button>
+			<button class="info-button" onclick="{{_this}}.parent.checknext();">${this.state.nextText}</button>
 			<div class="hints">
 				<h2>Stuck?</h2>
 				${(this.state.hints || [{elements: [{type: "text", content: ""}]}]).map(element => {
