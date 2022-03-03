@@ -140,6 +140,11 @@ class CodeEditor extends ModuleComponent {
 					else if (element === "convert-to-double-quotes") latest = latest.replaceAll("\'", "\"");
 					else if (element.startsWith("includes")) latest = latest.includes(element.replace("includes ", ""));
 					else if (element === "toString") latest = latest.toString();
+					else if (element.startsWith("match")) {
+						let regex = new RegExp(element.replace("match ", ""));
+						latest = latest.toString().match(regex, "g") || [];
+					}
+					else if (element === "length" && latest) latest = latest.length;
 				})
 				return latest;
 			}

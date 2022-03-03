@@ -472,9 +472,10 @@
                             "reject": {
                                 "filters": [
                                     "toString",
-                                    "includes Uncaught"
+                                    "match Error: ",
+                                    "length"
                                 ],
-                                "expect": false
+                                "expect": 0
                             },
                             "onerror": "An error was thrown!"
                         }
