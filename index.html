@@ -549,7 +549,7 @@
             transform: translate(-50%, -50%) scale(1);
             transition: opacity 0.15s ease-in-out,
                 scale 0.15s ease-in-out;
-            z-index: 10;
+            z-index: 999;
         }
 
         .explanation-modal h3 {
@@ -1007,6 +1007,15 @@
             background-color: #4D78CC;
             transition: width 0.5s;
         }
+        .background-dimmer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+        }
     </style>
 </head>
 
@@ -1039,6 +1048,7 @@
         </div>
     </tapp-main>
     <div id="snippets-modal" class="none">
+        <div class="background-dimmer"></div>
         <div class="explanation-modal">
             <span style="float: right; position: relative; top: -15px; left: 10px; font-weight: bold; cursor: pointer" onclick="document.getElementById('snippets-modal').classList.add('none')">x</span>
             <center>
