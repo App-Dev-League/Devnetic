@@ -469,14 +469,11 @@
                         {
                             "expect": "",
                             "runwhen": "immediately",
-                            "reject": {
-                                "filters": [
-                                    "toString",
-                                    "match Error: ",
-                                    "length"
-                                ],
-                                "expect": 0
-                            },
+                            "reject": true,
+                            "matches": [
+                                {"type": "regex", "value": "Error: ", "filters": ["toString"]},
+                                {"type": "startsWith", "value": "Uncaught", "filters": ["toString"]}
+                            ],
                             "onerror": "An error was thrown!"
                         }
                     ]

@@ -138,10 +138,10 @@ class CodeEditor extends ModuleComponent {
 					else if (element === "remove-tabs") latest = latest.replaceAll("\t", "")
 					else if (element === "remove-newlines") latest = latest.replace(/(\r\n|\n|\r)/gm, "");
 					else if (element === "convert-to-double-quotes") latest = latest.replaceAll("\'", "\"");
-					else if (element.startsWith("includes")) latest = latest.includes(element.replace("includes ", ""));
+					else if (element.startsWith("includes")) latest = latest.includes(element.slice("includes ".length));
 					else if (element === "toString") latest = latest.toString();
 					else if (element.startsWith("match")) {
-						let regex = new RegExp(element.replace("match ", ""));
+						let regex = new RegExp(element.slice("match ".length));
 						latest = latest.toString().match(regex, "g") || [];
 					}
 					else if (element === "length" && latest) latest = latest.length;
@@ -159,6 +159,26 @@ class CodeEditor extends ModuleComponent {
 					}
 					reject("Could not set input")
 				})
+			}
+			function testMatches(text, list) {
+				let correct = true;
+				for (let p in list) {
+					let i = list[p];
+					let newText = text;
+					if (i.filters) newText = applyFilters(i.filters, text)
+					if (i.type === "regex") {
+						let regex = new RegExp(i.value);
+						if ((newText.toString().match(regex, "g") || []).length < 1) correct = false;
+					} else if (i.type === "includes"){
+						if (!newText.toString().includes(i.value)) correct = false;
+					} else if (i.type === "startsWith") {
+						console.log(newText.toString(), i.value)
+						if (!newText.toString().startsWith(i.value)) correct = false;
+					} else if (i.type === "endsWith") {
+						if (!newText.toString().endsWith(i.value)) correct = false;
+					}
+				}
+				return correct;
 			}
 			let data = parentThis.data()
 			let logIndex = 0;
@@ -232,9 +252,9 @@ class CodeEditor extends ModuleComponent {
 								await waitForXInputs(runwhen, undefined, true)
 							}
 							if (!action.add) action.add = 1
-							console.log(logIndex, action.add)
 							let latest = window.consoleLogs[logIndex + action.add]
 							if (!action.reject) {
+								if (action.matches) return testMatches(latest, action.matches)
 								if (action.filters) {
 									latest = applyFilters(action.filters, latest)
 								}
@@ -245,6 +265,7 @@ class CodeEditor extends ModuleComponent {
 									return false;
 								}
 							} else {
+								if (action.matches) return !testMatches(latest, action.matches)
 								latest = applyFilters(action.reject.filters, latest)
 								if (latest !== action.reject.expect) {
 									window.consoleLogs.push(["Tester returned following problems: " + action.onerror.replaceAll("{{output}}", latest)])
