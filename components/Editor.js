@@ -380,6 +380,10 @@ try{
 							}
 						} else if (fileType === "jsx") {
 							let code = codeEditorHelper.getValue();
+							plugins.load("react")
+							code = Babel.transform(code, {
+								plugins: ["transform-react-jsx"]
+							}).code
 							if (document.getElementById("preview")){
 								let src = `
 								<html>
