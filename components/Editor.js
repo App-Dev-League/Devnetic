@@ -89,17 +89,21 @@ class Editor extends tApp.Component {
 				if (plugins.checkPluginStatus(requiredPlugins[checkFileType]) === false && requiredPlugins[checkFileType] !== false && !window.alertModals.pluginFileRequired[checkFileType]) {
 					window.alertModals.pluginFileRequired[checkFileType] = true;
 					codeEditorHelper.showAlertModal(`This file extention (.${checkFileType}) requires the ${requiredPlugins[checkFileType]} plugin to run`, [
-						{text: "Install", onclick: function(){
-							document.querySelectorAll(".project-module-tabs")[1].children[0].children[3].click()
-							codeEditorHelper.removeAlertModal(this.parentElement.getAttribute('data-editor-alert-modal-index'))
-							setTimeout(function(){
-								if (document.getElementById("plugin-list-"+requiredPlugins[checkFileType]).querySelector("h5").innerText !== "Install") return;
-								document.getElementById("plugin-list-"+requiredPlugins[checkFileType]).querySelector("h5").click()
-							}, 100)
-						}},
-						{text: "Don't Install", onclick: function(){
-							codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index'))
-						}}
+						{
+							text: "Install", onclick: function () {
+								document.querySelectorAll(".project-module-tabs")[1].children[0].children[3].click()
+								codeEditorHelper.removeAlertModal(this.parentElement.getAttribute('data-editor-alert-modal-index'))
+								setTimeout(function () {
+									if (document.getElementById("plugin-list-" + requiredPlugins[checkFileType]).querySelector("h5").innerText !== "Install") return;
+									document.getElementById("plugin-list-" + requiredPlugins[checkFileType]).querySelector("h5").click()
+								}, 100)
+							}
+						},
+						{
+							text: "Don't Install", onclick: function () {
+								codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index'))
+							}
+						}
 					])
 				}
 
@@ -309,7 +313,7 @@ ${code}
 							if (document.getElementById("preview")) {
 								try {
 									plugins.load("showdown")
-								} catch(err) {
+								} catch (err) {
 									codeEditorHelper.showAlertModal("Markdown plugin not found! You must install it before you can render markdown files.", [{
 										text: "Ok", onclick: function () { codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index')) }
 									}], "codicon-error")
@@ -372,7 +376,7 @@ try{
 								window.document.getElementById("console-bridge").click()
 								if (window.newLogCallback) window.newLogCallback(log)
 							}
-							iframe.contentWindow.onerror=function(err) {
+							iframe.contentWindow.onerror = function (err) {
 								err = err.toString()
 								window.consoleLogs.push([err])
 								window.document.getElementById("console-bridge").click()
@@ -384,7 +388,7 @@ try{
 							code = Babel.transform(code, {
 								plugins: ["transform-react-jsx"]
 							}).code
-							if (document.getElementById("preview")){
+							if (document.getElementById("preview")) {
 								let src = `
 								<html>
 									<body>
@@ -393,7 +397,14 @@ try{
 											${plugins.getCode("react")}
 										</script>
 										<script>
-											${code}
+											try{
+												${code}
+											}catch(err) {
+													err = err.toString()
+													window.parent.consoleLogs = [];
+													window.parent.consoleLogs.push([err])
+													window.parent.document.getElementById("console-bridge").click()
+											}
 										</script>
 									</body>
 								</html>
