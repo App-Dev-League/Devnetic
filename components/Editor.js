@@ -26,6 +26,7 @@ class Editor extends tApp.Component {
 		super(state, parent);
 	}
 	render(props) {
+		var self = this;
 		var shownNoPluginMessage = false;
 		let languages = {
 			"html": "html",
@@ -383,35 +384,82 @@ try{
 								return false;
 							}
 						} else if (fileType === "jsx") {
-							let code = codeEditorHelper.getValue();
-							plugins.load("react")
-							code = Babel.transform(code, {
-								plugins: ["transform-react-jsx"]
-							}).code
-							if (document.getElementById("preview")) {
-								let src = `
-								<html>
-									<body>
-										<div id="root"></div>
-										<script>
-											${plugins.getCode("react")}
-										</script>
-										<script>
-											try{
-												${code}
-											}catch(err) {
-													err = err.toString()
-													window.parent.consoleLogs = [];
-													window.parent.consoleLogs.push([err])
-													window.parent.document.getElementById("console-bridge").click()
-											}
-										</script>
-									</body>
-								</html>
-								`
-								document.getElementById("preview").srcdoc = src;
-							}
+							jsxMain()
+							async function jsxMain() {
+								function showError(text) {
+									window.consoleLogs = [[text]]
+									document.getElementById("console-bridge").click()
+								}
+								let code = codeEditorHelper.getValue();
+								plugins.load("react");
+								// parsing imports
+								let imports = []
+								code = code.replaceAll(/import([\s\S]*?)(?='|").*/g, function (e) {
+									if (e.replaceAll("\"", "'").match(/(?<=')(.*)(?=')/g)[0] === "react") return "";
+									let name = e.match(/(?<=import)(.*)(?=from)/g)[0];
+									imports.push(e.replaceAll("\"", "'"))
+									return `var ${name} = window.__importBridge.${name}`
+								})
+								var secondaryFilesCode = ""
+								for (let i in imports) {
+									let element = imports[i]
+									let module = element.match(/(?<=')(.*)(?=')/g)[0];
+									let name = element.match(/(?<=import)(.*)(?=from)/g)[0];
+									console.log(module, name)
+									if (!module.startsWith("./") || module.indexOf("/") !== 1) {
+										return showError("DependencyNotFoundError: Could not find dependency: '" + module + "'")
+									}
+									module = module.slice(2);
+									let moduleIndex = self.parent.parent.data().files.findIndex(e => e === module)
+									if (moduleIndex === -1) {
+										return showError("DependencyNotFoundError: Could not find dependency: '" + module + "'")
+									}
+									let moduleCode = await DB.getCode(self.parent.parent.data().storage_id[moduleIndex])
+									if (name.startsWith("{") && name.endsWith("}")) {
+										// do something
+									} else {
+										let compiledModuleCode = moduleCode.replaceAll("module.exports", "window.__importBridge." + name)
+										compiledModuleCode = Babel.transform(compiledModuleCode, {
+											plugins: ["transform-react-jsx"]
+										}).code;
+										secondaryFilesCode += "<script>\n" + `(function(){\n${compiledModuleCode}\n})()` + "\n</script>";
+										console.log(secondaryFilesCode)
+										// do more things
+									}
+								}
+								code = Babel.transform(code, {
+									plugins: ["transform-react-jsx"]
+								}).code
+								if (document.getElementById("preview")) {
+									let src = `
+									<html>
+										<body>
+											<div id="root"></div>
+											<script>
+											window.__importBridge = {};
+												${plugins.getCode("react")}
+											</script>
+											${secondaryFilesCode}
+											<script>
+												try{
+													${code}
+												}catch(err) {
+														err = err.toString()
+														window.parent.consoleLogs = [];
+														window.parent.consoleLogs.push([err])
+														window.parent.document.getElementById("console-bridge").click()
+												}
+											</script>
+										</body>
+									</html>
+									`
+									document.getElementById("preview").srcdoc = src;
+									document.getElementById("preview-container").classList.remove("preview-mode-console")
+									let console = document.querySelector(".console-wrapper");
+									if (console) console.parentElement.removeChild(console)
+								}
 
+							}
 						}
 					}
 					document.getElementById("code-frame").contentWindow.document.onkeydown = async function (e) {

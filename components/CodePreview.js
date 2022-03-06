@@ -81,7 +81,6 @@ class CodePreview extends tApp.Component {
 		}
 	}
 	render(props) {
-		console.log("rendering")
 		let bridge = document.getElementById("console-bridge");
 		if (bridge) {
 			bridge.onclick = function () {
