@@ -1,19 +1,51 @@
 var code = `
-function coinFlip(userChoice) {
-  userChoice = userChoice.toLowerCase();
-  if (!["heads", "tails"].includes(userChoice)) {
-    return "Invalid option. Must be 'heads' or 'tails'";
+import React from 'react'
+import ItemList from './itemList.jsx'
+import AddItem from './addItem.jsx';
+
+class MainPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.callBackFunction = this.callBackFunction.bind(this);
+    this.deleteCallBack = this.deleteCallBack.bind(this)
+    this.state = {
+      items: []
+    }
   }
-  var winner;
-  var computerChoice = Math.floor(Math.random() * 2) === 0 ? "heads" : "tails";
-  if (userChoice === computerChoice) {
-    winner = "user";
-    coinFlipScore++;
-  } else {
-    winner = "computer";
+  callBackFunction(data) {
+    console.log("Added!", data)
+    let newElement = {
+      key: (this.state.items.length).toString(),
+      itemName: data
+    }
+    this.state.items.push(newElement)
+    this.setState({
+      items: this.state.items
+    })
   }
-  return \`The user chose \${userChoice}, and the computer chose \${computerChoice}, so the winner is \${winner} and your score is \${coinFlipScore}\`
+
+  deleteCallBack(key){
+    console.log("Deleted!", key)
+
+    this.state.items.splice(key, 1)
+    this.setState({
+      items: this.state.items
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        <ItemList list={this.state.items} callBack={this.deleteCallBack}/>
+        <AddItem callBack={this.callBackFunction} />
+      </div>
+    )
+  }
 }
+ReactDOM.render(
+  <MainPage />,
+  document.getElementById('root')
+)
 `
 
 if (code.startsWith("\n")) code = code.slice(1)

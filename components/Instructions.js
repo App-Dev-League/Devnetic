@@ -16,8 +16,16 @@ class Instructions extends tApp.Component {
 					return `
 								${new codeBlock({code: codeBlockHelper.escapeHtml(element.content || ""), language: element.lang, name: element.name})} 
 							`
+				} else if (element.type == "image") {
+					let styles = element;
+					if (!styles.width) styles.width = "90%"
+					let style = "";
+					Object.entries(styles).forEach(([key, value]) => {
+						if (key !== "src" && key !== "type") style += `${key}: ${value};`
+					})
+					return `<div class="image-wrapper info-text"><img src="${element.src}" style="display: block; margin-left: auto; margin-right: auto; ${style}"></div>`
 				} else {
-					return `<pre class="info-text">${codeTemplateToCode(element.content || "")}</pre>`;
+				 	return `<pre class="info-text">${codeTemplateToCode(element.content || "")}</pre>`;
 				}
 			}).join("")}
 			<button class="info-button" onclick="{{_this}}.parent.checknext();">${this.state.nextText}</button>
@@ -31,6 +39,14 @@ class Instructions extends tApp.Component {
 								return `
 											${new codeBlock({code: codeBlockHelper.escapeHtml(part.content || ""), language: element.lang, name: element.name})} 
 										`
+							} else if (part.type == "image") {
+								let styles = part;
+								if (!styles.width) styles.width = "90%"
+								let style = "";
+								Object.entries(styles).forEach(([key, value]) => {
+									if (key !== "src" && key !== "type") style += `${key}: ${value};`
+								})
+								return `<div class="image-wrapper info-text"><img src="${part.src}" style="display: block; margin-left: auto; margin-right: auto; ${style}"></div>`
 							} else {
 								return `<pre class="info-text">${codeTemplateToCode(part.content || "")}</pre>`;
 							}
