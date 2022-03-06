@@ -28,7 +28,7 @@ class ShortAnswer extends ModuleComponent {
 						"onkeyup": "{{_this}}.state.update()"
 					},
 					update: () => {if(event.key === "Enter"){this.update()}}
-				});
+				}, this);
 			}
 			if(this.data().value == null) {
 				this.data().value = "";
@@ -36,7 +36,7 @@ class ShortAnswer extends ModuleComponent {
 			let returnStr = `<div>
 	<h1 class="mc-question">${tApp.escape(this.data().question || "")}</h1>
 	<div class="codeblock-wrapper mc-codeblock">
-		${new codeBlock({code: this.data().code || ""})}
+		${new codeBlock({code: this.data().code || "", language: this.data().lang, name: this.data().name})}
 
 	</div>
 	<div class="short-answer-container">

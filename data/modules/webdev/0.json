@@ -79,6 +79,7 @@
 				"id": "paragraph-tag-basic",
 				"example": "<p>text</p>",
 				"html": "<p>{{snippet.attributes.text}}</p>",
+				"category": "HTML Tags",
 				"attributes":
 				[
 					{

@@ -16,7 +16,7 @@ const requireExecute = (code) => {
 		return moduleExports;
 		})();`);
 }
-
+window.downloadFileCount = 0;
 const requireExecuteBrowser = (code) => {
 	let script = document.createElement('script');
 	script.type = 'text/javascript';
@@ -63,6 +63,7 @@ const { install, installAll, require, requireBrowser, _getInstalledData } = (fun
 				}
 				if(options.reinstall || cache[options.name] == null) {
 					fetch(filename).then(async (res) => {
+						if (window.newFileCallback) window.newFileCallback()
 						if(res.status == 200) {
 							res.text().then(async (data) => {
 								let pathList = filename.split("/");
@@ -160,9 +161,12 @@ const { install, installAll, require, requireBrowser, _getInstalledData } = (fun
 
 	const installAll = (filenames, options) => {
 		return new Promise(async (resolve, reject) => {
+			let allPromises = []
 			for(let i = 0; i < filenames.length; i++) {
-				await install(filenames[i], options);
+				allPromises.push(install(filenames[i], options))
+				//await install(filenames[i], options);
 			}
+			await Promise.all(allPromises)
 			resolve();
 		});
 	}

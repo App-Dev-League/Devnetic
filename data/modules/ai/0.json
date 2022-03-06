@@ -1,0 +1,406 @@
+{
+    "type": "lesson",
+    "pages": [
+        {
+            "type": "information",
+            "title": "Week 1 - Python Review",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "[[h3]]Why Python?[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ One of the most popular introductory languages"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Intuitive and readable with simple to traverse code"
+                },
+                
+                {
+                    "type": "text",
+                    "content": "➔ Ton of libraries for performing statistical analysis, machine learning, and more"
+                },
+                
+                {
+                    "type": "text",
+                    "content": "[[h3]]Inputs, Outputs, and Comments[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ You can print values in Python using the print() method"
+                },
+                {
+                    "type": "text",
+                    "content":"➔ To get an input, use the input() function as shown to the right"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Comments are lines that are notes for you and don’t do anything; to add comments, use a # before the comment"
+                }
+            ]
+        },
+        {
+            "type": "information",
+            "title": "Week 1 - Python Review",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "[[h3]]Object Types[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Assign variables using variable_name = value"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Python automatically assigns types: Numbers, Booleans, Strings, Lists, and None"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Create your own custom object types using classes!"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Check the type of any variable using the type() function"
+                },
+                {
+                    "type": "text",
+                    "content":"➔ Check if a type matches a variable using isinstance()"
+                },
+
+
+                {
+                    "type": "text",
+                    "content": "[[h3]]Number Operators[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ [[b]]x + y[[/]]: The sum of two numbers"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ [[b]]x - y[[/]]: The difference of two numbers"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ [[b]]x * y[[/]]: The product of two numbers"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ [[b]]x / y[[/]]: The quotient of two numbers"
+                },
+                {
+                    "type": "text",
+                    "content":"➔ [[b]]x // y[[/]]: The quotient of two numbers rounded down to an integer"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ [[b]]x % y[[/]]: “modulo”, The remainder when x is divided by y"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ [[b]]x ** y[[/]]: x raised to the y power"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ [[b]]-x[[/]]: x in its negated form (-1 * x)"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ [[b]]abs(x)[[/]]: The absolute value of a number"
+                }
+            ]
+        },
+
+        {
+            "type": "information",
+            "title": "Week 1 - Python Review",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "[[h3]]Logical/Boolean Operators[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ [[b]]x == y[[/]]: returns true if x is equivalent to y"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ [[b]]x != y[[/]]: returns true if x is not equivalent to y"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ [[b]]x > y[[/]] and [[b]]x >= y[[/]]: returns true if x is greater than y, and returns true if x is greater than or equal to y"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ [[b]]x < y[[/]] and [[b]]x <= y[[/]]: returns true if x is less than y, and returns true if x is less than or equal to y"
+                },
+                {
+                    "type": "text",
+                    "content":"➔ [[b]]or[[/]]: returns true if either statement to its left or right is true"
+                },
+                {
+                    "type": "text",
+                    "content":"➔ [[b]]and[[/]]: returns true if both statements to its left and right are true"
+                }
+            ]
+        },
+
+        {
+            "type": "information",
+            "title": "Week 1 - Python Review",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "[[h3]]Sequences[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Sequences are objects that store a finite collection of objects in which the order matters"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Sequence indices start at 0 and end at the length of the sequence minus 1"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ 3 main types of sequences in python: lists, tuples, and strings"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ [[b]]Lists[[/]]: A container that holds multiple values, which can include other lists"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ [[b]]Strings[[/]]: A container that holds multiple characters"
+                },
+                {
+                    "type": "text",
+                    "content":"➔ [[b]]Tuples[[/]]: A container that holds multiple values that cannot be changed"
+                },
+
+                {
+                    "type": "text",
+                    "content": "[[h3]]Sequence Operators[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Python has many built-in functions for working with sequences"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Access a value at index (first is 0): [[b]]sequence[index][[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Check if an object is contained within a sequence: [[b]]obj in seq[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Concatenating sequences: [[b]]seq1 + seq2[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Asking for the number of items in a sequence: [[b]]len(seq)[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content":"➔ Getting the index of the first occurance of x in a sequence: [[b]]seq.index(x)[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content":"➔ Counting the number of occurences of x in a sequence: [[b]]seq.count(x)[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content":"➔ Access a value at index for a 2D-array (list within a list): [[b]]seq[index1][index2][[/]]"
+                }
+            ]
+        },
+
+        {
+            "type": "information",
+            "title": "Week 1 - Python Review",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "[[h3]]Python Control Flow[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Control flow is the order in which our program is executed"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ We can achieve control flow using functions, loops and if-then statements"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Python uses whitespaces to delineate when some block of code ends rather than end statements or curly braces"
+                }
+            ]
+        },
+
+        {
+            "type": "information",
+            "title": "Week 1 - Python Review",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "[[h3]]Conditionals[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ In Python, there are three basic kinds of conditionals"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ [[b]]if[[/]]: executes a block of code if a condition is true; does not need to eb paired with else or elif"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ [[b]]else[[/]]: Must be paired with an if; executes some code if the condition with the paired if block was false"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ [[b]]elif[[/]]: Must be paired with an if (does not require an else); executes some code if the condition with the paired block was false AND a second given condition was met"
+                }
+            ]
+        },
+
+        {
+            "type": "information",
+            "title": "Week 1 - Python Review",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "[[h3]]Loops[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ In Python, there are two types of loops"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ A for loop iterates over a range of numbers or the elements of a sequence"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ The [[b]]range()[[/]] function provides the requirements for a for loop"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ A while loops runs as long as the given condition is true"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ [[b]]Be careful not to run infinte loops in your program other than very specific exceptions[[/]]"
+                }
+            ]
+        },
+
+        {
+            "type": "information",
+            "title": "Week 1 - Python Review",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "[[h3]]Functions[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ In Python, functions are a way of writing some code within a block so it can be reused by calling the function's name"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ You can define a Python function with the following syntax:"
+                },
+                {
+                    "type": "text",
+                    "content": "[[b]]def function_name(any, parameters, go, here):[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "    [[b]]Function body goes here[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "    [[b]]Optional return statement[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Note that all code in a function must be indented, and to stop coding in the function, you must unindent your code, like a loop"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ A return statement stops the other lines of the function from running and sends a value up to the function that called it"
+                }
+            ]
+        },
+
+        {
+            "type": "information",
+            "title": "Week 1 - Python Review",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "[[h3]]Object Oriented Programming (OOP)[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ In Python, Class and Type mean the same thing (Since Python 2.2)"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ A class is a container for two things - attributes and methods"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Attributes are variables or properties that a class can access and use"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Methods are functions within a class that the class can access and use"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ We can use [[b]]instances[[/]] of classes to create objects"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Think of a class as a blueprint and an object as the actual building"
+                }
+            ]
+        },
+
+        {
+            "type": "information",
+            "title": "Week 1 - Python Review",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "[[h3]]Defining Classes[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ To define a class, start with the keyword class and the name you want to give the class"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Then, you can enter methods and attirbutes inside the class"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ The [[b]]__init__()[[/]] method is a special method that defines how to initialize the class and if any paramters(like functions and classes can have paramters) are needed"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ [[b]]self[[/]] refers to an instance of the class, and you must include it in [[b]]__init__()[[/]] to set attributes from parameters"
+                }
+            ]
+        }
+    ]
+}

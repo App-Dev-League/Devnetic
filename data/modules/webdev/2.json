@@ -1,16 +1,14 @@
 {
-	"type": "lesson",
-	"pages":
-	[
-		{
-			"type": "information",
-			"title": "Week 1 - Quick Intro to Web Development",
-			"elements":
-			[   
-				{
-					"type": "text",
-					"content": "[[b]]Front End: [[/]] functionality on the side of the client (HTML/CSS/JS)"
-				},
+    "type": "lesson",
+    "pages": [
+        {
+            "type": "information",
+            "title": "Week 1 - Quick Intro to Web Development",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "[[b]]Front End: [[/]] functionality on the side of the client (HTML/CSS/JS)"
+                },
                 {
                     "type": "text",
                     "content": "ex. (Video Game - graphic framework draws the player's avatar and accepts user input)"
@@ -19,9 +17,9 @@
                     "type": "divider"
                 },
                 {
-					"type": "text",
-					"content": "[[b]]Back End: [[/]] functionality on the side of the server (PHP, Node.js, SQL, etc.)"
-				},
+                    "type": "text",
+                    "content": "[[b]]Back End: [[/]] functionality on the side of the server (PHP, Node.js, SQL, etc.)"
+                },
                 {
                     "type": "text",
                     "content": "ex. (Video Game - keeps track of the map, hp bars, player locations, player damage, etc.)"
@@ -30,21 +28,20 @@
                     "type": "image",
                     "src": "/data/modules/webdev-assets/img2/0-0.png"
                 }
-			]
-		},
+            ]
+        },
         {
-			"type": "information",
-			"title": "Week 1 - Overview of HTML",
-			"elements":
-			[   
+            "type": "information",
+            "title": "Week 1 - Overview of HTML",
+            "elements": [
                 {
-					"type": "text",
-					"content": "[[h3]]Purpose of HTML[[/]]"
-				},
-				{
-					"type": "text",
-					"content": "Stands for: [[b]]H[[/]]yper [[b]]T[[/]]ext [[b]]M[[/]]arkup [[b]]L[[/]]anguage"
-				},
+                    "type": "text",
+                    "content": "[[h3]]Purpose of HTML[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "Stands for: [[b]]H[[/]]yper [[b]]T[[/]]ext [[b]]M[[/]]arkup [[b]]L[[/]]anguage"
+                },
                 {
                     "type": "text",
                     "content": "HTML designs the layout of text and structure of the web page."
@@ -61,9 +58,9 @@
                     "type": "divider"
                 },
                 {
-					"type": "text",
-					"content": "[[h3]]Things to keep in mind[[/]]"
-				},
+                    "type": "text",
+                    "content": "[[h3]]Things to keep in mind[[/]]"
+                },
                 {
                     "text": "text",
                     "content": "➔ Forgiving for wrong syntax, errors, and missing information (code can still contain errors)"
@@ -80,17 +77,16 @@
                     "text": "text",
                     "content": "➔ Separate presentation and content (HTML mainly for structure and CSS for style)"
                 }
-			]
-		},
+            ]
+        },
         {
-			"type": "information",
-			"title": "Week 1 - Structuring Websites with HTML",
-			"elements":
-			[   
-				{
-					"type": "text",
-					"content": "[[h3]]Setting up Repl[[/]]"
-				},
+            "type": "information",
+            "title": "Week 1 - Structuring Websites with HTML",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "[[h3]]Setting up Repl[[/]]"
+                },
                 {
                     "type": "text",
                     "content": "➔ Go to replit.com and make a new account by using either email or a social account"
@@ -111,9 +107,9 @@
                     "type": "divider"
                 },
                 {
-					"type": "text",
-					"content": "[[h3]]Quick Repl Tour (Workspace)[[/]]"
-				},
+                    "type": "text",
+                    "content": "[[h3]]Quick Repl Tour (Workspace)[[/]]"
+                },
                 {
                     "type": "image",
                     "src": "/data/modules/webdev-assets/img2/2-1.png"
@@ -141,12 +137,12 @@
                     "type": "image",
                     "src": "/data/modules/webdev-assets/img2/2-2.png"
                 }
-			]
-		},
+            ]
+        },
         {
             "type": "information",
-			"title": "Week 1 - Anatomy of an HTML document",
-			"elements": [
+            "title": "Week 1 - Anatomy of an HTML document",
+            "elements": [
                 {
                     "type": "text",
                     "content": "➔ Doctype: remnant of an old HTML practice, tells the browser what version of HTML we are using (default HTML5 is [[monospace]]<!DOCTYPE html>[[/]])"
@@ -160,9 +156,8 @@
                     "content": "➔ Head: Container for everything that isn’t displayed as content"
                 },
                 {
-                    "type": "image",
-                    "src": "/data/modules/webdev-assets/img2/3-0.png",
-                    "width": "50%"
+                    "type": "code",
+                    "content": "<!DOCTYPE html>\n<html>\n\n<head>\n  <meta charset=\"utf-8\">\n  <title>My test page</title>\n</head>\n\n<body>\n  <p>This is my page</p>\n</body>\n\n</html>"
                 },
                 {
                     "type": "divider"
@@ -184,37 +179,41 @@
                     "content": "[[b]]➔ Body: Contains all content that is displayed on the page[[/]]"
                 },
                 {
-                    "type": "image",
-                    "src": "/data/modules/webdev-assets/img2/3-1.png",
-                    "width": "100%"
+                    "type": "code",
+                    "content": "<meta charset=\"utf-8\">\n<title>My test page</title>"
+                },
+                {
+                    "type": "divider"
+                },
+                {
+                    "type": "code",
+                    "content": "<body>\n  Displayed content tags go here\n</body>"
                 }
             ]
         },
         {
-			"type": "multiple_choice",
-			"question": "What could be included in the below tag?",
-			"code_template": "<head>\n</head>",
-			"answers":
-			[
-				"The header of the website",
-				"The main webpage",
-				"The webpage's metadata",
-				"The website's footer"
-			],
-			"correct": 2,
-			"descriptions":
-			[
-				"Incorrect! The header of the webpage should be included in the body!",
-				"Incorrect, the main webpage should all be included in the body!",
-				"Correct! The head tags is used to include metadata about the website like it's title and descriptions",
-				"That doesn't seem correct! Try again"
-			],
-			"points": 5,
-			"coins": 1
-		},
+            "type": "multiple_choice",
+            "question": "What could be included in the below tag?",
+            "code_template": "<head>\n</head>",
+            "answers": [
+                "The header of the website",
+                "The main webpage",
+                "The webpage's metadata",
+                "The website's footer"
+            ],
+            "correct": 2,
+            "descriptions": [
+                "Incorrect! The header of the webpage should be included in the body!",
+                "Incorrect, the main webpage should all be included in the body!",
+                "Correct! The head tags is used to include metadata about the website like it's title and descriptions",
+                "That doesn't seem correct! Try again"
+            ],
+            "points": 5,
+            "coins": 1
+        },
         {
             "type": "information",
-			"title": "Week 1 - Basic HTML Tags",
+            "title": "Week 1 - Basic HTML Tags",
             "elements": [
                 {
                     "type": "text",
@@ -325,132 +324,118 @@
             ]
         },
         {
-			"type": "short_answer",
-			"question": "Create the largest heading on your page with the text: Hello World!",
-			"code_template": "Hello World!",
-			"answers":
-			[
-				"<h1>Hello World!</h1>",
+            "type": "short_answer",
+            "question": "Create the largest heading on your page with the text: Hello World!",
+            "code_template": "Hello World!",
+            "answers": [
+                "<h1>Hello World!</h1>",
                 "<h1>hello world!</h1>"
-			],
-			"descriptions":
-			{
-				"<h1>hello world!</h1>": "Correct! The largest heading is <h1>",
-				"<h1>Hello World!</h1>": "Correct! The largest heading is <h1>"
-			},
-			"description_default": "What is the correct syntax for Heading tags? What is the largest heading tag?.",
-			"points": 10,
-			"coins": 3
-		},
+            ],
+            "descriptions": {
+                "<h1>hello world!</h1>": "Correct! The largest heading is <h1>",
+                "<h1>Hello World!</h1>": "Correct! The largest heading is <h1>"
+            },
+            "description_default": "What is the correct syntax for Heading tags? What is the largest heading tag?.",
+            "points": 10,
+            "coins": 3
+        },
         {
-			"type": "multiple_choice",
-			"question": "What is the smallest header tag?",
-			"code_template": "<h1> -> <h?>",
-			"answers":
-			[
-				"<h7>",
-				"<h6>",
-				"<h2>",
-				"<h4>"
-			],
-			"correct": 1,
-			"descriptions":
-			[
-				"That's incorrect! Try again",
-				"Correct! h6 is the smallest heading tag",
-				"That's incorrect! Try again",
-				"That doesn't seem correct! Try again"
-			],
-			"points": 5,
-			"coins": 1
-		},
+            "type": "multiple_choice",
+            "question": "What is the smallest header tag?",
+            "code_template": "<h1> -> <h?>",
+            "answers": [
+                "<h7>",
+                "<h6>",
+                "<h2>",
+                "<h4>"
+            ],
+            "correct": 1,
+            "descriptions": [
+                "That's incorrect! Try again",
+                "Correct! h6 is the smallest heading tag",
+                "That's incorrect! Try again",
+                "That doesn't seem correct! Try again"
+            ],
+            "points": 5,
+            "coins": 1
+        },
         {
-			"type": "multiple_choice",
-			"question": "What does the below tag do?",
-			"code_template": "<br>",
-			"answers":
-			[
-				"Break a line into two",
-				"Add a big space in text",
-				"Make text bolder",
-				"Create a br element"
-			],
-			"correct": 0,
-			"descriptions":
-			[
-				"Correct! The BR tag adds a line break in text",
-				"Incorrect, try again",
-				"That's incorrect! Try again",
-				"That doesn't seem correct! Try again"
-			],
-			"points": 5,
-			"coins": 1
-		},
+            "type": "multiple_choice",
+            "question": "What does the below tag do?",
+            "code_template": "<br>",
+            "answers": [
+                "Break a line into two",
+                "Add a big space in text",
+                "Make text bolder",
+                "Create a br element"
+            ],
+            "correct": 0,
+            "descriptions": [
+                "Correct! The BR tag adds a line break in text",
+                "Incorrect, try again",
+                "That's incorrect! Try again",
+                "That doesn't seem correct! Try again"
+            ],
+            "points": 5,
+            "coins": 1
+        },
         {
-			"type": "snippet_unlock",
-			"name": "Heading Tags",
-			"code_template": "<h2>text</h2>",
-			"description": "A Heading tag ([[lightpurple]]<h1>[[/]]) is used to display text as headings/subheadings on screen",
-			"snippet":
-			{
-				"name": "Heading Tags",
-				"id": "heading-tags-all",
-				"example": "<h2>text</h2>",
-				"html": "<h{{snippet.attributes.size}}>{{snippet.attributes.text}}</h{{snippet.attributes.size}}>",
-				"attributes":
-				[
-					{
-						"id": "text",
-						"label": "Text",
-						"type": "input"
-					},
+            "type": "snippet_unlock",
+            "name": "Heading Tags",
+            "code_template": "<h2>text</h2>",
+            "description": "A Heading tag ([[lightpurple]]<h1>[[/]]) is used to display text as headings/subheadings on screen",
+            "snippet": {
+                "name": "Heading Tags",
+                "id": "heading-tags-all",
+                "example": "<h2>text</h2>",
+                "html": "<h{{snippet.attributes.size}}>{{snippet.attributes.text}}</h{{snippet.attributes.size}}>",
+                "category": "HTML Tags",
+                "attributes": [
                     {
-						"id": "size",
-						"label": "Size (1-6)",
-						"type": "input"
-					}
-				]
-			}
-		},
+                        "id": "text",
+                        "label": "Text",
+                        "type": "input"
+                    },
+                    {
+                        "id": "size",
+                        "label": "Size (1-6)",
+                        "type": "input"
+                    }
+                ]
+            }
+        },
         {
-			"type": "snippet_unlock",
-			"name": "Line Break",
-			"code_template": "<br>",
-			"description": "A Line Break tag ([[lightpurple]]<br>[[/]]) is used to break text into multiple lines",
-			"snippet":
-			{
-				"name": "Line Break",
-				"id": "line-break",
-				"example": "<br>",
-				"html": "<br>",
-				"attributes":
-				[
-					
-				]
-			}
-		},
+            "type": "snippet_unlock",
+            "name": "Line Break",
+            "code_template": "<br>",
+            "description": "A Line Break tag ([[lightpurple]]<br>[[/]]) is used to break text into multiple lines",
+            "snippet": {
+                "name": "Line Break",
+                "id": "line-break",
+                "example": "<br>",
+                "html": "<br>",
+                "category": "HTML Tags",
+                "attributes": []
+            }
+        },
         {
-			"type": "snippet_unlock",
-			"name": "Divisions",
-			"code_template": "<div></div>",
-			"description": "A division tag ([[lightpurple]]<div>[[/]]) is used to divide areas of the webpage",
-			"snippet":
-			{
-				"name": "Divisions",
-				"id": "div-tag",
-				"example": "<div></div>",
-				"html": "<div></div>",
-				"attributes":
-				[
-					
-				]
-			}
-		},
+            "type": "snippet_unlock",
+            "name": "Divisions",
+            "code_template": "<div></div>",
+            "description": "A division tag ([[lightpurple]]<div>[[/]]) is used to divide areas of the webpage",
+            "snippet": {
+                "name": "Divisions",
+                "id": "div-tag",
+                "example": "<div></div>",
+                "html": "<div></div>",
+                "category": "HTML Tags",
+                "attributes": []
+            }
+        },
         {
-			"type": "information",
-			"title": "Week 1 - Attribute Based Tags",
-			"elements":
-			[   
+            "type": "information",
+            "title": "Week 1 - Attribute Based Tags",
+            "elements": [
                 {
                     "type": "text",
                     "content": "[[h3]]Images[[/]]"
@@ -536,7 +521,6 @@
                     "type": "image",
                     "src": "/data/modules/webdev-assets/img2/8-2.png"
                 },
-                
                 {
                     "type": "text",
                     "content": "[[h3]]Unordered List[[/]]"
@@ -565,183 +549,171 @@
                     "type": "image",
                     "src": "/data/modules/webdev-assets/img2/8-3.png"
                 }
-			]
-		},
+            ]
+        },
         {
-			"type": "multiple_choice",
-			"question": "What are the two main attributes of the below tag?",
-			"code_template": "<img ____=\" \" ____=\" \">",
-			"answers":
-			[
-				"src and alt",
-				"source and alt",
-				"description and src",
-				"description and source"
-			],
-			"correct": 0,
-			"descriptions":
-			[
-				"Correct! We use src to set the image's source and alt to set the description of the image",
-				"Incorrect, remember that some attributes in HTML are simplified",
-				"Incorrect! Description is the wrong attribute name, but you're on the correct track!",
-				"Incorrect! Try again"
-			],
-			"points": 5,
-			"coins": 1
-		},
+            "type": "multiple_choice",
+            "question": "What are the two main attributes of the below tag?",
+            "code_template": "<img ____=\" \" ____=\" \">",
+            "answers": [
+                "src and alt",
+                "source and alt",
+                "description and src",
+                "description and source"
+            ],
+            "correct": 0,
+            "descriptions": [
+                "Correct! We use src to set the image's source and alt to set the description of the image",
+                "Incorrect, remember that some attributes in HTML are simplified",
+                "Incorrect! Description is the wrong attribute name, but you're on the correct track!",
+                "Incorrect! Try again"
+            ],
+            "points": 5,
+            "coins": 1
+        },
         {
-			"type": "short_answer",
-			"question": "Create an image with a source of https://www.demo.com/test.png and a description of \"A funny image\"",
-			"code_template": "<img>",
-			"answers":
-			[
-				"<img src=\"https://www.demo.com/test.png\" alt=\"A funny image\">",
+            "type": "short_answer",
+            "question": "Create an image with a source of https://www.demo.com/test.png and a description of \"A funny image\"",
+            "code_template": "<img>",
+            "answers": [
+                "<img src=\"https://www.demo.com/test.png\" alt=\"A funny image\">",
                 "<img src=\"https://www.demo.com/test.png\"alt=\"A funny image\">",
-				"<img alt=\"A funny image\" src=\"https://www.demo.com/test.png\">",             
-				"<img alt=\"A funny image\"src=\"https://www.demo.com/test.png\">"                
-			],
-			"descriptions":
-			{
-				"<img src=\"https://www.demo.com/test.png\" alt=\"A funny image\">": "Correct! That is the correct syntax for creating images in HTML",
-				"<img src=\"https://www.demo.com/test.png\"alt=\"A funny image\">": "Correct! That is the correct syntax for creating images in HTML",
+                "<img alt=\"A funny image\" src=\"https://www.demo.com/test.png\">",
+                "<img alt=\"A funny image\"src=\"https://www.demo.com/test.png\">"
+            ],
+            "descriptions": {
+                "<img src=\"https://www.demo.com/test.png\" alt=\"A funny image\">": "Correct! That is the correct syntax for creating images in HTML",
+                "<img src=\"https://www.demo.com/test.png\"alt=\"A funny image\">": "Correct! That is the correct syntax for creating images in HTML",
                 "<img alt=\"A funny image\" src=\"https://www.demo.com/test.png\">": "Correct! That is the correct syntax for creating images in HTML",
                 "<img alt=\"A funny image\"src=\"https://www.demo.com/test.png\">": "Correct! That is the correct syntax for creating images in HTML"
-			},
-			"description_default": "Remember that the two main attributes are src and alt",
-			"points": 10,
-			"coins": 3
-		},
+            },
+            "description_default": "Remember that the two main attributes are src and alt",
+            "points": 10,
+            "coins": 3
+        },
         {
-			"type": "snippet_unlock",
-			"name": "Image tag",
-			"code_template": "<img src=\"\" alt=\"\">",
-			"description": "An img tag ([[lightpurple]]<h1>[[/]]) is used to display images on screen",
-			"snippet":
-			{
-				"name": "Image tag",
-				"id": "image-tag",
-				"example": "<img src=\"\" alt=\"\">",
-				"html": "<img src=\"{{snippet.attributes.src}}\" alt=\"{{snippet.attributes.alt}}\">",
-				"attributes":
-				[
-					{
-						"id": "src",
-						"label": "Image Source (in url format)",
-						"type": "input"
-					},
+            "type": "snippet_unlock",
+            "name": "Image tag",
+            "code_template": "<img src=\"\" alt=\"\">",
+            "description": "An img tag ([[lightpurple]]<h1>[[/]]) is used to display images on screen",
+            "snippet": {
+                "name": "Image tag",
+                "id": "image-tag",
+                "example": "<img src=\"\" alt=\"\">",
+                "html": "<img src=\"{{snippet.attributes.src}}\" alt=\"{{snippet.attributes.alt}}\">",
+                "category": "HTML Tags",
+                "attributes": [
                     {
-						"id": "alt",
-						"label": "Image description",
-						"type": "input"
-					}
-				]
-			}
-		},
-        {
-			"type": "short_answer",
-			"question": "How would we make a hyperlink to https://google.com with text \"Google\"?",
-			"code_template": "<a></a>",
-			"answers":
-			[
-				"<a href=\"https://google.com\">Google</a>"              
-			],
-			"descriptions":
-			{
-				"<a href=\"https://google.com\">Google</a>": "Correct!"
-			},
-			"description_default": "Remember that anchor tags have the \"href\" attribute",
-			"points": 10,
-			"coins": 3
-		},
-        {
-			"type": "snippet_unlock",
-			"name": "Anchor tag",
-			"code_template": "<a href=\"\">Text</a>",
-			"description": "An anchor tag ([[lightpurple]]<a></a>[[/]]) is used to create hyperlinks",
-			"snippet":
-			{
-				"name": "Anchor Tag",
-				"id": "anchor-tag",
-				"example": "<a href=\"\">Text</a>",
-				"html": "<a href=\"{{snippet.attributes.href}}\">{{snippet.attributes.text}}</a>",
-				"attributes":
-				[
-					{
-						"id": "text",
-						"label": "Text",
-						"type": "input"
-					},
+                        "id": "src",
+                        "label": "Image Source (in url format)",
+                        "type": "input"
+                    },
                     {
-						"id": "src",
-						"label": "URL",
-						"type": "input"
-					}
-				]
-			}
-		},
+                        "id": "alt",
+                        "label": "Image description",
+                        "type": "input"
+                    }
+                ]
+            }
+        },
         {
-			"type": "multiple_choice",
-			"question": "Which tag is used for list items?",
-			"code_template": "",
-			"answers":
-			[
-				"<li></li>",
-				"<ul></ul>",
-				"<ol></ol>",
-				"<itm></itm>"
-			],
-			"correct": 0,
-			"descriptions":
-			[
-				"Correct! \"li\" stands for List Item",
-				"Incorrect, remember that \"ul\" stands for Unordered List",
-				"Incorrect, remember that \"ol\" stands for Ordered List",
-				"Incorrect, that tag does not exist in HTML!"
-			],
-			"points": 5,
-			"coins": 1
-		},
+            "type": "short_answer",
+            "question": "How would we make a hyperlink to https://google.com with text \"Google\"?",
+            "code_template": "<a></a>",
+            "answers": [
+                "<a href=\"https://google.com\">Google</a>"
+            ],
+            "descriptions": {
+                "<a href=\"https://google.com\">Google</a>": "Correct!"
+            },
+            "description_default": "Remember that anchor tags have the \"href\" attribute",
+            "points": 10,
+            "coins": 3
+        },
         {
-			"type": "snippet_unlock",
-			"name": "Unordered List",
-			"code_template": "<ul><li></li></ul>",
-			"description": "An Unordered list is used to create bulleted lists or lists that aren't ordered",
-			"snippet":
-			{
-				"name": "Unordered List",
-				"id": "unordered-list",
-				"example": "<ul>\n    <li>Item</li>\n</ul>",
-				"html": "<ul>\n    <li>{{snippet.attributes.text}}</li>\n</ul>",
-				"attributes":
-				[
-					{
-						"id": "text",
-						"label": "Text",
-						"type": "input"
-					}
-				]
-			}
-		},
+            "type": "snippet_unlock",
+            "name": "Anchor tag",
+            "code_template": "<a href=\"\">Text</a>",
+            "description": "An anchor tag ([[lightpurple]]<a></a>[[/]]) is used to create hyperlinks",
+            "snippet": {
+                "name": "Anchor Tag",
+                "id": "anchor-tag",
+                "example": "<a href=\"\">Text</a>",
+                "html": "<a href=\"{{snippet.attributes.href}}\">{{snippet.attributes.text}}</a>",
+                "category": "HTML Tags",
+                "attributes": [
+                    {
+                        "id": "text",
+                        "label": "Text",
+                        "type": "input"
+                    },
+                    {
+                        "id": "src",
+                        "label": "URL",
+                        "type": "input"
+                    }
+                ]
+            }
+        },
         {
-			"type": "snippet_unlock",
-			"name": "Ordered List",
-			"code_template": "<ol><li></li></ol>",
-			"description": "An Ordered list is used to create numbered lists, or lists that require order",
-			"snippet":
-			{
-				"name": "Ordered List",
-				"id": "ordered-list",
-				"example": "<ol>\n    <li>Item</li>\n</ol>",
-				"html": "<ol>\n    <li>{{snippet.attributes.text}}</li>\n</ol>",
-				"attributes":
-				[
-					{
-						"id": "text",
-						"label": "Text",
-						"type": "input"
-					}
-				]
-			}
-		}
-	]
+            "type": "multiple_choice",
+            "question": "Which tag is used for list items?",
+            "code_template": "",
+            "answers": [
+                "<li></li>",
+                "<ul></ul>",
+                "<ol></ol>",
+                "<itm></itm>"
+            ],
+            "correct": 0,
+            "descriptions": [
+                "Correct! \"li\" stands for List Item",
+                "Incorrect, remember that \"ul\" stands for Unordered List",
+                "Incorrect, remember that \"ol\" stands for Ordered List",
+                "Incorrect, that tag does not exist in HTML!"
+            ],
+            "points": 5,
+            "coins": 1
+        },
+        {
+            "type": "snippet_unlock",
+            "name": "Unordered List",
+            "code_template": "<ul><li></li></ul>",
+            "description": "An Unordered list is used to create bulleted lists or lists that aren't ordered",
+            "snippet": {
+                "name": "Unordered List",
+                "id": "unordered-list",
+                "example": "<ul>\n    <li>Item</li>\n</ul>",
+                "html": "<ul>\n    <li>{{snippet.attributes.text}}</li>\n</ul>",
+                "category": "HTML Tags",
+                "attributes": [
+                    {
+                        "id": "text",
+                        "label": "Text",
+                        "type": "input"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "snippet_unlock",
+            "name": "Ordered List",
+            "code_template": "<ol><li></li></ol>",
+            "description": "An Ordered list is used to create numbered lists, or lists that require order",
+            "snippet": {
+                "name": "Ordered List",
+                "id": "ordered-list",
+                "example": "<ol>\n    <li>Item</li>\n</ol>",
+                "html": "<ol>\n    <li>{{snippet.attributes.text}}</li>\n</ol>",
+                "category": "HTML Tags",
+                "attributes": [
+                    {
+                        "id": "text",
+                        "label": "Text",
+                        "type": "input"
+                    }
+                ]
+            }
+        }
+    ]
 }

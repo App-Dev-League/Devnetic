@@ -14,7 +14,7 @@ class SnippetUnlock extends ModuleComponent {
 	<h1 class="info-title">Snippet Unlocked: ${tApp.escape(this.data().name || "")}!</h1>
 	<pre class="info-text">${codeTemplateToCode(this.data().description || "")}</pre>
 	<div class="codeblock-wrapper">
-	${new codeBlock({ code: this.data().code }, this)}
+	${new codeBlock({ code: this.data().code, language: this.data().lang, name: this.data().name}, this)}
 		</div>
 	<button class="info-button" onclick="{{_this}}.parent.next();">Continue</button>
 </div>`;

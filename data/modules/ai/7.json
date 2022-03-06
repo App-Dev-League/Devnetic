@@ -1,0 +1,17 @@
+{
+	"type": "lesson",
+	"pages":
+	[
+		{
+			"type": "information",
+			"title": "Week 8 - TOPIC HERE",
+			"elements":
+			[
+				{
+					"type": "text",
+					"content": "The week 8 lesson module has not yet been created."
+				}
+			]
+		}
+	]
+}

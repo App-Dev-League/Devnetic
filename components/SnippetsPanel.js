@@ -3,22 +3,52 @@ const codeEditorHelper = require("../utils/codeEditor.js");
 const codeBlock = require("./codeBlock.js")
 const DB = require("../utils/Database.js");
 const compileSnippet = require("../utils/compileSnippet.js");
+const Input = require("./Input.js");
 
 class SnippetsPanel extends tApp.Component {
 	constructor(state, parent) {
 		super(state, parent);
+		var parentThis = this
 		if (this.state.snippets == null) {
 			this.state.snippets = []
 		}
-
-		var parentThis = this
+		if (this.state.showSnippets == null) {
+			this.state.showSnippets = this.state.snippets
+		}
+		if(this.state.input == null) {
+			this.state.input = new Input({
+				classList: ["short-answer-input"],
+				type: "text",
+				properties: ["autofocus", "style=\"margin-top: 0; margin-bottom: 20px; font-size: 1em; border: 2px solid var(--blue);\"", "placeholder=\"Search...\""],
+				onChange: function() {
+					parentThis.showSearch(this.value, true)
+				}
+			});
+		}
+		function groupArrayOfObjects(list, key) {
+			return list.reduce(function(rv, x) {
+			  (rv[x[key]] = rv[x[key]] || []).push(x);
+			  return rv;
+			}, {});
+		  };
+		  
 		async function getSnippets() {
 			let snippetIds = await DB.getSnippetIds()
-			snippetIds.forEach(async function (id) {
+			for (let id of snippetIds) {
 				let snippet = await DB.getSnippet(id)
+				if (!snippet.category) snippet.category = "Miscellaneous"
 				parentThis.state.snippets.push(snippet)
+			}
+			let currentCategory = ""
+			var grouped = {}
+			grouped = groupArrayOfObjects(parentThis.state.snippets,"category");
+			var temp = []
+			Object.entries(grouped).forEach(([key, value]) => {
+				temp.push({categoryName: key})
+				temp = temp.concat(value)
 			})
-			parentThis.state.snippets
+			parentThis.state.snippets = temp
+			parentThis.setState("showSnippets", parentThis.state.snippets)
 		}
 		getSnippets()
 	}
@@ -53,27 +83,55 @@ class SnippetsPanel extends tApp.Component {
 
 		document.getElementById("snippets-modal").classList.add("none")
 	}
+	showSearch(query, normal) {
+		query = query.toLowerCase()
+		let showSnippets = []
+		this.state.snippets.forEach(element => {
+			if (element.categoryName) {
+				showSnippets.push(element)
+			}else{
+				let name = element.name.toLowerCase()
+				if (name.includes(query)) {
+					showSnippets.push(element)
+				}	
+			}
+		})
+		if (normal === true) this.setState("showSnippets", showSnippets)
+		else {
+			document.querySelectorAll(".snippet-block").forEach(element => {element.classList.add("none")})
+			this.state.showSnippets.forEach(element => {
+				document.getElementById("snippet-id-"+element.id).classList.remove("none")
+			})
+			if (this.state.showSnippets.length === 0){
+				let prev = document.getElementById("snippets-panel-no-result");
+				if (prev) prev.parentNode.removeChild(prev)
+				let newElement = document.createElement("h4")
+				newElement.id="snippets-panel-no-result";
+				newElement.style = "display: block; text-align: center"
+				newElement.innerHTML = "We couldn't find any snippets that matched your query :(<br><h6 style='display: block; text-align: center'>You may need to unlock this snippet</h6>"
+				document.getElementById("snippets-panel").appendChild(newElement)
+			}else{
+				let prev = document.getElementById("snippets-panel-no-result");
+				if (prev) prev.parentNode.removeChild(prev)
+			}
+		}
+	}
 	render(props) {
-		return `<div class="snippets-panel">
-		${this.state.snippets.map(element => {
-			element.example = element.example.replaceAll("<", "&lt").replaceAll(">", "&gt;")
-			return `<span class="snippet-title" style="margin-bottom: 10px; display: block">${element.name}</span>
+		return `<div class="snippets-panel" id="snippets-panel">
+		${this.state.input}
+		${this.state.showSnippets.map(element => {
+			if (element.categoryName) {
+				return `<h2 style="margin-top: 20px; margin-bottom: 10px;">${element.categoryName}</h2>`
+			}
+			element.example = element.example.replaceAll("<", "&lt;").replaceAll(">", "&gt;")
+			return `<div class="snippet-block" id="snippet-id-${element.id}">
+			<span class="snippet-title" style="margin-bottom: 10px; display: block">${element.name}</span>
 				<div class="snippet-code pointer snippet-btn" style="margin-bottom: 20px" onclick='{{_this}}.parent.children[1].showModal("${element.id}")'>
-					${new codeBlock({ code: element.example })}
+					${new codeBlock({ code: element.example, language: element.lang})}
 				</div>
-				`
-		}).join("")}
-		<div id="snippets-modal" class="none">
-			<div class="explanation-modal" style="left: 0; top: 25vh;">
-			<span style="float: right; position: relative; top: -15px; left: 10px; font-weight: bold; cursor: pointer" onclick="document.getElementById('snippets-modal').classList.add('none')">x</span>
-				<center>
-					<h3>Incorrect!</h3>
-					<div class="inputs">
-					</div>
-					<button class="button-correct" onclick="tApp.getComponentFromDOM(this).parent.children[1].insertModal()">Insert</button>
-				</center>
 			</div>
-		</div>
+				`
+		}).join(" ")}
 		</div>`;
 	}
 }

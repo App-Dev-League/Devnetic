@@ -1,0 +1,180 @@
+{
+	"type": "lesson",
+	"pages":
+	[
+		{
+			"type": "information",
+			"title": "Week 4 - Decision Trees, Random Forest, XGBoost",
+			"elements":
+			[
+				{
+					"type": "text",
+					"content": "[[h3]]Decision Trees[[/]]"
+				},
+				{
+                    "type": "text",
+                    "content": "➔ Consider this scenario: you are a doctor and a person walks in to your hospital with a lot of different symptoms. Your job is to diagnose what disease they have. What is the most efficient way to do this?"
+                },
+				{
+                    "type": "text",
+                    "content": "➔ One way to do this would be to make a tree considering potential combinations"
+                },
+				{
+					"type": "text",
+					"content": "[[h3]]What is a Decision Tree?[[/]]"
+				},
+				{
+                    "type": "text",
+                    "content": "➔ A branching diagram that represents choices to get to a final result"
+                },
+				{
+                    "type": "text",
+                    "content": "➔ Usually, we try to solve some problem in ML with a huge tree"
+                },
+				{
+                    "type": "text",
+                    "content": "➔ Can be used for regression and classification(clustering) tasks"
+                },
+
+				{
+					"type": "text",
+					"content": "[[h3]]Why use them?[[/]]"
+				},
+				{
+                    "type": "text",
+                    "content": "➔ Simple to understand, you can easily view them as a branching tree"
+                },
+				{
+                    "type": "text",
+                    "content": "➔ Can handle many kinds of data including numerical and categorical data"
+                },
+				{
+                    "type": "text",
+                    "content": "➔ Forces an outcome to be formed, never returns a null prediction"
+                },
+
+				{
+					"type": "text",
+					"content": "[[h3]]Some reasons NOT to use them[[/]]"
+				},
+				{
+                    "type": "text",
+                    "content": "➔ Data is often overfit and can cause issues especially if the training data has noise"
+                },
+				{
+                    "type": "text",
+                    "content": "➔ Low bias makes the tree hard to use with new data"
+                },
+				{
+                    "type": "text",
+                    "content": "➔ Training time is often larger, which may be a big problem for costs and feasibility on larger datasets"
+                }
+			]
+		},
+
+		{
+			"type": "information",
+			"title": "Week 4 - Decision Trees, Random Forest, XGBoost",
+			"elements":
+			[
+				{
+					"type": "text",
+					"content": "[[h3]]Random Forest[[/]]"
+				},
+				{
+                    "type": "text",
+                    "content": "➔ Used to solve both regression and classification tasks"
+                },
+				{
+                    "type": "text",
+                    "content": "➔ Uses many decision trees (hence forest) and takes their average to make predictions"
+                },
+				{
+                    "type": "text",
+                    "content": "➔ The more the trees, the more accurate Random Forest is"
+                },
+				{
+                    "type": "text",
+                    "content": "➔ Eradicates limitations of decision trees, prevents overfitting and increases precision"
+                },
+				{
+					"type": "text",
+					"content": "[[h3]]Methods[[/]]"
+				},
+				{
+                    "type": "text",
+                    "content": "➔ Instead of determining where the tree splits, Random Forest uses randomness to generate each order of nodes where the tree splits"
+                },
+				{
+                    "type": "text",
+                    "content": "➔ Example: To decide whether to buy something, 4 factors affect the buyers decision"
+                },
+				{
+                    "type": "text",
+                    "content": "    ➔ RF will generate many trees with random permutations of those 4 factors as different trees, the highest voted decision (buy or don’t buy) will be picked"
+				}
+			]
+		},
+
+
+		{
+			"type": "information",
+			"title": "Week 4 - Decision Trees, Random Forest, XGBoost",
+			"elements":
+			[
+				{
+					"type": "text",
+					"content": "[[h3]]XGBoost[[/]]"
+				},
+				{
+                    "type": "text",
+                    "content": "➔ “Extreme Gradient Boost” helps improve and speed up decision trees through a process called gradient boosting."
+                },
+				{
+                    "type": "text",
+                    "content": "➔ Hugely popular in modern machine learning tasks, this has been dominating competitions where tabulated/structured data is present."
+                },
+				{
+					"type": "text",
+					"content": "[[h3]]Methods[[/]]"
+				},
+				{
+                    "type": "text",
+                    "content": "➔ The inner workings of XGBoost are based on the gradient boost algorithm"
+                },
+				{
+                    "type": "text",
+                    "content": "➔ Gradient boost uses the average of the target “y” values to make the first prediction, and then makes trees based on errors in that prediction by calculating an error gradient"
+                },
+				{
+                    "type": "text",
+                    "content": "➔ Over time, each tree gets better at predicting the result"
+				}
+			]
+		},
+
+		{
+			"type": "information",
+			"title": "Week 4 - Decision Trees, Random Forest, XGBoost",
+			"elements":
+			[
+				{
+					"type": "text",
+					"content": "[[h3]]Summary[[/]]"
+				},
+				{
+                    "type": "text",
+                    "content": "➔ “By using Decision Trees, we can do a variety of machine learning tasks through many different methods"
+                },
+				{
+                    "type": "text",
+                    "content": "➔ While decision trees by themselves are often accurate, Random Forest and Extreme Gradient Boost often outperform them"
+                },
+				{
+                    "type": "text",
+                    "content": "➔ The parameters in a project matter a lot, try changing them up and searching up how you can make this more effective!"
+                }
+			]
+		}
+	]
+}
