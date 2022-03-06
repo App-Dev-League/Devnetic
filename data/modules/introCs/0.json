@@ -40,7 +40,7 @@
                 "# Hello Markdown world!",
                 "console.log(\"Hello World\")",
                 "// The dom container's element ID is root\nconst domContainer = document.querySelector('#root');",
-                "// Export any React components that you want to use in the app\nmodule.exports = YourComponent;"
+                "// Export any React components that you want to use in the app\nexport default YourComponent;"
             ],
             "display_type": "web",
             "elements": [

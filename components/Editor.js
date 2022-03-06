@@ -419,11 +419,11 @@ try{
 										// do something
 									} else {
 										let compiledModuleCode = moduleCode.replaceAll("module.exports", "window.__importBridge." + name)
+										compiledModuleCode = compiledModuleCode.replaceAll("export default", "window.__importBridge." + name + " = ")
 										compiledModuleCode = Babel.transform(compiledModuleCode, {
 											plugins: ["transform-react-jsx"]
 										}).code;
 										secondaryFilesCode += "<script>\n" + `(function(){\n${compiledModuleCode}\n})()` + "\n</script>";
-										console.log(secondaryFilesCode)
 										// do more things
 									}
 								}
