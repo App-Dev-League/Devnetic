@@ -34,19 +34,19 @@ class CodeEditor extends ModuleComponent {
 				tabs: [{
 					name: "Instructions",
 					component: this.state.instructions,
-					tabDataset: {tabname: "instructions"}
+					tabDataset: { tabname: "instructions" }
 				}, {
 					name: "Preview",
 					component: this.state.codePreview,
-					tabDataset: {tabname: "preview"}
+					tabDataset: { tabname: "preview" }
 				}, {
 					name: "Snippets",
 					component: this.state.snippetsPanel,
-					tabDataset: {tabname: "snippets"}
+					tabDataset: { tabname: "snippets" }
 				}, {
 					name: "Plugins",
 					component: this.state.pluginPanel,
-					tabDataset: {tabname: "plugins"}
+					tabDataset: { tabname: "plugins" }
 				}],
 				forceReRender: true
 			}, this);
@@ -169,7 +169,7 @@ class CodeEditor extends ModuleComponent {
 					if (i.type === "regex") {
 						let regex = new RegExp(i.value);
 						if ((newText.toString().match(regex, "g") || []).length < 1) correct = false;
-					} else if (i.type === "includes"){
+					} else if (i.type === "includes") {
 						if (!newText.toString().includes(i.value)) correct = false;
 					} else if (i.type === "startsWith") {
 						console.log(newText.toString(), i.value)
@@ -315,6 +315,54 @@ class CodeEditor extends ModuleComponent {
 						let actual = applyFilters(element.apply, codeEditorHelper.getValue());
 						if (expected !== actual) return false;
 					}
+				} else if (tester.type === "validate-dom") {
+					document.body.classList.add("tester-testing")
+					let testingMessages = [
+						'Testing your code against test cases to make sure your code meets the requirements...',
+						'Making sure your code meets all the requirements...',
+						'Checking whether or not your code does what it\'s supposed to do...',
+						'Making sure your code is working as intended...',
+						'Comparing your code\'s output to the expected output...',
+					]
+					document.body.setAttribute('data-before', testingMessages[Math.floor(Math.random() * testingMessages.length)]);
+					await sleep(1)
+					for (let p in tester.actions) {
+						let action = tester.actions[p];
+						if (typeof action.run !== "undefined") {
+							// switching to correct editor
+							document.querySelectorAll(".project-module-tabs")[0].children[0].querySelector(`[data-storage_id='${action.run}']`).click()
+							await sleep(100)
+							// switching to the preview tab
+							document.querySelectorAll(".project-module-tabs")[1].children[0].querySelector(`[data-tabname='preview']`).click()
+							
+							await sleep(1000)
+							document.getElementById("code-editor-run-btn").click()
+							
+							for (let i = 0; i < 1000; i++) {
+								await sleep(100)
+								if (i === 20) document.getElementById("code-editor-run-btn").click()
+								if (!document.querySelector("#preview") || !document.querySelector("#preview").srcdoc.trim().startsWith("<html>")) continue;
+								else{
+									break;
+								}
+							}
+							await sleep(1000)
+						} else if (typeof action.execOnDOM !== "undefined") {
+							let dom = document.getElementById("preview").contentWindow;
+							console.log("executing "+"dom." + action.execOnDOM)
+							eval("dom." + action.execOnDOM)
+						} else if (typeof action.checkDOM !== "undefined") {
+							let dom = document.getElementById("preview").contentWindow;
+							let result = new Function([], "var dom = document.getElementById('preview').contentWindow; return " + "dom." + action.command)();
+							if (result !== action.checkDOM){ 
+								codeEditorHelper.showAlertModal("The tester encountered the following problems with your code: " + action.onerror.replaceAll("{{output}}"), [
+									{text: "Ok", onclick: function () { codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index')) }								}
+								])
+								return false;
+							}
+						}
+					}
+					document.body.classList.remove("tester-testing")
 				}
 				document.body.classList.remove("tester-testing")
 			}

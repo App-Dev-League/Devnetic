@@ -491,7 +491,29 @@
                 }
             ],
             "hints": [],
-            "validation": [],
+            "validation": [
+                {
+                    "validate": true,
+                    "type": "validate-dom",
+                    "actions": [
+                        {
+                            "run": "webdev-9-0-0.jsx",
+                            "editorIndex": 0
+                        },
+                        {
+                            "execOnDOM": "document.querySelector('input').value = 'test #1'"
+                        },
+                        {
+                            "execOnDOM": "document.querySelector('button').click()"
+                        },
+                        {
+                            "checkDOM": "test #1X",
+                            "command": "document.querySelector('#root > div > div:nth-child(1)').innerText",
+                            "onerror": "The button Add button did not work, or there was no \"X\" delete button"
+                        }
+                    ]
+                }
+            ],
             "points": 0,
             "coins": 0
         }
