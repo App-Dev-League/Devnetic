@@ -26,11 +26,14 @@ class Editor extends tApp.Component {
 		super(state, parent);
 	}
 	render(props) {
+		var self = this;
 		var shownNoPluginMessage = false;
 		let languages = {
 			"html": "html",
 			"py": "python",
-			"md": "markdown"
+			"md": "markdown",
+			"js": "javascript",
+			"jsx": "javascript"
 		}
 		var parentThis = this
 		var tabindex = this.state.tabindex
@@ -75,7 +78,9 @@ class Editor extends tApp.Component {
 				var requiredPlugins = {
 					"py": "brython",
 					"html": false,
-					"md": "showdown"
+					"md": "showdown",
+					"js": false,
+					"jsx": "react"
 				}
 				if (!window.alertModals) {
 					window.alertModals = {
@@ -85,17 +90,21 @@ class Editor extends tApp.Component {
 				if (plugins.checkPluginStatus(requiredPlugins[checkFileType]) === false && requiredPlugins[checkFileType] !== false && !window.alertModals.pluginFileRequired[checkFileType]) {
 					window.alertModals.pluginFileRequired[checkFileType] = true;
 					codeEditorHelper.showAlertModal(`This file extention (.${checkFileType}) requires the ${requiredPlugins[checkFileType]} plugin to run`, [
-						{text: "Install", onclick: function(){
-							document.querySelectorAll(".project-module-tabs")[1].children[0].children[3].click()
-							codeEditorHelper.removeAlertModal(this.parentElement.getAttribute('data-editor-alert-modal-index'))
-							setTimeout(function(){
-								if (document.getElementById("plugin-list-"+requiredPlugins[checkFileType]).querySelector("h5").innerText !== "Install") return;
-								document.getElementById("plugin-list-"+requiredPlugins[checkFileType]).querySelector("h5").click()
-							}, 100)
-						}},
-						{text: "Don't Install", onclick: function(){
-							codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index'))
-						}}
+						{
+							text: "Install", onclick: function () {
+								document.querySelectorAll(".project-module-tabs")[1].children[0].children[3].click()
+								codeEditorHelper.removeAlertModal(this.parentElement.getAttribute('data-editor-alert-modal-index'))
+								setTimeout(function () {
+									if (document.getElementById("plugin-list-" + requiredPlugins[checkFileType]).querySelector("h5").innerText !== "Install") return;
+									document.getElementById("plugin-list-" + requiredPlugins[checkFileType]).querySelector("h5").click()
+								}, 100)
+							}
+						},
+						{
+							text: "Don't Install", onclick: function () {
+								codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index'))
+							}
+						}
 					])
 				}
 
@@ -286,6 +295,7 @@ ${code}
 								iframe.contentWindow.pyjsCode = code
 								iframe.contentWindow.enableInput = function () {
 									document.querySelector(".console-input").disabled = false
+									document.querySelector(".console-input").focus()
 								}
 								iframe.contentWindow.disableInput = function () {
 									document.querySelector(".console-input").disabled = true
@@ -304,7 +314,7 @@ ${code}
 							if (document.getElementById("preview")) {
 								try {
 									plugins.load("showdown")
-								} catch(err) {
+								} catch (err) {
 									codeEditorHelper.showAlertModal("Markdown plugin not found! You must install it before you can render markdown files.", [{
 										text: "Ok", onclick: function () { codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index')) }
 									}], "codicon-error")
@@ -314,6 +324,141 @@ ${code}
 								var converter = new showdown.Converter();
 								let html = converter.makeHtml(md);
 								document.getElementById("preview").srcdoc = html
+							}
+						} else if (fileType === "js") {
+							document.getElementById("console-bridge").dispatchEvent(new Event('change'));
+							window.consoleLogs = []
+							try {
+								let remove = document.querySelector("#python-execution-thread")
+								if (remove) {
+									remove.parentElement.removeChild(remove)
+								}
+								plugins.unload("brython")
+							} catch (err) { }
+							window.consoleLogs.push(["Starting javascript engine..."])
+							document.getElementById("console-bridge").click()
+							let code = codeEditorHelper.getValue()
+							if (document.getElementById("python-execution-thread")) {
+								let elem = document.getElementById("python-execution-thread")
+								elem.parentElement.removeChild(elem)
+							}
+							let iframe = document.createElement("iframe")
+							iframe.style.width = 0
+							iframe.style.height = 0
+							iframe.id = "python-execution-thread"
+							iframe.srcdoc = `
+							<html>
+								<body>
+									<div id="python-sandbox-bridge"></div>
+								</body>
+							</html>
+							<script>
+console.oldLog = console.log
+console.log = function(){
+	window.newLog(arguments)
+}
+console.error = function(){
+	window.newLog(arguments)
+}
+try{
+	${code}
+}catch(err){
+	console.error(err)
+}
+							</script>
+							`
+							document.body.appendChild(iframe)
+							iframe.contentWindow.newLog = function (log) {
+								let arrLog = []
+								for (let i in log) {
+									arrLog.push(log[i])
+								}
+								window.consoleLogs.push(arrLog)
+								window.document.getElementById("console-bridge").click()
+								if (window.newLogCallback) window.newLogCallback(log)
+							}
+							iframe.contentWindow.onerror = function (err) {
+								err = err.toString()
+								window.consoleLogs.push([err])
+								window.document.getElementById("console-bridge").click()
+								return false;
+							}
+						} else if (fileType === "jsx") {
+							jsxMain()
+							async function jsxMain() {
+								function showError(text) {
+									window.consoleLogs = [[text]]
+									document.getElementById("console-bridge").click()
+								}
+								let code = codeEditorHelper.getValue();
+								plugins.load("react");
+								// parsing imports
+								let imports = []
+								code = code.replaceAll(/import([\s\S]*?)(?='|").*/g, function (e) {
+									if (e.replaceAll("\"", "'").match(/(?<=')(.*)(?=')/g)[0] === "react") return "";
+									let name = e.match(/(?<=import)(.*)(?=from)/g)[0];
+									imports.push(e.replaceAll("\"", "'"))
+									return `var ${name} = window.__importBridge.${name}`
+								})
+								var secondaryFilesCode = ""
+								for (let i in imports) {
+									let element = imports[i]
+									let module = element.match(/(?<=')(.*)(?=')/g)[0];
+									let name = element.match(/(?<=import)(.*)(?=from)/g)[0];
+									console.log(module, name)
+									if (!module.startsWith("./") || module.indexOf("/") !== 1) {
+										return showError("DependencyNotFoundError: Could not find dependency: '" + module + "'")
+									}
+									module = module.slice(2);
+									let moduleIndex = self.parent.parent.data().files.findIndex(e => e === module)
+									if (moduleIndex === -1) {
+										return showError("DependencyNotFoundError: Could not find dependency: '" + module + "'")
+									}
+									let moduleCode = await DB.getCode(self.parent.parent.data().storage_id[moduleIndex])
+									if (name.startsWith("{") && name.endsWith("}")) {
+										// do something
+									} else {
+										let compiledModuleCode = moduleCode.replaceAll("module.exports", "window.__importBridge." + name)
+										compiledModuleCode = compiledModuleCode.replaceAll("export default", "window.__importBridge." + name + " = ")
+										compiledModuleCode = Babel.transform(compiledModuleCode, {
+											plugins: ["transform-react-jsx"]
+										}).code;
+										secondaryFilesCode += "<script>\n" + `(function(){\n${compiledModuleCode}\n})()` + "\n</script>";
+										// do more things
+									}
+								}
+								code = Babel.transform(code, {
+									plugins: ["transform-react-jsx"]
+								}).code
+								if (document.getElementById("preview")) {
+									let src = `
+									<html>
+										<body>
+											<div id="root"></div>
+											<script>
+											window.__importBridge = {};
+												${plugins.getCode("react")}
+											</script>
+											${secondaryFilesCode}
+											<script>
+												try{
+													${code}
+												}catch(err) {
+														err = err.toString()
+														window.parent.consoleLogs = [];
+														window.parent.consoleLogs.push([err])
+														window.parent.document.getElementById("console-bridge").click()
+												}
+											</script>
+										</body>
+									</html>
+									`
+									document.getElementById("preview").srcdoc = src;
+									document.getElementById("preview-container").classList.remove("preview-mode-console")
+									let console = document.querySelector(".console-wrapper");
+									if (console) console.parentElement.removeChild(console)
+								}
+
 							}
 						}
 					}
@@ -329,6 +474,7 @@ ${code}
 							await DB.setCode(parentThis.parent.parent.data().storage_id[codeEditorHelper.getCurrentEditorIndex()], codeEditorHelper.getValue())
 							let fileType = parentThis.parent.parent.data().storage_id[tabindex].split('.').pop().toLowerCase()
 							if (fileType === "html") updatePreview(fileType)
+							else if (fileType === "jsx") updatePreview(fileType)
 							window.codeEditorSaved = true;
 							setTimeout(function () {
 								document.getElementById("code-editor-status").innerText = "Ready"
@@ -409,7 +555,10 @@ class TabbedEditor extends tApp.Component {
 					}
 					tabs.push({
 						name: data.files[i],
-						component: goodThis.state[data.storage_id[i]]
+						component: goodThis.state[data.storage_id[i]],
+						tabDataset: {
+							storage_id: data.storage_id[i]
+						}
 					})
 					goodThis.state.tabs = tabs;
 				}

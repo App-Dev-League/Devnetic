@@ -9,6 +9,7 @@ module.exports = {
         let plugin = localStorage.getItem("plugin::" + pluginId);
         if (!plugin){ delete window.pluginList[pluginId]; throw "Error: plugin "+pluginId+" not found locally!"}
 
+        plugin = plugin.slice(plugin.indexOf("||STARTPLUGIN||")+15)
 
         var code = LZString.decompressFromUTF16(plugin)
         var script = document.createElement('script');
@@ -22,10 +23,16 @@ module.exports = {
     },
     getCode(pluginId) {        
         let plugin = localStorage.getItem("plugin::" + pluginId);
+        plugin = plugin.slice(plugin.indexOf("||STARTPLUGIN||")+15)
         var code = LZString.decompressFromUTF16(plugin)
         return code
     },
-    async download(pluginId, cont, done) {
+    getVersion(pluginId) {
+        let plugin = localStorage.getItem("plugin::" + pluginId);
+        plugin = plugin.slice(0, plugin.indexOf("||STARTPLUGIN||"));
+        return plugin
+    },
+    async download(pluginId, cont, done, silent) {
         console.log("Starting download of plugin " + pluginId);
 
         let code = await fetch("/assets/plugins/" + pluginId + "/" + pluginId+".min.js");
@@ -44,16 +51,19 @@ module.exports = {
             }
             bytesReceived += result.value.length;
         }
-
+        let version = await fetch("/assets/plugins/" + pluginId + "/" +"VERSION.txt");
+        version = await version.text();
         code = await tmpcode.text()
         var compressed = LZString.compressToUTF16(code)
-        localStorage.setItem("plugin::" + pluginId, compressed);
-        console.log("Successfully downloaded plugin " + pluginId);
+        localStorage.setItem("plugin::" + pluginId, `${version}||STARTPLUGIN||`+compressed);
+        console.log("Successfully downloaded plugin " + pluginId + "@"+version);
         if (done) done(true)
         let pluginName = this.availablePlugins().find(e => e.id == pluginId).name;
-        codeEditorHelper.showAlertModal("Successfully downloaded plugin " + pluginName, [{
-            text: "Ok", onclick: function () { codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index')) }
-        }], "codicon-pass", 7)
+        if (!silent) {
+            codeEditorHelper.showAlertModal("Successfully downloaded plugin " + pluginName, [{
+                text: "Ok", onclick: function () { codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index')) }
+            }], "codicon-pass", 7)
+        }
         return true;
     },
     unload(pluginId){
@@ -79,21 +89,24 @@ module.exports = {
                 description: "This plugin allows you to resize the editor window, as well as re-arange the tabs.",
                 image: "/assets/plugins/betterEditor/betterEditor.png",
                 id: "betterEditor",
-                onInstall: "plugins.load(\"betterEditor\")"
+                onInstall: "plugins.load(\"betterEditor\")",
+                latestVersion: "1.3.0"
                 //https://interactjs.io/
             },
             {
                 name: "Brython",
                 description: "This plugin allows you to run python in the browser!",
                 image: "/assets/plugins/brython/brython.svg",
-                id: "brython"
+                id: "brython",
+                latestVersion: "2.0.1"
                 //https://brython.info/
             },
             {
                 name: "CaptCC",
                 description: "This plugin allows you to run basic C code in the browser!",
                 image: "/assets/plugins/captCC/captCC.svg",
-                id: "captCC"
+                id: "captCC",
+                latestVersion: "0.0.1"
                 //https://github.com/Captainarash/CaptCC
             },
             {
@@ -101,6 +114,7 @@ module.exports = {
                 description: "This plugin compiles C++ code to Javascript!",
                 image: "/assets/plugins/jscpp/jscpp.svg",
                 id: "jscpp",
+                latestVersion: "0.0.1"
                 //https://github.com/felixhao28/JSCPP
             },
             {
@@ -108,13 +122,22 @@ module.exports = {
                 description: "This plugin allows you to run typescript in the browser!",
                 image: "/assets/plugins/typescript/typescript.svg",
                 id: "typescript",
+                latestVersion: "0.0.1"
                 //https://jsfiddle.net/k78t436y/
             },
             {
                 name: "Markdown",
                 description: "This plugin allows you to render markdown code in the browser!",
                 image: "/assets/plugins/showdown/markdown-logo.png",
-                id: "showdown"
+                id: "showdown",
+                latestVersion: "1.1.0"
+            },
+            {
+                name: "ReactJS",
+                description: "This plugin allows you to create and preview a ReactJS website!",
+                image: "/assets/plugins/react/react.svg",
+                id: "react",
+                latestVersion: "2.0.1"
             }
         ]
     },
@@ -125,6 +148,23 @@ module.exports = {
     async getDownloadSize(pluginId) {
         let x = await fetch("/assets/plugins/" + pluginId + "/" + pluginId+".min.js", {method: 'HEAD'})
         return x.headers.get("content-length")
+    },
+    getOldPlugins() {
+        let allPlugins = this.availablePlugins();
+        let installedPlugins = [];
+        let oldPlugins = []
+        allPlugins.forEach(e => {
+            if (this.checkPluginStatus(e.id)) {
+                installedPlugins.push(e)
+            }
+        })
+        installedPlugins.forEach(e => {
+            let pluginVersion = this.getVersion(e.id)
+            if (pluginVersion !== e.latestVersion) {
+                oldPlugins.push(e)
+            }
+        })
+        return oldPlugins;
     }
 }
 function sleep(ms) {

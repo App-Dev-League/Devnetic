@@ -30,37 +30,32 @@ class CodeEditor extends ModuleComponent {
 			this.state.pluginPanel = new PluginPanel({}, this);
 		}
 		if (this.state.tabbedView == null) {
-			// this.state.tabbedView = new TabbedView({
-			// 	tabs: [{
-			// 		name: "Instructions",
-			// 		component: this.state.instructions
-			// 	}, {
-			// 		name: "Preview",
-			// 		component: this.state.codePreview
-			// 	}, {
-			// 		name: "Snippets",
-			// 		component: this.state.snippetsPanel
-			// 	}]
-			// }, this);
 			this.state.tabbedView = new TabbedView({
 				tabs: [{
 					name: "Instructions",
-					component: this.state.instructions
+					component: this.state.instructions,
+					tabDataset: { tabname: "instructions" }
 				}, {
 					name: "Preview",
-					component: this.state.codePreview
+					component: this.state.codePreview,
+					tabDataset: { tabname: "preview" }
 				}, {
 					name: "Snippets",
-					component: this.state.snippetsPanel
+					component: this.state.snippetsPanel,
+					tabDataset: { tabname: "snippets" }
 				}, {
 					name: "Plugins",
-					component: this.state.pluginPanel
+					component: this.state.pluginPanel,
+					tabDataset: { tabname: "plugins" }
 				}],
 				forceReRender: true
 			}, this);
 		}
 	}
 	async checknext() {
+		if (this.data().validation.length === 0) {
+			return this.parent.next()
+		}
 		function sleep(ms) {
 			return new Promise(resolve => setTimeout(resolve, ms));
 		}
@@ -142,7 +137,14 @@ class CodeEditor extends ModuleComponent {
 					else if (element === "typeof") latest = typeof latest;
 					else if (element === "remove-tabs") latest = latest.replaceAll("\t", "")
 					else if (element === "remove-newlines") latest = latest.replace(/(\r\n|\n|\r)/gm, "");
-					else if (element === "convert-to-double-quotes") latest = latest.replaceAll("\'", "\"")
+					else if (element === "convert-to-double-quotes") latest = latest.replaceAll("\'", "\"");
+					else if (element.startsWith("includes")) latest = latest.includes(element.slice("includes ".length));
+					else if (element === "toString") latest = latest.toString();
+					else if (element.startsWith("match")) {
+						let regex = new RegExp(element.slice("match ".length));
+						latest = latest.toString().match(regex, "g") || [];
+					}
+					else if (element === "length" && latest) latest = latest.length;
 				})
 				return latest;
 			}
@@ -157,6 +159,26 @@ class CodeEditor extends ModuleComponent {
 					}
 					reject("Could not set input")
 				})
+			}
+			function testMatches(text, list) {
+				let correct = true;
+				for (let p in list) {
+					let i = list[p];
+					let newText = text;
+					if (i.filters) newText = applyFilters(i.filters, text)
+					if (i.type === "regex") {
+						let regex = new RegExp(i.value);
+						if ((newText.toString().match(regex, "g") || []).length < 1) correct = false;
+					} else if (i.type === "includes") {
+						if (!newText.toString().includes(i.value)) correct = false;
+					} else if (i.type === "startsWith") {
+						console.log(newText.toString(), i.value)
+						if (!newText.toString().startsWith(i.value)) correct = false;
+					} else if (i.type === "endsWith") {
+						if (!newText.toString().endsWith(i.value)) correct = false;
+					}
+				}
+				return correct;
 			}
 			let data = parentThis.data()
 			let logIndex = 0;
@@ -181,11 +203,11 @@ class CodeEditor extends ModuleComponent {
 						let action = tester.actions[p];
 						let runwhen = action.runwhen
 						if (typeof action.run !== "undefined") {
-							let index = action.editorIndex
 							// switching to correct editor
-							document.querySelectorAll(".project-module-tabs")[0].children[0].children[index].click()
+							document.querySelectorAll(".project-module-tabs")[0].children[0].querySelector(`[data-storage_id='${action.run}']`).click()
+							await sleep(100)
 							// switching to the preview tab
-							document.querySelectorAll(".project-module-tabs")[1].children[0].children[1].click()
+							document.querySelectorAll(".project-module-tabs")[1].children[0].querySelector(`[data-tabname='preview']`).click()
 							//window.consoleLogs.push(["Launching tester..."])
 							document.getElementById("console-bridge").click()
 							if (window.newLogCallback) window.newLogCallback(["Launching tester..."])
@@ -231,14 +253,26 @@ class CodeEditor extends ModuleComponent {
 							}
 							if (!action.add) action.add = 1
 							let latest = window.consoleLogs[logIndex + action.add]
-							if (action.filters) {
-								latest = applyFilters(action.filters, latest)
-							}
-							if (latest !== action.expect) {
-								window.consoleLogs.push(["Tester returned following problems: " + action.onerror.replaceAll("{{output}}", latest)])
-								document.getElementById("console-bridge").click()
-								if (window.newLogCallback) window.newLogCallback(["Tester returned following problems: " + action.onerror.replaceAll("{{output}}", latest)])
-								return false;
+							if (!action.reject) {
+								if (action.matches) return testMatches(latest, action.matches)
+								if (action.filters) {
+									latest = applyFilters(action.filters, latest)
+								}
+								if (latest !== action.expect) {
+									window.consoleLogs.push(["Tester returned following problems: " + action.onerror.replaceAll("{{output}}", latest)])
+									document.getElementById("console-bridge").click()
+									if (window.newLogCallback) window.newLogCallback(["Tester returned following problems: " + action.onerror.replaceAll("{{output}}", latest)])
+									return false;
+								}
+							} else {
+								if (action.matches) return !testMatches(latest, action.matches)
+								latest = applyFilters(action.reject.filters, latest)
+								if (latest !== action.reject.expect) {
+									window.consoleLogs.push(["Tester returned following problems: " + action.onerror.replaceAll("{{output}}", latest)])
+									document.getElementById("console-bridge").click()
+									if (window.newLogCallback) window.newLogCallback(["Tester returned following problems: " + action.onerror.replaceAll("{{output}}", latest)])
+									return false;
+								}
 							}
 						} else if (typeof action.setVar !== "undefined") {
 							if (runwhen.startsWith("in") && runwhen.endsWith("outputs")) {
@@ -251,21 +285,84 @@ class CodeEditor extends ModuleComponent {
 								latest = applyFilters(action.filters, latest)
 							}
 							testVars[action.setVar] = latest
+						} else if (typeof action.exec !== "undefined") {
+							if (runwhen.startsWith("in") && runwhen.endsWith("outputs")) {
+								runwhen = parseInt(runwhen.replace("in", "").replace("outputs", ""))
+								logIndex += runwhen
+								console.log(logIndex, runwhen)
+								await waitForXInputs(runwhen)
+							}
+							let currentScript = document.getElementById("python-execution-thread").contentWindow.document.querySelector("script").innerHTML;
+							let scriptTag = document.getElementById("python-execution-thread").contentWindow.document.querySelector("script")
+							currentScript += "\n" + action.exec;
+							scriptTag.parentElement.removeChild(scriptTag);
+							let newScriptTag = document.getElementById("python-execution-thread").contentWindow.document.createElement("script");
+							newScriptTag.innerHTML = currentScript;
+							await sleep(100)
+							document.getElementById("python-execution-thread").contentWindow.document.body.appendChild(newScriptTag);
 						}
 					}
 					document.body.classList.remove("tester-testing")
 				} else if (tester.type === "validate-code") {
 					for (let p in tester.correct) {
 						// switching to correct editor
-						document.querySelectorAll(".project-module-tabs")[0].children[0].children[tester.editorIndex].click()
+						document.querySelectorAll(".project-module-tabs")[0].children[0].querySelector(`[data-storage_id='${tester.fileStorageId}']`).click()
 						// switching to the preview tab
-						document.querySelectorAll(".project-module-tabs")[1].children[0].children[1].click()
+						document.querySelectorAll(".project-module-tabs")[1].children[0].querySelector(`[data-tabname='preview']`).click()
 						await sleep(500)
 						let element = tester.correct[p];
 						let expected = element.value;
 						let actual = applyFilters(element.apply, codeEditorHelper.getValue());
 						if (expected !== actual) return false;
 					}
+				} else if (tester.type === "validate-dom") {
+					document.body.classList.add("tester-testing")
+					let testingMessages = [
+						'Testing your code against test cases to make sure your code meets the requirements...',
+						'Making sure your code meets all the requirements...',
+						'Checking whether or not your code does what it\'s supposed to do...',
+						'Making sure your code is working as intended...',
+						'Comparing your code\'s output to the expected output...',
+					]
+					document.body.setAttribute('data-before', testingMessages[Math.floor(Math.random() * testingMessages.length)]);
+					await sleep(1)
+					for (let p in tester.actions) {
+						let action = tester.actions[p];
+						if (typeof action.run !== "undefined") {
+							// switching to correct editor
+							document.querySelectorAll(".project-module-tabs")[0].children[0].querySelector(`[data-storage_id='${action.run}']`).click()
+							await sleep(100)
+							// switching to the preview tab
+							document.querySelectorAll(".project-module-tabs")[1].children[0].querySelector(`[data-tabname='preview']`).click()
+							
+							await sleep(1000)
+							document.getElementById("code-editor-run-btn").click()
+							
+							for (let i = 0; i < 1000; i++) {
+								await sleep(100)
+								if (i === 20) document.getElementById("code-editor-run-btn").click()
+								if (!document.querySelector("#preview") || !document.querySelector("#preview").srcdoc.trim().startsWith("<html>")) continue;
+								else{
+									break;
+								}
+							}
+							await sleep(1000)
+						} else if (typeof action.execOnDOM !== "undefined") {
+							let dom = document.getElementById("preview").contentWindow;
+							console.log("executing "+"dom." + action.execOnDOM)
+							eval("dom." + action.execOnDOM)
+						} else if (typeof action.checkDOM !== "undefined") {
+							let dom = document.getElementById("preview").contentWindow;
+							let result = new Function([], "var dom = document.getElementById('preview').contentWindow; return " + "dom." + action.command)();
+							if (result !== action.checkDOM){ 
+								codeEditorHelper.showAlertModal("The tester encountered the following problems with your code: " + action.onerror.replaceAll("{{output}}"), [
+									{text: "Ok", onclick: function () { codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index')) }								}
+								])
+								return false;
+							}
+						}
+					}
+					document.body.classList.remove("tester-testing")
 				}
 				document.body.classList.remove("tester-testing")
 			}
@@ -307,6 +404,7 @@ class CodeEditor extends ModuleComponent {
 
 			this.state.instructions.state.elements = this.data().elements;
 			this.state.instructions.state.hints = this.data().hints;
+			this.state.instructions.state.nextText = this.data().validation.length > 0 ? "Validate code & move on" : "Move on";
 			return `<div id="code-editor-component">
 						${this.state.editor}
 						<div class="vertical-divider"></div>

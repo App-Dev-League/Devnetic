@@ -12,9 +12,9 @@ Just copy everything, and it should be visible in VS CODE or you're favorite cod
 //     Allows to dynamically render content
 // `
 var text = `
-Create a list of numbers that is a random length
-Prompt the user to select an element within the range of the list (don’t manually count list and type the number, use python function in the command)
-Print out the element of the list the user selected
+To make the list update every time a user inputs a new item, we need to use React States
+Create a React State named “items” and inside it, put our previous “items” variable
+Then, pass this React State to the ItemList component. Then, everytime the callback function is called, add a new element to that array and update the state!
 `
 
 String.prototype.replaceAll = function (find, replace) {

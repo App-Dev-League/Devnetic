@@ -1,17 +1,51 @@
 var code = `
-<!DOCTYPE html>
-<html>
+import React from 'react'
+import ItemList from './itemList.jsx'
+import AddItem from './addItem.jsx';
 
-<head>
-  <meta charset="utf-8">
-  <title>My test page</title>
-</head>
+class MainPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.callBackFunction = this.callBackFunction.bind(this);
+    this.deleteCallBack = this.deleteCallBack.bind(this)
+    this.state = {
+      items: []
+    }
+  }
+  callBackFunction(data) {
+    console.log("Added!", data)
+    let newElement = {
+      key: (this.state.items.length).toString(),
+      itemName: data
+    }
+    this.state.items.push(newElement)
+    this.setState({
+      items: this.state.items
+    })
+  }
 
-<body>
-  <p>This is my page</p>
-</body>
+  deleteCallBack(key){
+    console.log("Deleted!", key)
 
-</html>
+    this.state.items.splice(key, 1)
+    this.setState({
+      items: this.state.items
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        <ItemList list={this.state.items} callBack={this.deleteCallBack}/>
+        <AddItem callBack={this.callBackFunction} />
+      </div>
+    )
+  }
+}
+ReactDOM.render(
+  <MainPage />,
+  document.getElementById('root')
+)
 `
 
 if (code.startsWith("\n")) code = code.slice(1)

@@ -86,6 +86,7 @@
 					"validate": true,
                     "type": "validate-code",
                     "editorIndex": 0,
+					"fileStorageId": "webdev-0-index.html",
 					"correct":
 					[
 						{
