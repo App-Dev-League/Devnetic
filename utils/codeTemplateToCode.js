@@ -26,6 +26,10 @@ function codeTemplateToCode(template) {
 	template = template.replaceAll("[[ ]]", '&nbsp;&nbsp;&nbsp;&nbsp;');
 	template = template.replaceAll("[[a]]", "<a target='_blank' class='generated-link url' data-linked='no''>")
 	template = template.replaceAll("[[/a]]", "</a>")
+	template = template.replaceAll(/\[\[link=(.*?)\]\]/g, e => {
+		return `<a target='_blank' class='generated-link url' data-linked='yes' href='${e.replaceAll('[[link=', '').replaceAll(']]', '')}'>`;
+	})
+	template = template.replaceAll("[[/link]]", "</a>")
 	return template;
 }
 

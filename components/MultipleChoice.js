@@ -50,7 +50,6 @@ class MultipleChoice extends ModuleComponent {
 			if(this.data().selectedAnswer != null) {
 				let data = this.data();
 				this.state.explanation.state.description = data.descriptions[data.selectedAnswer];
-				console.log(Array.isArray(data.correct), data)
 				if(data.selectedAnswer == data.correct || (Array.isArray(data.correct) && data.correct.includes(data.selectedAnswer))) {
 					this.state.explanation.state.title = "Correct!";
 					this.state.explanation.state.retry = false;
