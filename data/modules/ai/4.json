@@ -375,6 +375,26 @@
     },
     {
       "type": "multiple_choice",
+      "question": "What is the difference between Sigmoid and Softmax?",
+      "code_template": "",
+      "answers": [
+        "Sigmoid produces a distribution of values between 0 and 1; Softmax does not",
+        "Softmax produces a distribution of values between 0 and 1; Sigmoid does not",
+        "In the Sigmoid distribution, all values produces are between 0 and 1 and add up to 1; values do not add up to 1 in Softmax",
+        "In the Softmax distribution, all values produces are between 0 and 1 and add up to 1; values do not add up to 1 in Sigmoid"
+      ],
+      "correct": 3,
+      "descriptions": [
+        "Both Softmax and Sigmoid produce values between 0 and 1",
+        "Both Softmax and Sigmoid produce values between 0 and 1",
+        "Sigmoid values do not add up to 1",
+        "Correct! Softmax produces values between 0 and 1 that add to 1 but Sigmoid produces values between 0 and 1 that may not add up to 1"
+      ],
+      "points": 10,
+      "coins": 3
+    },
+    {
+      "type": "multiple_choice",
       "question": "How can we use Neural Networks for supervised learning?",
       "code_template": "",
       "answers": [
