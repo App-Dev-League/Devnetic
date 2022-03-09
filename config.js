@@ -171,7 +171,13 @@
 					}
 					data.answers = answers;
 					data.descriptions = descriptions;
-					data.correct = indexList.findIndex(index => index === data.correct);
+					if (Array.isArray(data.correct)) {
+						let correct = [...data.correct];
+						data.correct = [];
+						correct.forEach(element => data.correct.push(indexList.findIndex(index => index === element)))
+					}else{
+						data.correct = indexList.findIndex(index => index === data.correct);
+					}
 					modulePage.setComponent(new MultipleChoice({}, modulePage), data);
 				} else if (data.type == "short_answer") {
 					modulePage.setComponent(new ShortAnswer({}, modulePage), data);
