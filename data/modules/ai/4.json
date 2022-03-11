@@ -472,6 +472,144 @@
       ],
       "points": 10,
       "coins": 3
+    },
+    {
+      "type": "congratulations",
+      "title": "Congratulations!",
+      "elements": [
+        {
+          "type": "text",
+          "content": "In this module, you learned all about Neural Networks:"
+        },
+        {
+          "type": "text",
+          "content": "[[h3]]Neural Network[[/]]"
+        },
+        {
+          "type": "text",
+          "content": "➔ Machine learning algorithm that can be used for nearly all machine learning tasks."
+        },
+        {
+          "type": "text",
+          "content": "➔ Consists of weights, neurons, biases, and layers."
+        },
+        {
+          "type": "text",
+          "content": "[[h3]]Anatomy of a Neural Network[[/]]"
+        },
+        {
+          "type": "text",
+          "content": "➔ Inputs are directly connected to a hidden layer via weights, which can then be connected to another hidden layer and so on."
+        },
+        {
+          "type": "text",
+          "content": "➔ The final hidden layer connects to the output layer."
+        },
+        {
+          "type": "text",
+          "content": "➔ Output layer sends the outputs to whatever is receiving them."
+        },
+        {
+          "type": "text",
+          "content": "[[h3]]Feedforward[[/]]"
+        },
+        {
+          "type": "text",
+          "content": "➔ Multiply inputs by weights."
+        },
+        {
+          "type": "text",
+          "content": "➔ Sum incoming weighted inputs at each neuron."
+        },
+        {
+          "type": "text",
+          "content": "➔ Continue for each layer until you reach the output neurons."
+        },
+        {
+          "type": "text",
+          "content": "➔ Get outputs."
+        },
+        {
+          "type": "text",
+          "content": "[[h3]]Biases[[/]]"
+        },
+        {
+          "type": "text",
+          "content": "➔ If all inputs are zero without biases, the result is always zero."
+        },
+        {
+          "type": "text",
+          "content": "➔ Sometimes we want something other than 0 when inputs are all zeros."
+        },
+        {
+          "type": "text",
+          "content": "➔ Each bias adds a value to a neuron to offset from 0."
+        },
+        {
+          "type": "text",
+          "content": "[[h3]]Activation Functions[[/]]"
+        },
+        {
+          "type": "text",
+          "content": "➔ Modify data to change help processing."
+        },
+        {
+          "type": "text",
+          "content": "➔ Helps neural networks identify patterns."
+        },
+        {
+          "type": "text",
+          "content": "➔ Common activation functions include Sigmoid, Softmax, and ReLu"
+        },
+        {
+          "type": "text",
+          "content": "[[h3]]Using Neural Networks for ML[[/]]"
+        },
+        {
+          "type": "text",
+          "content": "➔ Supervised Learning - Use training data to find optimal weight combinations that minimize error."
+        },
+        {
+          "type": "text",
+          "content": "➔ Reinforcement Learning (NeuroEvolution) - Generate many random neural networks, judge their fitness, and evolve them."
+        },
+        {
+          "type": "text",
+          "content": "➔ Unsupervised Learning - Find hidden patterns in data."
+        },
+        {
+          "type": "text",
+          "content": "[[h3]]Backpropagation/Gradient Descent[[/]]"
+        },
+        {
+          "type": "text",
+          "content": "➔ The mathematics that powers supervised Neural Network algorithms."
+        },
+        {
+          "type": "text",
+          "content": "➔ Gradient Descent - Reducing error using an error gradient. The error can be calculated in many ways"
+        },
+        {
+          "type": "text",
+          "content": "➔ Backpropagation - Allows us to calculate the gradient which will produce that error reduction."
+        },
+        {
+          "type": "text",
+          "content": "[[h3]]NeuroEvolution[[/]]"
+        },
+        {
+          "type": "text",
+          "content": "➔ Another way to use neural networks."
+        },
+        {
+          "type": "text",
+          "content": "➔ Initializes many randomly weighted neural networks and picks the ones that are most effective at some task. "
+        },
+        {
+          "type": "text",
+          "content": "➔ Then, the networks are evolved genetically to produce a better agent over time."
+        }
+      ]
     }
   ]
 }
