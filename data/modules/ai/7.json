@@ -649,6 +649,264 @@
         "A simple encoding to handle types of data other than numbers"
       ],
       "correct": 0
+    },
+    {
+      "type": "congratulations",
+      "title": "Congratulations!",
+      "elements": [
+        {
+          "type": "text",
+          "content": "In this module, you learned all about Unsupervised Learning:"
+        },
+        {
+          "type": "text",
+          "content": "[[h3]]What is Unsupervised Learning?[[/]]"
+        },
+        {
+          "type": "text",
+          "content": "➔ Involves recognizing hidden patterns in the dataset in order to better model data"
+        },
+        {
+          "type": "text",
+          "content": "[[h3]]Methods of Unsupervised Learning[[/]]"
+        },
+        {
+          "type": "text",
+          "content": "➔ Clustering"
+        },
+        {
+          "type": "text",
+          "content": "    ➔ K-means, mixture models, OPTICS algorithm"
+        },
+        {
+          "type": "text",
+          "content": "➔ Anomaly Detection"
+        },
+        {
+          "type": "text",
+          "content": "    ➔ Local Outlier Factor, Isolation Forest"
+        },
+        {
+          "type": "text",
+          "content": "➔ Neural Networks"
+        },
+        {
+          "type": "text",
+          "content": "    ➔ Autoencoders, GANs, deep belief networks"
+        },
+        {
+          "type": "text",
+          "content": "[[h3]]K-Means Clustering[[/]]"
+        },
+        {
+          "type": "text",
+          "content": "➔ Algorithm self discovers clusters that data can be separated into"
+        },
+        {
+          "type": "text",
+          "content": "➔ Start by forming K random clusters then reduce inter-cluster metric (like the average distance between points)"
+        },
+        {
+          "type": "text",
+          "content": "[[h3]]K-Means Procedure[[/]]"
+        },
+        {
+          "type": "text",
+          "content": "➔ Choose number of clusters, K"
+        },
+        {
+          "type": "text",
+          "content": "➔ Choose K random points in the datasets be the centers"
+        },
+        {
+          "type": "text",
+          "content": "➔ Assign all points to the closest center"
+        },
+        {
+          "type": "text",
+          "content": "➔ Recompute the centers of the new clusters"
+        },
+        {
+          "type": "text",
+          "content": "➔ Repeat steps C&D until:"
+        },
+        {
+          "type": "text",
+          "content": "    ➔ Centers do not change"
+        },
+        {
+          "type": "text",
+          "content": "    ➔ After each iteration, the points remain in the same cluster"
+        },
+        {
+          "type": "text",
+          "content": "    ➔ Reach a maximum, predefined number of interactions (in the interest of time and computational power) "
+        },
+        {
+          "type": "text",
+          "content": "[[h3]]Implementing K-Means Clustering (without an auxiliary library)[[/]]"
+        },
+        {
+          "type": "text",
+          "content": "➔ Variable K holds the number of groups"
+        },
+        {
+          "type": "text",
+          "content": "➔ Take K samples of the dataset, store them in an array"
+        },
+        {
+          "type": "text",
+          "content": "➔ Loop over dataset, calculating the distance from each point to the each center, then assigning the point to its nearest center"
+        },
+        {
+          "type": "text",
+          "content": "➔ Recompute the three centers by:"
+        },
+        {
+          "type": "text",
+          "content": "    ➔ Calculating each point’s average distance to all the other points in its cluster using the pythagorean theorem"
+        },
+        {
+          "type": "text",
+          "content": "    ➔ Assigning the the point with the lowest average as the new center for that cluster"
+        },
+        {
+          "type": "text",
+          "content": "➔ Recompute which cluster each point belongs to "
+        },
+        {
+          "type": "text",
+          "content": "➔ Repeat (using a looping construct) until: "
+        },
+        {
+          "type": "text",
+          "content": "    ➔ The centers do not change"
+        },
+        {
+          "type": "text",
+          "content": "    ➔ Points remain in the same cluster from iteration to iteration"
+        },
+        {
+          "type": "text",
+          "content": "    ➔ It reaches a set number of maximum iterations"
+        },
+        {
+          "type": "text",
+          "content": "[[h3]]Local Outlier Factor[[/]]"
+        },
+        {
+          "type": "text",
+          "content": "➔ Figure out which data point(s) is/are outliers using “local density”"
+        },
+        {
+          "type": "text",
+          "content": "➔ Calculate the point’s k-nearest distances to its neighbors"
+        },
+        {
+          "type": "text",
+          "content": "➔ Compare it to the average distances of other points"
+        },
+        {
+          "type": "text",
+          "content": "➔ Point considered an outlier if its local density is to low"
+        },
+        {
+          "type": "text",
+          "content": "[[h3]Advantages of Local Outlier Factor[[/]]"
+        },
+        {
+          "type": "text",
+          "content": "➔ Better identification of Outliers"
+        },
+        {
+          "type": "text",
+          "content": "➔ Helpful when identifying true anomalies in the dataset"
+        },
+        {
+          "type": "text",
+          "content": "[[h3]]Subroutines/ Parts[[/]]"
+        },
+        {
+          "type": "text",
+          "content": "➔ K Distance"
+        },
+        {
+          "type": "text",
+          "content": "    ➔ Distance between a point and its K-th neighbor"
+        },
+        {
+          "type": "text",
+          "content": "➔ Reachability Distance between 2 points"
+        },
+        {
+          "type": "text",
+          "content": "    ➔ Maximum of the distance between two points and the difference between K and K Distance of a second point"
+        },
+        {
+          "type": "text",
+          "content": "➔ Local Reachability Distance (LRD)"
+        },
+        {
+          "type": "text",
+          "content": "    ➔ Inverse relationship representing the average reachability between a points and its neighbors"
+        },
+        {
+          "type": "text",
+          "content": "    ➔ The further apart the points are, the lower the density"
+        },
+        {
+          "type": "text",
+          "content": "➔ Local Outlier Factor (LOF)"
+        },
+        {
+          "type": "text",
+          "content": "    ➔ Ratio of the average LRD of the K neighbors of A to the LRD of A."
+        },
+        {
+          "type": "text",
+          "content": "    ➔ Outliers are generally considered points with an LOF > 1, but this is also dependent on the LOFs of the neighboring points"
+        },
+        {
+          "type": "text",
+          "content": "[[h3]]Autoencoders[[/]]"
+        },
+        {
+          "type": "text",
+          "content": "➔ Description"
+        },
+        {
+          "type": "text",
+          "content": "    ➔ Neural Network that learns encodings, or representations, for specific datasets"
+        },
+        {
+          "type": "text",
+          "content": "    ➔ Converts data into usable form by disregarding noise"
+        },
+        {
+          "type": "text",
+          "content": "    ➔ We’ve actually used Autoencoders before in the form of Sklearn’s Labelencoder module"
+        },
+        {
+          "type": "text",
+          "content": "[[h3]]Applications of Unsupervised Learning[[/]]"
+        },
+        {
+          "type": "text",
+          "content": "➔ Drug Discovery"
+        },
+        {
+          "type": "text",
+          "content": "➔ Social Media Popularity Prediction"
+        },
+        {
+          "type": "text",
+          "content": "➔ Machine Translation"
+        },
+        {
+          "type": "text",
+          "content": "➔ Document Classification"
+        }
+      ]
     }
   ]
 }
