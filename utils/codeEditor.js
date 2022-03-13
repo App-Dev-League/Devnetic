@@ -59,12 +59,11 @@ function showAlertModal(message, buttons, icon, deleteTime) {
 	}, 10)
 	if (deleteTime) {
 		setTimeout(async function () {
-			for (let i = 0; i < deleteTime * 10; i++) {
-				clone.querySelector(".editor-alert-modal-loading-bar").style.width = 10 / deleteTime * i + 1 + "%";
-				await new Promise(r => setTimeout(r, 50));
-			}
+			clone.querySelector(".editor-alert-modal-loading-bar").style.setProperty('--deletetime', deleteTime+"s");
+			clone.querySelector(".editor-alert-modal-loading-bar").classList.add("loading-bar-active");
+			await new Promise(r => setTimeout(r, deleteTime * 1000));
 			clone.querySelector(".editor-alert-modal-loading-bar").style.width = "100%";
-			await new Promise(r => setTimeout(r, 500));
+			clone.querySelector(".editor-alert-modal-loading-bar").classList.remove("loading-bar-active");
 			if (!document.getElementById(clone.id)) return;
 			removeAlertModal(clone.getAttribute("data-editor-alert-modal-index"));
 		}, 10)
@@ -84,6 +83,7 @@ function removeAlertModal(index) {
 	index = Number(index);
 	let container = document.getElementById("editor-alert-modal-containers");
 	let element = document.querySelector("[data-editor-alert-modal-index='" + index + "']")
+	element.querySelector(".editor-alert-modal-loading-bar").classList.remove("loading-bar-active");
 	element.style.opacity = "0"
 	element.style.bottom = "0";
 	setTimeout(function () {

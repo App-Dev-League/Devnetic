@@ -1007,6 +1007,17 @@
             background-color: #4D78CC;
             transition: width 0.5s;
         }
+        .loading-bar-active.editor-alert-modal-loading-bar {
+            animation: loading-bar-loading var(--deletetime) linear;
+        }
+        @keyframes loading-bar-loading {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
         .background-dimmer {
             position: fixed;
             top: 0;

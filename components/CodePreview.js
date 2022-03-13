@@ -40,7 +40,7 @@ class CodePreview extends tApp.Component {
 			if (!document.getElementById("python-execution-thread")) {
 				codeEditorHelper.showAlertModal("The Javscript engine must first be running to be able to use the run console", [{
 					text: "Ok", onclick: function () { codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index')) }
-				}], "codicon-error")
+				}], "codicon-error", 5)
 				modal.parentElement.removeChild(modal)
 				return;
 			}
