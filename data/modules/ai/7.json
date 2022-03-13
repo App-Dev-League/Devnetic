@@ -635,7 +635,7 @@
       "type": "multiple_choice",
       "question": "What is an autoencoder?",
       "descriptions": [
-        "Correct! An autoencoder is a type of artifical neural network that is used to learn efficient codings of data",
+        "Correct! An autoencoder is a type of Artificial neural network that is used to learn efficient codings of data",
         "Auteoncoders do not create ciphers to encode and decode data",
         "Autoencoders are not used to convert strings to integers",
         "Autoencoders are not meant to convert other data types to be used for processing"
