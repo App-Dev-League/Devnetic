@@ -70,7 +70,7 @@ class Editor extends tApp.Component {
 				});
 			}
 			loadCode();
-			function addEvent() {
+			async function addEvent() {
 				codeEditorHelper.setCurrentEditorIndex(parentThis.parent.state.tabbedView.state.selected)
 
 				tabindex = codeEditorHelper.getCurrentEditorIndex()
@@ -87,7 +87,7 @@ class Editor extends tApp.Component {
 						pluginFileRequired: {}
 					}
 				}
-				if (plugins.checkPluginStatus(requiredPlugins[checkFileType]) === false && requiredPlugins[checkFileType] !== false && !window.alertModals.pluginFileRequired[checkFileType]) {
+				if (requiredPlugins[checkFileType] && await plugins.checkPluginStatus(requiredPlugins[checkFileType]) === false && requiredPlugins[checkFileType] !== false && !window.alertModals.pluginFileRequired[checkFileType]) {
 					window.alertModals.pluginFileRequired[checkFileType] = true;
 					codeEditorHelper.showAlertModal(`This file extention (.${checkFileType}) requires the ${requiredPlugins[checkFileType]} plugin to run`, [
 						{
