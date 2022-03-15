@@ -57,19 +57,32 @@ module.exports = {
         let version = await fetch("/assets/plugins/" + pluginId + "/" + "VERSION.txt");
         version = await version.text();
         code = await tmpcode.text()
-        var compressed = LZString.compressToUTF16(code)
-        //localStorage.setItem("plugin::" + pluginId, `${version}||STARTPLUGIN||`+compressed);
-
-        addPlugin(pluginId, `${version}||STARTPLUGIN||`+compressed);
-
-        console.log("Successfully downloaded plugin " + pluginId + "@" + version);
-        if (done) done(true)
-        let pluginName = this.availablePlugins().find(e => e.id == pluginId).name;
-        if (!silent) {
-            codeEditorHelper.showAlertModal("Successfully downloaded plugin " + pluginName, [{
+        if (code_size > 5000000) {
+            codeEditorHelper.showAlertModal("The plugin you are trying to download is very large! Your browser may freeze up while downloading for 15-30 seconds. Please do not close this tab.", [{
                 text: "Ok", onclick: function () { codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index')) }
-            }], "codicon-pass", 7)
+            }], "codicon-warning", 4)
+            await sleep(1000)
         }
+        var iframe = document.createElement('iframe');
+        iframe.style.display = "none";
+        iframe.srcdoc = `<html><script>onDone(compressOperation(window.code));</script></html>`;
+        document.body.appendChild(iframe);
+        iframe.contentWindow.compressOperation = LZString.compressToUTF16;
+        iframe.contentWindow.code = code;
+        var self = this;
+        iframe.contentWindow.onDone = function(compressed){
+            addPlugin(pluginId, `${version}||STARTPLUGIN||`+compressed);
+
+            console.log("Successfully downloaded plugin " + pluginId + "@" + version);
+            if (done) done(true)
+            let pluginName = self.availablePlugins().find(e => e.id == pluginId).name;
+            if (!silent) {
+                codeEditorHelper.showAlertModal("Successfully downloaded plugin " + pluginName, [{
+                    text: "Ok", onclick: function () { codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index')) }
+                }], "codicon-pass", 7)
+            }
+            iframe.parentElement.removeChild(iframe);
+        }  
         return true;
     },
     unload(pluginId) {
