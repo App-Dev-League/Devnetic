@@ -135,7 +135,7 @@ class Editor extends tApp.Component {
 							document.getElementById("code-editor-status").innerText = "Ready"
 						}, 500)
 					}
-					function updatePreview(fileType) {
+					async function updatePreview(fileType) {
 						tabindex = codeEditorHelper.getCurrentEditorIndex()
 						if (!window.lastUpdatePreview) window.lastUpdatePreview = 0
 						if (window.lastUpdatePreview + 100 > Date.now()) return;
@@ -153,7 +153,7 @@ class Editor extends tApp.Component {
 						if (fileType === "html") {
 							if (document.getElementById("preview")) document.getElementById("preview").srcdoc = codeEditorHelper.getValue();
 						} else if (fileType === "cpp") {
-							plugins.load("jscpp")
+							await plugins.load("jscpp")
 							console.log("running cpp")
 							var code = "#include <iostream>" +
 								"using namespace std;" +
@@ -187,7 +187,7 @@ class Editor extends tApp.Component {
 							} catch (err) { }
 							window.consoleLogs.push(["Starting python emulator..."])
 							document.getElementById("console-bridge").click()
-							if (plugins.checkPluginStatus("brython") === false) {
+							if (await plugins.checkPluginStatus("brython") === false) {
 								window.consoleLogs.push(["Running python files requires the brython plugin! Install it first in the plugins tab"])
 								document.getElementById("console-bridge").click()
 								return;
@@ -235,11 +235,9 @@ try:
 except Exception:
     print(traceback.format_exc())
 `
-
-
 							try {
 								if (!window.__BRYTHON__) {
-									plugins.load("brython")
+									await plugins.load("brython");
 									brython({ pythonpath: ["/assets/plugins/brython/modules/"], cache: true, debug: 0 })
 								}
 							} catch (err) {
@@ -265,7 +263,7 @@ except Exception:
 									</body>
 								</html>
 								<script>
-								${plugins.getCode("brython")}
+								${await plugins.getCode("brython")}
 								</script>
 								<script type="text/python">
 ${code}
@@ -313,7 +311,7 @@ ${code}
 						} else if (fileType === "md") {
 							if (document.getElementById("preview")) {
 								try {
-									plugins.load("showdown")
+									await plugins.load("showdown")
 								} catch (err) {
 									codeEditorHelper.showAlertModal("Markdown plugin not found! You must install it before you can render markdown files.", [{
 										text: "Ok", onclick: function () { codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index')) }
@@ -391,7 +389,7 @@ try{
 									document.getElementById("console-bridge").click()
 								}
 								let code = codeEditorHelper.getValue();
-								plugins.load("react");
+								await plugins.load("react");
 								// parsing imports
 								let imports = []
 								code = code.replaceAll(/import([\s\S]*?)(?='|").*/g, function (e) {
@@ -437,7 +435,7 @@ try{
 											<div id="root"></div>
 											<script>
 											window.__importBridge = {};
-												${plugins.getCode("react")}
+												${await plugins.getCode("react")}
 											</script>
 											${secondaryFilesCode}
 											<script>
@@ -499,7 +497,7 @@ try{
 				let fileType = parentThis.parent.parent.data().storage_id[tabindex].split('.').pop().toLowerCase()
 				codeEditorHelper.updateLanguage(languages[fileType])
 			} else {
-				document.getElementById("code-frame").contentWindow.addEventListener("message", function (event) {
+				document.getElementById("code-frame").contentWindow.addEventListener("message", async function (event) {
 					if (event.data.message === "monacoloaded") {
 						window.monacoAlreadyLoaded = true;
 						loadCodeFromDb()
@@ -507,7 +505,7 @@ try{
 						let fileType = parentThis.parent.parent.data().storage_id[tabindex].split('.').pop().toLowerCase()
 						codeEditorHelper.updateLanguage(languages[fileType])
 						try {
-							plugins.load("betterEditor")
+							await plugins.load("betterEditor")
 						} catch (err) {
 
 						}

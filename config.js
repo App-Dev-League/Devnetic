@@ -97,7 +97,7 @@
 			loadScript = `
 			const plugins = require("./utils/plugins.js");
 			   async function main(){
-					plugins.load("react");
+					await plugins.load("react");
 					let code = await window.DB.getCode("${id}")
 					code = Babel.transform(code, {
 						plugins: ["transform-react-jsx"]

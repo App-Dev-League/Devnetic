@@ -313,7 +313,14 @@ class CodeEditor extends ModuleComponent {
 						let element = tester.correct[p];
 						let expected = element.value;
 						let actual = applyFilters(element.apply, codeEditorHelper.getValue());
-						if (expected !== actual) return false;
+						if (expected !== actual){
+							if (element.onerror) {
+								codeEditorHelper.showAlertModal(element.onerror, [{
+									text: "Ok", onclick: function () { codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index')) }
+								}], "codicon-error")
+							}
+							return false;
+						}
 					}
 				} else if (tester.type === "validate-dom") {
 					document.body.classList.add("tester-testing")
