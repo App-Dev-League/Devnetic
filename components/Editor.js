@@ -33,7 +33,8 @@ class Editor extends tApp.Component {
 			"py": "python",
 			"md": "markdown",
 			"js": "javascript",
-			"jsx": "javascript"
+			"jsx": "javascript",
+			"css": "css"
 		}
 		var parentThis = this
 		var tabindex = this.state.tabindex
@@ -58,7 +59,7 @@ class Editor extends tApp.Component {
 		function addThings() {
 			function loadCode() {
 				try {
-					document.getElementById("preview").srcdoc = codeEditorHelper.getValue();
+					document.getElementById("preview").src = "data:text/html;base64," + plugins.Base64.encode(codeEditorHelper.getValue());
 				} catch (err) {
 					setTimeout(loadCode, 500);
 				}
@@ -80,7 +81,8 @@ class Editor extends tApp.Component {
 					"html": false,
 					"md": "showdown",
 					"js": false,
-					"jsx": "react"
+					"jsx": "react",
+					"css": false
 				}
 				if (!window.alertModals) {
 					window.alertModals = {
@@ -145,13 +147,63 @@ class Editor extends tApp.Component {
 							document.getElementById("console-bridge").dispatchEvent(new Event('change'));
 						}
 						window.lastTab = tabindex;
-						if (document.getElementById("preview")) {
-							try {
-								tApp.getComponentFromDOM(document.querySelector(".preview-wrapper")).parent.children[3].update(codeEditorHelper.getValue())
-							} catch (err) { }
-						}
+
 						if (fileType === "html") {
-							if (document.getElementById("preview")) document.getElementById("preview").srcdoc = codeEditorHelper.getValue();
+							async function replaceAsync(str, regex, asyncFn) {
+								const promises = [];
+								str.replace(regex, (match, ...args) => {
+									const promise = asyncFn(match, ...args);
+									promises.push(promise);
+								});
+								const data = await Promise.all(promises);
+								return str.replace(regex, () => data.shift());
+							}
+							function showError(text) {
+								window.consoleLogs = [[text]]
+								document.getElementById("console-bridge").click()
+							}
+							let html = codeEditorHelper.getValue();
+							var errored = false;
+							html = await replaceAsync(html, /(?<=src=("|'))(.*)(?=("|'))/g, async function (module) {
+								if (/^(http(s|):\/\/)/.test(module)) {
+									return module;
+								}
+								if (module.startsWith("data:")) return module;
+								module = module.replace(/^(.\/|\/)/g, "")
+								let moduleIndex = self.parent.parent.data().files.findIndex(e => e === module)
+								if (moduleIndex === -1) {
+									showError(`GET ${module} net::ERR_ABORTED 404 (File not found)'`)
+									errored = true;
+								}
+								let moduleCode = await DB.getCode(self.parent.parent.data().storage_id[moduleIndex]);
+								return `data:text/plain;base64,` + plugins.Base64.encode(moduleCode);
+							})
+							html = await replaceAsync(html, /<link(.*)(?<=href=("|'))(.*)(?=("|'))/g, async function (module) {
+								if (!module.includes("stylesheet")) return module;
+								module = await replaceAsync(module, /(?<=href=("|'))(.*)/g, async function (url) {
+									if (/^(http(s|):\/\/)/.test(url)) {
+										return url;
+									}
+									url = url.replace(/^(.\/|\/)/g, "")
+									let moduleIndex = self.parent.parent.data().files.findIndex(e => e === url)
+									if (moduleIndex === -1) {
+										showError(`GET ${url} net::ERR_ABORTED 404 (File not found)'`)
+										errored = true;
+									}
+									let moduleCode = await DB.getCode(self.parent.parent.data().storage_id[moduleIndex]);
+									return `data:text/plain;base64,` + plugins.Base64.encode(moduleCode);
+								})
+								return module;
+							})
+							console.log(html)
+							if (document.getElementById("preview")) document.getElementById("preview").src = "data:text/html;base64," + plugins.Base64.encode(html)
+							if (errored = true) {
+								try {
+									document.getElementById("preview-container").classList.remove("preview-mode-console")
+									let consolew = document.querySelector(".console-wrapper");
+									if (consolew) console.parentElement.removeChild(consolew)
+								} catch (e) { }
+							}
 						} else if (fileType === "cpp") {
 							await plugins.load("jscpp")
 							console.log("running cpp")
@@ -321,7 +373,7 @@ ${code}
 								let md = codeEditorHelper.getValue();
 								var converter = new showdown.Converter();
 								let html = converter.makeHtml(md);
-								document.getElementById("preview").srcdoc = html
+								document.getElementById("preview").src = "data:text/html;base64," + plugins.Base64.encode(html);
 							}
 						} else if (fileType === "js") {
 							document.getElementById("console-bridge").dispatchEvent(new Event('change'));

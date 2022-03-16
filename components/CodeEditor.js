@@ -134,6 +134,7 @@ class CodeEditor extends ModuleComponent {
 						var numberPattern = /\d+/g;
 						latest = latest.toString().match(numberPattern)[0]
 					}
+					else if (element === "remove_spaces") latest = latest.replaceAll(" ", "")
 					else if (element === "typeof") latest = typeof latest;
 					else if (element === "remove-tabs") latest = latest.replaceAll("\t", "")
 					else if (element === "remove-newlines") latest = latest.replace(/(\r\n|\n|\r)/gm, "");
@@ -201,6 +202,7 @@ class CodeEditor extends ModuleComponent {
 					await sleep(1)
 					for (let p in tester.actions) {
 						let action = tester.actions[p];
+						if (action.onerror) action.onerror = tApp.escape(action.onerror);
 						let runwhen = action.runwhen
 						if (typeof action.run !== "undefined") {
 							// switching to correct editor
@@ -315,6 +317,7 @@ class CodeEditor extends ModuleComponent {
 						let actual = applyFilters(element.apply, codeEditorHelper.getValue());
 						if (expected !== actual){
 							if (element.onerror) {
+								element.onerror = tApp.escape(element.onerror);
 								codeEditorHelper.showAlertModal(element.onerror, [{
 									text: "Ok", onclick: function () { codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index')) }
 								}], "codicon-error")
@@ -361,10 +364,13 @@ class CodeEditor extends ModuleComponent {
 						} else if (typeof action.checkDOM !== "undefined") {
 							let dom = document.getElementById("preview").contentWindow;
 							let result = new Function([], "var dom = document.getElementById('preview').contentWindow; return " + "dom." + action.command)();
-							if (result !== action.checkDOM){ 
-								codeEditorHelper.showAlertModal("The tester encountered the following problems with your code: " + action.onerror.replaceAll("{{output}}"), [
-									{text: "Ok", onclick: function () { codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index')) }								}
-								])
+							if (result !== action.checkDOM){
+								if (action.onerror){
+									action.onerror = tApp.escape(action.onerror); 
+									codeEditorHelper.showAlertModal("The tester encountered the following problems with your code: " + action.onerror.replaceAll("{{output}}"), [
+										{text: "Ok", onclick: function () { codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index')) }								}
+									])
+								}
 								return false;
 							}
 						}
