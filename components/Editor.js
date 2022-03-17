@@ -383,7 +383,6 @@ ${code}
 								if (remove) {
 									remove.parentElement.removeChild(remove)
 								}
-								plugins.unload("brython")
 							} catch (err) { }
 							window.consoleLogs.push(["Starting javascript engine..."])
 							document.getElementById("console-bridge").click()
