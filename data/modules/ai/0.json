@@ -17,11 +17,30 @@
                     "type": "text",
                     "content": "➔ Intuitive and readable with simple to traverse code"
                 },
-                
                 {
                     "type": "text",
                     "content": "➔ Ton of libraries for performing statistical analysis, machine learning, and more"
                 },
+                {
+                    "type": "text",
+                    "content": "[[h3]]Python[[/]]"
+                },
+                {
+                    "type": "code",
+                    "content": "a = [1, 2, 3, 2, 253, 0, 4, 3, 97]\nprint(sum(a))",
+                    "float": "right",
+                    "width": "50%"
+                },
+                {
+                    "type": "text",
+                    "content": "[[h3]]C++[[/]]"
+                },
+                {
+                    "type": "code",
+                    "content": "#include <iostream>\n#include <vector>\n#include <numeric>\n\nint main() {\n    std::vector<int> a = {1, 2, 3, 2, 253, 0, 4, 3, 97};\n    std::cout << std::accumulate(a.begin(), a.end(), 0) << std::endl;\n}",
+                    "float": "left"
+                },
+                
                 
                 {
                     "type": "text",
@@ -38,6 +57,12 @@
                 {
                     "type": "text",
                     "content": "➔ Comments are lines that are notes for you and don’t do anything; to add comments, use a # before the comment"
+                },
+
+                {
+                    "type": "code",
+                    "content": "print(“This is how you print a sentence”)\n# The above lets us print a sentence\n\n# This is a comment\n\nName = input(“enter your name: “)\n# the above helps us takes in a name and store it in a variable called name",
+                    "float": "left"
                 }
             ]
         },
@@ -68,6 +93,13 @@
                 {
                     "type": "text",
                     "content":"➔ Check if a type matches a variable using isinstance()"
+                },
+
+
+                {
+                    "type": "code",
+                    "content": "# assign the variable `x` to the integer 1\nx = 1\n\n# checking the type of `x`\nprint(type(x))\n# will print int\n\n# verifying that `x` is an integer-type object\nprint(isinstance(x, int))\n# will print True",
+                    "float": "left"
                 },
 
 
@@ -145,6 +177,11 @@
                 {
                     "type": "text",
                     "content":"➔ [[b]]and[[/]]: returns true if both statements to its left and right are true"
+                },
+                {
+                    "type": "code",
+                    "content": "x = 1\ny = 2\n\nprint(x == y)\n# false\nprint(x != y)\n# true\nprint(x > y)\n# false\nprint(x <= y)\n# true\nprint(x <= y or x != y)\n# true\nprint(x <= y and x != y)\n# true",
+                    "float": "left"
                 }
             ]
         },
