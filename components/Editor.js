@@ -34,7 +34,8 @@ class Editor extends tApp.Component {
 			"md": "markdown",
 			"js": "javascript",
 			"jsx": "javascript",
-			"css": "css"
+			"css": "css",
+			"ts": "typescript"
 		}
 		var parentThis = this
 		var tabindex = this.state.tabindex
@@ -82,7 +83,8 @@ class Editor extends tApp.Component {
 					"md": "showdown",
 					"js": false,
 					"jsx": "react",
-					"css": false
+					"css": false,
+					"ts": "typescript"
 				}
 				if (!window.alertModals) {
 					window.alertModals = {
@@ -508,6 +510,71 @@ try{
 									if (console) console.parentElement.removeChild(console)
 								}
 
+							}
+						} else if (fileType === "ts") {
+							document.getElementById("console-bridge").dispatchEvent(new Event('change'));
+							window.consoleLogs = []
+							try {
+								let remove = document.querySelector("#python-execution-thread")
+								if (remove) {
+									remove.parentElement.removeChild(remove)
+								}
+							} catch (err) { }
+							window.consoleLogs.push(["Starting typescript engine..."])
+							document.getElementById("console-bridge").click()
+							let code = codeEditorHelper.getValue()
+							if (document.getElementById("python-execution-thread")) {
+								let elem = document.getElementById("python-execution-thread")
+								elem.parentElement.removeChild(elem)
+							}
+							try{
+								await plugins.load("typescript")
+							} catch(err) {
+								window.consoleLogs.push(["This file requires the Typescript plugin to run!"])
+								document.getElementById("console-bridge").click();
+								return;
+							}
+							code = window.ts.transpile(code);
+							let iframe = document.createElement("iframe")
+							iframe.style.width = 0
+							iframe.style.height = 0
+							iframe.id = "python-execution-thread"
+							iframe.srcdoc = `
+							<html>
+								<body>
+									<div id="python-sandbox-bridge"></div>
+								</body>
+							</html>
+							<script>
+console.oldLog = console.log
+console.log = function(){
+	window.newLog(arguments)
+}
+console.error = function(){
+	window.newLog(arguments)
+}
+try{
+	${code}
+}catch(err){
+	console.error(err)
+}
+							</script>
+							`
+							document.body.appendChild(iframe)
+							iframe.contentWindow.newLog = function (log) {
+								let arrLog = []
+								for (let i in log) {
+									arrLog.push(log[i])
+								}
+								window.consoleLogs.push(arrLog)
+								window.document.getElementById("console-bridge").click()
+								if (window.newLogCallback) window.newLogCallback(log)
+							}
+							iframe.contentWindow.onerror = function (err) {
+								err = err.toString()
+								window.consoleLogs.push([err])
+								window.document.getElementById("console-bridge").click()
+								return false;
 							}
 						}
 					}
