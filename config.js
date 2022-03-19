@@ -115,7 +115,13 @@
 		load();
 		window.addEventListener('storage', load)
 		</script>
-		<style>header{display: none !important}</style><script></script><iframe id="preview" srcdoc="Loading...." style="width: 100vw; height: 100vh; border: none; background: white; position: fixed; z-index: 500; top: 0; left 0; display: block"></iframe></div>`);
+		<style>header{display: none !important}</style><script></script><iframe id="preview" srcdoc="Loading...." style="width: 100vw; height: 100vh; border: none; background: white; position: fixed; z-index: 500; top: 0; left 0; display: block"></iframe></div>
+		<script>
+		document.getElementById("preview").onload = function(){
+			document.title = document.getElementById("preview").contentDocument.title;
+		}
+		</script>
+		`);
 	})
 	tApp.route("#/preview/html/<id>", async function (request) {
 		let id = request.data.id
