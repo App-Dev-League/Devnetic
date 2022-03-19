@@ -158,6 +158,10 @@ class CodePreview extends tApp.Component {
 				let wrapper = document.querySelector(".console-wrapper")
 				var isScrolledToBottom = wrapper.scrollHeight - wrapper.clientHeight <= wrapper.scrollTop + 40;
 				if (isScrolledToBottom) wrapper.scrollTop = wrapper.scrollHeight - wrapper.clientHeight;
+				if (window.consoleLogs.length > 1000) {
+					window.consoleLogs.shift();
+					document.querySelector(".console-wrapper").removeChild(document.querySelector(".console-wrapper").firstChild)
+				}
 			}
 			bridge.onchange = function () {
 				if (!document.getElementById("preview-container")) return;
