@@ -94,7 +94,7 @@ function uploadFile(options) {
 	var onerror = options.onerror || function () { };
 	var fileid = makeid(100);
 
-	if (level === "lesson") {
+	if (level === "module") {
 		var storeName = window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module;
 	} else if (level === "page") {
 		var storeName = window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module + "-" + window.tAppRequestInstance.data.position;
@@ -126,7 +126,7 @@ function uploadFile(options) {
 	})
 	return fileid;
 }
-function getLessonFile(id) {
+function getModuleFile(id) {
 	return new Promise((resolve, reject) => {
 		openConnection().then(db => {
 			try {
@@ -298,7 +298,7 @@ function updateFile(id, data) {
 		try {
 			await new Promise(async (resolve, reject) => {
 				try {
-					let old = await getLessonFile(id);
+					let old = await getModuleFile(id);
 					const txn = db.transaction(window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module, 'readwrite');
 
 					const store = txn.objectStore(window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module);
@@ -307,6 +307,69 @@ function updateFile(id, data) {
 					query.onsuccess = function (event) {
 						if (event.target.result){
 							old.code = data
+							store.put(old, event.target.result.primaryKey);
+							succeeded = true;
+						}
+						resolve();
+					};
+					query.onerror = function (event) {
+						console.log(event.target.errorCode);
+						reject();
+					}
+				} catch (e) { reject(e); }
+			})
+		} catch (err) {	 }
+		db.close();
+		if (succeeded === true) {
+			return resolve();
+		}
+		else reject();
+	})
+}
+function renameFile(id, newName) {
+	return new Promise(async (resolve, reject) => {
+		let db = await openConnection()
+		let succeeded = false;
+		try {
+			await new Promise(async (resolve, reject) => {
+				try {
+					let old = await getPageFile(id);
+					const txn = db.transaction(window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module + "-" + window.tAppRequestInstance.data.position, 'readwrite');
+
+					const store = txn.objectStore(window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module + "-" + window.tAppRequestInstance.data.position);
+					const index = store.index('fileids');
+					let query = index.openKeyCursor(id);
+					query.onsuccess = async function (event) {
+						if (event.target.result){
+							old.filename = newName
+							store.put(old, event.target.result.primaryKey);
+							succeeded = true;
+						}
+						resolve();
+					};
+					query.onerror = function (event) {
+						console.log(event.target.errorCode);
+						reject();
+					}
+				} catch (e) { reject(e); }
+			})
+		} catch (err) {	 }
+		if (succeeded === true) {
+			db.close();
+			return resolve();
+		}
+		try {
+			await new Promise(async (resolve, reject) => {
+				try {
+					let old = await getModuleFile(id);
+					const txn = db.transaction(window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module, 'readwrite');
+
+					const store = txn.objectStore(window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module);
+					const index = store.index('fileids');
+					let query = index.openKeyCursor(id);
+					query.onsuccess = function (event) {
+						if (event.target.result){
+							old.filename = newName
 							store.put(old, event.target.result.primaryKey);
 							succeeded = true;
 						}
@@ -444,4 +507,4 @@ function openConnection() {
 		};
 	})
 }
-module.exports = { updateLanguage, updateContent, getValue, insertAtCursor, format, getCurrentEditorIndex, setCurrentEditorIndex, showAlertModal, removeAlertModal, uploadFile, getLessonFile, getPageFile, getAllUserFiles, deleteFile, updateFile, getFile};
+module.exports = { updateLanguage, updateContent, getValue, insertAtCursor, format, getCurrentEditorIndex, setCurrentEditorIndex, showAlertModal, removeAlertModal, uploadFile, getModuleFile, getPageFile, getAllUserFiles, deleteFile, updateFile, getFile, renameFile};
