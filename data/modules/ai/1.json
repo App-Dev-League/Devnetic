@@ -82,7 +82,7 @@
 			"elements": [
 				{
 					"type": "text",
-					"content": "[[h3]]The Process?[[/]]"
+					"content": "[[h3]]The Process[[/]]"
 				},
 				{
                     "type": "text",
@@ -131,8 +131,11 @@
                     "type": "text",
                     "content": "➔ If successful, we can use this model to predict unkown labels"
                 },
-
-
+                {
+                    "type": "image",
+                    "src": "/data/modules/ai-assets/img1/0-1.png",
+                    "width": "50%"
+                },
 				{
                     "type": "text",
                     "content": "[[h3]]Types of Supervised Learning Algorithims[[/]]"
@@ -182,8 +185,11 @@
                     "type": "text",
                     "content": "➔ Results are sometimes run through experts to make sure the pattern found actaully exists"
                 },
-
-
+                {
+                    "type": "image",
+                    "src": "/data/modules/ai-assets/img1/1-1.png",
+                    "width": "50%"
+                },
 				{
                     "type": "text",
                     "content": "[[h3]]Applciations of Unsupervised Learning[[/]]"
