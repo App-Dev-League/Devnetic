@@ -99,22 +99,31 @@ function uploadFile(options) {
 	} else if (level === "page") {
 		var storeName = window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module + "-" + window.tAppRequestInstance.data.position;
 	}
-	openConnectionWithNewVersion(storeName).then(db => {
-		const txn = db.transaction(storeName, 'readwrite');
-		const store = txn.objectStore(storeName);
-		let query = store.put({ fileid: fileid, code: data, filename: filename });
-		query.onsuccess = function (event) {
-			onsuccess(event);
-		};
-		query.onerror = function (event) {
-			console.log(event.target.errorCode);
-			onerror(event);
+	getAllUserFiles().then(files => {
+		for (let i in files) {
+			let file = files[i];
+			if (file.filename === filename) {
+				onerror("File already exists");
+				return;
+			}
 		}
-		txn.oncomplete = function () {
-			db.close();
-		};
-	})
+		openConnectionWithNewVersion(storeName).then(db => {
+			const txn = db.transaction(storeName, 'readwrite');
+			const store = txn.objectStore(storeName);
+			let query = store.put({ fileid: fileid, code: data, filename: filename });
+			query.onsuccess = function (event) {
+				onsuccess(event);
+			};
+			query.onerror = function (event) {
+				console.log(event.target.errorCode);
+				onerror(event);
+			}
+			txn.oncomplete = function () {
+				db.close();
+			};
+		})
 
+	})
 	return fileid;
 }
 function getLessonFile(id) {
@@ -174,7 +183,7 @@ function getAllUserFiles() {
 					query.onerror = function (event) {
 						console.log(event.target.errorCode);
 					}
-				} catch (e) {reject(); }
+				} catch (e) { reject(); }
 			})
 		} catch (err) { }
 		try {
@@ -190,14 +199,170 @@ function getAllUserFiles() {
 					query.onerror = function (event) {
 						console.log(event.target.errorCode);
 					}
-				} catch (e) {return reject(); }
+				} catch (e) { return reject(); }
 			})
 		} catch (err) { }
 		db.close();
 		resolve(files);
 	})
 }
+function deleteFile(id) {
+	return new Promise(async (resolve, reject) => {
+		let db = await openConnection()
 
+		try {
+			await new Promise(async (resolve, reject) => {
+				try {
+					const txn = db.transaction(window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module + "-" + window.tAppRequestInstance.data.position, 'readwrite');
+
+					const store = txn.objectStore(window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module + "-" + window.tAppRequestInstance.data.position);
+					const index = store.index('fileids');
+					let query = index.openKeyCursor(id);
+					query.onsuccess = function (event) {
+						if (event.target.result) store.delete(event.target.result.primaryKey);
+						resolve();
+					};
+					query.onerror = function (event) {
+						console.log(event.target.errorCode);
+						reject();
+					}
+				} catch (e) { reject(e); }
+			})
+		} catch (err) {	 }
+		try {
+			await new Promise(async (resolve, reject) => {
+				try {
+					const txn = db.transaction(window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module, 'readwrite');
+					const store = txn.objectStore(window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module);
+					const index = store.index('fileids');
+					let query = index.openKeyCursor(id);
+					query.onsuccess = function (event) {
+						if (event.target.result) store.delete(event.target.result.primaryKey);
+						resolve();
+					};
+					query.onerror = function (event) {
+						console.log(event.target.errorCode);
+						reject();
+					}
+				} catch (e) { return reject(e); }
+			})
+		} catch (err) {
+		 }
+		db.close();
+
+		resolve();
+	})
+}
+function updateFile(id, data) {
+	return new Promise(async (resolve, reject) => {
+		let db = await openConnection()
+		let succeeded = false;
+		try {
+			await new Promise(async (resolve, reject) => {
+				try {
+					let old = await getPageFile(id);
+					const txn = db.transaction(window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module + "-" + window.tAppRequestInstance.data.position, 'readwrite');
+
+					const store = txn.objectStore(window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module + "-" + window.tAppRequestInstance.data.position);
+					const index = store.index('fileids');
+					let query = index.openKeyCursor(id);
+					query.onsuccess = async function (event) {
+						if (event.target.result){
+							old.code = data
+							store.put(old, event.target.result.primaryKey);
+							succeeded = true;
+						}
+						resolve();
+					};
+					query.onerror = function (event) {
+						console.log(event.target.errorCode);
+						reject();
+					}
+				} catch (e) { reject(e); }
+			})
+		} catch (err) {	 }
+		if (succeeded === true) {
+			db.close();
+			return resolve();
+		}
+		try {
+			await new Promise(async (resolve, reject) => {
+				try {
+					let old = await getLessonFile(id);
+					const txn = db.transaction(window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module, 'readwrite');
+
+					const store = txn.objectStore(window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module);
+					const index = store.index('fileids');
+					let query = index.openKeyCursor(id);
+					query.onsuccess = function (event) {
+						if (event.target.result){
+							old.code = data
+							store.put(old, event.target.result.primaryKey);
+							succeeded = true;
+						}
+						resolve();
+					};
+					query.onerror = function (event) {
+						console.log(event.target.errorCode);
+						reject();
+					}
+				} catch (e) { reject(e); }
+			})
+		} catch (err) {	 }
+		db.close();
+		if (succeeded === true) {
+			return resolve();
+		}
+		else reject();
+	})
+}
+function getFile(name) {
+	return new Promise(async (resolve, reject) => {
+		let file;
+		let db = await openConnection()
+
+		try {
+			await new Promise(async (resolve, reject) => {
+				try {
+					const txn = db.transaction(window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module + "-" + window.tAppRequestInstance.data.position, 'readwrite');
+
+					const store = txn.objectStore(window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module + "-" + window.tAppRequestInstance.data.position);
+					let query = store.getAll();
+					query.onsuccess = function (event) {
+						file = event.target.result.find(x => x.filename === name);
+						resolve()
+					};
+					query.onerror = function (event) {
+						console.log(event.target.errorCode);
+					}
+				} catch (e) { reject(); }
+			})
+		} catch (err) { }
+		if (file) {
+			db.close();
+			return resolve(file)
+		}
+		try {
+			await new Promise(async (resolve, reject) => {
+				try {
+					const txn = db.transaction(window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module, 'readwrite');
+					const store = txn.objectStore(window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module);
+					let query = store.getAll();
+					query.onsuccess = function (event) {
+						file = event.target.result.find(x => x.filename === name);
+						resolve()
+					};
+					query.onerror = function (event) {
+						console.log(event.target.errorCode);
+					}
+				} catch (e) { return reject(); }
+			})
+		} catch (err) { }
+		db.close();
+		if (file) return resolve(file);
+		else reject("Could not find file with that filename!")
+	})
+}
 
 
 function makeid(length) {
@@ -269,4 +434,4 @@ function openConnection() {
 		};
 	})
 }
-module.exports = { updateLanguage, updateContent, getValue, insertAtCursor, format, getCurrentEditorIndex, setCurrentEditorIndex, showAlertModal, removeAlertModal, uploadFile, getLessonFile, getPageFile, getAllUserFiles };
+module.exports = { updateLanguage, updateContent, getValue, insertAtCursor, format, getCurrentEditorIndex, setCurrentEditorIndex, showAlertModal, removeAlertModal, uploadFile, getLessonFile, getPageFile, getAllUserFiles, deleteFile, updateFile, getFile};
