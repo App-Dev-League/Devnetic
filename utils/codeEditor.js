@@ -158,10 +158,10 @@ function getPageFile(id) {
 function getAllUserFiles() {
 	return new Promise(async (resolve, reject) => {
 		let files = [];
+		let db = await openConnection()
 
 		try {
 			await new Promise(async (resolve, reject) => {
-				let db = await openConnection();
 				try {
 					const txn = db.transaction(window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module + "-" + window.tAppRequestInstance.data.position, 'readwrite');
 
@@ -174,16 +174,12 @@ function getAllUserFiles() {
 					query.onerror = function (event) {
 						console.log(event.target.errorCode);
 					}
-					txn.oncomplete = function () {
-						db.close();
-					};
-				} catch (e) { reject(); }
+				} catch (e) {reject(); }
 			})
 		} catch (err) { }
 		try {
 			await new Promise(async (resolve, reject) => {
 				try {
-					let db = await openConnection()
 					const txn = db.transaction(window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module, 'readwrite');
 					const store = txn.objectStore(window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module);
 					let query = store.getAll();
@@ -194,12 +190,10 @@ function getAllUserFiles() {
 					query.onerror = function (event) {
 						console.log(event.target.errorCode);
 					}
-					txn.oncomplete = function () {
-						db.close();
-					};
-				} catch (e) { return reject(); }
+				} catch (e) {return reject(); }
 			})
 		} catch (err) { }
+		db.close();
 		resolve(files);
 	})
 }
@@ -233,7 +227,6 @@ function openConnectionWithNewVersion(storeName) {
 		const request = indexedDB.open('USERCODE', newVersion);
 		request.onsuccess = (event) => {
 			let db = event.target.result;
-			console.log(db.version)
 			if (!storeName) resolve(db)
 		};
 		request.onupgradeneeded = (event) => {
