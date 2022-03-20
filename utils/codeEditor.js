@@ -129,38 +129,48 @@ function uploadFile(options) {
 function getLessonFile(id) {
 	return new Promise((resolve, reject) => {
 		openConnection().then(db => {
-			const txn = db.transaction(window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module, 'readwrite');
-			const store = txn.objectStore(window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module);
-			const index = store.index('fileids');
-			let query = index.get(id);
-			query.onsuccess = function (event) {
-				resolve(event.target.result)
-			};
-			query.onerror = function (event) {
-				console.log(event.target.errorCode);
-			}
-			txn.oncomplete = function () {
+			try {
+				const txn = db.transaction(window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module, 'readwrite');
+				const store = txn.objectStore(window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module);
+				const index = store.index('fileids');
+				let query = index.get(id);
+				query.onsuccess = function (event) {
+					resolve(event.target.result)
+				};
+				query.onerror = function (event) {
+					console.log(event.target.errorCode);
+				}
+				txn.oncomplete = function () {
+					db.close();
+				};
+			}catch(err) {
 				db.close();
-			};
+				reject("Object store does not exist yet!")
+			}
 		})
 	})
 }
 function getPageFile(id) {
 	return new Promise((resolve, reject) => {
 		openConnection().then(db => {
-			const txn = db.transaction(window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module + "-" + window.tAppRequestInstance.data.position, 'readwrite');
-			const store = txn.objectStore(window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module + "-" + window.tAppRequestInstance.data.position);
-			const index = store.index('fileids');
-			let query = index.get(id);
-			query.onsuccess = function (event) {
-				resolve(event.target.result)
-			};
-			query.onerror = function (event) {
-				console.log(event.target.errorCode);
-			}
-			txn.oncomplete = function () {
+			try {
+				const txn = db.transaction(window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module + "-" + window.tAppRequestInstance.data.position, 'readwrite');
+				const store = txn.objectStore(window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module + "-" + window.tAppRequestInstance.data.position);
+				const index = store.index('fileids');
+				let query = index.get(id);
+				query.onsuccess = function (event) {
+					resolve(event.target.result)
+				};
+				query.onerror = function (event) {
+					console.log(event.target.errorCode);
+				}
+				txn.oncomplete = function () {
+					db.close();
+				};
+			}catch(err) {
 				db.close();
-			};
+				reject("Object store does not exist yet!")
+			}
 		})
 	})
 }
