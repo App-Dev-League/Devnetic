@@ -26,6 +26,11 @@
 				{
                     "type": "text",
                     "content": "➔ The types we will be covering are linear regression and polynomial regression"
+                },
+				{
+                    "type": "image",
+                    "src": "/data/modules/ai-assets/img2/0-2.png",
+                    "width": "50%"
                 }
 			]
 		},
