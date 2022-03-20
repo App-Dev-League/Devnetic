@@ -207,6 +207,10 @@
                     "content": "➔ 3 main types of sequences in python: lists, tuples, and strings"
                 },
                 {
+                    "type": "code",
+                    "content": "my_list = [“a”, 1, 1, 3, None]\nmy_string = \"Do or do not. There is no try.\"\nmy_tuple = (“Yes”, 1, None)"
+                },
+                {
                     "type": "text",
                     "content": "➔ [[b]]Lists[[/]]: A container that holds multiple values, which can include other lists"
                 },
@@ -254,6 +258,10 @@
                 {
                     "type": "text",
                     "content":"➔ Access a value at index for a 2D-array (list within a list): [[b]]seq[index1][index2][[/]]"
+                },
+                {
+                    "type": "code",
+                    "content": "seq1 = [\"a\", 2, 9, None]\nseq2 = [\"WHAT\", 1, 1, 3]\n\nprint(\"a\" in seq1)\n# True\nprint(seq1 + seq2)\n# [“a”, 2, 9, None, “WHAT”, 1, 1, 3]\nprint(seq1*2)\n# [“a”, 2, 9, None, “a”, 2, 9, None]\nprint(len(seq2))\n# 4\nprint(seq1.index(9))\n# 2\nprint(seq2.count(1))\n# 2"
                 }
             ]
         },
@@ -277,7 +285,13 @@
                 {
                     "type": "text",
                     "content": "➔ Python uses whitespaces to delineate when some block of code ends rather than end statements or curly braces"
+                },
+                {
+                    "type": "image",
+                    "src": "/data/modules/ai-assets/img0/0-0.png",
+                    "width": "50%"
                 }
+                
             ]
         },
 
@@ -304,6 +318,10 @@
                 {
                     "type": "text",
                     "content": "➔ [[b]]elif[[/]]: Must be paired with an if (does not require an else); executes some code if the condition with the paired block was false AND a second given condition was met"
+                },
+                {
+                    "type": "code",
+                    "content": "eq = [\"a\", 2, 9, None]\n\nif \"a\" in seq1:\n    print(\"entered the if\")\n\nif 2 in seq1:\n    print(\"entered the 2nd if\")\n\nelse:\n    print(\"entered the else\")\n\n# entered the if\n # entered the 2nd if\n\nif \"a\" in seq1:\n    print(\"entered the if\")\n\nelif 2 in seq1:\n    print(\"entered the elif\")\n\nelse:\n    print(\"entered the else\")\n\n# entered the if"
                 }
             ]
         },
@@ -335,6 +353,10 @@
                 {
                     "type": "text",
                     "content": "➔ [[b]]Be careful not to run infinte loops in your program other than very specific exceptions[[/]]"
+                },
+                {
+                    "type": "code",
+                    "content": "fruits = [\"mango\", \"orange\", \"apple\"]\nfor x in fruits:\n    print(x)\n# mango\n# orange\n# apple\n\nfor i in range(5):\n    print(i)\n# 0\n# 1\n# 2\n# 3\n# 4\nj = 0\nwhile len(fruits) > j:\n    j+=1\n# j++ is a shortcut for j = j + 1\n# The final value of j is 3"
                 }
             ]
         },
@@ -374,6 +396,10 @@
                 {
                     "type": "text",
                     "content": "➔ A return statement stops the other lines of the function from running and sends a value up to the function that called it"
+                },
+                {
+                    "type": "code",
+                    "content": "def is_true(x):\nif(x == True):\n    return True\nreturn False\n\nif is_true(\"Test\"):\n    print(\"The function returned true!\")\nif is_true(\"Nah\"):\n    print(\"The function returned true!\")\nif is_true(True):\n    print(\"The function returned true!\")"
                 }
             ]
         },
@@ -409,6 +435,11 @@
                 {
                     "type": "text",
                     "content": "➔ Think of a class as a blueprint and an object as the actual building"
+                },
+                {
+                    "type": "image",
+                    "src": "/data/modules/ai-assets/img0/1-0.png",
+                    "width": "50%"
                 }
             ]
         },
@@ -436,6 +467,10 @@
                 {
                     "type": "text",
                     "content": "➔ [[b]]self[[/]] refers to an instance of the class, and you must include it in [[b]]__init__()[[/]] to set attributes from parameters"
+                },
+                {
+                    "type": "code",
+                    "content": "# Define a dog with an attribute x of 3000\n# And gender and parameters as attributes\nclass Dog:\n    x = 3000\ndef __init__(self, age, gender):\n    self.gender = gender\n    self.age age\n\ndef print_x():\n    print(self.x)\n\ndog = Dog(10, \"Male\")\n\nprint(dog.x)\n# 3000\n\nprint(dog.age)\n# 10\n\ndog.print_x()\n# 3000"
                 }
             ]
         }
