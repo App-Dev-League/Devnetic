@@ -139,6 +139,7 @@
 		request.data.position = parseInt(request.data.position);
 		Database.getModuleData(request.data.track, request.data.module, request.data.position).then((res) => {
 			let { data, type, moduleLength, next } = res;
+			window.tAppRequestInstance = request;
 			if (request.data.position >= moduleLength) {
 				if (next.hasNext) {
 					alert("You have already completed this module! We will now take you to the next module.");

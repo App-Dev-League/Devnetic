@@ -29,16 +29,6 @@ function setCurrentEditorIndex(index) {
 	document.getElementById("code-frame").contentWindow.currentEditorIndex = index;
 	return true
 }
-function makeid(length) {
-	var result = '';
-	var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-	var charactersLength = characters.length;
-	for (var i = 0; i < length; i++) {
-		result += characters.charAt(Math.floor(Math.random() *
-			charactersLength));
-	}
-	return result;
-}
 function showAlertModal(message, buttons, icon, deleteTime) {
 	let template = document.getElementById("editor-alert-modal-template");
 	let clone = template.cloneNode(true);
@@ -59,7 +49,7 @@ function showAlertModal(message, buttons, icon, deleteTime) {
 	}, 10)
 	if (deleteTime) {
 		setTimeout(async function () {
-			clone.querySelector(".editor-alert-modal-loading-bar").style.setProperty('--deletetime', deleteTime+"s");
+			clone.querySelector(".editor-alert-modal-loading-bar").style.setProperty('--deletetime', deleteTime + "s");
 			clone.querySelector(".editor-alert-modal-loading-bar").classList.add("loading-bar-active");
 			await new Promise(r => setTimeout(r, deleteTime * 1000));
 			clone.querySelector(".editor-alert-modal-loading-bar").style.width = "100%";
@@ -96,4 +86,194 @@ function removeAlertModal(index) {
 		update.style.bottom = 10 + (i - 1) * 100 + "px";
 	}
 }
-module.exports = { updateLanguage, updateContent, getValue, insertAtCursor, format, getCurrentEditorIndex, setCurrentEditorIndex, showAlertModal, removeAlertModal };
+function uploadFile(options) {
+	var filename = options.filename;
+	var level = options.level;
+	var data = options.data;
+	var onsuccess = options.onsuccess || function () { };
+	var onerror = options.onerror || function () { };
+	var fileid = makeid(100);
+
+	if (level === "lesson") {
+		var storeName = window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module;
+	} else if (level === "page") {
+		var storeName = window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module + "-" + window.tAppRequestInstance.data.position;
+	}
+	openConnectionWithNewVersion(storeName).then(db => {
+		const txn = db.transaction(storeName, 'readwrite');
+		const store = txn.objectStore(storeName);
+		let query = store.put({ fileid: fileid, code: data, filename: filename });
+		query.onsuccess = function (event) {
+			onsuccess(event);
+		};
+		query.onerror = function (event) {
+			console.log(event.target.errorCode);
+			onerror(event);
+		}
+		txn.oncomplete = function () {
+			db.close();
+		};
+	})
+
+	return fileid;
+}
+function getLessonFile(id) {
+	return new Promise((resolve, reject) => {
+		openConnection().then(db => {
+			const txn = db.transaction(window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module, 'readwrite');
+			const store = txn.objectStore(window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module);
+			const index = store.index('fileids');
+			let query = index.get(id);
+			query.onsuccess = function (event) {
+				resolve(event.target.result)
+			};
+			query.onerror = function (event) {
+				console.log(event.target.errorCode);
+			}
+			txn.oncomplete = function () {
+				db.close();
+			};
+		})
+	})
+}
+function getPageFile(id) {
+	return new Promise((resolve, reject) => {
+		openConnection().then(db => {
+			const txn = db.transaction(window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module + "-" + window.tAppRequestInstance.data.position, 'readwrite');
+			const store = txn.objectStore(window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module + "-" + window.tAppRequestInstance.data.position);
+			const index = store.index('fileids');
+			let query = index.get(id);
+			query.onsuccess = function (event) {
+				resolve(event.target.result)
+			};
+			query.onerror = function (event) {
+				console.log(event.target.errorCode);
+			}
+			txn.oncomplete = function () {
+				db.close();
+			};
+		})
+	})
+}
+function getAllUserFiles() {
+	return new Promise(async (resolve, reject) => {
+		let files = [];
+
+		try {
+			await new Promise(async (resolve, reject) => {
+				let db = await openConnection();
+				try {
+					const txn = db.transaction(window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module + "-" + window.tAppRequestInstance.data.position, 'readwrite');
+
+					const store = txn.objectStore(window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module + "-" + window.tAppRequestInstance.data.position);
+					let query = store.getAll();
+					query.onsuccess = function (event) {
+						files = files.concat(event.target.result);
+						resolve()
+					};
+					query.onerror = function (event) {
+						console.log(event.target.errorCode);
+					}
+					txn.oncomplete = function () {
+						db.close();
+					};
+				} catch (e) { reject(); }
+			})
+		} catch (err) { }
+		try {
+			await new Promise(async (resolve, reject) => {
+				try {
+					let db = await openConnection()
+					const txn = db.transaction(window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module, 'readwrite');
+					const store = txn.objectStore(window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module);
+					let query = store.getAll();
+					query.onsuccess = function (event) {
+						files = files.concat(event.target.result);
+						resolve()
+					};
+					query.onerror = function (event) {
+						console.log(event.target.errorCode);
+					}
+					txn.oncomplete = function () {
+						db.close();
+					};
+				} catch (e) { return reject(); }
+			})
+		} catch (err) { }
+		resolve(files);
+	})
+}
+
+
+
+function makeid(length) {
+	var result = '';
+	var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+	var charactersLength = characters.length;
+	for (var i = 0; i < length; i++) {
+		result += characters.charAt(Math.floor(Math.random() *
+			charactersLength));
+	}
+	return result;
+}
+function getCurrentIDBVersion() {
+	return new Promise((resolve, reject) => {
+		const request = indexedDB.open('USERCODE');
+		request.onsuccess = (event) => {
+			let db = event.target.result;
+			let version = db.version;
+			db.close();
+			resolve(version);
+		};
+	})
+}
+function openConnectionWithNewVersion(storeName) {
+	return new Promise(async (resolve, reject) => {
+		let newVersion = await getCurrentIDBVersion() + 1;
+		const request = indexedDB.open('USERCODE', newVersion);
+		request.onsuccess = (event) => {
+			let db = event.target.result;
+			console.log(db.version)
+			if (!storeName) resolve(db)
+		};
+		request.onupgradeneeded = (event) => {
+			let db = event.target.result;
+			if (storeName) {
+				try {
+					let store = db.createObjectStore(storeName, {
+						autoIncrement: true
+					});
+					store.createIndex('fileids', 'fileid', {
+						unique: true
+					});
+					var transaction = event.target.transaction;
+
+					transaction.oncomplete =
+						function (event) {
+							resolve(db)
+						}
+				} catch (err) {
+					var transaction = event.target.transaction;
+
+					transaction.oncomplete =
+						function (event) {
+							resolve(db)
+						}
+				}
+			}
+		};
+	})
+}
+function openConnection() {
+	return new Promise((resolve, reject) => {
+		const request = indexedDB.open('USERCODE');
+		request.onsuccess = (event) => {
+			let db = event.target.result;
+			resolve(db)
+		};
+		request.onupgradeneeded = (event) => {
+			let db = event.target.result;
+		};
+	})
+}
+module.exports = { updateLanguage, updateContent, getValue, insertAtCursor, format, getCurrentEditorIndex, setCurrentEditorIndex, showAlertModal, removeAlertModal, uploadFile, getLessonFile, getPageFile, getAllUserFiles };
