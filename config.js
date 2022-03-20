@@ -115,7 +115,13 @@
 		load();
 		window.addEventListener('storage', load)
 		</script>
-		<style>header{display: none !important}</style><script></script><iframe id="preview" srcdoc="Loading...." style="width: 100vw; height: 100vh; border: none; background: white; position: fixed; z-index: 500; top: 0; left 0; display: block"></iframe></div>`);
+		<style>header{display: none !important}</style><script></script><iframe id="preview" srcdoc="Loading...." style="width: 100vw; height: 100vh; border: none; background: white; position: fixed; z-index: 500; top: 0; left 0; display: block"></iframe></div>
+		<script>
+		document.getElementById("preview").onload = function(){
+			document.title = document.getElementById("preview").contentDocument.title;
+		}
+		</script>
+		`);
 	})
 	tApp.route("#/preview/html/<id>", async function (request) {
 		let id = request.data.id
@@ -133,6 +139,7 @@
 		request.data.position = parseInt(request.data.position);
 		Database.getModuleData(request.data.track, request.data.module, request.data.position).then((res) => {
 			let { data, type, moduleLength, next } = res;
+			window.tAppRequestInstance = request;
 			if (request.data.position >= moduleLength) {
 				if (next.hasNext) {
 					alert("You have already completed this module! We will now take you to the next module.");
