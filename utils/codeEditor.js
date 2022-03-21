@@ -328,6 +328,13 @@ function updateFile(id, data) {
 }
 function renameFile(id, newName) {
 	return new Promise(async (resolve, reject) => {
+		var erred = false;
+		try {
+			await getFile(newName);
+			erred =  "A file with that name already exists! Nothing was changed."
+		}catch(err) {
+		}
+		if (erred) reject(erred);
 		let db = await openConnection()
 		let succeeded = false;
 		try {
@@ -436,6 +443,53 @@ function getFile(name) {
 		else reject("Could not find file with that filename!")
 	})
 }
+function getFileWithId(id) {
+	return new Promise(async (resolve, reject) => {
+		let file;
+		let db = await openConnection()
+
+		try {
+			await new Promise(async (resolve, reject) => {
+				try {
+					const txn = db.transaction(window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module + "-" + window.tAppRequestInstance.data.position, 'readwrite');
+
+					const store = txn.objectStore(window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module + "-" + window.tAppRequestInstance.data.position);
+					let query = store.getAll();
+					query.onsuccess = function (event) {
+						file = event.target.result.find(x => x.fileid === id);
+						resolve()
+					};
+					query.onerror = function (event) {
+						console.log(event.target.errorCode);
+					}
+				} catch (e) { reject(); }
+			})
+		} catch (err) { }
+		if (file) {
+			db.close();
+			return resolve(file)
+		}
+		try {
+			await new Promise(async (resolve, reject) => {
+				try {
+					const txn = db.transaction(window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module, 'readwrite');
+					const store = txn.objectStore(window.tAppRequestInstance.data.track + "-" + window.tAppRequestInstance.data.module);
+					let query = store.getAll();
+					query.onsuccess = function (event) {
+						file = event.target.result.find(x => x.fileid === id);
+						resolve()
+					};
+					query.onerror = function (event) {
+						console.log(event.target.errorCode);
+					}
+				} catch (e) { return reject(); }
+			})
+		} catch (err) { }
+		db.close();
+		if (file) return resolve(file);
+		else reject("Could not find file with that fileid!")
+	})
+}
 
 
 function makeid(length) {
@@ -507,4 +561,4 @@ function openConnection() {
 		};
 	})
 }
-module.exports = { updateLanguage, updateContent, getValue, insertAtCursor, format, getCurrentEditorIndex, setCurrentEditorIndex, showAlertModal, removeAlertModal, uploadFile, getModuleFile, getPageFile, getAllUserFiles, deleteFile, updateFile, getFile, renameFile};
+module.exports = { updateLanguage, updateContent, getValue, insertAtCursor, format, getCurrentEditorIndex, setCurrentEditorIndex, showAlertModal, removeAlertModal, uploadFile, getModuleFile, getPageFile, getAllUserFiles, deleteFile, updateFile, getFile, renameFile, getFileWithId};

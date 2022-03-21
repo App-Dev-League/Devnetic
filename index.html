@@ -826,10 +826,12 @@
         .console-wrapper {
             height: calc(100% - 50px);
         }
+
         .console-wrapper *::selection {
-          background: white !important;
-          color: black !important;
+            background: white !important;
+            color: black !important;
         }
+
         .console-input {
             position: fixed;
             bottom: 10px;
@@ -1007,17 +1009,21 @@
             background-color: #4D78CC;
             transition: width 0.5s;
         }
+
         .loading-bar-active.editor-alert-modal-loading-bar {
             animation: loading-bar-loading var(--deletetime) linear;
         }
+
         @keyframes loading-bar-loading {
             from {
                 width: 0;
             }
+
             to {
                 width: 100%;
             }
         }
+
         .background-dimmer {
             position: fixed;
             top: 0;
@@ -1026,6 +1032,40 @@
             height: 100%;
             background-color: rgba(0, 0, 0, 0.5);
             z-index: 998;
+        }
+        #editor-tab-context-menu {
+            background-color: #353B45;
+            position: fixed;
+            z-index: 12;
+            padding: 10px 0;
+            border-radius: 2px;
+            top: 0;
+            left: 0;
+            width: 250px;
+        }
+        #editor-tab-context-menu span {
+            display: block;
+            font-size: 0.9em;
+            padding: 3px 20px;
+            cursor: pointer;
+        }
+        #editor-tab-context-menu span:hover {
+            background-color: #262A31;
+        }
+        #editor-tab-context-menu span span {
+            font-size: 0.8em;
+            padding: 2px 10px;
+            float: right;
+
+        }
+        #editor-tab-context-menu hr {
+            display: block;
+            width: calc(100% - 20px);
+            height: 1px;
+            border: none;
+            background-color: grey;
+            margin-top: 2px;
+            margin-bottom: 2px;
         }
     </style>
 </head>
@@ -1083,6 +1123,17 @@
             </div>
         </div>
     </div>
+    <div id="editor-tab-context-menu" class="none">
+        <span data-text="run">Run<span>CTRL+ENTER</span></span>
+        <hr>
+        <span data-text="format">Format<span>ALT+SHIFT+F</span></span>
+        <hr>
+        <span data-text="new-file">New File<span>CTRL+N</span></span>
+        <span data-text="upload-file">Upload File</span>
+        <hr>
+        <span data-text="download">Download</span>
+        <span data-text="rename">Rename</span>
+        <span data-text="delete">Delete</span>
     </div>
     <script src="/config.js?v=3"></script>
     <input id="console-bridge" style="width: 0; height: 0;">
@@ -1136,13 +1187,19 @@
         content: "\eba4";
         color: #2A9941;
     }
+
     .codicon-symbol-property:before {
         content: "\eb65";
         color: #ffffff;
     }
+
     .codicon-warning:before {
         content: "\ea6c";
         color: #D19A66;
+    }
+    .codicon-new-file:before {
+        content: "\ea7f";
+        color: white;
     }
 </style>
 <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.3.1/styles/atom-one-dark.min.css">
