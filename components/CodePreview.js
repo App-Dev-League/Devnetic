@@ -12,13 +12,15 @@ class CodePreview extends tApp.Component {
 	}
 	update(value) {
 		let x = tApp.getComponentFromDOM(document.querySelector("tapp-main").children[0].children[0]).data().storage_id
+		var tabindex = codeEditorHelper.getCurrentEditorIndex();
 		if (document.getElementById("preview") && value) document.getElementById("preview").src = "data:text/html;base64," + plugins.Base64.encode(value)
 		document.getElementById("popout").href = `#/preview/html/${x[codeEditorHelper.getCurrentEditorIndex()]}/autoupdate`
 		document.getElementById("popout").onclick = function () {
-			window.open(`#/preview/html/${tApp.getComponentFromDOM(document.querySelector("tapp-main").children[0].children[0]).data().storage_id[codeEditorHelper.getCurrentEditorIndex()]}/autoupdate`, '1', `width=${window.innerWidth},height=${window.innerHeight},toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0`);
+			window.open(`#/preview/html/${tApp.getComponentFromDOM(document.querySelector("tapp-main").children[0].children[0]).data().storage_id[tabindex]}/autoupdate`, '1', `width=${window.innerWidth},height=${window.innerHeight},toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0`);
 			return false;
 		}
-		if (x[codeEditorHelper.getCurrentEditorIndex()].slice(-3) == ".js") {
+		var filename = tApp.getComponentFromDOM(document.querySelector("tapp-main").children[0].children[0]).data().files[tabindex] || document.querySelector("tapp-main").children[0].children[0].children[0].children[0].children[0].children[tabindex].innerText;
+		if (filename.slice(-3) == ".js") {
 			this.setState("runCmdBtn", `
 				<button style="position: absolute; top: -23px; color: black; z-index: 1;" onclick="{{_this}}.showRunConsole()">Run Console</button>
 			`)
@@ -174,7 +176,12 @@ class CodePreview extends tApp.Component {
 		}
 		window.plugins = plugins;
 		let tabindex = tApp.getComponentFromDOM(document.getElementById("code-editor-tab")).state.tabindex;
-		let fileType = tApp.getComponentFromDOM(document.getElementById("code-editor-component")).data().storage_id[tabindex].split('.').pop().toLowerCase();
+		if (!tApp.getComponentFromDOM(document.getElementById("code-editor-component")).data().storage_id[tabindex]){
+			let filename = document.querySelector("tapp-main").children[0].children[0].children[0].children[0].children[0].children[tabindex].innerText;
+			var fileType = filename.split('.').pop().toLowerCase();
+		} else {
+			var fileType = tApp.getComponentFromDOM(document.getElementById("code-editor-component")).data().storage_id[tabindex].split('.').pop().toLowerCase();
+		}
 		if (fileType !== "html" && fileType !== "md" && fileType !== "jsx") {
 			if (!document.getElementById("preview-container")) {
 				setTimeout(function () {
