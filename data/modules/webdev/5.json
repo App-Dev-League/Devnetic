@@ -247,195 +247,193 @@
 				}
 			]
 		},
-		[
-			{
-				"type": "multiple_choice",
-				"question": "What is the purpose of HTML",
-				"descriptions": [
-					"CSS does this.",
-					"JavaScript does this.",
-					"Yes, HTML's purpose is just this.",
-					"HTML does not serve this purpose."
-				],
-				"points": 5,
-				"coins": 1,
-				"answers": [
-					"To style the site",
-					"To process logic on the site",
-					"To design layout and structure of the site",
-					"To render javascript templates"
-				],
-				"correct": 2
-			},
-			{
-				"type": "multiple_choice",
-				"question": "What is the purpose of CSS",
-				"descriptions": [
-					"CSS does this.",
-					"JavaScript does this.",
-					"HTML's purpose is just this.",
-					"HTML does not serve this purpose."
-				],
-				"points": 5,
-				"coins": 1,
-				"answers": [
-					"To style the site",
-					"To process logic on the site",
-					"To design layout and structure of the site",
-					"To render javascript templates"
-				],
-				"correct": 0
-			},
-			{
-				"type": "multiple_choice",
-				"question": "What is the purpose of javascript",
-				"descriptions": [
-					"CSS does this.",
-					"JavaScript does this.",
-					"Yes, HTML's purpose is just this.",
-					"HTML does not serve this purpose."
-				],
-				"points": 5,
-				"coins": 1,
-				"answers": [
-					"To style the site",
-					"To process logic on the site",
-					"To design layout and structure of the site",
-					"To render javascript templates"
-				],
-				"correct": 1
-			},
-			{
-				"type": "multiple_choice",
-				"question": "What is the class attribute primarily used for?",
-				"descriptions": [
-					"CSS classes does this.",
-					"This is not the purpose of CSS classes!",
-					"This is not the purpose of CSS classes!",
-					"This is not the purpose of CSS classes!"
-				],
-				"points": 5,
-				"coins": 1,
-				"answers": [
-					"To style multiple elements",
-					"To group elements together",
-					"To remove elements",
-					"To duplicate elements"
-				],
-				"correct": 0
-			},
-			{
-				"type": "multiple_choice",
-				"question": "Which of the following is correct CSS syntax?",
-				"descriptions": [
-					"Well done.",
-					"Nope, this code is missing a key punctuation.",
-					"Nope, the dash needs to be replaced with something else.",
-					"Nope, the squar brackets need to be replaced with something else."
-				],
-				"points": 5,
-				"coins": 1,
-				"answers": [
-					"p { color: red }",
-					"p { color red }",
-					"p { color -  red }",
-					"p [color: red]"
-				],
-				"correct": 0
-			},
-			{
-				"type": "multiple_choice",
-				"question": "How do you select an ID in CSS?",
-				"descriptions": [
-					"'.' is for classes.",
-					"'@' is not a valid selector",
-					"'-' is not a valid selector",
-					"'#' is for selecting by IDs"
-				],
-				"points": 5,
-				"coins": 1,
-				"answers": [
-					".id",
-					"@id",
-					"-id",
-					"#id"
-				],
-				"correct": 3
-			},
-			{
-				"type": "multiple_choice",
-				"question": "How do you select a class in CSS?",
-				"descriptions": [
-					"'.' is for classes.",
-					"'@' is not a valid selector",
-					"'-' is not a valid selector",
-					"'#' is for selecting by IDs"
-				],
-				"points": 5,
-				"coins": 1,
-				"answers": [
-					".class",
-					"@class",
-					"-class",
-					"#class"
-				],
-				"correct": 0
-			},
-			{
-				"type": "multiple_choice",
-				"question": "Which is the correct way to add selector events?",
-				"descriptions": [
-					"This would select elements with id 'id' hover and class 'hover'",
-					"Good job! Use the ':' for selector events.",
-					"This would select elements with id 'id' hover and class 'hover'",
-					"The '@' is not used for selector events."
-				],
-				"points": 5,
-				"coins": 1,
-				"answers": [
-					"#id.hover",
-					"#id:hover",
-					".hover#id",
-					"#id @hover"
-				],
-				"correct": 1
-			},
-			{
-				"type": "multiple_choice",
-				"question": "What is the purpose of constants?",
-				"descriptions": [
-					"Think about what the word 'constant' means.",
-					"Very close!",
-					"Constants are very useful.",
-					"Think about what the word 'constant' means."
-				],
-				"points": 5,
-				"coins": 1,
-				"answers": [
-					"To make a variable private to a class",
-					"To make a variable non-modifiable outside it's class",
-					"To keep make a variable non-modifiable",
-					"To declare a boolean variable"
-				],
-				"correct": 2
-			},
-			{
-				"type": "multiple_choice",
-				"question": "Which of the following is NOT a DOM-manipulating statement?",
-				"descriptions": [
-					"This modifies HTMLElement's class.",
-					"This modifies HTMLElement's content.",
-					"This doesn't modify the DOM, but only retrieves the class."
-				],
-				"points": 5,
-				"coins": 1,
-				"answers": [
-					"HTMLElement.setAttribute(\"class\", \"top\")",
-					"HTMLElement.innerHTML = \"Top\"",
-					"HTMLElement.getAttribute(\"value\")"
-				],
-				"correct": 2
-			}
-		]
+		{
+			"type": "multiple_choice",
+			"question": "What is the purpose of HTML",
+			"descriptions": [
+				"CSS does this.",
+				"JavaScript does this.",
+				"Yes, HTML's purpose is just this.",
+				"HTML does not serve this purpose."
+			],
+			"points": 5,
+			"coins": 1,
+			"answers": [
+				"To style the site",
+				"To process logic on the site",
+				"To design layout and structure of the site",
+				"To render javascript templates"
+			],
+			"correct": 2
+		},
+		{
+			"type": "multiple_choice",
+			"question": "What is the purpose of CSS",
+			"descriptions": [
+				"CSS does this.",
+				"JavaScript does this.",
+				"HTML's purpose is just this.",
+				"HTML does not serve this purpose."
+			],
+			"points": 5,
+			"coins": 1,
+			"answers": [
+				"To style the site",
+				"To process logic on the site",
+				"To design layout and structure of the site",
+				"To render javascript templates"
+			],
+			"correct": 0
+		},
+		{
+			"type": "multiple_choice",
+			"question": "What is the purpose of javascript",
+			"descriptions": [
+				"CSS does this.",
+				"JavaScript does this.",
+				"Yes, HTML's purpose is just this.",
+				"HTML does not serve this purpose."
+			],
+			"points": 5,
+			"coins": 1,
+			"answers": [
+				"To style the site",
+				"To process logic on the site",
+				"To design layout and structure of the site",
+				"To render javascript templates"
+			],
+			"correct": 1
+		},
+		{
+			"type": "multiple_choice",
+			"question": "What is the class attribute primarily used for?",
+			"descriptions": [
+				"CSS classes does this.",
+				"This is not the purpose of CSS classes!",
+				"This is not the purpose of CSS classes!",
+				"This is not the purpose of CSS classes!"
+			],
+			"points": 5,
+			"coins": 1,
+			"answers": [
+				"To style multiple elements",
+				"To group elements together",
+				"To remove elements",
+				"To duplicate elements"
+			],
+			"correct": 0
+		},
+		{
+			"type": "multiple_choice",
+			"question": "Which of the following is correct CSS syntax?",
+			"descriptions": [
+				"Well done.",
+				"Nope, this code is missing a key punctuation.",
+				"Nope, the dash needs to be replaced with something else.",
+				"Nope, the squar brackets need to be replaced with something else."
+			],
+			"points": 5,
+			"coins": 1,
+			"answers": [
+				"p { color: red }",
+				"p { color red }",
+				"p { color -  red }",
+				"p [color: red]"
+			],
+			"correct": 0
+		},
+		{
+			"type": "multiple_choice",
+			"question": "How do you select an ID in CSS?",
+			"descriptions": [
+				"'.' is for classes.",
+				"'@' is not a valid selector",
+				"'-' is not a valid selector",
+				"'#' is for selecting by IDs"
+			],
+			"points": 5,
+			"coins": 1,
+			"answers": [
+				".id",
+				"@id",
+				"-id",
+				"#id"
+			],
+			"correct": 3
+		},
+		{
+			"type": "multiple_choice",
+			"question": "How do you select a class in CSS?",
+			"descriptions": [
+				"'.' is for classes.",
+				"'@' is not a valid selector",
+				"'-' is not a valid selector",
+				"'#' is for selecting by IDs"
+			],
+			"points": 5,
+			"coins": 1,
+			"answers": [
+				".class",
+				"@class",
+				"-class",
+				"#class"
+			],
+			"correct": 0
+		},
+		{
+			"type": "multiple_choice",
+			"question": "Which is the correct way to add selector events?",
+			"descriptions": [
+				"This would select elements with id 'id' hover and class 'hover'",
+				"Good job! Use the ':' for selector events.",
+				"This would select elements with id 'id' hover and class 'hover'",
+				"The '@' is not used for selector events."
+			],
+			"points": 5,
+			"coins": 1,
+			"answers": [
+				"#id.hover",
+				"#id:hover",
+				".hover#id",
+				"#id @hover"
+			],
+			"correct": 1
+		},
+		{
+			"type": "multiple_choice",
+			"question": "What is the purpose of constants?",
+			"descriptions": [
+				"Think about what the word 'constant' means.",
+				"Very close!",
+				"Constants are very useful.",
+				"Think about what the word 'constant' means."
+			],
+			"points": 5,
+			"coins": 1,
+			"answers": [
+				"To make a variable private to a class",
+				"To make a variable non-modifiable outside it's class",
+				"To keep make a variable non-modifiable",
+				"To declare a boolean variable"
+			],
+			"correct": 2
+		},
+		{
+			"type": "multiple_choice",
+			"question": "Which of the following is NOT a DOM-manipulating statement?",
+			"descriptions": [
+				"This modifies HTMLElement's class.",
+				"This modifies HTMLElement's content.",
+				"This doesn't modify the DOM, but only retrieves the class."
+			],
+			"points": 5,
+			"coins": 1,
+			"answers": [
+				"HTMLElement.setAttribute(\"class\", \"top\")",
+				"HTMLElement.innerHTML = \"Top\"",
+				"HTMLElement.getAttribute(\"value\")"
+			],
+			"correct": 2
+		}
 	]
 }
