@@ -3,7 +3,7 @@ import json
 import requests
 
 # CHANGE URL TO YOUR KAHOOT
-url = 'https://create.kahoot.it/details/951f4c0e-b6d7-4aed-8853-cf0e82c2d3ca'
+url = 'https://create.kahoot.it/details/aa473af0-787e-465c-a7f2-5b87145b4d9d'
 
 kahoot_id = url.split('/')[-1]
 answers_url = 'https://create.kahoot.it/rest/kahoots/{kahoot_id}/card/?includeKahoot=true'.format(kahoot_id=kahoot_id)

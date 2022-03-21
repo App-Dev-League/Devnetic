@@ -3,7 +3,6 @@ const ModuleComponent = require("./ModuleComponent.js");
 const ExplanationModal = require("./ExplanationModal.js");
 const Input = require("./Input.js");
 const codeBlock = require("./codeBlock.js");
-const codeBlockHelper = require("../utils/codeBlocks.js");
 
 class ShortAnswer extends ModuleComponent {
 	constructor(state, parent) {
@@ -24,7 +23,11 @@ class ShortAnswer extends ModuleComponent {
 				this.state.input = new Input({
 					classList: ["short-answer-input"],
 					type: "text",
-					properties: ["autofocus"]
+					properties: {
+						"autofocus": "", 
+						"onkeyup": "{{_this}}.state.update()"
+					},
+					update: () => {if(event.key === "Enter"){this.update()}}
 				}, this);
 			}
 			if(this.data().value == null) {
