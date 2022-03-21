@@ -1,0 +1,11 @@
+{
+    "json.schemas": [
+        {
+            "fileMatch": ["data/modules/ai/*.json", "data/modules/introCs/*.json", "data/modules/webdev/*.json"],
+            "url": "https://raw.githubusercontent.com/App-Dev-League/devnetic-schemas/master/lesson.jsonc"
+        },
+        {
+            "fileMatch": ["data/modules/ai-projects/*.json", "data/modules/introCs-projects/*.json", "data/modules/webdev-projects/*.json"]
+        }
+    ]
+}
