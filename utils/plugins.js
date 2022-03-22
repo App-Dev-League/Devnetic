@@ -161,7 +161,14 @@ module.exports = {
                 image: "/assets/plugins/webperl/webperl.png",
                 id: "webperl",
                 latestVersion: "0.1.0"
-            }
+            },
+            {
+                name: "Hex Editor",
+                description: "View and edit binary files in the code editor!",
+                image: "/assets/plugins/hexy/logo.png",
+                id: "hexy",
+                latestVersion: "1.0.0"
+            },
         ]
     },
     async checkPluginStatus(pluginId) {

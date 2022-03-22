@@ -35,7 +35,11 @@ class Editor extends tApp.Component {
 			"js": "javascript",
 			"jsx": "javascript",
 			"css": "css",
-			"ts": "typescript"
+			"ts": "typescript",
+			"png": "css",
+			"jpg": "css",
+			"jpeg": "css",
+			"gif": "css"
 		}
 		var parentThis = this
 		var tabindex = this.state.tabindex
@@ -65,7 +69,7 @@ class Editor extends tApp.Component {
 				if (!await plugins.checkPluginStatus("hexy")) {
 					let coverDiv = document.createElement("div");
 					coverDiv.className = "code-editor-cover";
-					coverDiv.innerHTML = "<span style='margin-top: 30px; display: block; font-size: 0.9em;'>This file is not displayed in the editor because it is either binary or uses an unsupported text encoding. <a class='url' style='border-bottom: 1px solid; cursor: pointer;'>Do you want to open it anyway?</a></span>";
+					coverDiv.innerHTML = "<span style='margin-top: 30px; display: block; font-size: 0.9em;'>This file is not displayed in the editor because it is either binary or uses an unsupported text encoding. <a class='url' style='border-bottom: 1px solid; cursor: pointer;'>Do you want to open it anyway?</a><br>You can also try installing the Hex Editor extention to view this file.</span>";
 					coverDiv.querySelector("a").addEventListener("click", function() {
 						let x=this.parentElement.parentElement;
 						x.parentElement.removeChild(x);

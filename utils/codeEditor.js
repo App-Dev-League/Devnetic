@@ -1,9 +1,22 @@
+window.currentReadOnly = false;
 function updateLanguage(language) {
 	if (!document.getElementById("code-frame")) return false
 	document.getElementById("code-frame").contentWindow.monaco.editor.setModelLanguage(document.getElementById("code-frame").contentWindow.monaco.editor.getModels()[0], language)
 	return true;
 }
-
+function updateReadOnly(readOnly){
+	if (!document.getElementById("code-frame")) return false
+	document.getElementById("code-frame").contentWindow.codeEditor.updateOptions({ readOnly: readOnly })
+	window.currentReadOnly = readOnly;
+	return true;
+}
+function getCurrentEditorOption(optionNum) {
+	if (optionNum === 81) {
+		return window.currentReadOnly;
+	}
+	// option numbers defined here: https://microsoft.github.io/monaco-editor/api/enums/monaco.editor.EditorOption.html#readOnly
+	return document.getElementById("code-frame").contentWindow.codeEditor.getOption(optionNum);
+}
 function updateContent(content) {
 	document.getElementById("code-frame").contentWindow.codeEditor.setValue(content);
 	return true
@@ -561,4 +574,4 @@ function openConnection() {
 		};
 	})
 }
-module.exports = { updateLanguage, updateContent, getValue, insertAtCursor, format, getCurrentEditorIndex, setCurrentEditorIndex, showAlertModal, removeAlertModal, uploadFile, getModuleFile, getPageFile, getAllUserFiles, deleteFile, updateFile, getFile, renameFile, getFileWithId};
+module.exports = { updateLanguage, updateContent, getValue, insertAtCursor, format, getCurrentEditorIndex, setCurrentEditorIndex, showAlertModal, removeAlertModal, uploadFile, getModuleFile, getPageFile, getAllUserFiles, deleteFile, updateFile, getFile, renameFile, getFileWithId, updateReadOnly, getCurrentEditorOption};
