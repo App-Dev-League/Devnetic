@@ -182,7 +182,7 @@ class CodePreview extends tApp.Component {
 		} else {
 			var fileType = tApp.getComponentFromDOM(document.getElementById("code-editor-component")).data().storage_id[tabindex].split('.').pop().toLowerCase();
 		}
-		if (fileType !== "html" && fileType !== "md" && fileType !== "jsx") {
+		if (fileType !== "html" && fileType !== "md" && fileType !== "jsx" && fileType !== "png" && fileType !== "jpeg" && fileType !== "jpg" && fileType !== "gif") {
 			if (!document.getElementById("preview-container")) {
 				setTimeout(function () {
 					document.getElementById("preview-container").classList = ["preview-mode-console"]

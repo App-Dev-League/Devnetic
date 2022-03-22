@@ -421,7 +421,7 @@ class Editor extends tApp.Component {
 						tabindex = codeEditorHelper.getCurrentEditorIndex()
 						setTimeout(function () {
 							let fileType = filename.split('.').pop().toLowerCase()
-							if (fileType === "html") updatePreview(fileType)
+							if (fileType === "html" || fileType === "md" || fileType === "png" || fileType === "jpg" || fileType === "jpeg" || fileType === "gif") updatePreview(fileType)
 						}, 100)
 					}
 					document.getElementById("code-editor-run-btn").onclick = async function () {

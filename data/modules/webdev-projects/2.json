@@ -26,7 +26,7 @@
         {
             "type": "code_editor",
             "storage_id": [
-                "webdev-4-0-0.js"
+                "webdev-2-0-0.js"
             ],
             "files": [
                 "index.js"
@@ -57,7 +57,7 @@
         {
             "type": "code_editor",
             "storage_id": [
-                "webdev-4-0-0.js"
+                "webdev-2-0-0.js"
             ],
             "files": [
                 "index.js"
@@ -88,7 +88,7 @@
         {
             "type": "code_editor",
             "storage_id": [
-                "webdev-4-0-0.js"
+                "webdev-2-0-0.js"
             ],
             "files": [
                 "index.js"
@@ -119,7 +119,7 @@
         {
             "type": "code_editor",
             "storage_id": [
-                "webdev-4-0-0.js"
+                "webdev-2-0-0.js"
             ],
             "files": [
                 "index.js"
@@ -159,7 +159,7 @@
         {
             "type": "code_editor",
             "storage_id": [
-                "webdev-4-0-0.js"
+                "webdev-2-0-0.js"
             ],
             "files": [
                 "index.js"
@@ -191,7 +191,7 @@
         {
             "type": "code_editor",
             "storage_id": [
-                "webdev-4-0-0.js"
+                "webdev-2-0-0.js"
             ],
             "files": [
                 "index.js"
@@ -231,7 +231,7 @@
         {
             "type": "code_editor",
             "storage_id": [
-                "webdev-4-0-0.js"
+                "webdev-2-0-0.js"
             ],
             "files": [
                 "index.js"
@@ -271,7 +271,7 @@
         {
             "type": "code_editor",
             "storage_id": [
-                "webdev-4-0-0.js"
+                "webdev-2-0-0.js"
             ],
             "files": [
                 "index.js"
@@ -311,7 +311,7 @@
         {
             "type": "code_editor",
             "storage_id": [
-                "webdev-4-0-0.js"
+                "webdev-2-0-0.js"
             ],
             "files": [
                 "index.js"
@@ -343,7 +343,7 @@
         {
             "type": "code_editor",
             "storage_id": [
-                "webdev-4-0-0.js"
+                "webdev-2-0-0.js"
             ],
             "files": [
                 "index.js"
@@ -393,7 +393,7 @@
                     "type": "validate-output",
                     "actions": [
                         {
-                            "run": "webdev-4-0-0.js",
+                            "run": "webdev-2-0-0.js",
                             "editorIndex": 0
                         },
                         {
@@ -415,7 +415,7 @@
                     "type": "validate-output",
                     "actions": [
                         {
-                            "run": "webdev-4-0-0.js",
+                            "run": "webdev-2-0-0.js",
                             "editorIndex": 0
                         },
                         {
@@ -437,7 +437,7 @@
                     "type": "validate-output",
                     "actions": [
                         {
-                            "run": "webdev-4-0-0.js",
+                            "run": "webdev-2-0-0.js",
                             "editorIndex": 0
                         },
                         {
@@ -459,7 +459,7 @@
                     "type": "validate-output",
                     "actions": [
                         {
-                            "run": "webdev-4-0-0.js",
+                            "run": "webdev-2-0-0.js",
                             "editorIndex": 0
                         },
                         {
