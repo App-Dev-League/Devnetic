@@ -2,12 +2,12 @@
 <html lang="en">
 
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/assets/libraries/jquery.min.js"></script>
 
 
     <!-- <link rel="stylesheet" href="//unpkg.com/@highlightjs/cdn-assets@11.3.1/styles/github-dark.min.css"> -->
 
-    <script src="//unpkg.com/@highlightjs/cdn-assets@11.3.1/highlight.min.js"></script>
+    <script src="/assets/libraries/highlightjs/highlight.min.js"></script>
     <script src="/tApp.js"></script>
     <script src="/require-browser.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -1067,6 +1067,14 @@
             margin-top: 2px;
             margin-bottom: 2px;
         }
+        .code-editor-cover {
+            width: 100%;
+            height: calc(100% + 50px);
+            position: absolute;
+            z-index: 1;
+            background: var(--gray);
+            top: -50px;
+        }
     </style>
 </head>
 
@@ -1202,7 +1210,7 @@
         color: white;
     }
 </style>
-<link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.3.1/styles/atom-one-dark.min.css">
+<link rel="stylesheet" href="/assets/libraries/highlightjs/atom-one-dark.css">
 
 <script>
     var observer = new MutationObserver(function(mutations) {
