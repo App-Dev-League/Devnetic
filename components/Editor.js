@@ -70,8 +70,8 @@ class Editor extends tApp.Component {
 					let coverDiv = document.createElement("div");
 					coverDiv.className = "code-editor-cover";
 					coverDiv.innerHTML = "<span style='margin-top: 30px; display: block; font-size: 0.9em;'>This file is not displayed in the editor because it is either binary or uses an unsupported text encoding. <a class='url' style='border-bottom: 1px solid; cursor: pointer;'>Do you want to open it anyway?</a><br>You can also try installing the Hex Editor extention to view this file.</span>";
-					coverDiv.querySelector("a").addEventListener("click", function() {
-						let x=this.parentElement.parentElement;
+					coverDiv.querySelector("a").addEventListener("click", function () {
+						let x = this.parentElement.parentElement;
 						x.parentElement.removeChild(x);
 						document.getElementById("code-frame").contentWindow.codeEditor.getModel().setValue(text);
 					})
@@ -245,7 +245,7 @@ class Editor extends tApp.Component {
 							} else if (option.innerText.startsWith("Format")) {
 								option.onclick = function () {
 									e.target.click();
-									setTimeout(function() {
+									setTimeout(function () {
 										codeEditorHelper.format();
 									}, 500)
 								}
@@ -428,7 +428,7 @@ class Editor extends tApp.Component {
 						var filenamex = tApp.getComponentFromDOM(document.querySelector("tapp-main").children[0].children[0]).data().files[tabindex] || document.querySelector("tapp-main").children[0].children[0].children[0].children[0].children[0].children[tabindex].innerText;
 
 						tabindex = codeEditorHelper.getCurrentEditorIndex()
-						
+
 
 						document.getElementById("code-editor-status").innerText = "Saving...";
 						if (!parentThis.parent.parent.data().storage_id[tabindex]) {
@@ -902,6 +902,29 @@ try{
 								window.document.getElementById("console-bridge").click()
 								return false;
 							}
+						} else if (fileType === "png" || fileType === "jpg" || fileType === "jpeg" || fileType === "gif") {
+							let url = document.querySelectorAll("#code-editor-component > div:nth-child(1) > div > div.tab-group .tab")[tabindex].innerText;
+							console.log(url)
+							let moduleIndex = self.parent.parent.data().files.findIndex(e => e === url);
+							var moduleCode;
+							if (moduleIndex === -1) {
+								try {
+									moduleCode = await codeEditorHelper.getFile(url);
+									moduleCode = moduleCode.code
+								} catch (e) {
+									throw e
+								}
+							} else {
+								moduleCode = await DB.getCode(self.parent.parent.data().storage_id[moduleIndex]);
+							}
+							let html = `
+							<html>
+								<body>
+									<img src="data:image/png;base64,${btoa(moduleCode)}">
+								</body>
+							</html>
+							`
+							if (document.getElementById("preview")) document.getElementById("preview").src = "data:text/html;base64," + plugins.Base64.encode(html)
 						}
 					}
 					document.getElementById("code-frame").contentWindow.document.onkeydown = async function (e) {
@@ -1023,7 +1046,7 @@ class TabbedEditor extends tApp.Component {
 					let file = userData[i - startingI]
 					if (self.state[file.fileid] == null) {
 						console.log("Created new editor instance: ", file.fileid, "with tabindex ", i)
-						self.state[file.fileid] = new Editor({ tabindex: i, storage_id: "USERDATA" + file.fileid, file: file, onLoadCallback: onLoadCallback}, self)
+						self.state[file.fileid] = new Editor({ tabindex: i, storage_id: "USERDATA" + file.fileid, file: file, onLoadCallback: onLoadCallback }, self)
 					}
 					tabs.push({
 						name: file.filename,
@@ -1041,10 +1064,10 @@ class TabbedEditor extends tApp.Component {
 					document.body.classList.add("tester-testing")
 				}
 				var loadCount = 0;
-				async function onLoadCallback(){
+				async function onLoadCallback() {
 					loadCount++;
 					console.log("Loaded: ", loadCount, " of ", tabs.length)
-					if (loadCount === tabs.length ) {
+					if (loadCount === tabs.length) {
 						document.body.classList.remove("tester-testing")
 						document.querySelector("#code-editor-component > div:nth-child(1) > div > div.tab-group > div.tab.tab-selected").click()
 					}
