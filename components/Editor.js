@@ -54,6 +54,7 @@ class Editor extends tApp.Component {
 		}
 
 		async function loadCodeFromDb() {
+			if (tabindex !== codeEditorHelper.getCurrentEditorIndex()) return;
 			if (self.state.file) {
 				var text = await codeEditorHelper.getFileWithId(self.state.file.fileid)
 				text = text.code;
@@ -969,8 +970,8 @@ try{
 
 		if (document.getElementById("code-frame")) {
 			if (window.monacoAlreadyLoaded === true) {
-				loadCodeFromDb()
 				addThings()
+				loadCodeFromDb()
 				let fileType = filename.split('.').pop().toLowerCase()
 				codeEditorHelper.updateLanguage(languages[fileType])
 			} else {
@@ -1063,14 +1064,8 @@ class TabbedEditor extends tApp.Component {
 					document.body.setAttribute('data-before', "Loading files...");
 					document.body.classList.add("tester-testing")
 				}
-				var loadCount = 0;
 				async function onLoadCallback() {
-					loadCount++;
-					console.log("Loaded: ", loadCount, " of ", tabs.length)
-					if (loadCount === tabs.length) {
-						document.body.classList.remove("tester-testing")
-						document.querySelector("#code-editor-component > div:nth-child(1) > div > div.tab-group > div.tab.tab-selected").click()
-					}
+					document.body.classList.remove("tester-testing")
 				}
 			}
 
