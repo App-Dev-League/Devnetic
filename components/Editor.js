@@ -1043,7 +1043,8 @@ class TabbedEditor extends tApp.Component {
 				var loadCount = 0;
 				async function onLoadCallback(){
 					loadCount++;
-					if (loadCount === tabs.length + 1) {
+					console.log("Loaded: ", loadCount, " of ", tabs.length)
+					if (loadCount === tabs.length ) {
 						document.body.classList.remove("tester-testing")
 						document.querySelector("#code-editor-component > div:nth-child(1) > div > div.tab-group > div.tab.tab-selected").click()
 					}
