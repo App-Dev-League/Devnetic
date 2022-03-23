@@ -49,7 +49,6 @@ class PluginPanel extends tApp.Component {
             while (true) {
                 const result = await reader.read();
                 if (result.done) {
-                    console.log('Fetch complete');
                     break;
                 }
                 bytesReceived += result.value.length;

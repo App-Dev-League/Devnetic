@@ -77,7 +77,6 @@ class CodeEditor extends ModuleComponent {
 						let msg = window.logQueue.shift()
 						if (window.newLogListener) window.newLogListener(msg)
 						else {
-							console.log("Uh oh there wasn't a listener for my beautiful log. The log was " + msg)
 							if (msg !== "The log was Launching tester..." && msg !== "Starting python emulator...") {
 								window.logQueue.unshift(msg);
 							}
@@ -173,7 +172,6 @@ class CodeEditor extends ModuleComponent {
 					} else if (i.type === "includes") {
 						if (!newText.toString().includes(i.value)) correct = false;
 					} else if (i.type === "startsWith") {
-						console.log(newText.toString(), i.value)
 						if (!newText.toString().startsWith(i.value)) correct = false;
 					} else if (i.type === "endsWith") {
 						if (!newText.toString().endsWith(i.value)) correct = false;
@@ -228,7 +226,6 @@ class CodeEditor extends ModuleComponent {
 							if (runwhen.startsWith("in") && runwhen.endsWith("outputs")) {
 								runwhen = parseInt(runwhen.replace("in", "").replace("outputs", ""))
 								logIndex += runwhen
-								console.log(logIndex, runwhen)
 								await waitForXInputs(runwhen)
 							}
 							action.input = tApp.compileTemplate(action.input, {
@@ -250,7 +247,6 @@ class CodeEditor extends ModuleComponent {
 							if (runwhen.startsWith("in") && runwhen.endsWith("outputs")) {
 								runwhen = parseInt(runwhen.replace("in", "").replace("outputs", ""))
 								logIndex += runwhen
-								console.log(logIndex, runwhen)
 								await waitForXInputs(runwhen, undefined, true)
 							}
 							if (!action.add) action.add = 1
@@ -291,7 +287,6 @@ class CodeEditor extends ModuleComponent {
 							if (runwhen.startsWith("in") && runwhen.endsWith("outputs")) {
 								runwhen = parseInt(runwhen.replace("in", "").replace("outputs", ""))
 								logIndex += runwhen
-								console.log(logIndex, runwhen)
 								await waitForXInputs(runwhen)
 							}
 							let currentScript = document.getElementById("python-execution-thread").contentWindow.document.querySelector("script").innerHTML;
@@ -359,7 +354,6 @@ class CodeEditor extends ModuleComponent {
 							await sleep(1000)
 						} else if (typeof action.execOnDOM !== "undefined") {
 							let dom = document.getElementById("preview").contentWindow;
-							console.log("executing "+"dom." + action.execOnDOM)
 							eval("dom." + action.execOnDOM)
 						} else if (typeof action.checkDOM !== "undefined") {
 							let dom = document.getElementById("preview").contentWindow;

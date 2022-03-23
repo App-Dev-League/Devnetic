@@ -20,7 +20,6 @@ module.exports = {
         script.id = "plugin-" + pluginId;
         $("body").append(script);
         window.pluginList[pluginId] = "loaded";
-        console.log("Successfully loaded plugin " + pluginId);
         return true
     },
     async getCode(pluginId) {
@@ -38,8 +37,6 @@ module.exports = {
         return plugin
     },
     async download(pluginId, cont, done, silent) {
-        console.log("Starting download of plugin " + pluginId);
-
         let code = await fetch("/assets/plugins/" + pluginId + "/" + pluginId + ".min.js");
         let tmpcode = code.clone()
 
@@ -51,7 +48,6 @@ module.exports = {
         while (true) {
             const result = await reader.read();
             if (result.done) {
-                console.log('Fetch complete');
                 break;
             }
             bytesReceived += result.value.length;
@@ -68,7 +64,6 @@ module.exports = {
 
         addPlugin(pluginId, `${version}||STARTPLUGIN||` + code);
 
-        console.log("Successfully downloaded plugin " + pluginId + "@" + version);
         if (done) done(true)
         let pluginName = this.availablePlugins().find(e => e.id == pluginId).name;
         if (!silent) {
@@ -83,7 +78,6 @@ module.exports = {
         if (!element) throw "Error: plugin " + pluginId + " was never loaded"
         element.remove()
         delete window.pluginList[pluginId];
-        console.log("Successfully unloaded plugin " + pluginId);
     },
     remove(pluginId) {
         //localStorage.removeItem("plugin::" + pluginId);
@@ -91,7 +85,6 @@ module.exports = {
 
 
 
-        console.log("Successfully removed plugin " + pluginId);
         let pluginName = this.availablePlugins().find(e => e.id == pluginId).name;
         codeEditorHelper.showAlertModal("Successfully removed plugin " + pluginName, [{
             text: "Ok", onclick: function () { codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index')) }
@@ -250,7 +243,6 @@ function addPlugin(id, text) {
         const txn = db.transaction('Plugincode', 'readwrite');
         const store = txn.objectStore('Plugincode');
         let query = store.put({ pluginId: id, code: text });
-        console.log(store.index('pluginIds').objectStore.indexNames);
         query.onsuccess = function (event) {
         };
         query.onerror = function (event) {

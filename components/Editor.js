@@ -228,7 +228,6 @@ class Editor extends tApp.Component {
 										})
 										input.addEventListener("keydown", async function (ev) {
 											if (ev.key === "Enter") {
-												console.log(storageId.slice("USERDATA".length))
 												try {
 													await codeEditorHelper.renameFile(storageId.slice("USERDATA".length), input.value);
 													window.location.reload();
@@ -439,7 +438,6 @@ class Editor extends tApp.Component {
 							let filenamey = document.querySelector("tapp-main").children[0].children[0].children[0].children[0].children[0].children[tabindex].innerText
 							let fileType = filenamey.split('.').pop().toLowerCase()
 							if (fileType === "html" || fileType === "md" || fileType === "png" || fileType === "jpg" || fileType === "jpeg" || fileType === "gif") {
-								console.log("updating preview with filetype " + fileType, tabindex)
 								setTimeout(function(){
 									updatePreview(fileType);
 								}, 200)
@@ -556,7 +554,6 @@ class Editor extends tApp.Component {
 							}
 						} else if (fileType === "cpp") {
 							await plugins.load("jscpp")
-							console.log("running cpp")
 							var code = "#include <iostream>" +
 								"using namespace std;" +
 								"int main() {" +
@@ -804,7 +801,6 @@ try{
 									let element = imports[i]
 									let module = element.match(/(?<=')(.*)(?=')/g)[0];
 									let name = element.match(/(?<=import)(.*)(?=from)/g)[0];
-									console.log(module, name)
 									if (!module.startsWith("./") || module.indexOf("/") !== 1) {
 										return showError("DependencyNotFoundError: Could not find dependency: '" + module + "'")
 									}
@@ -926,7 +922,6 @@ try{
 							}
 						} else if (fileType === "png" || fileType === "jpg" || fileType === "jpeg" || fileType === "gif") {
 							let url = document.querySelectorAll("#code-editor-component > div:nth-child(1) > div > div.tab-group .tab")[tabindex].innerText;
-							console.log(url)
 							let moduleIndex = self.parent.parent.data().files.findIndex(e => e === url);
 							var moduleCode;
 							if (moduleIndex === -1) {
@@ -1036,7 +1031,6 @@ class TabbedEditor extends tApp.Component {
 		window.monacoAlreadyLoaded = false;
 		var self = this;
 		var tabs = [];
-		console.log("Tabbed editor rendering")
 		async function getData() {
 			if (self.x === true) return;
 			self.x = true;
@@ -1066,7 +1060,6 @@ class TabbedEditor extends tApp.Component {
 				for (i = i; i < userData.length + startingI; i++) {
 					let file = userData[i - startingI]
 					if (self.state[file.fileid] == null) {
-						console.log("Created new editor instance: ", file.fileid, "with tabindex ", i)
 						self.state[file.fileid] = new Editor({ tabindex: i, storage_id: "USERDATA" + file.fileid, file: file, onLoadCallback: onLoadCallback }, self)
 					}
 					tabs.push({
