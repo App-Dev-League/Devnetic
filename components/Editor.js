@@ -47,7 +47,7 @@ class Editor extends tApp.Component {
 		var filename = parentThis.parent.parent.data().files[tabindex] || this.state.file.filename;
 
 		console.log("Editor number " + tabindex + " is rendering")
-		if (document.getElementById("code-editor-run-btn") && filename.split('.').pop().toLowerCase() === "html") {
+		if (document.getElementById("code-editor-run-btn") && (filename.split('.').pop().toLowerCase() === "html" || filename.split('.').pop().toLowerCase() === "png" || filename.split('.').pop().toLowerCase() === "jpg" || filename.split('.').pop().toLowerCase() === "jpeg" || filename.split('.').pop().toLowerCase() === "gif")) {
 			setTimeout(function () {
 				document.getElementById("code-editor-run-btn").click()
 			}, 100)
@@ -74,16 +74,31 @@ class Editor extends tApp.Component {
 					coverDiv.querySelector("a").addEventListener("click", function () {
 						let x = this.parentElement.parentElement;
 						x.parentElement.removeChild(x);
-						document.getElementById("code-frame").contentWindow.codeEditor.getModel().setValue(text);
+						codeEditorHelper.updateContent(text)
 					})
 					document.getElementById("code-frame").parentElement.appendChild(coverDiv);
 				} else {
 					await plugins.load("hexy");
-					document.getElementById("code-frame").contentWindow.codeEditor.getModel().setValue(hexy(text));
+					let coverDiv = document.createElement("div");
+					coverDiv.className = "code-editor-cover";
+					coverDiv.innerHTML = "<span style='margin-top: 30px; display: block; font-size: 0.9em;'>This file is not displayed in the editor because it is either binary or uses an unsupported text encoding. <a class='url' style='border-bottom: 1px solid; cursor: pointer;'>Open with Hex Editor</a> or <a class='url' style='border-bottom: 1px solid; cursor: pointer;'>Open raw file</a></span>";
+					coverDiv.querySelector("a").addEventListener("click", function () {
+						let x = this.parentElement.parentElement;
+						x.parentElement.removeChild(x);
+						codeEditorHelper.updateContent(hexy(text))
+					})
+					coverDiv.querySelectorAll("a")[1].addEventListener("click", function () {
+						let x = this.parentElement.parentElement;
+						x.parentElement.removeChild(x);
+						codeEditorHelper.updateContent(text)
+					})
+
+					document.getElementById("code-frame").parentElement.appendChild(coverDiv);
+
 				}
 			} else {
 				codeEditorHelper.updateReadOnly(false);
-				document.getElementById("code-frame").contentWindow.codeEditor.getModel().setValue(text);
+				codeEditorHelper.updateContent(text)
 			}
 			setTimeout(function () {
 				self.state.onLoadCallback();
@@ -421,8 +436,14 @@ class Editor extends tApp.Component {
 					function handleClicks() {
 						tabindex = codeEditorHelper.getCurrentEditorIndex()
 						setTimeout(function () {
-							let fileType = filename.split('.').pop().toLowerCase()
-							if (fileType === "html" || fileType === "md" || fileType === "png" || fileType === "jpg" || fileType === "jpeg" || fileType === "gif") updatePreview(fileType)
+							let filenamey = document.querySelector("tapp-main").children[0].children[0].children[0].children[0].children[0].children[tabindex].innerText
+							let fileType = filenamey.split('.').pop().toLowerCase()
+							if (fileType === "html" || fileType === "md" || fileType === "png" || fileType === "jpg" || fileType === "jpeg" || fileType === "gif") {
+								console.log("updating preview with filetype " + fileType, tabindex)
+								setTimeout(function(){
+									updatePreview(fileType);
+								}, 200)
+							}
 						}, 100)
 					}
 					document.getElementById("code-editor-run-btn").onclick = async function () {
@@ -964,8 +985,6 @@ try{
 				}
 			}
 			addEvent()
-
-			window.startedRefresh = true
 		}
 
 		if (document.getElementById("code-frame")) {
@@ -1014,9 +1033,10 @@ class TabbedEditor extends tApp.Component {
 		this.x = false;
 	}
 	render() {
+		window.monacoAlreadyLoaded = false;
 		var self = this;
 		var tabs = [];
-
+		console.log("Tabbed editor rendering")
 		async function getData() {
 			if (self.x === true) return;
 			self.x = true;

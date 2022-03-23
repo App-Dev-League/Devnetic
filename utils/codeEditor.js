@@ -1,13 +1,37 @@
 window.currentReadOnly = false;
+window.onhashchange = function(){
+	window.currentReadOnly = false;
+}
 function updateLanguage(language) {
 	if (!document.getElementById("code-frame")) return false
-	document.getElementById("code-frame").contentWindow.monaco.editor.setModelLanguage(document.getElementById("code-frame").contentWindow.monaco.editor.getModels()[0], language)
+	new Promise((resolve, reject) => {
+		m();
+		function m(){
+			if (document.getElementById("code-frame").contentWindow.monaco) resolve();
+			else {
+				setTimeout(m, 100);
+			}
+		}
+	}).then( e=> {
+		document.getElementById("code-frame").contentWindow.monaco.editor.setModelLanguage(document.getElementById("code-frame").contentWindow.monaco.editor.getModels()[0], language)
+	})
 	return true;
 }
 function updateReadOnly(readOnly){
 	if (!document.getElementById("code-frame")) return false
-	document.getElementById("code-frame").contentWindow.codeEditor.updateOptions({ readOnly: readOnly })
-	window.currentReadOnly = readOnly;
+
+	new Promise((resolve, reject) => {
+		m();
+		function m(){
+			if (document.getElementById("code-frame").contentWindow.codeEditor) resolve();
+			else {
+				setTimeout(m, 100);
+			}
+		}
+	}).then(e => {
+		document.getElementById("code-frame").contentWindow.codeEditor.updateOptions({ readOnly: readOnly })
+		window.currentReadOnly = readOnly;
+	})
 	return true;
 }
 function getCurrentEditorOption(optionNum) {
@@ -18,7 +42,17 @@ function getCurrentEditorOption(optionNum) {
 	return document.getElementById("code-frame").contentWindow.codeEditor.getOption(optionNum);
 }
 function updateContent(content) {
-	document.getElementById("code-frame").contentWindow.codeEditor.setValue(content);
+	new Promise((resolve, reject) => {
+		m();
+		function m(){
+			if (document.getElementById("code-frame").contentWindow.codeEditor) resolve();
+			else {
+				setTimeout(m, 100);
+			}
+		}
+	}).then(e => {
+		document.getElementById("code-frame").contentWindow.codeEditor.setValue(content);
+	})
 	return true
 }
 
