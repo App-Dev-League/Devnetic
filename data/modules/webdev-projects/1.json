@@ -1,0 +1,374 @@
+{
+    "type": "project",
+    "pages": [
+        {
+            "type": "information",
+            "title": "Project Overview",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "➔ Practice using CSS by making a graphical interface for a store"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Will add a heading, page directory, store item cards, etc."
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Covers concepts and styling code that was discussed in the week 2 presentation"
+                },
+                {
+                    "type": "image",
+                    "src": "/data/modules/webdev-projects-assets/img1/0-0.png",
+                    "width": "10%"
+                }
+            ]
+        },
+        {
+            "type": "code_editor",
+            "storage_id": [
+                "webdev-1-0-0.html",
+                "webdev-1-0-1.html",
+                "webdev-1-0-2.css"
+            ],
+            "files": [
+                "index.html",
+                "otherPage.html",
+                "styles.css"
+            ],
+            "default": [
+                "<!DOCTYPE html>",
+                "<!DOCTYPE html>",
+                "html {}"
+            ],
+            "display_type": "web",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "[[h3]]Setup Project[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "(This is already done for you if you are following along in Devnetics)"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Create a folder in your directory for images which will be used for the store items"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Create another html file which will be one of the sites navigation links (it is just a placeholder as the main focus is styling the main page)"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Link fonts from google (in your head section) using the following code:"
+                },
+                {
+                    "type": "code",
+                    "content": "<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n<link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=Roboto&display=swap\" crossorigin>",
+                    "lang": "html"
+                },
+                {
+                    "type": "text",
+                    "content": "[[h3]]Setup Project pt. 2[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Next, add 4 images to the Devnetics project by right clicking on a file and selecting \"Upload File\". Then, select \"Lesson-Wide\""
+                },
+                {
+                    "type": "text",
+                    "content": "(You can definitely add more images and items to your shop) The following examples will be a restaurant webpage, so 4 images of seafood were picked"
+                }
+            ],
+            "hints": [],
+            "validation": [],
+            "points": 0,
+            "coins": 0
+        },
+        {
+            "type": "code_editor",
+            "storage_id": [
+                "webdev-1-0-0.html",
+                "webdev-1-0-1.html",
+                "webdev-1-0-2.css"
+            ],
+            "files": [
+                "index.html",
+                "otherPage.html",
+                "styles.css"
+            ],
+            "default": [
+                "<!DOCTYPE html>",
+                "<!DOCTYPE html>",
+                "html {}"
+            ],
+            "display_type": "web",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "[[h3]]Add a header and Navigation LInks[[/]]"
+                },
+                {
+                    "type": "code",
+                    "content": "<body>\n  <div class=\"top\">\n    <header>\n      <h1>Welcome to ___</h1>\n    </header>\n    <nav>\n      <a href=\"/page.html\">Link 1</a>\n      <a href=\"/page.html\">Link 2</a>\n      <a href=\"/page.html\">Link 3</a>\n    </nav>\n  </div>\n  <!-- further code goes here -->\n</body>"
+                },
+                {
+                    "type": "text",
+                    "content": "[[h3]]Explanation[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Create a header with a title of your choice in a main heading tag (<h1>)"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ The header and links should be enclosed in a <div> to apply CSS in the next step"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ The nav tag is used for navigation links, as most online stores have a directory to other pages"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Add navigation links such as “About Us” or “Contact Us,” and you can use the placeholder HTML page as the link"
+                },
+                {
+                    "type": "text",
+                    "content": "[[h3]]CSS for the Web Page Header[[/]]"
+                },
+                {
+                    "type": "code",
+                    "content": "body {\n  font-family: 'Roboto', sans-serif;\n}\n\nnav {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-evenly;\n}\n\n.top {\n  text-align: center;\n  border: 3px solid black;\n  background-color: blanchedalmond;\n  color: black;\n  box-shadow: 0px 5px 10px black;\n}\n\nnav > a:link {\n  color: green;\n  background-color: transparent;\n  text-decoration: none;\n}\n\nnav > a:visited {\n  color: green;\n  background-color: transparent;\n  text-decoration: none;\n}\n\nnav > a:hover {\n  color: red;\n  background-color: transparent;\n}"
+                },
+                {
+                    "type": "text",
+                    "content": "[[h3]]Explanation[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Applies a font to all text within the body tags"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Creates a container for the links and spaces the content evenly in a row"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Uses the “top” class that was created earlier to apply styles to the header box including centered text, a border with the specified width/color/type,  a background color, text color, and a box shadow"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Applies CSS to the links (the nav selector is optional - if removed, the style will apply to all links in the page)"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ The normal and visited links will appear green (you should pick your own colors) and without underline"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ When hovered on, the links should appear red/(your choice of color)"
+                }
+            ],
+            "hints": [],
+            "validation": [],
+            "points": 0,
+            "coins": 0
+        },
+        {
+            "type": "code_editor",
+            "storage_id": [
+                "webdev-1-0-0.html",
+                "webdev-1-0-1.html",
+                "webdev-1-0-2.css"
+            ],
+            "files": [
+                "index.html",
+                "otherPage.html",
+                "styles.css"
+            ],
+            "default": [
+                "<!DOCTYPE html>",
+                "<!DOCTYPE html>",
+                "html {}"
+            ],
+            "display_type": "web",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "[[h3]]Create a Grid of Items[[/]]"
+                },
+                {
+                    "type": "code",
+                    "content": "<div id=\"item-grid\">\n  <div id=\"item\">\n    <img src=\"/items/your_item.jpg\" id=\"item-image\" height=240>\n    <h2>Item Name</h2>\n    <p>Item Description</p>\n  </div>\n</div>"
+                },
+                {
+                    "type": "text",
+                    "content": "[[h3]]Grid Styling[[/]]"
+                },
+                {
+                    "type": "code",
+                    "content": "#item-grid {\n  display: grid;\n  justify-content: center;\n  grid-template-columns: 400px 400px;\n}"
+                },
+                {
+                    "type": "text",
+                    "content": "[[h3]]Grid Item Styling[[/]]"
+                },
+                {
+                    "type": "code",
+                    "content": "#item-image {\n  width: 100%;\n}\n\n#item {\n  width: 300px;\n  height: 400px;\n  background-color: lightgray;\n  text-align: center;\n  color: white;\n  transition: 0.5s all;\n  margin: 20px;\n  border: 3px black solid;\n}"
+                },
+                {
+                    "type": "text",
+                    "content": "[[h3]]Explanation (HTML block)[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ The first <div> will group all list items (more items will be added later)"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Add a <div> for your first item, which will consist of an image, a header and a description"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Choose an item from your image folder for the first grid item, and give it a corresponding title and description"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Note: image dimensions are often relative to window size, but here, it can be set to what fits your viewing window (ex. 240)"
+                },
+                {
+                    "type": "text",
+                    "content": "[[h3]]Explanation (CSS blocks)[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Use the first <div> selector to create a centered grid container, and adjust the dimensions of the columns with the grid-template-columns property"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Set the width to 100% to let the image take the full size of the grid box"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Adjust the various properties of the box with the grid item selector; properties include width, length, background color, border, text color, fonts, etc. "
+                }
+            ],
+            "hints": [],
+            "validation": [],
+            "points": 0,
+            "coins": 0
+        },
+        {
+            "type": "code_editor",
+            "storage_id": [
+                "webdev-1-0-0.html",
+                "webdev-1-0-1.html",
+                "webdev-1-0-2.css"
+            ],
+            "files": [
+                "index.html",
+                "otherPage.html",
+                "styles.css"
+            ],
+            "default": [
+                "<!DOCTYPE html>",
+                "<!DOCTYPE html>",
+                "html {}"
+            ],
+            "display_type": "web",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "[[h3]]Grid Item Hover Styling[[/]]"
+                },
+                {
+                    "type": "code",
+                    "content": "#item:hover {\n  transform: scale(1.05);\n  box-shadow: 0px 5px 10px black;\n  transition: box-shadow ease-in-out 0.2s;\n}"
+                },
+                {
+                    "type": "text",
+                    "content": "[[h3]]Explanation[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ When the grid item is hovered on, the size should increase (adjust your margins and scale accordingly)"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Add a box shadow and a transition when hovered over"
+                },
+                {
+                    "type": "text",
+                    "content": "[[h3]]Add Grid Items[[/]]"
+                },
+                {
+                    "type": "code",
+                    "content": "<div id=\"item\">\n  <img src=\"/items/your_item2.jpg\" id=\"item-image\" height=240>\n  <h2>Item Name</h2>\n  <p>Item Description</p>\n</div>\n<div id=\"item\">\n  <img src=\"/items/your_item3.jpg\" id=\"item-image\" height=240>\n  <h2>Item Name</h2>\n  <p>Item Description</p>\n</div>\n<div id=\"item\">\n  <img src=\"/items/your_item4.jpg\" id=\"item-image\" height=240>\n  <h2>Item Name</h2>\n  <p>Item Description</p>\n</div>"
+                },
+                {
+                    "type": "text",
+                    "content": "[[h3]]Explanation (CSS blocks)[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Within the grid <div>, copy the item <div> to create 3 more image boxes"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Add your images with the corresponding name and item descriptions"
+                }
+            ],
+            "hints": [],
+            "validation": [],
+            "points": 0,
+            "coins": 0
+        },
+        {
+            "type": "code_editor",
+            "storage_id": [
+                "webdev-1-0-0.html",
+                "webdev-1-0-1.html",
+                "webdev-1-0-2.css"
+            ],
+            "files": [
+                "index.html",
+                "otherPage.html",
+                "styles.css"
+            ],
+            "default": [
+                "<!DOCTYPE html>",
+                "<!DOCTYPE html>",
+                "html {}"
+            ],
+            "display_type": "web",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "[[h3]]Add and Style a Footer[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Similar to the header tag, a footer can be added at the bottom of the page"
+                },
+                {
+                    "type": "code",
+                    "content": "<footer>\n    <p>Thank you for visiting</p>\n</footer>"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Style it with CSS properties:; the code below can be used as an example"
+                },
+                {
+                    "type": "code",
+                    "content": "footer {\n  background-color: gray;\n  color: white;\n  text-align: center;\n  height: 100px;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  border-top: 3px black solid;\n}"
+                }
+            ],
+            "hints": [],
+            "validation": [],
+            "points": 0,
+            "coins": 0
+        }
+    ]
+}

@@ -1028,7 +1028,9 @@ class TabbedEditor extends tApp.Component {
 		this.x = false;
 	}
 	render() {
-		window.monacoAlreadyLoaded = false;
+		delete window.monacoAlreadyLoaded;
+		delete window.addedEditorEventListeners;
+
 		var self = this;
 		var tabs = [];
 		async function getData() {

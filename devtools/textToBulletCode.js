@@ -12,9 +12,8 @@ Just copy everything, and it should be visible in VS CODE or you're favorite cod
 //     Allows to dynamically render content
 // `
 var text = `
-To make the list update every time a user inputs a new item, we need to use React States
-Create a React State named “items” and inside it, put our previous “items” variable
-Then, pass this React State to the ItemList component. Then, everytime the callback function is called, add a new element to that array and update the state!
+Within the grid <div>, copy the item <div> to create 3 more image boxes
+Add your images with the corresponding name and item descriptions
 `
 
 String.prototype.replaceAll = function (find, replace) {
