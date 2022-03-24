@@ -417,7 +417,7 @@
 		},
 		{
 			"type": "multiple_choice",
-			"question": "What is the correct way to show a shodow on an element?",
+			"question": "What is the correct way to show a shadow on an element?",
 			"descriptions": [
 				"Incorrect. The underline property is used for underlining text.",
 				"Nope. 'shadow' is not a CSS property.",
@@ -447,7 +447,8 @@
 			"answers": [
 				"depth",
 				"color",
-				"opacity"
+				"opacity",
+				""
 			],
 			"correct": 2
 		},
@@ -502,7 +503,8 @@
 			"answers": [
 				"Allows CSS to be written in a single line",
 				"Allows elements to be shows side-by-side.",
-				"Allows mutliple HTML documents to be shows side-by-side."
+				"Allows mutliple HTML documents to be shows side-by-side.",
+				""
 			],
 			"correct": 1
 		},
