@@ -792,6 +792,7 @@ try{
 								let imports = []
 								code = code.replaceAll(/import([\s\S]*?)(?='|").*/g, function (e) {
 									if (e.replaceAll("\"", "'").match(/(?<=')(.*)(?=')/g)[0] === "react") return "";
+									if (e.replaceAll("\"", "'").match(/(?<=')(.*)(?=')/g)[0] === "react-dom") return "";
 									let name = e.match(/(?<=import)(.*)(?=from)/g)[0];
 									imports.push(e.replaceAll("\"", "'"))
 									return `var ${name} = window.__importBridge.${name}`
@@ -810,11 +811,17 @@ try{
 										return showError("DependencyNotFoundError: Could not find dependency: '" + module + "'")
 									}
 									let moduleCode = await DB.getCode(self.parent.parent.data().storage_id[moduleIndex])
+									
 									if (name.startsWith("{") && name.endsWith("}")) {
 										// do something
 									} else {
 										let compiledModuleCode = moduleCode.replaceAll("module.exports", "window.__importBridge." + name)
 										compiledModuleCode = compiledModuleCode.replaceAll("export default", "window.__importBridge." + name + " = ")
+										compiledModuleCode = compiledModuleCode.replaceAll(/import([\s\S]*?)(?='|").*/g, function (e) {
+											if (e.replaceAll("\"", "'").match(/(?<=')(.*)(?=')/g)[0] === "react") return "";
+											if (e.replaceAll("\"", "'").match(/(?<=')(.*)(?=')/g)[0] === "react-dom") return "";
+											return e;
+										})
 										compiledModuleCode = Babel.transform(compiledModuleCode, {
 											plugins: ["transform-react-jsx"]
 										}).code;

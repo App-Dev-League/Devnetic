@@ -12,8 +12,11 @@ Just copy everything, and it should be visible in VS CODE or you're favorite cod
 //     Allows to dynamically render content
 // `
 var text = `
-Within the grid <div>, copy the item <div> to create 3 more image boxes
-Add your images with the corresponding name and item descriptions
+Inside of this file, first create a function with a parameter named “props”. 
+Then, display some props like “stats” (Like name, age, favorite color, etc.)
+Lastly, export this function
+Just a refresher, access the props with {props.yourPropName} 
+When you run the project right now, you probably won’t see much, but we’ll change this in the next slide 
 `
 
 String.prototype.replaceAll = function (find, replace) {
