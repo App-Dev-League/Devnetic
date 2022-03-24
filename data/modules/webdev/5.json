@@ -431,7 +431,8 @@
 			"answers": [
 				"HTMLElement.setAttribute(\"class\", \"top\")",
 				"HTMLElement.innerHTML = \"Top\"",
-				"HTMLElement.getAttribute(\"value\")"
+				"HTMLElement.getAttribute(\"value\")",
+				""
 			],
 			"correct": 2
 		}
