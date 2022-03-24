@@ -409,7 +409,9 @@
 			"coins": 1,
 			"answers": [
 				"True",
-				"False"
+				"False",
+				"",
+				""
 			],
 			"correct": 0
 		},
