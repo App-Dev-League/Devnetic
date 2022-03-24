@@ -139,6 +139,7 @@
 		request.data.position = parseInt(request.data.position);
 		Database.getModuleData(request.data.track, request.data.module, request.data.position).then((res) => {
 			let { data, type, moduleLength, next } = res;
+			document.getElementById("module-progress-bar").style.width = request.data.position / moduleLength * 100+"%"
 			window.tAppRequestInstance = request;
 			if (request.data.position >= moduleLength) {
 				if (next.hasNext) {

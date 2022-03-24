@@ -70,7 +70,6 @@
             top: 0;
             left: 0;
             background-color: var(--blue);
-            border-radius: 0 0 15px 15px;
             z-index: 10;
         }
 
@@ -1112,6 +1111,15 @@
             background: var(--gray);
             top: -50px;
         }
+        #module-progress-bar {
+            position: fixed;
+            top: 50px;
+            left: 0;
+            width: 0%;
+            height: 5px;
+            background-color: #34db77;
+            transition: width 1s;
+        }
     </style>
 </head>
 
@@ -1126,6 +1134,7 @@
         <h3 class="username">Guest</h3>
         <p class="score" id="score">- XP, - Coins</p>
     </header>
+    <div id="module-progress-bar"></div>
     <tapp-main>
         <script>
             window.newFileCallback = function() {
@@ -1269,5 +1278,8 @@
     })
     window.addEventListener('hashchange', function() {
         window.scrollTo(0, 0);
+        if (!window.location.hash.startsWith("#/learn")) {
+            document.getElementById("module-progress-bar").style.width = 0
+        }
     })
 </script>
