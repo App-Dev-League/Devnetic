@@ -52,7 +52,25 @@ class Editor extends tApp.Component {
 				document.getElementById("code-editor-run-btn").click()
 			}, 100)
 		}
-
+		function setPreviewHTML(html) {
+			let preview = document.getElementById("preview");
+			let previewParent = preview.parentElement;
+			preview.parentElement.removeChild(preview);
+			preview = document.createElement("iframe");
+			preview.style.width = "98%";
+			preview.style.height = "100%";
+			preview.id = "preview"
+			previewParent.appendChild(preview);
+			if (preview) {
+				preview.contentWindow.document.open();
+				preview.contentWindow.document.write(html);
+				preview.contentWindow.document.close();
+			}
+			if (preview.contentWindow.document.body && !preview.contentWindow.document.body.isContentEditable) {
+				preview.contentWindow.document.body.contentEditable = true;
+				preview.contentWindow.document.body.contentEditable = false;
+			  }
+		}
 		async function loadCodeFromDb() {
 			if (tabindex !== codeEditorHelper.getCurrentEditorIndex()) return;
 			if (self.state.file) {
@@ -108,7 +126,11 @@ class Editor extends tApp.Component {
 		function addThings() {
 			function loadCode() {
 				try {
-					document.getElementById("preview").src = "data:text/html;base64," + plugins.Base64.encode(codeEditorHelper.getValue());
+					if (document.getElementById("preview")) {
+						document.getElementById("preview").contentWindow.document.open();
+						document.getElementById("preview").contentWindow.document.write(codeEditorHelper.getValue());
+						document.getElementById("preview").contentWindow.document.close();
+					}
 				} catch (err) {
 					setTimeout(loadCode, 500);
 				}
@@ -545,8 +567,9 @@ class Editor extends tApp.Component {
 								return module;
 							})
 							html = "<!--Devnetics Loaded-->"+html
-							//if (document.getElementById("preview")) document.getElementById("preview").src = "data:text/html;base64," + plugins.Base64.encode(html)
-							if (document.getElementById("preview")) document.getElementById("preview").srcdoc = html
+							html = html.replace("<!DOCTYPE html>", "")
+							setPreviewHTML(html)							
+
 							if (errored = true) {
 								try {
 									document.getElementById("preview-container").classList.remove("preview-mode-console")
@@ -722,7 +745,7 @@ ${code}
 								let md = codeEditorHelper.getValue();
 								var converter = new showdown.Converter();
 								let html = converter.makeHtml(md);
-								document.getElementById("preview").src = "data:text/html;base64," + plugins.Base64.encode(html);
+								setPreviewHTML(html)							
 							}
 						} else if (fileType === "js") {
 							document.getElementById("console-bridge").dispatchEvent(new Event('change'));
@@ -857,7 +880,7 @@ try{
 										</body>
 									</html>
 									`
-									document.getElementById("preview").srcdoc = src;
+									setPreviewHTML(src)							
 									document.getElementById("preview-container").classList.remove("preview-mode-console")
 									let console = document.querySelector(".console-wrapper");
 									if (console) console.parentElement.removeChild(console)
@@ -950,7 +973,7 @@ try{
 								</body>
 							</html>
 							`
-							if (document.getElementById("preview")) document.getElementById("preview").src = "data:text/html;base64," + plugins.Base64.encode(html)
+							setPreviewHTML(html)							
 						}
 					}
 					document.getElementById("code-frame").contentWindow.document.onkeydown = async function (e) {

@@ -147,7 +147,6 @@
 				if (!el.classList.contains("template")) el.parentElement.removeChild(el)
 			})
             window.currentModuleData.pages.forEach(element => {
-				console.log(element)
                 let parent = document.getElementById("module-progress-bar-wrapper");
                 let template = parent.querySelector(".template");
                 let newElement = template.cloneNode(true);
