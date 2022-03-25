@@ -544,7 +544,9 @@ class Editor extends tApp.Component {
 								})
 								return module;
 							})
-							if (document.getElementById("preview")) document.getElementById("preview").src = "data:text/html;base64," + plugins.Base64.encode(html)
+							html = "<!--Devnetics Loaded-->"+html
+							//if (document.getElementById("preview")) document.getElementById("preview").src = "data:text/html;base64," + plugins.Base64.encode(html)
+							if (document.getElementById("preview")) document.getElementById("preview").srcdoc = html
 							if (errored = true) {
 								try {
 									document.getElementById("preview-container").classList.remove("preview-mode-console")
@@ -1085,8 +1087,11 @@ class TabbedEditor extends tApp.Component {
 					}, self))
 					document.body.setAttribute('data-before', "Loading files...");
 					document.body.classList.add("tester-testing")
+					document.body.classList.add("data-loadingfile")
 				}
 				async function onLoadCallback() {
+					if (!document.body.classList.contains("data-loadingfile")) return;
+					document.body.classList.remove("data-loadingfile")
 					document.body.classList.remove("tester-testing")
 				}
 			}

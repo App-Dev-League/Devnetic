@@ -86,7 +86,8 @@ const Database = {
 						hasNext: true,
 						module: moduleNum,
 						position: position + 1
-					}
+					},
+					moduleData: parsedData
 				});
 			} else {
 				tApp.get(`/data/modules/${track}/${moduleNum + 1}.json`).then(() => {
@@ -98,7 +99,8 @@ const Database = {
 							hasNext: true,
 							module: moduleNum + 1,
 							position: 0
-						}
+						},
+						moduleData: parsedData
 					});
 				}).catch((err) => {
 					resolve({
@@ -107,7 +109,8 @@ const Database = {
 						moduleLength: parsedData.pages.length,
 						next: {
 							hasNext: false
-						}
+						},
+						moduleData: parsedData
 					});
 				});
 			}

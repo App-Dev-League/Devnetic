@@ -138,9 +138,51 @@
 		request.data.module = parseInt(request.data.module);
 		request.data.position = parseInt(request.data.position);
 		Database.getModuleData(request.data.track, request.data.module, request.data.position).then((res) => {
-			let { data, type, moduleLength, next } = res;
-			document.getElementById("module-progress-bar").style.width = request.data.position / moduleLength * 100+"%"
+			let { data, type, moduleLength, next, moduleData} = res;
+			document.getElementById("module-progress-bar").style.width = request.data.position / moduleLength * 100+"%";
 			window.tAppRequestInstance = request;
+			window.currentModuleData = moduleData;
+			let currentTraverse = 0;
+			document.querySelectorAll(".module-progress-bar-timeline-element").forEach((el) => {
+				if (!el.classList.contains("template")) el.parentElement.removeChild(el)
+			})
+            window.currentModuleData.pages.forEach(element => {
+				console.log(element)
+                let parent = document.getElementById("module-progress-bar-wrapper");
+                let template = parent.querySelector(".template");
+                let newElement = template.cloneNode(true);
+                newElement.classList.remove("template");
+                newElement.style.left = (currentTraverse/window.currentModuleData.pages.length*100) + "%";
+				if (request.data.position > currentTraverse ) newElement.classList.add("filled");
+				else newElement.classList.remove("filled");
+
+				if (element.type === "information") {
+					newElement.querySelector(".name").innerText = element.title || "";
+					newElement.querySelector(".descriptor").innerHTML = "<b>Type: </b>Learn" 
+				}
+				if (element.type === "multiple_choice") {
+					newElement.querySelector(".name").innerText = element.question.slice(0, 10)+"..." || "";
+					newElement.querySelector(".descriptor").innerHTML = "<b>Type: </b>Question" 
+				}
+				if (element.type === "snippet_unlock") {
+					newElement.querySelector(".name").innerText = element.name.slice(0, 10)+"..." || "";
+					newElement.querySelector(".descriptor").innerHTML = "<b>Type: </b>Snippet" 
+				}
+				if (element.type === "short_answer") {
+					newElement.querySelector(".name").innerText = element.question.slice(0, 10)+"..." || "";
+					newElement.querySelector(".descriptor").innerHTML = "<b>Type: </b>Question" 
+				}
+				if (element.type === "congratulations") {
+					newElement.querySelector(".name").innerText = "Lesson summary"
+					newElement.querySelector(".descriptor").innerHTML = "<b>Type: </b>Summary" 
+				}
+				if (element.type === "code_editor") {
+					newElement.querySelector(".name").innerText = element.elements[0].content.replaceAll("[[h3]]", "").replaceAll("[[/]]", "")
+					newElement.querySelector(".descriptor").innerHTML = "<b>Type: </b>Project" 
+				}
+				currentTraverse ++;
+                parent.appendChild(newElement);
+            })
 			if (request.data.position >= moduleLength) {
 				if (next.hasNext) {
 					alert("You have already completed this module! We will now take you to the next module.");

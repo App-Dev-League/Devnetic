@@ -342,13 +342,14 @@ class CodeEditor extends ModuleComponent {
 							
 							await sleep(1000)
 							document.getElementById("code-editor-run-btn").click()
-							
-							for (let i = 0; i < 1000; i++) {
-								await sleep(100)
-								if (i === 20) document.getElementById("code-editor-run-btn").click()
-								if (!document.querySelector("#preview") || !document.querySelector("#preview").srcdoc.trim().startsWith("<html>")) continue;
-								else{
-									break;
+							if (action.run.endsWith("jsx")) {
+								for (let i = 0; i < 1000; i++) {
+									await sleep(100)
+									if (i === 20) document.getElementById("code-editor-run-btn").click()
+									if (!document.querySelector("#preview") || !document.querySelector("#preview").srcdoc.trim().startsWith("<html>")) continue;
+									else{
+										break;
+									}
 								}
 							}
 							await sleep(1000)
