@@ -332,6 +332,7 @@ class CodeEditor extends ModuleComponent {
 					document.body.setAttribute('data-before', testingMessages[Math.floor(Math.random() * testingMessages.length)]);
 					await sleep(1)
 					for (let p in tester.actions) {
+						console.log("asdf", "asdfasdf")
 						let action = tester.actions[p];
 						if (typeof action.run !== "undefined") {
 							// switching to correct editor
@@ -344,9 +345,10 @@ class CodeEditor extends ModuleComponent {
 							document.getElementById("code-editor-run-btn").click()
 							if (action.run.endsWith("jsx")) {
 								for (let i = 0; i < 1000; i++) {
+									console.log(i)
 									await sleep(100)
 									if (i === 20) document.getElementById("code-editor-run-btn").click()
-									if (!document.querySelector("#preview") || !document.querySelector("#preview").srcdoc.trim().startsWith("<html>")) continue;
+									if (!document.querySelector("#preview") || !document.querySelector("#preview").contentWindow.document.body.innerHTML.trim().startsWith("<div id=\"root\"")) continue;
 									else{
 										break;
 									}
