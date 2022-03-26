@@ -20,6 +20,11 @@
                     "content": "➔ One way to do this would be to make a tree considering potential combinations"
                 },
 				{
+                    "type": "image",
+                    "src": "/data/modules/ai-assets/img3/0-3.png",
+                    "width": "50%"
+                },
+				{
 					"type": "text",
 					"content": "[[h3]]What is a Decision Tree?[[/]]"
 				},

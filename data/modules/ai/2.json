@@ -63,6 +63,17 @@
 				{
                     "type": "text",
                     "content": "➔ Multiple linear regression: n-dimensional plane"
+                },
+				{
+                    "type": "image",
+                    "src": "/data/modules/ai-assets/img2/1-2.png",
+                    "width": "50%"
+					
+                },
+				{
+                    "type": "image",
+                    "src": "/data/modules/ai-assets/img2/2-2.png",
+                    "width": "50%"
                 }
 			]
 		},
@@ -116,6 +127,11 @@
 				{
                     "type": "text",
                     "content": "    ➔ Many other methods, but we will focus on OLS"
+                },
+				{
+                    "type": "image",
+                    "src": "/data/modules/ai-assets/img2/3-2.png",
+                    "width": "50%"
                 }
 
 			]
@@ -152,6 +168,11 @@
                     "content": "➔ Given a set of data, SVM finds a line that splits the data in two categories, such as to maximize the separation between the two categories"
                 },
 				{
+                    "type": "image",
+                    "src": "/data/modules/ai-assets/img2/4-2.png",
+                    "width": "50%"
+                },
+				{
 					"type": "text",
 					"content": "[[h3]]Method[[/]]"
 				},
@@ -159,6 +180,11 @@
 					"type": "text",
 					"content": "➔ The hard margin is the sum of the distances between the right-most red and leftmost green to the line that cuts the data in half. We want to maximize this"
 				},
+				{
+                    "type": "image",
+                    "src": "/data/modules/ai-assets/img2/5-2.png",
+                    "width": "50%"
+                },
 				{
 					"type": "text",
 					"content": "[[h3]]Motivation[[/]]"
