@@ -28,7 +28,7 @@ class PluginPanel extends tApp.Component {
                                 setTimeout(function(){
                                     document.getElementById("plugin-list-" + plugin.id).querySelector("h5").click()
                                 }, 1000)
-                            }, 100)
+                            }, 1000)
                         }
                     }
                 ], "codicon-symbol-property")
