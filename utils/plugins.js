@@ -146,7 +146,7 @@ module.exports = {
                 description: "This plugin allows you to create and preview a ReactJS website!",
                 image: "/assets/plugins/react/react.svg",
                 id: "react",
-                latestVersion: "3.1.0"
+                latestVersion: "3.1.1"
             },
             {
                 name: "Perl",

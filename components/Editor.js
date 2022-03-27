@@ -814,6 +814,7 @@ try{
 								await plugins.load("react");
 								// parsing imports
 								let importStatements = "";
+								let secondaryFilesCode = ""
 								code = await replaceAsync(code, /import([\s\S]*?)(?='|").*/g, async function(e) {
 									if (e.replaceAll("\"", "'").match(/(?<=')(.*)(?=')/g)[0] === "react") return "";
 									if (e.replaceAll("\"", "'").match(/(?<=')(.*)(?=')/g)[0] === "react-dom") return "";
@@ -843,34 +844,44 @@ try{
 										if (e.replaceAll("\"", "'").match(/(?<=')(.*)(?=')/g)[0] === "react-dom") return "";
 										return e;
 									})
-
-									if (moduleCode.endsWith(".css")) {
-										moduleCode = window.CSSJSON.toJSON(moduleCode);
-										moduleCode = "data:text/css;charset=utf-8;base64,"+plugins.Base64.encode(moduleCode)
+									if (module.endsWith(".module.css")) {
+										moduleCode = "export default "+ format(window.nativeCss.convert(moduleCode))
+										function format(obj){
+											var str = JSON.stringify(obj, 0, 4),
+												arr = str.match(/".*?":/g);
+											if (arr === null) return "{}"
+											for(var i = 0; i < arr.length; i++)
+												str = str.replace(arr[i], arr[i].replace(/"/g,''));
+											str = str.replaceAll("\\\"", "");
+											return str;
+										}
+										moduleCode = "data:text/javascript;charset=utf-8;base64,"+plugins.Base64.encode(moduleCode)
+										importStatements+=`import${moduleName}from '${moduleCode}';\n`
+									} else if (module.endsWith(".css")){
+										secondaryFilesCode += "<style>\n"+moduleCode+"\n</style>"
 									} else {
 										moduleCode = Babel.transform(moduleCode, {
 											plugins: ["transform-react-jsx"]
 										}).code;
 										moduleCode = "data:text/javascript;charset=utf-8;base64,"+plugins.Base64.encode(moduleCode)
+										importStatements+=`import${moduleName}from '${moduleCode}';\n`
 									}
-									importStatements+=`import${moduleName}from '${moduleCode}';\n`
 									return ``
 								})
-
-								var secondaryFilesCode = ""
 								code = Babel.transform(code, {
 									plugins: ["transform-react-jsx"]
 								}).code
 								if (document.getElementById("preview")) {
 									let src = `
 									<html>
+										<head>
+										${secondaryFilesCode}
+										</head>
 										<body>
 											<div id="root"></div>
 											<script>
-											window.__importBridge = {};
-												${await plugins.getCode("react")}
+											${await plugins.getCode("react")}
 											</script>
-											${secondaryFilesCode}
 											<script type="module">
 											${importStatements}
 												try{
