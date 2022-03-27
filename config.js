@@ -33,6 +33,8 @@
 	], {
 		path: "./utils/"
 	});
+	await install("./assets/libraries/ejs.js")
+
 
 	const ModulePage = require("./components/ModulePage.js");
 	const Information = require("./components/Information.js");
@@ -46,6 +48,7 @@
 	const shuffleArray = require("./utils/shuffleArray.js");
 	const Database = require("./utils/Database.js");
 	const plugins = require("./utils/plugins.js");
+	require("./assets/libraries/ejs.js");
 
 	tApp.configure({
 		target: document.querySelector("tapp-main"),
@@ -70,10 +73,16 @@
 	});
 
 	tApp.route("#/", function (request) {
-		tApp.renderFile("./views/index.html");
+		tApp.get("./views/index.html").then(res => res.text()).then(async html => {
+			let templated = await recurseEjs(html);
+			tApp.render(templated);
+		})
 	});
 	tApp.route("#/track/<track>", function (request) {
-		tApp.renderFile(`./views/${request.data.track}.html`).catch((err) => {
+		tApp.get(`./views/${request.data.track}.html`).then(res => res.text()).then(async html => {
+			let templated = await recurseEjs(html);
+			tApp.render(templated);
+		}).catch((err) => {
 			tApp.renderPath("#/404");
 		});
 	});
@@ -272,3 +281,15 @@
 		});*/
 	});
 })();
+function recurseEjs(html) {
+	return new Promise(async (resolve, reject) => {
+		let rtemplated = await ejs.render(html, {
+			include: async function(path){
+				let res = await tApp.get(path);
+				let results = await recurseEjs(await res.text())
+				return results;
+			}
+		}, {async: true});
+		resolve(rtemplated)
+	})
+}
