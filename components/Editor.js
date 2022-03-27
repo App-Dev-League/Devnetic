@@ -498,17 +498,16 @@ class Editor extends tApp.Component {
 							document.getElementById("console-bridge").dispatchEvent(new Event('change'));
 						}
 						window.lastTab = tabindex;
-
+						async function replaceAsync(str, regex, asyncFn) {
+							const promises = [];
+							str.replace(regex, (match, ...args) => {
+								const promise = asyncFn(match, ...args);
+								promises.push(promise);
+							});
+							const data = await Promise.all(promises);
+							return str.replace(regex, () => data.shift());
+						}
 						if (fileType === "html") {
-							async function replaceAsync(str, regex, asyncFn) {
-								const promises = [];
-								str.replace(regex, (match, ...args) => {
-									const promise = asyncFn(match, ...args);
-									promises.push(promise);
-								});
-								const data = await Promise.all(promises);
-								return str.replace(regex, () => data.shift());
-							}
 							function showError(text) {
 								window.consoleLogs = [[text]]
 								document.getElementById("console-bridge").click()
@@ -814,46 +813,51 @@ try{
 								let code = codeEditorHelper.getValue();
 								await plugins.load("react");
 								// parsing imports
-								let imports = []
-								code = code.replaceAll(/import([\s\S]*?)(?='|").*/g, function (e) {
+								let importStatements = "";
+								code = await replaceAsync(code, /import([\s\S]*?)(?='|").*/g, async function(e) {
 									if (e.replaceAll("\"", "'").match(/(?<=')(.*)(?=')/g)[0] === "react") return "";
 									if (e.replaceAll("\"", "'").match(/(?<=')(.*)(?=')/g)[0] === "react-dom") return "";
-									let name = e.match(/(?<=import)(.*)(?=from)/g)[0];
-									imports.push(e.replaceAll("\"", "'"))
-									return `var ${name} = window.__importBridge.${name}`
-								})
-								var secondaryFilesCode = ""
-								for (let i in imports) {
-									let element = imports[i]
-									let module = element.match(/(?<=')(.*)(?=')/g)[0];
-									let name = element.match(/(?<=import)(.*)(?=from)/g)[0];
+									let moduleName = e.match(/(?<=import)(.*)(?=from)/g)[0];
+									let module = e.replaceAll("\"", "'").match(/(?<=')(.*)(?=')/g)[0]
+
+									if (!module.startsWith("./")) module = "./" + module;
 									if (!module.startsWith("./") || module.indexOf("/") !== 1) {
 										return showError("DependencyNotFoundError: Could not find dependency: '" + module + "'")
 									}
 									module = module.slice(2);
 									let moduleIndex = self.parent.parent.data().files.findIndex(e => e === module)
 									if (moduleIndex === -1) {
-										return showError("DependencyNotFoundError: Could not find dependency: '" + module + "'")
-									}
-									let moduleCode = await DB.getCode(self.parent.parent.data().storage_id[moduleIndex])
-									
-									if (name.startsWith("{") && name.endsWith("}")) {
-										// do something
+										try {
+											moduleCode = await codeEditorHelper.getFile(module);
+											moduleCode = moduleCode.code
+										} catch (e) {
+											return showError("DependencyNotFoundError: Could not find dependency: '" + module + "'")
+										}
 									} else {
-										let compiledModuleCode = moduleCode.replaceAll("module.exports", "window.__importBridge." + name)
-										compiledModuleCode = compiledModuleCode.replaceAll("export default", "window.__importBridge." + name + " = ")
-										compiledModuleCode = compiledModuleCode.replaceAll(/import([\s\S]*?)(?='|").*/g, function (e) {
-											if (e.replaceAll("\"", "'").match(/(?<=')(.*)(?=')/g)[0] === "react") return "";
-											if (e.replaceAll("\"", "'").match(/(?<=')(.*)(?=')/g)[0] === "react-dom") return "";
-											return e;
-										})
-										compiledModuleCode = Babel.transform(compiledModuleCode, {
+										moduleCode = await DB.getCode(self.parent.parent.data().storage_id[moduleIndex]);
+									}
+									
+
+									moduleCode = moduleCode.replaceAll(/import([\s\S]*?)(?='|").*/g, function (e) {
+										if (e.replaceAll("\"", "'").match(/(?<=')(.*)(?=')/g)[0] === "react") return "";
+										if (e.replaceAll("\"", "'").match(/(?<=')(.*)(?=')/g)[0] === "react-dom") return "";
+										return e;
+									})
+
+									if (moduleCode.endsWith(".css")) {
+										moduleCode = window.CSSJSON.toJSON(moduleCode);
+										moduleCode = "data:text/css;charset=utf-8;base64,"+plugins.Base64.encode(moduleCode)
+									} else {
+										moduleCode = Babel.transform(moduleCode, {
 											plugins: ["transform-react-jsx"]
 										}).code;
-										secondaryFilesCode += "<script>\n" + `(function(){\n${compiledModuleCode}\n})()` + "\n</script>";
-										// do more things
+										moduleCode = "data:text/javascript;charset=utf-8;base64,"+plugins.Base64.encode(moduleCode)
 									}
-								}
+									importStatements+=`import${moduleName}from '${moduleCode}';\n`
+									return ``
+								})
+
+								var secondaryFilesCode = ""
 								code = Babel.transform(code, {
 									plugins: ["transform-react-jsx"]
 								}).code
@@ -867,7 +871,8 @@ try{
 												${await plugins.getCode("react")}
 											</script>
 											${secondaryFilesCode}
-											<script>
+											<script type="module">
+											${importStatements}
 												try{
 													${code}
 												}catch(err) {
@@ -882,8 +887,8 @@ try{
 									`
 									setPreviewHTML(src)							
 									document.getElementById("preview-container").classList.remove("preview-mode-console")
-									let console = document.querySelector(".console-wrapper");
-									if (console) console.parentElement.removeChild(console)
+									let consolew = document.querySelector(".console-wrapper");
+									if (consolew) consolew.parentElement.removeChild(consolew)
 								}
 
 							}
