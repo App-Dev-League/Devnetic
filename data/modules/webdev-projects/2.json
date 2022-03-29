@@ -3,7 +3,7 @@
     "pages": [
         {
             "type": "information",
-            "title": "Project Overview",
+            "title": "Week 3 Project - Console Games with JS",
             "elements": [
                 {
                     "type": "text",

@@ -3,7 +3,7 @@
     "pages": [
         {
             "type": "information",
-            "title": "Project Overview",
+            "title": "Week 8 Project - To Do List with React Components",
             "elements": [
                 {
                     "type": "text",

@@ -3,7 +3,7 @@
     "pages": [
         {
             "type": "information",
-            "title": "Project Overview",
+            "title": "Week 7 Project - Information Displayer with React",
             "elements": [
                 {
                     "type": "text",

@@ -1138,13 +1138,16 @@
             background-color: #2d89c7;
             height: 100px;
         }
+
         #module-progress-bar-wrapper:hover #module-progress-bar {
             transform: translateY(45px);
         }
+
         #module-progress-bar-wrapper:hover::before {
-            background-color: rgba(0,0,0,0.2) !important;
+            background-color: rgba(0, 0, 0, 0.2) !important;
             transform: translateY(45px);
         }
+
         #module-progress-bar-wrapper:before {
             position: fixed;
             top: 50px;
@@ -1152,10 +1155,11 @@
             width: 100%;
             height: 5px;
             z-index: 9;
-            background-color: rgba(0,0,0,0.0);
+            background-color: rgba(0, 0, 0, 0.0);
             transition: 0.5s all;
             content: "";
         }
+
         .module-progress-bar-timeline-element {
             position: absolute;
             z-index: 11;
@@ -1166,12 +1170,15 @@
             opacity: 0;
             transition: 0.5s all;
         }
+
         .module-progress-bar-timeline-element.filled {
             background-color: white
         }
+
         .module-progress-bar-timeline-element.template {
             display: none;
         }
+
         .module-progress-bar-timeline-element .descriptor {
             position: absolute;
             top: 20px;
@@ -1180,6 +1187,7 @@
             pointer-events: none;
             width: 1000px;
         }
+
         .module-progress-bar-timeline-element .name {
             position: absolute;
             top: -30px;
@@ -1189,21 +1197,26 @@
             font-weight: bold;
             width: 1000px;
         }
+
         .module-progress-bar-timeline-element.filled {
             background-color: white
         }
+
         .module-progress-bar-timeline-element:hover .descriptor {
             opacity: 1 !important;
         }
+
         .module-progress-bar-timeline-element:hover {
             width: 11px;
             height: 11px;
             border: 4px solid white;
             transform: translate(-2px, 38px) !important;
         }
+
         .module-progress-bar-timeline-element:hover .name {
             opacity: 1 !important;
         }
+
         #module-progress-bar-wrapper:hover .module-progress-bar-timeline-element {
             transform: translateY(40px);
             opacity: 1;
@@ -1351,6 +1364,28 @@
         content: "\ea7f";
         color: white;
     }
+
+    .codicon-menu:before {
+        content: "\eb94"
+    }
+
+    .codicon-checklist:before {
+        content: "\eab3";
+    }
+    .codicon-loading:before {
+        content: "\eb19";
+        animation: codicon-loading 1s infinite;
+        display: block;
+        width: fit-content;
+    }
+    @keyframes codicon-loading {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
 </style>
 <link rel="stylesheet" href="/assets/libraries/highlightjs/atom-one-dark.css">
 
@@ -1380,4 +1415,35 @@
             document.getElementById("module-progress-bar-wrapper").style.pointerEvents = "all";
         }
     })
+
+    function nodeScriptReplace(node) {
+        if (nodeScriptIs(node) === true) {
+            node.parentNode.replaceChild(nodeScriptClone(node), node);
+        } else {
+            var i = -1,
+                children = node.childNodes;
+            while (++i < children.length) {
+                nodeScriptReplace(children[i]);
+            }
+        }
+
+        return node;
+    }
+
+    function nodeScriptClone(node) {
+        var script = document.createElement("script");
+        script.text = node.innerHTML;
+
+        var i = -1,
+            attrs = node.attributes,
+            attr;
+        while (++i < attrs.length) {
+            script.setAttribute((attr = attrs[i]).name, attr.value);
+        }
+        return script;
+    }
+
+    function nodeScriptIs(node) {
+        return node.tagName === 'SCRIPT';
+    }
 </script>

@@ -127,6 +127,14 @@ const Database = {
 			}
 		});
 	},
+	getModuleCount: function(track) {
+		let count = 0;
+		while (true) {
+			if (doesFileExist(`/data/modules/${track}/${count}.json`) === false) break;
+			count++;
+		}
+		return count;
+	},
 	getCode: function(storage_id) {
 		return new Promise(async (resolve, reject) => {
 			resolve(localStorage.getItem(`code::${storage_id}`));
@@ -253,5 +261,11 @@ const Database = {
 		});
 	}
 }
-
+function doesFileExist(urlToFile) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('HEAD', urlToFile, false);
+    xhr.send();
+     
+    return xhr.status !== 404;
+}
 module.exports = Database;

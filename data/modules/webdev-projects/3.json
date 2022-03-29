@@ -3,7 +3,7 @@
     "pages": [
         {
             "type": "information",
-            "title": "Project Overview",
+            "title": "Week 4 Project - Calculator",
             "elements": [
                 {
                     "type": "text",

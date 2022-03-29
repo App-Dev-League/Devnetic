@@ -3,7 +3,7 @@
     "pages": [
         {
             "type": "information",
-            "title": "Project Overview",
+            "title": "Week 2 Project - Store Interface with CSS",
             "elements": [
                 {
                     "type": "text",
