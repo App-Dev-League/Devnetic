@@ -12,11 +12,9 @@ Just copy everything, and it should be visible in VS CODE or you're favorite cod
 //     Allows to dynamically render content
 // `
 var text = `
-Inside of this file, first create a function with a parameter named “props”. 
-Then, display some props like “stats” (Like name, age, favorite color, etc.)
-Lastly, export this function
-Just a refresher, access the props with {props.yourPropName} 
-When you run the project right now, you probably won’t see much, but we’ll change this in the next slide 
+Great! Now what if we need to install a NPM package? We can either use 
+npm install \`packageName\` or we can use the command npm install, which reads your package.json and installs all of the dependencies listed inside of it.
+NPM is a really versatile application. You can also create “shortcuts” to commands with a package.json. If you want to run a JS file, but forget what it’s called, you can list a command under “scripts” inside of your package.json, and then run it with npm run {scriptName}
 `
 
 String.prototype.replaceAll = function (find, replace) {

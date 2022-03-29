@@ -1,17 +1,23 @@
 var code = `
-import React from 'react'
-import ReactDOM from 'react-dom'
-import './index.css'
-import Header from './components/header/header'
-import InfoDisplayer from './components/infoDisplayer/infoDisplayer';
-
-ReactDOM.render(
-  <div>
-      <Header/>
-      <InfoDisplayer name="Bob" age="15" color="Blue" book="Lord of the Rings"/>
-  </div>,
-  document.getElementById('root')
-)
+{
+  "name": "My App",
+  "version": "1.0.0",
+  "description": "What your package does",
+  "main": "index.js",
+  "scripts": {
+    "startServer": "node index.js"
+  }
+  "author": "Your Name",
+  "dependencies": {
+    "axios": "^0.21.1"
+  },
+  "repository": "your repository url",
+  "license": "MIT",
+  "keywords": [
+    "add",
+    "number"
+  ]
+}
 `
 
 if (code.startsWith("\n")) code = code.slice(1)
