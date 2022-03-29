@@ -1,6 +1,6 @@
 <div id="menu">
     <%
-     var data = await DB.getActions();
+     var data = {}
      var actions = {
          "Webdev Lessons": "webdev",
          "Webdev Projects": "webdev-projects",
@@ -10,12 +10,18 @@
      for (let p = 0; p<Object.entries(actions).length; p++) {
         var key = Object.entries(actions)[p][0]
         var value = Object.entries(actions)[p][1]
+        data[value] = []
         var totalPages = 0;
         var userPages = 0;
         let count = DB.getModuleCount(value);
         var modules = []
         for (let i = 0; i < count; i++) {
             let module = await DB.getModuleData(value, i, 0);
+            let modulePosition = await DB.getModulePosition(value, i);
+
+            data[value].push(modulePosition)
+
+            module.currentUserPosition = modulePosition;
             modules.push(module);
             let length = module.moduleLength;
             totalPages += length;
@@ -28,7 +34,7 @@
             }
         } else {
             data[value].forEach(element => {
-                if (element !== null) userPages += element.length
+                if (element !== null) userPages += element
             })
             window.menuData[value] = {
                 totalPages: totalPages,
@@ -86,14 +92,14 @@
                             <span style="color: lightgrey">The lessons you'll have to take to <br>achieve 100% mastery of this topic</span>
                         </div>
                         <div class="right" style="width: 100%; padding-left: 25px;">
-                            <% console.log(window.menuData[value].data) %>
                             <% for( let i = 0; i < window.menuData[value].data.length; i++ ) { %>
                                 <% if (window.menuData[value].userPages-1 < i) { %>
                                     <div style="width: 14px; height: 14px; border-radius: 50%; border: 3px solid white; position: absolute; transform: translateX(-33px); background-color: #282C34;"></div>
                                 <% } else { %>
                                     <div style="width: 14px; height: 14px; border-radius: 50%; border: 3px solid white; position: absolute; transform: translateX(-33px); background-color: white;"></div>
                                 <% } %>
-                                <span><%-window.menuData[value].data[i].data.title%></span>
+                                <span><%-window.menuData[value].data[i].data.title%></span> - 
+                                <span><%-Math.round(window.menuData[value].data[i].currentUserPosition/window.menuData[value].data[i].moduleLength*100)%>%</span>
                                 <br>
                                 <br>
                             <% } %>
@@ -299,7 +305,6 @@
     }
 
     async function loadMainMenuData(){
-        let userData = await DB.getActions();
         Object.entries(actions).forEach(async ([key, value], index) => {
             var totalPages = allData[value].totalPages;
             var userPages = allData[value].userPages;
