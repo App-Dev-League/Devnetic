@@ -93,7 +93,7 @@
                         </div>
                         <div class="right" style="width: 100%; padding-left: 25px;">
                             <% for( let i = 0; i < window.menuData[value].data.length; i++ ) { %>
-                                <% if (window.menuData[value].userPages-1 < i) { %>
+                                <% if (window.menuData[value].data[i].currentUserPosition/window.menuData[value].data[i].moduleLength < 0.1) { %>
                                     <div style="width: 14px; height: 14px; border-radius: 50%; border: 3px solid white; position: absolute; transform: translateX(-33px); background-color: #282C34;"></div>
                                 <% } else { %>
                                     <div style="width: 14px; height: 14px; border-radius: 50%; border: 3px solid white; position: absolute; transform: translateX(-33px); background-color: white;"></div>
