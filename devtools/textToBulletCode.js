@@ -12,9 +12,10 @@ Just copy everything, and it should be visible in VS CODE or you're favorite cod
 //     Allows to dynamically render content
 // `
 var text = `
-Great! Now what if we need to install a NPM package? We can either use 
-npm install \`packageName\` or we can use the command npm install, which reads your package.json and installs all of the dependencies listed inside of it.
-NPM is a really versatile application. You can also create “shortcuts” to commands with a package.json. If you want to run a JS file, but forget what it’s called, you can list a command under “scripts” inside of your package.json, and then run it with npm run {scriptName}
+So what is CORS? Well CORS is a thing that keeps the internet safe. It blocks requests from domains that are not it’s own.
+If, for some reason, you wanted to allow requests from all domains to your server, you first need another package: “cors”, and then import it into your program. Then, app.use(cors()) 
+If you would like to allow cors for a 
+specific domain, use app.use(cors({origin: “yourdomain”}))
 `
 
 String.prototype.replaceAll = function (find, replace) {

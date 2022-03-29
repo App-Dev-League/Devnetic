@@ -1,23 +1,22 @@
 var code = `
-{
-  "name": "My App",
-  "version": "1.0.0",
-  "description": "What your package does",
-  "main": "index.js",
-  "scripts": {
-    "startServer": "node index.js"
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <input id="url" type="text" placeholder="URL">
+    <button onclick="sendRequest()">Sbumit!</button>
+    <div id="result"></div>
+  </body>
+</html>
+<script>
+  function sendRequest() {
+    axios.get(document.getElementById("url").value).then(result => {
+      document.getElementById("result").innerHTML = result;
+    })
   }
-  "author": "Your Name",
-  "dependencies": {
-    "axios": "^0.21.1"
-  },
-  "repository": "your repository url",
-  "license": "MIT",
-  "keywords": [
-    "add",
-    "number"
-  ]
-}
+</script>
 `
 
 if (code.startsWith("\n")) code = code.slice(1)
