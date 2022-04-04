@@ -72,7 +72,7 @@
                                 "type": {
                                     "description": "Element type",
                                     "type": "string",
-                                    "enum": ["text", "code", "image"]
+                                    "enum": ["text", "code", "image", "divider"]
                                 },
                                 "content": {
                                     "description": "Element content",

@@ -47,7 +47,7 @@
 			"elements":
 			[
 				{
-					"type": "content",
+					"type": "text",
 					"content": "CSS files must be added through the link tag in the HTML head."
 				},
 				{
