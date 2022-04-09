@@ -536,6 +536,7 @@
       ],
       "correct": 0
     },
+
     {
       "type": "multiple_choice",
       "question": "Which one of these is not an unsupervised learning method?",
@@ -556,6 +557,37 @@
       "correct": 3
     },
     {
+      "type": "short_answer",
+      "question": "Local Outlier Factor and Isolation Forest are examples of what unsupervised learning method?",
+      "code_template": "",
+      "answers": [
+        "Anomaly detection",
+        "Anomaly Detection",
+        "anomaly detection"
+      ],
+      "descriptions": {},
+      "description_default": "Remember that these two algorithms detect anomalies in the data",
+      "points": 10,
+      "coins": 3
+    },
+    {
+      "type": "short_answer",
+      "question": "Autoencoders are examples of what unsupervised learning method?",
+      "code_template": "",
+      "answers": [
+        "Neural Networks",
+        "neural networks",
+        "Neural networks",
+        "neural network",
+        "Neural network",
+        "Neural network"
+      ],
+      "descriptions": {},
+      "description_default": "Autoencoders are systems with weights, biases, inputs, layers, and outputs",
+      "points": 10,
+      "coins": 3
+    },
+    {
       "type": "multiple_choice",
       "question": "What does K-means clustering do?",
       "descriptions": [
@@ -574,6 +606,7 @@
       ],
       "correct": 2
     },
+
     {
       "type": "multiple_choice",
       "question": "Which of these is not a k-means clustering step?",
@@ -592,6 +625,26 @@
         "Readjust the clusters"
       ],
       "correct": 1
+    },
+    {
+      "type": "short_answer",
+      "question": "\"K minus the K-distance of the second point or the distance between two points\" is the formula for calculating what?",
+      "code_template": "",
+      "answers": [
+        "Reachability Distance",
+        "Reachability distance",
+        "reachability distance",
+        "Reachability distance between two points",
+        "Reachability distance between 2 points",
+        "reachability distance between two points",
+        "reachability distance between 2 points",
+        "Reachability Distance between two points",
+        "Reachability Distance between 2 points"
+      ],
+      "descriptions": {},
+      "description_default": "This is the second subroutine of Local Outlier Factor after K-distance",
+      "points": 15,
+      "coins": 5
     },
     {
       "type": "multiple_choice",
@@ -632,6 +685,16 @@
       "correct": 2
     },
     {
+      "type": "short_answer",
+      "question": "Dimensionality _________ is an application of Autoencoders",
+      "code_template": "",
+      "answers": ["reduction", "Reduction"],
+      "descriptions": {},
+      "description_default": "Transforming high-deminsional spaces into low-dimensional representations can be very helpful.",
+      "points": 10,
+      "coins": 3
+    },
+    {
       "type": "multiple_choice",
       "question": "What is an autoencoder?",
       "descriptions": [
@@ -649,6 +712,26 @@
         "A simple encoding to handle types of data other than numbers"
       ],
       "correct": 0
+    },
+    {
+      "type": "short_answer",
+      "question": "Dimensionality _________ is an application of Autoencoders",
+      "code_template": "",
+      "answers": ["reduction", "Reduction"],
+      "descriptions": {},
+      "description_default": "Transforming high-deminsional spaces into low-dimensional representations can be very helpful.",
+      "points": 10,
+      "coins": 3
+    },
+    {
+      "type": "short_answer",
+      "question": "What is the best student-led non-profit of them all?",
+      "code_template": "",
+      "answers": ["App Dev League", "ADL"],
+      "descriptions": {},
+      "description_default": ".",
+      "points": 10,
+      "coins": 3
     },
     {
       "type": "congratulations",
