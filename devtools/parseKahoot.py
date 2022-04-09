@@ -1,10 +1,20 @@
 # Prints an array of all Kahoot questions converted to the ADL multiple_choice data object
+from ast import arg
 import json
 import requests
+from sys import argv
 
 # CHANGE URL TO YOUR KAHOOT
-url = 'https://create.kahoot.it/details/951f4c0e-b6d7-4aed-8853-cf0e82c2d3ca'
+if len(argv) < 2:
+    print(f"""
+Prints an array of all Kahoot questions converted to the ADL multiple_choice data object.
 
+USAGE: 
+    python3 {argv[0]} [KAHOOT_LINK]
+""")
+    exit()
+
+url = argv[1]
 kahoot_id = url.split('/')[-1]
 answers_url = 'https://create.kahoot.it/rest/kahoots/{kahoot_id}/card/?includeKahoot=true'.format(kahoot_id=kahoot_id)
 data = requests.get(answers_url).json()
@@ -19,4 +29,4 @@ for q in data['kahoot']['questions']:
             curr["correct"] = len(curr["answers"]) - 1
     object.append(curr)
 
-print(json.dumps(object))
+print(json.dumps(object, indent=4))

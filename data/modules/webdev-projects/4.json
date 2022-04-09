@@ -3,484 +3,299 @@
     "pages": [
         {
             "type": "information",
-            "title": "Project Overview",
+            "title": "Week 5 Project - NPM Module",
             "elements": [
                 {
                     "type": "text",
-                    "content": "➔ Create mad libs, rock-paper-scissors, and  tic-tac-toe with JavaScript"
+                    "content": "➔ Create a Node.js module/library with some helper functions to do certain repeated tasks "
                 },
                 {
                     "type": "text",
-                    "content": "➔ Learn how to create interactive programs"
+                    "content": "➔ It can be very simple from just a simple add/subtract function"
                 },
                 {
                     "type": "text",
-                    "content": "➔ Learn how to utilize the console"
+                    "content": "➔ Or it could be something a bit more complicated like appending text to a file"
                 },
                 {
                     "type": "text",
-                    "content": "➔ Use global Javascript variables in functions"
+                    "content": "➔ Create a few of these helper functions and then import them in another file to actually use them"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Play around with this, and see what you can create!"
                 }
             ]
         },
         {
-            "type": "code_editor",
-            "storage_id": [
-                "webdev-4-0-0.js"
-            ],
-            "files": [
-                "index.js"
-            ],
-            "default": [
-                "console.log(\"Hello World\")"
-            ],
-            "display_type": "web",
+            "type": "information",
+            "title": "Setup your workspace",
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]Initialize global variables.[[/]]"
-                },
-                {
-                    "type": "code",
-                    "content": "var coinFlipScore = 0;\nvar rockPaperScissorScore = 0;"
+                    "content": "[[h3]]Important note: This project requires a [[link=https://replit.com]]replit[[/link]] account. [[/]]"
                 },
                 {
                     "type": "text",
-                    "content": "Increment global variables by one every time the user wins."
+                    "content": "➔ To get started, we need to setup our repl. Once you have an account, login and create a repl with language “Node.JS”"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Next, we need to setup and create our files. Create a package.json and an index.js"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Let’s open package.json. Inside it, create a JSON with properties"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ “name”, “version”, “description”, “dependencies”, and “main”."
+                },
+                {
+                    "type": "text",
+                    "content": "➔ All of these values are strings, except for dependencies. If your "
+                },
+                {
+                    "type": "text",
+                    "content": "➔ package doesn’t require dependencies, just set the value of this as an empty JSON."
+                },
+                {
+                    "type": "text",
+                    "content": "[[ ]][[ ]]◆ The “main” JSON key describes what JS file to run when your package gets called. Leave this as “index.js”"
+                },
+                {
+                    "type": "image",
+                    "src": "/data/modules/webdev-projects-assets/img4/0-0.png",
+                    "width": "30%"
+                },
+                {
+                    "type": "code",
+                    "content": "{\n  \"name\": \"@yourname/yourPackageName\",\n  \"version\": \"1.0.0\",\n  \"description\": \"What your package does\",\n  \"main\": \"index.js\",\n  \"dependencies\": {}\n}",
+                    "name": "package.json",
+                    "lang": "json"
                 }
-            ],
-            "hints": [],
-            "validation": [],
-            "points": 0,
-            "coins": 0
+            ]
         },
         {
-            "type": "code_editor",
-            "storage_id": [
-                "webdev-4-0-0.js"
-            ],
-            "files": [
-                "index.js"
-            ],
-            "default": [
-                "console.log(\"Hello World\")"
-            ],
-            "display_type": "web",
+            "type": "information",
+            "title": "index.js",
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]Functions[[/]]"
+                    "content": "➔ This file will be the file that gets run every time the user calls your package."
                 },
                 {
                     "type": "text",
-                    "content": "Each of the games will be start when their respective functions are called."
+                    "content": "➔ You can make your function available through module.exports"
                 },
                 {
-                    "type": "code",
-                    "content": "function madLibs(adj, nouni, verb, noun2) {}\nfunction coinFlip(userChoice) {} \nfunction rockPaperScissors(userChoice) {}"
+                    "type": "text",
+                    "content": "➔ We’re going to create a module that adds two numbers. If you would like to make things more complicated, feel free to! But first, try going through this process so you understand how NPM packages work"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Create a function called main with parameters “num1” and “num2”"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Now, check if both of these parameters are numbers with the Number.isFinite(var) function. If it isn’t, then throw an error."
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Lastly, return num1+num2;"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ To make this function available in the NPM package, set module.exports=myFunction"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ See the full code example on the next slide"
                 }
-            ],
-            "hints": [],
-            "validation": [],
-            "points": 0,
-            "coins": 0
+            ]
         },
         {
-            "type": "code_editor",
-            "storage_id": [
-                "webdev-4-0-0.js"
-            ],
-            "files": [
-                "index.js"
-            ],
-            "default": [
-                "console.log(\"Hello World\")"
-            ],
-            "display_type": "web",
+            "type": "information",
+            "title": "index.js (Math functions)",
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]madLibs function[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "Use string concentration to insert variables into a string"
+                    "content": "[[h3]]Defining all of our math functions[[/]]"
                 },
                 {
                     "type": "code",
-                    "content": "function madLibs(adj, nounl, verb, noun2) {\n    console.log(`The ${adj} ${nounl} ${verb} over the ${noun2}.`);\n} "
-                }
-            ],
-            "hints": [],
-            "validation": [],
-            "points": 0,
-            "coins": 0
-        },
-        {
-            "type": "code_editor",
-            "storage_id": [
-                "webdev-4-0-0.js"
-            ],
-            "files": [
-                "index.js"
-            ],
-            "default": [
-                "console.log(\"Hello World\")"
-            ],
-            "display_type": "web",
-            "elements": [
-                {
-                    "type": "text",
-                    "content": "[[h3]]rockPaperScissors function[[/]]"
+                    "content": "const add = (a, b) => a + b;\nconst subtract = (a, b) => a - b;\nconst multiply = (a, b) => a * b;\nconst divide = (a, b) => a / b;"
                 },
                 {
                     "type": "text",
-                    "content": "➔ Convert the user’s choice to lowercase."
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Validate user’s choice by checking if it’s “rock”, “paper”, or “scissors”."
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Use return statement to exit function and return [[`]]undefined[[`]]."
+                    "content": "[[h3]]Exporting them[[/]]"
                 },
                 {
                     "type": "code",
-                    "content": "function rockPaperScissors(userChoice) {\n  userChoice = userChoice.toLowerCase();\n  if(![\"rock\", \"paper\", \"scissors\"].includes(userChoice)) {\n    return console.log( \"Invalid option. Must be \\\"rock\\\", \\\"paper\\\", or \\\"scissors\\\".\");\n  }\n  // continued on next page \n}",
+                    "content": "module.exports = {\n  add,\n  subtract,\n  multiply,\n  divide\n};",
                     "lang": "javascript"
                 }
-            ],
-            "hints": [],
-            "validation": [],
-            "points": 0,
-            "coins": 0
+            ]
         },
         {
-            "type": "code_editor",
-            "storage_id": [
-                "webdev-4-0-0.js"
-            ],
-            "files": [
-                "index.js"
-            ],
-            "default": [
-                "console.log(\"Hello World\")"
-            ],
-            "display_type": "web",
+            "type": "information",
+            "title": "index.js (word counter)",
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]rockPaperScissors function (cont.)[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Randomize coin flip"
+                    "content": "[[h3]]Another NPM module example that counts the words in a file and appends it inside of the file[[/]]"
                 },
                 {
                     "type": "code",
-                    "content": "var randomNumber = Math.floor(Math.random() * 3);\nvar computerChoice; \nif (randomNumber === 2) {\n  computerChoice = \"rock\"; \n} else if (randomNumber === 1) {\n  computerChoice = \"paper\"; \n} else {\n  computerChoice = \"scissors\";\n}",
-                    "lang": "javascript"
+                    "content": "const fs = require(\"file-system\");\n\nconst wordCounter = function(pathToFile){\n  const text = fs.readFileSync(pathToFile, \"utf8\");\n  var wordCount = text.split(' ').length;\n  var writeText = text+\"\n\"+\"Word Count: \"+wordCount;\n  fs.writeFileSync(pathToFile, writeText);\n  return wordCount;\n}\nmodule.exports = wordCounter;"
                 }
-            ],
-            "hints": [],
-            "validation": [],
-            "points": 0,
-            "coins": 0
+            ]
         },
         {
-            "type": "code_editor",
-            "storage_id": [
-                "webdev-4-0-0.js"
-            ],
-            "files": [
-                "index.js"
-            ],
-            "default": [
-                "console.log(\"Hello World\")"
-            ],
-            "display_type": "web",
+            "type": "information",
+            "title": "Package testing",
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]rockPaperScissors function (cont.)[[/]]"
+                    "content": "This is great and all, but how do we test our package to make sure it works?"
                 },
                 {
                     "type": "text",
-                    "content": "➔ Check remaining possible combinations of choices."
+                    "content": "➔ Next, create a “testing.js” file in the same directory as “index.js”"
                 },
                 {
                     "type": "text",
-                    "content": "[[ ]][[ ]]◆ If user choice is rock and the computer’s is paper, than the computer wins."
+                    "content": "➔ In this file, import the package by using const addpackage = require(\"./index\");"
                 },
                 {
                     "type": "text",
-                    "content": "[[ ]][[ ]]◆ Else, user wins."
+                    "content": "➔ Now, you can call the “addpackage” function by using console.log(addpackage(5, 10))"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ If all goes well, you should see “15” logged in the console when you run "
+                },
+                {
+                    "type": "text",
+                    "content": "➔ “node testing.js”"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Then, you can test all of "
+                },
+                {
+                    "type": "text",
+                    "content": "➔ the other functions too!"
                 },
                 {
                     "type": "code",
-                    "content": "else if (userChoice === \"rock\") {\n  if (computerChoice === \"paper\") {\n    winner = \"computer\";\n  } else {\n    winner = \"user\";\n    rockPaperScissorsScore++\n  }\n}",
-                    "lang": "javascript"
+                    "content": "const addpackage = require('./index');\n\nconsole.log(addpackage.add(5,10))"
+                },
+                {
+                    "type": "text",
+                    "content": "Note: In Replit, to run these commands, make sure you select the \"shell\" tab, NOT the \"Console\" tab"
                 }
-            ],
-            "hints": [],
-            "validation": [],
-            "points": 0,
-            "coins": 0
+            ]
         },
         {
-            "type": "code_editor",
-            "storage_id": [
-                "webdev-4-0-0.js"
-            ],
-            "files": [
-                "index.js"
-            ],
-            "default": [
-                "console.log(\"Hello World\")"
-            ],
-            "display_type": "web",
+            "type": "information",
+            "title": "Getting ready to publish to NPM",
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]rockPaperScissors function (cont.)[[/]]"
+                    "content": "➔ This is the exciting part. Publishing to the web. To publish, you have to add a few more things."
                 },
                 {
                     "type": "text",
-                    "content": "➔ Check remaining possible combinations of choices."
+                    "content": "➔ README.md | You need to create this file in the root directory, and in here, you can input markdown code to let users know what your package does. "
                 },
                 {
                     "type": "text",
-                    "content": "[[ ]][[ ]]◆ If user choice is paper and the computer’s is scissor, than the computer wins."
+                    "content": "➔ package.json | We need to add a few more parameters in here. "
                 },
                 {
                     "type": "text",
-                    "content": "[[ ]][[ ]]◆ Else, user wins."
+                    "content": "[[ ]][[ ]]◆ You can add a “license” parameter with a license name of your choosing"
+                },
+                {
+                    "type": "text",
+                    "content": "[[ ]][[ ]]◆ You can also add a “repository” parameter with a URL pointing to your package’s repository"
+                },
+                {
+                    "type": "text",
+                    "content": "[[ ]][[ ]]◆ Lastly, you can add a “keywords” parameter with an array of multiple keywords related to your package"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ name | for the name of your package, we suggest using the format of “@user/packagename” - this is called a scoped package"
                 },
                 {
                     "type": "code",
-                    "content": "else if (userChoice === \"paper\") {\n  if (computerChoice === \"scissors\") {\n    winner = \"computer\";\n  } else {\n    winner = \"user\";\n    rockPaperScissorsScore++\n  }\n}",
-                    "lang": "javascript"
+                    "content": "{\n  \"name\": \"@yourname/yourPackageName\",\n  \"version\": \"1.0.0\",\n  \"description\": \"What your package does\",\n  \"main\": \"index.js\",\n  \"dependencies\": {},\n  \"repository\": \"your repository url\",\n  \"license\": \"MIT\",\n  \"keywords\": [\n    \"add\",\n    \"number\"\n  ]\n}",
+                    "lang": "json"
                 }
-            ],
-            "hints": [],
-            "validation": [],
-            "points": 0,
-            "coins": 0
+            ]
         },
         {
-            "type": "code_editor",
-            "storage_id": [
-                "webdev-4-0-0.js"
-            ],
-            "files": [
-                "index.js"
-            ],
-            "default": [
-                "console.log(\"Hello World\")"
-            ],
-            "display_type": "web",
+            "type": "information",
+            "title": "Setup your workspace",
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]rockPaperScissors function (cont.)[[/]]"
+                    "content": "[[h3]]Publishing to NPM[[/]]"
                 },
                 {
                     "type": "text",
-                    "content": "➔ Check remaining possible combinations of choices."
+                    "content": "➔ To publish to NPM, you first need an account. Grab one here: [[a]]https://www.npmjs.com/signup[[/a]]"
                 },
                 {
                     "type": "text",
-                    "content": "[[ ]][[ ]]◆ If user choice is scissors and the computer’s is rock, than the computer wins."
+                    "content": "➔ Now, go to your terminal and enter [[`]]npm login[[/]]"
                 },
                 {
                     "type": "text",
-                    "content": "[[ ]][[ ]]◆ Else, user wins."
+                    "content": "➔ NPM will ask you for your username, password, and email. Enter those, and you should get a message like “Logged in as foobar to scope @yourUsername on https://registry.npmjs.org/.”"
                 },
                 {
-                    "type": "code",
-                    "content": "else if (userChoice === \"scissors\") {\n  if (computerChoice === \"rock\") {\n    winner = \"computer\";\n  } else {\n    winner = \"user\";\n    rockPaperScissorsScore++\n  }\n}",
-                    "lang": "javascript"
+                    "type": "text",
+                    "content": "➔ Try running [[`]]npm publish[[/]] right now. You might get an error, but that’s ok. NPM defaults to [[b]]publishing[[/]] as a private package, but this needs payments. Instead, run [[`]]npm publish --access=public[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Awesome! You just published your first package. You will receive an email about this, and after a few minutes, you’ll be able to see your package on NPM!"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ But what if you need to issue an update? Time to publish again right! Well if you try, you’ll get an error [[`]][[red]]npm ERR! - You cannot publish over the previously published versions: 1.0.0. Instead, update the version with npm version patch and try publishing again![[/]][[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "[[ ]][[ ]]◆ There are also the commands npm version major, npm version minor, and npm version patch. These will update the versioning number. (major.minor.patch is the versioning system)"
                 }
-            ],
-            "hints": [],
-            "validation": [],
-            "points": 0,
-            "coins": 0
+            ]
         },
         {
-            "type": "code_editor",
-            "storage_id": [
-                "webdev-4-0-0.js"
-            ],
-            "files": [
-                "index.js"
-            ],
-            "default": [
-                "console.log(\"Hello World\")"
-            ],
-            "display_type": "web",
+            "type": "information",
+            "title": "NPM commands",
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]rockPaperScissors function (cont.)[[/]]"
+                    "content": "➔ Great! Now what if we need to install a NPM package? We can either use "
                 },
                 {
                     "type": "text",
-                    "content": "➔ Return statement"
+                    "content": "➔ npm install `packageName` or we can use the command npm install, which reads your package.json and installs all of the dependencies listed inside of it."
+                },
+                {
+                    "type": "text",
+                    "content": "➔ NPM is a really versatile application. You can also create “shortcuts” to commands with a package.json. If you want to run a JS file, but forget what it’s called, you can list a command under “scripts” inside of your package.json, and then run it with npm run {scriptName}"
                 },
                 {
                     "type": "code",
-                    "content": "console.log(`The user chose ${userChoice}, and the computer chose ${computerChoice}, so the winner is the ${winner ?? \"no one\"} and your score is ${rockPaperScissorScore}`)",
-                    "lang": "javascript"
+                    "content": "{\n  \"name\": \"My App\",\n  \"version\": \"1.0.0\",\n  \"description\": \"What your package does\",\n  \"main\": \"index.js\",\n  \"scripts\": {\n    \"startServer\": \"node index.js\"\n  }\n  \"author\": \"Your Name\",\n  \"dependencies\": {\n    \"axios\": \"^0.21.1\"\n  },\n  \"repository\": \"your repository url\",\n  \"license\": \"MIT\",\n  \"keywords\": [\n    \"add\",\n    \"number\"\n  ]\n}",
+                    "lang": "json"
                 }
-            ],
-            "hints": [],
-            "validation": [],
-            "points": 0,
-            "coins": 0
-        },
-        {
-            "type": "code_editor",
-            "storage_id": [
-                "webdev-4-0-0.js"
-            ],
-            "files": [
-                "index.js"
-            ],
-            "default": [
-                "console.log(\"Hello World\")"
-            ],
-            "display_type": "web",
-            "elements": [
-                {
-                    "type": "text",
-                    "content": "[[h3]]coinFlip function [[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Convert user’s choice to lower case."
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Check that it’s “heads” or tails”. If not, use return statement to exit the function and return undefined."
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Generate random number."
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Use number to choose “heads” or “tails”."
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Compare the user’s and computer’s choice and determine winner."
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Return statement"
-                },
-                {
-                    "type": "code",
-                    "content": "function coinFlip(userChoice) {\n  userChoice = userChoice.toLowerCase();\n  if (![\"heads\", \"tails\"].includes(userChoice)) {\n    return console.log( \"Invalid option. Must be 'heads' or 'tails'\");\n  }\n  var winner;\n  var computerChoice = Math.floor(Math.random() * 2) === 0 ? \"heads\" : \"tails\";\n  if (userChoice === computerChoice) {\n    winner = \"user\";\n    coinFlipScore++;\n  } else {\n    winner = \"computer\";\n  }\n  console.log(`The user chose ${userChoice}, and the computer chose ${computerChoice}, so the winner is ${winner} and your score is ${coinFlipScore}`)\n}"
-                }
-            ],
-            "hints": [],
-            "validation": [
-                {
-                    "validate": true,
-                    "type": "validate-output",
-                    "actions": [
-                        {
-                            "run": "webdev-4-0-0.js",
-                            "editorIndex": 0
-                        },
-                        {
-                            "exec": "madLibs(\"happy\", \"dog\", \"jump\", \"moon\")",
-                            "runwhen": "immediately"
-                        },
-                        {
-                            "expect": "The happy dog jump over the moon.",
-                            "runwhen": "immediately",
-                            "filters": [
-                                "trim"
-                            ],
-                            "onerror": "Uh oh! The Mad Libs function didn't work. We expected the sentence to be 'The happy dog jump over the moon.'"
-                        }
-                    ]
-                },
-                {
-                    "validate": true,
-                    "type": "validate-output",
-                    "actions": [
-                        {
-                            "run": "webdev-4-0-0.js",
-                            "editorIndex": 0
-                        },
-                        {
-                            "exec": "madLibs(\"sad\", \"monkey\", \"cried\", \"eggs\")",
-                            "runwhen": "immediately"
-                        },
-                        {
-                            "expect": "The sad monkey cried over the eggs.",
-                            "runwhen": "immediately",
-                            "filters": [
-                                "trim"
-                            ],
-                            "onerror": "The Mad Libs function didn't work. We expected the sentence to be 'The sad monkey cried over the eggs.'"
-                        }
-                    ]
-                },
-                {
-                    "validate": true,
-                    "type": "validate-output",
-                    "actions": [
-                        {
-                            "run": "webdev-4-0-0.js",
-                            "editorIndex": 0
-                        },
-                        {
-                            "exec": "coinFlip(\"heads\")",
-                            "runwhen": "immediately"
-                        },
-                        {
-                            "expect": "object",
-                            "runwhen": "immediately",
-                            "filters": [
-                                "typeof"
-                            ],
-                            "onerror": "We expected a string to be logged when run! Instead, we got a {{output}}"
-                        }
-                    ]
-                },
-                {
-                    "validate": true,
-                    "type": "validate-output",
-                    "actions": [
-                        {
-                            "run": "webdev-4-0-0.js",
-                            "editorIndex": 0
-                        },
-                        {
-                            "exec": "rockPaperScissors(\"rock\")",
-                            "runwhen": "immediately"
-                        },
-                        {
-                            "expect": "",
-                            "runwhen": "immediately",
-                            "reject": true,
-                            "matches": [
-                                {"type": "regex", "value": "Error: ", "filters": ["toString"]},
-                                {"type": "startsWith", "value": "Uncaught", "filters": ["toString"]}
-                            ],
-                            "onerror": "An error was thrown!"
-                        }
-                    ]
-                }
-            ],
-            "points": 0,
-            "coins": 0
+            ]
         }
     ]
 }

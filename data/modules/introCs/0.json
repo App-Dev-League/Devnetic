@@ -26,21 +26,24 @@
                 "introCs-0-0-1.md",
                 "introCs-0-0-2.js",
                 "introCs-0-0-3.jsx",
-                "introCs-0-0-4.jsx"
+                "introCs-0-0-4.jsx",
+                "introCs-0-0-5.ts"
             ],
             "files": [
                 "problem_1.py",
                 "test.md",
                 "hello_world.js",
                 "react_example.jsx",
-                "react_module.jsx"
+                "react_module.jsx",
+                "main.ts"
             ],
             "default": [
                 "print(\"Hello World\")",
                 "# Hello Markdown world!",
                 "console.log(\"Hello World\")",
                 "// The dom container's element ID is root\nconst domContainer = document.querySelector('#root');",
-                "// Export any React components that you want to use in the app\nexport default YourComponent;"
+                "// Export any React components that you want to use in the app\nexport default YourComponent;",
+                "// Write Typescript code here"
             ],
             "display_type": "web",
             "elements": [

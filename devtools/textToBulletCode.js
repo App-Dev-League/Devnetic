@@ -12,9 +12,10 @@ Just copy everything, and it should be visible in VS CODE or you're favorite cod
 //     Allows to dynamically render content
 // `
 var text = `
-To make the list update every time a user inputs a new item, we need to use React States
-Create a React State named “items” and inside it, put our previous “items” variable
-Then, pass this React State to the ItemList component. Then, everytime the callback function is called, add a new element to that array and update the state!
+So what is CORS? Well CORS is a thing that keeps the internet safe. It blocks requests from domains that are not it’s own.
+If, for some reason, you wanted to allow requests from all domains to your server, you first need another package: “cors”, and then import it into your program. Then, app.use(cors()) 
+If you would like to allow cors for a 
+specific domain, use app.use(cors({origin: “yourdomain”}))
 `
 
 String.prototype.replaceAll = function (find, replace) {

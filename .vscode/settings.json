@@ -1,0 +1,11 @@
+{
+    "json.schemas": [
+        {
+            "fileMatch": ["data/modules/ai/*.json", "data/modules/introCs/*.json", "data/modules/webdev/*.json"],
+            "url": ".vscode/schemas/lesson.jsonc"
+        },
+        {
+            "fileMatch": ["data/modules/ai-projects/*.json", "data/modules/introCs-projects/*.json", "data/modules/webdev-projects/*.json"]
+        }
+    ]
+}

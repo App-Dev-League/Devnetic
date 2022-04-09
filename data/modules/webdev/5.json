@@ -1,20 +1,17 @@
 {
 	"type": "lesson",
-	"pages":
-	[
+	"pages": [
 		{
 			"type": "information",
 			"title": "Week 4 - HTML Recap",
-			"elements":
-			[
+			"elements": [
 				{
 					"type": "text",
 					"content": "Front end is functionality on the side of the client (HTML/CSS/JS). HTML stands for Hyper Text Markup Language. It is used to design the layout of text and structure of a webpage."
 				},
 				{
-					"type": "image",
-					"src": "/data/modules/webdev-assets/img5/0-0.png",
-					"width": "40%"
+					"type": "code",
+					"code": "<!DOCTYPE html>\n<html>\n  <head>\n    <meta charset=\"utf-8\">\n    <title>My test page</title>\n  </head>\n  <body>\n    <p>This is my page</p>\n  </body>\n</html>"
 				},
 				{
 					"type": "text",
@@ -37,8 +34,7 @@
 		{
 			"type": "information",
 			"title": "Week 4 - CSS Recap",
-			"elements":
-			[
+			"elements": [
 				{
 					"type": "text",
 					"content": "CSS makes websites look nice by changing style, location, and more of elements. CSS stands for \"Cascading Syle Sheets\". CSS does not add any new content to the page."
@@ -52,54 +48,52 @@
 					"content": "  - font-family: Change the font of an element."
 				},
 				{
-					"type": "image",
-					"src": "/data/modules/webdev-assets/img5/1-0.png",
-					"width": "30%"
+					"type": "code",
+					"content": "font-family: \"Raleway\", sans-serif;"
 				},
 				{
 					"type": "text",
 					"content": "  - font-size: Change the size of an element."
 				},
 				{
-					"type": "image",
-					"src": "/data/modules/webdev-assets/img5/1-1.png",
-					"width": "20%"
+					"type": "code",
+					"content": "font-size: 13px;"
 				},
 				{
 					"type": "text",
 					"content": "  - text-align: Center, left or right align text."
 				},
 				{
-					"type": "image",
-					"src": "/data/modules/webdev-assets/img5/1-2.png",
-					"width": "16%"
+					"type": "code",
+					"content": "text-align: center"
 				},
 				{
 					"type": "text",
 					"content": "  - color: Change the color of text."
 				},
 				{
-					"type": "image",
-					"src": "/data/modules/webdev-assets/img5/1-3.png",
-					"width": "45%"
+					"type": "code",
+					"content": "color: purple"
+				},
+				{
+					"type": "code",
+					"content": "color: #fff"
 				},
 				{
 					"type": "text",
 					"content": "  - text-decoration: Add underlines, strikethroughs and other decorations."
 				},
 				{
-					"type": "image",
-					"src": "/data/modules/webdev-assets/img5/1-4.png",
-					"width": "30%"
+					"type": "code",
+					"content": "text-decoration: underline;"
 				},
 				{
 					"type": "text",
 					"content": "  - Draw borders around elements."
 				},
 				{
-					"type": "image",
-					"src": "/data/modules/webdev-assets/img5/1-5.png",
-					"width": "45%"
+					"type": "code",
+					"content": "#div {\n  border: 3px red solid;\n}"
 				},
 				{
 					"type": "text",
@@ -122,8 +116,7 @@
 		{
 			"type": "information",
 			"title": "Week 4 - Bootstrap Recap",
-			"elements":
-			[
+			"elements": [
 				{
 					"type": "text",
 					"content": "Bootstrap is a CSS framework that makes the creation of layouts simpler for developers. It comes with pre-built classes so you don't have to write your own CSS."
@@ -253,6 +246,195 @@
 					"content": "If you plan to use libraries such as JQuery, Bootstrap, etc., you can add their JS files from a CDN before your other scripts in the HTML file."
 				}
 			]
+		},
+		{
+			"type": "multiple_choice",
+			"question": "What is the purpose of HTML",
+			"descriptions": [
+				"CSS does this.",
+				"JavaScript does this.",
+				"Yes, HTML's purpose is just this.",
+				"HTML does not serve this purpose."
+			],
+			"points": 5,
+			"coins": 1,
+			"answers": [
+				"To style the site",
+				"To process logic on the site",
+				"To design layout and structure of the site",
+				"To render javascript templates"
+			],
+			"correct": 2
+		},
+		{
+			"type": "multiple_choice",
+			"question": "What is the purpose of CSS",
+			"descriptions": [
+				"CSS does this.",
+				"JavaScript does this.",
+				"HTML's purpose is just this.",
+				"HTML does not serve this purpose."
+			],
+			"points": 5,
+			"coins": 1,
+			"answers": [
+				"To style the site",
+				"To process logic on the site",
+				"To design layout and structure of the site",
+				"To render javascript templates"
+			],
+			"correct": 0
+		},
+		{
+			"type": "multiple_choice",
+			"question": "What is the purpose of javascript",
+			"descriptions": [
+				"CSS does this.",
+				"JavaScript does this.",
+				"Yes, HTML's purpose is just this.",
+				"HTML does not serve this purpose."
+			],
+			"points": 5,
+			"coins": 1,
+			"answers": [
+				"To style the site",
+				"To process logic on the site",
+				"To design layout and structure of the site",
+				"To render javascript templates"
+			],
+			"correct": 1
+		},
+		{
+			"type": "multiple_choice",
+			"question": "What is the class attribute primarily used for?",
+			"descriptions": [
+				"CSS classes does this.",
+				"This is not the purpose of CSS classes!",
+				"This is not the purpose of CSS classes!",
+				"This is not the purpose of CSS classes!"
+			],
+			"points": 5,
+			"coins": 1,
+			"answers": [
+				"To style multiple elements",
+				"To group elements together",
+				"To remove elements",
+				"To duplicate elements"
+			],
+			"correct": 0
+		},
+		{
+			"type": "multiple_choice",
+			"question": "Which of the following is correct CSS syntax?",
+			"descriptions": [
+				"Well done.",
+				"Nope, this code is missing a key punctuation.",
+				"Nope, the dash needs to be replaced with something else.",
+				"Nope, the squar brackets need to be replaced with something else."
+			],
+			"points": 5,
+			"coins": 1,
+			"answers": [
+				"p { color: red }",
+				"p { color red }",
+				"p { color -  red }",
+				"p [color: red]"
+			],
+			"correct": 0
+		},
+		{
+			"type": "multiple_choice",
+			"question": "How do you select an ID in CSS?",
+			"descriptions": [
+				"'.' is for classes.",
+				"'@' is not a valid selector",
+				"'-' is not a valid selector",
+				"'#' is for selecting by IDs"
+			],
+			"points": 5,
+			"coins": 1,
+			"answers": [
+				".id",
+				"@id",
+				"-id",
+				"#id"
+			],
+			"correct": 3
+		},
+		{
+			"type": "multiple_choice",
+			"question": "How do you select a class in CSS?",
+			"descriptions": [
+				"'.' is for classes.",
+				"'@' is not a valid selector",
+				"'-' is not a valid selector",
+				"'#' is for selecting by IDs"
+			],
+			"points": 5,
+			"coins": 1,
+			"answers": [
+				".class",
+				"@class",
+				"-class",
+				"#class"
+			],
+			"correct": 0
+		},
+		{
+			"type": "multiple_choice",
+			"question": "Which is the correct way to add selector events?",
+			"descriptions": [
+				"This would select elements with id 'id' hover and class 'hover'",
+				"Good job! Use the ':' for selector events.",
+				"This would select elements with id 'id' hover and class 'hover'",
+				"The '@' is not used for selector events."
+			],
+			"points": 5,
+			"coins": 1,
+			"answers": [
+				"#id.hover",
+				"#id:hover",
+				".hover#id",
+				"#id @hover"
+			],
+			"correct": 1
+		},
+		{
+			"type": "multiple_choice",
+			"question": "What is the purpose of constants?",
+			"descriptions": [
+				"Think about what the word 'constant' means.",
+				"Very close!",
+				"Constants are very useful.",
+				"Think about what the word 'constant' means."
+			],
+			"points": 5,
+			"coins": 1,
+			"answers": [
+				"To make a variable private to a class",
+				"To make a variable non-modifiable outside it's class",
+				"To keep make a variable non-modifiable",
+				"To declare a boolean variable"
+			],
+			"correct": 2
+		},
+		{
+			"type": "multiple_choice",
+			"question": "Which of the following is NOT a DOM-manipulating statement?",
+			"descriptions": [
+				"This modifies HTMLElement's class.",
+				"This modifies HTMLElement's content.",
+				"This doesn't modify the DOM, but only retrieves the class."
+			],
+			"points": 5,
+			"coins": 1,
+			"answers": [
+				"HTMLElement.setAttribute(\"class\", \"top\")",
+				"HTMLElement.innerHTML = \"Top\"",
+				"HTMLElement.getAttribute(\"value\")",
+				""
+			],
+			"correct": 2
 		}
 	]
 }

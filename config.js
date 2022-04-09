@@ -33,6 +33,8 @@
 	], {
 		path: "./utils/"
 	});
+	await install("./assets/libraries/ejs.js")
+
 
 	const ModulePage = require("./components/ModulePage.js");
 	const Information = require("./components/Information.js");
@@ -46,6 +48,7 @@
 	const shuffleArray = require("./utils/shuffleArray.js");
 	const Database = require("./utils/Database.js");
 	const plugins = require("./utils/plugins.js");
+	require("./assets/libraries/ejs.js");
 
 	tApp.configure({
 		target: document.querySelector("tapp-main"),
@@ -70,10 +73,16 @@
 	});
 
 	tApp.route("#/", function (request) {
-		tApp.renderFile("./views/index.html");
+		tApp.get("./views/index.html").then(res => res.text()).then(async html => {
+			let templated = await recurseEjs(html);
+			tApp.render(templated);
+		})
 	});
 	tApp.route("#/track/<track>", function (request) {
-		tApp.renderFile(`./views/${request.data.track}.html`).catch((err) => {
+		tApp.get(`./views/${request.data.track}.html`).then(res => res.text()).then(async html => {
+			let templated = await recurseEjs(html);
+			tApp.render(templated);
+		}).catch((err) => {
 			tApp.renderPath("#/404");
 		});
 	});
@@ -97,7 +106,7 @@
 			loadScript = `
 			const plugins = require("./utils/plugins.js");
 			   async function main(){
-					plugins.load("react");
+					await plugins.load("react");
 					let code = await window.DB.getCode("${id}")
 					code = Babel.transform(code, {
 						plugins: ["transform-react-jsx"]
@@ -115,7 +124,13 @@
 		load();
 		window.addEventListener('storage', load)
 		</script>
-		<style>header{display: none !important}</style><script></script><iframe id="preview" srcdoc="Loading...." style="width: 100vw; height: 100vh; border: none; background: white; position: fixed; z-index: 500; top: 0; left 0; display: block"></iframe></div>`);
+		<style>header{display: none !important}</style><script></script><iframe id="preview" srcdoc="Loading...." style="width: 100vw; height: 100vh; border: none; background: white; position: fixed; z-index: 500; top: 0; left 0; display: block"></iframe></div>
+		<script>
+		document.getElementById("preview").onload = function(){
+			document.title = document.getElementById("preview").contentDocument.title;
+		}
+		</script>
+		`);
 	})
 	tApp.route("#/preview/html/<id>", async function (request) {
 		let id = request.data.id
@@ -132,7 +147,50 @@
 		request.data.module = parseInt(request.data.module);
 		request.data.position = parseInt(request.data.position);
 		Database.getModuleData(request.data.track, request.data.module, request.data.position).then((res) => {
-			let { data, type, moduleLength, next } = res;
+			let { data, type, moduleLength, next, moduleData} = res;
+			document.getElementById("module-progress-bar").style.width = request.data.position / moduleLength * 100+"%";
+			window.tAppRequestInstance = request;
+			window.currentModuleData = moduleData;
+			let currentTraverse = 0;
+			document.querySelectorAll(".module-progress-bar-timeline-element").forEach((el) => {
+				if (!el.classList.contains("template")) el.parentElement.removeChild(el)
+			})
+            window.currentModuleData.pages.forEach(element => {
+                let parent = document.getElementById("module-progress-bar-wrapper");
+                let template = parent.querySelector(".template");
+                let newElement = template.cloneNode(true);
+                newElement.classList.remove("template");
+                newElement.style.left = (currentTraverse/window.currentModuleData.pages.length*100) + "%";
+				if (request.data.position > currentTraverse ) newElement.classList.add("filled");
+				else newElement.classList.remove("filled");
+
+				if (element.type === "information") {
+					newElement.querySelector(".name").innerText = element.title || "";
+					newElement.querySelector(".descriptor").innerHTML = "<b>Type: </b>Learn" 
+				}
+				if (element.type === "multiple_choice") {
+					newElement.querySelector(".name").innerText = element.question.slice(0, 10)+"..." || "";
+					newElement.querySelector(".descriptor").innerHTML = "<b>Type: </b>Question" 
+				}
+				if (element.type === "snippet_unlock") {
+					newElement.querySelector(".name").innerText = element.name.slice(0, 10)+"..." || "";
+					newElement.querySelector(".descriptor").innerHTML = "<b>Type: </b>Snippet" 
+				}
+				if (element.type === "short_answer") {
+					newElement.querySelector(".name").innerText = element.question.slice(0, 10)+"..." || "";
+					newElement.querySelector(".descriptor").innerHTML = "<b>Type: </b>Question" 
+				}
+				if (element.type === "congratulations") {
+					newElement.querySelector(".name").innerText = "Lesson summary"
+					newElement.querySelector(".descriptor").innerHTML = "<b>Type: </b>Summary" 
+				}
+				if (element.type === "code_editor") {
+					newElement.querySelector(".name").innerText = element.elements[0].content.replaceAll("[[h3]]", "").replaceAll("[[/]]", "")
+					newElement.querySelector(".descriptor").innerHTML = "<b>Type: </b>Project" 
+				}
+				currentTraverse ++;
+                parent.appendChild(newElement);
+            })
 			if (request.data.position >= moduleLength) {
 				if (next.hasNext) {
 					alert("You have already completed this module! We will now take you to the next module.");
@@ -223,3 +281,15 @@
 		});*/
 	});
 })();
+function recurseEjs(html) {
+	return new Promise(async (resolve, reject) => {
+		let rtemplated = await ejs.render(html, {
+			include: async function(path){
+				let res = await tApp.get(path);
+				let results = await recurseEjs(await res.text())
+				return results;
+			}
+		}, {async: true});
+		resolve(rtemplated)
+	})
+}

@@ -535,7 +535,7 @@
       "question": "What is the Fully Connected Layer in a CNN similar to?",
       "descriptions": [
         "The fully connected layer is not like a contiguous array",
-        "Correct! The fully connected layer is just like an artifical neural network",
+        "Correct! The fully connected layer is just like an artificial neural network",
         "The fully connected layer is not like an object",
         "The fully connected layer is not like a hidden layer in a neural network"
       ],

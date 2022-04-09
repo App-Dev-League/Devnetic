@@ -86,7 +86,8 @@ const Database = {
 						hasNext: true,
 						module: moduleNum,
 						position: position + 1
-					}
+					},
+					moduleData: parsedData
 				});
 			} else {
 				tApp.get(`/data/modules/${track}/${moduleNum + 1}.json`).then(() => {
@@ -98,7 +99,8 @@ const Database = {
 							hasNext: true,
 							module: moduleNum + 1,
 							position: 0
-						}
+						},
+						moduleData: parsedData
 					});
 				}).catch((err) => {
 					resolve({
@@ -107,7 +109,8 @@ const Database = {
 						moduleLength: parsedData.pages.length,
 						next: {
 							hasNext: false
-						}
+						},
+						moduleData: parsedData
 					});
 				});
 			}
@@ -123,6 +126,14 @@ const Database = {
 				resolve(actions[track][moduleNum].length);
 			}
 		});
+	},
+	getModuleCount: function(track) {
+		let count = 0;
+		while (true) {
+			if (doesFileExist(`/data/modules/${track}/${count}.json`) === false) break;
+			count++;
+		}
+		return count;
 	},
 	getCode: function(storage_id) {
 		return new Promise(async (resolve, reject) => {
@@ -250,5 +261,11 @@ const Database = {
 		});
 	}
 }
-
+function doesFileExist(urlToFile) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('HEAD', urlToFile, false);
+    xhr.send();
+     
+    return xhr.status !== 404;
+}
 module.exports = Database;

@@ -33,32 +33,104 @@ class Editor extends tApp.Component {
 			"py": "python",
 			"md": "markdown",
 			"js": "javascript",
-			"jsx": "javascript"
+			"jsx": "javascript",
+			"css": "css",
+			"ts": "typescript",
+			"png": "css",
+			"jpg": "css",
+			"jpeg": "css",
+			"gif": "css"
 		}
 		var parentThis = this
 		var tabindex = this.state.tabindex
+		var storageId = this.state.storage_id;
+		var filename = parentThis.parent.parent.data().files[tabindex] || this.state.file.filename;
 
 		console.log("Editor number " + tabindex + " is rendering")
-		if (document.getElementById("code-editor-run-btn") && parentThis.parent.parent.data().storage_id[tabindex].split('.').pop().toLowerCase() === "html") {
+		if (document.getElementById("code-editor-run-btn") && (filename.split('.').pop().toLowerCase() === "html" || filename.split('.').pop().toLowerCase() === "png" || filename.split('.').pop().toLowerCase() === "jpg" || filename.split('.').pop().toLowerCase() === "jpeg" || filename.split('.').pop().toLowerCase() === "gif")) {
 			setTimeout(function () {
 				document.getElementById("code-editor-run-btn").click()
 			}, 100)
 		}
-
+		function setPreviewHTML(html) {
+			let preview = document.getElementById("preview");
+			let previewParent = preview.parentElement;
+			preview.parentElement.removeChild(preview);
+			preview = document.createElement("iframe");
+			preview.style.width = "98%";
+			preview.style.height = "100%";
+			preview.id = "preview"
+			previewParent.appendChild(preview);
+			if (preview) {
+				preview.contentWindow.document.open();
+				preview.contentWindow.document.write(html);
+				preview.contentWindow.document.close();
+			}
+			if (preview.contentWindow.document.body && !preview.contentWindow.document.body.isContentEditable) {
+				preview.contentWindow.document.body.contentEditable = true;
+				preview.contentWindow.document.body.contentEditable = false;
+			  }
+		}
 		async function loadCodeFromDb() {
-			let text = await DB.getCode(parentThis.parent.parent.data().storage_id[tabindex]);
+			if (tabindex !== codeEditorHelper.getCurrentEditorIndex()) return;
+			if (self.state.file) {
+				var text = await codeEditorHelper.getFileWithId(self.state.file.fileid)
+				text = text.code;
+			} else {
+				var text = await DB.getCode(parentThis.parent.parent.data().storage_id[tabindex]);
+			}
 			if (text === null) {
 				text = parentThis.parent.parent.data().default[tabindex]
 				document.getElementById("code-editor-status").innerText = "Ready"
 			}
-			document.getElementById("code-frame").contentWindow.codeEditor.getModel().setValue(text);
-			document.getElementById("code-frame").contentWindow.codeEditor.getAction("editor.action.formatDocument").run();
-			document.getElementById("code-editor-status").innerText = "Ready"
+			if (self.state.file && (self.state.file.filename.endsWith(".png") || self.state.file.filename.endsWith(".jpg") || self.state.file.filename.endsWith(".jpeg") || self.state.file.filename.endsWith(".gif"))) {
+				codeEditorHelper.updateReadOnly(true);
+				if (!await plugins.checkPluginStatus("hexy")) {
+					let coverDiv = document.createElement("div");
+					coverDiv.className = "code-editor-cover";
+					coverDiv.innerHTML = "<span style='margin-top: 30px; display: block; font-size: 0.9em;'>This file is not displayed in the editor because it is either binary or uses an unsupported text encoding. <a class='url' style='border-bottom: 1px solid; cursor: pointer;'>Do you want to open it anyway?</a><br>You can also try installing the Hex Editor extention to view this file.</span>";
+					coverDiv.querySelector("a").addEventListener("click", function () {
+						let x = this.parentElement.parentElement;
+						x.parentElement.removeChild(x);
+						codeEditorHelper.updateContent(text)
+					})
+					document.getElementById("code-frame").parentElement.appendChild(coverDiv);
+				} else {
+					await plugins.load("hexy");
+					let coverDiv = document.createElement("div");
+					coverDiv.className = "code-editor-cover";
+					coverDiv.innerHTML = "<span style='margin-top: 30px; display: block; font-size: 0.9em;'>This file is not displayed in the editor because it is either binary or uses an unsupported text encoding. <a class='url' style='border-bottom: 1px solid; cursor: pointer;'>Open with Hex Editor</a> or <a class='url' style='border-bottom: 1px solid; cursor: pointer;'>Open raw file</a></span>";
+					coverDiv.querySelector("a").addEventListener("click", function () {
+						let x = this.parentElement.parentElement;
+						x.parentElement.removeChild(x);
+						codeEditorHelper.updateContent(hexy(text))
+					})
+					coverDiv.querySelectorAll("a")[1].addEventListener("click", function () {
+						let x = this.parentElement.parentElement;
+						x.parentElement.removeChild(x);
+						codeEditorHelper.updateContent(text)
+					})
+
+					document.getElementById("code-frame").parentElement.appendChild(coverDiv);
+
+				}
+			} else {
+				codeEditorHelper.updateReadOnly(false);
+				codeEditorHelper.updateContent(text)
+			}
+			setTimeout(function () {
+				self.state.onLoadCallback();
+				document.getElementById("code-editor-status").innerText = "Ready"
+			}, 100)
 		}
 		function addThings() {
 			function loadCode() {
 				try {
-					document.getElementById("preview").srcdoc = codeEditorHelper.getValue();
+					if (document.getElementById("preview")) {
+						document.getElementById("preview").contentWindow.document.open();
+						document.getElementById("preview").contentWindow.document.write(codeEditorHelper.getValue());
+						document.getElementById("preview").contentWindow.document.close();
+					}
 				} catch (err) {
 					setTimeout(loadCode, 500);
 				}
@@ -70,24 +142,26 @@ class Editor extends tApp.Component {
 				});
 			}
 			loadCode();
-			function addEvent() {
+			async function addEvent() {
 				codeEditorHelper.setCurrentEditorIndex(parentThis.parent.state.tabbedView.state.selected)
 
 				tabindex = codeEditorHelper.getCurrentEditorIndex()
-				let checkFileType = parentThis.parent.parent.data().storage_id[tabindex].split('.').pop().toLowerCase();
+				let checkFileType = filename.split('.').pop().toLowerCase();
 				var requiredPlugins = {
 					"py": "brython",
 					"html": false,
 					"md": "showdown",
 					"js": false,
-					"jsx": "react"
+					"jsx": "react",
+					"css": false,
+					"ts": "typescript"
 				}
 				if (!window.alertModals) {
 					window.alertModals = {
 						pluginFileRequired: {}
 					}
 				}
-				if (plugins.checkPluginStatus(requiredPlugins[checkFileType]) === false && requiredPlugins[checkFileType] !== false && !window.alertModals.pluginFileRequired[checkFileType]) {
+				if (requiredPlugins[checkFileType] && await plugins.checkPluginStatus(requiredPlugins[checkFileType]) === false && requiredPlugins[checkFileType] !== false && !window.alertModals.pluginFileRequired[checkFileType]) {
 					window.alertModals.pluginFileRequired[checkFileType] = true;
 					codeEditorHelper.showAlertModal(`This file extention (.${checkFileType}) requires the ${requiredPlugins[checkFileType]} plugin to run`, [
 						{
@@ -118,24 +192,303 @@ class Editor extends tApp.Component {
 							element.addEventListener("click", handleClicks)
 						}
 					})
+					document.querySelectorAll("#code-editor-component div div div .tab").forEach(element => {
+						element.addEventListener("contextmenu", handleRightClick)
+					})
+					document.addEventListener("click", handleLeftClick);
+
+					async function handleRightClick(e) {
+						e.preventDefault();
+						var menu = document.getElementById("editor-tab-context-menu");
+						let clickIndex = Array.from(e.target.parentNode.children).indexOf(e.target);
+						let storageId = e.target.getAttribute("data-storage_id");
+						for (let i in menu.children) {
+							let option = menu.children[i];
+							if (option.nodeName === "HR" || typeof option === "number" || typeof option === "function") continue;
+							else if (option.innerText.startsWith("Delete")) {
+								if (!storageId.startsWith("USERDATA")) option.style.display = "none";
+								else {
+									option.style.display = "";
+									option.onclick = function () {
+										codeEditorHelper.showAlertModal("Are you sure you want to delete this file? This action is irreversible!", [
+											{
+												text: "Confirm", onclick: async function () {
+													await codeEditorHelper.deleteFile(storageId.slice("USERDATA".length));
+													codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index'));
+													window.location.reload();
+												}
+											},
+											{ text: "Cancel", onclick: function () { codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index')) } }
+										], "codicon-warning")
+									}
+								}
+							} else if (option.innerText.startsWith("Rename")) {
+								if (!storageId.startsWith("USERDATA")) option.style.display = "none";
+								else {
+									option.style.display = "";
+									option.onclick = async function () {
+										let input = document.createElement("input");
+										let position = e.target.getBoundingClientRect()
+										input.setAttribute("type", "text");
+										input.value = e.target.innerText;
+										input.style.position = "fixed";
+										input.style.top = position.top + "px";
+										input.style.left = position.left + "px";
+										input.style.width = position.width + "px";
+										input.style.backgroundColor = window.getComputedStyle(e.target, null).getPropertyValue('background-color');
+										input.style.color = "white";
+										input.style.zIndex = "10";
+										input.style.border = "none"
+										input.style.padding = "10px 5px";
+										input.style.filter = "brightness(1.5)";
+										input.style.borderRadius = "10px 10px 0 0";
+										input.style.fontSize = "16px"
+										document.body.appendChild(input);
+										input.select(0, input.value.lastIndexOf("."));
+										input.addEventListener("blur", function () {
+											input.parentElement.removeChild(input)
+										})
+										input.addEventListener("keydown", async function (ev) {
+											if (ev.key === "Enter") {
+												try {
+													await codeEditorHelper.renameFile(storageId.slice("USERDATA".length), input.value);
+													window.location.reload();
+												} catch (err) {
+													codeEditorHelper.showAlertModal(err, [{
+														text: "Ok", onclick: function () { codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index')) }
+													}], "codicon-error")
+												}
+												input.blur();
+											}
+										})
+									}
+								}
+							} else if (option.innerText.startsWith("Download")) {
+								option.onclick = function () {
+									e.target.click();
+									setTimeout(function () {
+										var element = document.createElement('a');
+										element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(codeEditorHelper.getValue()));
+										element.setAttribute('download', e.target.innerText);
+
+										element.style.display = 'none';
+										document.body.appendChild(element);
+
+										element.click();
+
+										document.body.removeChild(element);
+									}, 1000)
+								}
+							} else if (option.innerText.startsWith("Format")) {
+								option.onclick = function () {
+									e.target.click();
+									setTimeout(function () {
+										codeEditorHelper.format();
+									}, 500)
+								}
+							} else if (option.innerText.startsWith("Run")) {
+								option.onclick = function () {
+									e.target.click();
+									setTimeout(function () {
+										document.getElementById("code-editor-run-btn").click();
+									}, 500)
+								}
+							} else if (option.innerText.startsWith("New File")) {
+								option.onclick = async function () {
+									let level = await new Promise((resolve, reject) => {
+										codeEditorHelper.showAlertModal("Would you like this file to be accessible lesson-wide or confined to this page?", [
+											{
+												text: "Lesson-Wide", onclick: function () {
+													resolve("module")
+													codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index'));
+												}
+											},
+											{
+												text: "Page only", onclick: function () {
+													resolve("page")
+													codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index'))
+												}
+											}
+										], "codicon-warning")
+									})
+									let template = document.getElementById("snippets-modal")
+									let modal = template.cloneNode(true);
+									modal.removeAttribute("id")
+									modal.classList.remove("none")
+									modal.querySelector("h3").innerHTML = "New File";
+									modal.querySelector(".button-correct").innerHTML = "Create File";
+									modal.querySelector("span").onclick = function () {
+										modal.parentNode.removeChild(modal)
+									}
+									modal.querySelector(".button-correct").onclick = async function () {
+										let name = this.parentElement.querySelector(".inputs input").value
+										if (name.length === 0) {
+											codeEditorHelper.showAlertModal("You must enter a file name!", [
+												{
+													text: "Ok", onclick: function () {
+														codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index'));
+													}
+												}
+											], "codicon-error")
+											return;
+										}
+
+										codeEditorHelper.uploadFile({
+											filename: name,
+											level: level,
+											data: "",
+											onsuccess: function () {
+												window.location.reload();
+											},
+											onerror: function (error) {
+												codeEditorHelper.showAlertModal(error, [
+													{
+														text: "Ok", onclick: function () {
+															codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index'));
+														}
+													}
+												], "codicon-error")
+											}
+										})
+
+										modal.parentElement.removeChild(modal)
+									}
+									let elm = document.createElement("input");
+									elm.className = "short-answer-input";
+									elm.classList.add("insert-snippet-input")
+									elm.placeholder = "File Name (Including its extention)";
+									modal.querySelector(".inputs").appendChild(elm);
+
+									document.body.appendChild(modal);
+								}
+							} else if (option.innerText.startsWith("Upload File")) {
+								option.onclick = async function () {
+									let level = await new Promise((resolve, reject) => {
+										codeEditorHelper.showAlertModal("Would you like this file to be accessible lesson-wide or confined to this page?", [
+											{
+												text: "Lesson-Wide", onclick: function () {
+													resolve("module")
+													codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index'));
+												}
+											},
+											{
+												text: "Page only", onclick: function () {
+													resolve("page")
+													codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index'))
+												}
+											}
+										], "codicon-warning")
+									})
+									let input = document.createElement("input");
+									input.setAttribute("type", "file");
+
+									function readSingleFile(e) {
+										var file = e.target.files[0];
+										if (!file) {
+											return;
+										}
+										if (file.size > 50000000) {
+											codeEditorHelper.showAlertModal("This file is too big! The maximum size that a file can be is 50MB", [
+												{
+													text: "Ok", onclick: function () {
+														codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index'));
+													}
+												}
+											], "codicon-error")
+											return;
+										}
+										var reader = new FileReader();
+										reader.onload = function (e) {
+											var contents = e.target.result;
+											console.log(e)
+											uploadContents(contents, file.name);
+										};
+										if (file.name.endsWith(".png") || file.name.endsWith(".jpg") || file.name.endsWith(".jpeg") || file.name.endsWith(".gif")) {
+											reader.readAsBinaryString(file);
+										} else reader.readAsText(file);
+									}
+
+									function uploadContents(contents, filename) {
+										input.parentElement.removeChild(input);
+										codeEditorHelper.uploadFile({
+											filename: filename,
+											level: level,
+											data: contents,
+											onsuccess: function () {
+												window.location.reload();
+											},
+											onerror: function (error) {
+												codeEditorHelper.showAlertModal(error, [
+													{
+														text: "Ok", onclick: function () {
+															codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index'));
+														}
+													}
+												], "codicon-error")
+											}
+										})
+
+
+									}
+									document.body.appendChild(input);
+									input.click();
+									input.addEventListener('change', readSingleFile, false);
+								}
+							}
+						}
+						window.focus()
+						function handleIframeClicks() {
+							setTimeout(() => {
+								if (document.activeElement.tagName === "IFRAME") {
+									handleLeftClick()
+								}
+							});
+						}
+						window.addEventListener("blur", handleIframeClicks, { once: true });
+
+						menu.classList.remove("none");
+						menu.style.left = (e.clientX - 5) + "px";
+						menu.style.top = (e.clientY - 5) + "px";
+					}
+					function handleLeftClick() {
+						var menu = document.getElementById("editor-tab-context-menu");
+						menu.classList.add("none");
+					}
 					function handleClicks() {
 						tabindex = codeEditorHelper.getCurrentEditorIndex()
 						setTimeout(function () {
-							let fileType = parentThis.parent.parent.data().storage_id[tabindex].split('.').pop().toLowerCase()
-							if (fileType === "html") updatePreview(fileType)
+							let filenamey = document.querySelector("tapp-main").children[0].children[0].children[0].children[0].children[0].children[tabindex].innerText
+							let fileType = filenamey.split('.').pop().toLowerCase()
+							if (fileType === "html" || fileType === "md" || fileType === "png" || fileType === "jpg" || fileType === "jpeg" || fileType === "gif") {
+								setTimeout(function(){
+									updatePreview(fileType);
+								}, 200)
+							}
 						}, 100)
 					}
 					document.getElementById("code-editor-run-btn").onclick = async function () {
+						var filenamex = tApp.getComponentFromDOM(document.querySelector("tapp-main").children[0].children[0]).data().files[tabindex] || document.querySelector("tapp-main").children[0].children[0].children[0].children[0].children[0].children[tabindex].innerText;
+
 						tabindex = codeEditorHelper.getCurrentEditorIndex()
-						document.getElementById("code-editor-status").innerText = "Saving..."
-						await DB.setCode(parentThis.parent.parent.data().storage_id[tabindex], codeEditorHelper.getValue())
-						let fileType = parentThis.parent.parent.data().storage_id[tabindex].split('.').pop().toLowerCase()
+
+
+						document.getElementById("code-editor-status").innerText = "Saving...";
+						if (!parentThis.parent.parent.data().storage_id[tabindex]) {
+							filenamex = document.querySelector("tapp-main").children[0].children[0].children[0].children[0].children[0].children[tabindex].innerText
+							let file = await codeEditorHelper.getFile(filenamex);
+							if (!codeEditorHelper.getCurrentEditorOption(81)) await codeEditorHelper.updateFile(file.fileid, codeEditorHelper.getValue())
+						} else {
+							filenamex = tApp.getComponentFromDOM(document.querySelector("tapp-main").children[0].children[0]).data().files[tabindex];
+							if (!codeEditorHelper.getCurrentEditorOption(81)) await DB.setCode(parentThis.parent.parent.data().storage_id[tabindex], codeEditorHelper.getValue())
+						}
+
+						let fileType = filenamex.split('.').pop().toLowerCase()
 						updatePreview(fileType)
 						setTimeout(function () {
 							document.getElementById("code-editor-status").innerText = "Ready"
 						}, 500)
 					}
-					function updatePreview(fileType) {
+					async function updatePreview(fileType) {
 						tabindex = codeEditorHelper.getCurrentEditorIndex()
 						if (!window.lastUpdatePreview) window.lastUpdatePreview = 0
 						if (window.lastUpdatePreview + 100 > Date.now()) return;
@@ -145,16 +498,86 @@ class Editor extends tApp.Component {
 							document.getElementById("console-bridge").dispatchEvent(new Event('change'));
 						}
 						window.lastTab = tabindex;
-						if (document.getElementById("preview")) {
-							try {
-								tApp.getComponentFromDOM(document.querySelector(".preview-wrapper")).parent.children[3].update(codeEditorHelper.getValue())
-							} catch (err) { }
+						async function replaceAsync(str, regex, asyncFn) {
+							const promises = [];
+							str.replace(regex, (match, ...args) => {
+								const promise = asyncFn(match, ...args);
+								promises.push(promise);
+							});
+							const data = await Promise.all(promises);
+							return str.replace(regex, () => data.shift());
 						}
 						if (fileType === "html") {
-							if (document.getElementById("preview")) document.getElementById("preview").srcdoc = codeEditorHelper.getValue();
+							function showError(text) {
+								window.consoleLogs = [[text]]
+								document.getElementById("console-bridge").click()
+							}
+							let html = codeEditorHelper.getValue();
+							var errored = false;
+							html = await replaceAsync(html, /(?<=src=("|'))(.*)(?=("|'))/g, async function (module) {
+								if (/^(http(s|):\/\/)/.test(module)) {
+									return module;
+								}
+								if (module.startsWith("data:")) return module;
+								module = module.replace(/^(.\/|\/)/g, "")
+
+								if (module.includes("\"")) module = module.slice(0, module.indexOf("\""))
+
+								let moduleIndex = self.parent.parent.data().files.findIndex(e => e === module);
+								var moduleCode;
+								if (moduleIndex === -1) {
+									try {
+										moduleCode = await codeEditorHelper.getFile(module);
+										moduleCode = moduleCode.code
+									} catch (e) {
+										showError(`GET ${module} net::ERR_ABORTED 404 (File not found)'`)
+										errored = true;
+									}
+								} else {
+									moduleCode = await DB.getCode(self.parent.parent.data().storage_id[moduleIndex]);
+								}
+								if (module.endsWith(".png") || module.endsWith(".jpg") || module.endsWith(".jpeg") || module.endsWith(".gif")) {
+									return `data:image/png;base64,${btoa(moduleCode)}`
+								}
+								return `data:text/plain;base64,` + plugins.Base64.encode(moduleCode);
+							})
+							html = await replaceAsync(html, /<link(.*)(?<=href=("|'))(.*)(?=("|'))/g, async function (module) {
+								if (!module.includes("stylesheet")) return module;
+								module = await replaceAsync(module, /(?<=href=("|'))(.*)/g, async function (url) {
+									if (/^(http(s|):\/\/)/.test(url)) {
+										return url;
+									}
+									url = url.replace(/^(.\/|\/)/g, "")
+									let moduleIndex = self.parent.parent.data().files.findIndex(e => e === url);
+									var moduleCode;
+									if (moduleIndex === -1) {
+										try {
+											moduleCode = await codeEditorHelper.getFile(url);
+											moduleCode = moduleCode.code
+										} catch (e) {
+											showError(`GET ${module} net::ERR_ABORTED 404 (File not found)'`)
+											errored = true;
+										}
+									} else {
+										moduleCode = await DB.getCode(self.parent.parent.data().storage_id[moduleIndex]);
+									}
+									return `data:text/plain;base64,` + plugins.Base64.encode(moduleCode);
+								})
+								return module;
+							})
+							html = "<!--Devnetics Loaded-->"+html
+							html = html.replace("<!DOCTYPE html>", "")
+							setPreviewHTML(html)							
+
+							if (errored = true) {
+								try {
+									document.getElementById("preview-container").classList.remove("preview-mode-console")
+									let consolew = document.querySelector(".console-wrapper");
+									if (consolew) console.parentElement.removeChild(consolew)
+								} catch (e) { }
+							}
 						} else if (fileType === "cpp") {
-							plugins.load("jscpp")
-							console.log("running cpp")
+							await plugins.load("jscpp")
 							var code = "#include <iostream>" +
 								"using namespace std;" +
 								"int main() {" +
@@ -187,7 +610,7 @@ class Editor extends tApp.Component {
 							} catch (err) { }
 							window.consoleLogs.push(["Starting python emulator..."])
 							document.getElementById("console-bridge").click()
-							if (plugins.checkPluginStatus("brython") === false) {
+							if (await plugins.checkPluginStatus("brython") === false) {
 								window.consoleLogs.push(["Running python files requires the brython plugin! Install it first in the plugins tab"])
 								document.getElementById("console-bridge").click()
 								return;
@@ -235,11 +658,9 @@ try:
 except Exception:
     print(traceback.format_exc())
 `
-
-
 							try {
 								if (!window.__BRYTHON__) {
-									plugins.load("brython")
+									await plugins.load("brython");
 									brython({ pythonpath: ["/assets/plugins/brython/modules/"], cache: true, debug: 0 })
 								}
 							} catch (err) {
@@ -265,7 +686,7 @@ except Exception:
 									</body>
 								</html>
 								<script>
-								${plugins.getCode("brython")}
+								${await plugins.getCode("brython")}
 								</script>
 								<script type="text/python">
 ${code}
@@ -313,7 +734,7 @@ ${code}
 						} else if (fileType === "md") {
 							if (document.getElementById("preview")) {
 								try {
-									plugins.load("showdown")
+									await plugins.load("showdown")
 								} catch (err) {
 									codeEditorHelper.showAlertModal("Markdown plugin not found! You must install it before you can render markdown files.", [{
 										text: "Ok", onclick: function () { codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index')) }
@@ -323,7 +744,7 @@ ${code}
 								let md = codeEditorHelper.getValue();
 								var converter = new showdown.Converter();
 								let html = converter.makeHtml(md);
-								document.getElementById("preview").srcdoc = html
+								setPreviewHTML(html)							
 							}
 						} else if (fileType === "js") {
 							document.getElementById("console-bridge").dispatchEvent(new Event('change'));
@@ -333,7 +754,6 @@ ${code}
 								if (remove) {
 									remove.parentElement.removeChild(remove)
 								}
-								plugins.unload("brython")
 							} catch (err) { }
 							window.consoleLogs.push(["Starting javascript engine..."])
 							document.getElementById("console-bridge").click()
@@ -391,56 +811,79 @@ try{
 									document.getElementById("console-bridge").click()
 								}
 								let code = codeEditorHelper.getValue();
-								plugins.load("react");
+								await plugins.load("react");
 								// parsing imports
-								let imports = []
-								code = code.replaceAll(/import([\s\S]*?)(?='|").*/g, function (e) {
+								let importStatements = "";
+								let secondaryFilesCode = ""
+								code = await replaceAsync(code, /import([\s\S]*?)(?='|").*/g, async function(e) {
 									if (e.replaceAll("\"", "'").match(/(?<=')(.*)(?=')/g)[0] === "react") return "";
-									let name = e.match(/(?<=import)(.*)(?=from)/g)[0];
-									imports.push(e.replaceAll("\"", "'"))
-									return `var ${name} = window.__importBridge.${name}`
-								})
-								var secondaryFilesCode = ""
-								for (let i in imports) {
-									let element = imports[i]
-									let module = element.match(/(?<=')(.*)(?=')/g)[0];
-									let name = element.match(/(?<=import)(.*)(?=from)/g)[0];
-									console.log(module, name)
+									if (e.replaceAll("\"", "'").match(/(?<=')(.*)(?=')/g)[0] === "react-dom") return "";
+									let moduleName = e.match(/(?<=import)(.*)(?=from)/g)[0];
+									let module = e.replaceAll("\"", "'").match(/(?<=')(.*)(?=')/g)[0]
+
+									if (!module.startsWith("./")) module = "./" + module;
 									if (!module.startsWith("./") || module.indexOf("/") !== 1) {
 										return showError("DependencyNotFoundError: Could not find dependency: '" + module + "'")
 									}
 									module = module.slice(2);
 									let moduleIndex = self.parent.parent.data().files.findIndex(e => e === module)
 									if (moduleIndex === -1) {
-										return showError("DependencyNotFoundError: Could not find dependency: '" + module + "'")
-									}
-									let moduleCode = await DB.getCode(self.parent.parent.data().storage_id[moduleIndex])
-									if (name.startsWith("{") && name.endsWith("}")) {
-										// do something
+										try {
+											moduleCode = await codeEditorHelper.getFile(module);
+											moduleCode = moduleCode.code
+										} catch (e) {
+											return showError("DependencyNotFoundError: Could not find dependency: '" + module + "'")
+										}
 									} else {
-										let compiledModuleCode = moduleCode.replaceAll("module.exports", "window.__importBridge." + name)
-										compiledModuleCode = compiledModuleCode.replaceAll("export default", "window.__importBridge." + name + " = ")
-										compiledModuleCode = Babel.transform(compiledModuleCode, {
+										moduleCode = await DB.getCode(self.parent.parent.data().storage_id[moduleIndex]);
+									}
+									
+
+									moduleCode = moduleCode.replaceAll(/import([\s\S]*?)(?='|").*/g, function (e) {
+										if (e.replaceAll("\"", "'").match(/(?<=')(.*)(?=')/g)[0] === "react") return "";
+										if (e.replaceAll("\"", "'").match(/(?<=')(.*)(?=')/g)[0] === "react-dom") return "";
+										return e;
+									})
+									if (module.endsWith(".module.css")) {
+										moduleCode = "export default "+ format(window.nativeCss.convert(moduleCode))
+										function format(obj){
+											var str = JSON.stringify(obj, 0, 4),
+												arr = str.match(/".*?":/g);
+											if (arr === null) return "{}"
+											for(var i = 0; i < arr.length; i++)
+												str = str.replace(arr[i], arr[i].replace(/"/g,''));
+											str = str.replaceAll("\\\"", "");
+											return str;
+										}
+										moduleCode = "data:text/javascript;charset=utf-8;base64,"+plugins.Base64.encode(moduleCode)
+										importStatements+=`import${moduleName}from '${moduleCode}';\n`
+									} else if (module.endsWith(".css")){
+										secondaryFilesCode += "<style>\n"+moduleCode+"\n</style>"
+									} else {
+										moduleCode = Babel.transform(moduleCode, {
 											plugins: ["transform-react-jsx"]
 										}).code;
-										secondaryFilesCode += "<script>\n" + `(function(){\n${compiledModuleCode}\n})()` + "\n</script>";
-										// do more things
+										moduleCode = "data:text/javascript;charset=utf-8;base64,"+plugins.Base64.encode(moduleCode)
+										importStatements+=`import${moduleName}from '${moduleCode}';\n`
 									}
-								}
+									return ``
+								})
 								code = Babel.transform(code, {
 									plugins: ["transform-react-jsx"]
 								}).code
 								if (document.getElementById("preview")) {
 									let src = `
 									<html>
+										<head>
+										${secondaryFilesCode}
+										</head>
 										<body>
 											<div id="root"></div>
 											<script>
-											window.__importBridge = {};
-												${plugins.getCode("react")}
+											${await plugins.getCode("react")}
 											</script>
-											${secondaryFilesCode}
-											<script>
+											<script type="module">
+											${importStatements}
 												try{
 													${code}
 												}catch(err) {
@@ -453,13 +896,100 @@ try{
 										</body>
 									</html>
 									`
-									document.getElementById("preview").srcdoc = src;
+									setPreviewHTML(src)							
 									document.getElementById("preview-container").classList.remove("preview-mode-console")
-									let console = document.querySelector(".console-wrapper");
-									if (console) console.parentElement.removeChild(console)
+									let consolew = document.querySelector(".console-wrapper");
+									if (consolew) consolew.parentElement.removeChild(consolew)
 								}
 
 							}
+						} else if (fileType === "ts") {
+							document.getElementById("console-bridge").dispatchEvent(new Event('change'));
+							window.consoleLogs = []
+							try {
+								let remove = document.querySelector("#python-execution-thread")
+								if (remove) {
+									remove.parentElement.removeChild(remove)
+								}
+							} catch (err) { }
+							window.consoleLogs.push(["Starting typescript engine..."])
+							document.getElementById("console-bridge").click()
+							let code = codeEditorHelper.getValue()
+							if (document.getElementById("python-execution-thread")) {
+								let elem = document.getElementById("python-execution-thread")
+								elem.parentElement.removeChild(elem)
+							}
+							try {
+								await plugins.load("typescript")
+							} catch (err) {
+								window.consoleLogs.push(["This file requires the Typescript plugin to run!"])
+								document.getElementById("console-bridge").click();
+								return;
+							}
+							code = window.ts.transpile(code);
+							let iframe = document.createElement("iframe")
+							iframe.style.width = 0
+							iframe.style.height = 0
+							iframe.id = "python-execution-thread"
+							iframe.srcdoc = `
+							<html>
+								<body>
+									<div id="python-sandbox-bridge"></div>
+								</body>
+							</html>
+							<script>
+console.oldLog = console.log
+console.log = function(){
+	window.newLog(arguments)
+}
+console.error = function(){
+	window.newLog(arguments)
+}
+try{
+	${code}
+}catch(err){
+	console.error(err)
+}
+							</script>
+							`
+							document.body.appendChild(iframe)
+							iframe.contentWindow.newLog = function (log) {
+								let arrLog = []
+								for (let i in log) {
+									arrLog.push(log[i])
+								}
+								window.consoleLogs.push(arrLog)
+								window.document.getElementById("console-bridge").click()
+								if (window.newLogCallback) window.newLogCallback(log)
+							}
+							iframe.contentWindow.onerror = function (err) {
+								err = err.toString()
+								window.consoleLogs.push([err])
+								window.document.getElementById("console-bridge").click()
+								return false;
+							}
+						} else if (fileType === "png" || fileType === "jpg" || fileType === "jpeg" || fileType === "gif") {
+							let url = document.querySelectorAll("#code-editor-component > div:nth-child(1) > div > div.tab-group .tab")[tabindex].innerText;
+							let moduleIndex = self.parent.parent.data().files.findIndex(e => e === url);
+							var moduleCode;
+							if (moduleIndex === -1) {
+								try {
+									moduleCode = await codeEditorHelper.getFile(url);
+									moduleCode = moduleCode.code
+								} catch (e) {
+									throw e
+								}
+							} else {
+								moduleCode = await DB.getCode(self.parent.parent.data().storage_id[moduleIndex]);
+							}
+							let html = `
+							<html>
+								<body>
+									<img src="data:image/png;base64,${btoa(moduleCode)}">
+								</body>
+							</html>
+							`
+							setPreviewHTML(html)							
 						}
 					}
 					document.getElementById("code-frame").contentWindow.document.onkeydown = async function (e) {
@@ -471,8 +1001,18 @@ try{
 						if (e.key === 's' && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
 							e.preventDefault();
 							document.getElementById("code-editor-status").innerText = "Saving..."
-							await DB.setCode(parentThis.parent.parent.data().storage_id[codeEditorHelper.getCurrentEditorIndex()], codeEditorHelper.getValue())
-							let fileType = parentThis.parent.parent.data().storage_id[tabindex].split('.').pop().toLowerCase()
+							var filenamex = tApp.getComponentFromDOM(document.querySelector("tapp-main").children[0].children[0]).data().files[tabindex] || document.querySelector("tapp-main").children[0].children[0].children[0].children[0].children[0].children[tabindex].innerText;
+
+							if (!parentThis.parent.parent.data().storage_id[tabindex]) {
+								filenamex = document.querySelector("tapp-main").children[0].children[0].children[0].children[0].children[0].children[tabindex].innerText
+								let file = await codeEditorHelper.getFile(filenamex);
+								if (!codeEditorHelper.getCurrentEditorOption(81)) await codeEditorHelper.updateFile(file.fileid, codeEditorHelper.getValue())
+							} else {
+								filenamex = tApp.getComponentFromDOM(document.querySelector("tapp-main").children[0].children[0]).data().files[tabindex];
+								if (!codeEditorHelper.getCurrentEditorOption(81)) await DB.setCode(parentThis.parent.parent.data().storage_id[tabindex], codeEditorHelper.getValue())
+							}
+							let fileType = filenamex.split('.').pop().toLowerCase()
+
 							if (fileType === "html") updatePreview(fileType)
 							else if (fileType === "jsx") updatePreview(fileType)
 							window.codeEditorSaved = true;
@@ -488,26 +1028,24 @@ try{
 				}
 			}
 			addEvent()
-
-			window.startedRefresh = true
 		}
 
 		if (document.getElementById("code-frame")) {
 			if (window.monacoAlreadyLoaded === true) {
-				loadCodeFromDb()
 				addThings()
-				let fileType = parentThis.parent.parent.data().storage_id[tabindex].split('.').pop().toLowerCase()
+				loadCodeFromDb()
+				let fileType = filename.split('.').pop().toLowerCase()
 				codeEditorHelper.updateLanguage(languages[fileType])
 			} else {
-				document.getElementById("code-frame").contentWindow.addEventListener("message", function (event) {
+				document.getElementById("code-frame").contentWindow.addEventListener("message", async function (event) {
 					if (event.data.message === "monacoloaded") {
 						window.monacoAlreadyLoaded = true;
 						loadCodeFromDb()
 						addThings()
-						let fileType = parentThis.parent.parent.data().storage_id[tabindex].split('.').pop().toLowerCase()
+						let fileType = filename.split('.').pop().toLowerCase()
 						codeEditorHelper.updateLanguage(languages[fileType])
 						try {
-							plugins.load("betterEditor")
+							await plugins.load("betterEditor")
 						} catch (err) {
 
 						}
@@ -515,6 +1053,7 @@ try{
 				}, false);
 			}
 		}
+
 		return `<div id="code-editor-tab">
 		<div class="code-editor-options">
 			<span id="code-editor-status" style="display: inline-block; margin-left: 23px; margin-top: 10px;">Downloading code...</span>
@@ -532,42 +1071,70 @@ class TabbedEditor extends tApp.Component {
 	constructor(state, parent) {
 		super(state, parent);
 		window.debug = this
-		this.state.tabbedView = "Loading..."
+		this.state.tabbedView = "Loading...";
 		var tabs = [];
-		this.state.tabs = tabs;
 		this.x = false;
 	}
 	render() {
-		var goodThis = this;
-		var tabs = [];
+		delete window.monacoAlreadyLoaded;
+		delete window.addedEditorEventListeners;
 
-		function getData() {
-			if (goodThis.x === true) return;
-			goodThis.x = true;
-			if (goodThis.parent.data() === undefined) {
+		var self = this;
+		var tabs = [];
+		async function getData() {
+			if (self.x === true) return;
+			self.x = true;
+			if (self.parent.data() === undefined) {
+				self.x = false;
 				return setTimeout(getData, 100)
 			} else {
-				var data = goodThis.parent.data()
+				var data = self.parent.data()
 				for (var i = 0; i < data.files.length; i++) {
-					if (goodThis.state[data.storage_id[i]] == null) {
+					if (self.state[data.storage_id[i]] == null) {
 						console.log("Created new editor instance: ", data.storage_id[i])
-						goodThis.state[data.storage_id[i]] = new Editor({ tabindex: i }, goodThis)
+						self.state[data.storage_id[i]] = new Editor({ tabindex: i, storage_id: data.storage_id[i], onLoadCallback: onLoadCallback }, self)
 					}
 					tabs.push({
 						name: data.files[i],
-						component: goodThis.state[data.storage_id[i]],
+						component: self.state[data.storage_id[i]],
 						tabDataset: {
 							storage_id: data.storage_id[i]
 						}
 					})
-					goodThis.state.tabs = tabs;
 				}
-				if (goodThis.state.tabbedView == "Loading...") {
-					goodThis.state.tabbedView = new TabbedView({
+
+
+
+				let startingI = i;
+				var userData = await codeEditorHelper.getAllUserFiles();
+				for (i = i; i < userData.length + startingI; i++) {
+					let file = userData[i - startingI]
+					if (self.state[file.fileid] == null) {
+						self.state[file.fileid] = new Editor({ tabindex: i, storage_id: "USERDATA" + file.fileid, file: file, onLoadCallback: onLoadCallback }, self)
+					}
+					tabs.push({
+						name: file.filename,
+						component: self.state[file.fileid],
+						tabDataset: {
+							storage_id: "USERDATA" + file.fileid
+						}
+					})
+				}
+				if (self.state.tabbedView == "Loading...") {
+					self.setState("tabbedView", new TabbedView({
 						tabs: tabs
-					}, goodThis);
+					}, self))
+					document.body.setAttribute('data-before', "Loading files...");
+					document.body.classList.add("tester-testing")
+					document.body.classList.add("data-loadingfile")
+				}
+				async function onLoadCallback() {
+					if (!document.body.classList.contains("data-loadingfile")) return;
+					document.body.classList.remove("data-loadingfile")
+					document.body.classList.remove("tester-testing")
 				}
 			}
+
 		}
 		getData()
 		return `<div style="position: absolute; left: 0; width: 100%; transform: translateX(-50%);">

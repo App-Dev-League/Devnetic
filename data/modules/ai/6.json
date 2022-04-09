@@ -739,7 +739,7 @@
         "RNN (Recurrent Neural Network)",
         "CNN (Convolutional Neural Network)",
         "TNN (Temporal Neural Network)",
-        "ANN (Artifical Neural Network)"
+        "ANN (Artificial Neural Network)"
       ],
       "correct": 0
     },

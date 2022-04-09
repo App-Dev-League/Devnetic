@@ -77,7 +77,6 @@ class CodeEditor extends ModuleComponent {
 						let msg = window.logQueue.shift()
 						if (window.newLogListener) window.newLogListener(msg)
 						else {
-							console.log("Uh oh there wasn't a listener for my beautiful log. The log was " + msg)
 							if (msg !== "The log was Launching tester..." && msg !== "Starting python emulator...") {
 								window.logQueue.unshift(msg);
 							}
@@ -134,6 +133,7 @@ class CodeEditor extends ModuleComponent {
 						var numberPattern = /\d+/g;
 						latest = latest.toString().match(numberPattern)[0]
 					}
+					else if (element === "remove_spaces") latest = latest.replaceAll(" ", "")
 					else if (element === "typeof") latest = typeof latest;
 					else if (element === "remove-tabs") latest = latest.replaceAll("\t", "")
 					else if (element === "remove-newlines") latest = latest.replace(/(\r\n|\n|\r)/gm, "");
@@ -172,7 +172,6 @@ class CodeEditor extends ModuleComponent {
 					} else if (i.type === "includes") {
 						if (!newText.toString().includes(i.value)) correct = false;
 					} else if (i.type === "startsWith") {
-						console.log(newText.toString(), i.value)
 						if (!newText.toString().startsWith(i.value)) correct = false;
 					} else if (i.type === "endsWith") {
 						if (!newText.toString().endsWith(i.value)) correct = false;
@@ -201,6 +200,7 @@ class CodeEditor extends ModuleComponent {
 					await sleep(1)
 					for (let p in tester.actions) {
 						let action = tester.actions[p];
+						if (action.onerror) action.onerror = tApp.escape(action.onerror);
 						let runwhen = action.runwhen
 						if (typeof action.run !== "undefined") {
 							// switching to correct editor
@@ -226,7 +226,6 @@ class CodeEditor extends ModuleComponent {
 							if (runwhen.startsWith("in") && runwhen.endsWith("outputs")) {
 								runwhen = parseInt(runwhen.replace("in", "").replace("outputs", ""))
 								logIndex += runwhen
-								console.log(logIndex, runwhen)
 								await waitForXInputs(runwhen)
 							}
 							action.input = tApp.compileTemplate(action.input, {
@@ -248,7 +247,6 @@ class CodeEditor extends ModuleComponent {
 							if (runwhen.startsWith("in") && runwhen.endsWith("outputs")) {
 								runwhen = parseInt(runwhen.replace("in", "").replace("outputs", ""))
 								logIndex += runwhen
-								console.log(logIndex, runwhen)
 								await waitForXInputs(runwhen, undefined, true)
 							}
 							if (!action.add) action.add = 1
@@ -289,7 +287,6 @@ class CodeEditor extends ModuleComponent {
 							if (runwhen.startsWith("in") && runwhen.endsWith("outputs")) {
 								runwhen = parseInt(runwhen.replace("in", "").replace("outputs", ""))
 								logIndex += runwhen
-								console.log(logIndex, runwhen)
 								await waitForXInputs(runwhen)
 							}
 							let currentScript = document.getElementById("python-execution-thread").contentWindow.document.querySelector("script").innerHTML;
@@ -313,7 +310,15 @@ class CodeEditor extends ModuleComponent {
 						let element = tester.correct[p];
 						let expected = element.value;
 						let actual = applyFilters(element.apply, codeEditorHelper.getValue());
-						if (expected !== actual) return false;
+						if (expected !== actual){
+							if (element.onerror) {
+								element.onerror = tApp.escape(element.onerror);
+								codeEditorHelper.showAlertModal(element.onerror, [{
+									text: "Ok", onclick: function () { codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index')) }
+								}], "codicon-error")
+							}
+							return false;
+						}
 					}
 				} else if (tester.type === "validate-dom") {
 					document.body.classList.add("tester-testing")
@@ -337,27 +342,30 @@ class CodeEditor extends ModuleComponent {
 							
 							await sleep(1000)
 							document.getElementById("code-editor-run-btn").click()
-							
-							for (let i = 0; i < 1000; i++) {
-								await sleep(100)
-								if (i === 20) document.getElementById("code-editor-run-btn").click()
-								if (!document.querySelector("#preview") || !document.querySelector("#preview").srcdoc.trim().startsWith("<html>")) continue;
-								else{
-									break;
+							if (action.run.endsWith("jsx")) {
+								for (let i = 0; i < 1000; i++) {
+									await sleep(100)
+									if (i === 20) document.getElementById("code-editor-run-btn").click()
+									if (!document.querySelector("#preview") || !document.querySelector("#preview").contentWindow.document.body.innerHTML.trim().startsWith("<div id=\"root\"")) continue;
+									else{
+										break;
+									}
 								}
 							}
 							await sleep(1000)
 						} else if (typeof action.execOnDOM !== "undefined") {
 							let dom = document.getElementById("preview").contentWindow;
-							console.log("executing "+"dom." + action.execOnDOM)
 							eval("dom." + action.execOnDOM)
 						} else if (typeof action.checkDOM !== "undefined") {
 							let dom = document.getElementById("preview").contentWindow;
 							let result = new Function([], "var dom = document.getElementById('preview').contentWindow; return " + "dom." + action.command)();
-							if (result !== action.checkDOM){ 
-								codeEditorHelper.showAlertModal("The tester encountered the following problems with your code: " + action.onerror.replaceAll("{{output}}"), [
-									{text: "Ok", onclick: function () { codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index')) }								}
-								])
+							if (result !== action.checkDOM){
+								if (action.onerror){
+									action.onerror = tApp.escape(action.onerror); 
+									codeEditorHelper.showAlertModal("The tester encountered the following problems with your code: " + action.onerror.replaceAll("{{output}}"), [
+										{text: "Ok", onclick: function () { codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index')) }								}
+									])
+								}
 								return false;
 							}
 						}
