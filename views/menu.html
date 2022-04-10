@@ -93,13 +93,15 @@
                         </div>
                         <div class="right" style="width: 100%; padding-left: 25px;">
                             <% for( let i = 0; i < window.menuData[value].data.length; i++ ) { %>
-                                <% if (window.menuData[value].data[i].currentUserPosition/window.menuData[value].data[i].moduleLength < 0.1) { %>
+                                <% if (window.menuData[value].data[i].currentUserPosition/window.menuData[value].data[i].moduleLength < 0.85) { %>
                                     <div style="width: 14px; height: 14px; border-radius: 50%; border: 3px solid white; position: absolute; transform: translateX(-33px); background-color: #282C34;"></div>
                                 <% } else { %>
                                     <div style="width: 14px; height: 14px; border-radius: 50%; border: 3px solid white; position: absolute; transform: translateX(-33px); background-color: white;"></div>
                                 <% } %>
-                                <span><%-window.menuData[value].data[i].data.title%></span> - 
-                                <span><%-Math.round(window.menuData[value].data[i].currentUserPosition/window.menuData[value].data[i].moduleLength*100)%>%</span>
+                                <a onclick="document.body.style.overflow='auto'" href="#/learn/<%-value%>/<%-i%>/<%-window.menuData[value].data[i].currentUserPosition%>" style="text-decoration: none;">
+                                    <span><%-window.menuData[value].data[i].data.title%></span> - 
+                                    <span><%-Math.round(window.menuData[value].data[i].currentUserPosition/window.menuData[value].data[i].moduleLength*100)%>%</span>
+                                </a>
                                 <br>
                                 <br>
                             <% } %>
@@ -161,7 +163,7 @@
         left: -5px;
     }
     .pie-chart-container {
-        transition: 1s transform;
+        transition: 0.1s transform;
     }
     .menu-track-title {
         font-weight: bold;
