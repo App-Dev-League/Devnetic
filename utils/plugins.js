@@ -98,8 +98,8 @@ module.exports = {
                 description: "This plugin allows you to resize the editor window, as well as re-arange the tabs.",
                 image: "/assets/plugins/betterEditor/betterEditor.png",
                 id: "betterEditor",
-                onInstall: "plugins.load(\"betterEditor\")",
-                latestVersion: "2.4.0"
+                onInstall: "plugins.load(\"betterEditor\").then(() => updateEditorSettings({dividerPosition: null}))",
+                latestVersion: "2.4.1"
                 //https://interactjs.io/
             },
             {

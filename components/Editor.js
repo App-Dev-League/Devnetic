@@ -1045,7 +1045,11 @@ try{
 						let fileType = filename.split('.').pop().toLowerCase()
 						codeEditorHelper.updateLanguage(languages[fileType])
 						try {
-							await plugins.load("betterEditor")
+							if (window.pluginList && window.pluginList.betterEditor){
+								reloadPluginSettings()
+							}else{
+								await plugins.load("betterEditor")
+							}
 						} catch (err) {
 
 						}
