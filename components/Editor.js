@@ -565,7 +565,7 @@ class Editor extends tApp.Component {
 								})
 								return module;
 							})
-							html = "<!--Devnetics Loaded-->"+html
+							html = "<!--Devnetic Loaded-->"+html
 							html = html.replace("<!DOCTYPE html>", "")
 							setPreviewHTML(html)							
 
