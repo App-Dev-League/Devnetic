@@ -455,6 +455,184 @@
 				"document.getElementsByTagName"
 			],
 			"correct": 2
+		},
+		{
+			"type": "congratulations",
+			"title": "Congratulations!",
+			"elements": [
+				{
+					"type": "text",
+					"content": "You learned the purpose of JavaScript."
+				},
+				{
+					"type": "text",
+					"content": "  - Full stack development (client side and server side execution"
+				},
+				{
+					"type": "text",
+					"content": "  - Animations and interactive elements"
+				},
+				{
+					"type": "text",
+					"content": "  - Calculations and logic"
+				},
+				{
+					"type": "text",
+					"content": "You learned some of the components that make up JavaScript code."
+				},
+				{
+					"type": "text",
+					"content": "  - Comments ([[monospace]]/* comment */[[/]]"
+				},
+				{
+					"type": "text",
+					"content": "  - Statements (end with [[monospace]];[[/]]"
+				},
+				{
+					"type": "text",
+					"content": "  - You learned about of the JavaScript console."
+				},
+				{
+					"type": "text",
+					"content": "  - Used for displaying messages and outputs"
+				},
+				{
+					"type": "text",
+					"content": "  - Used for debugging"
+				},
+				{
+					"type": "text",
+					"content": "  - Right click and inspect to open the console"
+				},
+				{
+					"type": "text",
+					"content": "  - [[monospace]]console.log[[/]] to print to the console."
+				},
+				{
+					"type": "text",
+					"content": "You learned about variables."
+				},
+				{
+					"type": "text",
+					"content": "  - A way to store values"
+				},
+				{
+					"type": "text",
+					"content": "  - Asisgned with the [[monospace]]=[[/]] sign."
+				},
+				{
+					"type": "text",
+					"content": "  - [[monospace]]let x = 0;[[/]]"
+				},
+				{
+					"type": "text",
+					"content": "  - Constants can't be changed ([[monospace]]const x = 0[[/]]"
+				},
+				{
+					"type": "text",
+					"content": "You learned about data types"
+				},
+				{
+					"type": "text",
+					"content": "  - string"
+				},
+				{
+					"type": "text",
+					"content": "  - number"
+				},
+				{
+					"type": "text",
+					"content": "  - bigint"
+				},
+				{
+					"type": "text",
+					"content": "  - boolean"
+				},
+				{
+					"type": "text",
+					"content": "  - undefined"
+				},
+				{
+					"type": "text",
+					"content": "  - symbol"
+				},
+				{
+					"type": "text",
+					"content": "  - null"
+				},
+				{
+					"type": "text",
+					"content": "You learned about arithmetic operators in JavaScript."
+				},
+				{
+					"type": "text",
+					"content": "  - addition"
+				},
+				{
+					"type": "text",
+					"content": "  - subtraction"
+				},
+				{
+					"type": "text",
+					"content": "  - multiplication"
+				},
+				{
+					"type": "text",
+					"content": "  - division"
+				},
+				{
+					"type": "text",
+					"content": "  - remainder"
+				},
+				{
+					"type": "text",
+					"content": "  - exponents"
+				},
+				{
+					"type": "text",
+					"content": "You learned about comparison operators."
+				},
+				{
+					"type": "text",
+					"content": "  - == (equal value)"
+				},
+				{
+					"type": "text",
+					"content": "  - === (equal value and type)"
+				},
+				{
+					"type": "text",
+					"content": "  - != (not equal)"
+				},
+				{
+					"type": "text",
+					"content": "  - > and < (greater and less than)"
+				},
+				{
+					"type": "text",
+					"content": "  - >= and <= (greater and less than or equal to)"
+				},
+				{
+					"type": "text",
+					"content": "You learned how to utilize some useful JavaScript features"
+				},
+				{
+					"type": "text",
+					"content": "  - Properties (data contained by objects)"
+				},
+				{
+					"type": "text",
+					"content": "  - Methods"
+				},
+				{
+					"type": "text",
+					"content": "  - Conditionals"
+				},
+				{
+					"type": "text",
+					"content": "  - DOM"
+				}
+			]
 		}
 	]
 }
