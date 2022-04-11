@@ -345,8 +345,8 @@
       "descriptions": [
         "Correct! CNNs are  a type of neural network specializing in images",
         "CNNs are not a superset of neural networks and there is no way to",
-        "Desc3",
-        "Desc4"
+        "CNNs are not used to make cameras work",
+        "CNNs are not absolutely necessary for image processing, though they can be helpful"
       ],
       "points": 5,
       "coins": 1,
@@ -357,6 +357,16 @@
         "The basic structure required for any image processing with code"
       ],
       "correct": 0
+    },
+    {
+      "type": "short_answer",
+      "question": "What is another name for a filter in a CNN?",
+      "code_template": "",
+      "answers": ["Convolution"],
+      "descriptions": {},
+      "description_default": "Think about the full form of CNN",
+      "points": 10,
+      "coins": 3
     },
     {
       "type": "multiple_choice",
@@ -397,6 +407,16 @@
       "correct": 3
     },
     {
+      "type": "short_answer",
+      "question": "Images have colors that are defined in color ______.",
+      "code_template": "",
+      "answers": ["Channels"],
+      "descriptions": {},
+      "description_default": "Images typically three of these, such as in RGB and HSV.",
+      "points": 10,
+      "coins": 3
+    },
+    {
       "type": "multiple_choice",
       "question": "Which of these is not an attribute of an image?",
       "descriptions": [
@@ -428,6 +448,16 @@
         "A method to process images using CNNs"
       ],
       "correct": 1
+    },
+    {
+      "type": "short_answer",
+      "question": "Therea are two types of ______: max ______ and average ______",
+      "code_template": "",
+      "answers": ["Pooling"],
+      "descriptions": {},
+      "description_default": "This layer follows the convolution layer and works to reduce the computation power required to process image data",
+      "points": 10,
+      "coins": 3
     },
     {
       "type": "multiple_choice",

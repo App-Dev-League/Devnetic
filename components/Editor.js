@@ -565,7 +565,7 @@ class Editor extends tApp.Component {
 								})
 								return module;
 							})
-							html = "<!--Devnetics Loaded-->"+html
+							html = "<!--Devnetic Loaded-->"+html
 							html = html.replace("<!DOCTYPE html>", "")
 							setPreviewHTML(html)							
 
@@ -1045,7 +1045,11 @@ try{
 						let fileType = filename.split('.').pop().toLowerCase()
 						codeEditorHelper.updateLanguage(languages[fileType])
 						try {
-							await plugins.load("betterEditor")
+							if (window.pluginList && window.pluginList.betterEditor){
+								reloadPluginSettings()
+							}else{
+								await plugins.load("betterEditor")
+							}
 						} catch (err) {
 
 						}

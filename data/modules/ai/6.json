@@ -446,6 +446,16 @@
       "correct": 2
     },
     {
+      "type": "short_answer",
+      "question": "What is the dimensionality of the following vector: [3, 7, 6, 3, 10, 8, 2, 5, 4, 2]?",
+      "code_template": "",
+      "answers": ["10", "ten", "Ten"],
+      "descriptions": {},
+      "description_default": "The dimensionality of a vector is defined as its length",
+      "points": 10,
+      "coins": 3
+    },
+    {
       "type": "multiple_choice",
       "question": "What is Word Embedding?",
       "descriptions": [
@@ -536,6 +546,16 @@
       "correct": 0
     },
     {
+      "type": "short_answer",
+      "question": "What is the term for the phenomenon where a word has multiple meanings?",
+      "code_template": "",
+      "answers": ["polysemy", "Polysemy"],
+      "descriptions": {},
+      "description_default": "The dimensionality of a vector is defined as its length",
+      "points": 10,
+      "coins": 3
+    },
+    {
       "type": "multiple_choice",
       "question": "What additional input do contextual word embeddings need that is different from traditional word embeddings?",
       "descriptions": [
@@ -612,6 +632,18 @@
       "correct": 0
     },
     {
+      "type": "short_answer",
+      "question": "What is the term for a measure of whether a sentiment is positive or negative?",
+      "code_template": "",
+      "answers": ["polarity", "Polarity"],
+      "descriptions": {
+        "Intensity": "Intensity is a measure of HOW positive or negative a sentiment is"
+      },
+      "description_default": "Think of positive and negative as two opposite poles",
+      "points": 10,
+      "coins": 3
+    },
+    {
       "type": "multiple_choice",
       "question": "Which of the following is NOT a reason for which we might use Machine Translation over human translation?",
       "descriptions": [
@@ -681,6 +713,16 @@
         "A method to convert sentences to vectors"
       ],
       "correct": 1
+    },
+    {
+      "type": "short_answer",
+      "question": "The Na\u00efve Bayes classifier assumes that predictors are ______ and have an equal effect on the outcome",
+      "code_template": "",
+      "answers": ["independent", "Independent"],
+      "descriptions": {},
+      "description_default": "If the predictors do not affect each other and have an equal affect on the outcome, what could they be assumed to be?",
+      "points": 10,
+      "coins": 3
     },
     {
       "type": "multiple_choice",

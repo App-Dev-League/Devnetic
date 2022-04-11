@@ -359,6 +359,16 @@
       "coins": 1
     },
     {
+      "type": "short_answer",
+      "question": "Consider the following neural network: All weights are 1 and all inputs are 0. If the sum of the biases is 16 and there is only one output node, what is the output?",
+      "code_template": "",
+      "answers": ["Sixteen", "16", "sixteen"],
+      "descriptions": {},
+      "description_default": "All the biases are multiplied by weights (1) and summed to get the final answer, so the sum of the biases is our answer.",
+      "points": 10,
+      "coins": 3
+    },
+    {
       "type": "multiple_choice",
       "question": "Which of the following is not an activation function?",
       "code_template": "",
@@ -370,6 +380,16 @@
         "Sigmoid is a non-linear function that is used for binary classification that produces values between 0 and 1",
         "Correct! Backpropogation is a ML algorithm used with neural networks, not an activation function."
       ],
+      "points": 10,
+      "coins": 3
+    },
+    {
+      "type": "short_answer",
+      "question": "What is the sum of the values produced by a Softmax activation function?",
+      "code_template": "",
+      "answers": ["1", "One", "one"],
+      "descriptions": {},
+      "description_default": "The softmax activation always produces values between 0 and 1, so what could they sum to?",
       "points": 10,
       "coins": 3
     },
