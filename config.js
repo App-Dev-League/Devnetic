@@ -147,50 +147,50 @@
 		request.data.module = parseInt(request.data.module);
 		request.data.position = parseInt(request.data.position);
 		Database.getModuleData(request.data.track, request.data.module, request.data.position).then((res) => {
-			let { data, type, moduleLength, next, moduleData} = res;
-			document.getElementById("module-progress-bar").style.width = request.data.position / moduleLength * 100+"%";
+			let { data, type, moduleLength, next, moduleData } = res;
+			document.getElementById("module-progress-bar").style.width = request.data.position / moduleLength * 100 + "%";
 			window.tAppRequestInstance = request;
 			window.currentModuleData = moduleData;
 			let currentTraverse = 0;
 			document.querySelectorAll(".module-progress-bar-timeline-element").forEach((el) => {
 				if (!el.classList.contains("template")) el.parentElement.removeChild(el)
 			})
-            window.currentModuleData.pages.forEach(element => {
-                let parent = document.getElementById("module-progress-bar-wrapper");
-                let template = parent.querySelector(".template");
-                let newElement = template.cloneNode(true);
-                newElement.classList.remove("template");
-                newElement.style.left = (currentTraverse/window.currentModuleData.pages.length*100) + "%";
-				if (request.data.position > currentTraverse ) newElement.classList.add("filled");
+			window.currentModuleData.pages.forEach(element => {
+				let parent = document.getElementById("module-progress-bar-wrapper");
+				let template = parent.querySelector(".template");
+				let newElement = template.cloneNode(true);
+				newElement.classList.remove("template");
+				newElement.style.left = (currentTraverse / window.currentModuleData.pages.length * 100) + "%";
+				if (request.data.position > currentTraverse) newElement.classList.add("filled");
 				else newElement.classList.remove("filled");
 
 				if (element.type === "information") {
 					newElement.querySelector(".name").innerText = element.title || "";
-					newElement.querySelector(".descriptor").innerHTML = "<b>Type: </b>Learn" 
+					newElement.querySelector(".descriptor").innerHTML = "<b>Type: </b>Learn"
 				}
 				if (element.type === "multiple_choice") {
-					newElement.querySelector(".name").innerText = element.question.slice(0, 10)+"..." || "";
-					newElement.querySelector(".descriptor").innerHTML = "<b>Type: </b>Question" 
+					newElement.querySelector(".name").innerText = element.question.slice(0, 10) + "..." || "";
+					newElement.querySelector(".descriptor").innerHTML = "<b>Type: </b>Question"
 				}
 				if (element.type === "snippet_unlock") {
-					newElement.querySelector(".name").innerText = element.name.slice(0, 10)+"..." || "";
-					newElement.querySelector(".descriptor").innerHTML = "<b>Type: </b>Snippet" 
+					newElement.querySelector(".name").innerText = element.name.slice(0, 10) + "..." || "";
+					newElement.querySelector(".descriptor").innerHTML = "<b>Type: </b>Snippet"
 				}
 				if (element.type === "short_answer") {
-					newElement.querySelector(".name").innerText = element.question.slice(0, 10)+"..." || "";
-					newElement.querySelector(".descriptor").innerHTML = "<b>Type: </b>Question" 
+					newElement.querySelector(".name").innerText = element.question.slice(0, 10) + "..." || "";
+					newElement.querySelector(".descriptor").innerHTML = "<b>Type: </b>Question"
 				}
 				if (element.type === "congratulations") {
 					newElement.querySelector(".name").innerText = "Lesson summary"
-					newElement.querySelector(".descriptor").innerHTML = "<b>Type: </b>Summary" 
+					newElement.querySelector(".descriptor").innerHTML = "<b>Type: </b>Summary"
 				}
 				if (element.type === "code_editor") {
 					newElement.querySelector(".name").innerText = element.elements[0].content.replaceAll("[[h3]]", "").replaceAll("[[/]]", "")
-					newElement.querySelector(".descriptor").innerHTML = "<b>Type: </b>Project" 
+					newElement.querySelector(".descriptor").innerHTML = "<b>Type: </b>Project"
 				}
-				currentTraverse ++;
-                parent.appendChild(newElement);
-            })
+				currentTraverse++;
+				parent.appendChild(newElement);
+			})
 			if (request.data.position >= moduleLength) {
 				if (next.hasNext) {
 					alert("You have already completed this module! We will now take you to the next module.");
@@ -233,7 +233,7 @@
 						let correct = [...data.correct];
 						data.correct = [];
 						correct.forEach(element => data.correct.push(indexList.findIndex(index => index === element)))
-					}else{
+					} else {
 						data.correct = indexList.findIndex(index => index === data.correct);
 					}
 					modulePage.setComponent(new MultipleChoice({}, modulePage), data);
@@ -257,7 +257,124 @@
 			tApp.renderPath("#/404");
 		})
 	});
+	tApp.route("#/DEV-SHOW-ALL", async function (request) {
+		var totalPage = ""
+		var data = {}
+		var actions = {
+			"Webdev Lessons": "webdev",
+			"Webdev Projects": "webdev-projects",
+			"AI Lessons": "ai"
+		}
 
+
+		var menuData = {}
+		for (let p = 0; p < Object.entries(actions).length; p++) {
+			var key = Object.entries(actions)[p][0]
+			var value = Object.entries(actions)[p][1]
+			data[value] = []
+			var totalPages = 0;
+			var userPages = 0;
+			let count = DB.getModuleCount(value);
+			var modules = []
+			for (let i = 0; i < count; i++) {
+				let module = await DB.getModuleData(value, i, 0);
+				let modulePosition = await DB.getModulePosition(value, i);
+
+				data[value].push(modulePosition)
+
+				module.currentUserPosition = modulePosition;
+				modules.push(module);
+				let length = module.moduleLength;
+				totalPages += length;
+			}
+			if (!data[value]) {
+				menuData[value] = {
+					totalPages: totalPages,
+					userPages: 0,
+					data: modules
+				}
+			} else {
+				data[value].forEach(element => {
+					if (element !== null) userPages += element
+				})
+				menuData[value] = {
+					totalPages: totalPages,
+					userPages: userPages,
+					data: modules
+				}
+			}
+		}
+
+
+		var promises = []
+
+		Object.entries(menuData).forEach(([key, value]) => {
+			value.data.forEach((lesson, index) => {
+				for (let i = 0; i < lesson.moduleLength - 1; i++) {
+					promises.push(
+						new Promise((resolve, reject) => {
+							Database.getModuleData(key, index, i).then((res) => {
+								try {
+									let { data, type, moduleLength, next, moduleData } = res;
+									window.tAppRequestInstance = request;
+									if (type == "lesson" || type == "project") {
+										if (data.code_template != null) {
+											data.code = codeTemplateToCode(data.code_template);
+										}
+
+
+										if (data.type == "information") {
+											modulePage.setComponent(new Information({}, modulePage), data);
+										} else if (data.type == "multiple_choice") {
+											let shuffled = shuffleArray([...data.answers]);
+											let indexList = [];
+											for (let i = 0; i < shuffled.length; i++) {
+												indexList.push(data.answers.findIndex(answer => answer === shuffled[i]));
+											}
+											let answers = [];
+											for (let i = 0; i < indexList.length; i++) {
+												answers.push(data.answers[indexList[i]]);
+											}
+											let descriptions = [];
+											for (let i = 0; i < indexList.length; i++) {
+												descriptions.push(data.descriptions[indexList[i]]);
+											}
+											data.answers = answers;
+											data.descriptions = descriptions;
+											if (Array.isArray(data.correct)) {
+												let correct = [...data.correct];
+												data.correct = [];
+												correct.forEach(element => data.correct.push(indexList.findIndex(index => index === element)))
+											} else {
+												data.correct = indexList.findIndex(index => index === data.correct);
+											}
+											modulePage.setComponent(new MultipleChoice({}, modulePage), data);
+										} else if (data.type == "short_answer") {
+											modulePage.setComponent(new ShortAnswer({}, modulePage), data);
+										} else if (data.type == "snippet_unlock") {
+											modulePage.setComponent(new SnippetUnlock({}, modulePage), data);
+										} else if (data.type == "congratulations") {
+											modulePage.setComponent(new Congratulations({}, modulePage), data);
+										}
+										if (modulePage) totalPage += modulePage.toString();
+										resolve()
+									}
+								} catch (err) {
+									resolve()
+								}
+							})
+						})
+					)
+				}
+			})
+		})
+
+		await Promise.all(promises)
+		await new Promise((resolve, reject) => { setTimeout(() => { resolve() }, 500) })
+		console.log("Done")
+		tApp.render(totalPage);
+
+	});
 	tApp.route("#/404", function (request) {
 		tApp.render(`
 			<h1>Error 404</h1>
@@ -284,12 +401,12 @@
 function recurseEjs(html) {
 	return new Promise(async (resolve, reject) => {
 		let rtemplated = await ejs.render(html, {
-			include: async function(path){
+			include: async function (path) {
 				let res = await tApp.get(path);
 				let results = await recurseEjs(await res.text())
 				return results;
 			}
-		}, {async: true});
+		}, { async: true });
 		resolve(rtemplated)
 	})
 }
