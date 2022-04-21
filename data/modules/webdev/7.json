@@ -75,8 +75,9 @@
 					"content": "➔ To import this module and get set up, follow the below code"
 				},
 				{
-					"type": "image",
-					"src": "/data/modules/webdev-assets/img7/1-1.png"
+					"type": "code",
+					"content": "const express = require(\"express\")\n\nconst app = express();\nconst PORT = process.env.PORT || 3000;\n\napp.listen(PORT, () => console.log(`Example app listening at http://localhost:${PORT}`))",
+					"lang": "jsx"
 				}
 			]
 		},
@@ -94,7 +95,8 @@
 				},
 				{
 					"type": "image",
-					"src": "/data/modules/webdev-assets/img7/2-0.png"
+					"src": "/data/modules/webdev-assets/img7/2-0.png",
+					"width": "60%"
 				},
 				{
 					"type": "text",
@@ -109,8 +111,8 @@
 					"content": "➔ Please reference the below code"
 				},
 				{
-					"type": "image",
-					"src": "/data/modules/webdev-assets/img7/2-1.png"
+					"type": "code",
+					"content": "app.get(\"/endpointname\", (req, res) => {\n  res.send(\"I am sending some data\")\n})"
 				}
 			]
 		},
@@ -186,7 +188,8 @@
 				},
 				{
 					"type": "image",
-					"src": "/data/modules/webdev-assets/img7/4-0.png"
+					"src": "/data/modules/webdev-assets/img7/4-0.png",
+					"width": "60%"
 				},
 				{
 					"type": "text",
@@ -197,8 +200,8 @@
 					"content": "➔ Please reference the below code which shows you how to create a POST request endpoint with Express.js"
 				},
 				{
-					"type": "image",
-					"src": "/data/modules/webdev-assets/img7/4-1.png"
+					"type": "code",
+					"content": "app.post(\"/endpointname\", (req, res) => {\n  const name = req.body.name;\n  const email = req.body.email;\n  const username = req.body.username;\n\n  res.send(\"I am sending some data\")\n})"
 				}
 			]
 		},
@@ -291,7 +294,8 @@
 				},
 				{
 					"type": "image",
-					"src": "/data/modules/webdev-assets/img7/5-0.png"
+					"src": "/data/modules/webdev-assets/img7/5-0.png",
+					"width": "60%"
 				},
 				{
 					"type": "text",
@@ -310,7 +314,8 @@
 				},
 				{
 					"type": "image",
-					"src": "/data/modules/webdev-assets/img7/5-1.png"
+					"src": "/data/modules/webdev-assets/img7/5-1.png",
+					"width": "60%"
 				},
 				{
 					"type": "text",
@@ -329,7 +334,8 @@
 				},
 				{
 					"type": "image",
-					"src": "/data/modules/webdev-assets/img7/5-2.png"
+					"src": "/data/modules/webdev-assets/img7/5-2.png",
+					"width": "60%"
 				},
 				{
 					"type": "text",
@@ -359,7 +365,8 @@
 				},
 				{
 					"type": "image",
-					"src": "/data/modules/webdev-assets/img7/6-0.png"
+					"src": "/data/modules/webdev-assets/img7/6-0.png",
+					"width": "70%"
 				},
 				{
 					"type": "text",
