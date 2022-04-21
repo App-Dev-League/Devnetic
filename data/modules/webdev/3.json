@@ -29,7 +29,8 @@
 				{
 					"type": "image",
 					"src": "/data/modules/webdev-assets/img3/0-0.png",
-					"width": "30%"
+					"width": "30%",
+					"box-shadow": "0px 0px 20px 1px #686868"
 				},
 				{
 					"type": "text",
