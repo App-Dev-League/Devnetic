@@ -102,7 +102,8 @@
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/webdev-assets/img2/2-0.png"
+                    "src": "/data/modules/webdev-assets/img2/2-0.png",
+                    "border": "1px solid #7a7a7a;"
                 },
                 {
                     "type": "divider"
@@ -124,19 +125,26 @@
                 },
                 {
                     "type": "text",
-                    "content": "[[b]]Paired tag:[[/]]"
+                    "content": "[[h6]]Paired tag:[[/]]"
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/webdev-assets/img2/2-2.png"
+                    "src": "/data/modules/webdev-assets/img2/2-2.png",
+                    "width": "70%",
+                    "box-shadow": "0px 0px 20px 7px #686868"
+                },
+                {
+                    "type": "divider"
                 },
                 {
                     "type": "text",
-                    "content": "[[b]]Unpaired/Self-Closing Tag[[/]]"
+                    "content": "[[h6]]Unpaired/Self-Closing Tag[[/]]"
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/webdev-assets/img2/2-2.png"
+                    "src": "/data/modules/webdev-assets/img2/2-3.png",
+                    "width": "70%",
+                    "box-shadow": "0px 0px 20px 7px #686868"
                 }
             ]
         },
@@ -239,7 +247,8 @@
                 {
                     "type": "image",
                     "src": "/data/modules/webdev-assets/img2/4-0.png",
-                    "width": "50%"
+                    "width": "50%",
+                    "box-shadow": "0px 0px 20px 7px #686868"
                 },
                 {
                     "type": "text",
