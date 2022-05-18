@@ -146,7 +146,7 @@
 	tApp.route("#/learn/<track>/<module>/<position>", function (request) {
 		request.data.module = parseInt(request.data.module);
 		request.data.position = parseInt(request.data.position);
-		Database.getModuleData(request.data.track, request.data.module, request.data.position).then((res) => {
+		Database.getModuleData(request.data.track, request.data.module, request.data.position).then(async (res) => {
 			let { data, type, moduleLength, next, moduleData } = res;
 			document.getElementById("module-progress-bar").style.width = request.data.position / moduleLength * 100 + "%";
 			window.tAppRequestInstance = request;
@@ -192,11 +192,15 @@
 				parent.appendChild(newElement);
 			})
 			if (request.data.position >= moduleLength) {
+				let redoLesson = await confirmRedoLesson()
+				if (redoLesson === true) {
+					return tApp.redirect(`#/learn/${request.data.track}/${request.data.module}/0`);
+				} else if (redoLesson === "stay") {
+					return tApp.redirect(`#/track/${request.data.track}`);
+				} 
 				if (next.hasNext) {
-					alert("You have already completed this module! We will now take you to the next module.");
 					tApp.redirect(`#/learn/${request.data.track}/${next.module}/${next.position}`);
 				} else {
-					alert("You have already completed all modules! We will now take you back to the main page.");
 					tApp.redirect(`#/`);
 				}
 			} else if (type == "lesson" || type == "project") {
@@ -408,5 +412,31 @@ function recurseEjs(html) {
 			}
 		}, { async: true });
 		resolve(rtemplated)
+	})
+}
+function confirmRedoLesson() {
+	return new Promise((resolve, reject) => {
+		let template = document.getElementById("snippets-modal")
+		let modal = template.cloneNode(true);
+		modal.removeAttribute("id")
+		modal.classList.remove("none")
+		modal.querySelector("h3").innerHTML = "You have already completed this module!";
+		modal.querySelector("h3").style.fontSize = "1.5em"
+		modal.querySelector(".button-correct").innerHTML = "Redo Module";
+		let continueButton = modal.querySelector(".button-correct").cloneNode()
+		continueButton.innerHTML = "Next Module"
+		continueButton.style.marginLeft = "10px"
+		continueButton.style.backgroundColor = "var(--blue-selected)"
+		modal.querySelector(".button-correct").parentNode.appendChild(continueButton)
+		modal.querySelector("span").onclick = function () {
+			resolve("stay")
+			modal.parentNode.removeChild(modal)
+		}
+		modal.querySelector(".button-correct").onclick = async function () {
+			modal.parentElement.removeChild(modal)
+			resolve(true)
+		}
+
+		document.body.appendChild(modal);
 	})
 }
