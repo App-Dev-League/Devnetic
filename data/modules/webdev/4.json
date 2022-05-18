@@ -354,7 +354,7 @@
 			"descriptions": [
 				"Also, '/*' can start can start comments.",
 				"Wrong. '--' is incorrect syntax.",
-				"Wrong. '--' is incorrect syntax.",
+				"Wrong. '**' is incorrect syntax.",
 				"Check the kind of slash you use."
 			],
 			"points": 5,
@@ -365,7 +365,7 @@
 				"**",
 				"\\\\"
 			],
-			"correct": 3
+			"correct": 0
 		},
 		{
 			"type": "multiple_choice",
@@ -373,14 +373,16 @@
 			"descriptions": [
 				"The console is not a way to view code.",
 				"Logging variables and viewing errors are great ways to use the console for debugging.",
-				"The console does not fulfill this."
+				"The console does not fulfill this.",
+				""
 			],
 			"points": 5,
 			"coins": 1,
 			"answers": [
 				"Viewing their code",
 				"Debugging",
-				"Reading the documentation of javascript"
+				"Reading the documentation of javascript",
+				""
 			],
 			"correct": 1
 		},
@@ -390,14 +392,16 @@
 			"descriptions": [
 				"The upload function doesn't exist!",
 				"This prints to the console.",
-				"This clears all text from the console."
+				"This clears all text from the console.",
+				""
 			],
 			"points": 5,
 			"coins": 1,
 			"answers": [
 				"upload",
 				"log",
-				"clear"
+				"clear",
+				""
 			],
 			"correct": 0
 		},
@@ -405,10 +409,10 @@
 			"type": "multiple_choice",
 			"question": "Which of the following is an invalid comparison operator?",
 			"descriptions": [
-				"Desc1",
-				"Desc2",
-				"Desc3",
-				"Desc4"
+				"'==' checks if two values are equal.",
+				"'>=' checks if one value is greater than or equal to another.",
+				"'=' assigns a variable a value and does not compare two values.",
+				"'===' checks if two values are equal."
 			],
 			"points": 5,
 			"coins": 1,
@@ -426,14 +430,16 @@
 			"descriptions": [
 				"Also known as the if statement.",
 				"This is what the try-catch statement is for.",
-				"They simply execute code, not return values."
+				"They simply execute code, not return values.",
+				""
 			],
 			"points": 5,
 			"coins": 1,
 			"answers": [
 				"Executes a code block if a condition is true",
 				"Catches errors from a code block",
-				"Returns a conditional"
+				"Returns a conditional",
+				""
 			],
 			"correct": 0
 		},
