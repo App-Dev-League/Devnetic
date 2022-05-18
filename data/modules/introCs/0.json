@@ -329,7 +329,7 @@
                         },
                         {
                             "setVar": "listLength",
-                            "runwhen": "in 1 outputs",
+                            "runwhen": "in 3 outputs",
                             "filters": [
                                 "extract_numbers",
                                 "parseFloat"
