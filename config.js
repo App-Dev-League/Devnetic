@@ -86,7 +86,12 @@
 			tApp.renderPath("#/404");
 		});
 	});
-
+	tApp.route("#/my-projects", function(request) {
+		tApp.get("./views/my-projects.html").then(res => res.text()).then(async html => {
+			let templated = await recurseEjs(html, {myProjectsPage: true});
+			tApp.render(templated);
+		})
+	})
 	tApp.route("#/learn/<track>/<module>/", async function (request) {
 		tApp.redirect(`#/learn/${request.data.track}/${request.data.module}/${await Database.getModulePosition(request.data.track, request.data.module)}/`);
 	});
@@ -146,7 +151,36 @@
 	tApp.route("#/learn/<track>/<module>/<position>", function (request) {
 		request.data.module = parseInt(request.data.module);
 		request.data.position = parseInt(request.data.position);
-		Database.getModuleData(request.data.track, request.data.module, request.data.position).then(async (res) => {
+		if (request.data.track === "customUserProjects") {
+			showPage({
+				type: "project",
+				moduleLength: 1,
+				next: {
+					hasNext: true,
+					module: request.data.module,
+					position: 1
+				},
+				data: {
+					"type": "code_editor",
+					"storage_id": [],
+					"files": [],
+					"default": [],
+					"display_type": "web",
+					"elements": [],
+					"hints": [],
+					"validation": [],
+					"points": 0,
+					"coins": 0
+				}
+			}, true)
+		} else {
+			Database.getModuleData(request.data.track, request.data.module, request.data.position).then(async (res) => {
+				showPage(res)
+			}).catch((err) => {
+				tApp.renderPath("#/404");
+			})
+		}
+		async function showPage(res, isUserProject = false) {
 			let { data, type, moduleLength, next, moduleData } = res;
 			document.getElementById("module-progress-bar").style.width = request.data.position / moduleLength * 100 + "%";
 			window.tAppRequestInstance = request;
@@ -155,42 +189,45 @@
 			document.querySelectorAll(".module-progress-bar-timeline-element").forEach((el) => {
 				if (!el.classList.contains("template")) el.parentElement.removeChild(el)
 			})
-			window.currentModuleData.pages.forEach(element => {
-				let parent = document.getElementById("module-progress-bar-wrapper");
-				let template = parent.querySelector(".template");
-				let newElement = template.cloneNode(true);
-				newElement.classList.remove("template");
-				newElement.style.left = (currentTraverse / window.currentModuleData.pages.length * 100) + "%";
-				if (request.data.position > currentTraverse) newElement.classList.add("filled");
-				else newElement.classList.remove("filled");
+			if (!isUserProject) {
+				window.currentModuleData.pages.forEach(element => {
+					let parent = document.getElementById("module-progress-bar-wrapper");
+					let template = parent.querySelector(".template");
+					let newElement = template.cloneNode(true);
+					newElement.classList.remove("template");
+					newElement.style.left = (currentTraverse / window.currentModuleData.pages.length * 100) + "%";
+					if (request.data.position > currentTraverse) newElement.classList.add("filled");
+					else newElement.classList.remove("filled");
+	
+					if (element.type === "information") {
+						newElement.querySelector(".name").innerText = element.title || "";
+						newElement.querySelector(".descriptor").innerHTML = "<b>Type: </b>Learn"
+					}
+					if (element.type === "multiple_choice") {
+						newElement.querySelector(".name").innerText = element.question.slice(0, 10) + "..." || "";
+						newElement.querySelector(".descriptor").innerHTML = "<b>Type: </b>Question"
+					}
+					if (element.type === "snippet_unlock") {
+						newElement.querySelector(".name").innerText = element.name.slice(0, 10) + "..." || "";
+						newElement.querySelector(".descriptor").innerHTML = "<b>Type: </b>Snippet"
+					}
+					if (element.type === "short_answer") {
+						newElement.querySelector(".name").innerText = element.question.slice(0, 10) + "..." || "";
+						newElement.querySelector(".descriptor").innerHTML = "<b>Type: </b>Question"
+					}
+					if (element.type === "congratulations") {
+						newElement.querySelector(".name").innerText = "Lesson summary"
+						newElement.querySelector(".descriptor").innerHTML = "<b>Type: </b>Summary"
+					}
+					if (element.type === "code_editor") {
+						newElement.querySelector(".name").innerText = element.elements[0].content.replaceAll("[[h3]]", "").replaceAll("[[/]]", "")
+						newElement.querySelector(".descriptor").innerHTML = "<b>Type: </b>Project"
+					}
+					currentTraverse++;
+					parent.appendChild(newElement);
+				})
+			}
 
-				if (element.type === "information") {
-					newElement.querySelector(".name").innerText = element.title || "";
-					newElement.querySelector(".descriptor").innerHTML = "<b>Type: </b>Learn"
-				}
-				if (element.type === "multiple_choice") {
-					newElement.querySelector(".name").innerText = element.question.slice(0, 10) + "..." || "";
-					newElement.querySelector(".descriptor").innerHTML = "<b>Type: </b>Question"
-				}
-				if (element.type === "snippet_unlock") {
-					newElement.querySelector(".name").innerText = element.name.slice(0, 10) + "..." || "";
-					newElement.querySelector(".descriptor").innerHTML = "<b>Type: </b>Snippet"
-				}
-				if (element.type === "short_answer") {
-					newElement.querySelector(".name").innerText = element.question.slice(0, 10) + "..." || "";
-					newElement.querySelector(".descriptor").innerHTML = "<b>Type: </b>Question"
-				}
-				if (element.type === "congratulations") {
-					newElement.querySelector(".name").innerText = "Lesson summary"
-					newElement.querySelector(".descriptor").innerHTML = "<b>Type: </b>Summary"
-				}
-				if (element.type === "code_editor") {
-					newElement.querySelector(".name").innerText = element.elements[0].content.replaceAll("[[h3]]", "").replaceAll("[[/]]", "")
-					newElement.querySelector(".descriptor").innerHTML = "<b>Type: </b>Project"
-				}
-				currentTraverse++;
-				parent.appendChild(newElement);
-			})
 			if (request.data.position >= moduleLength) {
 				let redoLesson = await confirmRedoLesson()
 				if (redoLesson === true) {
@@ -248,6 +285,7 @@
 				} else if (data.type == "congratulations") {
 					modulePage.setComponent(new Congratulations({}, modulePage), data);
 				} else if (data.type == "code_editor") {
+					data.isUserProject = isUserProject;
 					modulePage.setComponent(new CodeEditor({}, modulePage), data);
 				}
 				tApp.render(modulePage.toString());
@@ -255,11 +293,7 @@
 				tApp.renderPath("#/404");
 				console.error("Unknown type " + type);
 			}
-		}).catch((err) => {
-			// console.log(err);
-			console.error(err);
-			tApp.renderPath("#/404");
-		})
+		}
 	});
 	tApp.route("#/DEV-SHOW-ALL", async function (request) {
 		var totalPage = ""
@@ -402,15 +436,14 @@
 		});*/
 	});
 })();
-function recurseEjs(html) {
+function recurseEjs(html, parameters={}) {
 	return new Promise(async (resolve, reject) => {
-		let rtemplated = await ejs.render(html, {
-			include: async function (path) {
-				let res = await tApp.get(path);
-				let results = await recurseEjs(await res.text())
-				return results;
-			}
-		}, { async: true });
+		parameters.include = async function (path) {
+			let res = await tApp.get(path);
+			let results = await recurseEjs(await res.text(), parameters)
+			return results;
+		}
+		let rtemplated = await ejs.render(html, parameters, { async: true });
 		resolve(rtemplated)
 	})
 }

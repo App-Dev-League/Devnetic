@@ -185,18 +185,22 @@
             font-size: 1.5em;
             font-weight: bold;
         }
+
         .c-h4 {
             font-size: 1.4em;
             font-weight: bold;
         }
+
         .c-h5 {
             font-size: 1.3em;
             font-weight: bold;
         }
+
         .c-h6 {
             font-size: 1.2em;
             font-weight: bold;
         }
+
         .c-monospace {
             font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
             background: rgba(0, 0, 0, 0.5);
@@ -617,6 +621,7 @@
         input {
             color: black;
         }
+
         .image-wrapper img {
             border-radius: 10px;
         }
@@ -1119,6 +1124,23 @@
             margin-bottom: 2px;
         }
 
+        #my-projects {
+            position: fixed;
+            top: 60px;
+            right: 10px;
+            font-size: 1.5em;
+            cursor: pointer;
+            transition: 0.5s all;
+            border-radius: 5px;
+            padding: 2px;
+            z-index: 2;
+            text-decoration: none !important;
+        }
+
+        #my-projects:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
         .code-editor-cover {
             width: 100%;
             height: calc(100% + 50px);
@@ -1386,16 +1408,35 @@
     .codicon-checklist:before {
         content: "\eab3";
     }
+
     .codicon-loading:before {
         content: "\eb19";
         animation: codicon-loading 1s infinite;
         display: block;
         width: fit-content;
     }
+
+    .codicon-folder:before {
+        content: "\ea83";
+    }
+
+    .codicon-add:before {
+        content: "\ea60";
+    }
+
+    .codicon-new-file:before {
+        content: "\ea7f";
+    }
+
+    .codicon-cloud-upload:before {
+        content: "\eac3";
+    }
+
     @keyframes codicon-loading {
         0% {
             transform: rotate(0deg);
         }
+
         100% {
             transform: rotate(360deg);
         }

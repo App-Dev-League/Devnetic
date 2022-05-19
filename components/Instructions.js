@@ -6,9 +6,22 @@ class Instructions extends tApp.Component {
 	constructor(state, parent) {
 		super(state, parent);
 	}
-	// things to do here: make a helper function that escapes the HTML
 	render(props) {
 		window.currentHint = 0
+		if (this.parent.data().isUserProject) return `<div>You can do whatever you want here! Supported files: 
+		<br>
+		 - .js
+		 <br>
+		 - .html
+		 <br>
+		 - .css
+		 <br>
+		 - .jsx
+		 <br>
+		 - .py
+		 <br>
+		 - .md
+		</div>`;
 		return `<div>
 			<h1 class="info-title">${tApp.escape(this.state.title || "")}</h1>
 			${(this.state.elements || []).map(element => {

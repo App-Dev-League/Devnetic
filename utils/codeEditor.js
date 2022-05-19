@@ -1,28 +1,28 @@
 window.currentReadOnly = false;
-window.onhashchange = function(){
+window.onhashchange = function () {
 	window.currentReadOnly = false;
 }
 function updateLanguage(language) {
 	if (!document.getElementById("code-frame")) return false
 	new Promise((resolve, reject) => {
 		m();
-		function m(){
+		function m() {
 			if (document.getElementById("code-frame").contentWindow.monaco) resolve();
 			else {
 				setTimeout(m, 100);
 			}
 		}
-	}).then( e=> {
+	}).then(e => {
 		document.getElementById("code-frame").contentWindow.monaco.editor.setModelLanguage(document.getElementById("code-frame").contentWindow.monaco.editor.getModels()[0], language)
 	})
 	return true;
 }
-function updateReadOnly(readOnly){
+function updateReadOnly(readOnly) {
 	if (!document.getElementById("code-frame")) return false
 
 	new Promise((resolve, reject) => {
 		m();
-		function m(){
+		function m() {
 			if (document.getElementById("code-frame").contentWindow.codeEditor) resolve();
 			else {
 				setTimeout(m, 100);
@@ -44,7 +44,7 @@ function getCurrentEditorOption(optionNum) {
 function updateContent(content) {
 	new Promise((resolve, reject) => {
 		m();
-		function m(){
+		function m() {
 			if (document.getElementById("code-frame").contentWindow.codeEditor) resolve();
 			else {
 				setTimeout(m, 100);
@@ -190,7 +190,7 @@ function getModuleFile(id) {
 				txn.oncomplete = function () {
 					db.close();
 				};
-			}catch(err) {
+			} catch (err) {
 				db.close();
 				reject("Object store does not exist yet!")
 			}
@@ -214,7 +214,7 @@ function getPageFile(id) {
 				txn.oncomplete = function () {
 					db.close();
 				};
-			}catch(err) {
+			} catch (err) {
 				db.close();
 				reject("Object store does not exist yet!")
 			}
@@ -285,7 +285,7 @@ function deleteFile(id) {
 					}
 				} catch (e) { reject(e); }
 			})
-		} catch (err) {	 }
+		} catch (err) { }
 		try {
 			await new Promise(async (resolve, reject) => {
 				try {
@@ -304,7 +304,7 @@ function deleteFile(id) {
 				} catch (e) { return reject(e); }
 			})
 		} catch (err) {
-		 }
+		}
 		db.close();
 
 		resolve();
@@ -324,7 +324,7 @@ function updateFile(id, data) {
 					const index = store.index('fileids');
 					let query = index.openKeyCursor(id);
 					query.onsuccess = async function (event) {
-						if (event.target.result){
+						if (event.target.result) {
 							old.code = data
 							store.put(old, event.target.result.primaryKey);
 							succeeded = true;
@@ -337,7 +337,7 @@ function updateFile(id, data) {
 					}
 				} catch (e) { reject(e); }
 			})
-		} catch (err) {	 }
+		} catch (err) { }
 		if (succeeded === true) {
 			db.close();
 			return resolve();
@@ -352,7 +352,7 @@ function updateFile(id, data) {
 					const index = store.index('fileids');
 					let query = index.openKeyCursor(id);
 					query.onsuccess = function (event) {
-						if (event.target.result){
+						if (event.target.result) {
 							old.code = data
 							store.put(old, event.target.result.primaryKey);
 							succeeded = true;
@@ -365,7 +365,7 @@ function updateFile(id, data) {
 					}
 				} catch (e) { reject(e); }
 			})
-		} catch (err) {	 }
+		} catch (err) { }
 		db.close();
 		if (succeeded === true) {
 			return resolve();
@@ -378,8 +378,8 @@ function renameFile(id, newName) {
 		var erred = false;
 		try {
 			await getFile(newName);
-			erred =  "A file with that name already exists! Nothing was changed."
-		}catch(err) {
+			erred = "A file with that name already exists! Nothing was changed."
+		} catch (err) {
 		}
 		if (erred) reject(erred);
 		let db = await openConnection()
@@ -394,7 +394,7 @@ function renameFile(id, newName) {
 					const index = store.index('fileids');
 					let query = index.openKeyCursor(id);
 					query.onsuccess = async function (event) {
-						if (event.target.result){
+						if (event.target.result) {
 							old.filename = newName
 							store.put(old, event.target.result.primaryKey);
 							succeeded = true;
@@ -407,7 +407,7 @@ function renameFile(id, newName) {
 					}
 				} catch (e) { reject(e); }
 			})
-		} catch (err) {	 }
+		} catch (err) { }
 		if (succeeded === true) {
 			db.close();
 			return resolve();
@@ -422,7 +422,7 @@ function renameFile(id, newName) {
 					const index = store.index('fileids');
 					let query = index.openKeyCursor(id);
 					query.onsuccess = function (event) {
-						if (event.target.result){
+						if (event.target.result) {
 							old.filename = newName
 							store.put(old, event.target.result.primaryKey);
 							succeeded = true;
@@ -435,7 +435,7 @@ function renameFile(id, newName) {
 					}
 				} catch (e) { reject(e); }
 			})
-		} catch (err) {	 }
+		} catch (err) { }
 		db.close();
 		if (succeeded === true) {
 			return resolve();
@@ -538,6 +538,45 @@ function getFileWithId(id) {
 	})
 }
 
+function newMyProject(name) {
+	let myProjects = localStorage.getItem("myProjects");
+	if (!myProjects) myProjects = "{}";
+	myProjects = JSON.parse(myProjects);
+	if (myProjects[name]) return "Project with that name already exists!"
+	myProjects[name] = {
+		name: name,
+		track: "customUserProjects",
+		module: Math.floor(Math.random() * 100000000000),
+		position: 0
+	}
+	localStorage.setItem("myProjects", JSON.stringify(myProjects));
+	return true;
+}
+function deleteMyProject(name) {
+	return new Promise(async (resolve, reject) => {
+		let myProjects = localStorage.getItem("myProjects");
+		if (!myProjects) myProjects = "{}";
+		myProjects = JSON.parse(myProjects);
+		if (!myProjects[name]) reject("Project with that name does not exist!")
+		delete myProjects[name];
+		localStorage.setItem("myProjects", JSON.stringify(myProjects));
+		
+		try {
+			let db = await openConnectionWithNewVersion()
+			db.deleteObjectStore(myProjects[name].track + "-" + myProjects[name].module + "-" + myProjects[name].position)
+		}catch(err){
+			console.log(err)
+		}
+		resolve(true);
+	})
+}
+function getMyProjects() {
+	let myProjects = localStorage.getItem("myProjects");
+	if (!myProjects) myProjects = "{}";
+	myProjects = JSON.parse(myProjects);
+	return myProjects;
+}
+
 
 function makeid(length) {
 	var result = '';
@@ -592,6 +631,8 @@ function openConnectionWithNewVersion(storeName) {
 							resolve(db)
 						}
 				}
+			}else{
+				resolve(db)
 			}
 		};
 	})
@@ -608,4 +649,5 @@ function openConnection() {
 		};
 	})
 }
-module.exports = { updateLanguage, updateContent, getValue, insertAtCursor, format, getCurrentEditorIndex, setCurrentEditorIndex, showAlertModal, removeAlertModal, uploadFile, getModuleFile, getPageFile, getAllUserFiles, deleteFile, updateFile, getFile, renameFile, getFileWithId, updateReadOnly, getCurrentEditorOption};
+
+module.exports = { updateLanguage, updateContent, getValue, insertAtCursor, format, getCurrentEditorIndex, setCurrentEditorIndex, showAlertModal, removeAlertModal, uploadFile, getModuleFile, getPageFile, getAllUserFiles, deleteFile, updateFile, getFile, renameFile, getFileWithId, updateReadOnly, getCurrentEditorOption, newMyProject, deleteMyProject, getMyProjects};

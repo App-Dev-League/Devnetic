@@ -69,7 +69,7 @@ class Editor extends tApp.Component {
 			if (preview.contentWindow.document.body && !preview.contentWindow.document.body.isContentEditable) {
 				preview.contentWindow.document.body.contentEditable = true;
 				preview.contentWindow.document.body.contentEditable = false;
-			  }
+			}
 		}
 		async function loadCodeFromDb() {
 			if (tabindex !== codeEditorHelper.getCurrentEditorIndex()) return;
@@ -295,144 +295,11 @@ class Editor extends tApp.Component {
 								}
 							} else if (option.innerText.startsWith("New File")) {
 								option.onclick = async function () {
-									let level = await new Promise((resolve, reject) => {
-										codeEditorHelper.showAlertModal("Would you like this file to be accessible lesson-wide or confined to this page?", [
-											{
-												text: "Lesson-Wide", onclick: function () {
-													resolve("module")
-													codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index'));
-												}
-											},
-											{
-												text: "Page only", onclick: function () {
-													resolve("page")
-													codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index'))
-												}
-											}
-										], "codicon-warning")
-									})
-									let template = document.getElementById("snippets-modal")
-									let modal = template.cloneNode(true);
-									modal.removeAttribute("id")
-									modal.classList.remove("none")
-									modal.querySelector("h3").innerHTML = "New File";
-									modal.querySelector(".button-correct").innerHTML = "Create File";
-									modal.querySelector("span").onclick = function () {
-										modal.parentNode.removeChild(modal)
-									}
-									modal.querySelector(".button-correct").onclick = async function () {
-										let name = this.parentElement.querySelector(".inputs input").value
-										if (name.length === 0) {
-											codeEditorHelper.showAlertModal("You must enter a file name!", [
-												{
-													text: "Ok", onclick: function () {
-														codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index'));
-													}
-												}
-											], "codicon-error")
-											return;
-										}
-
-										codeEditorHelper.uploadFile({
-											filename: name,
-											level: level,
-											data: "",
-											onsuccess: function () {
-												window.location.reload();
-											},
-											onerror: function (error) {
-												codeEditorHelper.showAlertModal(error, [
-													{
-														text: "Ok", onclick: function () {
-															codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index'));
-														}
-													}
-												], "codicon-error")
-											}
-										})
-
-										modal.parentElement.removeChild(modal)
-									}
-									let elm = document.createElement("input");
-									elm.className = "short-answer-input";
-									elm.classList.add("insert-snippet-input")
-									elm.placeholder = "File Name (Including its extention)";
-									modal.querySelector(".inputs").appendChild(elm);
-
-									document.body.appendChild(modal);
+									addFile();
 								}
 							} else if (option.innerText.startsWith("Upload File")) {
 								option.onclick = async function () {
-									let level = await new Promise((resolve, reject) => {
-										codeEditorHelper.showAlertModal("Would you like this file to be accessible lesson-wide or confined to this page?", [
-											{
-												text: "Lesson-Wide", onclick: function () {
-													resolve("module")
-													codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index'));
-												}
-											},
-											{
-												text: "Page only", onclick: function () {
-													resolve("page")
-													codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index'))
-												}
-											}
-										], "codicon-warning")
-									})
-									let input = document.createElement("input");
-									input.setAttribute("type", "file");
-
-									function readSingleFile(e) {
-										var file = e.target.files[0];
-										if (!file) {
-											return;
-										}
-										if (file.size > 50000000) {
-											codeEditorHelper.showAlertModal("This file is too big! The maximum size that a file can be is 50MB", [
-												{
-													text: "Ok", onclick: function () {
-														codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index'));
-													}
-												}
-											], "codicon-error")
-											return;
-										}
-										var reader = new FileReader();
-										reader.onload = function (e) {
-											var contents = e.target.result;
-											console.log(e)
-											uploadContents(contents, file.name);
-										};
-										if (file.name.endsWith(".png") || file.name.endsWith(".jpg") || file.name.endsWith(".jpeg") || file.name.endsWith(".gif")) {
-											reader.readAsBinaryString(file);
-										} else reader.readAsText(file);
-									}
-
-									function uploadContents(contents, filename) {
-										input.parentElement.removeChild(input);
-										codeEditorHelper.uploadFile({
-											filename: filename,
-											level: level,
-											data: contents,
-											onsuccess: function () {
-												window.location.reload();
-											},
-											onerror: function (error) {
-												codeEditorHelper.showAlertModal(error, [
-													{
-														text: "Ok", onclick: function () {
-															codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index'));
-														}
-													}
-												], "codicon-error")
-											}
-										})
-
-
-									}
-									document.body.appendChild(input);
-									input.click();
-									input.addEventListener('change', readSingleFile, false);
+									uploadFile();
 								}
 							}
 						}
@@ -460,7 +327,7 @@ class Editor extends tApp.Component {
 							let filenamey = document.querySelector("tapp-main").children[0].children[0].children[0].children[0].children[0].children[tabindex].innerText
 							let fileType = filenamey.split('.').pop().toLowerCase()
 							if (fileType === "html" || fileType === "md" || fileType === "png" || fileType === "jpg" || fileType === "jpeg" || fileType === "gif") {
-								setTimeout(function(){
+								setTimeout(function () {
 									updatePreview(fileType);
 								}, 200)
 							}
@@ -565,9 +432,9 @@ class Editor extends tApp.Component {
 								})
 								return module;
 							})
-							html = "<!--Devnetic Loaded-->"+html
+							html = "<!--Devnetic Loaded-->" + html
 							html = html.replace("<!DOCTYPE html>", "")
-							setPreviewHTML(html)							
+							setPreviewHTML(html)
 
 							if (errored = true) {
 								try {
@@ -744,7 +611,7 @@ ${code}
 								let md = codeEditorHelper.getValue();
 								var converter = new showdown.Converter();
 								let html = converter.makeHtml(md);
-								setPreviewHTML(html)							
+								setPreviewHTML(html)
 							}
 						} else if (fileType === "js") {
 							document.getElementById("console-bridge").dispatchEvent(new Event('change'));
@@ -815,7 +682,7 @@ try{
 								// parsing imports
 								let importStatements = "";
 								let secondaryFilesCode = ""
-								code = await replaceAsync(code, /import([\s\S]*?)(?='|").*/g, async function(e) {
+								code = await replaceAsync(code, /import([\s\S]*?)(?='|").*/g, async function (e) {
 									if (e.replaceAll("\"", "'").match(/(?<=')(.*)(?=')/g)[0] === "react") return "";
 									if (e.replaceAll("\"", "'").match(/(?<=')(.*)(?=')/g)[0] === "react-dom") return "";
 									let moduleName = e.match(/(?<=import)(.*)(?=from)/g)[0];
@@ -837,7 +704,7 @@ try{
 									} else {
 										moduleCode = await DB.getCode(self.parent.parent.data().storage_id[moduleIndex]);
 									}
-									
+
 
 									moduleCode = moduleCode.replaceAll(/import([\s\S]*?)(?='|").*/g, function (e) {
 										if (e.replaceAll("\"", "'").match(/(?<=')(.*)(?=')/g)[0] === "react") return "";
@@ -845,26 +712,26 @@ try{
 										return e;
 									})
 									if (module.endsWith(".module.css")) {
-										moduleCode = "export default "+ format(window.nativeCss.convert(moduleCode))
-										function format(obj){
+										moduleCode = "export default " + format(window.nativeCss.convert(moduleCode))
+										function format(obj) {
 											var str = JSON.stringify(obj, 0, 4),
 												arr = str.match(/".*?":/g);
 											if (arr === null) return "{}"
-											for(var i = 0; i < arr.length; i++)
-												str = str.replace(arr[i], arr[i].replace(/"/g,''));
+											for (var i = 0; i < arr.length; i++)
+												str = str.replace(arr[i], arr[i].replace(/"/g, ''));
 											str = str.replaceAll("\\\"", "");
 											return str;
 										}
-										moduleCode = "data:text/javascript;charset=utf-8;base64,"+plugins.Base64.encode(moduleCode)
-										importStatements+=`import${moduleName}from '${moduleCode}';\n`
-									} else if (module.endsWith(".css")){
-										secondaryFilesCode += "<style>\n"+moduleCode+"\n</style>"
+										moduleCode = "data:text/javascript;charset=utf-8;base64," + plugins.Base64.encode(moduleCode)
+										importStatements += `import${moduleName}from '${moduleCode}';\n`
+									} else if (module.endsWith(".css")) {
+										secondaryFilesCode += "<style>\n" + moduleCode + "\n</style>"
 									} else {
 										moduleCode = Babel.transform(moduleCode, {
 											plugins: ["transform-react-jsx"]
 										}).code;
-										moduleCode = "data:text/javascript;charset=utf-8;base64,"+plugins.Base64.encode(moduleCode)
-										importStatements+=`import${moduleName}from '${moduleCode}';\n`
+										moduleCode = "data:text/javascript;charset=utf-8;base64," + plugins.Base64.encode(moduleCode)
+										importStatements += `import${moduleName}from '${moduleCode}';\n`
 									}
 									return ``
 								})
@@ -896,7 +763,7 @@ try{
 										</body>
 									</html>
 									`
-									setPreviewHTML(src)							
+									setPreviewHTML(src)
 									document.getElementById("preview-container").classList.remove("preview-mode-console")
 									let consolew = document.querySelector(".console-wrapper");
 									if (consolew) consolew.parentElement.removeChild(consolew)
@@ -989,7 +856,7 @@ try{
 								</body>
 							</html>
 							`
-							setPreviewHTML(html)							
+							setPreviewHTML(html)
 						}
 					}
 					document.getElementById("code-frame").contentWindow.document.onkeydown = async function (e) {
@@ -1045,9 +912,9 @@ try{
 						let fileType = filename.split('.').pop().toLowerCase()
 						codeEditorHelper.updateLanguage(languages[fileType])
 						try {
-							if (window.pluginList && window.pluginList.betterEditor){
+							if (window.pluginList && window.pluginList.betterEditor) {
 								reloadPluginSettings()
-							}else{
+							} else {
 								await plugins.load("betterEditor")
 							}
 						} catch (err) {
@@ -1086,6 +953,7 @@ class TabbedEditor extends tApp.Component {
 		var self = this;
 		var tabs = [];
 		async function getData() {
+			await plugins.load("betterEditor")
 			if (self.x === true) return;
 			self.x = true;
 			if (self.parent.data() === undefined) {
@@ -1093,6 +961,10 @@ class TabbedEditor extends tApp.Component {
 				return setTimeout(getData, 100)
 			} else {
 				var data = self.parent.data()
+				if (data.isUserProject) {
+					console.log("This is a user-generated project! Applying custom settings...")
+					window.isUserProject = true;
+				} else window.isUserProject = false;
 				for (var i = 0; i < data.files.length; i++) {
 					if (self.state[data.storage_id[i]] == null) {
 						console.log("Created new editor instance: ", data.storage_id[i])
@@ -1106,7 +978,6 @@ class TabbedEditor extends tApp.Component {
 						}
 					})
 				}
-
 
 
 				let startingI = i;
@@ -1132,19 +1003,174 @@ class TabbedEditor extends tApp.Component {
 					document.body.classList.add("tester-testing")
 					document.body.classList.add("data-loadingfile")
 				}
+				if (data.files.length === 0) onLoadCallback();
+
 				async function onLoadCallback() {
 					if (!document.body.classList.contains("data-loadingfile")) return;
 					document.body.classList.remove("data-loadingfile")
 					document.body.classList.remove("tester-testing")
+					if (!await plugins.checkPluginStatus("betterEditor")) {
+						document.querySelector(".codicon.codicon-new-file").style.left = "auto"
+						document.querySelector(".codicon.codicon-new-file").style.right = "35px"
+						document.querySelector(".codicon.codicon-cloud-upload").style.left = "auto"
+						document.querySelector(".codicon.codicon-cloud-upload").style.right = "15px"
+					}
+					document.querySelector(".codicon.codicon-new-file").onclick = addFile;
+					document.querySelector(".codicon.codicon-cloud-upload").onclick = uploadFile;
 				}
 			}
 
 		}
 		getData()
 		return `<div style="position: absolute; left: 0; width: 100%; transform: translateX(-50%);">
-			${this.state.tabbedView}
+		${this.state.tabbedView}
+		<span class="codicon codicon-new-file" style="position: absolute; left: calc(var(--editorLeftTabWidth) + 45vw); top: 20px; cursor: pointer; z-index: 2"></span>
+		<span class="codicon codicon-cloud-upload" style="position: absolute; left: calc(var(--editorLeftTabWidth) + 45vw + 25px); top: 20px; cursor: pointer; z-index: 2"></span>
 		</div>`;
 	}
 }
 
+
+
+async function addFile() {
+	if (window.isUserProject) var level = "page"
+	else var level = await new Promise((resolve, reject) => {
+		codeEditorHelper.showAlertModal("Would you like this file to be accessible lesson-wide or confined to this page?", [
+			{
+				text: "Lesson-Wide", onclick: function () {
+					resolve("module")
+					codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index'));
+				}
+			},
+			{
+				text: "Page only", onclick: function () {
+					resolve("page")
+					codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index'))
+				}
+			}
+		], "codicon-warning")
+	})
+	let template = document.getElementById("snippets-modal")
+	let modal = template.cloneNode(true);
+	modal.removeAttribute("id")
+	modal.classList.remove("none")
+	modal.querySelector("h3").innerHTML = "New File";
+	modal.querySelector(".button-correct").innerHTML = "Create File";
+	modal.querySelector("span").onclick = function () {
+		modal.parentNode.removeChild(modal)
+	}
+	modal.querySelector(".button-correct").onclick = async function () {
+		let name = this.parentElement.querySelector(".inputs input").value
+		if (name.length === 0) {
+			codeEditorHelper.showAlertModal("You must enter a file name!", [
+				{
+					text: "Ok", onclick: function () {
+						codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index'));
+					}
+				}
+			], "codicon-error")
+			return;
+		}
+
+		codeEditorHelper.uploadFile({
+			filename: name,
+			level: level,
+			data: "",
+			onsuccess: function () {
+				window.location.reload();
+			},
+			onerror: function (error) {
+				codeEditorHelper.showAlertModal(error, [
+					{
+						text: "Ok", onclick: function () {
+							codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index'));
+						}
+					}
+				], "codicon-error")
+			}
+		})
+
+		modal.parentElement.removeChild(modal)
+	}
+	let elm = document.createElement("input");
+	elm.className = "short-answer-input";
+	elm.classList.add("insert-snippet-input")
+	elm.placeholder = "File Name (Including its extention)";
+	modal.querySelector(".inputs").appendChild(elm);
+
+	document.body.appendChild(modal);
+}
+async function uploadFile() {
+	if (window.isUserProject) var level = "page"
+	else var level = await new Promise((resolve, reject) => {
+		codeEditorHelper.showAlertModal("Would you like this file to be accessible lesson-wide or confined to this page?", [
+			{
+				text: "Lesson-Wide", onclick: function () {
+					resolve("module")
+					codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index'));
+				}
+			},
+			{
+				text: "Page only", onclick: function () {
+					resolve("page")
+					codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index'))
+				}
+			}
+		], "codicon-warning")
+	})
+	let input = document.createElement("input");
+	input.setAttribute("type", "file");
+
+	function readSingleFile(e) {
+		var file = e.target.files[0];
+		if (!file) {
+			return;
+		}
+		if (file.size > 50000000) {
+			codeEditorHelper.showAlertModal("This file is too big! The maximum size that a file can be is 50MB", [
+				{
+					text: "Ok", onclick: function () {
+						codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index'));
+					}
+				}
+			], "codicon-error")
+			return;
+		}
+		var reader = new FileReader();
+		reader.onload = function (e) {
+			var contents = e.target.result;
+			console.log(e)
+			uploadContents(contents, file.name);
+		};
+		if (file.name.endsWith(".png") || file.name.endsWith(".jpg") || file.name.endsWith(".jpeg") || file.name.endsWith(".gif")) {
+			reader.readAsBinaryString(file);
+		} else reader.readAsText(file);
+	}
+
+	function uploadContents(contents, filename) {
+		input.parentElement.removeChild(input);
+		codeEditorHelper.uploadFile({
+			filename: filename,
+			level: level,
+			data: contents,
+			onsuccess: function () {
+				window.location.reload();
+			},
+			onerror: function (error) {
+				codeEditorHelper.showAlertModal(error, [
+					{
+						text: "Ok", onclick: function () {
+							codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index'));
+						}
+					}
+				], "codicon-error")
+			}
+		})
+
+
+	}
+	document.body.appendChild(input);
+	input.click();
+	input.addEventListener('change', readSingleFile, false);
+}
 module.exports = TabbedEditor;
