@@ -409,7 +409,7 @@ class CodeEditor extends ModuleComponent {
 				delete window.addedEditorEventListeners
 				tApp.getComponentFromDOM(document.getElementById("code-editor-tab")).parent.setState("rerender", Date.now())
 			}
-
+		
 			this.state.instructions.state.elements = this.data().elements;
 			this.state.instructions.state.hints = this.data().hints;
 			this.state.instructions.state.nextText = this.data().validation.length > 0 ? "Validate code & move on" : "Move on";
