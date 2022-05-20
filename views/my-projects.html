@@ -12,6 +12,10 @@
             </div>
             <br>
     <% }) %>
+    <% if ( Object.entries(projects).length === 0) { %>
+        You don't have any projects! Create one to get started!
+        <div onclick="showNewMyProjectModal()" id="my-projects" class="codicon codicon-add" style="position: relative; top: 20px;"></div>
+    <% } %>
 </div>
 
 
