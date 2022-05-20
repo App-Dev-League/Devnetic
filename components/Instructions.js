@@ -12,6 +12,8 @@ class Instructions extends tApp.Component {
 		<br>
 		 - .js
 		 <br>
+		 - .ts
+		 <br>
 		 - .html
 		 <br>
 		 - .css

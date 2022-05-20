@@ -39,7 +39,8 @@ class Editor extends tApp.Component {
 			"png": "css",
 			"jpg": "css",
 			"jpeg": "css",
-			"gif": "css"
+			"gif": "css",
+			"cpp": "cpp"
 		}
 		var parentThis = this
 		var tabindex = this.state.tabindex
@@ -444,27 +445,50 @@ class Editor extends tApp.Component {
 								} catch (e) { }
 							}
 						} else if (fileType === "cpp") {
-							await plugins.load("jscpp")
-							var code = "#include <iostream>" +
-								"using namespace std;" +
-								"int main() {" +
-								"    int a;" +
-								"    cin >> a;" +
-								"    cout << a << endl;" +
-								"    return 0;" +
-								"}"
-								;
-							var input = "4321";
-							var output = "";
+							document.getElementById("console-bridge").dispatchEvent(new Event('change'));
+							window.consoleLogs = []
+							window.consoleLogs.push(["Starting c++ engine..."])
+							document.getElementById("console-bridge").click()
+							try {
+								await plugins.load("jscpp")
+							} catch (err) {
+								window.consoleLogs.push(["This file requires the JS-CPP plugin to run!"])
+								document.getElementById("console-bridge").click();
+								return;
+							}
+							var code = codeEditorHelper.getValue();
+							document.querySelector(".console-input").onkeyup = function (e) {
+								if (e.key === "Enter") {
+									document.querySelector(".console-input").disabled = true;
+									window.queuedCppDrainInput = document.querySelector(".console-input").value;
+									document.querySelector(".console-input").value = ""
+								}
+							}
 							var config = {
 								stdio: {
 									write: function (s) {
-										output += s;
+										window.consoleLogs.push([s])
+										window.document.getElementById("console-bridge").click()
+										if (window.newLogCallback) window.newLogCallback(s)
+									},
+									drain: function() {
+										return "input on c++ files not supported!"
 									}
 								}
 							};
-							var exitCode = JSCPP.run(code, input, config);
-							alert(output + "\nprogram exited with code " + exitCode);
+							async function startCpp() {
+								try {
+									var exitCode = JSCPP.run(code, "", config);
+								} catch (err) {
+									window.consoleLogs.push([err])
+									window.document.getElementById("console-bridge").click()
+									if (window.newLogCallback) window.newLogCallback(err)
+								}
+								window.consoleLogs.push(["Program ended with exit code " + exitCode])
+								window.document.getElementById("console-bridge").click()
+								if (window.newLogCallback) window.newLogCallback(s)
+							}
+							startCpp();
 						} else if (fileType === "py") {
 							document.getElementById("console-bridge").dispatchEvent(new Event('change'));
 							window.consoleLogs = []
@@ -794,6 +818,10 @@ try{
 								return;
 							}
 							code = window.ts.transpile(code);
+							if (document.getElementById("python-execution-thread")) {
+								let elem = document.getElementById("python-execution-thread")
+								elem.parentElement.removeChild(elem)
+							}
 							let iframe = document.createElement("iframe")
 							iframe.style.width = 0
 							iframe.style.height = 0

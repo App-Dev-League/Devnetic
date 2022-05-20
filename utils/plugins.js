@@ -110,14 +110,14 @@ module.exports = {
                 latestVersion: "3.0.1"
                 //https://brython.info/
             },
-            {
-                name: "CaptCC",
-                description: "This plugin allows you to run basic C code in the browser!",
-                image: "/assets/plugins/captCC/captCC.svg",
-                id: "captCC",
-                latestVersion: "0.0.1"
-                //https://github.com/Captainarash/CaptCC
-            },
+            // {
+            //     name: "CaptCC",
+            //     description: "This plugin allows you to run basic C code in the browser!",
+            //     image: "/assets/plugins/captCC/captCC.svg",
+            //     id: "captCC",
+            //     latestVersion: "0.0.1"
+            //     //https://github.com/Captainarash/CaptCC
+            // },
             {
                 name: "JS-CPP",
                 description: "This plugin compiles C++ code to Javascript!",
