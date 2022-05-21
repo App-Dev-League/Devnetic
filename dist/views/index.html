@@ -1,0 +1,25 @@
+<div class="home-row">
+	<h3>Web Development</h3>
+	<a class="home-module" href="#/track/webdev/">
+		<p>WebDev Lessons</p>
+	</a>
+	<a class="home-module" href="#/track/webdev-projects/">
+		<p>WebDev Projects</p>
+	</a>
+</div>
+<div class="home-row">
+	<h3>Artificial Intelligence</h3>
+	<a class="home-module" href="#/track/ai/">
+		<p>AI Lessons</p>
+	</a>
+</div>
+<div class="home-row">
+	<h3>Introduction to Computer Science</h3>
+	<a class="home-module" href="#/track/intro-to-cs/">
+		<p>Intro To CS Lesson</p>
+	</a>
+</div>
+<div id="menu-container" class="codicon codicon-loading" style="position: fixed; top: 60px; right: 10px;">
+	<% include('/views/menu.html').then(res => {document.getElementById("menu-container").classList.remove("codicon-loading"); document.getElementById("menu-container").innerHTML = res;nodeScriptReplace(document.getElementById("menu-container"))}) %>
+</div>
+<a href="#/my-projects" id="my-projects" class="codicon codicon-folder" style="position: fixed; top: 60px; right: 50px;"></a>
