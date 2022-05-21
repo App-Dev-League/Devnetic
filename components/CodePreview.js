@@ -145,14 +145,15 @@ class CodePreview extends tApp.Component {
 				let t = document.createElement("span");
 				t.style = "display: block;";
 				for (let i in newLogs) {
+					console.log(newLogs[i])
 					if (newLogs[i].__class__) {
 						if (newLogs[i].__package__) {
 							newLogs[i] = `<module ${newLogs[i].__name__}>`
 						} else {
-							newLogs[i] = `<class ${newLogs[i].__name__}>`
+							newLogs[i] = `<class '${newLogs[i].__name__ || newLogs[i].$infos.__name__}'>`
 						}
 					} else {
-
+						newLogs[i] = `${newLogs[i]}`
 					}
 				}
 				t.innerText = newLogs.join("  ");
