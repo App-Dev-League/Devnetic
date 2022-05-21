@@ -5,8 +5,9 @@ var jsonminify = require("jsonminify");
 
 
 console.log("Clearing old files...");
-fs.rmSync('./dist', { recursive: true });
-
+try {
+    fs.rmSync('./dist', { recursive: true });
+}catch(err){}
 
 console.log("Optimizing...")
 copyFolderSync("./", "./dist")
@@ -33,6 +34,7 @@ function copyFolderSync(from, to) {
             }
         } else {
             if (element === "dist") return;
+            if (element === ".git") return;
             copyFolderSync(path.join(from, element), path.join(to, element));
         }
     });
