@@ -8,62 +8,27 @@
             <div>
                 <a href="#/learn/<%-value.track%>/<%-value.module%>/<%-value.position%>">Open</a>
                 |
-                <a href="#/my-projects" onclick="deleteMyProject('<%-value.name%>')">Delete</a>
+                <a href="#/my-projects" onclick='deleteMyProject("<%-value.name%>")'>Delete</a>
             </div>
             <br>
     <% }) %>
     <% if ( Object.entries(projects).length === 0) { %>
         You don't have any projects! Create one to get started!
-        <div onclick="showNewMyProjectModal()" id="my-projects" class="codicon codicon-add" style="position: relative; top: 20px;"></div>
+        <div onclick="showNewMyProjectModal()" id="my-projects" class="codicon codicon-add" style="position:relative;top:20px"></div>
     <% } %>
 </div>
 
 
 
 
-<div id="menu-container" class="codicon codicon-loading" style="position: fixed; top: 60px; right: 10px;">
+<div id="menu-container" class="codicon codicon-loading" style="position:fixed;top:60px;right:10px">
 	<% include('/views/menu.html').then(res => {document.getElementById("menu-container").classList.remove("codicon-loading"); document.getElementById("menu-container").innerHTML = res;nodeScriptReplace(document.getElementById("menu-container"))}) %>
 </div>
 <% if (myProjectsPage) { %>
-    <a href="#/my-projects" id="my-projects" class="codicon codicon-folder" style="position: fixed; top: 60px; right: 50px; text-decoration: underline !important;"></a>
-    <div onclick="showNewMyProjectModal()" id="my-projects" class="codicon codicon-add" style="position: fixed; top: 60px; right: 90px;"></div>
+    <a href="#/my-projects" id="my-projects" class="codicon codicon-folder" style="position:fixed;top:60px;right:50px;text-decoration:underline!important"></a>
+    <div onclick="showNewMyProjectModal()" id="my-projects" class="codicon codicon-add" style="position:fixed;top:60px;right:90px"></div>
 <% } else { %>
-    <a href="#/my-projects" id="my-projects" class="codicon codicon-folder" style="position: fixed; top: 60px; right: 50px;"></a>
+    <a href="#/my-projects" id="my-projects" class="codicon codicon-folder" style="position:fixed;top:60px;right:50px"></a>
 <% } %>
 
-<script>
-    function showNewMyProjectModal(){
-        let template = document.getElementById("snippets-modal")
-		let modal = template.cloneNode(true);
-		modal.removeAttribute("id")
-		modal.classList.remove("none")
-		modal.querySelector("h3").innerHTML = "New Project";
-		modal.querySelector(".button-correct").innerHTML = "Create!";
-		modal.querySelector("span").onclick = function () {
-			modal.parentNode.removeChild(modal)
-		}
-		modal.querySelector(".button-correct").onclick = async function () {
-            let name = modal.querySelector("input").value
-            if (codeEditorHelper.newMyProject(name) === true) {
-                modal.parentNode.removeChild(modal)
-                let projectMetaData = codeEditorHelper.getMyProjects()[name];
-                tApp.redirect(`#/learn/${projectMetaData.track}/${projectMetaData.module}/${projectMetaData.position}`)
-            } else {
-                alert(codeEditorHelper.newMyProject(name))
-            }
-		}
-		let elm = document.createElement("input");
-		elm.className = "short-answer-input";
-		elm.classList.add("insert-snippet-input")
-		elm.placeholder = "Project Name";
-		modal.querySelector(".inputs").appendChild(elm);
-
-		document.body.appendChild(modal);
-    }
-    function deleteMyProject(name) {
-        if (confirm("Are you sure you want to delete this project?")) {
-            codeEditorHelper.deleteMyProject(name)
-            tApp.redirect("#/my-projects")
-        }
-    }
-</script>
+<script>function showNewMyProjectModal(){let e=document.getElementById("snippets-modal"),r=e.cloneNode(!0),t=(r.removeAttribute("id"),r.classList.remove("none"),r.querySelector("h3").innerHTML="New Project",r.querySelector(".button-correct").innerHTML="Create!",r.querySelector("span").onclick=function(){r.parentNode.removeChild(r)},r.querySelector(".button-correct").onclick=async function(){var e,t=r.querySelector("input").value;!0===codeEditorHelper.newMyProject(t)?(r.parentNode.removeChild(r),e=codeEditorHelper.getMyProjects()[t],tApp.redirect(`#/learn/${e.track}/${e.module}/`+e.position)):alert(codeEditorHelper.newMyProject(t))},document.createElement("input"));t.className="short-answer-input",t.classList.add("insert-snippet-input"),t.placeholder="Project Name",r.querySelector(".inputs").appendChild(t),document.body.appendChild(r)}function deleteMyProject(e){confirm("Are you sure you want to delete this project?")&&(codeEditorHelper.deleteMyProject(e),tApp.redirect("#/my-projects"))}</script>

@@ -6,18 +6,4 @@
     <h3>Then, a link will pop up. Clicking the link will NOT work. Instead, right click the link and click "Open in another Tab"</h3>
     <h5>The reason this exists is because Google Slides has its own copy/paste schema. So, to download images, I previously had to screenshot them (bad).</h5>
 </html>
-<script>
-  document.addEventListener('paste', function(evt) {
-    let paste = (evt.clipboardData || evt.clipboardData)
-    urls = JSON.parse(JSON.parse(paste.getData('application/x-vnd.google-docs-image-clip+wrapped')).data).image_urls
-    Object.values(urls).forEach(value => {
-      console.log(value)
-      let img = document.createElement('a')
-      img.href = value;
-      img.innerHTML = "Click me to download";
-      img.target = "_blank"
-      document.body.appendChild(img)
-    })
-
-  });
-</script>
+<script>document.addEventListener("paste",function(e){let a=e.clipboardData||e.clipboardData;urls=JSON.parse(JSON.parse(a.getData("application/x-vnd.google-docs-image-clip+wrapped")).data).image_urls,Object.values(urls).forEach(e=>{console.log(e);let a=document.createElement("a");a.href=e,a.innerHTML="Click me to download",a.target="_blank",document.body.appendChild(a)})})</script>

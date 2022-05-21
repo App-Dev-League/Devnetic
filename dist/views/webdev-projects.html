@@ -34,7 +34,7 @@
 		<p>Week 8 - To-do List</p>
 	</a>
 </div>
-<div id="menu-container" class="codicon codicon-loading" style="position: fixed; top: 60px; right: 10px;">
+<div id="menu-container" class="codicon codicon-loading" style="position:fixed;top:60px;right:10px">
 	<% include('/views/menu.html').then(res => {document.getElementById("menu-container").classList.remove("codicon-loading"); document.getElementById("menu-container").innerHTML = res;nodeScriptReplace(document.getElementById("menu-container"))}) %>
 </div>
-<a href="#/my-projects" id="my-projects" class="codicon codicon-folder" style="position: fixed; top: 60px; right: 50px;"></a>
+<a href="#/my-projects" id="my-projects" class="codicon codicon-folder" style="position:fixed;top:60px;right:50px"></a>

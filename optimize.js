@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 var UglifyJS = require("uglify-js");
 var jsonminify = require("jsonminify");
+var minify = require('html-minifier').minify;
 
 
 console.log("Clearing old files...");
@@ -11,8 +12,9 @@ try {
 
 console.log("Optimizing...")
 copyFolderSync("./", "./dist")
-console.log("Done!")
-
+console.log("Cleaning up...");
+cleanUps();
+console.log("Finished optimizing distribuition!");
 
 function copyFolderSync(from, to) {
     fs.mkdirSync(to);
@@ -28,6 +30,15 @@ function copyFolderSync(from, to) {
                 let jsonFile = fs.readFileSync(path.join(from, element), "utf8");
                 jsonFile = jsonminify(jsonFile);
                 fs.writeFileSync(path.join(to, element), jsonFile);
+            } else if (element.endsWith(".html")) {
+                console.log("Optimizing " + element);
+                let htmlFile = fs.readFileSync(path.join(from, element), "utf8");
+                htmlFile = minify(htmlFile, {
+                    minifyCSS: true,
+                    minifyJS: true,
+                  });
+                fs.writeFileSync(path.join(to, element), htmlFile);
+
             } else {
                 console.log("Copying " + element);
                 fs.copyFileSync(path.join(from, element), path.join(to, element));
@@ -38,4 +49,9 @@ function copyFolderSync(from, to) {
             copyFolderSync(path.join(from, element), path.join(to, element));
         }
     });
+}
+function cleanUps(){
+    let menu = fs.readFileSync("./dist/views/menu.html", "utf8");
+    menu = menu.replace(`var actions="<%-JSON.stringify(actions)%>"`, `var actions='<%-JSON.stringify(actions)%>'`)
+    fs.writeFileSync("./dist/views/menu.html", menu);
 }
