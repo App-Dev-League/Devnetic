@@ -99,7 +99,7 @@ module.exports = {
                 image: "/assets/plugins/betterEditor/betterEditor.png",
                 id: "betterEditor",
                 onInstall: "plugins.load(\"betterEditor\").then(() => updateEditorSettings({dividerPosition: null}))",
-                latestVersion: "2.4.1"
+                latestVersion: "2.4.2"
                 //https://interactjs.io/
             },
             {
