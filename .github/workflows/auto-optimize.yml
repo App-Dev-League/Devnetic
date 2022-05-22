@@ -25,7 +25,7 @@ jobs:
         npm install jsonminify
         npm install html-minifier
         node optimize
-    - name: 'Update version'
+    - name: 'Push changes to git repository'
       run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
