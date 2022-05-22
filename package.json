@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "html-minifier": "^4.0.0",
+    "jsonminify": "^0.4.2",
+    "uglify-js": "^3.15.5"
+  }
+}
