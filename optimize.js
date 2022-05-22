@@ -11,7 +11,7 @@ try {
 }catch(err){}
 
 console.log("Optimizing...")
-copyFolderSync("./", "./dist")
+copyFolderSync("./src", "./dist")
 console.log("Cleaning up...");
 cleanUps();
 console.log("Finished optimizing distribuition!");
@@ -44,8 +44,6 @@ function copyFolderSync(from, to) {
                 fs.copyFileSync(path.join(from, element), path.join(to, element));
             }
         } else {
-            if (element === "dist") return;
-            if (element === ".git") return;
             copyFolderSync(path.join(from, element), path.join(to, element));
         }
     });
