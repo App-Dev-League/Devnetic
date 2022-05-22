@@ -153,7 +153,7 @@ module.exports = {
                 description: "This plugin allows you to run perl code directly in the browser!!",
                 image: "/assets/plugins/webperl/webperl.png",
                 id: "webperl",
-                latestVersion: "0.1.0"
+                latestVersion: "1.0.0"
             },
             {
                 name: "Hex Editor",

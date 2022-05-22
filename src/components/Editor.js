@@ -40,7 +40,8 @@ class Editor extends tApp.Component {
 			"jpg": "css",
 			"jpeg": "css",
 			"gif": "css",
-			"cpp": "cpp"
+			"cpp": "cpp",
+			"pl": "perl"
 		}
 		var parentThis = this
 		var tabindex = this.state.tabindex
@@ -155,7 +156,8 @@ class Editor extends tApp.Component {
 					"js": false,
 					"jsx": "react",
 					"css": false,
-					"ts": "typescript"
+					"ts": "typescript",
+					"pl": "webperl"
 				}
 				if (!window.alertModals) {
 					window.alertModals = {
@@ -351,12 +353,12 @@ class Editor extends tApp.Component {
 						}
 
 						let fileType = filenamex.split('.').pop().toLowerCase()
-						updatePreview(fileType)
+						updatePreview(fileType, filenamex)
 						setTimeout(function () {
 							document.getElementById("code-editor-status").innerText = "Ready"
 						}, 500)
 					}
-					async function updatePreview(fileType) {
+					async function updatePreview(fileType, filenamex) {
 						tabindex = codeEditorHelper.getCurrentEditorIndex()
 						if (!window.lastUpdatePreview) window.lastUpdatePreview = 0
 						if (window.lastUpdatePreview + 100 > Date.now()) return;
@@ -885,6 +887,53 @@ try{
 							</html>
 							`
 							setPreviewHTML(html)
+						} else if (fileType === "pl") {
+							document.getElementById("console-bridge").dispatchEvent(new Event('change'));
+							window.consoleLogs = []
+							try {
+								let remove = document.querySelector("#python-execution-thread")
+								if (remove) {
+									remove.parentElement.removeChild(remove)
+								}
+							} catch (err) { }
+							window.consoleLogs.push(["Starting Perl engine..."])
+							document.getElementById("console-bridge").click()
+							try {
+								if (!window.Perl) {
+									await plugins.load("webperl");
+								}
+								Perl.noMountIdbfs = true;
+								Perl.output = function(text) {
+									if (text !== "\n") {
+										if (!window.tmpPerlTextBuffer) window.tmpPerlTextBuffer = "";
+										window.tmpPerlTextBuffer += text;
+									} else {
+										window.consoleLogs.push([window.tmpPerlTextBuffer])
+										document.getElementById("console-bridge").click()
+										if (window.newLogCallback) window.newLogCallback([window.tmpPerlTextBuffer])
+										window.tmpPerlTextBuffer = "";
+									}
+								}
+								if (Perl.state === "Uninitialized") {
+									Perl.init()
+									while (true) {
+										if (Perl.state === "Ready") break;
+										await new Promise(resolve => setTimeout(resolve, 250));
+									}					
+									Perl.start();	
+								} else if (Perl.state === "Ended") {
+									Perl.state = "Ready"
+									Perl.start()
+								}
+							} catch (err) {
+								window.consoleLogs.push(["We couldn't find the necessary plugins to run Perl (.pl) files! Please install Perl in the plugins panel."])
+								document.getElementById("console-bridge").click()
+								console.log(err)
+							}
+							let code = codeEditorHelper.getValue();
+							window.consoleLogs.push(["> perl "+filenamex])
+							document.getElementById("console-bridge").click()
+							Perl.eval(code)
 						}
 					}
 					document.getElementById("code-frame").contentWindow.document.onkeydown = async function (e) {
