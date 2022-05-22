@@ -13,6 +13,8 @@ const codeTemplateToCode=require("../utils/codeTemplateToCode.js"),codeBlock=req
 		 - .py
 		 <br>
 		 - .md
+		 <br>
+		 - .pl
 		</div>`:`<div>
 			<h1 class="info-title">${tApp.escape(this.state.title||"")}</h1>
 			${(this.state.elements||[]).map(t=>{if("code"==t.type)return`
