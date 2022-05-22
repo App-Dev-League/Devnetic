@@ -23,7 +23,11 @@ function copyFolderSync(from, to) {
             if (element.endsWith(".js") && !element.endsWith(".min.js")) {
                 console.log("Optimizing " + element);
                 let jsFile = fs.readFileSync(path.join(from, element), "utf8");
-                jsFile = UglifyJS.minify(jsFile);
+                jsFile = UglifyJS.minify(jsFile, {
+                    compress: {
+                        passes: 4
+                    }
+                });
                 fs.writeFileSync(path.join(to, element), jsFile.code);
             } else if (element.endsWith(".json")) {
                 console.log("Optimizing " + element);
