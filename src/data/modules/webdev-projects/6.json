@@ -121,7 +121,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "import React from 'react';\n\nfunction infoDisplayer(props){\n  return (\n    <div>\n      <h5>Name: {props.name}</h5>\n      <h5>Age: {props.age}</h5>\n      <h5>Favorite Color: {props.color}</h5>\n      <h5>Favorite book: {props.book}</h5>\n    </div>\n  )\n}\n\nexport default infoDisplayer",
+                    "content": "import React from 'react';\n\nfunction infoDisplayer(props){\n\treturn (\n\t<div>\n\t\t<h5>Name: {props.name}</h5>\n\t\t<h5>Age: {props.age}</h5>\n\t\t<h5>Favorite Color: {props.color}</h5>\n\t\t<h5>Favorite book: {props.book}</h5>\n\t</div>\n\t)\n}\n\nexport default infoDisplayer",
                     "lang": "jsx"
                 }
             ],
@@ -163,7 +163,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "import React from 'react'\nimport ReactDOM from 'react-dom'\nimport Header from './header.jsx'\nimport InfoDisplayer from './infoDisplayer.jsx';\n\nReactDOM.render(\n  <div>\n      <Header/>\n      <InfoDisplayer name=\"Bob\" age=\"15\" color=\"Blue\" book=\"Lord of the Rings\"/>\n  </div>,\n  document.getElementById('root')\n)",
+                    "content": "import React from 'react'\nimport ReactDOM from 'react-dom'\nimport Header from './header.jsx'\nimport InfoDisplayer from './infoDisplayer.jsx';\n\nReactDOM.render(\n\t<div>\n\t\t<Header/>\n\t\t<InfoDisplayer name=\"Bob\" age=\"15\" color=\"Blue\" book=\"Lord of the Rings\"/>\n\t</div>,\n\tdocument.getElementById('root')\n)",
                     "lang": "jsx"
                 }
             ],

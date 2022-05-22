@@ -38,7 +38,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n\n  <body>\n    <!-- All future content goes here -->\n  </body>\n</html>"
+                    "content": "<!DOCTYPE html>\n<html>\n\t<head>\n\t</head>\n\n\t<body>\n\t<!-- All future content goes here -->\n\t</body>\n</html>"
                 },
                 {
                     "type": "text",
@@ -210,7 +210,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "<div>\n  <h1>My Website</h1>\n  <h3>Here is my website.</h3>\n  <p>\n    My name is _____.\n    <br>\n    My favorite color is _____.\n    <br>\n    <br>\n    My favorite food is _____.\n    <br>\n    <hr>\n    This is my website\n  </p>\n</div>"
+                    "content": "<div>\n\t<h1>My Website</h1>\n\t<h3>Here is my website.</h3>\n\t<p>\n\tMy name is _____.\n\t<br>\n\tMy favorite color is _____.\n\t<br>\n\t<br>\n\tMy favorite food is _____.\n\t<br>\n\t<hr>\n\tThis is my website\n\t</p>\n</div>"
                 },
                 {
                     "type": "text",
@@ -370,7 +370,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "<div>\n  <ul>\n    <li>Color ___</li>\n    <li>Color ___</li>\n    <li>Color ___</li>\n  </ul>\n  <ol>\n    <li>Food ___</li>\n    <li>Food ___</li>\n    <li>Food ___</li>\n  </ol>\n</div>"
+                    "content": "<div>\n\t<ul>\n\t<li>Color ___</li>\n\t<li>Color ___</li>\n\t<li>Color ___</li>\n\t</ul>\n\t<ol>\n\t<li>Food ___</li>\n\t<li>Food ___</li>\n\t<li>Food ___</li>\n\t</ol>\n</div>"
                 },
                 {
                     "type": "text",
@@ -510,7 +510,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "<div>\n  <a href=\"https://google.com\">Go to Google (Same Page)</a>\n  <br>\n  <br>\n  <a href=\"https://google.com\" target=\"_blank\">Go to Google (New Tab)</a>\n</div>"
+                    "content": "<div>\n\t<a href=\"https://google.com\">Go to Google (Same Page)</a>\n\t<br>\n\t<br>\n\t<a href=\"https://google.com\" target=\"_blank\">Go to Google (New Tab)</a>\n</div>"
                 },
                 {
                     "type": "text",
@@ -591,7 +591,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "<div>\n  <a href=\"https://google.com\">Go to Google (Same Page)</a>\n  <br>\n  <br>\n  <a href=\"https://google.com\" target=\"_blank\">Go to Google (New Tab)</a>\n</div>"
+                    "content": "<div>\n\t<a href=\"https://google.com\">Go to Google (Same Page)</a>\n\t<br>\n\t<br>\n\t<a href=\"https://google.com\" target=\"_blank\">Go to Google (New Tab)</a>\n</div>"
                 },
                 {
                     "type": "text",
@@ -672,7 +672,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "<hr>\n<div>\n  <img src=\"website.jpeg\" width=\"500\" height=\"300\">\n  <iframe src=\"https://www.youtube.com/embed/HMbLs3P7KeU\"></iframe>\n</div>"
+                    "content": "<hr>\n<div>\n\t<img src=\"website.jpeg\" width=\"500\" height=\"300\">\n\t<iframe src=\"https://www.youtube.com/embed/HMbLs3P7KeU\"></iframe>\n</div>"
                 },
                 {
                     "type": "text",

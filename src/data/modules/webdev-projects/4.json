@@ -70,7 +70,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "{\n  \"name\": \"@yourname/yourPackageName\",\n  \"version\": \"1.0.0\",\n  \"description\": \"What your package does\",\n  \"main\": \"index.js\",\n  \"dependencies\": {}\n}",
+                    "content": "{\n\t\"name\": \"@yourname/yourPackageName\",\n\t\"version\": \"1.0.0\",\n\t\"description\": \"What your package does\",\n\t\"main\": \"index.js\",\n\t\"dependencies\": {}\n}",
                     "name": "package.json",
                     "lang": "json"
                 }
@@ -132,7 +132,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "module.exports = {\n  add,\n  subtract,\n  multiply,\n  divide\n};",
+                    "content": "module.exports = {\n\tadd,\n\tsubtract,\n\tmultiply,\n\tdivide\n};",
                     "lang": "javascript"
                 }
             ]
@@ -147,7 +147,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "const fs = require(\"file-system\");\n\nconst wordCounter = function(pathToFile){\n  const text = fs.readFileSync(pathToFile, \"utf8\");\n  var wordCount = text.split(' ').length;\n  var writeText = text+\"\n\"+\"Word Count: \"+wordCount;\n  fs.writeFileSync(pathToFile, writeText);\n  return wordCount;\n}\nmodule.exports = wordCounter;"
+                    "content": "const fs = require(\"file-system\");\n\nconst wordCounter = function(pathToFile){\n\tconst text = fs.readFileSync(pathToFile, \"utf8\");\n\tvar wordCount = text.split(' ').length;\n\tvar writeText = text+\"\n\"+\"Word Count: \"+wordCount;\n\tfs.writeFileSync(pathToFile, writeText);\n\treturn wordCount;\n}\nmodule.exports = wordCounter;"
                 }
             ]
         },
@@ -231,7 +231,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "{\n  \"name\": \"@yourname/yourPackageName\",\n  \"version\": \"1.0.0\",\n  \"description\": \"What your package does\",\n  \"main\": \"index.js\",\n  \"dependencies\": {},\n  \"repository\": \"your repository url\",\n  \"license\": \"MIT\",\n  \"keywords\": [\n    \"add\",\n    \"number\"\n  ]\n}",
+                    "content": "{\n\t\"name\": \"@yourname/yourPackageName\",\n\t\"version\": \"1.0.0\",\n\t\"description\": \"What your package does\",\n\t\"main\": \"index.js\",\n\t\"dependencies\": {},\n\t\"repository\": \"your repository url\",\n\t\"license\": \"MIT\",\n\t\"keywords\": [\n\t\"add\",\n\t\"number\"\n\t]\n}",
                     "lang": "json"
                 }
             ]
@@ -292,7 +292,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "{\n  \"name\": \"My App\",\n  \"version\": \"1.0.0\",\n  \"description\": \"What your package does\",\n  \"main\": \"index.js\",\n  \"scripts\": {\n    \"startServer\": \"node index.js\"\n  }\n  \"author\": \"Your Name\",\n  \"dependencies\": {\n    \"axios\": \"^0.21.1\"\n  },\n  \"repository\": \"your repository url\",\n  \"license\": \"MIT\",\n  \"keywords\": [\n    \"add\",\n    \"number\"\n  ]\n}",
+                    "content": "{\n\t\"name\": \"My App\",\n\t\"version\": \"1.0.0\",\n\t\"description\": \"What your package does\",\n\t\"main\": \"index.js\",\n\t\"scripts\": {\n\t\"startServer\": \"node index.js\"\n\t}\n\t\"author\": \"Your Name\",\n\t\"dependencies\": {\n\t\"axios\": \"^0.21.1\"\n\t},\n\t\"repository\": \"your repository url\",\n\t\"license\": \"MIT\",\n\t\"keywords\": [\n\t\"add\",\n\t\"number\"\n\t]\n}",
                     "lang": "json"
                 }
             ]

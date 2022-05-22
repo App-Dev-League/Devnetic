@@ -144,7 +144,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "class parent extends React.Component {\n  constructor(props) {\n    super(props);\n  }\n\n  render() {\n    return this.props.list.map((element) => {\n      return (\n        <div key={element.key}>\n          {element.itemName}\n        </div>\n      )\n    })\n  }\n}\nexport default parent;",
+                    "content": "class parent extends React.Component {\n\tconstructor(props) {\n\tsuper(props);\n\t}\n\n\trender() {\n\treturn this.props.list.map((element) => {\n\t\treturn (\n\t\t<div key={element.key}>\n\t\t\t{element.itemName}\n\t\t</div>\n\t\t)\n\t})\n\t}\n}\nexport default parent;",
                     "name": "itemList.jsx"
                 }
             ],
@@ -186,7 +186,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "import React from 'react'\nimport ItemList from './itemList.jsx'\n\nvar items = [\n  {key: \"1\", itemName: \"Do math homework\"},\n  {key: \"2\", itemName: \"Buy groceries\"},\n  {key: \"3\", itemName: \"Clean the house\"}\n]\n\nReactDOM.render(\n  <div>\n    <ItemList list={items}/>\n  </div>,\n  document.getElementById('root')\n)",
+                    "content": "import React from 'react'\nimport ItemList from './itemList.jsx'\n\nvar items = [\n\t{key: \"1\", itemName: \"Do math homework\"},\n\t{key: \"2\", itemName: \"Buy groceries\"},\n\t{key: \"3\", itemName: \"Clean the house\"}\n]\n\nReactDOM.render(\n\t<div>\n\t<ItemList list={items}/>\n\t</div>,\n\tdocument.getElementById('root')\n)",
                     "name": "itemList.jsx"
                 }
             ],
@@ -236,7 +236,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "class infoDisplayer extends React.Component {\n\n  constructor(props) {\n    super(props);\n    this.addItem = this.addItem.bind(this);\n    this.addInput = React.createRef();\n  }\n\n  addItem() {}\n\n  render() {\n    return (\n      <div>\n        <input\n          type=\"text\"\n          placeholder=\"Add a new task\"\n          ref={this.addInput}>\n        </input>\n        <button onClick={this.addItem}>Add!</button>\n      </div>\n    )\n  }\n}\n\nexport default infoDisplayer",
+                    "content": "class infoDisplayer extends React.Component {\n\n\tconstructor(props) {\n\tsuper(props);\n\tthis.addItem = this.addItem.bind(this);\n\tthis.addInput = React.createRef();\n\t}\n\n\taddItem() {}\n\n\trender() {\n\treturn (\n\t\t<div>\n\t\t<input\n\t\t\ttype=\"text\"\n\t\t\tplaceholder=\"Add a new task\"\n\t\t\tref={this.addInput}>\n\t\t</input>\n\t\t<button onClick={this.addItem}>Add!</button>\n\t\t</div>\n\t)\n\t}\n}\n\nexport default infoDisplayer",
                     "name": "addItem.jsx"
                 }
             ],
@@ -296,7 +296,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "import React from 'react'\nimport ItemList from './itemList.jsx'\nimport AddItem from './addItem.jsx';\n\nvar items = [\n  {key: \"1\", itemName: \"Do math homework\"},\n  {key: \"2\", itemName: \"Buy groceries\"},\n  {key: \"3\", itemName: \"Clean the house\"}\n]\n\nclass MainPage extends React.Component {\n  constructor(props) {\n    super(props);\n    this.callBackFunction = this.callBackFunction.bind(this);\n  }\n  callBackFunction(data) {\n    console.log(\"Changed!\", data)\n  }\n\n  render() {\n    return (\n      <div>\n        <ItemList list={items}/>\n        <AddItem callBack={this.callBackFunction} />\n      </div>\n    )\n  }\n}\nReactDOM.render(\n  <MainPage />,\n  document.getElementById('root')\n)",
+                    "content": "import React from 'react'\nimport ItemList from './itemList.jsx'\nimport AddItem from './addItem.jsx';\n\nvar items = [\n\t{key: \"1\", itemName: \"Do math homework\"},\n\t{key: \"2\", itemName: \"Buy groceries\"},\n\t{key: \"3\", itemName: \"Clean the house\"}\n]\n\nclass MainPage extends React.Component {\n\tconstructor(props) {\n\tsuper(props);\n\tthis.callBackFunction = this.callBackFunction.bind(this);\n\t}\n\tcallBackFunction(data) {\n\tconsole.log(\"Changed!\", data)\n\t}\n\n\trender() {\n\treturn (\n\t\t<div>\n\t\t<ItemList list={items}/>\n\t\t<AddItem callBack={this.callBackFunction} />\n\t\t</div>\n\t)\n\t}\n}\nReactDOM.render(\n\t<MainPage />,\n\tdocument.getElementById('root')\n)",
                     "lang": "jsx",
                     "name": "main.jsx"
                 }
@@ -343,7 +343,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "class infoDisplayer extends React.Component {\n\n  constructor(props) {\n    super(props);\n    this.addItem = this.addItem.bind(this);\n    this.addInput = React.createRef();\n  }\n\n  addItem() {\n    this.props.callBack(this.addInput.current.value)\n    this.addInput.current.value = \"\"\n  }\n\n  render() {\n    return (\n      <div>\n        <input\n          type=\"text\"\n          placeholder=\"Add a new task\"\n          ref={this.addInput}>\n        </input>\n        <button onClick={this.addItem}>Add!</button>\n      </div>\n    )\n  }\n}\n\nexport default infoDisplayer",
+                    "content": "class infoDisplayer extends React.Component {\n\n\tconstructor(props) {\n\tsuper(props);\n\tthis.addItem = this.addItem.bind(this);\n\tthis.addInput = React.createRef();\n\t}\n\n\taddItem() {\n\tthis.props.callBack(this.addInput.current.value)\n\tthis.addInput.current.value = \"\"\n\t}\n\n\trender() {\n\treturn (\n\t\t<div>\n\t\t<input\n\t\t\ttype=\"text\"\n\t\t\tplaceholder=\"Add a new task\"\n\t\t\tref={this.addInput}>\n\t\t</input>\n\t\t<button onClick={this.addItem}>Add!</button>\n\t\t</div>\n\t)\n\t}\n}\n\nexport default infoDisplayer",
                     "name": "addItem.jsx"
                 }
             ],
@@ -389,7 +389,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "import React from 'react'\nimport ItemList from './itemList.jsx'\nimport AddItem from './addItem.jsx';\n\nclass MainPage extends React.Component {\n  constructor(props) {\n    super(props);\n    this.callBackFunction = this.callBackFunction.bind(this);\n    this.state = {\n      items: []\n    }\n  }\n  callBackFunction(data) {\n    console.log(\"Added!\", data)\n    let newElement = {\n      key: (this.state.items.length).toString(),\n      itemName: data\n    }\n    this.state.items.push(newElement)\n    this.setState({\n      items: this.state.items\n    })\n  }\n\n  render() {\n    return (\n      <div>\n        <ItemList list={this.state.items} callBack={this.deleteCallBack}/>\n        <AddItem callBack={this.callBackFunction} />\n      </div>\n    )\n  }\n}\nReactDOM.render(\n  <MainPage />,\n  document.getElementById('root')\n)",
+                    "content": "import React from 'react'\nimport ItemList from './itemList.jsx'\nimport AddItem from './addItem.jsx';\n\nclass MainPage extends React.Component {\n\tconstructor(props) {\n\tsuper(props);\n\tthis.callBackFunction = this.callBackFunction.bind(this);\n\tthis.state = {\n\t\titems: []\n\t}\n\t}\n\tcallBackFunction(data) {\n\tconsole.log(\"Added!\", data)\n\tlet newElement = {\n\t\tkey: (this.state.items.length).toString(),\n\t\titemName: data\n\t}\n\tthis.state.items.push(newElement)\n\tthis.setState({\n\t\titems: this.state.items\n\t})\n\t}\n\n\trender() {\n\treturn (\n\t\t<div>\n\t\t<ItemList list={this.state.items} callBack={this.deleteCallBack}/>\n\t\t<AddItem callBack={this.callBackFunction} />\n\t\t</div>\n\t)\n\t}\n}\nReactDOM.render(\n\t<MainPage />,\n\tdocument.getElementById('root')\n)",
                     "name": "main.jsx"
                 }
             ],
@@ -439,7 +439,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "class parent extends React.Component {\n  constructor(props) {\n    super(props);\n    this.deleteItem = this.deleteItem.bind(this)\n  }\n\n  deleteItem(key){\n    this.props.callBack(key)\n  }\n\n  render() {\n    return this.props.list.map((element) => {\n      return (\n        <div key={element.key}>\n          {element.itemName}\n          <span\n            style={{ color: \"red\", marginLeft: \"100px\", cursor: \"pointer\" }}\n            onClick={() => this.deleteItem(element.key)}\n          >X</span>\n        </div>\n      )\n    })\n  }\n}\nexport default parent;",
+                    "content": "class parent extends React.Component {\n\tconstructor(props) {\n\tsuper(props);\n\tthis.deleteItem = this.deleteItem.bind(this)\n\t}\n\n\tdeleteItem(key){\n\tthis.props.callBack(key)\n\t}\n\n\trender() {\n\treturn this.props.list.map((element) => {\n\t\treturn (\n\t\t<div key={element.key}>\n\t\t\t{element.itemName}\n\t\t\t<span\n\t\t\tstyle={{ color: \"red\", marginLeft: \"100px\", cursor: \"pointer\" }}\n\t\t\tonClick={() => this.deleteItem(element.key)}\n\t\t\t>X</span>\n\t\t</div>\n\t\t)\n\t})\n\t}\n}\nexport default parent;",
                     "name": "itemList.jsx"
                 }
             ],
@@ -485,7 +485,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "import React from 'react'\nimport ItemList from './itemList.jsx'\nimport AddItem from './addItem.jsx';\n\nclass MainPage extends React.Component {\n  constructor(props) {\n    super(props);\n    this.callBackFunction = this.callBackFunction.bind(this);\n    this.deleteCallBack = this.deleteCallBack.bind(this)\n    this.state = {\n      items: []\n    }\n  }\n  callBackFunction(data) {\n    console.log(\"Added!\", data)\n    let newElement = {\n      key: (this.state.items.length).toString(),\n      itemName: data\n    }\n    this.state.items.push(newElement)\n    this.setState({\n      items: this.state.items\n    })\n  }\n\n  deleteCallBack(key){\n    console.log(\"Deleted!\", key)\n\n    this.state.items.splice(key, 1)\n    this.setState({\n      items: this.state.items\n    })\n  }\n\n  render() {\n    return (\n      <div>\n        <ItemList list={this.state.items} callBack={this.deleteCallBack}/>\n        <AddItem callBack={this.callBackFunction} />\n      </div>\n    )\n  }\n}\nReactDOM.render(\n  <MainPage />,\n  document.getElementById('root')\n)",
+                    "content": "import React from 'react'\nimport ItemList from './itemList.jsx'\nimport AddItem from './addItem.jsx';\n\nclass MainPage extends React.Component {\n\tconstructor(props) {\n\tsuper(props);\n\tthis.callBackFunction = this.callBackFunction.bind(this);\n\tthis.deleteCallBack = this.deleteCallBack.bind(this)\n\tthis.state = {\n\t\titems: []\n\t}\n\t}\n\tcallBackFunction(data) {\n\tconsole.log(\"Added!\", data)\n\tlet newElement = {\n\t\tkey: (this.state.items.length).toString(),\n\t\titemName: data\n\t}\n\tthis.state.items.push(newElement)\n\tthis.setState({\n\t\titems: this.state.items\n\t})\n\t}\n\n\tdeleteCallBack(key){\n\tconsole.log(\"Deleted!\", key)\n\n\tthis.state.items.splice(key, 1)\n\tthis.setState({\n\t\titems: this.state.items\n\t})\n\t}\n\n\trender() {\n\treturn (\n\t\t<div>\n\t\t<ItemList list={this.state.items} callBack={this.deleteCallBack}/>\n\t\t<AddItem callBack={this.callBackFunction} />\n\t\t</div>\n\t)\n\t}\n}\nReactDOM.render(\n\t<MainPage />,\n\tdocument.getElementById('root')\n)",
                     "name": "main.jsx",
                     "lang": "jsx"
                 }

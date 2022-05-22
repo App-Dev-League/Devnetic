@@ -45,7 +45,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "loop:\n  all code inside indented will be looped\nx = 5\n# This code is not part of the loop",
+                    "content": "loop:\n\tall code inside indented will be looped\nx = 5\n# This code is not part of the loop",
                     "lang": "python"
                 }
             ]
@@ -72,7 +72,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "seq = [\"a\", 2, 9, None]\n\nif \"a\" in seq:\n  print(\"entered the if\")\nif 2 in seq:\n  print(\"entered the second if\")\nelse:\n  print(\"entered the else\")\n\nif \"a\" in seq1:\n  print(\"entered the if\")\nelif 2 in seq1:\n  print(\"entered the elif\")\nelse:\n  print(\"entered the else\")",
+                    "content": "seq = [\"a\", 2, 9, None]\n\nif \"a\" in seq:\n\tprint(\"entered the if\")\nif 2 in seq:\n\tprint(\"entered the second if\")\nelse:\n\tprint(\"entered the else\")\n\nif \"a\" in seq1:\n\tprint(\"entered the if\")\nelif 2 in seq1:\n\tprint(\"entered the elif\")\nelse:\n\tprint(\"entered the else\")",
                     "lang": "python"
                 }
             ]
@@ -106,7 +106,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "i = 0\nwhile i < 10:\n  print(i)\n  i += 1",
+                    "content": "i = 0\nwhile i < 10:\n\tprint(i)\n\ti += 1",
                     "lang": "python"
                 }
             ]
@@ -153,7 +153,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "for x in range(10):\n  print(x)\n\nfor x in range(0, 10):\n  print(x)",
+                    "content": "for x in range(10):\n\tprint(x)\n\nfor x in range(0, 10):\n\tprint(x)",
                     "lang": "python"
                 }
             ]
@@ -187,7 +187,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "for x in range(1, 11, 2):\n    print(x)",
+                    "content": "for x in range(1, 11, 2):\n\tprint(x)",
                     "lang": "python"
                 }
             ]
@@ -230,7 +230,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "def printHello():\n  print(\"HelloWorld!\")\n\nprintHello()",
+                    "content": "def printHello():\n\tprint(\"HelloWorld!\")\n\nprintHello()",
                     "lang": "python"
                 }
             ]
@@ -265,7 +265,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "def printName(name):\n  print(\"Hello name is \"+name)\n\nprintName(\"Bob\")\nprintName(\"Joe\")\n\ndef printName(firstName, lastName):\n  print(\"Hello my name is \"+firstName+\" \"+lastName)\n\nprintName(\"Bob\", \"Smith\")",
+                    "content": "def printName(name):\n\tprint(\"Hello name is \"+name)\n\nprintName(\"Bob\")\nprintName(\"Joe\")\n\ndef printName(firstName, lastName):\n\tprint(\"Hello my name is \"+firstName+\" \"+lastName)\n\nprintName(\"Bob\", \"Smith\")",
                     "lang": "python"
                 }
             ]
@@ -304,7 +304,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "def doubleNum(x):\n  return x * 2\n\ndoubled = doubleNum(5)\n\ndef mult(x, y):\n  return x * y\n\nx = mult(5, 7)",
+                    "content": "def doubleNum(x):\n\treturn x * 2\n\ndoubled = doubleNum(5)\n\ndef mult(x, y):\n\treturn x * y\n\nx = mult(5, 7)",
                     "lang": "python"
                 }
             ]

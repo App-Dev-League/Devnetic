@@ -166,7 +166,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "<!DOCTYPE html>\n<html>\n\n<head>\n  <meta charset=\"utf-8\">\n  <title>My test page</title>\n</head>\n\n<body>\n  <p>This is my page</p>\n</body>\n\n</html>"
+                    "content": "<!DOCTYPE html>\n<html>\n\n<head>\n\t<meta charset=\"utf-8\">\n\t<title>My test page</title>\n</head>\n\n<body>\n\t<p>This is my page</p>\n</body>\n\n</html>"
                 },
                 {
                     "type": "divider"
@@ -196,7 +196,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "<body>\n  Displayed content tags go here\n</body>"
+                    "content": "<body>\n\tDisplayed content tags go here\n</body>"
                 }
             ]
         },

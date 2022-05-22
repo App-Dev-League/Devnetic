@@ -108,7 +108,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "function madLibs(adj, nounl, verb, noun2) {\n    console.log(`The ${adj} ${nounl} ${verb} over the ${noun2}.`);\n} "
+                    "content": "function madLibs(adj, nounl, verb, noun2) {\n\tconsole.log(`The ${adj} ${nounl} ${verb} over the ${noun2}.`);\n} "
                 }
             ],
             "hints": [],
@@ -147,7 +147,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "function rockPaperScissors(userChoice) {\n  userChoice = userChoice.toLowerCase();\n  if(![\"rock\", \"paper\", \"scissors\"].includes(userChoice)) {\n    return console.log( \"Invalid option. Must be \\\"rock\\\", \\\"paper\\\", or \\\"scissors\\\".\");\n  }\n  // continued on next page \n}",
+                    "content": "function rockPaperScissors(userChoice) {\n\tuserChoice = userChoice.toLowerCase();\n\tif(![\"rock\", \"paper\", \"scissors\"].includes(userChoice)) {\n\treturn console.log( \"Invalid option. Must be \\\"rock\\\", \\\"paper\\\", or \\\"scissors\\\".\");\n\t}\n\t// continued on next page \n}",
                     "lang": "javascript"
                 }
             ],
@@ -179,7 +179,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "var randomNumber = Math.floor(Math.random() * 3);\nvar computerChoice; \nif (randomNumber === 2) {\n  computerChoice = \"rock\"; \n} else if (randomNumber === 1) {\n  computerChoice = \"paper\"; \n} else {\n  computerChoice = \"scissors\";\n}",
+                    "content": "var randomNumber = Math.floor(Math.random() * 3);\nvar computerChoice; \nif (randomNumber === 2) {\n\tcomputerChoice = \"rock\"; \n} else if (randomNumber === 1) {\n\tcomputerChoice = \"paper\"; \n} else {\n\tcomputerChoice = \"scissors\";\n}",
                     "lang": "javascript"
                 }
             ],
@@ -219,7 +219,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "else if (userChoice === \"rock\") {\n  if (computerChoice === \"paper\") {\n    winner = \"computer\";\n  } else {\n    winner = \"user\";\n    rockPaperScissorsScore++\n  }\n}",
+                    "content": "else if (userChoice === \"rock\") {\n\tif (computerChoice === \"paper\") {\n\twinner = \"computer\";\n\t} else {\n\twinner = \"user\";\n\trockPaperScissorsScore++\n\t}\n}",
                     "lang": "javascript"
                 }
             ],
@@ -259,7 +259,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "else if (userChoice === \"paper\") {\n  if (computerChoice === \"scissors\") {\n    winner = \"computer\";\n  } else {\n    winner = \"user\";\n    rockPaperScissorsScore++\n  }\n}",
+                    "content": "else if (userChoice === \"paper\") {\n\tif (computerChoice === \"scissors\") {\n\twinner = \"computer\";\n\t} else {\n\twinner = \"user\";\n\trockPaperScissorsScore++\n\t}\n}",
                     "lang": "javascript"
                 }
             ],
@@ -299,7 +299,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "else if (userChoice === \"scissors\") {\n  if (computerChoice === \"rock\") {\n    winner = \"computer\";\n  } else {\n    winner = \"user\";\n    rockPaperScissorsScore++\n  }\n}",
+                    "content": "else if (userChoice === \"scissors\") {\n\tif (computerChoice === \"rock\") {\n\twinner = \"computer\";\n\t} else {\n\twinner = \"user\";\n\trockPaperScissorsScore++\n\t}\n}",
                     "lang": "javascript"
                 }
             ],
@@ -383,7 +383,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "function coinFlip(userChoice) {\n  userChoice = userChoice.toLowerCase();\n  if (![\"heads\", \"tails\"].includes(userChoice)) {\n    return console.log( \"Invalid option. Must be 'heads' or 'tails'\");\n  }\n  var winner;\n  var computerChoice = Math.floor(Math.random() * 2) === 0 ? \"heads\" : \"tails\";\n  if (userChoice === computerChoice) {\n    winner = \"user\";\n    coinFlipScore++;\n  } else {\n    winner = \"computer\";\n  }\n  console.log(`The user chose ${userChoice}, and the computer chose ${computerChoice}, so the winner is ${winner} and your score is ${coinFlipScore}`)\n}"
+                    "content": "function coinFlip(userChoice) {\n\tuserChoice = userChoice.toLowerCase();\n\tif (![\"heads\", \"tails\"].includes(userChoice)) {\n\treturn console.log( \"Invalid option. Must be 'heads' or 'tails'\");\n\t}\n\tvar winner;\n\tvar computerChoice = Math.floor(Math.random() * 2) === 0 ? \"heads\" : \"tails\";\n\tif (userChoice === computerChoice) {\n\twinner = \"user\";\n\tcoinFlipScore++;\n\t} else {\n\twinner = \"computer\";\n\t}\n\tconsole.log(`The user chose ${userChoice}, and the computer chose ${computerChoice}, so the winner is ${winner} and your score is ${coinFlipScore}`)\n}"
                 }
             ],
             "hints": [],
@@ -471,8 +471,20 @@
                             "runwhen": "immediately",
                             "reject": true,
                             "matches": [
-                                {"type": "regex", "value": "Error: ", "filters": ["toString"]},
-                                {"type": "startsWith", "value": "Uncaught", "filters": ["toString"]}
+                                {
+                                    "type": "regex",
+                                    "value": "Error: ",
+                                    "filters": [
+                                        "toString"
+                                    ]
+                                },
+                                {
+                                    "type": "startsWith",
+                                    "value": "Uncaught",
+                                    "filters": [
+                                        "toString"
+                                    ]
+                                }
                             ],
                             "onerror": "An error was thrown!"
                         }

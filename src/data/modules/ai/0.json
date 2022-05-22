@@ -37,11 +37,9 @@
                 },
                 {
                     "type": "code",
-                    "content": "#include <iostream>\n#include <vector>\n#include <numeric>\n\nint main() {\n    std::vector<int> a = {1, 2, 3, 2, 253, 0, 4, 3, 97};\n    std::cout << std::accumulate(a.begin(), a.end(), 0) << std::endl;\n}",
+                    "content": "#include <iostream>\n#include <vector>\n#include <numeric>\n\nint main() {\n\tstd::vector<int> a = {1, 2, 3, 2, 253, 0, 4, 3, 97};\n\tstd::cout << std::accumulate(a.begin(), a.end(), 0) << std::endl;\n}",
                     "float": "left"
                 },
-                
-                
                 {
                     "type": "text",
                     "content": "[[h3]]Inputs, Outputs, and Comments[[/]]"
@@ -52,13 +50,12 @@
                 },
                 {
                     "type": "text",
-                    "content":"➔ To get an input, use the input() function as shown to the right"
+                    "content": "➔ To get an input, use the input() function as shown to the right"
                 },
                 {
                     "type": "text",
                     "content": "➔ Comments are lines that are notes for you and don’t do anything; to add comments, use a # before the comment"
                 },
-
                 {
                     "type": "code",
                     "content": "print(“This is how you print a sentence”)\n# The above lets us print a sentence\n\n# This is a comment\n\nName = input(“enter your name: “)\n# the above helps us takes in a name and store it in a variable called name",
@@ -73,7 +70,7 @@
                 "All of the above",
                 "Extremely Popular",
                 "Easy and redable syntax",
-                "Tons of libraries for AI, data science, and more"  
+                "Tons of libraries for AI, data science, and more"
             ],
             "correct": 0,
             "descriptions": [
@@ -111,10 +108,8 @@
                 },
                 {
                     "type": "text",
-                    "content":"➔ Check if a type matches a variable using isinstance()"
+                    "content": "➔ Check if a type matches a variable using isinstance()"
                 },
-
-
                 {
                     "type": "code",
                     "content": "# assign the variable `x` to the integer 1\nx = 1\n\n# checking the type of `x`\nprint(type(x))\n# will print int\n\n# verifying that `x` is an integer-type object\nprint(isinstance(x, int))\n# will print True",
@@ -130,7 +125,7 @@
                 "var x = 1",
                 "int x = 1",
                 "x = 1",
-                "None of the above"  
+                "None of the above"
             ],
             "correct": 2,
             "descriptions": [
@@ -149,7 +144,7 @@
                 "Booleans",
                 "Strings",
                 "List",
-                "All of the above"  
+                "All of the above"
             ],
             "correct": 3,
             "descriptions": [
@@ -161,10 +156,26 @@
             "points": 5,
             "coins": 1
         },
-        {"type": "multiple_choice", "question": "How would you create your own object type in Python", "descriptions": ["Incorrect!", "Correct!", "Incorrect! This does not create a new object", "Incorrect!"], "points": 5, "coins": 1, "answers": ["Recode Python", "Make a class", "use the type() function", "Not Possible"], "correct": 1},
-
         {
-
+            "type": "multiple_choice",
+            "question": "How would you create your own object type in Python",
+            "descriptions": [
+                "Incorrect!",
+                "Correct!",
+                "Incorrect! This does not create a new object",
+                "Incorrect!"
+            ],
+            "points": 5,
+            "coins": 1,
+            "answers": [
+                "Recode Python",
+                "Make a class",
+                "use the type() function",
+                "Not Possible"
+            ],
+            "correct": 1
+        },
+        {
             "type": "information",
             "title": "Week 1 - Python Review",
             "elements": [
@@ -190,7 +201,7 @@
                 },
                 {
                     "type": "text",
-                    "content":"➔ [[b]]x // y[[/]]: The quotient of two numbers rounded down to an integer"
+                    "content": "➔ [[b]]x // y[[/]]: The quotient of two numbers rounded down to an integer"
                 },
                 {
                     "type": "text",
@@ -207,23 +218,104 @@
                 {
                     "type": "text",
                     "content": "➔ [[b]]abs(x)[[/]]: The absolute value of a number"
-                }    
+                }
             ]
         },
-
-
-        {"type": "multiple_choice", "question": "How would you get the sum of two numbers in Python?", "descriptions": ["Correct!", "Incorrect!", "Incorrect!", "Incorrect!"], "points": 5, "coins": 1, "answers": ["x + y", "x ++ y", "x ^+ y", "var x + var y"], "correct": 0},
-
-        {"type": "multiple_choice", "question": "What does x // y do?", "descriptions": ["Incorrect!", "Incorrect! That is a single division symbol", "Correct!", "Incorrect! That is a single division symbol"], "points": 5, "coins": 1, "answers": ["Finds the root of x with y", "Divides X and Y", "Rounds the quotient of x and  y to an integer value", "Finds the decimal value of the quotient of x and y"], "correct": 2},
-
-        {"type": "multiple_choice", "question": "What does x % y do?", "descriptions": ["Incorrect! Wrong symbol", "Correct!", "Incorrect!", "Incorrect! Wrong symbol"], 
-        "points": 5, "coins": 1, "answers": ["Divides x and y", "Finds the remainder of x / y", "Finds decimal points of x /  y", "Rounds the quotient of x and y to the nearest hundredth."], "correct": 1},
-
-        {"type": "multiple_choice", "question": "What does x ** y do?", "descriptions": ["Incorrect!", "Incorrect! That is a single multiplcation sign", "Incorrect!", "Correct!"], "points": 5, "coins": 1, "answers": ["Adds x * y by itself.", "Multiplies x by y", "Rounds the value of x * y by the tens place.", "Raises X to the Y power."], "correct": 3},
-
-        {"type": "multiple_choice", "question": "How do you find the absolute value of a number x in Python?", "descriptions": ["Incorrect!", "Incorrect!", "Correct!", "Incorrect!"], "points": 5, "coins": 1, "answers": ["absolute(x)", "absolueVal(x)", "abs(x)", "absoluteValue(x)"], "correct": 2},
-
-
+        {
+            "type": "multiple_choice",
+            "question": "How would you get the sum of two numbers in Python?",
+            "descriptions": [
+                "Correct!",
+                "Incorrect!",
+                "Incorrect!",
+                "Incorrect!"
+            ],
+            "points": 5,
+            "coins": 1,
+            "answers": [
+                "x + y",
+                "x ++ y",
+                "x ^+ y",
+                "var x + var y"
+            ],
+            "correct": 0
+        },
+        {
+            "type": "multiple_choice",
+            "question": "What does x // y do?",
+            "descriptions": [
+                "Incorrect!",
+                "Incorrect! That is a single division symbol",
+                "Correct!",
+                "Incorrect! That is a single division symbol"
+            ],
+            "points": 5,
+            "coins": 1,
+            "answers": [
+                "Finds the root of x with y",
+                "Divides X and Y",
+                "Rounds the quotient of x and  y to an integer value",
+                "Finds the decimal value of the quotient of x and y"
+            ],
+            "correct": 2
+        },
+        {
+            "type": "multiple_choice",
+            "question": "What does x % y do?",
+            "descriptions": [
+                "Incorrect! Wrong symbol",
+                "Correct!",
+                "Incorrect!",
+                "Incorrect! Wrong symbol"
+            ],
+            "points": 5,
+            "coins": 1,
+            "answers": [
+                "Divides x and y",
+                "Finds the remainder of x / y",
+                "Finds decimal points of x /  y",
+                "Rounds the quotient of x and y to the nearest hundredth."
+            ],
+            "correct": 1
+        },
+        {
+            "type": "multiple_choice",
+            "question": "What does x ** y do?",
+            "descriptions": [
+                "Incorrect!",
+                "Incorrect! That is a single multiplcation sign",
+                "Incorrect!",
+                "Correct!"
+            ],
+            "points": 5,
+            "coins": 1,
+            "answers": [
+                "Adds x * y by itself.",
+                "Multiplies x by y",
+                "Rounds the value of x * y by the tens place.",
+                "Raises X to the Y power."
+            ],
+            "correct": 3
+        },
+        {
+            "type": "multiple_choice",
+            "question": "How do you find the absolute value of a number x in Python?",
+            "descriptions": [
+                "Incorrect!",
+                "Incorrect!",
+                "Correct!",
+                "Incorrect!"
+            ],
+            "points": 5,
+            "coins": 1,
+            "answers": [
+                "absolute(x)",
+                "absolueVal(x)",
+                "abs(x)",
+                "absoluteValue(x)"
+            ],
+            "correct": 2
+        },
         {
             "type": "information",
             "title": "Week 1 - Python Review",
@@ -250,11 +342,11 @@
                 },
                 {
                     "type": "text",
-                    "content":"➔ [[b]]or[[/]]: returns true if either statement to its left or right is true"
+                    "content": "➔ [[b]]or[[/]]: returns true if either statement to its left or right is true"
                 },
                 {
                     "type": "text",
-                    "content":"➔ [[b]]and[[/]]: returns true if both statements to its left and right are true"
+                    "content": "➔ [[b]]and[[/]]: returns true if both statements to its left and right are true"
                 },
                 {
                     "type": "code",
@@ -263,15 +355,42 @@
                 }
             ]
         },
-
-
-        {"type": "multiple_choice", "question": "What does x != y return?", "descriptions": ["Incorrect! It won't have \"!\"", "Incorrect!", "Incorrect! It won't have \"!\"", "Correct!"], "points": 5, "coins": 1, "answers": ["True if x is equal to y", "False if x is equal to y", "False if x is NOT equal to y.", "True if x is NOT equal to y."], "correct": 3},
-
-
-    {"type": "multiple_choice", "question": "What Does x == y return if x is the same value as y?", "descriptions": ["Correct!", "Incorrect!"], "points": 5, "coins": 1, "answers": ["True", "False", "", ""], "correct": 0},
-
-       
-
+        {
+            "type": "multiple_choice",
+            "question": "What does x != y return?",
+            "descriptions": [
+                "Incorrect! It won't have \"!\"",
+                "Incorrect!",
+                "Incorrect! It won't have \"!\"",
+                "Correct!"
+            ],
+            "points": 5,
+            "coins": 1,
+            "answers": [
+                "True if x is equal to y",
+                "False if x is equal to y",
+                "False if x is NOT equal to y.",
+                "True if x is NOT equal to y."
+            ],
+            "correct": 3
+        },
+        {
+            "type": "multiple_choice",
+            "question": "What Does x == y return if x is the same value as y?",
+            "descriptions": [
+                "Correct!",
+                "Incorrect!"
+            ],
+            "points": 5,
+            "coins": 1,
+            "answers": [
+                "True",
+                "False",
+                "",
+                ""
+            ],
+            "correct": 0
+        },
         {
             "type": "information",
             "title": "Week 1 - Python Review",
@@ -302,15 +421,15 @@
                 },
                 {
                     "type": "text",
-                    "content":"➔ Getting the index of the first occurance of x in a sequence: [[b]]seq.index(x)[[/]]"
+                    "content": "➔ Getting the index of the first occurance of x in a sequence: [[b]]seq.index(x)[[/]]"
                 },
                 {
                     "type": "text",
-                    "content":"➔ Counting the number of occurences of x in a sequence: [[b]]seq.count(x)[[/]]"
+                    "content": "➔ Counting the number of occurences of x in a sequence: [[b]]seq.count(x)[[/]]"
                 },
                 {
                     "type": "text",
-                    "content":"➔ Access a value at index for a 2D-array (list within a list): [[b]]seq[index1][index2][[/]]"
+                    "content": "➔ Access a value at index for a 2D-array (list within a list): [[b]]seq[index1][index2][[/]]"
                 },
                 {
                     "type": "code",
@@ -318,14 +437,57 @@
                 }
             ]
         },
-
-
-        {"type": "multiple_choice", "question": "What number index does a sequence start at?", "descriptions": ["Correct!", "Incorrect!"], "points": 5, "coins": 1, "answers": ["0", "1", "", ""], "correct": 0},
-
-        {"type": "multiple_choice", "question": "True Or False: Ordering in Sequences Matter", "descriptions": ["Correct!", "Incorrect! They are very important"], "points": 5, "coins": 1, "answers": ["True", "False", "", ""], "correct": 0},
-
-        {"type": "multiple_choice", "question": "True of False: Values of tuples can be changed after initiated.", "descriptions": ["Incorrect!", "Correct!"], "points": 5, "coins": 1, "answers": ["True", "False", "", ""], "correct": 1},
-
+        {
+            "type": "multiple_choice",
+            "question": "What number index does a sequence start at?",
+            "descriptions": [
+                "Correct!",
+                "Incorrect!"
+            ],
+            "points": 5,
+            "coins": 1,
+            "answers": [
+                "0",
+                "1",
+                "",
+                ""
+            ],
+            "correct": 0
+        },
+        {
+            "type": "multiple_choice",
+            "question": "True Or False: Ordering in Sequences Matter",
+            "descriptions": [
+                "Correct!",
+                "Incorrect! They are very important"
+            ],
+            "points": 5,
+            "coins": 1,
+            "answers": [
+                "True",
+                "False",
+                "",
+                ""
+            ],
+            "correct": 0
+        },
+        {
+            "type": "multiple_choice",
+            "question": "True of False: Values of tuples can be changed after initiated.",
+            "descriptions": [
+                "Incorrect!",
+                "Correct!"
+            ],
+            "points": 5,
+            "coins": 1,
+            "answers": [
+                "True",
+                "False",
+                "",
+                ""
+            ],
+            "correct": 1
+        },
         {
             "type": "information",
             "title": "Week 1 - Python Review",
@@ -356,15 +518,15 @@
                 },
                 {
                     "type": "text",
-                    "content":"➔ Getting the index of the first occurance of x in a sequence: [[b]]seq.index(x)[[/]]"
+                    "content": "➔ Getting the index of the first occurance of x in a sequence: [[b]]seq.index(x)[[/]]"
                 },
                 {
                     "type": "text",
-                    "content":"➔ Counting the number of occurences of x in a sequence: [[b]]seq.count(x)[[/]]"
+                    "content": "➔ Counting the number of occurences of x in a sequence: [[b]]seq.count(x)[[/]]"
                 },
                 {
                     "type": "text",
-                    "content":"➔ Access a value at index for a 2D-array (list within a list): [[b]]seq[index1][index2][[/]]"
+                    "content": "➔ Access a value at index for a 2D-array (list within a list): [[b]]seq[index1][index2][[/]]"
                 },
                 {
                     "type": "code",
@@ -372,9 +534,24 @@
                 }
             ]
         },
-
-        {"type": "multiple_choice", "question": "How would you concatenate two sequences x and y?", "descriptions": ["Incorrect! \"seq\" is not required", "Incorrect!", "Correct!"], "points": 5, "coins": 1, "answers": ["seq x + seq y", "x.addSeq(y)", "x + y", ""], "correct": 2},
-
+        {
+            "type": "multiple_choice",
+            "question": "How would you concatenate two sequences x and y?",
+            "descriptions": [
+                "Incorrect! \"seq\" is not required",
+                "Incorrect!",
+                "Correct!"
+            ],
+            "points": 5,
+            "coins": 1,
+            "answers": [
+                "seq x + seq y",
+                "x.addSeq(y)",
+                "x + y",
+                ""
+            ],
+            "correct": 2
+        },
         {
             "type": "information",
             "title": "Week 1 - Python Review",
@@ -400,10 +577,8 @@
                     "src": "/data/modules/ai-assets/img0/0-0.png",
                     "width": "50%"
                 }
-                
             ]
         },
-
         {
             "type": "information",
             "title": "Week 1 - Python Review",
@@ -430,11 +605,10 @@
                 },
                 {
                     "type": "code",
-                    "content": "eq = [\"a\", 2, 9, None]\n\nif \"a\" in seq1:\n    print(\"entered the if\")\n\nif 2 in seq1:\n    print(\"entered the 2nd if\")\n\nelse:\n    print(\"entered the else\")\n\n# entered the if\n # entered the 2nd if\n\nif \"a\" in seq1:\n    print(\"entered the if\")\n\nelif 2 in seq1:\n    print(\"entered the elif\")\n\nelse:\n    print(\"entered the else\")\n\n# entered the if"
+                    "content": "eq = [\"a\", 2, 9, None]\n\nif \"a\" in seq1:\n\tprint(\"entered the if\")\n\nif 2 in seq1:\n\tprint(\"entered the 2nd if\")\n\nelse:\n\tprint(\"entered the else\")\n\n# entered the if\n # entered the 2nd if\n\nif \"a\" in seq1:\n\tprint(\"entered the if\")\n\nelif 2 in seq1:\n\tprint(\"entered the elif\")\n\nelse:\n\tprint(\"entered the else\")\n\n# entered the if"
                 }
             ]
         },
-
         {
             "type": "information",
             "title": "Week 1 - Python Review",
@@ -465,11 +639,10 @@
                 },
                 {
                     "type": "code",
-                    "content": "fruits = [\"mango\", \"orange\", \"apple\"]\nfor x in fruits:\n    print(x)\n# mango\n# orange\n# apple\n\nfor i in range(5):\n    print(i)\n# 0\n# 1\n# 2\n# 3\n# 4\nj = 0\nwhile len(fruits) > j:\n    j+=1\n# j++ is a shortcut for j = j + 1\n# The final value of j is 3"
+                    "content": "fruits = [\"mango\", \"orange\", \"apple\"]\nfor x in fruits:\n\tprint(x)\n# mango\n# orange\n# apple\n\nfor i in range(5):\n\tprint(i)\n# 0\n# 1\n# 2\n# 3\n# 4\nj = 0\nwhile len(fruits) > j:\n\tj+=1\n# j++ is a shortcut for j = j + 1\n# The final value of j is 3"
                 }
             ]
         },
-
         {
             "type": "information",
             "title": "Week 1 - Python Review",
@@ -508,11 +681,10 @@
                 },
                 {
                     "type": "code",
-                    "content": "def is_true(x):\nif(x == True):\n    return True\nreturn False\n\nif is_true(\"Test\"):\n    print(\"The function returned true!\")\nif is_true(\"Nah\"):\n    print(\"The function returned true!\")\nif is_true(True):\n    print(\"The function returned true!\")"
+                    "content": "def is_true(x):\nif(x == True):\n\treturn True\nreturn False\n\nif is_true(\"Test\"):\n\tprint(\"The function returned true!\")\nif is_true(\"Nah\"):\n\tprint(\"The function returned true!\")\nif is_true(True):\n\tprint(\"The function returned true!\")"
                 }
             ]
         },
-
         {
             "type": "information",
             "title": "Week 1 - Python Review",
@@ -552,7 +724,6 @@
                 }
             ]
         },
-
         {
             "type": "information",
             "title": "Week 1 - Python Review",
@@ -579,7 +750,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "# Define a dog with an attribute x of 3000\n# And gender and parameters as attributes\nclass Dog:\n    x = 3000\ndef __init__(self, age, gender):\n    self.gender = gender\n    self.age age\n\ndef print_x():\n    print(self.x)\n\ndog = Dog(10, \"Male\")\n\nprint(dog.x)\n# 3000\n\nprint(dog.age)\n# 10\n\ndog.print_x()\n# 3000"
+                    "content": "# Define a dog with an attribute x of 3000\n# And gender and parameters as attributes\nclass Dog:\n\tx = 3000\ndef __init__(self, age, gender):\n\tself.gender = gender\n\tself.age age\n\ndef print_x():\n\tprint(self.x)\n\ndog = Dog(10, \"Male\")\n\nprint(dog.x)\n# 3000\n\nprint(dog.age)\n# 10\n\ndog.print_x()\n# 3000"
                 }
             ]
         }

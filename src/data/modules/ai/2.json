@@ -1,208 +1,195 @@
 {
-	"type": "lesson",
-	"pages":
-	[
-		{
-			"type": "information",
-			"title": "Week 3 - Regression and SVMs",
-			"elements":
-			[
-				{
-					"type": "text",
-					"content": "[[h3]]Regression Context[[/]]"
-				},
-				{
+    "type": "lesson",
+    "pages": [
+        {
+            "type": "information",
+            "title": "Week 3 - Regression and SVMs",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "[[h3]]Regression Context[[/]]"
+                },
+                {
                     "type": "text",
                     "content": "➔ The earliest forms of regression were published by Legendre in 1805, and by Gauss in 1809"
                 },
-				{
+                {
                     "type": "text",
                     "content": "➔ Before coming to the world of AI and ML, regression was purely mathematical in nature"
                 },
-				{
+                {
                     "type": "text",
                     "content": "➔ In recent years, regression has become more robust and has entered many fields that invovle some kind of forecasting"
                 },
-				{
+                {
                     "type": "text",
                     "content": "➔ The types we will be covering are linear regression and polynomial regression"
                 },
-				{
+                {
                     "type": "image",
                     "src": "/data/modules/ai-assets/img2/0-2.png",
                     "width": "50%"
                 }
-			]
-		},
-
-		{
-			"type": "information",
-			"title": "Week 3 - Regression and SVMs",
-			"elements":
-			[
-				{
-					"type": "text",
-					"content": "[[h3]]Types of Regression[[/]]"
-				},
-				{
+            ]
+        },
+        {
+            "type": "information",
+            "title": "Week 3 - Regression and SVMs",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "[[h3]]Types of Regression[[/]]"
+                },
+                {
                     "type": "text",
                     "content": "➔ Two basic forms: simple linear regression, multiple linear regression"
                 },
-				{
+                {
                     "type": "text",
                     "content": "➔ Simple Linear Regression: y = mx + b, where there is only one outcome variable y defined by a single input variable x"
                 },
-				{
+                {
                     "type": "text",
                     "content": "➔ Multiple Linear Regression: y = b + m1x1 + m2x2 + m3x3… + mnxn, where n is the number of input variables"
                 },
-				{
+                {
                     "type": "text",
                     "content": "➔ Simple linear regression: line"
                 },
-				{
+                {
                     "type": "text",
                     "content": "➔ Multiple linear regression: n-dimensional plane"
                 },
-				{
+                {
                     "type": "image",
                     "src": "/data/modules/ai-assets/img2/1-2.png",
                     "width": "50%"
-					
                 },
-				{
+                {
                     "type": "image",
                     "src": "/data/modules/ai-assets/img2/2-2.png",
                     "width": "50%"
                 }
-			]
-		},
-
-		{
-			"type": "information",
-			"title": "Week 3 - Regression and SVMs",
-			"elements":
-			[
-				{
-					"type": "text",
-					"content": "[[h3]]Method[[/]]"
-				},
-				{
+            ]
+        },
+        {
+            "type": "information",
+            "title": "Week 3 - Regression and SVMs",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "[[h3]]Method[[/]]"
+                },
+                {
                     "type": "text",
                     "content": "➔ Pick an arbitrary line/plane to fit the data, sometimes using random and sometimes using averages"
                 },
-				{
+                {
                     "type": "text",
                     "content": "➔ Measure the error and adjust the line/plane to minimize it using error calculation methods"
                 },
-				{
+                {
                     "type": "text",
                     "content": "➔ Repeat until the best line is found"
                 },
-				{
+                {
                     "type": "text",
                     "content": "➔ Once the best line is found, we can make predictions for future values"
                 },
-
-				{
-					"type": "text",
-					"content": "[[h3]]Error[[/]]"
-				},
-				{
+                {
+                    "type": "text",
+                    "content": "[[h3]]Error[[/]]"
+                },
+                {
                     "type": "text",
                     "content": "➔ The difference between known y-value and what our model gives, calculated to improve the model"
                 },
-				{
+                {
                     "type": "text",
                     "content": "➔ What is the best way to measure error?"
                 },
-				{
+                {
                     "type": "text",
                     "content": "    ➔ Simply summing the differences between the predicted vs actual values is okay but not great"
                 },
-				{
+                {
                     "type": "text",
                     "content": "    ➔ Ordinary Least Squares: Take the sum of the squares of the differences as a measure for error; has shown to be better in practice"
                 },
-				{
+                {
                     "type": "text",
                     "content": "    ➔ Many other methods, but we will focus on OLS"
                 },
-				{
+                {
                     "type": "image",
                     "src": "/data/modules/ai-assets/img2/3-2.png",
                     "width": "50%"
                 }
-
-			]
-		},
-
-		{
-			"type": "information",
-			"title": "Week 3 - Regression and SVMs",
-			"elements":
-			[
-				{
-					"type": "text",
-					"content": "[[h3]]Support Vector Machines[[/]]"
-				},
-				{
-					"type": "text",
-					"content": "[[h3]]Context[[/]]"
-				},
-				{
+            ]
+        },
+        {
+            "type": "information",
+            "title": "Week 3 - Regression and SVMs",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "[[h3]]Support Vector Machines[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "[[h3]]Context[[/]]"
+                },
+                {
                     "type": "text",
                     "content": "➔ Developed at Bell Labs in 1992"
                 },
-				{
+                {
                     "type": "text",
                     "content": "➔ Based on statistical frameworks from Vapnik and Chervonenkis "
-                }
-				,
-				{
+                },
+                {
                     "type": "text",
                     "content": "➔ One of the most robust predictions methods"
                 },
-				{
+                {
                     "type": "text",
                     "content": "➔ Given a set of data, SVM finds a line that splits the data in two categories, such as to maximize the separation between the two categories"
                 },
-				{
+                {
                     "type": "image",
                     "src": "/data/modules/ai-assets/img2/4-2.png",
                     "width": "50%"
                 },
-				{
-					"type": "text",
-					"content": "[[h3]]Method[[/]]"
-				},
-				{
-					"type": "text",
-					"content": "➔ The hard margin is the sum of the distances between the right-most red and leftmost green to the line that cuts the data in half. We want to maximize this"
-				},
-				{
+                {
+                    "type": "text",
+                    "content": "[[h3]]Method[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ The hard margin is the sum of the distances between the right-most red and leftmost green to the line that cuts the data in half. We want to maximize this"
+                },
+                {
                     "type": "image",
                     "src": "/data/modules/ai-assets/img2/5-2.png",
                     "width": "50%"
                 },
-				{
-					"type": "text",
-					"content": "[[h3]]Motivation[[/]]"
-				},
-				{
-					"type": "text",
-					"content": "➔ Why should we be doing any of this?"
-				},
-				{
-					"type": "text",
-					"content": "➔ Classification is difficult for computers, especially with images"
-				},
-				{
-					"type": "text",
-					"content": "➔ If we can plot features on a n-dimensional graph and find the best line/plane of separation, we can form an easy way to predict future values on this graph"
-				}
-			]
-		}
-		
-	]
+                {
+                    "type": "text",
+                    "content": "[[h3]]Motivation[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Why should we be doing any of this?"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Classification is difficult for computers, especially with images"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ If we can plot features on a n-dimensional graph and find the best line/plane of separation, we can form an easy way to predict future values on this graph"
+                }
+            ]
+        }
+    ]
 }

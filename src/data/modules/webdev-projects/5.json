@@ -109,22 +109,22 @@
                 },
                 {
                     "type": "code",
-                    "content": "app.post(\"/add\", (req, res) => {\n  try {\n    var result = mathFunctions.add(req.body.number1, req.body.number2);\n    return res.send(result.toString());\n  } catch (err) {\n    return res.status(400).send(err.toString());\n  }\n})",
+                    "content": "app.post(\"/add\", (req, res) => {\n\ttry {\n\tvar result = mathFunctions.add(req.body.number1, req.body.number2);\n\treturn res.send(result.toString());\n\t} catch (err) {\n\treturn res.status(400).send(err.toString());\n\t}\n})",
                     "name": "\"add\" endpoint"
                 },
                 {
                     "type": "code",
-                    "content": "app.post(\"/subtract\", (req, res) => {\n  try {\n    var result = mathFunctions.subtract(req.body.number1, req.body.number2);\n    return res.send(result.toString());\n  } catch (err) {\n    return res.status(400).send(err.toString());\n  }\n})",
+                    "content": "app.post(\"/subtract\", (req, res) => {\n\ttry {\n\tvar result = mathFunctions.subtract(req.body.number1, req.body.number2);\n\treturn res.send(result.toString());\n\t} catch (err) {\n\treturn res.status(400).send(err.toString());\n\t}\n})",
                     "name": "\"subtract\" endpoint"
                 },
                 {
                     "type": "code",
-                    "content": "app.multiply(\"/subtract\", (req, res) => {\n  try {\n    var result = mathFunctions.multiply(req.body.number1, req.body.number2);\n    return res.send(result.toString());\n  } catch (err) {\n    return res.status(400).send(err.toString());\n  }\n})",
+                    "content": "app.multiply(\"/subtract\", (req, res) => {\n\ttry {\n\tvar result = mathFunctions.multiply(req.body.number1, req.body.number2);\n\treturn res.send(result.toString());\n\t} catch (err) {\n\treturn res.status(400).send(err.toString());\n\t}\n})",
                     "name": "\"multiply\" endpoint"
                 },
                 {
                     "type": "code",
-                    "content": "app.post(\"/divide\", (req, res) => {\n  try {\n    var result = mathFunctions.divide(req.body.number1, req.body.number2);\n    return res.send(result.toString());\n  } catch (err) {\n    return res.status(400).send(err.toString());\n  }\n})",
+                    "content": "app.post(\"/divide\", (req, res) => {\n\ttry {\n\tvar result = mathFunctions.divide(req.body.number1, req.body.number2);\n\treturn res.send(result.toString());\n\t} catch (err) {\n\treturn res.status(400).send(err.toString());\n\t}\n})",
                     "name": "\"divide\" endpoint"
                 }
             ]
@@ -152,7 +152,7 @@
                 {
                     "type": "code",
                     "name": "nodeclient.js",
-                    "content": "async funtion makeAddRequest(number1, number2) {\n  const axios = require(\"axios\");\n  let results = await axios.post(\"http://localhost:3000/add\", {\n    number1: number1,\n    number2: number2\n  })\n  return results;\n}\nmakeAddRequest(12, 50).then(results => console.log(results));"
+                    "content": "async funtion makeAddRequest(number1, number2) {\n\tconst axios = require(\"axios\");\n\tlet results = await axios.post(\"http://localhost:3000/add\", {\n\tnumber1: number1,\n\tnumber2: number2\n\t})\n\treturn results;\n}\nmakeAddRequest(12, 50).then(results => console.log(results));"
                 }
             ]
         },
@@ -178,7 +178,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "app.get(\"/time\", (req, res) => {\n  return res.send(Date.now().toString());\n})"
+                    "content": "app.get(\"/time\", (req, res) => {\n\treturn res.send(Date.now().toString());\n})"
                 }
             ]
         },
@@ -200,7 +200,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "<!DOCTYPE html>\n<html>\n  <head>\n    <script src=\"https://unpkg.com/axios/dist/axios.min.js\"></script>\n  </head>\n  <body>\n    <input id=\"url\" type=\"text\" placeholder=\"URL\">\n    <button onclick=\"sendRequest()\">Sbumit!</button>\n    <div id=\"result\"></div>\n  </body>\n</html>\n<script>\n  function sendRequest() {\n    axios.get(document.getElementById(\"url\").value).then(result => {\n      document.getElementById(\"result\").innerHTML = result;\n    })\n  }\n</script>",
+                    "content": "<!DOCTYPE html>\n<html>\n\t<head>\n\t<script src=\"https://unpkg.com/axios/dist/axios.min.js\"></script>\n\t</head>\n\t<body>\n\t<input id=\"url\" type=\"text\" placeholder=\"URL\">\n\t<button onclick=\"sendRequest()\">Sbumit!</button>\n\t<div id=\"result\"></div>\n\t</body>\n</html>\n<script>\n\tfunction sendRequest() {\n\taxios.get(document.getElementById(\"url\").value).then(result => {\n\t\tdocument.getElementById(\"result\").innerHTML = result;\n\t})\n\t}\n</script>",
                     "lang": "html"
                 }
             ]

@@ -111,7 +111,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "<body>\n  <div class=\"top\">\n    <header>\n      <h1>Welcome to ___</h1>\n    </header>\n    <nav>\n      <a href=\"/page.html\">Link 1</a>\n      <a href=\"/page.html\">Link 2</a>\n      <a href=\"/page.html\">Link 3</a>\n    </nav>\n  </div>\n  <!-- further code goes here -->\n</body>"
+                    "content": "<body>\n\t<div class=\"top\">\n\t<header>\n\t\t<h1>Welcome to ___</h1>\n\t</header>\n\t<nav>\n\t\t<a href=\"/page.html\">Link 1</a>\n\t\t<a href=\"/page.html\">Link 2</a>\n\t\t<a href=\"/page.html\">Link 3</a>\n\t</nav>\n\t</div>\n\t<!-- further code goes here -->\n</body>"
                 },
                 {
                     "type": "text",
@@ -139,7 +139,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "body {\n  font-family: 'Roboto', sans-serif;\n}\n\nnav {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-evenly;\n}\n\n.top {\n  text-align: center;\n  border: 3px solid black;\n  background-color: blanchedalmond;\n  color: black;\n  box-shadow: 0px 5px 10px black;\n}\n\nnav > a:link {\n  color: green;\n  background-color: transparent;\n  text-decoration: none;\n}\n\nnav > a:visited {\n  color: green;\n  background-color: transparent;\n  text-decoration: none;\n}\n\nnav > a:hover {\n  color: red;\n  background-color: transparent;\n}"
+                    "content": "body {\n\tfont-family: 'Roboto', sans-serif;\n}\n\nnav {\n\tdisplay: flex;\n\tflex-direction: row;\n\tjustify-content: space-evenly;\n}\n\n.top {\n\ttext-align: center;\n\tborder: 3px solid black;\n\tbackground-color: blanchedalmond;\n\tcolor: black;\n\tbox-shadow: 0px 5px 10px black;\n}\n\nnav > a:link {\n\tcolor: green;\n\tbackground-color: transparent;\n\ttext-decoration: none;\n}\n\nnav > a:visited {\n\tcolor: green;\n\tbackground-color: transparent;\n\ttext-decoration: none;\n}\n\nnav > a:hover {\n\tcolor: red;\n\tbackground-color: transparent;\n}"
                 },
                 {
                     "type": "text",
@@ -200,7 +200,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "<div id=\"item-grid\">\n  <div id=\"item\">\n    <img src=\"/items/your_item.jpg\" id=\"item-image\" height=240>\n    <h2>Item Name</h2>\n    <p>Item Description</p>\n  </div>\n</div>"
+                    "content": "<div id=\"item-grid\">\n\t<div id=\"item\">\n\t<img src=\"/items/your_item.jpg\" id=\"item-image\" height=240>\n\t<h2>Item Name</h2>\n\t<p>Item Description</p>\n\t</div>\n</div>"
                 },
                 {
                     "type": "text",
@@ -208,7 +208,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "#item-grid {\n  display: grid;\n  justify-content: center;\n  grid-template-columns: 400px 400px;\n}"
+                    "content": "#item-grid {\n\tdisplay: grid;\n\tjustify-content: center;\n\tgrid-template-columns: 400px 400px;\n}"
                 },
                 {
                     "type": "text",
@@ -216,7 +216,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "#item-image {\n  width: 100%;\n}\n\n#item {\n  width: 300px;\n  height: 400px;\n  background-color: lightgray;\n  text-align: center;\n  color: white;\n  transition: 0.5s all;\n  margin: 20px;\n  border: 3px black solid;\n}"
+                    "content": "#item-image {\n\twidth: 100%;\n}\n\n#item {\n\twidth: 300px;\n\theight: 400px;\n\tbackground-color: lightgray;\n\ttext-align: center;\n\tcolor: white;\n\ttransition: 0.5s all;\n\tmargin: 20px;\n\tborder: 3px black solid;\n}"
                 },
                 {
                     "type": "text",
@@ -285,7 +285,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "#item:hover {\n  transform: scale(1.05);\n  box-shadow: 0px 5px 10px black;\n  transition: box-shadow ease-in-out 0.2s;\n}"
+                    "content": "#item:hover {\n\ttransform: scale(1.05);\n\tbox-shadow: 0px 5px 10px black;\n\ttransition: box-shadow ease-in-out 0.2s;\n}"
                 },
                 {
                     "type": "text",
@@ -305,7 +305,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "<div id=\"item\">\n  <img src=\"/items/your_item2.jpg\" id=\"item-image\" height=240>\n  <h2>Item Name</h2>\n  <p>Item Description</p>\n</div>\n<div id=\"item\">\n  <img src=\"/items/your_item3.jpg\" id=\"item-image\" height=240>\n  <h2>Item Name</h2>\n  <p>Item Description</p>\n</div>\n<div id=\"item\">\n  <img src=\"/items/your_item4.jpg\" id=\"item-image\" height=240>\n  <h2>Item Name</h2>\n  <p>Item Description</p>\n</div>"
+                    "content": "<div id=\"item\">\n\t<img src=\"/items/your_item2.jpg\" id=\"item-image\" height=240>\n\t<h2>Item Name</h2>\n\t<p>Item Description</p>\n</div>\n<div id=\"item\">\n\t<img src=\"/items/your_item3.jpg\" id=\"item-image\" height=240>\n\t<h2>Item Name</h2>\n\t<p>Item Description</p>\n</div>\n<div id=\"item\">\n\t<img src=\"/items/your_item4.jpg\" id=\"item-image\" height=240>\n\t<h2>Item Name</h2>\n\t<p>Item Description</p>\n</div>"
                 },
                 {
                     "type": "text",
@@ -354,7 +354,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "<footer>\n    <p>Thank you for visiting</p>\n</footer>"
+                    "content": "<footer>\n\t<p>Thank you for visiting</p>\n</footer>"
                 },
                 {
                     "type": "text",
@@ -362,7 +362,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "footer {\n  background-color: gray;\n  color: white;\n  text-align: center;\n  height: 100px;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  border-top: 3px black solid;\n}"
+                    "content": "footer {\n\tbackground-color: gray;\n\tcolor: white;\n\ttext-align: center;\n\theight: 100px;\n\tdisplay: flex;\n\tflex-direction: column;\n\tjustify-content: center;\n\talign-items: center;\n\tborder-top: 3px black solid;\n}"
                 }
             ],
             "hints": [],
