@@ -30,10 +30,12 @@ class codeBlock extends tApp.Component {
         var codeId = this.codeId;
         var language = ""
         if (this.state.language) language = "language-"+this.state.language;
+        var extraStyles = "padding-top: 25px"
+        if (!this.state.name) extraStyles = ""
 		return `
 				<div class="snippet-code">
-                <span style="position: relative; display: block; text-align: center; top: 25px; z-index: 1; font-weight: bold;">${this.state.name || ""}</span>
-					<pre id="${this.codeId}" class="${language}">
+                <span style="position: relative; display: block; text-align: center; top: 28px; z-index: 1; font-weight: bold;">${this.state.name || ""}</span>
+					<pre id="${this.codeId}" class="${language}" style="${extraStyles}">
 ${this.state.code}
 					</pre>
 				</div>`;
