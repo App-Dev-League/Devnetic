@@ -117,8 +117,9 @@ class Editor extends tApp.Component {
 
 				}
 			} else {
+				window.currentFileMetaData = codeEditorHelper.getMetaDataFromText(text)
 				codeEditorHelper.updateReadOnly(false);
-				codeEditorHelper.updateContent(text)
+				codeEditorHelper.updateContent(codeEditorHelper.getTextWithoutMetaData(text))
 			}
 			setTimeout(function () {
 				self.state.onLoadCallback();
@@ -343,14 +344,8 @@ class Editor extends tApp.Component {
 
 
 						document.getElementById("code-editor-status").innerText = "Saving...";
-						if (!parentThis.parent.parent.data().storage_id[tabindex]) {
-							filenamex = document.querySelector("tapp-main").children[0].children[0].children[0].children[0].children[0].children[tabindex].innerText
-							let file = await codeEditorHelper.getFile(filenamex);
-							if (!codeEditorHelper.getCurrentEditorOption(81)) await codeEditorHelper.updateFile(file.fileid, codeEditorHelper.getValue())
-						} else {
-							filenamex = tApp.getComponentFromDOM(document.querySelector("tapp-main").children[0].children[0]).data().files[tabindex];
-							if (!codeEditorHelper.getCurrentEditorOption(81)) await DB.setCode(parentThis.parent.parent.data().storage_id[tabindex], codeEditorHelper.getValue())
-						}
+						saveFile(parentThis)
+
 
 						let fileType = filenamex.split('.').pop().toLowerCase()
 						updatePreview(fileType, filenamex)
@@ -656,6 +651,10 @@ ${code}
 								elem.parentElement.removeChild(elem)
 							}
 							let iframe = document.createElement("iframe")
+							var extraExternalScripts = "";
+							Object.entries(window.currentFileMetaData.dependencies || {}).forEach(([key, value]) => {
+								extraExternalScripts += `<script src="${key}"></script>\n`
+							})
 							iframe.style.width = 0
 							iframe.style.height = 0
 							iframe.id = "python-execution-thread"
@@ -665,6 +664,7 @@ ${code}
 									<div id="python-sandbox-bridge"></div>
 								</body>
 							</html>
+							${extraExternalScripts}
 							<script>
 console.oldLog = console.log
 console.log = function(){
@@ -947,14 +947,7 @@ try{
 							document.getElementById("code-editor-status").innerText = "Saving..."
 							var filenamex = tApp.getComponentFromDOM(document.querySelector("tapp-main").children[0].children[0]).data().files[tabindex] || document.querySelector("tapp-main").children[0].children[0].children[0].children[0].children[0].children[tabindex].innerText;
 
-							if (!parentThis.parent.parent.data().storage_id[tabindex]) {
-								filenamex = document.querySelector("tapp-main").children[0].children[0].children[0].children[0].children[0].children[tabindex].innerText
-								let file = await codeEditorHelper.getFile(filenamex);
-								if (!codeEditorHelper.getCurrentEditorOption(81)) await codeEditorHelper.updateFile(file.fileid, codeEditorHelper.getValue())
-							} else {
-								filenamex = tApp.getComponentFromDOM(document.querySelector("tapp-main").children[0].children[0]).data().files[tabindex];
-								if (!codeEditorHelper.getCurrentEditorOption(81)) await DB.setCode(parentThis.parent.parent.data().storage_id[tabindex], codeEditorHelper.getValue())
-							}
+							saveFile(parentThis)
 							let fileType = filenamex.split('.').pop().toLowerCase()
 
 							if (fileType === "html") updatePreview(fileType)
@@ -1012,7 +1005,9 @@ try{
 		</div>
 		</div>`;
 	}
-
+	save(newMetaDataEntries) {
+		saveFile(this, newMetaDataEntries)
+	}
 }
 
 class TabbedEditor extends tApp.Component {
@@ -1249,5 +1244,22 @@ async function uploadFile() {
 	document.body.appendChild(input);
 	input.click();
 	input.addEventListener('change', readSingleFile, false);
+}
+async function saveFile(parentThis, newMetaDataEntries) {
+	var filenamex;
+	var tabindex = codeEditorHelper.getCurrentEditorIndex();
+	let code = codeEditorHelper.getValue();
+	Object.entries(newMetaDataEntries).forEach(([key, value]) => {
+		currentFileMetaData[key] = value;
+	})
+	code = codeEditorHelper.embedMetaDataIntoText(window.currentFileMetaData) + code
+	if (!parentThis.parent.parent.data().storage_id[tabindex]) {
+		filenamex = document.querySelector("tapp-main").children[0].children[0].children[0].children[0].children[0].children[tabindex].innerText
+		let file = await codeEditorHelper.getFile(filenamex);
+		if (!codeEditorHelper.getCurrentEditorOption(81)) await codeEditorHelper.updateFile(file.fileid, code)
+	} else {
+		filenamex = tApp.getComponentFromDOM(document.querySelector("tapp-main").children[0].children[0]).data().files[tabindex];
+		if (!codeEditorHelper.getCurrentEditorOption(81)) await DB.setCode(parentThis.parent.parent.data().storage_id[tabindex], code)
+	}
 }
 module.exports = TabbedEditor;

@@ -55,16 +55,13 @@ function updateContent(content) {
 	})
 	return true
 }
-
 function getValue() {
 	return document.getElementById("code-frame").contentWindow.codeEditor.getValue()
 }
-
 function insertAtCursor(content) {
 	document.getElementById("code-frame").contentWindow.codeEditor.trigger('keyboard', 'type', { text: content });
 	return true;
 }
-
 function format() {
 	document.getElementById("code-frame").contentWindow.codeEditor.getAction('editor.action.formatDocument').run();
 	return true;
@@ -76,6 +73,8 @@ function setCurrentEditorIndex(index) {
 	document.getElementById("code-frame").contentWindow.currentEditorIndex = index;
 	return true
 }
+
+// alert modals
 function showAlertModal(message, buttons, icon, deleteTime) {
 	let template = document.getElementById("editor-alert-modal-template");
 	let clone = template.cloneNode(true);
@@ -133,6 +132,8 @@ function removeAlertModal(index) {
 		update.style.bottom = 10 + (i - 1) * 100 + "px";
 	}
 }
+
+// idb-based custom, user-created file storage
 function uploadFile(options) {
 	var filename = options.filename;
 	var level = options.level;
@@ -538,6 +539,7 @@ function getFileWithId(id) {
 	})
 }
 
+// projects
 function newMyProject(name) {
 	let myProjects = localStorage.getItem("myProjects");
 	if (!myProjects) myProjects = "{}";
@@ -577,6 +579,29 @@ function getMyProjects() {
 	if (!myProjects) myProjects = "{}";
 	myProjects = JSON.parse(myProjects);
 	return myProjects;
+}
+
+// metadata processing
+function getMetaDataFromText(text) {
+	let data = {};
+	if (!text.startsWith("______DEVNETIC_PROJECT_META_DATA______")) return data;
+	text = text.slice(38);
+	let endMetaData = text.indexOf("______DEVNETIC_PROJECT_META_DATA_END______");
+	text = text.slice(0, endMetaData);
+	try {
+		data = JSON.parse(text);
+		return data;
+	} catch (e) { return {}; }
+}
+function embedMetaDataIntoText(data) {
+	data = JSON.stringify(data);
+	return "______DEVNETIC_PROJECT_META_DATA______" + data + "______DEVNETIC_PROJECT_META_DATA_END______";
+}
+function getTextWithoutMetaData(text) {
+	if (!text.startsWith("______DEVNETIC_PROJECT_META_DATA______")) return text;
+	let endMetaData = text.indexOf("______DEVNETIC_PROJECT_META_DATA_END______");
+	text = text.slice(endMetaData+"______DEVNETIC_PROJECT_META_DATA_END______".length);
+	return text;
 }
 
 
@@ -652,4 +677,4 @@ function openConnection() {
 	})
 }
 
-module.exports = { updateLanguage, updateContent, getValue, insertAtCursor, format, getCurrentEditorIndex, setCurrentEditorIndex, showAlertModal, removeAlertModal, uploadFile, getModuleFile, getPageFile, getAllUserFiles, deleteFile, updateFile, getFile, renameFile, getFileWithId, updateReadOnly, getCurrentEditorOption, newMyProject, deleteMyProject, getMyProjects};
+module.exports = { updateLanguage, updateContent, getValue, insertAtCursor, format, getCurrentEditorIndex, setCurrentEditorIndex, showAlertModal, removeAlertModal, uploadFile, getModuleFile, getPageFile, getAllUserFiles, deleteFile, updateFile, getFile, renameFile, getFileWithId, updateReadOnly, getCurrentEditorOption, newMyProject, deleteMyProject, getMyProjects, getMetaDataFromText, embedMetaDataIntoText, getTextWithoutMetaData};

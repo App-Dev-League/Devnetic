@@ -82,6 +82,57 @@ class CodePreview extends tApp.Component {
 		   return result;
 		}
 	}
+	showDependencyManager() {
+		let template = document.getElementById("snippets-modal")
+		let modal = template.cloneNode(true);
+		modal.removeAttribute("id")
+		modal.classList.remove("none")
+		modal.querySelector("h3").innerHTML = "JS Dependency Manager";
+		modal.querySelector("h3").style.marginBottom = "10px"
+		modal.querySelector(".button-correct").innerHTML = "Add";
+
+		
+		Object.entries(window.currentFileMetaData.dependencies || {}).forEach(([key, value]) => {
+			let dependency = document.createElement("span");
+			dependency.style.display = "block"
+			dependency.style.textAlign = "left"
+			dependency.innerHTML = key;
+			let deleteBtn = document.createElement("span");
+			deleteBtn.style = "float: right; font-weight: bold; cursor: pointer; font-size: 0.8em; color: red; margin-right: 10px;"
+			deleteBtn.innerHTML = "X"
+			deleteBtn.onclick = function() {
+				delete window.currentFileMetaData.dependencies[key];
+				this.parentElement.parentElement.removeChild(this.parentElement);
+				tApp.getComponentFromDOM(document.getElementById("code-editor-tab")).save({
+					dependencies: window.currentFileMetaData.dependencies
+				})
+			}
+			dependency.appendChild(deleteBtn)
+			modal.querySelector(".inputs").appendChild(dependency)
+		})
+		
+		
+		modal.querySelector("span").onclick = function () {
+			modal.parentNode.removeChild(modal)
+		}
+		modal.querySelector(".button-correct").onclick = async function () {
+			let value = modal.querySelector("input").value;
+			if (!doesFileExist(value)) return alert("File does not exist!") 
+			window.currentFileMetaData.dependencies = window.currentFileMetaData.dependencies || {};
+			window.currentFileMetaData.dependencies[value] = true;
+			tApp.getComponentFromDOM(document.getElementById("code-editor-tab")).save({
+				dependencies: window.currentFileMetaData.dependencies
+			})
+			modal.parentElement.removeChild(modal)
+		}
+		let elm = document.createElement("input");
+		elm.className = "short-answer-input";
+		elm.classList.add("insert-snippet-input")
+		elm.placeholder = "Enter dependency cdn url here";
+		modal.querySelector(".inputs").appendChild(elm);
+
+		document.body.appendChild(modal);
+	}
 	render(props) {
 		let bridge = document.getElementById("console-bridge");
 		if (bridge) {
@@ -217,7 +268,7 @@ class CodePreview extends tApp.Component {
 
 		let btn = this.state.runCmdBtn
 		if (btn === "" && fileType === "js") {
-			btn = `<button style="position: absolute; top: -23px; color: black; z-index: 1;" onclick="{{_this}}.showRunConsole()">Run Console</button>`
+			btn = `<button style="position: absolute; top: -23px; color: black; z-index: 1;" onclick="{{_this}}.showRunConsole()">Run Console</button><button style="position: absolute; top: -23px; color: black; z-index: 1; left: 105px" onclick="{{_this}}.showDependencyManager()">Dependency Manager</button>`
 		}
 
 		return `<div style="margin-top: 10px; height: 95%; background: white; overflow: visible" id="preview-container">
@@ -229,3 +280,15 @@ class CodePreview extends tApp.Component {
 }
 
 module.exports = CodePreview;
+
+function doesFileExist(urlToFile) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('HEAD', urlToFile, false);
+    xhr.send();
+     
+    if (xhr.status == "404") {
+        return false;
+    } else {
+        return true;
+    }
+}
