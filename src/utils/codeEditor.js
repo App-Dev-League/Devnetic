@@ -558,12 +558,14 @@ function deleteMyProject(name) {
 		if (!myProjects) myProjects = "{}";
 		myProjects = JSON.parse(myProjects);
 		if (!myProjects[name]) reject("Project with that name does not exist!")
+		let myProject = myProjects[name];
 		delete myProjects[name];
 		localStorage.setItem("myProjects", JSON.stringify(myProjects));
 		
 		try {
 			let db = await openConnectionWithNewVersion()
-			db.deleteObjectStore(myProjects[name].track + "-" + myProjects[name].module + "-" + myProjects[name].position)
+			db.deleteObjectStore(myProject.track + "-" + myProject.module + "-" + myProject.position);
+			db.close();
 		}catch(err){
 			console.log(err)
 		}
