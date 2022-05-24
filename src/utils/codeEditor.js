@@ -580,6 +580,49 @@ function getMyProjects() {
 	myProjects = JSON.parse(myProjects);
 	return myProjects;
 }
+function sizeOfMyProject(name) {
+	return new Promise(async (resolve, reject) => {
+		let myProjects = localStorage.getItem("myProjects");
+		if (!myProjects) myProjects = "{}";
+		myProjects = JSON.parse(myProjects);
+		if (!myProjects[name]) reject("Project with that name does not exist!")
+		let myProject = myProjects[name];
+		let storeName = myProject.track + "-" + myProject.module + "-" + myProject.position
+
+		let db = await openConnection()
+		var tx;
+		try {
+			tx = db.transaction([storeName], 'readonly');
+		}catch(e) {
+			resolve(0)
+		}
+		const store = tx.objectStore(storeName);
+		const cursorReq = store.openCursor();
+		let count = 0;
+		let size = 0;
+		cursorReq.onsuccess = function(e) {
+			const cursor = cursorReq.result;
+			if (cursor) {
+				count++;
+				console.log(cursor)
+				size += byteCount(JSON.stringify(cursor.value))
+				cursor.continue();
+			}
+		};
+		cursorReq.onerror = function(e) {
+			reject(e);
+		};
+		tx.oncomplete = function(e) {
+			resolve(size);
+		};
+		tx.onabort = function(e) {
+			reject(e);
+		};
+		tx.onerror = function(e) {
+			reject(e);
+		};
+	});
+};
 
 // metadata processing
 function getMetaDataFromText(text) {
@@ -605,6 +648,7 @@ function getTextWithoutMetaData(text) {
 }
 
 
+// internal functions
 function makeid(length) {
 	var result = '';
 	var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -676,5 +720,7 @@ function openConnection() {
 		};
 	})
 }
-
-module.exports = { updateLanguage, updateContent, getValue, insertAtCursor, format, getCurrentEditorIndex, setCurrentEditorIndex, showAlertModal, removeAlertModal, uploadFile, getModuleFile, getPageFile, getAllUserFiles, deleteFile, updateFile, getFile, renameFile, getFileWithId, updateReadOnly, getCurrentEditorOption, newMyProject, deleteMyProject, getMyProjects, getMetaDataFromText, embedMetaDataIntoText, getTextWithoutMetaData};
+function byteCount(s) {
+    return encodeURI(s).split(/%..|./).length - 1;
+}
+module.exports = { updateLanguage, updateContent, getValue, insertAtCursor, format, getCurrentEditorIndex, setCurrentEditorIndex, showAlertModal, removeAlertModal, uploadFile, getModuleFile, getPageFile, getAllUserFiles, deleteFile, updateFile, getFile, renameFile, getFileWithId, updateReadOnly, getCurrentEditorOption, newMyProject, deleteMyProject, getMyProjects, getMetaDataFromText, embedMetaDataIntoText, getTextWithoutMetaData, sizeOfMyProject};

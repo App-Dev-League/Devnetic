@@ -4,17 +4,21 @@
 %>
 <div class="home-row">
     <% Object.entries(projects).forEach(([key, value]) => { %>
-            <h3><%- value.name %></h3>
-            <div>
-                <a href="#/learn/<%-value.track%>/<%-value.module%>/<%-value.position%>">Open</a>
-                |
-                <a href="#/my-projects" onclick="deleteMyProject('<%-value.name%>')">Delete</a>
-            </div>
-            <br>
+    <h3><%- value.name %></h3>
+    <div class="my-project-list-item" data-name="<%-key%>">
+        <a href="#/learn/<%-value.track%>/<%-value.module%>/<%-value.position%>">Open</a>
+        |
+        <a href="#/my-projects" onclick="deleteMyProject('<%-value.name%>')">Delete</a>
+        |
+        <span class="c-monospace">
+            <span class="codicon codicon-loading" style="vertical-align: middle;"></span> Bytes
+        </span>
+    </div>
+    <br>
     <% }) %>
     <% if ( Object.entries(projects).length === 0) { %>
-        You don't have any projects! Create one to get started!
-        <div onclick="showNewMyProjectModal()" id="my-projects" class="codicon codicon-add" style="position: relative; top: 20px;"></div>
+    You don't have any projects! Create one to get started!
+    <div onclick="showNewMyProjectModal()" id="my-projects" class="codicon codicon-add" style="position: relative; top: 20px;"></div>
     <% } %>
 </div>
 
@@ -22,27 +26,27 @@
 
 
 <div id="menu-container" class="codicon codicon-loading" style="position: fixed; top: 60px; right: 10px;">
-	<% include('/views/menu.html').then(res => {document.getElementById("menu-container").classList.remove("codicon-loading"); document.getElementById("menu-container").innerHTML = res;nodeScriptReplace(document.getElementById("menu-container"))}) %>
+    <% include('/views/menu.html').then(res => {document.getElementById("menu-container").classList.remove("codicon-loading"); document.getElementById("menu-container").innerHTML = res;nodeScriptReplace(document.getElementById("menu-container"))}) %>
 </div>
 <% if (myProjectsPage) { %>
-    <a href="#/my-projects" id="my-projects" class="codicon codicon-folder" style="position: fixed; top: 60px; right: 50px; text-decoration: underline !important;"></a>
-    <div onclick="showNewMyProjectModal()" id="my-projects" class="codicon codicon-add" style="position: fixed; top: 60px; right: 90px;"></div>
+<a href="#/my-projects" id="my-projects" class="codicon codicon-folder" style="position: fixed; top: 60px; right: 50px; text-decoration: underline !important;"></a>
+<div onclick="showNewMyProjectModal()" id="my-projects" class="codicon codicon-add" style="position: fixed; top: 60px; right: 90px;"></div>
 <% } else { %>
-    <a href="#/my-projects" id="my-projects" class="codicon codicon-folder" style="position: fixed; top: 60px; right: 50px;"></a>
+<a href="#/my-projects" id="my-projects" class="codicon codicon-folder" style="position: fixed; top: 60px; right: 50px;"></a>
 <% } %>
 
 <script>
-    function showNewMyProjectModal(){
+    function showNewMyProjectModal() {
         let template = document.getElementById("snippets-modal")
-		let modal = template.cloneNode(true);
-		modal.removeAttribute("id")
-		modal.classList.remove("none")
-		modal.querySelector("h3").innerHTML = "New Project";
-		modal.querySelector(".button-correct").innerHTML = "Create!";
-		modal.querySelector("span").onclick = function () {
-			modal.parentNode.removeChild(modal)
-		}
-		modal.querySelector(".button-correct").onclick = async function () {
+        let modal = template.cloneNode(true);
+        modal.removeAttribute("id")
+        modal.classList.remove("none")
+        modal.querySelector("h3").innerHTML = "New Project";
+        modal.querySelector(".button-correct").innerHTML = "Create!";
+        modal.querySelector("span").onclick = function() {
+            modal.parentNode.removeChild(modal)
+        }
+        modal.querySelector(".button-correct").onclick = async function() {
             let name = modal.querySelector("input").value
             if (codeEditorHelper.newMyProject(name) === true) {
                 modal.parentNode.removeChild(modal)
@@ -51,19 +55,36 @@
             } else {
                 alert(codeEditorHelper.newMyProject(name))
             }
-		}
-		let elm = document.createElement("input");
-		elm.className = "short-answer-input";
-		elm.classList.add("insert-snippet-input")
-		elm.placeholder = "Project Name";
-		modal.querySelector(".inputs").appendChild(elm);
+        }
+        let elm = document.createElement("input");
+        elm.className = "short-answer-input";
+        elm.classList.add("insert-snippet-input")
+        elm.placeholder = "Project Name";
+        modal.querySelector(".inputs").appendChild(elm);
 
-		document.body.appendChild(modal);
+        document.body.appendChild(modal);
     }
+
     function deleteMyProject(name) {
         if (confirm("Are you sure you want to delete this project?")) {
             codeEditorHelper.deleteMyProject(name)
             tApp.redirect("#/my-projects")
         }
     }
+
+    function normalizeBytes(bytes) {
+        if (bytes < 1024) {
+            return bytes + " Bytes"
+        } else if (bytes < 1024 * 1024) {
+            return (bytes / 1024).toFixed(2) + " KB"
+        } else if (bytes < 1024 * 1024 * 1024) {
+            return (bytes / 1024 / 1024).toFixed(2) + " MB"
+        } else {
+            return (bytes / 1024 / 1024 / 1024).toFixed(2) + " GB"
+        }
+    }
+    document.querySelectorAll(".my-project-list-item").forEach(async elem => {
+        let name = elem.getAttribute("data-name");
+        elem.querySelector(".c-monospace").innerHTML = normalizeBytes(await codeEditorHelper.sizeOfMyProject(name));
+    })
 </script>
