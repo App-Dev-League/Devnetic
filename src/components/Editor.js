@@ -1245,7 +1245,7 @@ async function uploadFile() {
 	input.click();
 	input.addEventListener('change', readSingleFile, false);
 }
-async function saveFile(parentThis, newMetaDataEntries) {
+async function saveFile(parentThis, newMetaDataEntries = {}) {
 	var filenamex;
 	var tabindex = codeEditorHelper.getCurrentEditorIndex();
 	let code = codeEditorHelper.getValue();
