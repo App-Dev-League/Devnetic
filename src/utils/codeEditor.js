@@ -563,12 +563,12 @@ function deleteMyProject(name) {
 		let myProject = myProjects[name];
 		delete myProjects[name];
 		localStorage.setItem("myProjects", JSON.stringify(myProjects));
-		
+
 		try {
 			let db = await openConnectionWithNewVersion()
 			db.deleteObjectStore(myProject.track + "-" + myProject.module + "-" + myProject.position);
 			db.close();
-		}catch(err){
+		} catch (err) {
 			console.log(err)
 		}
 		resolve(true);
@@ -593,14 +593,14 @@ function sizeOfMyProject(name) {
 		var tx;
 		try {
 			tx = db.transaction([storeName], 'readonly');
-		}catch(e) {
+		} catch (e) {
 			resolve(0)
 		}
 		const store = tx.objectStore(storeName);
 		const cursorReq = store.openCursor();
 		let count = 0;
 		let size = 0;
-		cursorReq.onsuccess = function(e) {
+		cursorReq.onsuccess = function (e) {
 			const cursor = cursorReq.result;
 			if (cursor) {
 				count++;
@@ -609,18 +609,25 @@ function sizeOfMyProject(name) {
 				cursor.continue();
 			}
 		};
-		cursorReq.onerror = function(e) {
+		cursorReq.onerror = function (e) {
+			close()
 			reject(e);
 		};
-		tx.oncomplete = function(e) {
+		tx.oncomplete = function (e) {
+			close()
 			resolve(size);
 		};
-		tx.onabort = function(e) {
+		tx.onabort = function (e) {
+			close()
 			reject(e);
 		};
-		tx.onerror = function(e) {
+		tx.onerror = function (e) {
+			close()
 			reject(e);
 		};
+		function close(){
+			db.close();
+		}
 	});
 };
 
@@ -643,7 +650,7 @@ function embedMetaDataIntoText(data) {
 function getTextWithoutMetaData(text) {
 	if (!text.startsWith("______DEVNETIC_PROJECT_META_DATA______")) return text;
 	let endMetaData = text.indexOf("______DEVNETIC_PROJECT_META_DATA_END______");
-	text = text.slice(endMetaData+"______DEVNETIC_PROJECT_META_DATA_END______".length);
+	text = text.slice(endMetaData + "______DEVNETIC_PROJECT_META_DATA_END______".length);
 	return text;
 }
 
@@ -702,10 +709,13 @@ function openConnectionWithNewVersion(storeName) {
 							resolve(db)
 						}
 				}
-			}else{
+			} else {
 				resolve(db)
 			}
 		};
+		request.onerror = (event) => {
+			console.log(event)
+		}
 	})
 }
 function openConnection() {
@@ -721,6 +731,11 @@ function openConnection() {
 	})
 }
 function byteCount(s) {
-    return encodeURI(s).split(/%..|./).length - 1;
+	return encodeURI(s).split(/%..|./).length - 1;
 }
-module.exports = { updateLanguage, updateContent, getValue, insertAtCursor, format, getCurrentEditorIndex, setCurrentEditorIndex, showAlertModal, removeAlertModal, uploadFile, getModuleFile, getPageFile, getAllUserFiles, deleteFile, updateFile, getFile, renameFile, getFileWithId, updateReadOnly, getCurrentEditorOption, newMyProject, deleteMyProject, getMyProjects, getMetaDataFromText, embedMetaDataIntoText, getTextWithoutMetaData, sizeOfMyProject};
+module.exports = {
+	updateLanguage, updateContent, getValue, insertAtCursor, format, getCurrentEditorIndex, setCurrentEditorIndex, showAlertModal, removeAlertModal, uploadFile, getModuleFile, getPageFile, getAllUserFiles, deleteFile, updateFile, getFile, renameFile, getFileWithId, updateReadOnly, getCurrentEditorOption, newMyProject, deleteMyProject, getMyProjects, getMetaDataFromText, embedMetaDataIntoText, getTextWithoutMetaData, sizeOfMyProject,
+	internals: {
+		openConnectionWithNewVersion
+	}
+};
