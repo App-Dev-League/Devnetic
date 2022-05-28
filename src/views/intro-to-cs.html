@@ -1,4 +1,4 @@
-<div class="home-row">
+<div class="home-row" style="display: none">
 	<h3>Section 1</h3>
 	<a class="home-module" href="#/learn/intro-to-cs/0/">
 		<p>Week 1 - Introduction to CS and Python</p>
@@ -11,3 +11,6 @@
 	<% include('/views/menu.html').then(res => {document.getElementById("menu-container").classList.remove("codicon-loading"); document.getElementById("menu-container").innerHTML = res;nodeScriptReplace(document.getElementById("menu-container"))}) %>
 </div>
 <a href="#/my-projects" id="my-projects" class="codicon codicon-folder" style="position: fixed; top: 60px; right: 50px;"></a>
+
+
+<h2 style="display: block; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);">Coming soon!</h2>
