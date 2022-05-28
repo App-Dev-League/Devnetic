@@ -1,10 +1,7 @@
 <html style="margin:0">
-    <div id="code-container" style="width:100%;height:96%;border:1px solid grey;margin-top:20px"></div>
+<div id="code-container" style="width:100%;height:96%;border:1px solid grey;margin-top:20px"></div>
+
 </html>
 <script src="/assets/libraries/monaco-editor/vs/loader.js"></script>
-		<script>window.loadRequire=require,window.monacoLoaded=function(){}</script>
-<script>loadRequire.config({paths:{vs:"/assets/libraries/monaco-editor/vs"}}),loadRequire(["vs/editor/editor.main"],function(){window.codeEditor=monaco.editor.create(document.getElementById("code-container"),{value:`<!DOCTYPE>
-	
-<html>
-</html>
-						`,language:window.editorLanguage,theme:"vs-dark",automaticLayout:!0}),window.postMessage({message:"monacoloaded",value:"pog"},"*")})</script>
+<script>window.loadRequire=require,window.monacoLoaded=function(){}</script>
+<script>loadRequire.config({paths:{vs:"/assets/libraries/monaco-editor/vs"}}),loadRequire(["vs/editor/editor.main"],function(){window.codeEditor=monaco.editor.create(document.getElementById("code-container"),{value:"...",language:window.editorLanguage,theme:"vs-dark",automaticLayout:!0}),window.monaco=monaco,window.postMessage({message:"monacoloaded",value:"pog"},"*")})</script>
