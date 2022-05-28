@@ -48,7 +48,6 @@ class Editor extends tApp.Component {
 		var storageId = this.state.storage_id;
 		var filename = parentThis.parent.parent.data().files[tabindex] || this.state.file.filename;
 
-		console.log("Editor number " + tabindex + " is rendering")
 		if (document.getElementById("code-editor-run-btn") && (filename.split('.').pop().toLowerCase() === "html" || filename.split('.').pop().toLowerCase() === "png" || filename.split('.').pop().toLowerCase() === "jpg" || filename.split('.').pop().toLowerCase() === "jpeg" || filename.split('.').pop().toLowerCase() === "gif")) {
 			setTimeout(function () {
 				document.getElementById("code-editor-run-btn").click()
@@ -256,7 +255,8 @@ class Editor extends tApp.Component {
 											if (ev.key === "Enter") {
 												try {
 													await codeEditorHelper.renameFile(storageId.slice("USERDATA".length), input.value);
-													window.location.reload();
+													self.parent.getData(true);
+													//window.location.reload();
 												} catch (err) {
 													codeEditorHelper.showAlertModal(err, [{
 														text: "Ok", onclick: function () { codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index')) }
@@ -1018,82 +1018,88 @@ class TabbedEditor extends tApp.Component {
 		var tabs = [];
 		this.x = false;
 	}
-	render() {
-		delete window.monacoAlreadyLoaded;
-		delete window.addedEditorEventListeners;
-
+	async getData(force = false) {
 		var self = this;
 		var tabs = [];
-		async function getData() {
-			await plugins.load("betterEditor")
-			if (self.x === true) return;
-			self.x = true;
-			if (self.parent.data() === undefined) {
-				self.x = false;
-				return setTimeout(getData, 100)
-			} else {
-				var data = self.parent.data()
-				if (data.isUserProject) {
-					console.log("This is a user-generated project! Applying custom settings...")
-					window.isUserProject = true;
-				} else window.isUserProject = false;
-				for (var i = 0; i < data.files.length; i++) {
-					if (self.state[data.storage_id[i]] == null) {
-						console.log("Created new editor instance: ", data.storage_id[i])
-						self.state[data.storage_id[i]] = new Editor({ tabindex: i, storage_id: data.storage_id[i], onLoadCallback: onLoadCallback }, self)
-					}
-					tabs.push({
-						name: data.files[i],
-						component: self.state[data.storage_id[i]],
-						tabDataset: {
-							storage_id: data.storage_id[i]
-						}
-					})
-				}
+		
+		await plugins.load("betterEditor")
+		if (self.x === true && !force) return;
+		self.x = true;
 
 
-				let startingI = i;
-				var userData = await codeEditorHelper.getAllUserFiles();
-				for (i = i; i < userData.length + startingI; i++) {
-					let file = userData[i - startingI]
-					if (self.state[file.fileid] == null) {
-						self.state[file.fileid] = new Editor({ tabindex: i, storage_id: "USERDATA" + file.fileid, file: file, onLoadCallback: onLoadCallback }, self)
+		if (self.parent.data() === undefined) {
+			self.x = false;
+			return setTimeout(() => this.getData(force), 100)
+		} else {
+			var data = self.parent.data()
+			if (data.isUserProject) {
+				console.log("This is a user-generated project! Applying custom settings...")
+				window.isUserProject = true;
+			} else window.isUserProject = false;
+			for (var i = 0; i < data.files.length; i++) {
+				if (self.state[data.storage_id[i]] == null) {
+					console.log("Created new editor instance: ", data.storage_id[i])
+					self.state[data.storage_id[i]] = new Editor({ tabindex: i, storage_id: data.storage_id[i], onLoadCallback: onLoadCallback }, self)
+				}
+				tabs.push({
+					name: data.files[i],
+					component: self.state[data.storage_id[i]],
+					tabDataset: {
+						storage_id: data.storage_id[i]
 					}
-					tabs.push({
-						name: file.filename,
-						component: self.state[file.fileid],
-						tabDataset: {
-							storage_id: "USERDATA" + file.fileid
-						}
-					})
-				}
-				if (self.state.tabbedView == "Loading...") {
-					self.setState("tabbedView", new TabbedView({
-						tabs: tabs
-					}, self))
-					document.body.setAttribute('data-before', "Loading files...");
-					document.body.classList.add("tester-testing")
-					document.body.classList.add("data-loadingfile")
-				}
-				if (data.files.length === 0) onLoadCallback();
-
-				async function onLoadCallback() {
-					if (!document.body.classList.contains("data-loadingfile")) return;
-					document.body.classList.remove("data-loadingfile")
-					document.body.classList.remove("tester-testing")
-					if (!await plugins.checkPluginStatus("betterEditor")) {
-						document.querySelector(".codicon.codicon-new-file").style.left = "auto"
-						document.querySelector(".codicon.codicon-new-file").style.right = "35px"
-						document.querySelector(".codicon.codicon-cloud-upload").style.left = "auto"
-						document.querySelector(".codicon.codicon-cloud-upload").style.right = "15px"
-					}
-					document.querySelector(".codicon.codicon-new-file").onclick = addFile;
-					document.querySelector(".codicon.codicon-cloud-upload").onclick = uploadFile;
-				}
+				})
 			}
 
+
+			let startingI = i;
+			var userData = await codeEditorHelper.getAllUserFiles();
+			for (i = i; i < userData.length + startingI; i++) {
+				let file = userData[i - startingI]
+				if (self.state[file.fileid] == null) {
+					self.state[file.fileid] = new Editor({ tabindex: i, storage_id: "USERDATA" + file.fileid, file: file, onLoadCallback: onLoadCallback }, self)
+				}
+				tabs.push({
+					name: file.filename,
+					component: self.state[file.fileid],
+					tabDataset: {
+						storage_id: "USERDATA" + file.fileid
+					}
+				})
+			}
+			if (self.state.tabbedView == "Loading..." || force) {
+				let editorIndex = 0;
+				try {
+					editorIndex = codeEditorHelper.getCurrentEditorIndex()
+				}catch(e){}
+				self.setState("tabbedView", new TabbedView({
+					tabs: tabs,
+					startingTabIndex: editorIndex
+				}, self))
+				document.body.setAttribute('data-before', "Loading files...");
+				document.body.classList.add("tester-testing")
+				document.body.classList.add("data-loadingfile")
+			}
+			if (data.files.length === 0) onLoadCallback();
+
+			async function onLoadCallback() {
+				if (!document.body.classList.contains("data-loadingfile")) return;
+				document.body.classList.remove("data-loadingfile")
+				document.body.classList.remove("tester-testing")
+				if (!await plugins.checkPluginStatus("betterEditor")) {
+					document.querySelector(".codicon.codicon-new-file").style.left = "auto"
+					document.querySelector(".codicon.codicon-new-file").style.right = "35px"
+					document.querySelector(".codicon.codicon-cloud-upload").style.left = "auto"
+					document.querySelector(".codicon.codicon-cloud-upload").style.right = "15px"
+				}
+				document.querySelector(".codicon.codicon-new-file").onclick = addFile;
+				document.querySelector(".codicon.codicon-cloud-upload").onclick = uploadFile;
+			}
 		}
-		getData()
+
+	}
+	render() {
+		delete window.addedEditorEventListeners;
+		this.getData()
 		return `<div style="position: absolute; left: 0; width: 100%; transform: translateX(-50%);">
 		${this.state.tabbedView}
 		<span class="codicon codicon-new-file" style="position: absolute; left: calc(var(--editorLeftTabWidth) + 45vw); top: 20px; cursor: pointer; z-index: 2"></span>
