@@ -14,7 +14,12 @@ class TabbedView extends tApp.Component {
 		}
 		if(this.state.currentTabComponent == null) {
 			if (!this.state.tabs[0]) this.state.currentTabComponent = "";
-			else this.state.currentTabComponent = this.state.tabs[0].component;
+			else if (this.state.startingTabIndex){
+				this.state.currentTabComponent = this.state.tabs[this.state.startingTabIndex].component;
+				this.state.selected = this.state.startingTabIndex;
+			} else {
+				this.state.currentTabComponent = this.state.tabs[0].component;
+			}
 		}
 	}
 	updateTab(index) {
