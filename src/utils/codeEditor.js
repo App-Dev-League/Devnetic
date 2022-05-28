@@ -1,6 +1,8 @@
 window.currentReadOnly = false;
 window.onhashchange = function () {
 	window.currentReadOnly = false;
+	delete window.unsavedFileCaches;
+	delete window.tabSavedData;
 }
 function updateLanguage(language) {
 	if (!document.getElementById("code-frame")) return false
@@ -604,7 +606,6 @@ function sizeOfMyProject(name) {
 			const cursor = cursorReq.result;
 			if (cursor) {
 				count++;
-				console.log(cursor)
 				size += byteCount(JSON.stringify(cursor.value))
 				cursor.continue();
 			}

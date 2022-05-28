@@ -984,6 +984,9 @@ try{
 				loadCodeFromDb()
 				let fileType = filename.split('.').pop().toLowerCase()
 				codeEditorHelper.updateLanguage(languages[fileType])
+				if (window.pluginList && window.pluginList.betterEditor) {
+					reloadPluginSettings()
+				}
 			} else {
 				document.getElementById("code-frame").contentWindow.addEventListener("message", async function (event) {
 					if (event.data.message === "monacoloaded") {
@@ -1302,7 +1305,7 @@ async function updateCodeTabSavedIndicator(tabindex, isSaved, context) {
 			elem.innerHTML = elem.innerHTML + " •"
 		} else {
 			let elem = document.querySelectorAll("#code-editor-component > div:nth-child(1) > div > div.tab-group div")[tabindex];
-			elem.innerHTML = elem.innerHTML.slice(0, -2)
+			if (elem.innerHTML.endsWith(" •")) elem.innerHTML = elem.innerHTML.slice(0, -2);
 		}
 	}
 }
