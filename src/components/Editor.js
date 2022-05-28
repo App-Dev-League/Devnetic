@@ -218,7 +218,8 @@ class Editor extends tApp.Component {
 												text: "Confirm", onclick: async function () {
 													await codeEditorHelper.deleteFile(storageId.slice("USERDATA".length));
 													codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index'));
-													window.location.reload();
+													//window.location.reload();
+													self.parent.getData(true);
 												}
 											},
 											{ text: "Cancel", onclick: function () { codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index')) } }
@@ -1070,6 +1071,7 @@ class TabbedEditor extends tApp.Component {
 				let editorIndex = 0;
 				try {
 					editorIndex = codeEditorHelper.getCurrentEditorIndex()
+					if (editorIndex > tabs.length-1) editorIndex = tabs.length-1;
 				}catch(e){}
 				self.setState("tabbedView", new TabbedView({
 					tabs: tabs,
