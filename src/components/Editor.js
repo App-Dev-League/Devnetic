@@ -84,6 +84,9 @@ class Editor extends tApp.Component {
 				text = parentThis.parent.parent.data().default[tabindex]
 				document.getElementById("code-editor-status").innerText = "Ready"
 			}
+			if (window.unsavedFileCaches && window.unsavedFileCaches[tabindex.toString()]) {
+				text = window.unsavedFileCaches[tabindex.toString()]
+			}
 			if (self.state.file && (self.state.file.filename.endsWith(".png") || self.state.file.filename.endsWith(".jpg") || self.state.file.filename.endsWith(".jpeg") || self.state.file.filename.endsWith(".gif"))) {
 				codeEditorHelper.updateReadOnly(true);
 				if (!await plugins.checkPluginStatus("hexy")) {
@@ -137,6 +140,12 @@ class Editor extends tApp.Component {
 					setTimeout(loadCode, 500);
 				}
 				window.addEventListener('beforeunload', function (e) {
+					window.codeEditorSaved = true;
+					if (window.tabSavedData) {
+						Object.entries(window.tabSavedData).forEach(([key, value]) => {
+							if (value === false) window.codeEditorSaved = false;
+						})
+					}
 					if (window.codeEditorSaved === false) {
 						e.preventDefault();
 						e.returnValue = '';
@@ -469,7 +478,7 @@ class Editor extends tApp.Component {
 										window.document.getElementById("console-bridge").click()
 										if (window.newLogCallback) window.newLogCallback(s)
 									},
-									drain: function() {
+									drain: function () {
 										return "input on c++ files not supported!"
 									}
 								}
@@ -904,7 +913,7 @@ try{
 									await plugins.load("webperl");
 								}
 								Perl.noMountIdbfs = true;
-								Perl.output = function(text) {
+								Perl.output = function (text) {
 									if (text !== "\n") {
 										if (!window.tmpPerlTextBuffer) window.tmpPerlTextBuffer = "";
 										window.tmpPerlTextBuffer += text;
@@ -920,8 +929,8 @@ try{
 									while (true) {
 										if (Perl.state === "Ready") break;
 										await new Promise(resolve => setTimeout(resolve, 250));
-									}					
-									Perl.start();	
+									}
+									Perl.start();
 								} else if (Perl.state === "Ended") {
 									Perl.state = "Ready"
 									Perl.start()
@@ -932,7 +941,7 @@ try{
 								console.log(err)
 							}
 							let code = codeEditorHelper.getValue();
-							window.consoleLogs.push(["> perl "+filenamex])
+							window.consoleLogs.push(["> perl " + filenamex])
 							document.getElementById("console-bridge").click()
 							Perl.eval(code)
 						}
@@ -942,6 +951,9 @@ try{
 						window.codeEditorSaved = false;
 						if (e.keyCode === 82 && e.ctrlKey) {
 							window.codeEditorSaved = true;
+						} else if (e.key !== "Control" && e.key !== "Shift" && e.key !== "Escape" && e.key !== "Alt") {
+							updateUnsavedFileCache(tabindex)
+							updateCodeTabSavedIndicator(tabindex, false, self);
 						}
 						if (e.key === 's' && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
 							e.preventDefault();
@@ -953,7 +965,6 @@ try{
 
 							if (fileType === "html") updatePreview(fileType)
 							else if (fileType === "jsx") updatePreview(fileType)
-							window.codeEditorSaved = true;
 							setTimeout(function () {
 								document.getElementById("code-editor-status").innerText = "Ready"
 							}, 500)
@@ -967,7 +978,6 @@ try{
 			}
 			addEvent()
 		}
-
 		if (document.getElementById("code-frame")) {
 			if (window.monacoAlreadyLoaded === true) {
 				addThings()
@@ -1022,7 +1032,7 @@ class TabbedEditor extends tApp.Component {
 	async getData(force = false) {
 		var self = this;
 		var tabs = [];
-		
+
 		await plugins.load("betterEditor")
 		if (self.x === true && !force) return;
 		self.x = true;
@@ -1042,8 +1052,12 @@ class TabbedEditor extends tApp.Component {
 					console.log("Created new editor instance: ", data.storage_id[i])
 					self.state[data.storage_id[i]] = new Editor({ tabindex: i, storage_id: data.storage_id[i], onLoadCallback: onLoadCallback }, self)
 				}
+				let name = data.files[i];
+				if (window.tabSavedData && window.tabSavedData[i.toString()] === false) {
+					name = data.files[i] + " •"
+				}
 				tabs.push({
-					name: data.files[i],
+					name: name,
 					component: self.state[data.storage_id[i]],
 					tabDataset: {
 						storage_id: data.storage_id[i]
@@ -1059,8 +1073,12 @@ class TabbedEditor extends tApp.Component {
 				if (self.state[file.fileid] == null) {
 					self.state[file.fileid] = new Editor({ tabindex: i, storage_id: "USERDATA" + file.fileid, file: file, onLoadCallback: onLoadCallback }, self)
 				}
+				let name = file.filename;
+				if (window.tabSavedData && window.tabSavedData[i.toString()] === false) {
+					name = file.filename + " •"
+				}
 				tabs.push({
-					name: file.filename,
+					name: name,
 					component: self.state[file.fileid],
 					tabDataset: {
 						storage_id: "USERDATA" + file.fileid
@@ -1071,11 +1089,12 @@ class TabbedEditor extends tApp.Component {
 				let editorIndex = 0;
 				try {
 					editorIndex = codeEditorHelper.getCurrentEditorIndex()
-					if (editorIndex > tabs.length-1) editorIndex = tabs.length-1;
-				}catch(e){}
+					if (editorIndex > tabs.length - 1) editorIndex = tabs.length - 1;
+				} catch (e) { }
 				self.setState("tabbedView", new TabbedView({
 					tabs: tabs,
-					startingTabIndex: editorIndex
+					startingTabIndex: editorIndex,
+					useSavedFileDataInNaming: true
 				}, self))
 				document.body.setAttribute('data-before', "Loading files...");
 				document.body.classList.add("tester-testing")
@@ -1102,6 +1121,7 @@ class TabbedEditor extends tApp.Component {
 	render() {
 		delete window.addedEditorEventListeners;
 		this.getData()
+		console.log("Rendering tabbed editor")
 		return `<div style="position: absolute; left: 0; width: 100%; transform: translateX(-50%);">
 		${this.state.tabbedView}
 		<span class="codicon codicon-new-file" style="position: absolute; left: calc(var(--editorLeftTabWidth) + 45vw); top: 20px; cursor: pointer; z-index: 2"></span>
@@ -1256,6 +1276,7 @@ async function uploadFile() {
 async function saveFile(parentThis, newMetaDataEntries = {}) {
 	var filenamex;
 	var tabindex = codeEditorHelper.getCurrentEditorIndex();
+	updateCodeTabSavedIndicator(tabindex, true, parentThis);
 	let code = codeEditorHelper.getValue();
 	Object.entries(newMetaDataEntries).forEach(([key, value]) => {
 		currentFileMetaData[key] = value;
@@ -1269,5 +1290,27 @@ async function saveFile(parentThis, newMetaDataEntries = {}) {
 		filenamex = tApp.getComponentFromDOM(document.querySelector("tapp-main").children[0].children[0]).data().files[tabindex];
 		if (!codeEditorHelper.getCurrentEditorOption(81)) await DB.setCode(parentThis.parent.parent.data().storage_id[tabindex], code)
 	}
+}
+async function updateCodeTabSavedIndicator(tabindex, isSaved, context) {
+	if (!window.tabSavedData) window.tabSavedData = {};
+	tabindex = tabindex.toString();
+	if (window.tabSavedData[tabindex] !== isSaved && window.tabSavedData !== undefined) {
+		window.tabSavedData[tabindex] = isSaved;
+
+		if (!isSaved) {
+			let elem = document.querySelectorAll("#code-editor-component > div:nth-child(1) > div > div.tab-group div")[tabindex];
+			elem.innerHTML = elem.innerHTML + " •"
+		} else {
+			let elem = document.querySelectorAll("#code-editor-component > div:nth-child(1) > div > div.tab-group div")[tabindex];
+			elem.innerHTML = elem.innerHTML.slice(0, -2)
+		}
+	}
+}
+async function updateUnsavedFileCache(tabindex) {
+	setTimeout(function () {
+		let code = codeEditorHelper.getValue();
+		if (!window.unsavedFileCaches) window.unsavedFileCaches = {};
+		window.unsavedFileCaches[tabindex.toString()] = code;
+	}, 100)
 }
 module.exports = TabbedEditor;

@@ -448,7 +448,7 @@ function getFile(name) {
 	return new Promise(async (resolve, reject) => {
 		let file;
 		let db = await openConnection()
-
+		if (name.endsWith(" •")) name = name.slice(0, -2);
 		try {
 			await new Promise(async (resolve, reject) => {
 				try {

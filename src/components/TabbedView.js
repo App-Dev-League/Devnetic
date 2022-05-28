@@ -31,6 +31,7 @@ class TabbedView extends tApp.Component {
 	}
 
 	render(props) {
+		var self = this;
 		return `<div class="project-module-tabs">
 			<div class="tab-group">
 				${this.state.tabs.map((tab, index) => {
@@ -39,6 +40,13 @@ class TabbedView extends tApp.Component {
 					Object.entries(dataset).forEach(([key, value]) => {
 						stringDataset += `data-${key}="${value}" `
 					})
+					if (self.state.useSavedFileDataInNaming) {
+						if (window.tabSavedData && window.tabSavedData[index.toString()] === false && !tab.name.endsWith(" •")) {
+							tab.name = tab.name + " •"
+						} else if (window.tabSavedData && window.tabSavedData[index.toString()] === true && tab.name.endsWith(" •")) {
+							tab.name = tab.name.slice(0, -2)
+						}
+					}
 					return `<div class="tab${index == this.state.selected ? " tab-selected" : ""}" ${stringDataset} onclick="{{_this}}.updateTab(${index})">${tab.name}</div>`;
 				}).join("")}
 			</div>
