@@ -18,7 +18,7 @@
     <% }) %>
     <% if ( Object.entries(projects).length === 0) { %>
     You don't have any projects! Create one to get started!
-    <div onclick="showNewMyProjectModal()" id="my-projects" class="codicon codicon-add" style="position: relative; top: 20px;"></div>
+    <div onclick="showNewMyProjectModal()" class="my-projects codicon codicon-add" style="position: relative; top: 20px;"></div>
     <% } %>
 </div>
 
@@ -29,10 +29,10 @@
     <% include('/views/menu.html').then(res => {document.getElementById("menu-container").classList.remove("codicon-loading"); document.getElementById("menu-container").innerHTML = res;nodeScriptReplace(document.getElementById("menu-container"))}) %>
 </div>
 <% if (myProjectsPage) { %>
-<a href="#/my-projects" id="my-projects" class="codicon codicon-folder" style="position: fixed; top: 60px; right: 50px; text-decoration: underline !important;"></a>
-<div onclick="showNewMyProjectModal()" id="my-projects" class="codicon codicon-add" style="position: fixed; top: 60px; right: 90px;"></div>
+<a href="#/my-projects" class="my-projects codicon codicon-folder" style="position: fixed; top: 60px; right: 50px; text-decoration: underline !important;"></a>
+<div onclick="showNewMyProjectModal()" class="my-projects codicon codicon-add" style="position: fixed; top: 60px; right: 90px;"></div>
 <% } else { %>
-<a href="#/my-projects" id="my-projects" class="codicon codicon-folder" style="position: fixed; top: 60px; right: 50px;"></a>
+<a href="#/my-projects" class="my-projects codicon codicon-folder" style="position: fixed; top: 60px; right: 50px;"></a>
 <% } %>
 
 <script>

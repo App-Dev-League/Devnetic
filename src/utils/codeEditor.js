@@ -112,10 +112,11 @@ function showAlertModal(message, buttons, icon, deleteTime) {
 		button.innerHTML = element.text;
 		button.onclick = element.onclick;
 		button.classList.add("editor-alert-modal-btn")
+		if (element.color) button.style.backgroundColor = element.color;
 		clone.querySelector(".editor-alert-modal-footer").appendChild(button);
 	})
 	container.prepend(clone)
-	return true;
+	return clone;
 }
 function removeAlertModal(index) {
 	index = Number(index);
@@ -540,6 +541,94 @@ function getFileWithId(id) {
 		else reject("Could not find file with that fileid!")
 	})
 }
+function exportToJson() {
+	return new Promise(async (resolve, reject) => {
+		let idbDatabase = await openConnection();
+		const exportObject = {}
+		if (idbDatabase.objectStoreNames.length === 0) {
+			resolve(JSON.stringify(exportObject))
+		} else {
+			const transaction = idbDatabase.transaction(
+				idbDatabase.objectStoreNames,
+				'readonly'
+			)
+
+			transaction.addEventListener('error', reject)
+
+			for (const storeName of idbDatabase.objectStoreNames) {
+				const allObjects = []
+				transaction
+					.objectStore(storeName)
+					.openCursor()
+					.addEventListener('success', event => {
+						const cursor = event.target.result
+						if (cursor) {
+							// Cursor holds value, put it into store data
+							allObjects.push(cursor.value)
+							cursor.continue()
+						} else {
+							// No more values, store is done
+							exportObject[storeName] = allObjects
+
+							// Last store was handled
+							if (
+								idbDatabase.objectStoreNames.length ===
+								Object.keys(exportObject).length
+							) {
+								idbDatabase.close();
+								resolve(exportObject)
+							}
+						}
+					})
+			}
+		}
+	})
+}
+function importFromJson(json) {
+	return new Promise(async (resolve, reject) => {
+		// deleting database
+		let request = indexedDB.deleteDatabase("USERCODE")
+		await new Promise((resolve, reject) => {
+			request.onsuccess = function (event) {
+				resolve()
+			}
+			request.onerror = function (event) {
+				reject()
+			}
+		})
+
+		// creating database
+		var importObject = json;
+		var idbDatabase = await openConnectionWithNewVersion(Object.keys(importObject));
+		const transaction = idbDatabase.transaction(
+			idbDatabase.objectStoreNames,
+			'readwrite'
+		)
+		transaction.addEventListener('error', reject)
+
+
+
+
+		for (const storeName of idbDatabase.objectStoreNames) {
+			let count = 0
+			for (const toAdd of importObject[storeName] || []) {
+				const request = transaction.objectStore(storeName).add(toAdd)
+				request.addEventListener('success', () => {
+					count++
+					if (count === importObject[storeName].length) {
+						// Added all objects for this store
+						delete importObject[storeName]
+						if (Object.keys(importObject).length === 1) {
+							// Added all object stores
+							idbDatabase.close();
+							resolve()
+						}
+					}
+				})
+			}
+		}
+	})
+}
 
 // projects
 function newMyProject(name) {
@@ -626,7 +715,7 @@ function sizeOfMyProject(name) {
 			close()
 			reject(e);
 		};
-		function close(){
+		function close() {
 			db.close();
 		}
 	});
@@ -688,7 +777,7 @@ function openConnectionWithNewVersion(storeName) {
 		};
 		request.onupgradeneeded = (event) => {
 			let db = event.target.result;
-			if (storeName) {
+			if (typeof storeName === "string") {
 				try {
 					let store = db.createObjectStore(storeName, {
 						autoIncrement: true
@@ -709,6 +798,20 @@ function openConnectionWithNewVersion(storeName) {
 						function (event) {
 							resolve(db)
 						}
+				}
+			} else if (typeof storeName === "object") {
+				storeName.forEach(name => {
+					let store = db.createObjectStore(name, {
+						autoIncrement: true
+					});
+					store.createIndex('fileids', 'fileid', {
+						unique: true
+					});
+				})
+				var transaction = event.target.transaction;
+
+				transaction.oncomplete = function (event) {
+					resolve(db)
 				}
 			} else {
 				resolve(db)
@@ -735,7 +838,7 @@ function byteCount(s) {
 	return encodeURI(s).split(/%..|./).length - 1;
 }
 module.exports = {
-	updateLanguage, updateContent, getValue, insertAtCursor, format, getCurrentEditorIndex, setCurrentEditorIndex, showAlertModal, removeAlertModal, uploadFile, getModuleFile, getPageFile, getAllUserFiles, deleteFile, updateFile, getFile, renameFile, getFileWithId, updateReadOnly, getCurrentEditorOption, newMyProject, deleteMyProject, getMyProjects, getMetaDataFromText, embedMetaDataIntoText, getTextWithoutMetaData, sizeOfMyProject,
+	updateLanguage, updateContent, getValue, insertAtCursor, format, getCurrentEditorIndex, setCurrentEditorIndex, showAlertModal, removeAlertModal, uploadFile, getModuleFile, getPageFile, getAllUserFiles, deleteFile, updateFile, getFile, renameFile, getFileWithId, updateReadOnly, getCurrentEditorOption, newMyProject, deleteMyProject, getMyProjects, getMetaDataFromText, embedMetaDataIntoText, getTextWithoutMetaData, sizeOfMyProject, exportToJson, importFromJson,
 	internals: {
 		openConnectionWithNewVersion
 	}

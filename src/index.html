@@ -1124,7 +1124,7 @@
             margin-bottom: 2px;
         }
 
-        #my-projects {
+        .my-projects {
             position: fixed;
             top: 60px;
             right: 10px;
@@ -1137,7 +1137,7 @@
             text-decoration: none !important;
         }
 
-        #my-projects:hover {
+        .my-projects:hover {
             background-color: rgba(255, 255, 255, 0.1);
         }
 
@@ -1432,6 +1432,10 @@
         content: "\eac3";
     }
 
+    .codicon-desktop-download:before {
+        content: "\ea78";
+    }
+
     @keyframes codicon-loading {
         0% {
             transform: rotate(0deg);
@@ -1500,5 +1504,119 @@
 
     function nodeScriptIs(node) {
         return node.tagName === 'SCRIPT';
+    }
+    const salt = 'Devnetic made with love by the ADL dev team found here: https://appdevleague.org/about#team. Discord: https://discord.gg/FtegFYAuZ6'
+    async function downloadSaveFile() {
+        var stop = false;
+        var firstModal = codeEditorHelper.showAlertModal("Generating save file... This may take some time. Your browser may freeze up", [{
+                text: "Cancel",
+                onclick: function() {
+                    stop = true;
+                    firstModal = this.parentElement.parentElement;
+                    codeEditorHelper.removeAlertModal(firstModal.getAttribute('data-editor-alert-modal-index'))
+                },
+                color: "#ff3a00"
+            },
+            {
+                text: "Ok",
+                onclick: function() {
+                    codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index'))
+                }
+            }
+        ])
+        await new Promise((resolve, reject) => setTimeout(resolve, 1000));
+        var saveFile = {
+            localStorage: {},
+            idb: {}
+        }
+        let entries = Object.entries(localStorage);
+        for (let i in entries) {
+            if (stop) return;
+            let key = entries[i][0];
+            let value = entries[i][1];
+            saveFile.localStorage[key] = value;
+        }
+        if (stop) return;
+        saveFile.idb = await codeEditorHelper.exportToJson();
+        if (stop) return;
+        codeEditorHelper.removeAlertModal(firstModal.getAttribute('data-editor-alert-modal-index'))
+        let text = JSON.stringify(saveFile)
+        const cipherer = cipher(salt)
+        let downloadText = cipherer(text)
+        console.log(downloadText)
+        download("devnetic_save.adl", downloadText)
+    }
+    async function loadSaveFile() {
+        if (!confirm("Are you absolutely sure you want to do this? This will override all your current progress.")) return;
+        console.log("Loading save file...")
+        let input = document.createElement("input");
+        input.setAttribute("type", "file");
+        input.setAttribute("accept", ".adl");
+        document.body.appendChild(input);
+        input.click();
+        input.addEventListener('change', readSingleFile, false);
+
+        function readSingleFile(e) {
+            var file = e.target.files[0];
+            if (!file) {
+                return;
+            }
+            var reader = new FileReader();
+            reader.onload = async function(e) {
+                var contents = e.target.result;
+                const decipherer = decipher(salt)
+                let saveFile = JSON.parse(decipherer(contents))
+                let lsData = saveFile.localStorage;
+                localStorage.clear();
+                for (let key in lsData) {
+                    localStorage.setItem(key, lsData[key])
+                }
+                await codeEditorHelper.importFromJson(saveFile.idb)
+                codeEditorHelper.showAlertModal("Save file loaded successfully! Reload the page to apply changes.", [{
+                    text: "Reload",
+                    onclick: function() {
+                        codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index'))
+                        window.location.reload()
+                    }
+                }])
+            };
+            reader.readAsText(file)
+        }
+    }
+</script>
+<script>
+    function cipher(salt) {
+        const textToChars = text => text.split('').map(c => c.charCodeAt(0));
+        const byteHex = n => ("0" + Number(n).toString(16)).substr(-2);
+        const applySaltToChar = code => textToChars(salt).reduce((a, b) => a ^ b, code);
+
+        return text => text.split('')
+            .map(textToChars)
+            .map(applySaltToChar)
+            .map(byteHex)
+            .join('');
+    }
+
+    function decipher(salt) {
+        const textToChars = text => text.split('').map(c => c.charCodeAt(0));
+        const applySaltToChar = code => textToChars(salt).reduce((a, b) => a ^ b, code);
+        return encoded => encoded.match(/.{1,2}/g)
+            .map(hex => parseInt(hex, 16))
+            .map(applySaltToChar)
+            .map(charCode => String.fromCharCode(charCode))
+            .join('');
+    }
+
+    function download(filename, text) {
+        var element = document.createElement('a');
+        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+        element.setAttribute('download', filename);
+
+        element.style.display = 'none';
+        document.body.appendChild(element);
+
+        element.click();
+
+        document.body.removeChild(element);
     }
 </script>
