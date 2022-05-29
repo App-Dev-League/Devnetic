@@ -56,4 +56,8 @@ function cleanUps(){
     let menu = fs.readFileSync("./dist/views/menu.html", "utf8");
     menu = menu.replace(`var actions="<%-JSON.stringify(actions)%>"`, `var actions='<%-JSON.stringify(actions)%>'`)
     fs.writeFileSync("./dist/views/menu.html", menu);
+
+    let indexHTML = fs.readFileSync("./dist/index.html", "utf8");
+    indexHTML = indexHTML.replace(`window.environment="development"`, `window.environment="production"`);
+    fs.writeFileSync("./dist/index.html", indexHTML);
 }

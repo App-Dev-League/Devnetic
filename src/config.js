@@ -50,7 +50,7 @@
 	const plugins = require("./utils/plugins.js");
 	require("./assets/libraries/ejs.js");
 
-	tApp.configure({
+	var config = {
 		target: document.querySelector("tapp-main"),
 		ignoreRoutes: [],
 		forbiddenRoutes: [],
@@ -58,15 +58,14 @@
 			notFound: "#/404",
 			forbidden: "#/403"
 		},
-		///*
 		caching: {
 			backgroundPages: ["/"],
 			periodicUpdate: 60 * 1000,
 			persistent: true
 		}
-		//*/
-		//caching: null
-	});
+	}
+	if (window.environment == "development") config.caching = null;
+	tApp.configure(config);
 
 	tApp.route("/", function (request) {
 		tApp.redirect("#/");
@@ -432,9 +431,11 @@
 
 	tApp.start().then(() => {
 		///*
-		tApp.install().then(() => {
-			tApp.update();
-		});
+		if (window.environment !== "development") {
+			tApp.install().then(() => {
+				tApp.update();
+			});
+		}
 		//*/
 	});
 })();
