@@ -58,14 +58,14 @@
 			notFound: "#/404",
 			forbidden: "#/403"
 		},
-		/*
+		///*
 		caching: {
-			backgroundPages: ["/", "/config.js", "/tApp.js", "/assets/img/icon1.png", "/assets/img/icon2.png", "/views/index.html", "/views/multiple_choice.html"],
+			backgroundPages: ["/"],
 			periodicUpdate: 60 * 1000,
 			persistent: true
 		}
-		*/
-		caching: null
+		//*/
+		//caching: null
 	});
 
 	tApp.route("/", function (request) {
@@ -431,9 +431,11 @@
 	document.querySelector("#score").innerHTML = `${score.points} XP, ${score.coins} Coins`;
 
 	tApp.start().then(() => {
-		/*tApp.install().then(() => {
+		///*
+		tApp.install().then(() => {
 			tApp.update();
-		});*/
+		});
+		//*/
 	});
 })();
 function recurseEjs(html, parameters={}) {
