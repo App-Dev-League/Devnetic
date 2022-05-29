@@ -599,7 +599,15 @@ function importFromJson(json) {
 
 		// creating database
 		var importObject = json;
-		var idbDatabase = await openConnectionWithNewVersion(Object.keys(importObject));
+		if (typeof importObject === "string") importObject = {}
+		let storeList = Object.keys(importObject);
+		if (storeList.length === 0) {
+			storeList = ["tmp"]
+			importObject["tmp"] = []
+		}
+		console.log(importObject, storeList)
+
+		var idbDatabase = await openConnectionWithNewVersion(storeList);
 		const transaction = idbDatabase.transaction(
 			idbDatabase.objectStoreNames,
 			'readwrite'
@@ -610,21 +618,31 @@ function importFromJson(json) {
 
 
 		for (const storeName of idbDatabase.objectStoreNames) {
-			let count = 0
-			for (const toAdd of importObject[storeName] || []) {
-				const request = transaction.objectStore(storeName).add(toAdd)
-				request.addEventListener('success', () => {
-					count++
-					if (count === importObject[storeName].length) {
-						// Added all objects for this store
-						delete importObject[storeName]
-						if (Object.keys(importObject).length === 1) {
-							// Added all object stores
-							idbDatabase.close();
-							resolve()
+			if (!importObject[storeName] || importObject[storeName].length === 0) {
+				delete importObject[storeName]
+				if (Object.keys(importObject).length === 0) {
+					// Added all object stores
+					idbDatabase.close();
+					resolve()
+				}
+			} else {
+				let count = 0
+				for (const toAdd of importObject[storeName]) {
+					const request = transaction.objectStore(storeName).add(toAdd)
+					request.addEventListener('success', () => {
+						count++
+						if (count === importObject[storeName].length) {
+							// Added all objects for this store
+							console.log(Object.keys(importObject).length, storeName)
+							delete importObject[storeName]
+							if (Object.keys(importObject).length === 0) {
+								// Added all object stores
+								idbDatabase.close();
+								resolve()
+							}
 						}
-					}
-				})
+					})
+				}
 			}
 		}
 	})
