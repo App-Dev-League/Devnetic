@@ -1,0 +1,42 @@
+<div class="home-row">
+	<h3>Section 1</h3>
+	<a class="home-module home-module-complete" href="#/learn/webdev-projects/0/">
+		<p>Week 1 - Personal Website</p>
+	</a>
+	<a class="home-module home-module-progress" href="#/learn/webdev-projects/1/">
+		<p>Week 2 - Store Interface</p>
+	</a>
+</div>
+<div class="home-row">
+	<h3>Section 2</h3>
+	<a class="home-module" href="#/learn/webdev-projects/2/">
+		<p>Week 3 - Console Games</p>
+	</a>
+	<a class="home-module" href="#/learn/webdev-projects/3/">
+		<p>Week 4 - Calculator</p>
+	</a>
+</div>
+<div class="home-row">
+	<h3>Section 3</h3>
+	<a class="home-module" href="#/learn/webdev-projects/4/">
+		<p>Week 5 - NPM Module</p>
+	</a>
+	<a class="home-module" href="#/learn/webdev-projects/5/">
+		<p>Week 6 - Express.JS</p>
+	</a>
+</div>
+<div class="home-row">
+	<h3>Section 4</h3>
+	<a class="home-module" href="#/learn/webdev-projects/6/">
+		<p>Week 7 - Information Displayer</p>
+	</a>
+	<a class="home-module" href="#/learn/webdev-projects/7/">
+		<p>Week 8 - To-do List</p>
+	</a>
+</div>
+<div id="menu-container" class="codicon codicon-loading" style="position:fixed;top:60px;right:10px">
+	<% include('/views/menu.html').then(res => {document.getElementById("menu-container").classList.remove("codicon-loading"); document.getElementById("menu-container").innerHTML = res;nodeScriptReplace(document.getElementById("menu-container"))}) %>
+</div>
+<a href="#/my-projects" class="my-projects codicon codicon-folder" style="position:fixed;top:60px;right:50px"></a>
+<a onclick="downloadSaveFile()" title="Download save file" class="my-projects codicon codicon-desktop-download" style="position:fixed;top:60px;right:90px"></a>
+<a onclick="loadSaveFile()" title="Load a save file" class="my-projects codicon codicon-cloud-upload" style="position:fixed;top:60px;right:130px"></a>

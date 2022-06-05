@@ -10,11 +10,11 @@ try {
     fs.rmSync('./docs', { recursive: true });
 }catch(err){}
 
-console.log("Optimizing...")
+console.log("Building...")
 copyFolderSync("./src", "./docs")
 console.log("Cleaning up...");
-cleanUps();
-console.log("Finished optimizing distribution!");
+cleanUp();
+console.log("Build complete!");
 
 function copyFolderSync(from, to) {
     fs.mkdirSync(to);
@@ -42,7 +42,6 @@ function copyFolderSync(from, to) {
                     minifyJS: true,
                   });
                 fs.writeFileSync(path.join(to, element), htmlFile);
-
             } else {
                 console.log("Copying " + element);
                 fs.copyFileSync(path.join(from, element), path.join(to, element));
@@ -52,7 +51,7 @@ function copyFolderSync(from, to) {
         }
     });
 }
-function cleanUps(){
+function cleanUp() {
     let menu = fs.readFileSync("./docs/views/menu.html", "utf8");
     menu = menu.replace(`var actions="<%-JSON.stringify(actions)%>"`, `var actions='<%-JSON.stringify(actions)%>'`)
     fs.writeFileSync("./docs/views/menu.html", menu);
