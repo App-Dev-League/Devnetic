@@ -23,7 +23,7 @@
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/webdev-assets/img9/0-0.png"
+                    "src": "/data/modules/webdev-assets/img7/0-0.png"
                 },
                 {
                     "type": "divider"
@@ -68,7 +68,7 @@
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/webdev-assets/img9/1-0.png"
+                    "src": "/data/modules/webdev-assets/img7/1-0.png"
                 }
             ]
         },
@@ -90,7 +90,7 @@
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/webdev-assets/img9/2-0.png"
+                    "src": "/data/modules/webdev-assets/img7/2-0.png"
                 }
             ]
         },
@@ -132,7 +132,7 @@
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/webdev-assets/img9/3-0.png",
+                    "src": "/data/modules/webdev-assets/img7/3-0.png",
                     "width": "60%"
                 }
             ]
@@ -191,7 +191,7 @@
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/webdev-assets/img9/4-0.png"
+                    "src": "/data/modules/webdev-assets/img7/4-0.png"
                 },
                 {
                     "type": "divider"
@@ -250,7 +250,7 @@
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/webdev-assets/img9/5-0.png"
+                    "src": "/data/modules/webdev-assets/img7/5-0.png"
                 }
             ]
         },

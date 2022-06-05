@@ -31,7 +31,7 @@
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/webdev-assets/img7/0-0.png"
+                    "src": "/data/modules/webdev-assets/img5/0-0.png"
                 }
             ]
         },
@@ -53,7 +53,7 @@
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/webdev-assets/img7/1-0.png"
+                    "src": "/data/modules/webdev-assets/img5/1-0.png"
                 },
                 {
                     "type": "divider"
@@ -95,7 +95,7 @@
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/webdev-assets/img7/2-0.png",
+                    "src": "/data/modules/webdev-assets/img5/2-0.png",
                     "width": "60%"
                 },
                 {
@@ -188,7 +188,7 @@
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/webdev-assets/img7/4-0.png",
+                    "src": "/data/modules/webdev-assets/img5/4-0.png",
                     "width": "60%"
                 },
                 {
@@ -290,7 +290,7 @@
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/webdev-assets/img7/5-0.png",
+                    "src": "/data/modules/webdev-assets/img5/5-0.png",
                     "width": "60%"
                 },
                 {
@@ -310,7 +310,7 @@
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/webdev-assets/img7/5-1.png",
+                    "src": "/data/modules/webdev-assets/img5/5-1.png",
                     "width": "60%"
                 },
                 {
@@ -330,7 +330,7 @@
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/webdev-assets/img7/5-2.png",
+                    "src": "/data/modules/webdev-assets/img5/5-2.png",
                     "width": "60%"
                 },
                 {
@@ -361,7 +361,7 @@
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/webdev-assets/img7/6-0.png",
+                    "src": "/data/modules/webdev-assets/img5/6-0.png",
                     "width": "70%"
                 },
                 {
@@ -413,7 +413,7 @@
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/webdev-assets/img7/6-1.png"
+                    "src": "/data/modules/webdev-assets/img5/6-1.png"
                 },
                 {
                     "type": "text",
@@ -493,7 +493,7 @@
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/webdev-assets/img7/7-0.png"
+                    "src": "/data/modules/webdev-assets/img5/7-0.png"
                 },
                 {
                     "type": "text",
@@ -501,7 +501,7 @@
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/webdev-assets/img7/7-1.gif"
+                    "src": "/data/modules/webdev-assets/img5/7-1.gif"
                 }
             ]
         }
