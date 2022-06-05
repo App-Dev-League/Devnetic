@@ -130,7 +130,7 @@ const Database = {
 	getModuleCount: function(track) {
 		let count = 0;
 		while (true) {
-			if (doesFileExist(`/data/modules/${track}/${count}.json`) === false) break;
+			if (!doesFileExist(`/data/modules/${track}/${count}.json`)) break;
 			count++;
 		}
 		return count;

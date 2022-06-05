@@ -28,10 +28,12 @@ const requireExecuteBrowser = (code) => {
 	document.body.appendChild(script);
 }
 
-const { install, installAll, require, requireBrowser, _getInstalledData } = (function() {
+const { install, installAll, require, requireBrowser, _getInstalledData, _registerInstallCallback } = (function() {
 	let cache = {};
 	let context = "./";
 	let requiring = false;
+	let callback = () => {};
+
 	const install = (filename, options) => {
 		return new Promise(async (resolve, reject) => {
 			if(options == null || options.constructor != Object) {
@@ -63,7 +65,7 @@ const { install, installAll, require, requireBrowser, _getInstalledData } = (fun
 				}
 				if(options.reinstall || cache[options.name] == null) {
 					fetch(filename).then(async (res) => {
-						if (window.newFileCallback) window.newFileCallback()
+						callback();
 						if(res.status == 200) {
 							res.text().then(async (data) => {
 								let pathList = filename.split("/");
@@ -227,5 +229,11 @@ const { install, installAll, require, requireBrowser, _getInstalledData } = (fun
 		return cache;
 	}
 
-	return { install, installAll, require, requireBrowser, _getInstalledData };
+	const _registerInstallCallback = (newCallback) => {
+		if(typeof newCallback == "function") {
+			callback = newCallback;
+		}
+	}
+
+	return { install, installAll, require, requireBrowser, _getInstalledData, _registerInstallCallback };
 })();
