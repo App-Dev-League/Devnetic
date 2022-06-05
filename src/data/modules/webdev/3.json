@@ -3,67 +3,49 @@
     "pages": [
         {
             "type": "information",
-            "title": "Week 2 - CSS",
+            "title": "Week 4 - HTML Recap",
             "elements": [
                 {
                     "type": "text",
-                    "content": "As of now, our HTML documents look quite bland. This is because it contains only text, without styling. CSS allows us to add awesome effects, colors, sizes, and more to our websites."
-                },
-                {
-                    "type": "text",
-                    "content": "CSS stands for [[b]]C[[/]]ascading [[b]]S[[/]]tyle [[b]]S[[/]]heets. CSS does not write any new content to the website, but is solely for styling."
-                }
-            ]
-        },
-        {
-            "type": "information",
-            "title": "Week 2 - CSS Rule Sets",
-            "elements": [
-                {
-                    "type": "text",
-                    "content": "Selectors identify the element being styled. Styles are added in a [[monospace]]key: value[[/]] pattern"
-                },
-                {
-                    "type": "image",
-                    "src": "/data/modules/webdev-assets/img3/0-0.png",
-                    "width": "30%",
-                    "box-shadow": "0px 0px 20px 1px #686868"
-                },
-                {
-                    "type": "text",
-                    "content": "You can select HTML elements by class name, element name or id name."
-                },
-                {
-                    "type": "text",
-                    "content": "Pseudo selectors allow you to add styles when elements are in a certain state."
-                }
-            ]
-        },
-        {
-            "type": "information",
-            "title": "Week 2 - Linking CSS to HTML",
-            "elements": [
-                {
-                    "type": "text",
-                    "content": "CSS files must be added through the link tag in the HTML head."
+                    "content": "Front end is functionality on the side of the client (HTML/CSS/JS). HTML stands for Hyper Text Markup Language. It is used to design the layout of text and structure of a webpage."
                 },
                 {
                     "type": "code",
-                    "content": "<link rel=\"style.css\">"
+                    "content": "<!DOCTYPE html>\n<html>\n\t<head>\n\t<meta charset=\"utf-8\">\n\t<title>My test page</title>\n\t</head>\n\t<body>\n\t<p>This is my page</p>\n\t</body>\n</html>"
                 },
                 {
                     "type": "text",
-                    "content": "The class and id attributes allow you to control HTML elements by adding style to a specific element or group of elements. HTML also provides some ways to write CSS in HTML files."
+                    "content": "Headings define the header of a section or page. For example, [[monospace]]<h1>[[/]] creates a large heading. "
+                },
+                {
+                    "type": "text",
+                    "content": "Paragraphs add bodies of text, and are created with the [[monospace]]<p>[[/]] tag."
+                },
+                {
+                    "type": "text",
+                    "content": "Image dags display images on webpages from URLs or local files."
+                },
+                {
+                    "type": "text",
+                    "content": "Hyperlinks are clickable lines of text to add in a website to redirect the user to another page or website"
                 }
             ]
         },
         {
             "type": "information",
-            "title": "Week 2 - Text Styling",
+            "title": "Week 4 - CSS Recap",
             "elements": [
                 {
                     "type": "text",
-                    "content": "font-family: Change the font of an element."
+                    "content": "CSS makes websites look nice by changing style, location, and more of elements. CSS stands for \"Cascading Syle Sheets\". CSS does not add any new content to the page."
+                },
+                {
+                    "type": "text",
+                    "content": "Some common CSS styles include:"
+                },
+                {
+                    "type": "text",
+                    "content": "  - font-family: Change the font of an element."
                 },
                 {
                     "type": "code",
@@ -71,7 +53,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "font-size: Change the size of an element."
+                    "content": "  - font-size: Change the size of an element."
                 },
                 {
                     "type": "code",
@@ -79,27 +61,27 @@
                 },
                 {
                     "type": "text",
-                    "content": "text-align: Center, left or right align text."
+                    "content": "  - text-align: Center, left or right align text."
                 },
                 {
                     "type": "code",
-                    "content": "text-align: center;"
+                    "content": "text-align: center"
                 },
                 {
                     "type": "text",
-                    "content": "color: Change the color of text."
+                    "content": "  - color: Change the color of text."
                 },
                 {
                     "type": "code",
-                    "content": "color: purple;"
+                    "content": "color: purple"
                 },
                 {
                     "type": "code",
-                    "content": "color: #fff; /*Hex codes also work*/"
+                    "content": "color: #fff"
                 },
                 {
                     "type": "text",
-                    "content": "text-decoration: Add underlines, strikethroughs and other decorations."
+                    "content": "  - text-decoration: Add underlines, strikethroughs and other decorations."
                 },
                 {
                     "type": "code",
@@ -107,472 +89,352 @@
                 },
                 {
                     "type": "text",
-                    "content": "Draw borders around elements. The format is [[monospace]]border:  size color style;[[/]]."
+                    "content": "  - Draw borders around elements."
                 },
                 {
                     "type": "code",
-                    "content": "border: 3px red solid;"
+                    "content": "#div {\n\tborder: 3px red solid;\n}"
+                },
+                {
+                    "type": "text",
+                    "content": "Selector events activate CSS on an event, such as a hover."
+                },
+                {
+                    "type": "code",
+                    "content": "#div:hover {} /* Activate CSS inside {} when #div is hovered on */"
+                },
+                {
+                    "type": "text",
+                    "content": "Animation transitions apply smoother transitions to elements"
+                },
+                {
+                    "type": "code",
+                    "content": "transition: 1s all; /* 1s transition to all styles */\ntransition: 1s color; /* transition: 1s color */\ntransition: 1s color, 3s border /* Multiple transition rules */"
                 }
             ]
         },
         {
             "type": "information",
-            "title": "Week 2 - Text Styling Continued",
+            "title": "Week 4 - Bootstrap Recap",
             "elements": [
                 {
                     "type": "text",
-                    "content": "Box shadows apply an offset shadow to different elements. They are often used to how hovers. They follow the structure of [[monospace]]box-shadow:  X-offset Y-offset blur-radius  color;[[/]]."
-                },
-                {
-                    "type": "code",
-                    "content": "#heading {\n\tborder: 3px red solid;\n\tbox-shadow: 0px 10px 15px blue;\n}"
-                },
-                {
-                    "type": "text",
-                    "content": "Custom colors allow you to combine amounts of red, blue, green, and optionally alpha (opacity) to create colors. They follow the structure of [[monospace]]color: rgb(red, green, blue, alpha)[[/]]. The values parameters must be a number from 0 - 255."
-                },
-                {
-                    "type": "code",
-                    "content": "color: rgb(0, 255, 255);\ncolor: rgb(0, 255, 255, 0.5);"
-                },
-                {
-                    "type": "text",
-                    "content": "The gradient style can be used to give elements a gradient effect (meaning a mix of colors). They follow the structure of [[monospace]]background-image: linear-gradient(direction, list of colors)[[/]]."
-                },
-                {
-                    "type": "code",
-                    "content": "background-image: linear-gradient(to right, red, yellow)l"
-                }
-            ]
-        },
-        {
-            "type": "information",
-            "title": "Week 2 - Selector Events",
-            "elements": [
-                {
-                    "type": "text",
-                    "content": "Selector events allow CSS properties to activate on events, like a hover."
-                },
-                {
-                    "type": "code",
-                    "content": "#div1 {}\n#div1:hover {} /* Active only during hover */"
-                },
-                {
-                    "type": "text",
-                    "content": "Animation transitions allow you to apply smoother transitions to elements."
-                },
-                {
-                    "type": "text",
-                    "content": "   - 1 second transition to all styles: [[monospace]]transition: 1s all[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "   - 1 second transition to a specific style option: [[monospace]]transition: 1s color[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "   - Multiple transition rules: [[monospace]]transition: 1s color, 3s border[[/]]"
-                }
-            ]
-        },
-        {
-            "type": "information",
-            "title": "Week 2 - Bootstrap",
-            "elements": [
-                {
-                    "type": "text",
-                    "content": "Bootstrap is a CSS framework that makes the creation of layouts simpler. It comes with pre-built CSS classes, to save programmers time when using CSS. It comes with support for mobile and desktop screens."
+                    "content": "Bootstrap is a CSS framework that makes the creation of layouts simpler for developers. It comes with pre-built classes so you don't have to write your own CSS."
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/webdev-assets/img3/7-0.png",
-                    "width": "20%"
-                },
-                {
-                    "type": "text",
-                    "content": "To import bootstrap into HTML..."
-                },
-                {
-                    "type": "text",
-                    "content": "   1. Navigate to Bootstrap's documentation: [[a]]https://getbootstrap.com/docs/5.0/getting-started/download/#cdn-via-jsdelivr[[/a]]."
-                },
-                {
-                    "type": "text",
-                    "content": "   2. Copy the two tags under CDN via jsDelivr and add them to your HTML code (use the copy button in the corner)"
-                },
-                {
-                    "type": "code",
-                    "content": "<link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC\" crossorigin=\"anonymous\">\n<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM\" crossorigin=\"anonymous\"></script>"
+                    "src": "/data/modules/webdev-assets/img5/2-0.png"
                 }
             ]
         },
         {
             "type": "information",
-            "title": "Week 2 - Bootstrap Continued...",
+            "title": "Week 4 - JavaScript Recap",
             "elements": [
                 {
                     "type": "text",
-                    "text": "Bootstrap contains CSS files, just like any website."
+                    "content": "Purpose of JavaScript:"
+                },
+                {
+                    "type": "text",
+                    "content": "  - Full stack development (client-side execution + server-side scripting)"
+                },
+                {
+                    "type": "text",
+                    "content": "  - Creating animations, graphics, pop-ups, interactive material, etc."
+                },
+                {
+                    "type": "text",
+                    "content": "Console:"
+                },
+                {
+                    "type": "text",
+                    "content": "  - A message/output window display for developers"
+                },
+                {
+                    "type": "text",
+                    "content": "  - Can be used for debugging and shows error/security/network messages"
+                },
+                {
+                    "type": "text",
+                    "content": "Comments:"
                 },
                 {
                     "type": "code",
-                    "content": ".class-name {property: “value”; property2: “value2”}"
+                    "content": "// this is a single line comment\n/*\nThis\nis\nmulti-line\n*/"
                 },
                 {
                     "type": "text",
-                    "content": "Notice the link tag? This Imports CSS from a file with styled classes. You can apply Bootstrap classes to HTML tags instead of rewriting CSS code. This can speed up development and efficiency"
+                    "content": "Variables and constants:"
                 },
                 {
-                    "type": "divider"
+                    "type": "code",
+                    "content": "let temperature; // scoped\nvar day; // global\nconst x = 0 // constant"
                 },
                 {
                     "type": "text",
-                    "content": "Another useful feature of Bootstrap is the grid system. The grid system allows for efficient placement of HTML elements. It consists of 12 column units. For example, if you want an element to cover half of the screen, use 6 units. Set the class attribute to [[monospace]]col-[units][[/]] to set column of and element. Bootstrap's grid consists of rows that divide columns, as well."
+                    "content": "JS is loosely typed/dynamic - variables be assigned to any type. The primitive types are string, number, bigint, boolean, undefined, symbol, and null."
                 },
                 {
-                    "type": "image",
-                    "src": "/data/modules/webdev-assets/img3/8-0.png",
-                    "width": "60%"
+                    "type": "text",
+                    "content": "JavaScript properties are data contained by the instance of an object or type. They can be accessed using the dot operator (.) and the property name."
+                },
+                {
+                    "type": "code",
+                    "content": "let word = 'hello';\nconsole.log(word.length); // length is a property of strings\nconsole.log(word.toLowerCase()); // function toLowerCase is a property of strings"
+                },
+                {
+                    "type": "text",
+                    "content": "JavaScript conditionals execute code blocks if specified conditions are met. If, else, else if, and switch statements are all conditionals."
+                },
+                {
+                    "type": "code",
+                    "content": "let grade = 89;\nconst passingGrade = 86;\nif (grade >= passingGrade) {\n\tconsole.log('pass');\n} else {\n\tconsole.log('fail')\n}"
+                },
+                {
+                    "type": "text",
+                    "content": "Functions define reusable blocks of code. Instead of repeating code for the same actions, functions are used for the same results."
+                },
+                {
+                    "type": "code",
+                    "content": "function passOrFail(grade) {\n\tlet grade = 89;\n\tconst passingGrade = 86;\n\tif (grade >= passingGrade) {\n\tconsole.log('pass');\n\t} else {\n\tconsole.log('fail')\n\t}\n}"
+                },
+                {
+                    "type": "text",
+                    "content": "The DOM provides functionality for editing, retrieving, and detecting events in the HTML document."
+                },
+                {
+                    "type": "code",
+                    "content": "document.getElementById('name'); // access element with ID\ndocument.getElementById('name').innerHTML; // set element content with innerHTML property\ndocument.write('content'); // outputs directly on the HTML docuemtn (NOTE: it will overwrite the document if it has fully loaded)\ndocument.getElementsByTagName('h2'); // access elements of a tag\ndocument.getElementsByClassName('pop-up'); // get elements of a class\ndocument.getElementById('name').src = 'img.png'; // set the src attribute of the element\ndocument.getElementById('profit').innerHTML = calculateProfit(); // dynamic HTML contents"
                 }
             ]
         },
         {
+            "title": "Project Setup",
             "type": "information",
-            "title": "Week 2 - Bootstrap Forms",
             "elements": [
                 {
                     "type": "text",
-                    "content": "  - Element with class [[monospace]]form-control[[/]] enables bootstrap form features."
+                    "content": "Link stylesheets using [[monospace]]<link rel=”stylesheet” href=”style.css”>[[/]] in the head section of the HTML file."
                 },
                 {
                     "type": "text",
-                    "content": "  - Bootstrap enables easy sizing of form elements by setting the class [[monospace]]form-control-[size][[/]]."
+                    "content": "  - [[monospace]]rel[[/]] attribute is required: specifies the relationship between the linked document and the current document"
                 },
                 {
                     "type": "text",
-                    "content": "    - The available sizes are \"lg\" for large, nothing for normal, and \"sm\" for small."
+                    "content": "  - [[monospace]]href[[/]] attribute contains the url of the linked document"
                 },
                 {
                     "type": "text",
-                    "content": "  - The [[monospace]]inline[[/]] class allows multiple elements to be displayed on one line."
+                    "content": "[[monospace]]type[[/]] attribute specifies the media type of the linked document"
                 },
                 {
                     "type": "text",
-                    "content": "    - The class [[monospace]]form-group[[/]] provides structures for groups by grouping form elements. They are useful when there are several sections of forms."
+                    "content": "Multiple stylesheets can be linked, but many websites use a single sheet to avoid rewriting code and for faster load time (choose what is best for your project)"
+                },
+                {
+                    "type": "text",
+                    "content": "JavaScript functionality can be added with the script tag (either external or embedded)"
+                },
+                {
+                    "type": "code",
+                    "content": "<script src=”script.js”></script> <!--External-->\n<script>document.write('content');</script> <!--Internal-->"
+                },
+                {
+                    "type": "text",
+                    "content": "If you plan to use libraries such as JQuery, Bootstrap, etc., you can add their JS files from a CDN before your other scripts in the HTML file."
                 }
             ]
-        },
-        {
-            "type": "short_answer",
-            "question": "which CSS property is used to underline text?",
-            "code_template": "#div1 {?: underline;}",
-            "answers": [
-                "text-decoration"
-            ],
-            "descriptions": {
-                "text-decoration": "Correct! Text decoration is for to bold, underline, italicize, etc. text"
-            },
-            "description_default": "This property also controls bold and italicized text.",
-            "points": 10,
-            "coins": 3
         },
         {
             "type": "multiple_choice",
-            "question": "What is the primary purpose of CSS?",
+            "question": "What is the purpose of HTML",
             "descriptions": [
-                "Nope. That's JavaScript.",
-                "Yep! CSS is used for styling.",
-                "Nope. CSS is not involved in publishing website.",
-                "Nope. CSS is not used for this aspect of web development."
+                "CSS does this.",
+                "JavaScript does this.",
+                "Yes, HTML's purpose is just this.",
+                "HTML does not serve this purpose."
             ],
             "points": 5,
             "coins": 1,
             "answers": [
-                "To make websites interactive",
-                "To make websites look nice",
-                "To publish websites",
-                "To create HTML tags"
-            ],
-            "correct": 1
-        },
-        {
-            "type": "multiple_choice",
-            "question": "Which of the following is an invalid selector?",
-            "descriptions": [
-                "Incorrect. This selects validly selects p tags with the xyz class.",
-                "Incorrect. This selects p tags with the xyz ID.",
-                "Correct. '+' is not a CSS selector.",
-                "Incorrect. This selects all elements."
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "p.xyz",
-                "p#xyz",
-                "+xyz",
-                "*"
+                "To style the site",
+                "To process logic on the site",
+                "To design layout and structure of the site",
+                "To render javascript templates"
             ],
             "correct": 2
         },
         {
             "type": "multiple_choice",
-            "question": "How do you link CSS to an HTML document?",
+            "question": "What is the purpose of CSS",
             "descriptions": [
-                "Nope. Watch the href and rel attributes!",
-                "Yep. This tag links CSS to an HTML documents.",
-                "Nope. Script tags are used for including JavaScript.",
-                "Nope. Script tags are used for including JavaScript."
+                "CSS does this.",
+                "JavaScript does this.",
+                "HTML's purpose is just this.",
+                "HTML does not serve this purpose."
             ],
             "points": 5,
             "coins": 1,
             "answers": [
-                "<link href=\"stylesheet\" rel=\"styles.css\">",
-                "<link rel=\"stylesheet\" href=\"style.css\">",
-                "<script rel=\"stylesheet\" href=\"styles.css\">",
-                "<script src=\"styles.css\">"
-            ],
-            "correct": 1
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What is padding?",
-            "descriptions": [
-                "Correct! Understanding padding adds a lot to your web development toolbox.",
-                "Incorrect. Borders do this.",
-                "Incorrect. Padding does not achieve this.",
-                "Incorrect. Look carefully at each of the options."
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "Spacing within an element",
-                "Outer edge/outline of an element",
-                "Spacing between the elements",
-                "None of the above"
+                "To style the site",
+                "To process logic on the site",
+                "To design layout and structure of the site",
+                "To render javascript templates"
             ],
             "correct": 0
         },
         {
             "type": "multiple_choice",
-            "question": "What is border?",
+            "question": "What is the purpose of javascript",
             "descriptions": [
-                "Incorrect. Wrong CSS property!",
-                "Correct. Borders are incredible useful in styling documents.",
-                "Nope. Wrong CSS property!",
-                "Incorrect. Look carefully at each of the options."
+                "CSS does this.",
+                "JavaScript does this.",
+                "Yes, HTML's purpose is just this.",
+                "HTML does not serve this purpose."
             ],
             "points": 5,
             "coins": 1,
             "answers": [
-                "Spacing within an element",
-                "Outer edge/outline of an element",
-                "Spacing between the elements",
-                "None of the above"
+                "To style the site",
+                "To process logic on the site",
+                "To design layout and structure of the site",
+                "To render javascript templates"
             ],
             "correct": 1
         },
         {
             "type": "multiple_choice",
-            "question": "What is margin?",
+            "question": "What is the class attribute primarily used for?",
             "descriptions": [
-                "Nope. This is padding.",
-                "Nope. This is border.",
-                "Correct. Margin is used for spacing.",
-                "Incorrect. Look carefully at each of the options."
+                "CSS classes does this.",
+                "This is not the purpose of CSS classes!",
+                "This is not the purpose of CSS classes!",
+                "This is not the purpose of CSS classes!"
             ],
             "points": 5,
             "coins": 1,
             "answers": [
-                "Spacing within an element",
-                "Outer edge/outline of an element",
-                "Spacing between the elements",
-                "None of the above"
-            ],
-            "correct": 2
-        },
-        {
-            "type": "multiple_choice",
-            "question": "CSS rules can be applied to mutliple elements",
-            "descriptions": [
-                "Correct! You can do #hi, #bye {}",
-                "Incorrect! This would make CSS very tedious."
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "True",
-                "False",
-                "",
-                ""
+                "To style multiple elements",
+                "To group elements together",
+                "To remove elements",
+                "To duplicate elements"
             ],
             "correct": 0
         },
         {
             "type": "multiple_choice",
-            "question": "What is the correct way to show a shadow on an element?",
+            "question": "Which of the following is correct CSS syntax?",
             "descriptions": [
-                "Incorrect. The underline property is used for underlining text.",
-                "Nope. 'shadow' is not a CSS property.",
-                "Nope. Hover is not a CSS property.",
-                "Yes. box-shadow is used for shadow."
+                "Well done.",
+                "Nope, this code is missing a key punctuation.",
+                "Nope, the dash needs to be replaced with something else.",
+                "Nope, the squar brackets need to be replaced with something else."
             ],
             "points": 5,
             "coins": 1,
             "answers": [
-                "underline: 10px 10px blue",
-                "shadow: 10px 10px 10px blue",
-                "hover: 10px 10px 10px blue",
-                "box-shadow: 10px 10px 10px blue"
+                "p { color: red }",
+                "p { color red }",
+                "p { color -  red }",
+                "p [color: red]"
+            ],
+            "correct": 0
+        },
+        {
+            "type": "multiple_choice",
+            "question": "How do you select an ID in CSS?",
+            "descriptions": [
+                "'.' is for classes.",
+                "'@' is not a valid selector",
+                "'-' is not a valid selector",
+                "'#' is for selecting by IDs"
+            ],
+            "points": 5,
+            "coins": 1,
+            "answers": [
+                ".id",
+                "@id",
+                "-id",
+                "#id"
             ],
             "correct": 3
         },
         {
             "type": "multiple_choice",
-            "question": "What is the optional fourth parameter in the rgb function?",
+            "question": "How do you select a class in CSS?",
             "descriptions": [
-                "Incorrect. Color doesnot have depth.",
-                "Incorrect. The first three parameters affect the color.",
-                "Correct! Opacity is the condition of lacking transparency."
+                "'.' is for classes.",
+                "'@' is not a valid selector",
+                "'-' is not a valid selector",
+                "'#' is for selecting by IDs"
             ],
             "points": 5,
             "coins": 1,
             "answers": [
-                "depth",
-                "color",
-                "opacity",
-                ""
-            ],
-            "correct": 2
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What do selector events do?",
-            "descriptions": [
-                "Correct. Hover is an example of this.",
-                "Nope. The hashtag selector is used for this.",
-                "Nope. The dot selector is used for this.",
-                "Nope. Look at all of the questions carefully; one of them is correct."
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "Define CSS that becomes active under a certain condition",
-                "Define CSS that becomes active under a certain element with ID",
-                "Define CSS that becomes active under a certain element in a class",
-                "All of the above"
+                ".class",
+                "@class",
+                "-class",
+                "#class"
             ],
             "correct": 0
         },
         {
             "type": "multiple_choice",
-            "question": "How many column units are there in Bootstrap?",
+            "question": "Which is the correct way to add selector events?",
             "descriptions": [
-                "Incorrect. It's more than ten.",
-                "Incorrect. It more than that.",
-                "Correct! Bootstrap uses 12 units.",
-                "Incorrect! It's less than that."
+                "This would select elements with id 'id' hover and class 'hover'",
+                "Good job! Use the ':' for selector events.",
+                "This would select elements with id 'id' hover and class 'hover'",
+                "The '@' is not used for selector events."
             ],
             "points": 5,
             "coins": 1,
             "answers": [
-                "10",
-                "11",
-                "12",
-                "13"
+                "#id.hover",
+                "#id:hover",
+                ".hover#id",
+                "#id @hover"
+            ],
+            "correct": 1
+        },
+        {
+            "type": "multiple_choice",
+            "question": "What is the purpose of constants?",
+            "descriptions": [
+                "Think about what the word 'constant' means.",
+                "Very close!",
+                "Constants are very useful.",
+                "Think about what the word 'constant' means."
+            ],
+            "points": 5,
+            "coins": 1,
+            "answers": [
+                "To make a variable private to a class",
+                "To make a variable non-modifiable outside it's class",
+                "To keep make a variable non-modifiable",
+                "To declare a boolean variable"
             ],
             "correct": 2
         },
         {
             "type": "multiple_choice",
-            "question": "What is the \"inline\" class in Bootstrap?",
+            "question": "Which of the following is NOT a DOM-manipulating statement?",
             "descriptions": [
-                "Incorrect! CSS syntax does not care about new lines; rather cares about semicolons.",
-                "Well done!",
-                "Incorrect. You could use HTML frames or something similar for this."
+                "This modifies HTMLElement's class.",
+                "This modifies HTMLElement's content.",
+                "This doesn't modify the DOM, but only retrieves the class."
             ],
             "points": 5,
             "coins": 1,
             "answers": [
-                "Allows CSS to be written in a single line",
-                "Allows elements to be shows side-by-side.",
-                "Allows mutliple HTML documents to be shows side-by-side.",
+                "HTMLElement.setAttribute(\"class\", \"top\")",
+                "HTMLElement.innerHTML = \"Top\"",
+                "HTMLElement.getAttribute(\"value\")",
                 ""
             ],
-            "correct": 1
-        },
-        {
-            "type": "congratulations",
-            "title": "Congratulations!",
-            "elements": [
-                {
-                    "type": "text",
-                    "content": "In this module, you learned how the purpose a=nd basics of CSS."
-                },
-                {
-                    "type": "code",
-                    "content": "#div1 {\n\t color: red\n}"
-                },
-                {
-                    "type": "text",
-                    "content": "You learned how to link CSS files and CDNs to HTML"
-                },
-                {
-                    "type": "code",
-                    "content": "<link rel=\"stylesheet\" href=\"style.css\""
-                },
-                {
-                    "type": "text",
-                    "content": "You leanred some essential CSS properties."
-                },
-                {
-                    "type": "text",
-                    "content": "  - font-family"
-                },
-                {
-                    "type": "text",
-                    "content": "  - font-size"
-                },
-                {
-                    "type": "text",
-                    "content": "  - text-align"
-                },
-                {
-                    "type": "text",
-                    "content": "  - text-decoration"
-                },
-                {
-                    "type": "text",
-                    "content": "  - color"
-                },
-                {
-                    "type": "text",
-                    "content": "  - box-shadow"
-                },
-                {
-                    "type": "text",
-                    "content": "  - Gradients"
-                },
-                {
-                    "type": "text",
-                    "content": "You learned how to utilize selector events."
-                },
-                {
-                    "type": "code",
-                    "content": "#div1 {}\n#div1: hover {}"
-                },
-                {
-                    "type": "text",
-                    "content": "You learned how to use animations."
-                },
-                {
-                    "type": "code",
-                    "content": "transition: 1s all;\ntransition: 1s color;"
-                },
-                {
-                    "type": "text",
-                    "content": "Lastly, you learned of the grid system and form classes of Bootstrap."
-                }
-            ]
+            "correct": 2
         }
     ]
 }

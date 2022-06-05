@@ -3,727 +3,642 @@
     "pages": [
         {
             "type": "information",
-            "title": "Week 1 - Quick Intro to Web Development",
+            "title": "Week 3 - JavaScript",
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[b]]Front End: [[/]] functionality on the side of the client (HTML/CSS/JS)"
+                    "content": "JavaScript is a web programming language for..."
                 },
                 {
                     "type": "text",
-                    "content": "ex. (Video Game - graphic framework draws the player's avatar and accepts user input)"
-                },
-                {
-                    "type": "divider"
+                    "content": "  - Full stack development (client-side execution + server-side scripting)"
                 },
                 {
                     "type": "text",
-                    "content": "[[b]]Back End: [[/]] functionality on the side of the server (PHP, Node.js, SQL, etc.)"
+                    "content": "  - Creating animations, graphics, pop-ups, interactive material, etc."
                 },
                 {
                     "type": "text",
-                    "content": "ex. (Video Game - keeps track of the map, hp bars, player locations, player damage, etc.)"
+                    "content": "  - Execute complex logic, calculations, and algorithms for the web page to use"
                 },
                 {
-                    "type": "image",
-                    "src": "/data/modules/webdev-assets/img2/0-0.png"
+                    "type": "text",
+                    "content": "  - Keep constant communication with the server and decrease taskload"
                 }
             ]
         },
         {
             "type": "information",
-            "title": "Week 1 - Overview of HTML",
+            "title": "Week 3 - JavaScript Statements",
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]Purpose of HTML[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "Stands for: [[b]]H[[/]]yper [[b]]T[[/]]ext [[b]]M[[/]]arkup [[b]]L[[/]]anguage"
-                },
-                {
-                    "type": "text",
-                    "content": "HTML designs the layout of text and structure of the web page."
-                },
-                {
-                    "type": "text",
-                    "content": "Formats content (images, videos, external links, etc.)"
-                },
-                {
-                    "type": "image",
-                    "src": "/data/modules/webdev-assets/img2/1-0.png",
-                    "box-shadow": "0px 0px 20px 7px #686868"
-                },
-                {
-                    "type": "divider"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]Things to keep in mind[[/]]"
-                },
-                {
-                    "text": "text",
-                    "content": "➔ Forgiving for wrong syntax, errors, and missing information (code can still contain errors)"
-                },
-                {
-                    "text": "text",
-                    "content": "➔ Semantics/structure (for readability, web crawlers, SEO, etc.) - use proper tags and divisions"
-                },
-                {
-                    "text": "text",
-                    "content": "➔ May render depending on browser/device (test pages on multiple browsers)"
-                },
-                {
-                    "text": "text",
-                    "content": "➔ Separate presentation and content (HTML mainly for structure and CSS for style)"
-                }
-            ]
-        },
-        {
-            "type": "information",
-            "title": "Week 1 - Structuring Websites with HTML",
-            "elements": [
-                {
-                    "type": "text",
-                    "content": "[[h3]]Setting up Repl[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Go to replit.com and make a new account by using either email or a social account"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Once you make a new account, click the new repl button, and make a HTML, CSS, JS repl"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Once you have your repl, you can start putting all your code in there"
-                },
-                {
-                    "type": "image",
-                    "src": "/data/modules/webdev-assets/img2/2-0.png",
-                    "border": "1px solid #7a7a7a;"
-                },
-                {
-                    "type": "divider"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]Quick Repl Tour (Workspace)[[/]]"
-                },
-                {
-                    "type": "image",
-                    "src": "/data/modules/webdev-assets/img2/2-1.png"
-                },
-                {
-                    "type": "divider"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]HTML Elements[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h6]]Paired tag:[[/]]"
-                },
-                {
-                    "type": "image",
-                    "src": "/data/modules/webdev-assets/img2/2-2.png",
-                    "width": "70%",
-                    "box-shadow": "0px 0px 20px 7px #686868"
-                },
-                {
-                    "type": "divider"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h6]]Unpaired/Self-Closing Tag[[/]]"
-                },
-                {
-                    "type": "image",
-                    "src": "/data/modules/webdev-assets/img2/2-3.png",
-                    "width": "70%",
-                    "box-shadow": "0px 0px 20px 7px #686868"
-                }
-            ]
-        },
-        {
-            "type": "information",
-            "title": "Week 1 - Anatomy of an HTML document",
-            "elements": [
-                {
-                    "type": "text",
-                    "content": "➔ Doctype: remnant of an old HTML practice, tells the browser what version of HTML we are using (default HTML5 is [[monospace]]<!DOCTYPE html>[[/]])"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ html: Wraps all other content, sometimes called the root element"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Head: Container for everything that isn’t displayed as content"
+                    "content": "A JavaScript statement is a line of code that executes a single action. They include values, operators, keywords, expressions, comments, etc."
                 },
                 {
                     "type": "code",
-                    "content": "<!DOCTYPE html>\n<html>\n\n<head>\n\t<meta charset=\"utf-8\">\n\t<title>My test page</title>\n</head>\n\n<body>\n\t<p>This is my page</p>\n</body>\n\n</html>"
-                },
-                {
-                    "type": "divider"
+                    "content": "console.log('Intro to JS');\ndocument.write('reply').innerHTML = 'no';\nlet a = 1;"
                 },
                 {
                     "type": "text",
-                    "content": "[[b]]➔ Head: includes metadata such as the title, scripts, charset, styles, etc.[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]]◆ Meta charset: what character set you are using. utf-8 includes most human language characters"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]]◆ title: Sets the title of the page on the browser tab"
-                },
-                {
-                    "type": "text",
-                    "content": "[[b]]➔ Body: Contains all content that is displayed on the page[[/]]"
+                    "content": "JavaScript comments are used for documentation of code and improving readability. Comments ignored by the JavaScript interpreter. Use [[monospace]]//[[/]] for single line comments and [[monospace]]/**/[[/]] for multi-line comments."
                 },
                 {
                     "type": "code",
-                    "content": "<meta charset=\"utf-8\">\n<title>My test page</title>"
+                    "content": "// this is a single-line comment\n/*\nthis\nis\na\nmulti-line\ncomment\n*/"
+                }
+            ]
+        },
+        {
+            "type": "information",
+            "title": "Week 3 - JavaScript Variables",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "Variables store values that can be used or modified by code."
                 },
                 {
-                    "type": "divider"
+                    "type": "text",
+                    "content": "Literals are actual data or values which the variables can contain. Assign variables to the literal using the assignment operator, [[monospace]]=[[/]]. Declared using [[monospace]]let[[/]]/[[monospace]]var[[/]] and the identifier (variable name). Modify the value of a variable by re-assigning it with the [[monospace]]=[[/]] operator."
+                },
+                {
+                    "type": "text",
+                    "content": "Declared using let/var and the identifier (variable name)."
                 },
                 {
                     "type": "code",
-                    "content": "<body>\n\tDisplayed content tags go here\n</body>"
+                    "content": "// x will be set to undefined using var\nvar x;\n// when using let, y cannot be accessed until defined\nlet y;\n// y can be directly accessed after setting it to a literal\ny = 5;\n// directly set z to 5\nlet z = 5;"
+                },
+                {
+                    "type": "text",
+                    "content": "The enviromment that can store and access variables is the variable's scope."
+                },
+                {
+                    "type": "text",
+                    "content": "  - -Ex. Global variables are in a global environment/scope, so any part of the program can access it"
+                },
+                {
+                    "type": "text",
+                    "content": "  - Block scope means that only code within the block can access variables defined within that block"
+                },
+                {
+                    "type": "text",
+                    "content": "  - [[monospace]]var[[/]] is function scoped: will access the variable from the next highest environment/function it exists in (any variable defined by var is defined throughout the program)"
+                },
+                {
+                    "type": "text",
+                    "content": "  - [[monospace]]let[[/]] is block scoped: accessing variables defined outside the block containing the let declaration will raise an error"
+                },
+                {
+                    "type": "text",
+                    "content": "You can directly call the variable to access its value."
+                },
+                {
+                    "type": "text",
+                    "content": "Declare constants with the [[monospace]]const[[/]] keyword. Constants must be assigned during declaration and cannot be reassigned. Constants are block-scoped just like variables declared with [[monospace]]let[[/]]. "
                 }
             ]
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What could be included in the below tag?",
-            "code_template": "<head>\n</head>",
-            "answers": [
-                "The header of the website",
-                "The main webpage",
-                "The webpage's metadata",
-                "The website's footer"
-            ],
-            "correct": 2,
-            "descriptions": [
-                "Incorrect! The header of the webpage should be included in the body!",
-                "Incorrect, the main webpage should all be included in the body!",
-                "Correct! The head tags is used to include metadata about the website like it's title and descriptions",
-                "That doesn't seem correct! Try again"
-            ],
-            "points": 5,
-            "coins": 1
         },
         {
             "type": "information",
-            "title": "Week 1 - Basic HTML Tags",
+            "title": "Week 3 - JavaScript Methods and Data Types",
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]Headings[[/]]"
+                    "content": "Similar to properties, but instead of storing a value, they can execute an action and/or return a value. They are called using the dot operator (.) and the method name, followed by parentheses after the method name and arguments if required. For example [[monospace]]console.log()[[/]]."
                 },
                 {
                     "type": "text",
-                    "content": "➔ Define the heading of a section or page"
+                    "content": "JS is loosely typed/dynamic, meaning variables can hold or be assigned to any type. Use the [[monospace]]typeof[[/]] operator to check the type of a value or variable."
+                },
+                {
+                    "type": "code",
+                    "content": "let answer = 3;\nanswer = true;\nconsole.log(answer);"
                 },
                 {
                     "type": "text",
-                    "content": "➔ Can use 6 heading tags (pick the correct heading; ex. don’t use all [[monospace]]<h1>[[/]] tags and lower the font size later)"
+                    "content": "Strings can contain any number of characters inside single or double quotes. Strings can be concatenated using the [[monospace]]+[[/]] operator like [[monospace]]'hi' + 'bye'[[/]]. The backslash turns special characters into strings. Using \\’ or \\” will prevent the string from breaking."
+                },
+                {
+                    "type": "code",
+                    "content": "let color = 'blue';\nconsole.log('The rock is ' + color + '.');"
                 },
                 {
                     "type": "text",
-                    "content": "➔ [[monospace]]<h1>[[/]] tags for main headings of a page or article"
+                    "content": "[[monospace]]\\n[[/]] for newline, [[monospace]]\\r[[/]] for carriage return, and [[monospace]]\\t[[/]] for tab are special characters."
                 },
                 {
                     "type": "text",
-                    "content": "➔ Practice: Add an [[monospace]]<h1>[[/]] tag to your page with any heading you want"
+                    "content": "Template literals can allow substitution of variables and expression evaluation."
                 },
                 {
-                    "type": "image",
-                    "src": "/data/modules/webdev-assets/img2/4-0.png",
-                    "width": "50%",
-                    "box-shadow": "0px 0px 20px 7px #686868"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]Paragraphs[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Add bodies of text by using the [[monospace]]<p></p>[[/]] tag"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Separate paragraphs with a good structure - keep a cleaner website and improve SEO"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Break ([[monospace]]<br>[[/]]) tag to add line breaks within your paragraph"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Practice: Add a paragraph after your [[monospace]]<h1>[[/]] tag with any text you want, put a line break, and add another paragraph with new text"
-                },
-                {
-                    "type": "image",
-                    "src": "/data/modules/webdev-assets/img2/4-1.png"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]Divisions (divs)[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Generic container tag [[monospace]]<div>[[/]] for grouping HTML tags"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Used mainly to apply CSS to the enclosed tags"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Does not affect the webpage besides creating a line break before the division"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Use [[monospace]]<section>[[/]] instead of [[monospace]]<div>[[/]] if you want to give semantic meaning (i.e. group similar things together more properly as a “section”)"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Practice: Group your hyperlinks using the [[monospace]]<div>[[/]] tag (applying CSS will be discussed next week)"
-                },
-                {
-                    "type": "image",
-                    "src": "/data/modules/webdev-assets/img2/4-2.png",
-                    "width": "40%"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]Attributes[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Attributes have a basic syntax of attribute=value"
-                },
-                {
-                    "type": "image",
-                    "src": "/data/modules/webdev-assets/img2/4-3.png"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Space between the tag name and the attribute name"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Single or double quotes based on your own preference"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Used for setting certain characteristics or using CSS/Javascript"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Practice: Make an h1 tag with the attribute id equal to top and a p tag with attribute class equal to bottom."
+                    "type": "code",
+                    "content": "console.log('The sky is ${color}');"
                 }
             ]
         },
         {
-            "type": "short_answer",
-            "question": "Create the largest heading on your page with the text: Hello World!",
-            "code_template": "Hello World!",
-            "answers": [
-                "<h1>Hello World!</h1>",
-                "<h1>hello world!</h1>"
-            ],
-            "descriptions": {
-                "<h1>hello world!</h1>": "Correct! The largest heading is <h1>",
-                "<h1>Hello World!</h1>": "Correct! The largest heading is <h1>"
-            },
-            "description_default": "What is the correct syntax for Heading tags? What is the largest heading tag?.",
-            "points": 10,
-            "coins": 3
+            "title": "Week 3 - JavaScript Numbers, Booleans, Properties, and Arithmetic",
+            "type": "information",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "Numbers can be any numeric value, stored as a 64 bit floating point (JS does not differentiate between integer, floats (decimal values), unsigned (only positive)/signed(can be both positive/negative), etc. unlike other languages). They range from -2^53 + 1 to 2^53 - 1. Operations with float/decimal numbers can have precision error because all floats are stored as an integer multiplied by 2 to the power of another integer (base 2) which can change the actual value. Comparison for floats: check if the difference of the two numbers is less than a precision threshold; ex. [[monospace]]Math.abs(x - y) < 0.0001;[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "Booleans can only either be [[monospace]]true[[/]] or [[monospace]]false[[/]]. They are useful for if statements."
+                },
+                {
+                    "type": "text",
+                    "content": "The JavaScript console is a message/output window display for developers. It can be used for debugging and to show error/security/network messages. It's accessed in a browser by right clicking and hitting \"inspect\". Log a message to the console with [[monospace]]console.log('message')[[/]]. Clear the console with [[monospace]]console.clear()[[/]]."
+                },
+                {
+                    "type": "text",
+                    "content": "Properties are data contained by the instance of an object or type. An instance's properties can be accessed using the dot operator (.) and the name of the property. For example, the [[monospace]]length[[/]] property of a string."
+                },
+                {
+                    "type": "code",
+                    "content": "let word = 'hello';\nconsole.log(word.length);"
+                },
+                {
+                    "type": "text",
+                    "content": "JavaScript arithmetic operators evaluate mathematical expressions."
+                },
+                {
+                    "type": "text",
+                    "content": "  - Addition: [[monospace]]x + y[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "  - Subtraction: [[monospace]]x - y[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "  - Multiplication: [[monospace]]x * y[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "  - Division: [[monospace]]x / y[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "  - Remainder: [[monospace]]x % y[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "  - Exponentiation: [[monospace]]x ** y[[/]]"
+                },
+                {
+                    "type": "code",
+                    "content": "console.log(10 + 5); // 15\nconsole.log(10 - 5); //5\nconsole.log(10 * 5); // 50\nconsole.log(10 / 5); // 2\n console.log(10 % 5); // 0\nconsole.log(10 ** 5); // 100000"
+                }
+            ]
         },
         {
-            "type": "multiple_choice",
-            "question": "What is the smallest header tag?",
-            "code_template": "<h1> -> <h?>",
-            "answers": [
-                "<h7>",
-                "<h6>",
-                "<h2>",
-                "<h4>"
-            ],
-            "correct": 1,
-            "descriptions": [
-                "That's incorrect! Try again",
-                "Correct! h6 is the smallest heading tag",
-                "That's incorrect! Try again",
-                "That doesn't seem correct! Try again"
-            ],
-            "points": 5,
-            "coins": 1
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What does the below tag do?",
-            "code_template": "<br>",
-            "answers": [
-                "Break a line into two",
-                "Add a big space in text",
-                "Make text bolder",
-                "Create a br element"
-            ],
-            "correct": 0,
-            "descriptions": [
-                "Correct! The BR tag adds a line break in text",
-                "Incorrect, try again",
-                "That's incorrect! Try again",
-                "That doesn't seem correct! Try again"
-            ],
-            "points": 5,
-            "coins": 1
-        },
-        {
-            "type": "snippet_unlock",
-            "name": "Heading Tags",
-            "code_template": "<h2>text</h2>",
-            "description": "A Heading tag ([[lightpurple]]<h1>[[/]]) is used to display text as headings/subheadings on screen",
-            "snippet": {
-                "name": "Heading Tags",
-                "id": "heading-tags-all",
-                "example": "<h2>text</h2>",
-                "html": "<h{{snippet.attributes.size}}>{{snippet.attributes.text}}</h{{snippet.attributes.size}}>",
-                "category": "HTML Tags",
-                "attributes": [
-                    {
-                        "id": "text",
-                        "label": "Text",
-                        "type": "input"
-                    },
-                    {
-                        "id": "size",
-                        "label": "Size (1-6)",
-                        "type": "input"
-                    }
-                ]
-            }
-        },
-        {
-            "type": "snippet_unlock",
-            "name": "Line Break",
-            "code_template": "<br>",
-            "description": "A Line Break tag ([[lightpurple]]<br>[[/]]) is used to break text into multiple lines",
-            "snippet": {
-                "name": "Line Break",
-                "id": "line-break",
-                "example": "<br>",
-                "html": "<br>",
-                "category": "HTML Tags",
-                "attributes": []
-            }
-        },
-        {
-            "type": "snippet_unlock",
-            "name": "Divisions",
-            "code_template": "<div></div>",
-            "description": "A division tag ([[lightpurple]]<div>[[/]]) is used to divide areas of the webpage",
-            "snippet": {
-                "name": "Divisions",
-                "id": "div-tag",
-                "example": "<div></div>",
-                "html": "<div></div>",
-                "category": "HTML Tags",
-                "attributes": []
-            }
+            "title": "Week 3 - JavaScript Comparisons",
+            "type": "information",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "JavaScript comparison objects compare values and return a boolean."
+                },
+                {
+                    "type": "text",
+                    "content": "  - Equal value: =="
+                },
+                {
+                    "type": "text",
+                    "content": "  - Equal value and type: ==="
+                },
+                {
+                    "type": "text",
+                    "content": "  - Not equal: !="
+                },
+                {
+                    "type": "text",
+                    "content": "  - Less than: <"
+                },
+                {
+                    "type": "text",
+                    "content": "  - Greater than: >"
+                },
+                {
+                    "type": "text",
+                    "content": "  - Less than or equal to: <="
+                },
+                {
+                    "type": "text",
+                    "content": "  - Greater than or equal to: >="
+                },
+                {
+                    "type": "code",
+                    "content": "console.log(5 == '5'); // true\nconsole.log(5 === '5'); // false\nconsole.log(10 != 5); // true\nconsole.log(10 < 5); // false\nconsole.log(10 > 5); // true\nconsole.log(10 <= 5); // false\nconsole.log(10 >= 5); // true"
+                }
+            ]
         },
         {
             "type": "information",
-            "title": "Week 1 - Attribute Based Tags",
+            "title": "Week 3 - JavaScript Conditionals",
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]Images[[/]]"
+                    "content": "Conditionals check if a condition is true and executes a code block if so."
+                },
+                {
+                    "type": "code",
+                    "content": "if (condition) {\n\t// code to be executed\n}"
                 },
                 {
                     "type": "text",
-                    "content": "➔ Can add images from all kinds of sources including URLs and local files"
+                    "content": ""
+                },
+                {
+                    "type": "code",
+                    "content": "let grade = 89;\nconst passingGrade = 86;\nif(grade >= passingGrade) {\n\tconsole.log('pass');\n}"
                 },
                 {
                     "type": "text",
-                    "content": "➔ Display images on a webpage with [[monospace]]<img>[[/]]"
+                    "content": "[[monospace]]else[[/]] and [[monospace]]else if[[/]] statements can be added to run code blocks if the if first conditional is false."
+                },
+                {
+                    "type": "code",
+                    "content": "if (condition) {\n\t// code\n} else if (other_condition) {\n\t// code\n} else {\n\t// code\n}"
                 },
                 {
                     "type": "text",
-                    "content": "➔ There are two main attributes"
+                    "content": ""
+                },
+                {
+                    "type": "code",
+                    "content": "day = 15; \nif (day === 12) {\n\tconsole.log('On time');\n} else if (day < 12) {\n\tconsole.log('Completed early');\n} else {\n\tconsole.log('Overdue');\n}"
+                }
+            ]
+        },
+        {
+            "title": "Week 3 - JavaScript Functions",
+            "type": "information",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "Functions define a reusable block of code. They are efficient and improve code readibility. Instead of repeating code for the same action, functions can be used for the same results."
+                },
+                {
+                    "type": "code",
+                    "content": "function name(param1, param2) {\n\t// code to be executed\n\treturn value; // possible return value\n}"
                 },
                 {
                     "type": "text",
-                    "content": "[[ ]]◆ [[monospace]]src[[/]] specifies the location of the image to be used"
+                    "content": "This funciton can be called like [[monospace]]name('x', 'y')[[/]]."
+                }
+            ]
+        },
+        {
+            "title": "Week 3 - DOM",
+            "type": "information",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "The [[monospace]]document[[/]] object provides functionality for editing, retrieving, and detecting events in the HTML document. These are just a few common ways of editing HTML content, there are other methods to insert HTML or text into the document (innerText, createElement, etc.)"
+                },
+                {
+                    "type": "code",
+                    "content": "document.getElementById('name'); // Access an element using the ID attribute\ndocument.getElementById('name').innerHTML = 'content'; // Set the element content by editing the innerHTML property\ndocument.write('content'); // Outputs on and overwrites HTML document\ndocument.getElementsByTagName('h2'); // access elements of a tag\ndocument.getElementsByClassName('pop-up'); // access elements by the class attribute\ndocument.getElementById('name').src = 'img.jpg'; // Changing the elements's src attribute\ndocument.getElementById('name').innerHTML = 'Coins: ' + calculateProfit(); // Creating dynamic HTML content"
+                }
+            ]
+        },
+        {
+            "title": "Week 3 - jQuery",
+            "type": "information",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "jQuery is most deployed JS library for many years (currently around 80% of the 10 million most popular websites use jQuery). It simplifies DOM manipulation/navigation, event-handling, CSS animation, Ajax, etc. and works on a wide range of browsers. To import jQuery, add the following script tag to your HTML:"
+                },
+                {
+                    "type": "code",
+                    "content": "<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js\"></script>"
                 },
                 {
                     "type": "text",
-                    "content": "[[ ]]◆ [[monospace]]alt[[/]] specifies some text that represents the image (for blind people and website parsers)"
+                    "content": ""
                 },
                 {
-                    "type": "text",
-                    "content": "➔ Practice: Add an image (from URL or from your project) and create alternative text for it"
-                },
-                {
-                    "type": "image",
-                    "src": "/data/modules/webdev-assets/img2/8-0.png"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]Hyperlinks[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Clickable lines of text to add in a website to redirect the user to another page or website"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Use the anchor ([[monospace]]<a></a>[[/]]) tag to add hyperlinks"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Main attribute([[monospace]]href[[/]] tag ) that specifies the URL of the redirect"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Practice: Wrap a word or two in your paragraph with [[monospace]]<a></a>[[/]] and add the href attribute to any link you want!"
-                },
-                {
-                    "type": "image",
-                    "src": "/data/modules/webdev-assets/img2/8-1.png",
-                    "width": "40%"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]Ordered List[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Numbered with a 1, 2, 3 etc."
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Text on each list item or any other item of your choice including images"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Syntax: insert [[monospace]]<ol></ol>[[/]] tags and add [[monospace]]<li></li>[[/]] for each list item"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Type attributes [[monospace]](“1”, “I”, “i”, “A”, “a”)[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Practice: Add an ordered list to your webpage with three elements (ex. top 3 favorite movies, books, etc.)"
-                },
-                {
-                    "type": "image",
-                    "src": "/data/modules/webdev-assets/img2/8-2.png"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]Unordered List[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Lists for items whose order doesn’t matter and uses bullet points"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Can have text on each list item or any other item of your choice including images"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Syntax includes starting with [[monospace]]<ul></ul>[[/]] tags and adding <li></li> for every list item"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Type attributes ([[monospace]]“disc”, “circle”, “square”, “none”[[/]])"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Practice: Add an unordered list to your webpage with three elements that don’t have a specific order(ex. colors, locations, etc.)"
-                },
-                {
-                    "type": "image",
-                    "src": "/data/modules/webdev-assets/img2/8-3.png"
+                    "type": "code",
+                    "content": "element = $('#your_id'); // Simplify getting element by ID\nelement = $('h2'); // Get elements by tag name\nelement = $('.pop_up'); // Get elements by class name\nelement.text('New text'); // set text content\ntext = element.text(); // get element text\nelement.html('<h2>New title</h2>'); // Set HTML content\ncontent = element.html(); // Get HTML content"
                 }
             ]
         },
         {
             "type": "multiple_choice",
-            "question": "What are the two main attributes of the below tag?",
-            "code_template": "<img ____=\" \" ____=\" \">",
-            "answers": [
-                "src and alt",
-                "source and alt",
-                "description and src",
-                "description and source"
-            ],
-            "correct": 0,
+            "question": "Which of the following is javascript NOT used for",
             "descriptions": [
-                "Correct! We use src to set the image's source and alt to set the description of the image",
-                "Incorrect, remember that some attributes in HTML are simplified",
-                "Incorrect! Description is the wrong attribute name, but you're on the correct track!",
-                "Incorrect! Try again"
+                "JavaScript is a great way to create animations.",
+                "JavaScript is perfect for creating interactive material.",
+                "CSS is used for this reason.",
+                "JavaScript is great at implimenting logic."
             ],
             "points": 5,
-            "coins": 1
-        },
-        {
-            "type": "short_answer",
-            "question": "Create an image with a source of https://www.demo.com/test.png and a description of \"A funny image\"",
-            "code_template": "<img>",
+            "coins": 1,
             "answers": [
-                "<img src=\"https://www.demo.com/test.png\" alt=\"A funny image\">",
-                "<img src=\"https://www.demo.com/test.png\"alt=\"A funny image\">",
-                "<img alt=\"A funny image\" src=\"https://www.demo.com/test.png\">",
-                "<img alt=\"A funny image\"src=\"https://www.demo.com/test.png\">"
+                "Animations",
+                "Interactive material",
+                "Styling documents",
+                "Implimenting logic"
             ],
-            "descriptions": {
-                "<img src=\"https://www.demo.com/test.png\" alt=\"A funny image\">": "Correct! That is the correct syntax for creating images in HTML",
-                "<img src=\"https://www.demo.com/test.png\"alt=\"A funny image\">": "Correct! That is the correct syntax for creating images in HTML",
-                "<img alt=\"A funny image\" src=\"https://www.demo.com/test.png\">": "Correct! That is the correct syntax for creating images in HTML",
-                "<img alt=\"A funny image\"src=\"https://www.demo.com/test.png\">": "Correct! That is the correct syntax for creating images in HTML"
-            },
-            "description_default": "Remember that the two main attributes are src and alt",
-            "points": 10,
-            "coins": 3
-        },
-        {
-            "type": "snippet_unlock",
-            "name": "Image tag",
-            "code_template": "<img src=\"\" alt=\"\">",
-            "description": "An img tag ([[lightpurple]]<h1>[[/]]) is used to display images on screen",
-            "snippet": {
-                "name": "Image tag",
-                "id": "image-tag",
-                "example": "<img src=\"\" alt=\"\">",
-                "html": "<img src=\"{{snippet.attributes.src}}\" alt=\"{{snippet.attributes.alt}}\">",
-                "category": "HTML Tags",
-                "attributes": [
-                    {
-                        "id": "src",
-                        "label": "Image Source (in url format)",
-                        "type": "input"
-                    },
-                    {
-                        "id": "alt",
-                        "label": "Image description",
-                        "type": "input"
-                    }
-                ]
-            }
-        },
-        {
-            "type": "short_answer",
-            "question": "How would we make a hyperlink to https://google.com with text \"Google\"?",
-            "code_template": "<a></a>",
-            "answers": [
-                "<a href=\"https://google.com\">Google</a>"
-            ],
-            "descriptions": {
-                "<a href=\"https://google.com\">Google</a>": "Correct!"
-            },
-            "description_default": "Remember that anchor tags have the \"href\" attribute",
-            "points": 10,
-            "coins": 3
-        },
-        {
-            "type": "snippet_unlock",
-            "name": "Anchor tag",
-            "code_template": "<a href=\"\">Text</a>",
-            "description": "An anchor tag ([[lightpurple]]<a></a>[[/]]) is used to create hyperlinks",
-            "snippet": {
-                "name": "Anchor Tag",
-                "id": "anchor-tag",
-                "example": "<a href=\"\">Text</a>",
-                "html": "<a href=\"{{snippet.attributes.href}}\">{{snippet.attributes.text}}</a>",
-                "category": "HTML Tags",
-                "attributes": [
-                    {
-                        "id": "text",
-                        "label": "Text",
-                        "type": "input"
-                    },
-                    {
-                        "id": "src",
-                        "label": "URL",
-                        "type": "input"
-                    }
-                ]
-            }
+            "correct": 2
         },
         {
             "type": "multiple_choice",
-            "question": "Which tag is used for list items?",
-            "code_template": "",
-            "answers": [
-                "<li></li>",
-                "<ul></ul>",
-                "<ol></ol>",
-                "<itm></itm>"
-            ],
-            "correct": 0,
+            "question": "Which of the following characters can start a comment?",
             "descriptions": [
-                "Correct! \"li\" stands for List Item",
-                "Incorrect, remember that \"ul\" stands for Unordered List",
-                "Incorrect, remember that \"ol\" stands for Ordered List",
-                "Incorrect, that tag does not exist in HTML!"
+                "Also, '/*' can start can start comments.",
+                "Wrong. '--' is incorrect syntax.",
+                "Wrong. '**' is incorrect syntax.",
+                "Check the kind of slash you use."
             ],
             "points": 5,
-            "coins": 1
+            "coins": 1,
+            "answers": [
+                "//",
+                "--",
+                "**",
+                "\\\\"
+            ],
+            "correct": 0
         },
         {
-            "type": "snippet_unlock",
-            "name": "Unordered List",
-            "code_template": "<ul><li></li></ul>",
-            "description": "An Unordered list is used to create bulleted lists or lists that aren't ordered",
-            "snippet": {
-                "name": "Unordered List",
-                "id": "unordered-list",
-                "example": "<ul>\n    <li>Item</li>\n</ul>",
-                "html": "<ul>\n    <li>{{snippet.attributes.text}}</li>\n</ul>",
-                "category": "HTML Tags",
-                "attributes": [
-                    {
-                        "id": "text",
-                        "label": "Text",
-                        "type": "input"
-                    }
-                ]
-            }
+            "type": "multiple_choice",
+            "question": "What do developers primarily use the console for?",
+            "descriptions": [
+                "The console is not a way to view code.",
+                "Logging variables and viewing errors are great ways to use the console for debugging.",
+                "The console does not fulfill this.",
+                ""
+            ],
+            "points": 5,
+            "coins": 1,
+            "answers": [
+                "Viewing their code",
+                "Debugging",
+                "Reading the documentation of javascript",
+                ""
+            ],
+            "correct": 1
         },
         {
-            "type": "snippet_unlock",
-            "name": "Ordered List",
-            "code_template": "<ol><li></li></ol>",
-            "description": "An Ordered list is used to create numbered lists, or lists that require order",
-            "snippet": {
-                "name": "Ordered List",
-                "id": "ordered-list",
-                "example": "<ol>\n    <li>Item</li>\n</ol>",
-                "html": "<ol>\n    <li>{{snippet.attributes.text}}</li>\n</ol>",
-                "category": "HTML Tags",
-                "attributes": [
-                    {
-                        "id": "text",
-                        "label": "Text",
-                        "type": "input"
-                    }
-                ]
-            }
+            "type": "multiple_choice",
+            "question": "Which of the following is a not a console method",
+            "descriptions": [
+                "The upload function doesn't exist!",
+                "This prints to the console.",
+                "This clears all text from the console.",
+                ""
+            ],
+            "points": 5,
+            "coins": 1,
+            "answers": [
+                "upload",
+                "log",
+                "clear",
+                ""
+            ],
+            "correct": 0
+        },
+        {
+            "type": "multiple_choice",
+            "question": "Which of the following is an invalid comparison operator?",
+            "descriptions": [
+                "'==' checks if two values are equal.",
+                "'>=' checks if one value is greater than or equal to another.",
+                "'=' assigns a variable a value and does not compare two values.",
+                "'===' checks if two values are equal."
+            ],
+            "points": 5,
+            "coins": 1,
+            "answers": [
+                "===",
+                ">=",
+                "=",
+                "=="
+            ],
+            "correct": 2
+        },
+        {
+            "type": "multiple_choice",
+            "question": "What does a conditional statement do?",
+            "descriptions": [
+                "Also known as the if statement.",
+                "This is what the try-catch statement is for.",
+                "They simply execute code, not return values.",
+                ""
+            ],
+            "points": 5,
+            "coins": 1,
+            "answers": [
+                "Executes a code block if a condition is true",
+                "Catches errors from a code block",
+                "Returns a conditional",
+                ""
+            ],
+            "correct": 0
+        },
+        {
+            "type": "multiple_choice",
+            "question": "Which of the following is not a method?",
+            "descriptions": [
+                "This selects and element of a given ID.",
+                "This selects elements that are of a given class.",
+                "This function doesn't exist.",
+                "This function selects elements of a given tag."
+            ],
+            "points": 5,
+            "coins": 1,
+            "answers": [
+                "document.getElementById",
+                "document.getElementsByClassName",
+                "document.getElements",
+                "document.getElementsByTagName"
+            ],
+            "correct": 2
+        },
+        {
+            "type": "congratulations",
+            "title": "Congratulations!",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "You learned the purpose of JavaScript."
+                },
+                {
+                    "type": "text",
+                    "content": "  - Full stack development (client side and server side execution"
+                },
+                {
+                    "type": "text",
+                    "content": "  - Animations and interactive elements"
+                },
+                {
+                    "type": "text",
+                    "content": "  - Calculations and logic"
+                },
+                {
+                    "type": "text",
+                    "content": "You learned some of the components that make up JavaScript code."
+                },
+                {
+                    "type": "text",
+                    "content": "  - Comments ([[monospace]]/* comment */[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "  - Statements (end with [[monospace]];[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "  - You learned about of the JavaScript console."
+                },
+                {
+                    "type": "text",
+                    "content": "  - Used for displaying messages and outputs"
+                },
+                {
+                    "type": "text",
+                    "content": "  - Used for debugging"
+                },
+                {
+                    "type": "text",
+                    "content": "  - Right click and inspect to open the console"
+                },
+                {
+                    "type": "text",
+                    "content": "  - [[monospace]]console.log[[/]] to print to the console."
+                },
+                {
+                    "type": "text",
+                    "content": "You learned about variables."
+                },
+                {
+                    "type": "text",
+                    "content": "  - A way to store values"
+                },
+                {
+                    "type": "text",
+                    "content": "  - Asisgned with the [[monospace]]=[[/]] sign."
+                },
+                {
+                    "type": "text",
+                    "content": "  - [[monospace]]let x = 0;[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "  - Constants can't be changed ([[monospace]]const x = 0[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "You learned about data types"
+                },
+                {
+                    "type": "text",
+                    "content": "  - string"
+                },
+                {
+                    "type": "text",
+                    "content": "  - number"
+                },
+                {
+                    "type": "text",
+                    "content": "  - bigint"
+                },
+                {
+                    "type": "text",
+                    "content": "  - boolean"
+                },
+                {
+                    "type": "text",
+                    "content": "  - undefined"
+                },
+                {
+                    "type": "text",
+                    "content": "  - symbol"
+                },
+                {
+                    "type": "text",
+                    "content": "  - null"
+                },
+                {
+                    "type": "text",
+                    "content": "You learned about arithmetic operators in JavaScript."
+                },
+                {
+                    "type": "text",
+                    "content": "  - addition"
+                },
+                {
+                    "type": "text",
+                    "content": "  - subtraction"
+                },
+                {
+                    "type": "text",
+                    "content": "  - multiplication"
+                },
+                {
+                    "type": "text",
+                    "content": "  - division"
+                },
+                {
+                    "type": "text",
+                    "content": "  - remainder"
+                },
+                {
+                    "type": "text",
+                    "content": "  - exponents"
+                },
+                {
+                    "type": "text",
+                    "content": "You learned about comparison operators."
+                },
+                {
+                    "type": "text",
+                    "content": "  - == (equal value)"
+                },
+                {
+                    "type": "text",
+                    "content": "  - === (equal value and type)"
+                },
+                {
+                    "type": "text",
+                    "content": "  - != (not equal)"
+                },
+                {
+                    "type": "text",
+                    "content": "  - > and < (greater and less than)"
+                },
+                {
+                    "type": "text",
+                    "content": "  - >= and <= (greater and less than or equal to)"
+                },
+                {
+                    "type": "text",
+                    "content": "You learned how to utilize some useful JavaScript features"
+                },
+                {
+                    "type": "text",
+                    "content": "  - Properties (data contained by objects)"
+                },
+                {
+                    "type": "text",
+                    "content": "  - Methods"
+                },
+                {
+                    "type": "text",
+                    "content": "  - Conditionals"
+                },
+                {
+                    "type": "text",
+                    "content": "  - DOM"
+                }
+            ]
         }
     ]
 }

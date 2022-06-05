@@ -3,438 +3,507 @@
     "pages": [
         {
             "type": "information",
-            "title": "Week 4 - HTML Recap",
+            "title": "Week 6 - REST API and Express JS",
             "elements": [
                 {
                     "type": "text",
-                    "content": "Front end is functionality on the side of the client (HTML/CSS/JS). HTML stands for Hyper Text Markup Language. It is used to design the layout of text and structure of a webpage."
-                },
-                {
-                    "type": "code",
-                    "content": "<!DOCTYPE html>\n<html>\n\t<head>\n\t<meta charset=\"utf-8\">\n\t<title>My test page</title>\n\t</head>\n\t<body>\n\t<p>This is my page</p>\n\t</body>\n</html>"
+                    "content": "[[h3]]What is an API[[/]]"
                 },
                 {
                     "type": "text",
-                    "content": "Headings define the header of a section or page. For example, [[monospace]]<h1>[[/]] creates a large heading. "
+                    "content": "➔ Stands for Application Programming Interface"
                 },
                 {
                     "type": "text",
-                    "content": "Paragraphs add bodies of text, and are created with the [[monospace]]<p>[[/]] tag."
+                    "content": "➔ Allows you to return data based on a certain request"
                 },
                 {
                     "type": "text",
-                    "content": "Image dags display images on webpages from URLs or local files."
+                    "content": "➔ It is a connection between computers, or computer programs"
                 },
                 {
                     "type": "text",
-                    "content": "Hyperlinks are clickable lines of text to add in a website to redirect the user to another page or website"
-                }
-            ]
-        },
-        {
-            "type": "information",
-            "title": "Week 4 - CSS Recap",
-            "elements": [
-                {
-                    "type": "text",
-                    "content": "CSS makes websites look nice by changing style, location, and more of elements. CSS stands for \"Cascading Syle Sheets\". CSS does not add any new content to the page."
+                    "content": "➔ You can create an API in almost any programming language"
                 },
                 {
                     "type": "text",
-                    "content": "Some common CSS styles include:"
-                },
-                {
-                    "type": "text",
-                    "content": "  - font-family: Change the font of an element."
-                },
-                {
-                    "type": "code",
-                    "content": "font-family: \"Raleway\", sans-serif;"
-                },
-                {
-                    "type": "text",
-                    "content": "  - font-size: Change the size of an element."
-                },
-                {
-                    "type": "code",
-                    "content": "font-size: 13px;"
-                },
-                {
-                    "type": "text",
-                    "content": "  - text-align: Center, left or right align text."
-                },
-                {
-                    "type": "code",
-                    "content": "text-align: center"
-                },
-                {
-                    "type": "text",
-                    "content": "  - color: Change the color of text."
-                },
-                {
-                    "type": "code",
-                    "content": "color: purple"
-                },
-                {
-                    "type": "code",
-                    "content": "color: #fff"
-                },
-                {
-                    "type": "text",
-                    "content": "  - text-decoration: Add underlines, strikethroughs and other decorations."
-                },
-                {
-                    "type": "code",
-                    "content": "text-decoration: underline;"
-                },
-                {
-                    "type": "text",
-                    "content": "  - Draw borders around elements."
-                },
-                {
-                    "type": "code",
-                    "content": "#div {\n\tborder: 3px red solid;\n}"
-                },
-                {
-                    "type": "text",
-                    "content": "Selector events activate CSS on an event, such as a hover."
-                },
-                {
-                    "type": "code",
-                    "content": "#div:hover {} /* Activate CSS inside {} when #div is hovered on */"
-                },
-                {
-                    "type": "text",
-                    "content": "Animation transitions apply smoother transitions to elements"
-                },
-                {
-                    "type": "code",
-                    "content": "transition: 1s all; /* 1s transition to all styles */\ntransition: 1s color; /* transition: 1s color */\ntransition: 1s color, 3s border /* Multiple transition rules */"
-                }
-            ]
-        },
-        {
-            "type": "information",
-            "title": "Week 4 - Bootstrap Recap",
-            "elements": [
-                {
-                    "type": "text",
-                    "content": "Bootstrap is a CSS framework that makes the creation of layouts simpler for developers. It comes with pre-built classes so you don't have to write your own CSS."
+                    "content": "➔ In JavaScript, a popular framework to use is Express.js"
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/webdev-assets/img5/2-0.png"
+                    "src": "/data/modules/webdev-assets/img7/0-0.png"
                 }
             ]
         },
         {
             "type": "information",
-            "title": "Week 4 - JavaScript Recap",
+            "title": "Week 6 - Express.JS",
             "elements": [
                 {
                     "type": "text",
-                    "content": "Purpose of JavaScript:"
+                    "content": "[[h3]]What is Express.JS?[[/]]"
                 },
                 {
                     "type": "text",
-                    "content": "  - Full stack development (client-side execution + server-side scripting)"
+                    "content": "➔ Express.js is a Node.js framework for creating APIs"
                 },
                 {
                     "type": "text",
-                    "content": "  - Creating animations, graphics, pop-ups, interactive material, etc."
+                    "content": "➔ Express.js allows you to create url endpoints that others can access to get certain data"
+                },
+                {
+                    "type": "image",
+                    "src": "/data/modules/webdev-assets/img7/1-0.png"
+                },
+                {
+                    "type": "divider"
                 },
                 {
                     "type": "text",
-                    "content": "Console:"
+                    "content": "[[h3]]Setting up Express.js[[/]]"
                 },
                 {
                     "type": "text",
-                    "content": "  - A message/output window display for developers"
+                    "content": "➔ To install Express.js, run npm i express in your terminal"
                 },
                 {
                     "type": "text",
-                    "content": "  - Can be used for debugging and shows error/security/network messages"
+                    "content": "➔ This will install Express.js and allow you to use it in your code"
                 },
                 {
                     "type": "text",
-                    "content": "Comments:"
+                    "content": "➔ To import this module and get set up, follow the below code"
                 },
                 {
                     "type": "code",
-                    "content": "// this is a single line comment\n/*\nThis\nis\nmulti-line\n*/"
-                },
-                {
-                    "type": "text",
-                    "content": "Variables and constants:"
-                },
-                {
-                    "type": "code",
-                    "content": "let temperature; // scoped\nvar day; // global\nconst x = 0 // constant"
-                },
-                {
-                    "type": "text",
-                    "content": "JS is loosely typed/dynamic - variables be assigned to any type. The primitive types are string, number, bigint, boolean, undefined, symbol, and null."
-                },
-                {
-                    "type": "text",
-                    "content": "JavaScript properties are data contained by the instance of an object or type. They can be accessed using the dot operator (.) and the property name."
-                },
-                {
-                    "type": "code",
-                    "content": "let word = 'hello';\nconsole.log(word.length); // length is a property of strings\nconsole.log(word.toLowerCase()); // function toLowerCase is a property of strings"
-                },
-                {
-                    "type": "text",
-                    "content": "JavaScript conditionals execute code blocks if specified conditions are met. If, else, else if, and switch statements are all conditionals."
-                },
-                {
-                    "type": "code",
-                    "content": "let grade = 89;\nconst passingGrade = 86;\nif (grade >= passingGrade) {\n\tconsole.log('pass');\n} else {\n\tconsole.log('fail')\n}"
-                },
-                {
-                    "type": "text",
-                    "content": "Functions define reusable blocks of code. Instead of repeating code for the same actions, functions are used for the same results."
-                },
-                {
-                    "type": "code",
-                    "content": "function passOrFail(grade) {\n\tlet grade = 89;\n\tconst passingGrade = 86;\n\tif (grade >= passingGrade) {\n\tconsole.log('pass');\n\t} else {\n\tconsole.log('fail')\n\t}\n}"
-                },
-                {
-                    "type": "text",
-                    "content": "The DOM provides functionality for editing, retrieving, and detecting events in the HTML document."
-                },
-                {
-                    "type": "code",
-                    "content": "document.getElementById('name'); // access element with ID\ndocument.getElementById('name').innerHTML; // set element content with innerHTML property\ndocument.write('content'); // outputs directly on the HTML docuemtn (NOTE: it will overwrite the document if it has fully loaded)\ndocument.getElementsByTagName('h2'); // access elements of a tag\ndocument.getElementsByClassName('pop-up'); // get elements of a class\ndocument.getElementById('name').src = 'img.png'; // set the src attribute of the element\ndocument.getElementById('profit').innerHTML = calculateProfit(); // dynamic HTML contents"
+                    "content": "const express = require(\"express\")\n\nconst app = express();\nconst PORT = process.env.PORT || 3000;\n\napp.listen(PORT, () => console.log(`Example app listening at http://localhost:${PORT}`))",
+                    "lang": "jsx"
                 }
             ]
         },
         {
-            "title": "Project Setup",
             "type": "information",
+            "title": "Week 6 - GET Requests",
             "elements": [
                 {
                     "type": "text",
-                    "content": "Link stylesheets using [[monospace]]<link rel=”stylesheet” href=”style.css”>[[/]] in the head section of the HTML file."
+                    "content": "➔ There are multiple different types of REST API calls"
                 },
                 {
                     "type": "text",
-                    "content": "  - [[monospace]]rel[[/]] attribute is required: specifies the relationship between the linked document and the current document"
+                    "content": "➔ The GET request is used when the user is getting data from the server"
+                },
+                {
+                    "type": "image",
+                    "src": "/data/modules/webdev-assets/img7/2-0.png",
+                    "width": "60%"
                 },
                 {
                     "type": "text",
-                    "content": "  - [[monospace]]href[[/]] attribute contains the url of the linked document"
+                    "content": "[[h3]]Express.js GET Requests[[/]]"
                 },
                 {
                     "type": "text",
-                    "content": "[[monospace]]type[[/]] attribute specifies the media type of the linked document"
+                    "content": "➔ Let’s create our own GET request endpoint using Express.js"
                 },
                 {
                     "type": "text",
-                    "content": "Multiple stylesheets can be linked, but many websites use a single sheet to avoid rewriting code and for faster load time (choose what is best for your project)"
-                },
-                {
-                    "type": "text",
-                    "content": "JavaScript functionality can be added with the script tag (either external or embedded)"
+                    "content": "➔ Please reference the below code"
                 },
                 {
                     "type": "code",
-                    "content": "<script src=”script.js”></script> <!--External-->\n<script>document.write('content');</script> <!--Internal-->"
-                },
-                {
-                    "type": "text",
-                    "content": "If you plan to use libraries such as JQuery, Bootstrap, etc., you can add their JS files from a CDN before your other scripts in the HTML file."
+                    "content": "app.get(\"/endpointname\", (req, res) => {\n\tres.send(\"I am sending some data\")\n})"
                 }
             ]
         },
         {
-            "type": "multiple_choice",
-            "question": "What is the purpose of HTML",
-            "descriptions": [
-                "CSS does this.",
-                "JavaScript does this.",
-                "Yes, HTML's purpose is just this.",
-                "HTML does not serve this purpose."
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "To style the site",
-                "To process logic on the site",
-                "To design layout and structure of the site",
-                "To render javascript templates"
-            ],
-            "correct": 2
+            "type": "information",
+            "title": "Week 6 - Requests",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "[[h3]]Express.js Request Syntax[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ In the last example, you saw how to create a get request with Express.js"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Let’s take a look at what each part actually means"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ First, we use the .get() function which is apart of the app object we created earlier"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ The .get() function takes in 2 parameters, the url endpoint (which can be named anything), and the callback function"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ The call back function gives you access to the request (req), and response (res) objects"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ To send data, use the res.send() method to send any type of data"
+                },
+                {
+                    "type": "text",
+                    "content": "[[h3]]Viewing Requests[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Now that we have created a basic API, let’s run it"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Run [[`]]node filename.js[[/]] (replace filename.js with the name of your file)"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Your server should be running on [[a]]http://localhost:3001[[/a]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ To access that GET request you created, go to [[a]]http://localhost:3001/endpointname[[/a]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ You should see the data that you sent displayed on your screen "
+                }
+            ]
         },
         {
-            "type": "multiple_choice",
-            "question": "What is the purpose of CSS",
-            "descriptions": [
-                "CSS does this.",
-                "JavaScript does this.",
-                "HTML's purpose is just this.",
-                "HTML does not serve this purpose."
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "To style the site",
-                "To process logic on the site",
-                "To design layout and structure of the site",
-                "To render javascript templates"
-            ],
-            "correct": 0
+            "type": "information",
+            "title": "Week 6 - POST Requests",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "➔ In contrast to GET requests, POST requests allow the user to provide the API with data"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ POST requests are not viewable by your normal browser"
+                },
+                {
+                    "type": "image",
+                    "src": "/data/modules/webdev-assets/img7/4-0.png",
+                    "width": "60%"
+                },
+                {
+                    "type": "text",
+                    "content": "[[h3]]Express.js POST Requests[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Please reference the below code which shows you how to create a POST request endpoint with Express.js"
+                },
+                {
+                    "type": "code",
+                    "content": "app.post(\"/endpointname\", (req, res) => {\n\tconst name = req.body.name;\n\tconst email = req.body.email;\n\tconst username = req.body.username;\n\n\tres.send(\"I am sending some data\")\n})"
+                }
+            ]
         },
         {
-            "type": "multiple_choice",
-            "question": "What is the purpose of javascript",
-            "descriptions": [
-                "CSS does this.",
-                "JavaScript does this.",
-                "Yes, HTML's purpose is just this.",
-                "HTML does not serve this purpose."
-            ],
-            "points": 5,
-            "coins": 1,
+            "type": "short_answer",
+            "question": "What is the type of request viewable by standard browsers?",
+            "code_template": "",
             "answers": [
-                "To style the site",
-                "To process logic on the site",
-                "To design layout and structure of the site",
-                "To render javascript templates"
+                "get",
+                "GET"
             ],
-            "correct": 1
+            "descriptions": {
+                "get": "Correct! GET requests are viewable by standard browsers",
+                "GET": "Correct! GET requests are viewable by standard browsers"
+            },
+            "description_default": "Standard browsers make what type of request? Hint: They ___ resources from the server",
+            "points": 10,
+            "coins": 2
         },
         {
-            "type": "multiple_choice",
-            "question": "What is the class attribute primarily used for?",
-            "descriptions": [
-                "CSS classes does this.",
-                "This is not the purpose of CSS classes!",
-                "This is not the purpose of CSS classes!",
-                "This is not the purpose of CSS classes!"
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "To style multiple elements",
-                "To group elements together",
-                "To remove elements",
-                "To duplicate elements"
-            ],
-            "correct": 0
+            "type": "snippet_unlock",
+            "name": "Express.JS requests",
+            "code_template": "app.post(\"/endpointname\", (req, res) => {res.send(\"Hello World!\")})",
+            "description": "All Express.JS requests",
+            "snippet": {
+                "name": "Express.JS requests",
+                "id": "expressjs-requests",
+                "example": "app.get(\"/endpointname\", (req, res) => {res.send(\"Hello World!\")})",
+                "html": "app.{{snippet.attributes.type}}(\"/endpointname\", (req, res) => {res.send(\"Hello World!\")})",
+                "category": "API",
+                "attributes": [
+                    {
+                        "id": "type",
+                        "label": "Request type: (get, post, etc.)",
+                        "type": "input"
+                    }
+                ]
+            }
         },
         {
-            "type": "multiple_choice",
-            "question": "Which of the following is correct CSS syntax?",
-            "descriptions": [
-                "Well done.",
-                "Nope, this code is missing a key punctuation.",
-                "Nope, the dash needs to be replaced with something else.",
-                "Nope, the squar brackets need to be replaced with something else."
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "p { color: red }",
-                "p { color red }",
-                "p { color -  red }",
-                "p [color: red]"
-            ],
-            "correct": 0
+            "type": "information",
+            "title": "Week 6 - Express.JS req Object",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "[[h3]]Intro[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ In the last example about the POST request, we used the [[`]]req[[/]] object in the callback function"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ This [[`]]req[[/]] object is usually used in POST requests and allows the user to send data"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ The [[`]]req[[/]] object has a property called body, which is an object that can store all kinds of data"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ In this example, we are expecting the user to provide us with a name, email, and username"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Then, we send a message saying that the data was successfully received"
+                },
+                {
+                    "type": "divider"
+                },
+                {
+                    "type": "text",
+                    "content": "[[h3]]req.body[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "This is the body, and this parameter is only accessible when the user POSTs data."
+                },
+                {
+                    "type": "text",
+                    "content": "➔ You can access data not included in the path"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ req.body will allow you to get data in a Javascript Object Literal"
+                },
+                {
+                    "type": "image",
+                    "src": "/data/modules/webdev-assets/img7/5-0.png",
+                    "width": "60%"
+                },
+                {
+                    "type": "text",
+                    "content": "To send data with a body, use \n[[`]]axios.post(‘https://server.com/endpoint’,{dogAmount: 1});[[/]]"
+                },
+                {
+                    "type": "divider"
+                },
+                {
+                    "type": "text",
+                    "content": "[[h3]]req.params[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "You can access this from any type of endpoint (POST, GET, etc.)\nThese are path parameters, that can be accessed with [[`]]req.params.pathParamName[[/]]"
+                },
+                {
+                    "type": "image",
+                    "src": "/data/modules/webdev-assets/img7/5-1.png",
+                    "width": "60%"
+                },
+                {
+                    "type": "text",
+                    "content": "Use axios to send path parameters.\n[[`]]axios.get(‘https://server.com/endpoint/id123/dogtype’);[[/]]"
+                },
+                {
+                    "type": "divider"
+                },
+                {
+                    "type": "text",
+                    "content": "[[h3]]req.query[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "These also can be used with any type of request (GET, POST, etc.)\nAccess these with [[`]]req.query.paramName[[/]]"
+                },
+                {
+                    "type": "image",
+                    "src": "/data/modules/webdev-assets/img7/5-2.png",
+                    "width": "60%"
+                },
+                {
+                    "type": "text",
+                    "content": "Send this with axios like this:\n[[`]]axios.get(‘https://server.com/endpoint?id=yourid&type=dog’);[[/]]"
+                }
+            ]
         },
         {
-            "type": "multiple_choice",
-            "question": "How do you select an ID in CSS?",
-            "descriptions": [
-                "'.' is for classes.",
-                "'@' is not a valid selector",
-                "'-' is not a valid selector",
-                "'#' is for selecting by IDs"
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                ".id",
-                "@id",
-                "-id",
-                "#id"
-            ],
-            "correct": 3
+            "type": "information",
+            "title": "Week 6 - Sending requests with Axios",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "[[h3]]Sending GET requests[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ We can also use axios to send GET requests"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Once again, we are using the async/await approach, so we are wrapping the code inside an async function"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Check out the below code for more details!"
+                },
+                {
+                    "type": "image",
+                    "src": "/data/modules/webdev-assets/img7/6-0.png",
+                    "width": "70%"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ We await the [[`]]axios.get[[/]] call which takes in 2 parameters (we only used 1)"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ The first parameter is the endpoint that you want to hit"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ The second parameter is the URL headers object which is optional"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ We assign this to a variable and then [[`]]console.log[[/]] that response"
+                },
+                {
+                    "type": "divider"
+                },
+                {
+                    "type": "text",
+                    "content": "[[h3]]Sending POST requests[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Since we can’t view POST requests in the browser, we can use other tools to do so"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ One popular tool is Postman, but it requires a download and is a little hard to use"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ We can use Axios which is a JavaScript library to call APIs"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ To install Axios, run [[`]]npm i axios[[/]] in the terminal"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Then import it using const [[`]]axios = require(‘axios’);[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Follow the below code"
+                },
+                {
+                    "type": "image",
+                    "src": "/data/modules/webdev-assets/img7/6-1.png"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ We are using the async/await approach for this, and therefore, we are wrapping the statements in an async function"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ We await the [[`]]axios.post()[[/]] call which takes in 3 parameters (we only used 2 here)"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ The first parameter is the url endpoint of course"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ The second parameter is the body object that we accessed in the req object earlier"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ We are passing in the name, email, and username"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ The last parameter which is optional, are the URL Headers, but we are focus on them later"
+                }
+            ]
         },
         {
-            "type": "multiple_choice",
-            "question": "How do you select a class in CSS?",
-            "descriptions": [
-                "'.' is for classes.",
-                "'@' is not a valid selector",
-                "'-' is not a valid selector",
-                "'#' is for selecting by IDs"
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                ".class",
-                "@class",
-                "-class",
-                "#class"
-            ],
-            "correct": 0
-        },
-        {
-            "type": "multiple_choice",
-            "question": "Which is the correct way to add selector events?",
-            "descriptions": [
-                "This would select elements with id 'id' hover and class 'hover'",
-                "Good job! Use the ':' for selector events.",
-                "This would select elements with id 'id' hover and class 'hover'",
-                "The '@' is not used for selector events."
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "#id.hover",
-                "#id:hover",
-                ".hover#id",
-                "#id @hover"
-            ],
-            "correct": 1
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What is the purpose of constants?",
-            "descriptions": [
-                "Think about what the word 'constant' means.",
-                "Very close!",
-                "Constants are very useful.",
-                "Think about what the word 'constant' means."
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "To make a variable private to a class",
-                "To make a variable non-modifiable outside it's class",
-                "To keep make a variable non-modifiable",
-                "To declare a boolean variable"
-            ],
-            "correct": 2
-        },
-        {
-            "type": "multiple_choice",
-            "question": "Which of the following is NOT a DOM-manipulating statement?",
-            "descriptions": [
-                "This modifies HTMLElement's class.",
-                "This modifies HTMLElement's content.",
-                "This doesn't modify the DOM, but only retrieves the class."
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "HTMLElement.setAttribute(\"class\", \"top\")",
-                "HTMLElement.innerHTML = \"Top\"",
-                "HTMLElement.getAttribute(\"value\")",
-                ""
-            ],
-            "correct": 2
+            "type": "information",
+            "title": "Week 6 - Extra Info",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "[[h3]]Serve Files with Express.JS[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "If you would like to server static files (like HTML files), you have two options. \nOne is to use a static folder, and setting it as a static folder using [[`]]app.use(express.static('static'));[[/]]\nThen, you can put any files you want in the static folder, and then access them like that. \n\n[[b]]NOTE:[[/]]\n If a file is named hello.html in the static folder, you would access it like [[a]]https://server.com/hello.html[[/a]], NOT [[a]]https://server.com/static/hello.html[[/a]]\nThe other option is to use [[`]]res.sendFile(“pathToFile”)[[/]]"
+                },
+                {
+                    "type": "divider"
+                },
+                {
+                    "type": "text",
+                    "content": "[[h3]]Express.JS statuses[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "You can also send status codes in Express.JS! For example, if we wanted to indicate that the request has failed due to missing information, we could use [[`]]req.status(400).send(“error!”)[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Using this feature is really easy! Just simply add [[`]]req.status(statusCode).send(yourData)[[/]] to your code!"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ If you don’t put a status method, express automatically adds it as status code 200 (success)"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ For a full list of status codes, try looking at this article [[a]]https://en.wikipedia.org/wiki/List_of_HTTP_status_codes[[/a]] "
+                },
+                {
+                    "type": "divider"
+                },
+                {
+                    "type": "text",
+                    "content": "[[h3]]Server Sent Events[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "[[b]]What are Server Sent Events? (SSEs)[[/]]\n[[ ]][[ ]][[ ]]SSE’s are a way for a server to directly contact a client after the client opens a session. Let’s say that we have a stock exchange that needs to constantly send updates on price data to clients. It would be really inefficient to have clients constantly poll the server, so we use SSE’s"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ In a nutshell, we change the response header"
+                },
+                {
+                    "type": "image",
+                    "src": "/data/modules/webdev-assets/img7/7-0.png"
+                },
+                {
+                    "type": "text",
+                    "content": "Now, just run the program and navigate to localhost:3001/server-time"
+                },
+                {
+                    "type": "image",
+                    "src": "/data/modules/webdev-assets/img7/7-1.gif"
+                }
+            ]
         }
     ]
 }

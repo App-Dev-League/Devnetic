@@ -3,505 +3,357 @@
     "pages": [
         {
             "type": "information",
-            "title": "Week 6 - REST API and Express JS",
+            "title": "Week 8 - Advanced React.JS/JSX",
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]What is an API[[/]]"
+                    "content": "[[h3]]Why React?[[/]]"
                 },
                 {
                     "type": "text",
-                    "content": "➔ Stands for Application Programming Interface"
+                    "content": "➔ React.JS makes it easy to reuse components of a website (navbar, footer, etc.)"
                 },
                 {
                     "type": "text",
-                    "content": "➔ Allows you to return data based on a certain request"
+                    "content": "➔ React brings the benefits of Node.JS into the frontend. You can use any NPM package you want!"
                 },
                 {
                     "type": "text",
-                    "content": "➔ It is a connection between computers, or computer programs"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ You can create an API in almost any programming language"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ In JavaScript, a popular framework to use is Express.js"
+                    "content": "➔ React.JS makes it easy to make fast updates to a website (like displaying stock market data)"
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/webdev-assets/img7/0-0.png"
-                }
-            ]
-        },
-        {
-            "type": "information",
-            "title": "Week 6 - Express.JS",
-            "elements": [
-                {
-                    "type": "text",
-                    "content": "[[h3]]What is Express.JS?[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Express.js is a Node.js framework for creating APIs"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Express.js allows you to create url endpoints that others can access to get certain data"
-                },
-                {
-                    "type": "image",
-                    "src": "/data/modules/webdev-assets/img7/1-0.png"
+                    "src": "/data/modules/webdev-assets/img9/0-0.png"
                 },
                 {
                     "type": "divider"
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Setting up Express.js[[/]]"
+                    "content": "[[h3]]React Components[[/]]"
                 },
                 {
                     "type": "text",
-                    "content": "➔ To install Express.js, run npm i express in your terminal"
+                    "content": "➔ React components allow for us to quickly re-use common components (like a navbar)"
                 },
                 {
                     "type": "text",
-                    "content": "➔ This will install Express.js and allow you to use it in your code"
+                    "content": "➔ When you are writing code inside of a component, you can treat it like it’s own HTML website! (If you have a class named “hello” in one component, but also another element with the “hello” class in a different component, they will not interfere with one another."
                 },
                 {
                     "type": "text",
-                    "content": "➔ To import this module and get set up, follow the below code"
+                    "content": "➔ Components are a bit like Javascript functions. You can pass parameters in by using React “props”, and you [[`]]return[[/]] the HTML/JSX code!"
+                }
+            ]
+        },
+        {
+            "type": "information",
+            "title": "Week 8 - Creating your first React Component",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "➔ Once you navigate to your replit, replicate the filesystem to the right. Mainly, pay attention to the “components” folder - this is where we’ll be putting all of our components"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ After this, navigate to the “header.jsx” file and import the React module and the header.module.css file."
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Then, create a function with a return function inside returning some HTML! Once you’re satisfied, export the function, (since remember, this is treated as a JS module)"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ If you don’t see anything yet, don’t worry. We still need to navigate to “main.jsx” and import the “Header” module and stick it into the DOM."
+                },
+                {
+                    "type": "image",
+                    "src": "/data/modules/webdev-assets/img9/1-0.png"
+                }
+            ]
+        },
+        {
+            "type": "information",
+            "title": "Week 8 - Passing parameters (props) into your React component",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "➔ To further increase a component’s reusability, pass parameters using react props"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ In a function, props can be accessed in the first function parameter."
+                },
+                {
+                    "type": "text",
+                    "content": "➔ To pass a prop to a component, use the component with a HTML attribute. For example, [[`]]<Navbar mood=“hi”/>[[/]]"
+                },
+                {
+                    "type": "image",
+                    "src": "/data/modules/webdev-assets/img9/2-0.png"
+                }
+            ]
+        },
+        {
+            "type": "information",
+            "title": "Week 8 - React classes/lifecycles",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "➔ Let’s take a quick detour and talk about React.JS classes. While functions get the job done easily, they don’t allow for much customization. "
+                },
+                {
+                    "type": "text",
+                    "content": "➔ In React Classes, the declaratory syntax is"
                 },
                 {
                     "type": "code",
-                    "content": "const express = require(\"express\")\n\nconst app = express();\nconst PORT = process.env.PORT || 3000;\n\napp.listen(PORT, () => console.log(`Example app listening at http://localhost:${PORT}`))",
+                    "content": "class yourName extends React.Component {}"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ In React Classes, there are many methods, and most notably:"
+                },
+                {
+                    "type": "text",
+                    "content": "[[ ]][[ ]]◆ [[`]]constructor(props)[[/]] allows you to get/set props/states/anything in the “this” variable"
+                },
+                {
+                    "type": "text",
+                    "content": "[[ ]][[ ]]◆ [[`]]componentDidMount()[[/]] allows you to run JS when as soon as the component is rendered for the first time  - This is a [[red]]lifecycle method[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "[[ ]][[ ]]◆ [[`]]componentWillUnmount()[[/]] allows you to run JS (to free up resources) when the component is about to be removed - This is a [[red]]lifecycle method[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "[[ ]][[ ]]◆ [[`]]render()[[/]] - what you put your return [html] statement in"
+                },
+                {
+                    "type": "image",
+                    "src": "/data/modules/webdev-assets/img9/3-0.png",
+                    "width": "60%"
+                }
+            ]
+        },
+        {
+            "type": "multiple_choice",
+            "question": "What is the method that runs when the component is first rendered?",
+            "code_template": "________(){\n    // run when component is first rendered\n}",
+            "answers": [
+                "componentWillMount()",
+                "componentHasMounted()",
+                "componentDidMount()",
+                "componentMounted()"
+            ],
+            "correct": 2,
+            "descriptions": [
+                "Incorrect. This is method is run right after the component is rendered for the first time.",
+                "Incorrect. This is not the correct syntax",
+                "Correct! This is the correct syntax",
+                "Incorrect. This is not the correct syntax"
+            ],
+            "points": 5,
+            "coins": 1
+        },
+        {
+            "type": "information",
+            "title": "Week 8 - React states",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "➔ React states allow for us to quickly update text in the DOM without manually forcing React to re-render."
+                },
+                {
+                    "type": "text",
+                    "content": "➔ In the “constructor” method inside of React classes, you can add "
+                },
+                {
+                    "type": "code",
+                    "content": "this.state = {“a JS object key”: “a value”};"
+                },
+                {
+                    "type": "text",
+                    "content": "[[ ]][[ ]]◆ You can ONLY add new keys/values to the “state” object in the constructor!"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ To update something in the “state” variable, use [[`]]this.setState({“key”: “new value”});[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ To read something in the “state” variable, use [[`]]this.state[“your key”][[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "[[ ]][[ ]]◆ (Note: you cannot use this method to update the “state” variable)"
+                },
+                {
+                    "type": "image",
+                    "src": "/data/modules/webdev-assets/img9/4-0.png"
+                },
+                {
+                    "type": "divider"
+                },
+                {
+                    "type": "text",
+                    "content": "React States (In Functional Components)"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ This creates two variables, one is the state itself, and the other is the function used to set new values to that state"
+                },
+                {
+                    "type": "code",
+                    "content": "const [count, setCount] = useState(0);"
+                }
+            ]
+        },
+        {
+            "type": "short_answer",
+            "question": "How would run the following Pseudocode? (In a class component)",
+            "code_template": "set-state of \"time\" to 10",
+            "answers": [
+                "this.setState({\"time\": 10})",
+                "this.setState({\"time\":10})",
+                "this.setState({time:10})",
+                "this.setState({time: 10})"
+            ],
+            "descriptions": {
+                "this.setState({\"time\": 10})": "Correct! This is the correct syntax for setting state in class components",
+                "this.setState({\"time\":10})": "Correct! This is the correct syntax for setting state in class components."
+            },
+            "description_default": "remember you must use the \"this\" variable and the \"setState\" method",
+            "points": 10,
+            "coins": 3
+        },
+        {
+            "type": "information",
+            "title": "Week 8 - Handling events in React",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "➔ In React.JS, handling events is very similar to HTML. For example, [[`]]onclick=“myFunction()”[[/]] becomes [[`]]onClick={myFunction}[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ All event handlers become camelCased, (onscroll -> onScroll)"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ If the current component is a class, then the event handler becomes [[`]]onclick={this.myFunction}[[/]] You will also need to bind the function in the constructor of the class with [[`]]this.myFunction = this.myFunction.bind(this)[[/]]. (We bind “this” to the function so the function will be able to access the correct “this” variable). Then, define the function as [[`]]myFunction() {yourStuff;}[[/]] "
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Preventing default actions in React.JS is different than HTML. In React.JS, you have to add [[`]]event.preventDefault();[[/]] in the function that is being called."
+                },
+                {
+                    "type": "image",
+                    "src": "/data/modules/webdev-assets/img9/5-0.png"
+                }
+            ]
+        },
+        {
+            "type": "information",
+            "title": "Week 8 - React repetitions and keys",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "➔ In React, you can easily make lists with a for-loop! (kinda)"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ To get started, first create an array of items "
+                },
+                {
+                    "type": "text",
+                    "content": "➔ ([[`]]var things = [“hi”, “foo”, “bar”, “hello”][[/]]) inside of the “render” method in a component"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ The array.map function allows us to loop through an array and get all of the values. We can apply the to React too, and loop through an array of items and render them!"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Use [[`]]things.map((thing, index) => {<h1 key={index}>{thing}</h1>})[[/]] to loop through the “things” array "
+                },
+                {
+                    "type": "code",
+                    "content": "render() {\n\tvar things = [\"hi\", \"foo\", \"bar\", \"hello\"]\n\treturn (\n\t\tthings.map((thing) => {\n\t\t\t<h1 key={thing}>{thing}</h1>\n\t\t}) \n\t)\n}"
+                },
+                {
+                    "type": "text",
+                    "content": "    Note! The element that you are repetitively looping over needs a “key” attribute. This can be anything you want, just make sure it’s unique. You can then use the key later to get the element"
+                }
+            ]
+        },
+        {
+            "type": "information",
+            "title": "Week 8 - React.JS forms",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "➔ React.JS forms are quite different from traditional HTML forms. React forms essential work by updating the component state everytime an input changes, and when the user clicks the submit button, it takes the states and you can do things with the data stored in the states"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ For example, let’s create a form with a submit handler of [[`]]{this.handleSubmit}[[/]]"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Next, let’s create an HTML text input box with the current state bound to it’s “value” attribute, and an onChange handler of [[`]]{this.handleChange}[[/]] "
+                },
+                {
+                    "type": "text",
+                    "content": "➔ Finally, let’s create an HTML submit button with a value of “submit button”"
+                },
+                {
+                    "type": "text",
+                    "content": "➔ We’re not out of the woods yet! We still need to create the [[`]]states[[/]] variable, and create the two [[`]]handleSubmit[[/]] and [[`]]handleChange[[/]] functions."
+                },
+                {
+                    "type": "code",
+                    "content": "class navbar extends React.Component {\n\tconstructor(props) {\n\t\tsuper(props);\n\t\tthis.state = { value: '' };\n\t\tthis.handleChange = this.handleChange.bind(this);\n\t\tthis.handleSubmit = this.handleSubmit.bind(this);\n\t}\n\thandleChange(event) {\n\t\tthis.setState({ value: event.target.value });\n\t}\n\thandleSubmit(event) {\n\t\talert(this.state.value);\n\t\tevent.preventDefault();\n\t}\n\trender() {\n\t\treturn (\n\t\t\t<form onSubmit={this.handleSubmit}>\n\t\t\t\t<input type=\"text\" value={this.state.value} onChange={this.handleChange} />\n\t\t\t\t<input type=\"submit\" value=\"Submit Button\" />\n\t\t\t</form>\n\t\t);\n\t}\n}",
                     "lang": "jsx"
                 }
             ]
         },
         {
             "type": "information",
-            "title": "Week 6 - GET Requests",
+            "title": "Week 8 - Lifting React states (making states more global)",
             "elements": [
                 {
                     "type": "text",
-                    "content": "➔ There are multiple different types of REST API calls"
+                    "content": "➔ Sometimes, in React, you may want to make one state available to more than one component. (You want one component to change another’s text)"
                 },
                 {
                     "type": "text",
-                    "content": "➔ The GET request is used when the user is getting data from the server"
-                },
-                {
-                    "type": "image",
-                    "src": "/data/modules/webdev-assets/img7/2-0.png",
-                    "width": "60%"
+                    "content": "➔ This can be accomplished by raising React states. There’s no new special syntax here, it’s just the concept. "
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Express.js GET Requests[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Let’s create our own GET request endpoint using Express.js"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Please reference the below code"
+                    "content": "➔ To accomplish this, first create a parent component. This will store all of the states. Next, bind and create a function called [[`]]handleChanges(changes)[[/]] Inside this, make it update a state (any state) based off of changes. Lastly, create a state in this component with a key called [[`]]value.[[/]]"
                 },
                 {
                     "type": "code",
-                    "content": "app.get(\"/endpointname\", (req, res) => {\n\tres.send(\"I am sending some data\")\n})"
-                }
-            ]
-        },
-        {
-            "type": "information",
-            "title": "Week 6 - Requests",
-            "elements": [
-                {
-                    "type": "text",
-                    "content": "[[h3]]Express.js Request Syntax[[/]]"
+                    "content": "class parent extends React.Component {\n\tconstructor(props) {\n\t\tsuper(props);\n\t\tthis.handleChanges = this.handleChanges.bind(this);\n\t\tthis.state = { value: 'something' };\n\t}\n\thandleChanges(newValue) {\n\t\tthis.setState({ value: newValue });\n\t}\n\trender() {\n\t\treturn (\n\t\t\t<div>\n\t\t\t\t<Component1 onChangeParent={this.handleChanges} />\n\t\t\t</div>\n\t\t);\n\t}\n}",
+                    "name": "Parent Component",
+                    "lang": "jsx"
                 },
                 {
                     "type": "text",
-                    "content": "➔ In the last example, you saw how to create a get request with Express.js"
+                    "content": "➔ Finally, import and use a non-existent (for now) component called component1. Pass a prop to it called [[`]]onChangeParent[[/]] with value of [[`]]{this.handleChanges}[[/]] "
                 },
                 {
                     "type": "text",
-                    "content": "➔ Let’s take a look at what each part actually means"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ First, we use the .get() function which is apart of the app object we created earlier"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ The .get() function takes in 2 parameters, the url endpoint (which can be named anything), and the callback function"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ The call back function gives you access to the request (req), and response (res) objects"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ To send data, use the res.send() method to send any type of data"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]Viewing Requests[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Now that we have created a basic API, let’s run it"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Run [[`]]node filename.js[[/]] (replace filename.js with the name of your file)"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Your server should be running on [[a]]http://localhost:3001[[/a]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ To access that GET request you created, go to [[a]]http://localhost:3001/endpointname[[/a]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ You should see the data that you sent displayed on your screen "
-                }
-            ]
-        },
-        {
-            "type": "information",
-            "title": "Week 6 - POST Requests",
-            "elements": [
-                {
-                    "type": "text",
-                    "content": "➔ In contrast to GET requests, POST requests allow the user to provide the API with data"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ POST requests are not viewable by your normal browser"
-                },
-                {
-                    "type": "image",
-                    "src": "/data/modules/webdev-assets/img7/4-0.png",
-                    "width": "60%"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]Express.js POST Requests[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Please reference the below code which shows you how to create a POST request endpoint with Express.js"
+                    "content": "➔ Congrats! Now, inside component1, once you call [[`]]this.props.onChangeParent(“newStateValue”)[[/]], it will update the states in the parent component!"
                 },
                 {
                     "type": "code",
-                    "content": "app.post(\"/endpointname\", (req, res) => {\n\tconst name = req.body.name;\n\tconst email = req.body.email;\n\tconst username = req.body.username;\n\n\tres.send(\"I am sending some data\")\n})"
-                }
-            ]
-        },
-        {
-            "type": "short_answer",
-            "question": "What is the type of request viewable by standard browsers?",
-            "code_template": "",
-            "answers": [
-                "get",
-                "GET"
-            ],
-            "descriptions": {
-                "get": "Correct! GET requests are viewable by standard browsers",
-                "GET": "Correct! GET requests are viewable by standard browsers"
-            },
-            "description_default": "Standard browsers make what type of request? Hint: They ___ resources from the server",
-            "points": 10,
-            "coins": 2
-        },
-        {
-            "type": "snippet_unlock",
-            "name": "Express.JS requests",
-            "code_template": "app.post(\"/endpointname\", (req, res) => {res.send(\"Hello World!\")})",
-            "description": "All Express.JS requests",
-            "snippet": {
-                "name": "Express.JS requests",
-                "id": "expressjs-requests",
-                "example": "app.get(\"/endpointname\", (req, res) => {res.send(\"Hello World!\")})",
-                "html": "app.{{snippet.attributes.type}}(\"/endpointname\", (req, res) => {res.send(\"Hello World!\")})",
-                "category": "API",
-                "attributes": [
-                    {
-                        "id": "type",
-                        "label": "Request type: (get, post, etc.)",
-                        "type": "input"
-                    }
-                ]
-            }
-        },
-        {
-            "type": "information",
-            "title": "Week 6 - Express.JS req Object",
-            "elements": [
-                {
-                    "type": "text",
-                    "content": "[[h3]]Intro[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ In the last example about the POST request, we used the [[`]]req[[/]] object in the callback function"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ This [[`]]req[[/]] object is usually used in POST requests and allows the user to send data"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ The [[`]]req[[/]] object has a property called body, which is an object that can store all kinds of data"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ In this example, we are expecting the user to provide us with a name, email, and username"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Then, we send a message saying that the data was successfully received"
-                },
-                {
-                    "type": "divider"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]req.body[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "This is the body, and this parameter is only accessible when the user POSTs data."
-                },
-                {
-                    "type": "text",
-                    "content": "➔ You can access data not included in the path"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ req.body will allow you to get data in a Javascript Object Literal"
-                },
-                {
-                    "type": "image",
-                    "src": "/data/modules/webdev-assets/img7/5-0.png",
-                    "width": "60%"
-                },
-                {
-                    "type": "text",
-                    "content": "To send data with a body, use \n[[`]]axios.post(‘https://server.com/endpoint’,{dogAmount: 1});[[/]]"
-                },
-                {
-                    "type": "divider"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]req.params[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "You can access this from any type of endpoint (POST, GET, etc.)\nThese are path parameters, that can be accessed with [[`]]req.params.pathParamName[[/]]"
-                },
-                {
-                    "type": "image",
-                    "src": "/data/modules/webdev-assets/img7/5-1.png",
-                    "width": "60%"
-                },
-                {
-                    "type": "text",
-                    "content": "Use axios to send path parameters.\n[[`]]axios.get(‘https://server.com/endpoint/id123/dogtype’);[[/]]"
-                },
-                {
-                    "type": "divider"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]req.query[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "These also can be used with any type of request (GET, POST, etc.)\nAccess these with [[`]]req.query.paramName[[/]]"
-                },
-                {
-                    "type": "image",
-                    "src": "/data/modules/webdev-assets/img7/5-2.png",
-                    "width": "60%"
-                },
-                {
-                    "type": "text",
-                    "content": "Send this with axios like this:\n[[`]]axios.get(‘https://server.com/endpoint?id=yourid&type=dog’);[[/]]"
-                }
-            ]
-        },
-        {
-            "type": "information",
-            "title": "Week 6 - Sending requests with Axios",
-            "elements": [
-                {
-                    "type": "text",
-                    "content": "[[h3]]Sending GET requests[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ We can also use axios to send GET requests"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Once again, we are using the async/await approach, so we are wrapping the code inside an async function"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Check out the below code for more details!"
-                },
-                {
-                    "type": "image",
-                    "src": "/data/modules/webdev-assets/img7/6-0.png",
-                    "width": "70%"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ We await the [[`]]axios.get[[/]] call which takes in 2 parameters (we only used 1)"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ The first parameter is the endpoint that you want to hit"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ The second parameter is the URL headers object which is optional"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ We assign this to a variable and then [[`]]console.log[[/]] that response"
-                },
-                {
-                    "type": "divider"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]Sending POST requests[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Since we can’t view POST requests in the browser, we can use other tools to do so"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ One popular tool is Postman, but it requires a download and is a little hard to use"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ We can use Axios which is a JavaScript library to call APIs"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ To install Axios, run [[`]]npm i axios[[/]] in the terminal"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Then import it using const [[`]]axios = require(‘axios’);[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Follow the below code"
-                },
-                {
-                    "type": "image",
-                    "src": "/data/modules/webdev-assets/img7/6-1.png"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ We are using the async/await approach for this, and therefore, we are wrapping the statements in an async function"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ We await the [[`]]axios.post()[[/]] call which takes in 3 parameters (we only used 2 here)"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ The first parameter is the url endpoint of course"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ The second parameter is the body object that we accessed in the req object earlier"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ We are passing in the name, email, and username"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ The last parameter which is optional, are the URL Headers, but we are focus on them later"
-                }
-            ]
-        },
-        {
-            "type": "information",
-            "title": "Week 6 - Extra Info",
-            "elements": [
-                {
-                    "type": "text",
-                    "content": "[[h3]]Serve Files with Express.JS[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "If you would like to server static files (like HTML files), you have two options. \nOne is to use a static folder, and setting it as a static folder using [[`]]app.use(express.static('static'));[[/]]\nThen, you can put any files you want in the static folder, and then access them like that. \n\n[[b]]NOTE:[[/]]\n If a file is named hello.html in the static folder, you would access it like [[a]]https://server.com/hello.html[[/a]], NOT [[a]]https://server.com/static/hello.html[[/a]]\nThe other option is to use [[`]]res.sendFile(“pathToFile”)[[/]]"
-                },
-                {
-                    "type": "divider"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]Express.JS statuses[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "You can also send status codes in Express.JS! For example, if we wanted to indicate that the request has failed due to missing information, we could use [[`]]req.status(400).send(“error!”)[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Using this feature is really easy! Just simply add [[`]]req.status(statusCode).send(yourData)[[/]] to your code!"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ If you don’t put a status method, express automatically adds it as status code 200 (success)"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ For a full list of status codes, try looking at this article [[a]]https://en.wikipedia.org/wiki/List_of_HTTP_status_codes[[/a]] "
-                },
-                {
-                    "type": "divider"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]Server Sent Events[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "[[b]]What are Server Sent Events? (SSEs)[[/]]\n[[ ]][[ ]][[ ]]SSE’s are a way for a server to directly contact a client after the client opens a session. Let’s say that we have a stock exchange that needs to constantly send updates on price data to clients. It would be really inefficient to have clients constantly poll the server, so we use SSE’s"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ In a nutshell, we change the response header"
-                },
-                {
-                    "type": "image",
-                    "src": "/data/modules/webdev-assets/img7/7-0.png"
-                },
-                {
-                    "type": "text",
-                    "content": "Now, just run the program and navigate to localhost:3001/server-time"
-                },
-                {
-                    "type": "image",
-                    "src": "/data/modules/webdev-assets/img7/7-1.gif"
+                    "content": "class Component1 extends React.Component {\n\tconstructor(props) {\n\t\tsuper(props);\n\t}\n\trender() {\n\t\tthis.props.onChangeParent(\"newStateValue\")\n\t\treturn;\n\t}\n}",
+                    "lang": "jsx",
+                    "name": "Child Component"
                 }
             ]
         }
