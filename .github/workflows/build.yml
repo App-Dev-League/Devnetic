@@ -13,16 +13,14 @@ jobs:
     
     steps:
     - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm ci
+    - run: npm run build
 
-    steps:
-      - uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-      - run: npm ci
-      - run: npm run build
-
-      - run: git config user.name github-actions
-      - run: git config user.email github-actions@github.com
-      - run: git add .
-      - run: git commit -am "Build"
-      - run: git push
+    - run: git config user.name github-actions
+    - run: git config user.email github-actions@github.com
+    - run: git add .
+    - run: git commit -am "Build"
+    - run: git push
