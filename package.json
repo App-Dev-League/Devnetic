@@ -1,4 +1,21 @@
 {
+  "name": "devnetic",
+  "description": "## Notes  - In the JSON file, for \"text\" elements, DO use the coloring syntax, ex. [[gray]]<!DOCTYPE>[[/]]  - In the JSON file, for \"code\" elements, do NOT use the coloring syntax. Just put the code you want to show up, and it'll automatically highlight it",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "node build.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/App-Dev-League/Devnetic.git"
+  },
+  "author": "App Dev League",
+  "license": "AGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/App-Dev-League/Devnetic/issues"
+  },
+  "homepage": "https://github.com/App-Dev-League/Devnetic#readme",
   "dependencies": {
     "html-minifier": "^4.0.0",
     "jsonminify": "^0.4.2",
