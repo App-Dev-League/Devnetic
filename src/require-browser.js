@@ -163,12 +163,11 @@ const { install, installAll, require, requireBrowser, _getInstalledData, _regist
 
 	const installAll = (filenames, options) => {
 		return new Promise(async (resolve, reject) => {
-			let allPromises = []
+			let installations = []
 			for(let i = 0; i < filenames.length; i++) {
-				allPromises.push(install(filenames[i], options))
-				//await install(filenames[i], options);
+				installations.push(install(filenames[i], options))
 			}
-			await Promise.all(allPromises)
+			await Promise.all(installations)
 			resolve();
 		});
 	}

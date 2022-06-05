@@ -1,5 +1,6 @@
 const codeTemplateToCode = require("../utils/codeTemplateToCode.js");
 const codeEditorHelper = require("../utils/codeEditor.js");
+const doesFileExist = require("../utils/doesFileExist.js");
 window.codeEditorHelper = codeEditorHelper
 const plugins = require("../utils/plugins.js");
 
@@ -117,7 +118,7 @@ class CodePreview extends tApp.Component {
 		}
 		modal.querySelector(".button-correct").onclick = async function () {
 			let value = modal.querySelector("input").value;
-			if (!doesFileExist(value)) return alert("File does not exist!") 
+			if (!(await doesFileExist(value))) return alert("File does not exist!") 
 			window.currentFileMetaData.dependencies = window.currentFileMetaData.dependencies || {};
 			window.currentFileMetaData.dependencies[value] = true;
 			tApp.getComponentFromDOM(document.getElementById("code-editor-tab")).save({
@@ -280,15 +281,3 @@ class CodePreview extends tApp.Component {
 }
 
 module.exports = CodePreview;
-
-function doesFileExist(urlToFile) {
-    var xhr = new XMLHttpRequest();
-    xhr.open('HEAD', urlToFile, false);
-    xhr.send();
-     
-    if (xhr.status == "404") {
-        return false;
-    } else {
-        return true;
-    }
-}

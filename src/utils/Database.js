@@ -1,3 +1,5 @@
+const doesFileExist = require("./doesFileExist.js");
+
 const Database = {
 	updateState: function(track, moduleNum, position) {
 		return new Promise(async (resolve, reject) => {
@@ -128,12 +130,14 @@ const Database = {
 		});
 	},
 	getModuleCount: function(track) {
-		let count = 0;
-		while (true) {
-			if (!doesFileExist(`/data/modules/${track}/${count}.json`)) break;
-			count++;
-		}
-		return count;
+		return new Promise(async (resolve, reject) => {
+			let count = 0;
+			while (true) {
+				if (!(await doesFileExist(`/data/modules/${track}/${count}.json`))) break;
+				count++;
+			}
+			resolve(count);
+		});
 	},
 	getCode: function(storage_id) {
 		return new Promise(async (resolve, reject) => {
@@ -260,12 +264,5 @@ const Database = {
 			resolve(true);
 		});
 	}
-}
-function doesFileExist(urlToFile) {
-    var xhr = new XMLHttpRequest();
-    xhr.open('HEAD', urlToFile, false);
-    xhr.send();
-     
-    return xhr.status !== 404;
 }
 module.exports = Database;

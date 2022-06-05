@@ -14,7 +14,7 @@
         data[value] = []
         var totalPages = 0;
         var userPages = 0;
-        let count = DB.getModuleCount(value);
+        let count = await DB.getModuleCount(value);
         var modules = []
         for (let i = 0; i < count; i++) {
             let module = await DB.getModuleData(value, i, 0);
