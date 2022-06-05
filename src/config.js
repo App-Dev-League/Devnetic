@@ -23,13 +23,14 @@
 	});
 
 	await installAll([
-		"Database.js",
+		"codeBlocks.js",
 		"codeEditor.js",
 		"codeTemplateToCode.js",
 		"compileSnippet.js",
-		"shuffleArray.js",
-		"codeBlocks.js",
-		"plugins.js"
+		"doesFileExist.js",
+		"Database.js",
+		"plugins.js",
+		"shuffleArray.js"
 	], {
 		path: "./utils/"
 	});
@@ -59,7 +60,142 @@
 			forbidden: "#/403"
 		},
 		caching: {
-			backgroundPages: ["/"],
+			backgroundPages: [
+				"/tApp.js",
+				"/require-browser.js",
+				"/",
+				"/config.js",
+				"/index.html",
+				"/manifest.json",
+
+				...([
+					"ai", "index", "intro-to-cs", "menu",
+					"my-projects", "webdev-projects", "webdev"
+				].map(file => `/views/${file}.html`)),
+
+				...([
+					"codeBlocks", "codeEditor", "codeTemplateToCode",
+					"compileSnippet", "Database", "doesFileExist",
+					"plugins", "shuffleArray"
+				].map(file => `/utils/${file}.js`)),
+
+				...([
+					"0", "1", "2", "3", "4", "5", "6", "7"
+				].map(file => `/data/modules/ai/${file}.json`)),
+
+				...([
+					"0", "1", "2", "3", "4", "5", "6", "7"
+				].map(file => `/data/modules/webdev/${file}.json`)),
+
+				...([
+					"0", "1", "2", "3", "4", "5", "6", "7"
+				].map(file => `/data/modules/webdev-projects/${file}.json`)),
+
+				...([
+					"0", "1"
+				].map(file => `/data/modules/intro-to-cs/${file}.json`)),
+
+				...([
+					"img0/0-0.png", "img0/1-0.png", "img0/2-0.png",
+					"img0/2-1.png", "img0/2-2.png", "img0/2-3.png",
+					"img0/4-0.png", "img0/4-1.png", "img0/4-2.png",
+					"img0/4-3.png", "img0/8-0.png", "img0/8-1.png",
+					"img0/8-2.png", "img0/8-3.png", "img1/0-0.png",
+					"img1/3-0.png", "img1/5-0.png", "img1/5-1.png",
+					"img1/5-2.png", "img1/6-0.png", "img1/7-0.png",
+					"img1/8-0.png", "img3/2-0.png", "img4/1-0.png",
+					"/img5/0-0.png", "/img5/1-0.png", "/img5/1-1.png",
+					"/img5/2-0.png", "/img5/2-1.png", "/img5/4-0.png",
+					"/img5/4-1.png", "/img5/5-0.png", "/img5/5-1.png",
+					"/img5/5-2.png", "/img5/6-0.png", "/img5/6-1.png",
+					"/img5/7-0.png", "/img5/7-1.gif", "/img6/0-0.png",
+					"/img6/0-1.png", "/img6/0-2.png", "/img6/1-0.png",
+					"/img6/2-0.png", "/img6/2-1.png", "/img6/3-0.png",
+					"/img6/3-1.png", "/img6/3-2.png", "/img6/4-0.png",
+					"/img6/5-0.png", "/img7/0-0.png", "/img7/1-0.png",
+					"/img7/2-0.png", "/img7/3-0.png", "/img7/4-0.png",
+					"/img7/5-0.png"
+				].map(file => `/data/modules/webdev-assets/${file}`)),
+
+				...([
+					"img0/0-0.png", "img0/1-0.png", "img1/0-1.png",
+					"img1/1-1.png", "img2/0-2.png", "img2/1-2.png",
+					"img2/2-2.png", "img2/3-2.png", "img2/4-2.png",
+					"img2/5-2.png", "img3/0-3.png", "img4/0-0.png",
+					"img4/0-1.png", "img4/1-0.png", "img4/1-1.png",
+					"img4/2-0.png", "img4/2-1.png", "img4/2-2.png",
+					"img4/3-0.png", "img4/3-1.png", "img4/3-2.png",
+ 					"img5/0-0.png", "img5/0-1.png", "img5/0-2.png",
+					"img5/0-3.png", "img5/0-4.png", "img5/1-0.png",
+					"img5/1-1.png", "img5/1-2.png", "img5/1-3.png",
+					"img5/1-4.png", "img5/1-5.png", "img5/2-0.gif",
+					"img5/2-1.png", "img5/2-2.png", "img5/2-3.png",
+					"img5/3-0.png", "img5/3-1.png", "img5/3-2.png",
+					"img5/3-3.png", "img5/3-4.png", "img5/3-5.png",
+					"img6/0-0.png", "img6/1-0.png", "img6/2-0.png",
+					"img6/3-0.png", "img6/4-0.png", "img6/4-1.png",
+					"img6/5-0.png", "img6/5-1.png", "img6/6-0.png",
+					"img7/0-0.png", "img7/0-1.png", "img7/0-2.png",
+					"img7/0-3.png", "img7/1-0.png", "img7/1-1.png",
+					"img7/1-2.png", "img7/1-3.png", "img7/1-4.png",
+					"img7/1-5.png", "img7/2-0.png", "img7/3-0.png",
+					"img7/3-1.png", "img7/3-2.png", "img7/3-3.png",
+					"img7/4-0.png", "img7/4-1.png", "img7/4-2.png",
+					"img7/4-3.png", "img7/4-4.png", "img7/4-5.png",
+					"img7/4-6.png", "img7/4-7.png"
+				].map(file => `/data/modules/ai-assets/${file}`)),
+
+				...([
+					"img0/0-0.png"
+				].map(file => `/data/modules/intro-to-cs-assets/${file}`)),
+
+				...([
+					"codeBlock", "CodeEditor", "CodePreview", "Congratulations",
+					"Editor", "ExplanationModal", "Information", "Input", 
+					"Instructions", "ModuleComponent", "ModulePage", "MultipleChoice",
+					"MultipleChoiceOption", "PluginPanel", "ShortAnswer", "SnippetUnlock",
+					"SnippetsPanel", "TabbedView"
+				].map(file => `/components/${file}.js`)),
+
+				"/assets/fonts/codicon.ttf",
+
+				...([
+					"Black.ttf", "BlackItalic.ttf", "Bold.woff2", "BoldItalic.ttf",
+					"ExtraBold.woff2", "ExtraBoldItalic.ttf", "ExtraLight.ttf",
+					"ExtraLightItalic.ttf", "Italic.ttf", "Light.ttf", "LightItalic.ttf",
+					"Regular.woff2", "SemiBold.woff2", "SemiBoldItalic.ttf"
+				].map(file => `/assets/fonts/Nunito/Nunito-${file}`)),
+
+				"/assets/fonts/Nunito/OFL.txt",
+
+				"/assets/html/code-editor.html",
+
+				...([
+					"icon", "screenshot"
+				].map(file => `/assets/img/${file}.png`)),
+
+				"/assets/libraries/highlightjs/atom-one-dark.css",
+				"/assets/libraries/highlightjs/highlight.min.js",
+				"/assets/libraries/monaco-editor/vs/loader.js",
+
+				...([
+					"ejs", "jquery.min"
+				].map(file => `/assets/libraries/${file}.js`)),
+
+				...([
+					"betterEditor/betterEditor.min.js", "betterEditor/betterEditor.png",
+					"betterEditor/VERSION.txt", "brython/brython.min.js",
+					"brython/brython.svg", "brython/VERSION.txt", "captCC/captCC.min.js",
+					"captCC/captCC.svg", "captCC/VERSION.txt", "hexy/hexy.min.js",
+					"hexy/logo.png", "hexy/VERSION.txt", "jscpp/jscpp.min.js",
+					"jscpp/jscpp.svg", "jscpp/VERSION.txt", "react/react.min.js",
+					"react/react.svg", "react/VERSION.txt", "showdown/showdown.min.js",
+					"showdown/markdown-logo.png", "showdown/VERSION.txt",
+					"typescript/typescript.min.js", "typescript/typescript.svg",
+					"typescript/VERSION.txt", "webperl/webperl.min.js",
+					"webperl/webperl.png", "webperl/VERSION.txt"
+				].map(file => `/assets/plugins/${file}`))
+			],
 			periodicUpdate: 60 * 1000,
 			persistent: true
 		}
@@ -311,7 +447,7 @@
 			data[value] = []
 			var totalPages = 0;
 			var userPages = 0;
-			let count = DB.getModuleCount(value);
+			let count = await DB.getModuleCount(value);
 			var modules = []
 			for (let i = 0; i < count; i++) {
 				let module = await DB.getModuleData(value, i, 0);
@@ -430,13 +566,11 @@
 	document.querySelector("#score").innerHTML = `${score.points} XP, ${score.coins} Coins`;
 
 	tApp.start().then(() => {
-		///*
 		if (window.environment !== "development") {
 			tApp.install().then(() => {
 				tApp.update();
 			});
 		}
-		//*/
 	});
 })();
 function recurseEjs(html, parameters={}) {
