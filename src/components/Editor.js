@@ -3,13 +3,7 @@ const codeEditorHelper = require("../utils/codeEditor.js");
 const DB = require("../utils/Database.js");
 const TabbedView = require("./TabbedView.js");
 const plugins = require("../utils/plugins.js");
-// ways to use codeEditorHelper: (all methods are synchronous)
-/*
-codeEditorHelper.updateLanguage("new language")
-codeEditorHelper.updateContent("New content to be displayed")
-let value = codeEditorHelper.getValue()
-codeEditorHelper.insertAtCursor("asdf")
-*/
+
 function makeid(length) {
 	var result = '';
 	var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
@@ -49,12 +43,15 @@ class Editor extends tApp.Component {
 		var filename = parentThis.parent.parent.data().files[tabindex] || this.state.file.filename;
 
 		if (document.getElementById("code-editor-run-btn") && (filename.split('.').pop().toLowerCase() === "html" || filename.split('.').pop().toLowerCase() === "png" || filename.split('.').pop().toLowerCase() === "jpg" || filename.split('.').pop().toLowerCase() === "jpeg" || filename.split('.').pop().toLowerCase() === "gif")) {
-			setTimeout(function () {
+			setTimeout(run, 100)
+			function run() {
+				if (!document.getElementById("code-frame").contentWindow.codeEditor) return setTimeout(run, 100)
 				document.getElementById("code-editor-run-btn").click()
-			}, 100)
+			}
 		}
 		function setPreviewHTML(html) {
 			let preview = document.getElementById("preview");
+			if (!preview) return;
 			let previewParent = preview.parentElement;
 			preview.parentElement.removeChild(preview);
 			preview = document.createElement("iframe");
@@ -199,6 +196,7 @@ class Editor extends tApp.Component {
 				if (window.addedEditorEventListeners) return
 				window.addedEditorEventListeners = true;
 				try {
+					console.log("ADDING EVENT LISTENERS")
 					document.querySelectorAll(".tab").forEach(element => {
 						if (element.innerText === "Preview") {
 							element.addEventListener("click", handleClicks)
@@ -946,6 +944,7 @@ try{
 							Perl.eval(code)
 						}
 					}
+					await new Promise((resolve) => setTimeout(resolve, 1000));
 					document.getElementById("code-frame").contentWindow.document.onkeydown = async function (e) {
 						tabindex = codeEditorHelper.getCurrentEditorIndex()
 						window.codeEditorSaved = false;

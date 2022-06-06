@@ -1471,6 +1471,9 @@
         childList: true
     })
     window.addEventListener('hashchange', function() {
+        var codeFrame = document.getElementById("code-frame");
+        if (codeFrame) codeFrame.parentElement.removeChild(codeFrame);
+
         window.scrollTo(0, 0);
         if (!window.location.hash.startsWith("#/learn")) {
             document.getElementById("module-progress-bar").style.width = 0;
