@@ -68,6 +68,7 @@
             </div>
             <% }) %>
         </div>
+        <div class="pie-chart-bg minimized"></div>
         <hr style="border: 1px solid #4e4e4e; margin-top: 30px; margin-bottom: 50px;">
         <div class="menu-progress-items">
             <% Object.entries(actions).forEach(([key, value]) => { %>
@@ -169,6 +170,18 @@
         transition: 0.5s transform;
     }
 
+    .pie-chart-bg {
+        position: fixed;
+        top: 50px;
+        left: 0;
+        width: calc(100vw - 10px);
+        height: 100px;
+        background-color: #282c34;
+        z-index: 1;
+    }
+    .pie-chart-bg.minimized{
+        display: none !important;
+    }
     .menu-track-title {
         font-weight: bold;
         text-align: center;
@@ -327,8 +340,10 @@
     document.getElementById("menu-wrapper").addEventListener("scroll", function() {
         if (this.scrollTop > 200) {
             document.getElementById("menu-wrapper").querySelector(".pie-chart-container").classList.add("minimized")
+            document.getElementById("menu-wrapper").querySelector(".pie-chart-bg").classList.remove("minimized")
         } else {
             document.getElementById("menu-wrapper").querySelector(".pie-chart-container").classList.remove("minimized")
+            document.getElementById("menu-wrapper").querySelector(".pie-chart-bg").classList.add("minimized")
         }
     })
 </script>
