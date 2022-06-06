@@ -1,29 +1,29 @@
 <div id="menu">
     <%
+     var moduleData = await fetch("/data/module_index.json");
+     moduleData = await moduleData.json();
+     var actions = moduleData.actions
      var data = {}
-     var actions = {
-         "Webdev Lessons": "webdev",
-         "Webdev Projects": "webdev-projects",
-         "AI Lessons": "ai",
-         //"Intro To CS": "intro-to-cs",
-     }
      window.menuData = {};
+
      for (let p = 0; p<Object.entries(actions).length; p++) {
         var key = Object.entries(actions)[p][0]
         var value = Object.entries(actions)[p][1]
         data[value] = []
         var totalPages = 0;
         var userPages = 0;
-        let count = await DB.getModuleCount(value);
+        let count = moduleData[value].module_meta_data.length
         var modules = []
         for (let i = 0; i < count; i++) {
-            let module = await DB.getModuleData(value, i, 0);
+            let module = moduleData[value].module_meta_data[i]
             let modulePosition = await DB.getModulePosition(value, i);
 
             data[value].push(modulePosition)
-
-            module.currentUserPosition = modulePosition;
-            modules.push(module);
+            modules.push({
+                currentUserPosition: modulePosition,
+                moduleLength: module.moduleLength,
+                title: module.name
+            });
             let length = module.moduleLength;
             totalPages += length;
         }
@@ -71,44 +71,44 @@
         <hr style="border: 1px solid #4e4e4e; margin-top: 30px; margin-bottom: 50px;">
         <div class="menu-progress-items">
             <% Object.entries(actions).forEach(([key, value]) => { %>
-                <div class="menu-progress-item menu-item-id-<%-value%>">
-                    <div class="menu-progress-item-header" style="display: block; margin-left: auto; margin-right: auto; width: fit-content;">
-                        <div class="set-size charts-container">
-                            <div class="pie-wrapper progress-30 pie-wrapper-id-<%-value%>">
-                                <span class="label">0<span class="smaller">%</span></span>
-                                <div class="pie">
-                                    <div class="left-side half-circle"></div>
-                                    <div class="right-side half-circle"></div>
-                                </div>
+            <div class="menu-progress-item menu-item-id-<%-value%>">
+                <div class="menu-progress-item-header" style="display: block; margin-left: auto; margin-right: auto; width: fit-content;">
+                    <div class="set-size charts-container">
+                        <div class="pie-wrapper progress-30 pie-wrapper-id-<%-value%>">
+                            <span class="label">0<span class="smaller">%</span></span>
+                            <div class="pie">
+                                <div class="left-side half-circle"></div>
+                                <div class="right-side half-circle"></div>
                             </div>
                         </div>
-                        <div class="menu-track-title">
-                            <%- key %>
-                        </div>
                     </div>
-                    <div class="menu-progress-item-map-wrapper" style="display: flex; justify-content: center; align-items: stretch; margin-top: 20px; margin-bottom: 50px;">
-                        <div class="left" style="border-right: 2px solid lightgrey; padding-right: 25px; width: 100%; text-align: right;">
-                            <span style="font-weight: bold; font-size: 1.1em;">Module Progress</span>
-                            <br>
-                            <span style="color: lightgrey">The lessons you'll have to take to <br>achieve 100% mastery of this topic</span>
-                        </div>
-                        <div class="right" style="width: 100%; padding-left: 25px;">
-                            <% for( let i = 0; i < window.menuData[value].data.length; i++ ) { %>
-                                <% if (window.menuData[value].data[i].currentUserPosition/window.menuData[value].data[i].moduleLength < 0.85) { %>
-                                    <div style="width: 14px; height: 14px; border-radius: 50%; border: 3px solid white; position: absolute; transform: translateX(-33px); background-color: #282C34;"></div>
-                                <% } else { %>
-                                    <div style="width: 14px; height: 14px; border-radius: 50%; border: 3px solid white; position: absolute; transform: translateX(-33px); background-color: white;"></div>
-                                <% } %>
-                                <a onclick="document.body.style.overflow='auto'" href="#/learn/<%-value%>/<%-i%>/<%-window.menuData[value].data[i].currentUserPosition%>" style="text-decoration: none;">
-                                    <span><%-window.menuData[value].data[i].data.title%></span> - 
-                                    <span><%-Math.round(window.menuData[value].data[i].currentUserPosition/window.menuData[value].data[i].moduleLength*100)%>%</span>
-                                </a>
-                                <br>
-                                <br>
-                            <% } %>
-                        </div>
+                    <div class="menu-track-title">
+                        <%- key %>
                     </div>
                 </div>
+                <div class="menu-progress-item-map-wrapper" style="display: flex; justify-content: center; align-items: stretch; margin-top: 20px; margin-bottom: 50px;">
+                    <div class="left" style="border-right: 2px solid lightgrey; padding-right: 25px; width: 100%; text-align: right;">
+                        <span style="font-weight: bold; font-size: 1.1em;">Module Progress</span>
+                        <br>
+                        <span style="color: lightgrey">The lessons you'll have to take to <br>achieve 100% mastery of this topic</span>
+                    </div>
+                    <div class="right" style="width: 100%; padding-left: 25px;">
+                        <% for( let i = 0; i < window.menuData[value].data.length; i++ ) { %>
+                        <% if (window.menuData[value].data[i].currentUserPosition/window.menuData[value].data[i].moduleLength < 0.85) { %>
+                        <div style="width: 14px; height: 14px; border-radius: 50%; border: 3px solid white; position: absolute; transform: translateX(-33px); background-color: #282C34;"></div>
+                        <% } else { %>
+                        <div style="width: 14px; height: 14px; border-radius: 50%; border: 3px solid white; position: absolute; transform: translateX(-33px); background-color: white;"></div>
+                        <% } %>
+                        <a onclick="document.body.style.overflow='auto'" href="#/learn/<%-value%>/<%-i%>/<%-window.menuData[value].data[i].currentUserPosition%>" style="text-decoration: none;">
+                            <span><%-window.menuData[value].data[i].title%></span> -
+                            <span><%-Math.round(window.menuData[value].data[i].currentUserPosition/window.menuData[value].data[i].moduleLength*100)%>%</span>
+                        </a>
+                        <br>
+                        <br>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
             <% }) %>
         </div>
     </div>
@@ -152,6 +152,7 @@
     #menu-wrapper.closed {
         transform: translateX(100vw);
     }
+
     .pie-chart-container.minimized {
         background-color: #282c34;
         border-bottom: 1px solid #4e4e4e;
@@ -163,9 +164,11 @@
         top: -60px;
         left: -5px;
     }
+
     .pie-chart-container {
         transition: 0.5s transform;
     }
+
     .menu-track-title {
         font-weight: bold;
         text-align: center;
@@ -193,6 +196,7 @@
     .pie-wrapper:nth-child(3n+1) {
         clear: both;
     }
+
     .pie-wrapper .pie {
         height: 100%;
         width: 100%;
@@ -201,6 +205,7 @@
         position: absolute;
         top: 0;
     }
+
     .pie-wrapper::after {
         content: '';
         position: absolute;
@@ -214,6 +219,7 @@
         z-index: 0;
         border-width: 13px;
     }
+
     .pie-wrapper .pie .half-circle {
         height: 100%;
         width: 100%;
@@ -277,6 +283,7 @@
     var actions = '<%-JSON.stringify(actions)%>';
     actions = JSON.parse(actions)
     var allData = window.menuData
+
     function showMainMenu() {
         document.getElementById("menu-wrapper").classList.toggle("closed");
         if (!document.getElementById("menu-wrapper").classList.contains("closed")) {
@@ -301,23 +308,23 @@
         pieWrapper.querySelector(".label").innerHTML = percentage + '<span class="smaller">%</span>';
     }
     async function setTargetPercentage(percentage, pieWrapper) {
-        for (let i = 0; i<percentage+1; i++) {
+        for (let i = 0; i < percentage + 1; i++) {
             await new Promise(resolve => setTimeout(resolve, 12));
             setPiePercentage(i, pieWrapper);
         }
     }
 
-    async function loadMainMenuData(){
+    async function loadMainMenuData() {
         Object.entries(actions).forEach(async ([key, value], index) => {
             var totalPages = allData[value].totalPages;
             var userPages = allData[value].userPages;
             let percentage = Math.round((userPages / totalPages) * 100);
-            document.querySelectorAll(".pie-wrapper-id-"+value).forEach(element => {
+            document.querySelectorAll(".pie-wrapper-id-" + value).forEach(element => {
                 setTargetPercentage(percentage, element);
             })
         })
     }
-    document.getElementById("menu-wrapper").addEventListener("scroll", function(){
+    document.getElementById("menu-wrapper").addEventListener("scroll", function() {
         if (this.scrollTop > 200) {
             document.getElementById("menu-wrapper").querySelector(".pie-chart-container").classList.add("minimized")
         } else {

@@ -8,8 +8,10 @@ var minify = require('html-minifier').minify;
 console.log("Clearing old files...");
 try {
     fs.rmSync('./docs', { recursive: true });
-}catch(err){}
+} catch (err) { }
 
+console.log("Updating module index...")
+createModuleIndex();
 console.log("Building...")
 copyFolderSync("./src", "./docs")
 console.log("Cleaning up...");
@@ -40,7 +42,7 @@ function copyFolderSync(from, to) {
                 htmlFile = minify(htmlFile, {
                     minifyCSS: true,
                     minifyJS: true,
-                  });
+                });
                 fs.writeFileSync(path.join(to, element), htmlFile);
             } else {
                 console.log("Copying " + element);
@@ -50,6 +52,33 @@ function copyFolderSync(from, to) {
             copyFolderSync(path.join(from, element), path.join(to, element));
         }
     });
+}
+function createModuleIndex() {
+    var json = {};
+    var actions = {
+        "Webdev Lessons": "webdev",
+        "Webdev Projects": "webdev-projects",
+        "AI Lessons": "ai",
+        //"Intro To CS": "intro-to-cs",
+    }
+    json.actions = actions;
+    Object.entries(actions).forEach(([key, value]) => {
+        json[value] = {
+            totalPages: 0,
+            module_meta_data: []
+        };
+        fs.readdirSync(`./src/data/modules/${value}`).forEach(element => {
+            if (element.endsWith("-example.json")) return;
+            console.log(element, value)
+            let fileData = JSON.parse(fs.readFileSync(`./src/data/modules/${value}/${element}`, "utf8"));
+            json[value].totalPages += fileData.pages.length;
+            json[value].module_meta_data.push({
+                name: fileData.pages[0].title,
+                moduleLength: fileData.pages.length
+            })
+        })
+    })
+    fs.writeFileSync("./src/data/module_index.json", JSON.stringify(json, null, 4));
 }
 function cleanUp() {
     let menu = fs.readFileSync("./docs/views/menu.html", "utf8");
