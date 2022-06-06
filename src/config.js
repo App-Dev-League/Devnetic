@@ -606,7 +606,10 @@ function confirmRedoLesson() {
 			modal.parentElement.removeChild(modal)
 			resolve(true)
 		}
-
+		continueButton.onclick = function (){
+			modal.parentElement.removeChild(modal)
+			resolve(false)
+		}
 		document.body.appendChild(modal);
 	})
 }
