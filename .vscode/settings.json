@@ -9,6 +9,6 @@
         }
     ],
     "search.exclude": {
-        "**/dist": true
+        "**/docs": true
     }
 }
