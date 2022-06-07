@@ -79,6 +79,53 @@
 					"plugins", "shuffleArray"
 				].map(file => `/utils/${file}.js`)),
 
+				"/assets/fonts/codicon.ttf",
+
+				...([
+					"Black.ttf", "BlackItalic.ttf", "Bold.woff2", "BoldItalic.ttf",
+					"ExtraBold.woff2", "ExtraBoldItalic.ttf", "ExtraLight.ttf",
+					"ExtraLightItalic.ttf", "Italic.ttf", "Light.ttf", "LightItalic.ttf",
+					"Regular.woff2", "SemiBold.woff2", "SemiBoldItalic.ttf"
+				].map(file => `/assets/fonts/Nunito/Nunito-${file}`)),
+
+				"/assets/fonts/Nunito/OFL.txt",
+
+				...([
+					"codeBlock", "CodeEditor", "CodePreview", "Congratulations",
+					"Editor", "ExplanationModal", "Information", "Input", 
+					"Instructions", "ModuleComponent", "ModulePage", "MultipleChoice",
+					"MultipleChoiceOption", "PluginPanel", "ShortAnswer", "SnippetUnlock",
+					"SnippetsPanel", "TabbedView"
+				].map(file => `/components/${file}.js`)),
+
+				"/assets/html/code-editor.html",
+
+				"/assets/libraries/highlightjs/atom-one-dark.css",
+				"/assets/libraries/highlightjs/highlight.min.js",
+				"/assets/libraries/monaco-editor/vs/loader.js",
+
+				...([
+					"ejs", "jquery.min"
+				].map(file => `/assets/libraries/${file}.js`)),
+
+				// ...([
+				// 	"betterEditor/betterEditor.min.js", "betterEditor/betterEditor.png",
+				// 	"betterEditor/VERSION.txt", "brython/brython.min.js",
+				// 	"brython/brython.svg", "brython/VERSION.txt", "captCC/captCC.min.js",
+				// 	"captCC/captCC.svg", "captCC/VERSION.txt", "hexy/hexy.min.js",
+				// 	"hexy/logo.png", "hexy/VERSION.txt", "jscpp/jscpp.min.js",
+				// 	"jscpp/jscpp.svg", "jscpp/VERSION.txt", "react/react.min.js",
+				// 	"react/react.svg", "react/VERSION.txt", "showdown/showdown.min.js",
+				// 	"showdown/markdown-logo.png", "showdown/VERSION.txt",
+				// 	"typescript/typescript.min.js", "typescript/typescript.svg",
+				// 	"typescript/VERSION.txt", "webperl/webperl.min.js",
+				// 	"webperl/webperl.png", "webperl/VERSION.txt"
+				// ].map(file => `/assets/plugins/${file}`)),
+
+				...([
+					"icon", "screenshot"
+				].map(file => `/assets/img/${file}.png`)),
+				
 				...([
 					"0", "1", "2", "3", "4", "5", "6", "7"
 				].map(file => `/data/modules/ai/${file}.json`)),
@@ -148,58 +195,12 @@
 				...([
 					"img0/0-0.png"
 				].map(file => `/data/modules/intro-to-cs-assets/${file}`)),
-
-				...([
-					"codeBlock", "CodeEditor", "CodePreview", "Congratulations",
-					"Editor", "ExplanationModal", "Information", "Input", 
-					"Instructions", "ModuleComponent", "ModulePage", "MultipleChoice",
-					"MultipleChoiceOption", "PluginPanel", "ShortAnswer", "SnippetUnlock",
-					"SnippetsPanel", "TabbedView"
-				].map(file => `/components/${file}.js`)),
-
-				"/assets/fonts/codicon.ttf",
-
-				...([
-					"Black.ttf", "BlackItalic.ttf", "Bold.woff2", "BoldItalic.ttf",
-					"ExtraBold.woff2", "ExtraBoldItalic.ttf", "ExtraLight.ttf",
-					"ExtraLightItalic.ttf", "Italic.ttf", "Light.ttf", "LightItalic.ttf",
-					"Regular.woff2", "SemiBold.woff2", "SemiBoldItalic.ttf"
-				].map(file => `/assets/fonts/Nunito/Nunito-${file}`)),
-
-				"/assets/fonts/Nunito/OFL.txt",
-
-				"/assets/html/code-editor.html",
-
-				...([
-					"icon", "screenshot"
-				].map(file => `/assets/img/${file}.png`)),
-
-				"/assets/libraries/highlightjs/atom-one-dark.css",
-				"/assets/libraries/highlightjs/highlight.min.js",
-				"/assets/libraries/monaco-editor/vs/loader.js",
-
-				...([
-					"ejs", "jquery.min"
-				].map(file => `/assets/libraries/${file}.js`)),
-
-				...([
-					"betterEditor/betterEditor.min.js", "betterEditor/betterEditor.png",
-					"betterEditor/VERSION.txt", "brython/brython.min.js",
-					"brython/brython.svg", "brython/VERSION.txt", "captCC/captCC.min.js",
-					"captCC/captCC.svg", "captCC/VERSION.txt", "hexy/hexy.min.js",
-					"hexy/logo.png", "hexy/VERSION.txt", "jscpp/jscpp.min.js",
-					"jscpp/jscpp.svg", "jscpp/VERSION.txt", "react/react.min.js",
-					"react/react.svg", "react/VERSION.txt", "showdown/showdown.min.js",
-					"showdown/markdown-logo.png", "showdown/VERSION.txt",
-					"typescript/typescript.min.js", "typescript/typescript.svg",
-					"typescript/VERSION.txt", "webperl/webperl.min.js",
-					"webperl/webperl.png", "webperl/VERSION.txt"
-				].map(file => `/assets/plugins/${file}`))
 			],
 			periodicUpdate: 60 * 1000,
 			persistent: true
 		}
 	}
+
 	if (window.environment == "development") config.caching = null;
 	tApp.configure(config);
 
