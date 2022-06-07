@@ -20,6 +20,7 @@ class Editor extends tApp.Component {
 		super(state, parent);
 	}
 	render(props) {
+		console.log("Rendering Editor with index: "+this.state.tabindex);
 		var self = this;
 		var shownNoPluginMessage = false;
 		let languages = {
@@ -81,6 +82,7 @@ class Editor extends tApp.Component {
 				text = parentThis.parent.parent.data().default[tabindex]
 				document.getElementById("code-editor-status").innerText = "Ready"
 			}
+			console.log(self.state)
 			if (window.unsavedFileCaches && window.unsavedFileCaches[tabindex.toString()]) {
 				text = window.unsavedFileCaches[tabindex.toString()]
 			}
@@ -1007,7 +1009,6 @@ try{
 				}, false);
 			}
 		}
-
 		return `<div id="code-editor-tab">
 		<div class="code-editor-options">
 			<span id="code-editor-status" style="display: inline-block; margin-left: 23px; margin-top: 10px;">Downloading code...</span>
@@ -1123,7 +1124,6 @@ class TabbedEditor extends tApp.Component {
 	render() {
 		delete window.addedEditorEventListeners;
 		this.getData()
-		console.log("Rendering tabbed editor")
 		return `<div style="position: absolute; left: 0; width: 100%; transform: translateX(-50%);">
 		${this.state.tabbedView}
 		<span class="codicon codicon-new-file" style="position: absolute; left: calc(var(--editorLeftTabWidth) + 45vw); top: 20px; cursor: pointer; z-index: 2"></span>

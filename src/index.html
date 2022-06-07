@@ -1345,6 +1345,11 @@
 </html>
 <style>
     @font-face {
+        font-family: 'Codicon';
+        src: url("/assets/fonts/codicon.ttf");
+    }
+
+    @font-face {
         font-family: 'Nunito';
         src: url("/assets/fonts/Nunito/Nunito-Regular.woff2");
     }
@@ -1362,11 +1367,6 @@
     @font-face {
         font-family: 'Nunito-ExtraBold';
         src: url("/assets/fonts/Nunito/Nunito-ExtraBold.woff2");
-    }
-
-    @font-face {
-        font-family: 'Codicon';
-        src: url("/assets/fonts/codicon.ttf");
     }
 </style>
 <!-- Codicon font stuff -->
@@ -1474,6 +1474,9 @@
         var codeFrame = document.getElementById("code-frame");
         if (codeFrame) codeFrame.parentElement.removeChild(codeFrame);
 
+        delete window.unsavedFileCaches
+        delete window.monacoAlreadyLoaded
+        
         window.scrollTo(0, 0);
         if (!window.location.hash.startsWith("#/learn")) {
             document.getElementById("module-progress-bar").style.width = 0;

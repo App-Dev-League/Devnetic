@@ -196,7 +196,7 @@
 					"img0/0-0.png"
 				].map(file => `/data/modules/intro-to-cs-assets/${file}`)),
 			],
-			periodicUpdate: 60 * 1000,
+			periodicUpdate: 60 * 60 * 1000,
 			persistent: true
 		}
 	}
