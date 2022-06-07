@@ -37,7 +37,16 @@ module.exports = {
         return plugin
     },
     async download(pluginId, cont, done, silent) {
-        let code = await fetch("/assets/plugins/" + pluginId + "/" + pluginId + ".min.js");
+        var code;
+        try {
+            code = await fetch("/assets/plugins/" + pluginId + "/" + pluginId + ".min.js");
+        }catch(err) {
+            codeEditorHelper.showAlertModal("We couldn't download the plugin! Check your internet connection and try again", [{
+                text: "Ok", onclick: function () { codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index')) }
+            }], "codicon-error")
+            if (done) done("failed")
+            return false;
+        }
         let tmpcode = code.clone()
 
         if (cont) cont(code.clone())

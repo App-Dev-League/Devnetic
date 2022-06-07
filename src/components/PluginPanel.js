@@ -57,11 +57,16 @@ class PluginPanel extends tApp.Component {
                 plugin.querySelector(".loading-bar-container").style.opacity = 1;
                 plugin.querySelector(".loading-bar").style.width = Math.round(bytesReceived / code_size * 100) + "%";
             }
-        }, function () {
-            plugin.querySelector(".loading-bar-container").style.opacity = 0;
-            pluginpanel.setState("update", "update")
-            let x = plugins.availablePlugins().find(plugin => plugin.id == id)
-            if (x.onInstall) eval(x.onInstall)
+        }, function (status) {
+            if (status === "failed") {
+                plugin.querySelector(".loading-bar-container").style.opacity = 0;
+                pluginpanel.setState("update", "update")
+            } else {
+                plugin.querySelector(".loading-bar-container").style.opacity = 0;
+                pluginpanel.setState("update", "update")
+                let x = plugins.availablePlugins().find(plugin => plugin.id == id)
+                if (x.onInstall) eval(x.onInstall)
+            }
         })
     }
     uninstall(id) {
