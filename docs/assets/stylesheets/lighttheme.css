@@ -198,3 +198,9 @@ code.hljs {
 .pie-wrapper .label {
     margin: -2px;
 }
+#code-editor-run-btn {
+    color: whitesmoke !important;
+}
+.short-answer-button {
+    color: whitesmoke !important;
+}
