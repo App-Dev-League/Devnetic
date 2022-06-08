@@ -96,9 +96,9 @@
                     <div class="right" style="width: 100%; padding-left: 25px;">
                         <% for( let i = 0; i < window.menuData[value].data.length; i++ ) { %>
                         <% if (window.menuData[value].data[i].currentUserPosition/window.menuData[value].data[i].moduleLength < 0.85) { %>
-                        <div style="width: 14px; height: 14px; border-radius: 50%; border: 3px solid white; position: absolute; transform: translateX(-33px); background-color: #282C34;"></div>
+                        <div class="menu-icon-not-completed"></div>
                         <% } else { %>
-                        <div style="width: 14px; height: 14px; border-radius: 50%; border: 3px solid white; position: absolute; transform: translateX(-33px); background-color: white;"></div>
+                        <div class="menu-icon-completed"></div>
                         <% } %>
                         <a onclick="document.body.style.overflow='auto'" href="#/learn/<%-value%>/<%-i%>/<%-window.menuData[value].data[i].currentUserPosition%>" style="text-decoration: none;">
                             <span><%-window.menuData[value].data[i].title%></span> -
@@ -114,6 +114,11 @@
         </div>
     </div>
 </div>
+
+<div id="toggle-theme">
+    <a onclick="toggleTheme()" title="Toggle theme" class="my-projects codicon codicon-color-mode" style="position: fixed; top: 60px; left: 10px; width: fit-content;"></a>
+</div>
+
 <style>
     *,
     *:before,
@@ -179,9 +184,11 @@
         background-color: #282c34;
         z-index: 1;
     }
-    .pie-chart-bg.minimized{
+
+    .pie-chart-bg.minimized {
         display: none !important;
     }
+
     .menu-track-title {
         font-weight: bold;
         text-align: center;
@@ -290,6 +297,26 @@
 
     .pie-wrapper.moreThan180 .pie {
         clip: rect(auto, auto, auto, auto) !important
+    }
+
+    .menu-icon-not-completed {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        border: 3px solid white;
+        position: absolute;
+        transform: translateX(-33px);
+        background-color: #282C34;
+    }
+
+    .menu-icon-completed {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        border: 3px solid white;
+        position: absolute;
+        transform: translateX(-33px);
+        background-color: white;
     }
 </style>
 <script>

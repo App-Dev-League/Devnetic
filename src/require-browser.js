@@ -158,14 +158,19 @@ const { install, installAll, require, requireBrowser, _getInstalledData, _regist
 					}
 				})
 			}
-		});
+		})
 	}
 
-	const installAll = (filenames, options) => {
+	const installAll = (filenames, options, onFileInstall) => {
 		return new Promise(async (resolve, reject) => {
 			let installations = []
 			for(let i = 0; i < filenames.length; i++) {
-				installations.push(install(filenames[i], options))
+				installations.push(new Promise((resolve, reject) => {
+					install(filenames[i], options).then(() => {
+						if (onFileInstall) onFileInstall(filenames[i]);
+						resolve();
+					})
+				}));
 			}
 			await Promise.all(installations)
 			resolve();

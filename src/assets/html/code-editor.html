@@ -17,7 +17,7 @@
         window.codeEditor = monaco.editor.create(document.getElementById("code-container"), {
             value: `...`,
             language: window.editorLanguage,
-            theme: "vs-dark",
+            theme: "vs-"+(localStorage.getItem("theme") || "dark"),
             automaticLayout: true
         });
         window.monaco = monaco;

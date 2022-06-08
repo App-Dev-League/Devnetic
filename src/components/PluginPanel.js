@@ -96,7 +96,7 @@ class PluginPanel extends tApp.Component {
         getPluginData()
         return `<div>
         ${this.state.plugins.map(plugin => {
-            return `<div id="plugin-list-${plugin.id}" style="margin-bottom: 20px">
+            return `<div id="plugin-list-${plugin.id}" style="margin-bottom: 20px" class="plugin-itm">
                     <img src="${plugin.image}" style="width: 60px; display: inline-block"/>
                     <div style="display: inline-block; margin-left: 20px; vertical-align: top; width: 80%">
                         <div>

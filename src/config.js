@@ -20,7 +20,7 @@
 		"PluginPanel.js"
 	], {
 		path: "./components/"
-	});
+	}, newFileCallback);
 
 	await installAll([
 		"codeBlocks.js",
@@ -33,7 +33,7 @@
 		"shuffleArray.js"
 	], {
 		path: "./utils/"
-	});
+	}, newFileCallback);
 	await install("./assets/libraries/ejs.js")
 
 
@@ -108,19 +108,7 @@
 					"ejs", "jquery.min"
 				].map(file => `/assets/libraries/${file}.js`)),
 
-				// ...([
-				// 	"betterEditor/betterEditor.min.js", "betterEditor/betterEditor.png",
-				// 	"betterEditor/VERSION.txt", "brython/brython.min.js",
-				// 	"brython/brython.svg", "brython/VERSION.txt", "captCC/captCC.min.js",
-				// 	"captCC/captCC.svg", "captCC/VERSION.txt", "hexy/hexy.min.js",
-				// 	"hexy/logo.png", "hexy/VERSION.txt", "jscpp/jscpp.min.js",
-				// 	"jscpp/jscpp.svg", "jscpp/VERSION.txt", "react/react.min.js",
-				// 	"react/react.svg", "react/VERSION.txt", "showdown/showdown.min.js",
-				// 	"showdown/markdown-logo.png", "showdown/VERSION.txt",
-				// 	"typescript/typescript.min.js", "typescript/typescript.svg",
-				// 	"typescript/VERSION.txt", "webperl/webperl.min.js",
-				// 	"webperl/webperl.png", "webperl/VERSION.txt"
-				// ].map(file => `/assets/plugins/${file}`)),
+				"/assets/stylesheets/lighttheme.css",
 
 				...([
 					"icon", "screenshot"

@@ -3,6 +3,7 @@
 <script>
     window.environment = "development"
 </script>
+
 <head>
     <script src="/assets/libraries/jquery.min.js"></script>
     <title>Devnetic Learning App</title>
@@ -1261,7 +1262,41 @@
             opacity: 1;
             transition: 0.2s all !important;
         }
+        .changing-themes * {
+            transition: 1s all !important;
+        }
     </style>
+    <script>
+        changeTheme(localStorage.getItem("theme") || "dark");
+
+        function toggleTheme() {
+            let currentTheme = localStorage.getItem("theme");
+            document.body.classList.add("changing-themes")
+            if (currentTheme === "light") {
+                localStorage.setItem("theme", "dark");
+                changeTheme("dark");
+            } else {
+                localStorage.setItem("theme", "light");
+                changeTheme("light");
+            }
+            setTimeout(function() {
+                document.body.classList.remove("changing-themes")
+            }, 1000);
+        }
+
+        function changeTheme(to) {
+            if (to === "dark") {
+                let stylesheet = document.getElementById("theme-stylesheet");
+                if (stylesheet) stylesheet.parentElement.removeChild(stylesheet);
+            } else {
+                let stylesheet = document.createElement("link");
+                stylesheet.setAttribute("id", "theme-stylesheet");
+                stylesheet.setAttribute("rel", "stylesheet");
+                stylesheet.setAttribute("href", "/assets/stylesheets/lighttheme.css");
+                document.head.appendChild(stylesheet)
+            }
+        }
+    </script>
 </head>
 
 
@@ -1284,12 +1319,12 @@
     </div>
     <script>
         let downloadFileCount = 0;
+
         function newFileCallback() {
             downloadFileCount++
             document.getElementById("loading-filecount").innerHTML = downloadFileCount + "/26";
             document.getElementById("loading-loading-bar").style.width = (downloadFileCount / 26) * 100 + "%";
         }
-        
     </script>
     <tapp-main>
         <div class="loading-modal">
@@ -1441,6 +1476,10 @@
         content: "\ea78";
     }
 
+    .codicon-color-mode:before {
+        content: "\eac6";
+    }
+
     @keyframes codicon-loading {
         0% {
             transform: rotate(0deg);
@@ -1476,7 +1515,7 @@
 
         delete window.unsavedFileCaches
         delete window.monacoAlreadyLoaded
-        
+
         window.scrollTo(0, 0);
         if (!window.location.hash.startsWith("#/learn")) {
             document.getElementById("module-progress-bar").style.width = 0;
