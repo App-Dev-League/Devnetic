@@ -1509,7 +1509,8 @@
     observer.observe(document.querySelector("body > tapp-main"), {
         childList: true
     })
-    window.addEventListener('hashchange', function() {
+    window.addEventListener('hashchange', onWindowHashChange)
+    function onWindowHashChange() {
         var codeFrame = document.getElementById("code-frame");
         if (codeFrame) codeFrame.parentElement.removeChild(codeFrame);
 
@@ -1523,8 +1524,7 @@
         } else {
             document.getElementById("module-progress-bar-wrapper").style.pointerEvents = "all";
         }
-    })
-
+    }
     function nodeScriptReplace(node) {
         if (nodeScriptIs(node) === true) {
             node.parentNode.replaceChild(nodeScriptClone(node), node);

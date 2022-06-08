@@ -602,3 +602,8 @@ function confirmRedoLesson() {
 		document.body.appendChild(modal);
 	})
 }
+let redirectFunction = tApp.redirect;
+tApp.redirect = function (path, title) {
+	redirectFunction(path, title);
+	onWindowHashChange()
+}
