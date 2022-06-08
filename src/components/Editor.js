@@ -412,8 +412,10 @@ class Editor extends tApp.Component {
 									moduleCode = await DB.getCode(self.parent.parent.data().storage_id[moduleIndex]);
 								}
 								if (module.endsWith(".png") || module.endsWith(".jpg") || module.endsWith(".jpeg") || module.endsWith(".gif")) {
+									moduleCode = codeEditorHelper.getTextWithoutMetaData(moduleCode)
 									return `data:image/png;base64,${btoa(moduleCode)}`
 								}
+								moduleCode = codeEditorHelper.getTextWithoutMetaData(moduleCode)
 								return `data:text/plain;base64,` + plugins.Base64.encode(moduleCode);
 							})
 							html = await replaceAsync(html, /<link(.*)(?<=href=("|'))(.*)(?=("|'))/g, async function (module) {
@@ -436,6 +438,7 @@ class Editor extends tApp.Component {
 									} else {
 										moduleCode = await DB.getCode(self.parent.parent.data().storage_id[moduleIndex]);
 									}
+									moduleCode = codeEditorHelper.getTextWithoutMetaData(moduleCode)
 									return `data:text/plain;base64,` + plugins.Base64.encode(moduleCode);
 								})
 								return module;
@@ -741,7 +744,7 @@ try{
 										moduleCode = await DB.getCode(self.parent.parent.data().storage_id[moduleIndex]);
 									}
 
-
+									moduleCode = codeEditorHelper.getTextWithoutMetaData(moduleCode)
 									moduleCode = moduleCode.replaceAll(/import([\s\S]*?)(?='|").*/g, function (e) {
 										if (e.replaceAll("\"", "'").match(/(?<=')(.*)(?=')/g)[0] === "react") return "";
 										if (e.replaceAll("\"", "'").match(/(?<=')(.*)(?=')/g)[0] === "react-dom") return "";
