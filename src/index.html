@@ -1317,6 +1317,9 @@
             <div class="name"></div>
         </div>
     </div>
+
+    <a onclick="goBack()" title="Go back" class="my-projects codicon codicon-arrow-left none" id="back-btn" style="position: absolute; top: 60px; left: 10px; width: fit-content; z-index: 6;"></a>
+
     <script>
         let downloadFileCount = 0;
 
@@ -1479,7 +1482,9 @@
     .codicon-color-mode:before {
         content: "\eac6";
     }
-
+    .codicon-arrow-left:before {
+        content: "\ea9b";
+    }
     @keyframes codicon-loading {
         0% {
             transform: rotate(0deg);
@@ -1521,8 +1526,19 @@
         if (!window.location.hash.startsWith("#/learn")) {
             document.getElementById("module-progress-bar").style.width = 0;
             document.getElementById("module-progress-bar-wrapper").style.pointerEvents = "none";
+            document.getElementById("back-btn").classList.add("none")
         } else {
             document.getElementById("module-progress-bar-wrapper").style.pointerEvents = "all";
+            if (window.location.hash.split("/")[4] !== "0") document.getElementById("back-btn").classList.remove("none")
+            else document.getElementById("back-btn").classList.add("none")
+        }
+
+        if (window.location.hash.toLowerCase().includes("projects/")) document.getElementById("back-btn").classList.add("none")
+    }
+    function goBack() {
+        var hash = window.location.hash;
+        if (hash.startsWith("#/learn/") && hash.split("/")[4] !== "0") {
+            tApp.redirect(`#/learn/${hash.split("/")[2]}/${hash.split("/")[3]}/${Number(hash.split("/")[4])-1}`)
         }
     }
     function nodeScriptReplace(node) {
@@ -1633,6 +1649,7 @@
             reader.readAsText(file)
         }
     }
+    onWindowHashChange()
 </script>
 <script>
     function cipher(salt) {
