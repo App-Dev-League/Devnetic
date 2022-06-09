@@ -354,8 +354,11 @@ class CodeEditor extends ModuleComponent {
 							}
 							await sleep(1000)
 						} else if (typeof action.execOnDOM !== "undefined") {
+							const AsyncFunction = Object.getPrototypeOf(async function(){}).constructor;
 							let dom = document.getElementById("preview").contentWindow;
-							eval("dom." + action.execOnDOM)
+							let exec = new AsyncFunction("window", "document", action.execOnDOM);
+							await exec(dom, dom.document)
+							await sleep(150)
 						} else if (typeof action.checkDOM !== "undefined") {
 							let dom = document.getElementById("preview").contentWindow;
 							let result = new Function([], "var dom = document.getElementById('preview').contentWindow; return " + "dom." + action.command)();
