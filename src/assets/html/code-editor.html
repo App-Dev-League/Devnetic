@@ -6,6 +6,7 @@
 <script>
     window.loadRequire = require;
     window.monacoLoaded = function() {}
+    window.listeners = {}
 </script>
 <script>
     loadRequire.config({
@@ -14,11 +15,28 @@
         }
     });
     loadRequire(['vs/editor/editor.main'], function() {
+        var KM = monaco.KeyMod;
+        var KC = monaco.KeyCode;
         window.codeEditor = monaco.editor.create(document.getElementById("code-container"), {
             value: `...`,
             language: window.editorLanguage,
-            theme: "vs-"+(localStorage.getItem("theme") || "dark"),
+            theme: "vs-" + (localStorage.getItem("theme") || "dark"),
             automaticLayout: true
+        });
+        window.codeEditor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function() {
+            if (window.listeners.ctrlEnter) window.listeners.ctrlEnter();
+        });
+        window.codeEditor.addCommand(monaco.KeyMod.Alt | monaco.KeyCode.KEY_N, function() {
+            if (window.listeners.altN) window.listeners.altN()
+        });
+        window.codeEditor.addCommand(monaco.KeyMod.Alt | monaco.KeyCode.KEY_U, function() {
+            if (window.listeners.altU) window.listeners.altU()
+        });
+        window.codeEditor.addCommand(monaco.KeyCode.F2, function() {
+            if (window.listeners.f2) window.listeners.f2()
+        });
+        window.codeEditor.addCommand(monaco.KeyMod.Alt | monaco.KeyCode.Delete, function() {
+            if (window.listeners.altDel) window.listeners.altDel()
         });
         window.monaco = monaco;
         window.postMessage({

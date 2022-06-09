@@ -20,7 +20,7 @@ class Editor extends tApp.Component {
 		super(state, parent);
 	}
 	render(props) {
-		console.log("Rendering Editor with index: "+this.state.tabindex);
+		console.log("Rendering Editor with index: " + this.state.tabindex);
 		var self = this;
 		var shownNoPluginMessage = false;
 		let languages = {
@@ -973,6 +973,27 @@ try{
 								document.getElementById("code-editor-status").innerText = "Ready"
 							}, 500)
 						}
+					}
+					document.getElementById("code-frame").contentWindow.listeners.ctrlEnter = function () {
+						if (document.getElementById("code-editor-run-btn")) document.getElementById("code-editor-run-btn").click();
+					}
+					document.getElementById("code-frame").contentWindow.listeners.altN = function () {
+						if (document.querySelector(".codicon-new-file")) document.querySelector(".codicon-new-file").click();
+					}
+					document.getElementById("code-frame").contentWindow.listeners.altU = function () {
+						if (document.querySelector(".codicon-cloud-upload")) document.querySelector(".codicon-cloud-upload").click();
+					}
+					document.getElementById("code-frame").contentWindow.listeners.f2 = function () {
+						document.querySelector("#code-editor-component .tab-selected").dispatchEvent(new CustomEvent('contextmenu'));
+						document.querySelectorAll("#editor-tab-context-menu span").forEach(element => {
+							if (element.getAttribute("data-text") === "rename") element.click()
+						})
+					}
+					document.getElementById("code-frame").contentWindow.listeners.altDel = function () {
+						document.querySelector("#code-editor-component .tab-selected").dispatchEvent(new CustomEvent('contextmenu'));
+						document.querySelectorAll("#editor-tab-context-menu span").forEach(element => {
+							if (element.getAttribute("data-text") === "delete") element.click()
+						})
 					}
 					window.codeEditorSaved = true;
 				} catch (err) {
