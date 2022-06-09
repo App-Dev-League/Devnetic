@@ -66,7 +66,12 @@ header * {
     background: black !important;
     color: white !important;
 }
-
+.console-input {
+    color: black !important;
+}
+.codicon-new-file::before {
+    color: black !important
+}
 .image-wrapper img {
     box-shadow: var(--shadow) !important;
 }
