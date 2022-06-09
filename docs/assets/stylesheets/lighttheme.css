@@ -66,7 +66,12 @@ header * {
     background: black !important;
     color: white !important;
 }
-
+.console-input {
+    color: black !important;
+}
+.codicon-new-file::before {
+    color: black !important
+}
 .image-wrapper img {
     box-shadow: var(--shadow) !important;
 }
@@ -203,4 +208,15 @@ code.hljs {
 }
 .short-answer-button {
     color: whitesmoke !important;
+}
+#editor-tab-context-menu {
+    background-color: white !important;
+    box-shadow: var(--shadow);
+}
+#editor-tab-context-menu span:hover {
+    background-color: #0060C0;
+    color: white !important;
+}
+#editor-tab-context-menu span:hover *{
+    color: white !important;
 }
