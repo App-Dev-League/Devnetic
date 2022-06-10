@@ -950,7 +950,6 @@ try{
 							Perl.eval(code)
 						}
 					}
-					await new Promise((resolve) => setTimeout(resolve, 1000));
 					document.getElementById("code-frame").contentWindow.document.onkeydown = async function (e) {
 						tabindex = codeEditorHelper.getCurrentEditorIndex()
 						if (e.keyCode === 82 && e.ctrlKey) {
@@ -999,6 +998,7 @@ try{
 						updateUnsavedFileCache(tabindex)
 						updateCodeTabSavedIndicator(tabindex, false, self);
 					}
+					await new Promise((resolve) => setTimeout(resolve, 1000));
 					window.codeEditorSaved = true;
 				} catch (err) {
 					console.log(err)

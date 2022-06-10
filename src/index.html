@@ -1262,6 +1262,7 @@
             opacity: 1;
             transition: 0.2s all !important;
         }
+
         .changing-themes * {
             transition: 1s all !important;
         }
@@ -1483,9 +1484,11 @@
     .codicon-color-mode:before {
         content: "\eac6";
     }
+
     .codicon-arrow-left:before {
         content: "\ea9b";
     }
+
     @keyframes codicon-loading {
         0% {
             transform: rotate(0deg);
@@ -1516,6 +1519,7 @@
         childList: true
     })
     window.addEventListener('hashchange', onWindowHashChange)
+
     function onWindowHashChange() {
         var codeFrame = document.getElementById("code-frame");
         if (codeFrame) codeFrame.parentElement.removeChild(codeFrame);
@@ -1534,14 +1538,44 @@
             else document.getElementById("back-btn").classList.add("none")
         }
 
-        if (window.location.hash.toLowerCase().includes("projects/")) document.getElementById("back-btn").classList.add("none")
+        if (window.location.hash.toLowerCase().includes("projects/")) {
+            // apply project UI and event listeners
+            document.getElementById("back-btn").classList.add("none")
+
+            let logo = document.querySelector(".logo");
+            logo.removeAttribute("href");
+            logo.style.cursor = "pointer";
+            logo.onclick = function() {
+                window.codeEditorSaved = true;
+                if (window.tabSavedData) {
+                    Object.entries(window.tabSavedData).forEach(([key, value]) => {
+                        if (value === false) window.codeEditorSaved = false;
+                    })
+                }
+                if (window.codeEditorSaved === false) {
+                    if (confirm("You have unsaved changes. Are you sure you want to leave this page?")) {
+                        window.tabSavedData = {}
+                        tApp.redirect("#/")
+                    } else return;
+                } else {
+                    tApp.redirect("#/")
+                }
+            }
+        } else {
+            // remove project UI and event listeners
+            let logo = document.querySelector(".logo");
+            logo.setAttribute("href", "#/");
+            logo.onclick = function(){}
+        }
     }
+
     function goBack() {
         var hash = window.location.hash;
         if (hash.startsWith("#/learn/") && hash.split("/")[4] !== "0") {
             tApp.redirect(`#/learn/${hash.split("/")[2]}/${hash.split("/")[3]}/${Number(hash.split("/")[4])-1}`)
         }
     }
+
     function nodeScriptReplace(node) {
         if (nodeScriptIs(node) === true) {
             node.parentNode.replaceChild(nodeScriptClone(node), node);
