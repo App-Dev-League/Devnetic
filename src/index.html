@@ -1329,7 +1329,6 @@
             document.getElementById("loading-filecount").innerHTML = downloadFileCount + "/26";
             document.getElementById("loading-loading-bar").style.width = (downloadFileCount / 26) * 100 + "%";
         }
-        window.codeEditorTabIsChanging = true;
     </script>
     <tapp-main>
         <div class="loading-modal">
@@ -1521,6 +1520,8 @@
     window.addEventListener('hashchange', onWindowHashChange)
 
     function onWindowHashChange() {
+        window.codeEditorTabIsChanging = true;
+
         var codeFrame = document.getElementById("code-frame");
         if (codeFrame) codeFrame.parentElement.removeChild(codeFrame);
 
@@ -1565,7 +1566,7 @@
             // remove project UI and event listeners
             let logo = document.querySelector(".logo");
             logo.setAttribute("href", "#/");
-            logo.onclick = function(){}
+            logo.onclick = function() {}
         }
     }
 
