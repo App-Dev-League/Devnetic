@@ -28,6 +28,9 @@ class TabbedView extends tApp.Component {
 			document.querySelector(`[tapp-component="${this.id}"]`).querySelector(".selected-tab").innerHTML = ""
 		}
 		this.setState("currentTabComponent", this.state.tabs[index].component);
+		if (this.state.onTabChange) {
+			this.state.onTabChange(index);
+		}
 	}
 
 	render(props) {

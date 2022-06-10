@@ -125,6 +125,7 @@ class Editor extends tApp.Component {
 			setTimeout(function () {
 				self.state.onLoadCallback();
 				document.getElementById("code-editor-status").innerText = "Ready"
+				window.codeEditorTabIsChanging = false;
 			}, 100)
 		}
 		function addThings() {
@@ -952,12 +953,8 @@ try{
 					await new Promise((resolve) => setTimeout(resolve, 1000));
 					document.getElementById("code-frame").contentWindow.document.onkeydown = async function (e) {
 						tabindex = codeEditorHelper.getCurrentEditorIndex()
-						window.codeEditorSaved = false;
 						if (e.keyCode === 82 && e.ctrlKey) {
 							window.codeEditorSaved = true;
-						} else if (e.key !== "Control" && e.key !== "Shift" && e.key !== "Escape" && e.key !== "Alt") {
-							updateUnsavedFileCache(tabindex)
-							updateCodeTabSavedIndicator(tabindex, false, self);
 						}
 						if (e.key === 's' && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
 							e.preventDefault();
@@ -994,6 +991,13 @@ try{
 						document.querySelectorAll("#editor-tab-context-menu span").forEach(element => {
 							if (element.getAttribute("data-text") === "delete") element.click()
 						})
+					}
+					document.getElementById("code-frame").contentWindow.listeners.onChange = function () {
+						tabindex = codeEditorHelper.getCurrentEditorIndex()
+						window.codeEditorSaved = false;
+						if (window.codeEditorTabIsChanging) return;
+						updateUnsavedFileCache(tabindex)
+						updateCodeTabSavedIndicator(tabindex, false, self);
 					}
 					window.codeEditorSaved = true;
 				} catch (err) {
@@ -1121,7 +1125,10 @@ class TabbedEditor extends tApp.Component {
 				self.setState("tabbedView", new TabbedView({
 					tabs: tabs,
 					startingTabIndex: editorIndex,
-					useSavedFileDataInNaming: true
+					useSavedFileDataInNaming: true,
+					onTabChange: function (tab) {
+						window.codeEditorTabIsChanging = true;
+					}
 				}, self))
 				document.body.setAttribute('data-before', "Loading files...");
 				document.body.classList.add("tester-testing")
