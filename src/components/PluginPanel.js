@@ -9,9 +9,15 @@ class PluginPanel extends tApp.Component {
         for (let i in this.state.plugins) {
             this.state.plugins[i].installed = false;
         }
-        plugins.availablePlugins().forEach(async plugin => {
-            this.state.pluginSizes[plugin.id] = await plugins.getDownloadSize(plugin.id);
-        })
+        var self = this;
+        async function getPluginSizes(){
+            for (let i in plugins.availablePlugins()) {
+                let plugin = plugins.availablePlugins()[i];
+                self.state.pluginSizes[plugin.id] = await plugins.getDownloadSize(plugin.id);
+            }
+            self.setState("pluginSizes", self.state.pluginSizes)
+        }
+        getPluginSizes();
         plugins.getOldPlugins().then(oldPlugins => {
             oldPlugins.forEach(plugin => {
                 codeEditorHelper.showAlertModal(`The plugin ${plugin.name} has a newer version! This may result in parts of the editor not working. We highly recommend updating as soon as possible. `, [

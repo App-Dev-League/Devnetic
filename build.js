@@ -10,8 +10,9 @@ try {
     fs.rmSync('./docs', { recursive: true });
 } catch (err) { }
 
-console.log("Updating module index...")
+console.log("Updating indices...")
 createModuleIndex();
+createPluginSizeIndex();
 console.log("Building...")
 copyFolderSync("./src", "./docs")
 console.log("Cleaning up...");
@@ -69,7 +70,6 @@ function createModuleIndex() {
         };
         fs.readdirSync(`./src/data/modules/${value}`).forEach(element => {
             if (element.endsWith("-example.json")) return;
-            console.log(element, value)
             let fileData = JSON.parse(fs.readFileSync(`./src/data/modules/${value}/${element}`, "utf8"));
             json[value].totalPages += fileData.pages.length;
             json[value].module_meta_data.push({
@@ -79,6 +79,14 @@ function createModuleIndex() {
         })
     })
     fs.writeFileSync("./src/data/module_index.json", JSON.stringify(json, null, 4));
+}
+function createPluginSizeIndex() {
+    var json = {};
+    fs.readdirSync("./src/assets/plugins").forEach(element => {
+        if (element === "sizes.json") return;
+        json[element] = fs.statSync(path.join("./src/assets/plugins", element, element+".min.js")).size;
+    })
+    fs.writeFileSync("./src/assets/plugins/sizes.json", JSON.stringify(json, null, 4));
 }
 function cleanUp() {
     let menu = fs.readFileSync("./docs/views/menu.html", "utf8");

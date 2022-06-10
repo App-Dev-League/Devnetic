@@ -178,8 +178,12 @@ module.exports = {
         else return false;
     },
     async getDownloadSize(pluginId) {
-        let x = await fetch("/assets/plugins/" + pluginId + "/" + pluginId + ".min.js", { method: 'HEAD' })
-        return x.headers.get("content-length")
+        if (!window.pluginSizes) {
+            let res = await fetch("/assets/plugins/sizes.json");
+            res = await res.json();
+            window.pluginSizes = res;
+        }
+        return window.pluginSizes[pluginId];
     },
     async getOldPlugins() {
         let allPlugins = this.availablePlugins();
