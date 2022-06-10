@@ -1266,6 +1266,22 @@
         .changing-themes * {
             transition: 1s all !important;
         }
+
+        #popout {
+            top: -20px;
+            right: 10px;
+            color: var(--white);
+            cursor: pointer;
+            position: absolute;
+        }
+
+        #popout-newtab {
+            top: -20px;
+            right: 30px;
+            color: var(--white);
+            cursor: pointer;
+            position: absolute;
+        }
     </style>
     <script>
         changeTheme(localStorage.getItem("theme") || "dark");
@@ -1488,6 +1504,14 @@
         content: "\ea9b";
     }
 
+    .codicon-link-external:before {
+        content: "\eb14";
+    }
+
+    .codicon-link:before {
+        content: "\eb15";
+    }
+
     @keyframes codicon-loading {
         0% {
             transform: rotate(0deg);
@@ -1521,7 +1545,9 @@
 
     function onWindowHashChange() {
         window.codeEditorTabIsChanging = true;
-
+        window.consoleLogs = [];
+        if (document.getElementById("preview-container")) tApp.getComponentFromDOM(document.getElementById("preview-container")).update()
+        
         var codeFrame = document.getElementById("code-frame");
         if (codeFrame) codeFrame.parentElement.removeChild(codeFrame);
 

@@ -82,7 +82,6 @@ class Editor extends tApp.Component {
 				text = parentThis.parent.parent.data().default[tabindex]
 				document.getElementById("code-editor-status").innerText = "Ready"
 			}
-			console.log(self.state)
 			if (window.unsavedFileCaches && window.unsavedFileCaches[tabindex.toString()]) {
 				text = window.unsavedFileCaches[tabindex.toString()]
 			}
@@ -131,10 +130,13 @@ class Editor extends tApp.Component {
 		function addThings() {
 			function loadCode() {
 				try {
-					if (document.getElementById("preview")) {
-						document.getElementById("preview").contentWindow.document.open();
-						document.getElementById("preview").contentWindow.document.write(codeEditorHelper.getValue());
-						document.getElementById("preview").contentWindow.document.close();
+					let fileType = filename.split('.').pop().toLowerCase();
+					if (!(fileType !== "html" && fileType !== "md" && fileType !== "jsx" && fileType !== "png" && fileType !== "jpeg" && fileType !== "jpg" && fileType !== "gif")) {
+						if (document.getElementById("preview")) {
+							document.getElementById("preview").contentWindow.document.open();
+							document.getElementById("preview").contentWindow.document.write(codeEditorHelper.getValue());
+							document.getElementById("preview").contentWindow.document.close();
+						}
 					}
 				} catch (err) {
 					setTimeout(loadCode, 500);
@@ -194,8 +196,6 @@ class Editor extends tApp.Component {
 					])
 				}
 
-
-				if (document.getElementById("preview-container")) tApp.getComponentFromDOM(document.getElementById("preview-container")).update()
 				if (window.addedEditorEventListeners) return
 				window.addedEditorEventListeners = true;
 				try {
