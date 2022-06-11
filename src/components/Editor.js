@@ -998,6 +998,8 @@ try{
 						updateUnsavedFileCache(tabindex)
 						updateCodeTabSavedIndicator(tabindex, false, self);
 					}
+					document.getElementById("code-frame").contentWindow.listeners.onClick = handleLeftClick
+					
 					await new Promise((resolve) => setTimeout(resolve, 1000));
 					window.codeEditorSaved = true;
 				} catch (err) {

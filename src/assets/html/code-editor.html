@@ -41,6 +41,9 @@
         window.codeEditor.getModel().onDidChangeContent((event) => {
             if (window.listeners.onChange) window.listeners.onChange(event)
         });
+        document.body.onclick = function() {
+            if (window.listeners.onClick) window.listeners.onClick()
+        }
         window.monaco = monaco;
         window.postMessage({
             message: "monacoloaded",
