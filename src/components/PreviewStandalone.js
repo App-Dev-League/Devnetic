@@ -59,11 +59,17 @@ class CodeEditor extends ModuleComponent {
                            async function autoStartPreview() {
                                if (!window.monacoAlreadyLoaded) return setTimeout(autoStartPreview, 500);
                                document.querySelectorAll(".tab-group .tab")[${this.data().previewIndex}].click()
-                               setTimeout(() => {
-                                    console.log("autoStartPreview")
+                               startApp()
+                               async function startApp() {
                                     document.getElementById("code-editor-run-btn").click();
-                               }, 1000)
+                                    await sleep(200);
+                                    if (!window.consoleLogs || window.consoleLogs.length == 0) {
+                                        await sleep(200);
+                                        startApp();
+                                    }
+                               }
                            }
+                           function sleep (ms){ return new Promise(resolve => setTimeout(resolve, ms))}
                         </script>
 					</div>`;
         }
