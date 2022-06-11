@@ -17,7 +17,8 @@
 		"SnippetUnlock.js",
 		"TabbedView.js",
 		"codeBlock.js",
-		"PluginPanel.js"
+		"PluginPanel.js",
+		"PreviewStandalone.js",
 	], {
 		path: "./components/"
 	}, newFileCallback);
@@ -44,6 +45,7 @@
 	const SnippetUnlock = require("./components/SnippetUnlock.js");
 	const Congratulations = require("./components/Congratulations.js");
 	const CodeEditor = require("./components/CodeEditor.js");
+	const Preview = require("./components/PreviewStandalone.js");
 
 	const codeTemplateToCode = require("./utils/codeTemplateToCode.js");
 	const shuffleArray = require("./utils/shuffleArray.js");
@@ -220,57 +222,58 @@
 		tApp.redirect(`#/learn/${request.data.track}/${request.data.module}/${await Database.getModulePosition(request.data.track, request.data.module)}/`);
 	});
 	window.DB = Database;
-	tApp.route("#/preview/html/<id>/autoupdate", async function (request) {
-		let id = request.data.id
-		if (!id.endsWith(".html") && !id.endsWith(".jsx")) {
-			return tApp.render(`
-			<h1>Error</h1>
-			<p>Currently, only HTML and JSX files are only supported in window preview mode :(</p>`);
-		}
-		let html = await Database.getCode(id);
-		if (!html) tApp.render("<h4>We couldn't find your file!</h4>")
-		var loadScript = `
-			document.getElementById("preview").srcdoc = await window.DB.getCode("${id}")`
-		if (id.endsWith(".jsx")) {
-			loadScript = `
-			const plugins = require("./utils/plugins.js");
-			   async function main(){
-					await plugins.load("react");
-					let code = await window.DB.getCode("${id}")
-					code = Babel.transform(code, {
-						plugins: ["transform-react-jsx"]
-					}).code;
-					document.getElementById("preview").srcdoc = "<html> <body> <div id='root'></div> <script>"+plugins.getCode("react")+"<\\/script><script>"+code+"<\\/script></body></html>";
-			   }
-			   main()
-			`
-		}
-		tApp.render(`<div>
-		<script>
-		async function load(){
-		${loadScript}
-		}
-		load();
-		window.addEventListener('storage', load)
-		</script>
-		<style>header{display: none !important}</style><script></script><iframe id="preview" srcdoc="Loading...." style="width: 100vw; height: 100vh; border: none; background: white; position: fixed; z-index: 500; top: 0; left 0; display: block"></iframe></div>
-		<script>
-		document.getElementById("preview").onload = function(){
-			document.title = document.getElementById("preview").contentDocument.title;
-		}
-		</script>
-		`);
-	})
-	tApp.route("#/preview/html/<id>", async function (request) {
-		let id = request.data.id
-		let html = await Database.getCode(id);
-		if (!html) tApp.render("<h4>We couldn't find your file!</h4>")
-		html = html.replace(/"/g, '&quot;')
-		tApp.render(`<div><style>header{display: none !important}</style><script></script><iframe id="preview" srcdoc="${html}" style="width: 100vw; height: 100vh; border: none; background: white; position: fixed; z-index: 500; top: 0; left 0; display: block"></iframe></div>`);
-	})
+
 	let modulePage = new ModulePage({
 		Database: Database
 	});
+
+	tApp.route("#/preview/<track>/<module>/<position>/<fileIndex>", async function (request) {
+		request.data.module = parseInt(request.data.module);
+		request.data.position = parseInt(request.data.position);
+		request.data.fileIndex = parseInt(request.data.fileIndex);
+
+		modulePage.state.track = request.data.track;
+		modulePage.state.module = request.data.module;
+		modulePage.state.position = request.data.position;
+		if (request.data.track === "customUserProjects") {
+			showPage({
+				type: "project",
+				moduleLength: 1,
+				next: {
+					hasNext: true,
+					module: request.data.module,
+					position: 1
+				},
+				data: {
+					"type": "code_editor",
+					"storage_id": [],
+					"files": [],
+					"default": [],
+					"display_type": "web",
+					"elements": [],
+					"hints": [],
+					"validation": [],
+					"points": 0,
+					"coins": 0
+				}
+			}, true)
+		} else {
+			Database.getModuleData(request.data.track, request.data.module, request.data.position).then(async (res) => {
+				showPage(res)
+			}).catch((err) => {
+				tApp.renderPath("#/404");
+			})
+		}
+		async function showPage(res, isUserProject = false) {
+			let { data, type, moduleLength, next, moduleData } = res;
+			window.tAppRequestInstance = request;
+			window.currentModuleData = moduleData;
+			data.isUserProject = isUserProject;
+			data.previewIndex = request.data.fileIndex;
+			modulePage.setComponent(new Preview({}, modulePage), data);
+		}
+		tApp.render(modulePage.toString())
+	})
 
 	tApp.route("#/learn/<track>/<module>/<position>", function (request) {
 		request.data.module = parseInt(request.data.module);

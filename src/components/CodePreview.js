@@ -23,7 +23,7 @@ class CodePreview extends tApp.Component {
 		var filename = tApp.getComponentFromDOM(document.querySelector("tapp-main").children[0].children[0]).data().files[tabindex] || document.querySelector("tapp-main").children[0].children[0].children[0].children[0].children[0].children[tabindex].innerText;
 		if (filename.slice(-3) == ".js") {
 			this.setState("runCmdBtn", `
-				<button style="position: absolute; top: -23px; color: black; z-index: 1;" onclick="{{_this}}.showRunConsole()">Run Console</button>
+			<button style="position: absolute; top: -23px; color: black; z-index: 1;" onclick="{{_this}}.showRunConsole()">Run Console</button><button style="position: absolute; top: -23px; color: black; z-index: 1; left: 105px" onclick="{{_this}}.showDependencyManager()">Dependency Manager</button>
 			`)
 		} else {
 			this.setState("runCmdBtn", "")
@@ -141,6 +141,7 @@ class CodePreview extends tApp.Component {
 		window.open(`#/preview/${tAppRequestInstance.data.track}/${tAppRequestInstance.data.module}/${tAppRequestInstance.data.position}/${codeEditorHelper.getCurrentEditorIndex()}`)
 	}
 	render(props) {
+		var self = this;
 		let bridge = document.getElementById("console-bridge");
 		if (bridge) {
 			bridge.onclick = function () {
@@ -234,6 +235,12 @@ class CodePreview extends tApp.Component {
 			}
 		}
 		window.plugins = plugins;
+		if (!document.getElementById("code-editor-tab")) {
+			setTimeout(function(){
+				self.setState("update", Date.now())
+			}, 100)
+			return `<div></div>`
+		}
 		let tabindex = tApp.getComponentFromDOM(document.getElementById("code-editor-tab")).state.tabindex;
 		if (!tApp.getComponentFromDOM(document.getElementById("code-editor-component")).data().storage_id[tabindex]){
 			let filename = document.querySelector("tapp-main").children[0].children[0].children[0].children[0].children[0].children[tabindex].innerText;
