@@ -4,6 +4,11 @@ const doesFileExist = require("../utils/doesFileExist.js");
 window.codeEditorHelper = codeEditorHelper
 const plugins = require("../utils/plugins.js");
 
+const buttons = `
+<a class="codicon codicon-debug-console" title="Run Console" style="cursor: pointer; position: absolute; top: -20px; color: var(--white); z-index: 1;" onclick="{{_this}}.showRunConsole()"></a>
+<a class="codicon codicon-library" title="Dependency Manager" style="cursor: pointer; position: absolute; top: -20px; color: var(--white); z-index: 1; left: 32px" onclick="{{_this}}.showDependencyManager()"></a>
+`
+
 class CodePreview extends tApp.Component {
 	constructor(state, parent) {
 		super(state, parent);
@@ -22,9 +27,7 @@ class CodePreview extends tApp.Component {
 		}
 		var filename = tApp.getComponentFromDOM(document.querySelector("tapp-main").children[0].children[0]).data().files[tabindex] || document.querySelector("tapp-main").children[0].children[0].children[0].children[0].children[0].children[tabindex].innerText;
 		if (filename.slice(-3) == ".js") {
-			this.setState("runCmdBtn", `
-			<button style="position: absolute; top: -23px; color: black; z-index: 1;" onclick="{{_this}}.showRunConsole()">Run Console</button><button style="position: absolute; top: -23px; color: black; z-index: 1; left: 105px" onclick="{{_this}}.showDependencyManager()">Dependency Manager</button>
-			`)
+			this.setState("runCmdBtn", buttons)
 		} else {
 			this.setState("runCmdBtn", "")
 		}
@@ -281,7 +284,7 @@ class CodePreview extends tApp.Component {
 
 		let btn = this.state.runCmdBtn
 		if (btn === "" && fileType === "js") {
-			btn = `<button style="position: absolute; top: -23px; color: black; z-index: 1;" onclick="{{_this}}.showRunConsole()">Run Console</button><button style="position: absolute; top: -23px; color: black; z-index: 1; left: 105px" onclick="{{_this}}.showDependencyManager()">Dependency Manager</button>`
+			btn = buttons
 		}
 
 		return `<div style="margin-top: 10px; height: 95%; background: white; overflow: visible" id="preview-container">

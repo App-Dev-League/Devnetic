@@ -1512,6 +1512,14 @@
         content: "\eb15";
     }
 
+    .codicon-debug-console:before {
+        content: "\eb9b";
+    }
+
+    .codicon-library:before {
+        content: "\eb9c";
+    }
+
     @keyframes codicon-loading {
         0% {
             transform: rotate(0deg);
@@ -1547,7 +1555,7 @@
         window.codeEditorTabIsChanging = true;
         window.consoleLogs = [];
         if (document.getElementById("preview-container")) tApp.getComponentFromDOM(document.getElementById("preview-container")).update()
-        
+
         var codeFrame = document.getElementById("code-frame");
         if (codeFrame) codeFrame.parentElement.removeChild(codeFrame);
 
