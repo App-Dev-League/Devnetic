@@ -101,6 +101,7 @@
 				].map(file => `/components/${file}.js`)),
 
 				"/assets/html/code-editor.html",
+				"/assets/html/preview-editor.html",
 
 				"/assets/libraries/highlightjs/atom-one-dark.css",
 				"/assets/libraries/highlightjs/highlight.min.js",
