@@ -25,6 +25,8 @@ class Instructions extends tApp.Component {
 		 - .md
 		 <br>
 		 - .pl
+		 <br>
+		 - .cpp
 		</div>`;
 		return `<div>
 			<h1 class="info-title">${tApp.escape(this.state.title || "")}</h1>
