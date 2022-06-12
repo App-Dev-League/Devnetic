@@ -1,0 +1,34 @@
+<html style="margin: 0;overflow: hidden">
+<div id="code-container" style="width:100%;height:calc(100% - 20px);border:1px solid grey; margin-top: 20px; "></div>
+
+</html>
+<script>
+    window.monacoLoaded = function() {}
+    window.listeners = {}
+</script>
+<script>
+    window.codeEditor = {
+        updateOptions: function(){},
+        setValue: function(content) {
+            window.currentEditorValue = content;
+        },
+        getOption: function() {
+            return true; // always return true, since all of our api calls are querying if the editor is read-only, and we want to say true.
+        },
+        getValue: function() {
+            return window.currentEditorValue || ""
+        },
+        trigger: function() {
+
+        },
+        getAction: function(){
+            return {
+                run: function(){}
+            }
+        }
+    }
+    window.postMessage({
+        message: "monacoloaded",
+        value: "pog"
+    }, "*");
+</script>

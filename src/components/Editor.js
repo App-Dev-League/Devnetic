@@ -20,7 +20,14 @@ class Editor extends tApp.Component {
 		super(state, parent);
 	}
 	render(props) {
-		console.log("Rendering Editor with index: " + this.state.tabindex);
+		var mode = "code-editor"
+		if (window.location.hash.split("/")[1] === "preview") {
+			mode = "preview-editor"
+			console.log("Rendering editor in preview mode, without loading monaco. Editor index: " + this.state.tabindex)
+		} else {
+			console.log("Rendering Editor with index: " + this.state.tabindex);
+		}
+
 		var self = this;
 		var shownNoPluginMessage = false;
 		let languages = {
@@ -999,7 +1006,7 @@ try{
 						updateCodeTabSavedIndicator(tabindex, false, self);
 					}
 					document.getElementById("code-frame").contentWindow.listeners.onClick = handleLeftClick
-					
+
 					await new Promise((resolve) => setTimeout(resolve, 1000));
 					window.codeEditorSaved = true;
 				} catch (err) {
@@ -1045,7 +1052,7 @@ try{
 			<span id="code-editor-run-btn" class="home-module home-module-complete" style="margin: 0; width: fit-content; padding-left: 20px; padding-right: 20px; margin-left: 20px; position: relative; z-index: 10">Run</span>
 		</div>
 		<div class="code-editor">
-			<iframe id="code-frame" style="width: 100%; height: 100%; border: none" src="/assets/html/code-editor.html"></iframe>
+			<iframe id="code-frame" style="width: 100%; height: 100%; border: none" src="/assets/html/${mode}.html"></iframe>
 		</div>
 		</div>`;
 	}
