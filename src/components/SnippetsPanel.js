@@ -55,6 +55,9 @@ class SnippetsPanel extends tApp.Component {
 	showModal(snippetId){
 		let snippet = this.state.snippets.find(snippet => snippet.id == snippetId);
 		let element = document.getElementById("snippets-modal");
+		element = element.cloneNode(true);
+		element.removeAttribute("id")
+
 		element.dataset.snippetId = snippetId;
 		element.querySelector("h3").innerText = snippet.name+" Snippet";
 		element.querySelector(".inputs").innerHTML = "";
@@ -66,11 +69,15 @@ class SnippetsPanel extends tApp.Component {
 			elm.id = "insert-snippet-input-"+value.id
 			element.querySelector(".inputs").appendChild(elm);
 		})
-		element.classList.remove("none")
+		element.querySelector("span").onclick = function () {
+			element.parentNode.removeChild(element)
+		}
+		element.classList.remove("none");
+		document.body.appendChild(element);
 	}
-	insertModal() {
-		let inputs = document.querySelectorAll(".insert-snippet-input")
-		let snippetId = document.getElementById("snippets-modal").dataset.snippetId
+	insertModal(element) {
+		let inputs = element.querySelectorAll(".insert-snippet-input")
+		let snippetId = element.dataset.snippetId
 		let snippet = this.state.snippets.find(snippet => snippet.id == snippetId)
 
 		var params = [];
@@ -81,7 +88,7 @@ class SnippetsPanel extends tApp.Component {
 		document.getElementById("code-frame").contentWindow.codeEditor.trigger("keyboard", "type", {text: code.replaceAll("\t", "")}); 
 		document.getElementById("code-frame").contentWindow.codeEditor.getAction("editor.action.formatDocument").run();
 
-		document.getElementById("snippets-modal").classList.add("none")
+		element.parentNode.removeChild(element)
 	}
 	showSearch(query, normal) {
 		query = query.toLowerCase()

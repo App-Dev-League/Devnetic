@@ -75,6 +75,7 @@ class CodePreview extends tApp.Component {
 		modal.querySelector(".inputs").appendChild(elm);
 
 		document.body.appendChild(modal);
+		modal.querySelector("input").focus()
 		function makeid(length) {
 			var result           = '';
 			var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -136,6 +137,7 @@ class CodePreview extends tApp.Component {
 		modal.querySelector(".inputs").appendChild(elm);
 
 		document.body.appendChild(modal);
+		modal.querySelector("input").focus()
 	}
 	popout() {
 		window.open(`#/preview/${tAppRequestInstance.data.track}/${tAppRequestInstance.data.module}/${tAppRequestInstance.data.position}/${codeEditorHelper.getCurrentEditorIndex()}`,'1',`width=${window.innerWidth},height=${window.innerHeight},toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0`)

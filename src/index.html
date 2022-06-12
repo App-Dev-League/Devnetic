@@ -1364,7 +1364,7 @@
                 <h3>Incorrect!</h3>
                 <div class="inputs">
                 </div>
-                <button class="button-correct" onclick="tApp.getComponentFromDOM(document.getElementById('snippets-panel')).parent.children[1].insertModal()">Insert</button>
+                <button class="button-correct" onclick="tApp.getComponentFromDOM(document.getElementById('snippets-panel')).parent.children[1].insertModal(this.parentElement.parentElement.parentElement)">Insert</button>
             </center>
         </div>
     </div>
@@ -1720,6 +1720,21 @@
         }
     }
     onWindowHashChange()
+
+    document.body.addEventListener("keyup", function(e) {
+        if (e.key === "Escape") {
+            if (document.querySelectorAll(".explanation-modal")[1]) {
+                let modal = document.querySelectorAll(".explanation-modal")[1];
+                modal.querySelector("span").click()
+            }
+        }
+        if (e.key === "Enter") {
+            if (document.querySelectorAll(".explanation-modal")[1]) {
+                let modal = document.querySelectorAll(".explanation-modal")[1];
+                modal.querySelector("button").click()
+            }
+        }
+    })
 </script>
 <script>
     function cipher(salt) {

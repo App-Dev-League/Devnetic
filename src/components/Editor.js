@@ -1236,6 +1236,7 @@ async function addFile() {
 	modal.querySelector(".inputs").appendChild(elm);
 
 	document.body.appendChild(modal);
+	modal.querySelector("input").focus()
 }
 async function uploadFile() {
 	if (window.isUserProject) var level = "page"
