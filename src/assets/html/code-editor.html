@@ -38,6 +38,9 @@
         window.codeEditor.addCommand(monaco.KeyMod.Alt | monaco.KeyCode.Delete, function() {
             if (window.listeners.altDel) window.listeners.altDel()
         });
+        window.codeEditor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KEY_S, function() {
+            if (window.listeners.ctrlS) window.listeners.ctrlS()
+        });
         window.codeEditor.getModel().onDidChangeContent((event) => {
             if (window.listeners.onChange) window.listeners.onChange(event)
         });

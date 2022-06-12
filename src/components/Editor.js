@@ -137,7 +137,7 @@ class Editor extends tApp.Component {
 		function addThings() {
 			function loadCode() {
 				try {
-					let fileType = filename.split('.').pop().toLowerCase();
+					let fileType = filename.split('.').pop().toLowerCase().replace(" •", "");
 					if (!(fileType !== "html" && fileType !== "md" && fileType !== "jsx" && fileType !== "png" && fileType !== "jpeg" && fileType !== "jpg" && fileType !== "gif")) {
 						if (document.getElementById("preview")) {
 							document.getElementById("preview").contentWindow.document.open();
@@ -347,7 +347,7 @@ class Editor extends tApp.Component {
 						tabindex = codeEditorHelper.getCurrentEditorIndex()
 						setTimeout(function () {
 							let filenamey = document.querySelector("tapp-main").children[0].children[0].children[0].children[0].children[0].children[tabindex].innerText
-							let fileType = filenamey.split('.').pop().toLowerCase()
+							let fileType = filenamey.split('.').pop().toLowerCase().replace(" •", "")
 							if (fileType === "html" || fileType === "md" || fileType === "png" || fileType === "jpg" || fileType === "jpeg" || fileType === "gif") {
 								setTimeout(function () {
 									updatePreview(fileType);
@@ -366,7 +366,7 @@ class Editor extends tApp.Component {
 						saveFile(parentThis)
 
 
-						let fileType = filenamex.split('.').pop().toLowerCase()
+						let fileType = filenamex.split('.').pop().toLowerCase().replace(" •", "")
 						updatePreview(fileType, filenamex)
 						setTimeout(function () {
 							document.getElementById("code-editor-status").innerText = "Ready"
@@ -958,25 +958,18 @@ try{
 							Perl.eval(code)
 						}
 					}
-					document.getElementById("code-frame").contentWindow.document.onkeydown = async function (e) {
-						tabindex = codeEditorHelper.getCurrentEditorIndex()
-						if (e.keyCode === 82 && e.ctrlKey) {
-							window.codeEditorSaved = true;
-						}
-						if (e.key === 's' && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
-							e.preventDefault();
-							document.getElementById("code-editor-status").innerText = "Saving..."
-							var filenamex = tApp.getComponentFromDOM(document.querySelector("tapp-main").children[0].children[0]).data().files[tabindex] || document.querySelector("tapp-main").children[0].children[0].children[0].children[0].children[0].children[tabindex].innerText;
+					document.getElementById("code-frame").contentWindow.listeners.ctrlS = function () {
+						document.getElementById("code-editor-status").innerText = "Saving..."
+						var filenamex = tApp.getComponentFromDOM(document.querySelector("tapp-main").children[0].children[0]).data().files[tabindex] || document.querySelector("tapp-main").children[0].children[0].children[0].children[0].children[0].children[tabindex].innerText;
 
-							saveFile(parentThis)
-							let fileType = filenamex.split('.').pop().toLowerCase()
-
-							if (fileType === "html") updatePreview(fileType)
-							else if (fileType === "jsx") updatePreview(fileType)
-							setTimeout(function () {
-								document.getElementById("code-editor-status").innerText = "Ready"
-							}, 500)
-						}
+						saveFile(parentThis)
+						let fileType = filenamex.split('.').pop().toLowerCase().replace(" •", "")
+						if (fileType === "html") updatePreview(fileType)
+						else if (fileType === "jsx") updatePreview(fileType)
+						else if (fileType === "md") updatePreview(fileType)
+						setTimeout(function () {
+							document.getElementById("code-editor-status").innerText = "Ready"
+						}, 500)
 					}
 					document.getElementById("code-frame").contentWindow.listeners.ctrlEnter = function () {
 						if (document.getElementById("code-editor-run-btn")) document.getElementById("code-editor-run-btn").click();
@@ -1021,7 +1014,7 @@ try{
 			if (window.monacoAlreadyLoaded === true) {
 				addThings()
 				loadCodeFromDb()
-				let fileType = filename.split('.').pop().toLowerCase()
+				let fileType = filename.split('.').pop().toLowerCase().replace(" •", "")
 				codeEditorHelper.updateLanguage(languages[fileType])
 				if (window.pluginList && window.pluginList.betterEditor) {
 					reloadPluginSettings()
@@ -1032,7 +1025,7 @@ try{
 						window.monacoAlreadyLoaded = true;
 						loadCodeFromDb()
 						addThings()
-						let fileType = filename.split('.').pop().toLowerCase()
+						let fileType = filename.split('.').pop().toLowerCase().replace(" •", "")
 						codeEditorHelper.updateLanguage(languages[fileType])
 						try {
 							if (window.pluginList && window.pluginList.betterEditor) {
