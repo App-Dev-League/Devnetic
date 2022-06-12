@@ -32,15 +32,14 @@ class CodeEditor extends ModuleComponent {
                     document.querySelectorAll(".tab-group .tab")[self.data().previewIndex].click()
                     startApp()
                     async function startApp() {
+                        console.log("Starting app")
                          let filename = document.querySelectorAll(".tab-group .tab")[self.data().previewIndex].innerText;
-                         await sleep(100)
+                         await sleep(300)
                          document.getElementById("code-editor-run-btn").click();
                          await sleep(200);
                          if ((!window.consoleLogs || window.consoleLogs.length == 0) && (filename.endsWith(".js") || filename.endsWith(".ts") || filename.endsWith(".py") || filename.endsWith(".pl") || filename.endsWith(".cpp"))) {
-                             await sleep(200);
                              startApp();
                          } else if (filename.endsWith(".jsx") && document.getElementById("preview").contentWindow.document.body.innerHTML === "Loading... Press Run to see the output") {
-                             await sleep(200);
                              startApp();
                          }
                     }
