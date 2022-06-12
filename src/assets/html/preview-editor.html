@@ -27,6 +27,14 @@
             }
         }
     }
+    window.monaco = {
+        editor: {
+            setModelLanguage: function(){},
+            getModels: function(){
+                return [""]
+            }
+        }
+    }
     window.postMessage({
         message: "monacoloaded",
         value: "pog"

@@ -357,9 +357,10 @@ class Editor extends tApp.Component {
 					}
 					document.getElementById("code-editor-run-btn").onclick = async function () {
 						var filenamex = tApp.getComponentFromDOM(document.querySelector("tapp-main").children[0].children[0]).data().files[tabindex] || document.querySelector("tapp-main").children[0].children[0].children[0].children[0].children[0].children[tabindex].innerText;
-
 						tabindex = codeEditorHelper.getCurrentEditorIndex()
-
+						if (mode === "preview-editor") {
+							filenamex = document.querySelectorAll(".tab-group .tab")[tabindex].innerText;
+						}
 
 						document.getElementById("code-editor-status").innerText = "Saving...";
 						saveFile(parentThis)

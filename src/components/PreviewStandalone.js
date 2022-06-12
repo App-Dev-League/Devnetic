@@ -19,11 +19,34 @@ class CodeEditor extends ModuleComponent {
     }
     render(props) {
         if (this.data() != null) {
+            var self = this;
             if (document.getElementById("code-editor-tab")) {
                 delete window.monacoAlreadyLoaded
                 delete window.addedEditorEventListeners
                 tApp.getComponentFromDOM(document.getElementById("code-editor-tab")).parent.setState("rerender", Date.now())
             }
+            setTimeout(function() {
+                autoStartPreview()
+                async function autoStartPreview() {
+                    if (!window.monacoAlreadyLoaded) return setTimeout(autoStartPreview, 500);
+                    document.querySelectorAll(".tab-group .tab")[self.data().previewIndex].click()
+                    startApp()
+                    async function startApp() {
+                         let filename = document.querySelectorAll(".tab-group .tab")[self.data().previewIndex].innerText;
+                         await sleep(100)
+                         document.getElementById("code-editor-run-btn").click();
+                         await sleep(200);
+                         if ((!window.consoleLogs || window.consoleLogs.length == 0) && (filename.endsWith(".js") || filename.endsWith(".ts") || filename.endsWith(".py") || filename.endsWith(".pl"))) {
+                             await sleep(200);
+                             startApp();
+                         } else if (filename.endsWith(".jsx") && document.getElementById("preview").contentWindow.document.body.innerHTML === "Loading... Press Run to see the output") {
+                             await sleep(200);
+                             startApp();
+                         }
+                    }
+                }
+                function sleep (ms){ return new Promise(resolve => setTimeout(resolve, ms))}
+            }, 200)
             return `<div id="code-editor-component">
 						${this.state.editor}
 						<div class="vertical-divider"></div>
@@ -54,23 +77,6 @@ class CodeEditor extends ModuleComponent {
                             width: 100% !important;
                         }
                         </style>
-                        <script>
-                        autoStartPreview()
-                           async function autoStartPreview() {
-                               if (!window.monacoAlreadyLoaded) return setTimeout(autoStartPreview, 500);
-                               document.querySelectorAll(".tab-group .tab")[${this.data().previewIndex}].click()
-                               startApp()
-                               async function startApp() {
-                                    document.getElementById("code-editor-run-btn").click();
-                                    await sleep(200);
-                                    if (!window.consoleLogs || window.consoleLogs.length == 0) {
-                                        await sleep(200);
-                                        startApp();
-                                    }
-                               }
-                           }
-                           function sleep (ms){ return new Promise(resolve => setTimeout(resolve, ms))}
-                        </script>
 					</div>`;
         }
         return "<div></div>";
