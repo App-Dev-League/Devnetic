@@ -36,7 +36,7 @@ class CodeEditor extends ModuleComponent {
                          await sleep(100)
                          document.getElementById("code-editor-run-btn").click();
                          await sleep(200);
-                         if ((!window.consoleLogs || window.consoleLogs.length == 0) && (filename.endsWith(".js") || filename.endsWith(".ts") || filename.endsWith(".py") || filename.endsWith(".pl"))) {
+                         if ((!window.consoleLogs || window.consoleLogs.length == 0) && (filename.endsWith(".js") || filename.endsWith(".ts") || filename.endsWith(".py") || filename.endsWith(".pl") || filename.endsWith(".cpp"))) {
                              await sleep(200);
                              startApp();
                          } else if (filename.endsWith(".jsx") && document.getElementById("preview").contentWindow.document.body.innerHTML === "Loading... Press Run to see the output") {

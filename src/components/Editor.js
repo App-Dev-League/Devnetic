@@ -476,6 +476,7 @@ class Editor extends tApp.Component {
 								return;
 							}
 							var code = codeEditorHelper.getValue();
+							code = code.replaceAll("std::", "")
 							document.querySelector(".console-input").onkeyup = function (e) {
 								if (e.key === "Enter") {
 									document.querySelector(".console-input").disabled = true;
