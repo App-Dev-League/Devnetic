@@ -51,7 +51,7 @@ class PluginPanel extends tApp.Component {
         plugins.download(id, async function (code) {
             const reader = code.body.getReader();
             let bytesReceived = 0;
-            let code_size = Number(code.headers.get('content-length'));
+            let code_size = await plugins.getDownloadSize(id)
             while (true) {
                 const result = await reader.read();
                 if (result.done) {
