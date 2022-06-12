@@ -1,4 +1,4 @@
-const ModuleComponent=require("./ModuleComponent.js"),codeTemplateToCode=require("../utils/codeTemplateToCode.js"),Editor=require("./Editor.js"),CodePreview=require("./CodePreview.js"),codeEditorHelper=require("../utils/codeEditor.js");window.codeEditorHelper=codeEditorHelper;class CodeEditor extends ModuleComponent{constructor(e,t){super(e,t),null==this.state.editor&&(this.state.editor=new Editor({},this)),null==this.state.codePreview&&(this.state.codePreview=new CodePreview({},this))}render(e){return null!=this.data()?(document.getElementById("code-editor-tab")&&(delete window.monacoAlreadyLoaded,delete window.addedEditorEventListeners,tApp.getComponentFromDOM(document.getElementById("code-editor-tab")).parent.setState("rerender",Date.now())),`<div id="code-editor-component">
+const ModuleComponent=require("./ModuleComponent.js"),codeTemplateToCode=require("../utils/codeTemplateToCode.js"),Editor=require("./Editor.js"),CodePreview=require("./CodePreview.js"),codeEditorHelper=require("../utils/codeEditor.js");window.codeEditorHelper=codeEditorHelper;class CodeEditor extends ModuleComponent{constructor(e,t){super(e,t),null==this.state.editor&&(this.state.editor=new Editor({},this)),null==this.state.codePreview&&(this.state.codePreview=new CodePreview({},this))}render(e){var d;return null!=this.data()?(d=this,document.getElementById("code-editor-tab")&&(delete window.monacoAlreadyLoaded,delete window.addedEditorEventListeners,tApp.getComponentFromDOM(document.getElementById("code-editor-tab")).parent.setState("rerender",Date.now())),setTimeout(function(){function o(t){return new Promise(e=>setTimeout(e,t))}!async function e(){return window.monacoAlreadyLoaded?(document.querySelectorAll(".tab-group .tab")[d.data().previewIndex].click(),void async function e(){let t=document.querySelectorAll(".tab-group .tab")[d.data().previewIndex].innerText;await o(100),document.getElementById("code-editor-run-btn").click(),await o(200),((!window.consoleLogs||0==window.consoleLogs.length)&&(t.endsWith(".js")||t.endsWith(".ts")||t.endsWith(".py")||t.endsWith(".pl"))||t.endsWith(".jsx")&&"Loading... Press Run to see the output"===document.getElementById("preview").contentWindow.document.body.innerHTML)&&(await o(200),e())}()):setTimeout(e,500)}()},200),`<div id="code-editor-component">
 						${this.state.editor}
 						<div class="vertical-divider"></div>
 						${this.state.codePreview}
@@ -28,21 +28,4 @@ const ModuleComponent=require("./ModuleComponent.js"),codeTemplateToCode=require
                             width: 100% !important;
                         }
                         </style>
-                        <script>
-                        autoStartPreview()
-                           async function autoStartPreview() {
-                               if (!window.monacoAlreadyLoaded) return setTimeout(autoStartPreview, 500);
-                               document.querySelectorAll(".tab-group .tab")[${this.data().previewIndex}].click()
-                               startApp()
-                               async function startApp() {
-                                    document.getElementById("code-editor-run-btn").click();
-                                    await sleep(200);
-                                    if (!window.consoleLogs || window.consoleLogs.length == 0) {
-                                        await sleep(200);
-                                        startApp();
-                                    }
-                               }
-                           }
-                           function sleep (ms){ return new Promise(resolve => setTimeout(resolve, ms))}
-                        </script>
 					</div>`):"<div></div>"}}module.exports=CodeEditor;
