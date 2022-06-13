@@ -211,7 +211,9 @@ class CodePreview extends tApp.Component {
 				for (let i in newLogs) {
 					console.log(newLogs[i])
 					if (newLogs[i].__class__) {
-						if (newLogs[i].__package__) {
+						if (newLogs[i].value){
+							newLogs[i] = newLogs[i].value
+						} else if (newLogs[i].__package__) {
 							newLogs[i] = `<module ${newLogs[i].__name__}>`
 						} else {
 							newLogs[i] = `<class '${newLogs[i].__name__ || newLogs[i].$infos.__name__}'>`
@@ -267,7 +269,9 @@ class CodePreview extends tApp.Component {
 						t.style = "display: block;";
 						for (let i in newLogs) {
 							if (newLogs[i].__class__) {
-								if (newLogs[i].__package__) {
+								if (newLogs[i].value){
+									newLogs[i] = `<bignum ${newLogs[i].value}>`
+								} else if (newLogs[i].__package__) {
 									newLogs[i] = `<module ${newLogs[i].__name__}>`
 								} else {
 									newLogs[i] = `<class ${newLogs[i].__name__}>`
