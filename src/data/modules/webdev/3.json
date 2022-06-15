@@ -413,7 +413,7 @@
             "answers": [
                 "To make a variable private to a class",
                 "To make a variable non-modifiable outside it's class",
-                "To keep make a variable non-modifiable",
+                "To make a variable non-modifiable",
                 "To declare a boolean variable"
             ],
             "correct": 2
