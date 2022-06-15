@@ -71,7 +71,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "The enviromment that can store and access variables is the variable's scope."
+                    "content": "The environment that can store and access variables is the variable's scope."
                 },
                 {
                     "type": "text",
@@ -281,7 +281,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "Functions define a reusable block of code. They are efficient and improve code readibility. Instead of repeating code for the same action, functions can be used for the same results."
+                    "content": "Functions define a reusable block of code. They are efficient and improve code readability. Instead of repeating code for the same action, functions can be used for the same results."
                 },
                 {
                     "type": "code",
@@ -289,7 +289,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "This funciton can be called like [[monospace]]name('x', 'y')[[/]]."
+                    "content": "This function can be called like [[monospace]]name('x', 'y')[[/]]."
                 }
             ]
         },
@@ -524,7 +524,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "  - Asisgned with the [[monospace]]=[[/]] sign."
+                    "content": "  - Assigned with the [[monospace]]=[[/]] sign."
                 },
                 {
                     "type": "text",

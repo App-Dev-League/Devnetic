@@ -294,7 +294,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "➔ React.JS forms are quite different from traditional HTML forms. React forms essential work by updating the component state everytime an input changes, and when the user clicks the submit button, it takes the states and you can do things with the data stored in the states"
+                    "content": "➔ React.JS forms are quite different from traditional HTML forms. React forms essential work by updating the component state every time an input changes, and when the user clicks the submit button, it takes the states and you can do things with the data stored in the states"
                 },
                 {
                     "type": "text",

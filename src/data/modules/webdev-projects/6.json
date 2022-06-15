@@ -182,7 +182,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "➔ For example, let’s say that you have a clock on your website. Everytime it updates, you don’t want React.JS to re-render the entire page. (That’s really slow). Instead, React.JS only re-renders the component that contains the clock."
+                    "content": "➔ For example, let’s say that you have a clock on your website. Every time it updates, you don’t want React.JS to re-render the entire page. (That’s really slow). Instead, React.JS only re-renders the component that contains the clock."
                 },
                 {
                     "type": "text",

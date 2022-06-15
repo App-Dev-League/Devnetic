@@ -385,7 +385,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "➔ Then, pass this React State to the ItemList component. Then, everytime the callback function is called, add a new element to that array and update the state!"
+                    "content": "➔ Then, pass this React State to the ItemList component. Then, every time the callback function is called, add a new element to that array and update the state!"
                 },
                 {
                     "type": "code",

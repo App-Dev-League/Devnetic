@@ -139,7 +139,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "[[ ]][[ ]]◆ In the browser, NPM modules are supported, so you may want to consider using “fetch,” which is defaultly supported"
+                    "content": "[[ ]][[ ]]◆ In the browser, NPM modules are supported, so you may want to consider using “fetch,” which is supported by default"
                 },
                 {
                     "type": "text",

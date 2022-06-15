@@ -111,11 +111,11 @@
                 },
                 {
                     "type": "text",
-                    "content": "➔ Labelled training data is fed into the algorithim"
+                    "content": "➔ Labelled training data is fed into the algorithm"
                 },
                 {
                     "type": "text",
-                    "content": "➔ The algorithim learns and develops a model for predicting future values"
+                    "content": "➔ The algorithm learns and develops a model for predicting future values"
                 },
                 {
                     "type": "text",
@@ -123,7 +123,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "➔ If successful, we can use this model to predict unkown labels"
+                    "content": "➔ If successful, we can use this model to predict unknown labels"
                 },
                 {
                     "type": "image",
@@ -132,7 +132,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Types of Supervised Learning Algorithims[[/]]"
+                    "content": "[[h3]]Types of Supervised Learning Algorithm[[/]]"
                 },
                 {
                     "type": "text",
@@ -160,11 +160,11 @@
                 },
                 {
                     "type": "text",
-                    "content": "➔ Unlabelled training data is fed into the algorithim"
+                    "content": "➔ Unlabelled training data is fed into the algorithm"
                 },
                 {
                     "type": "text",
-                    "content": "➔ The algorithim learns and finds a hidden pattern in the data"
+                    "content": "➔ The algorithm learns and finds a hidden pattern in the data"
                 },
                 {
                     "type": "text",
@@ -172,11 +172,11 @@
                 },
                 {
                     "type": "text",
-                    "content": "➔ Typically used to find hiddern patterns in data invisible to humans"
+                    "content": "➔ Typically used to find hidden patterns in data invisible to humans"
                 },
                 {
                     "type": "text",
-                    "content": "➔ Results are sometimes run through experts to make sure the pattern found actaully exists"
+                    "content": "➔ Results are sometimes run through experts to make sure the pattern found actually exists"
                 },
                 {
                     "type": "image",
@@ -185,11 +185,11 @@
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Applciations of Unsupervised Learning[[/]]"
+                    "content": "[[h3]]Applications of Unsupervised Learning[[/]]"
                 },
                 {
                     "type": "text",
-                    "content": "➔ Cateogirze news articles automatically"
+                    "content": "➔ Categorize news articles automatically"
                 },
                 {
                     "type": "text",

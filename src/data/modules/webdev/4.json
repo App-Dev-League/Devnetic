@@ -11,7 +11,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "➔ Runtime enviroment for Javascript"
+                    "content": "➔ Runtime environment for Javascript"
                 },
                 {
                     "type": "text",
@@ -37,7 +37,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[b]]Package mangement is an important aspect of backend development. [[/]]"
+                    "content": "[[b]]Package management is an important aspect of backend development. [[/]]"
                 },
                 {
                     "type": "text",
@@ -183,7 +183,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "In this module, you learned what is Node.js, a popular runtime enviroment for Javascript."
+                    "content": "In this module, you learned what is Node.js, a popular runtime environment for Javascript."
                 },
                 {
                     "type": "text",

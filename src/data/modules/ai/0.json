@@ -421,11 +421,11 @@
                 },
                 {
                     "type": "text",
-                    "content": "➔ Getting the index of the first occurance of x in a sequence: [[b]]seq.index(x)[[/]]"
+                    "content": "➔ Getting the index of the first occurrence of x in a sequence: [[b]]seq.index(x)[[/]]"
                 },
                 {
                     "type": "text",
-                    "content": "➔ Counting the number of occurences of x in a sequence: [[b]]seq.count(x)[[/]]"
+                    "content": "➔ Counting the number of occurrences of x in a sequence: [[b]]seq.count(x)[[/]]"
                 },
                 {
                     "type": "text",
@@ -518,11 +518,11 @@
                 },
                 {
                     "type": "text",
-                    "content": "➔ Getting the index of the first occurance of x in a sequence: [[b]]seq.index(x)[[/]]"
+                    "content": "➔ Getting the index of the first occurrence of x in a sequence: [[b]]seq.index(x)[[/]]"
                 },
                 {
                     "type": "text",
-                    "content": "➔ Counting the number of occurences of x in a sequence: [[b]]seq.count(x)[[/]]"
+                    "content": "➔ Counting the number of occurrences of x in a sequence: [[b]]seq.count(x)[[/]]"
                 },
                 {
                     "type": "text",
@@ -738,11 +738,11 @@
                 },
                 {
                     "type": "text",
-                    "content": "➔ Then, you can enter methods and attirbutes inside the class"
+                    "content": "➔ Then, you can enter methods and attributes inside the class"
                 },
                 {
                     "type": "text",
-                    "content": "➔ The [[b]]__init__()[[/]] method is a special method that defines how to initialize the class and if any paramters(like functions and classes can have paramters) are needed"
+                    "content": "➔ The [[b]]__init__()[[/]] method is a special method that defines how to initialize the class and if any parameters(like functions and classes can have parameters) are needed"
                 },
                 {
                     "type": "text",

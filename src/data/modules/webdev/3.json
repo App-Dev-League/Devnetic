@@ -37,7 +37,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "CSS makes websites look nice by changing style, location, and more of elements. CSS stands for \"Cascading Syle Sheets\". CSS does not add any new content to the page."
+                    "content": "CSS makes websites look nice by changing style, location, and more of elements. CSS stands for \"Cascading Style Sheets\". CSS does not add any new content to the page."
                 },
                 {
                     "type": "text",
