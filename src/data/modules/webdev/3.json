@@ -118,12 +118,8 @@
             "title": "Week 4 - Bootstrap Recap",
             "elements": [
                 {
-                    "type": "text",
-                    "content": "Bootstrap is a CSS framework that makes the creation of layouts simpler for developers. It comes with pre-built classes so you don't have to write your own CSS."
-                },
-                {
-                    "type": "image",
-                    "src": "/data/modules/webdev-assets/img3/2-0.png"
+                    "type": "iframe",
+                    "src": "/data/modules/webdev-assets/img3/bootstrap-example.html"
                 }
             ]
         },

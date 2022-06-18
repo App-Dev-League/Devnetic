@@ -28,6 +28,14 @@ class Information extends ModuleComponent {
 				if (key !== "src" && key !== "type") style += `${key}: ${value};`
 			})
 			return `<div class="image-wrapper info-text"><img src="${element.src}" style="display: block; margin-left: auto; margin-right: auto; ${style}"></div>`
+		} else if (element.type == "iframe") {
+			let styles = element;
+			if (!styles.width) styles.width = "90%"
+			let style = "";
+			Object.entries(styles).forEach(([key, value]) => {
+				if (key !== "src" && key !== "type") style += `${key}: ${value};`
+			})
+			return `<div class="image-wrapper info-text"><iframe src="${element.src}" style="display: block; margin-left: auto; margin-right: auto; ${style}" onload="resizeIframe(this)"></iframe></div>`
 		} else {
 			return `<pre class="info-text">${codeTemplateToCode(element.content || "")}</pre>`;
 		}
