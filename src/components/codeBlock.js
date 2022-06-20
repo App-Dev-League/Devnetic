@@ -34,7 +34,7 @@ class codeBlock extends tApp.Component {
         if (!this.state.name) extraStyles = ""
 		return `
 				<div class="snippet-code">
-                <span style="position: relative; display: block; text-align: center; top: 28px; z-index: 1; font-weight: bold;">${this.state.name || ""}</span>
+                <span style="position: relative; display: block; text-align: center; top: 4px; z-index: 1; font-weight: bold; height: 0">${this.state.name || ""}</span>
 					<pre id="${this.codeId}" class="${language}" style="${extraStyles}">
 ${this.state.code}
 					</pre>
