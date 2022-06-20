@@ -169,14 +169,24 @@
             "title": "Week 1 - Basic HTML Tags",
             "elements": [
                 {
-                    "type": "text",
-                    "content": "[[h3]]Headings[[/]]\n➔ Define the heading of a section or page\n➔ Can use 6 heading tags (pick the correct heading; ex. don’t use all [[monospace]]<h1>[[/]] tags and lower the font size later)\n➔ [[monospace]]<h1>[[/]] tags for main headings of a page or article\n➔ Practice: Add an [[monospace]]<h1>[[/]] tag to your page with any heading you want"
-                },
-                {
-                    "type": "image",
-                    "src": "/data/modules/webdev-assets/img0/4-0.png",
-                    "width": "50%",
-                    "box-shadow": "0px 0px 20px 7px #686868"
+                    "type": "split-content",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h3]]Headings[[/]]\n➔ Define the heading of a section or page\n➔ Can use 6 heading tags (pick the correct heading; ex. don’t use all [[monospace]]<h1>[[/]] tags and lower the font size later)\n➔ [[monospace]]<h1>[[/]] tags for main headings of a page or article\n➔ Practice: Add an [[monospace]]<h1>[[/]] tag to your page with any heading you want"
+                        },
+                        {
+                            "type": "split-content",
+                            "elements": [
+                                {
+                                    "type": "image",
+                                    "src": "/data/modules/webdev-assets/img0/4-0.png",
+                                    "width": "50%",
+                                    "box-shadow": "0px 0px 20px 7px #686868"
+                                }
+                            ]
+                        }
+                    ]
                 },
                 {
                     "type": "text",
@@ -202,17 +212,17 @@
                     "content": "[[h3]]Divisions (divs)[[/]]\n➔ Generic container tag [[monospace]]<div>[[/]] for grouping HTML tags\n➔ Used mainly to apply CSS to the enclosed tags\n➔ Does not affect the webpage besides creating a line break before the division\n➔ Use [[monospace]]<section>[[/]] instead of [[monospace]]<div>[[/]] if you want to give semantic meaning (i.e. group similar things together more properly as a “section”)\n➔ Practice: Group your hyperlinks using the [[monospace]]<div>[[/]] tag (applying CSS will be discussed next week)"
                 },
                 {
-                    "type": "image",
-                    "src": "/data/modules/webdev-assets/img0/4-2.png",
-                    "width": "40%"
+                    "type": "code",
+                    "content": "<div>\n  <h2>Respiratory System</h2>\n  <p>pg. 22</p>\n  <ul>\n    <li>Respiratory Tract</li>\n    <li>Gas Exchange</li>\n    <li>Pulomary Diseases</li>\n  </ul>\n</div>"
                 },
                 {
                     "type": "text",
                     "content": "[[h3]]Attributes[[/]]\n➔ Attributes have a basic syntax of attribute=value"
                 },
                 {
-                    "type": "image",
-                    "src": "/data/modules/webdev-assets/img0/4-3.png"
+                    "type": "code",
+                    "content": "               Attribute\n     ┌───────────┐\n<p class=\"editor-note\">My cat is very grumpy</p>",
+                    "lang": "html"
                 },
                 {
                     "type": "text",
@@ -338,33 +348,86 @@
                     "content": "[[h3]]Images[[/]]\n➔ Can add images from all kinds of sources including URLs and local files\n➔ Display images on a webpage with [[monospace]]<img>[[/]]\n➔ There are two main attributes\n[[ ]]◆ [[monospace]]src[[/]] specifies the location of the image to be used\n[[ ]]◆ [[monospace]]alt[[/]] specifies some text that represents the image (for blind people and website parsers)\n➔ Practice: Add an image (from URL or from your project) and create alternative text for it"
                 },
                 {
-                    "type": "image",
-                    "src": "/data/modules/webdev-assets/img0/8-0.png"
+                    "type": "split-content",
+                    "elements": [
+                        {
+                            "type": "image",
+                            "src": "/data/modules/webdev-assets/img0/8-0.png"
+                        },
+                        {
+                            "type": "code",
+                            "content": "<!-- Incorrect way to use a self-closing tag -->\n<img src=\"image.png\" /></img>\n\n<!-- Correct way to use a self-closing tag -->\n<img src=\"image.png\" />",
+                            "lang": "html"
+                        }
+                    ]
                 },
                 {
-                    "type": "text",
-                    "content": "[[h3]]Hyperlinks[[/]]\n➔ Clickable lines of text to add in a website to redirect the user to another page or website\n➔ Use the anchor ([[monospace]]<a></a>[[/]]) tag to add hyperlinks\n➔ Main attribute([[monospace]]href[[/]] tag ) that specifies the URL of the redirect\n➔ Practice: Wrap a word or two in your paragraph with [[monospace]]<a></a>[[/]] and add the href attribute to any link you want!"
+                    "type": "divider"
                 },
                 {
-                    "type": "image",
-                    "src": "/data/modules/webdev-assets/img0/8-1.png",
-                    "width": "40%"
+                    "type": "divider"
+                },
+                {
+                    "type": "divider"
+                },
+                {
+                    "type": "split-content",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h3]]Hyperlinks[[/]]\n➔ Clickable lines of text to add in a website to redirect the user to another page or website\n➔ Use the anchor ([[monospace]]<a></a>[[/]]) tag to add hyperlinks\n➔ Main attribute([[monospace]]href[[/]] tag ) that specifies the URL of the redirect\n➔ Practice: Wrap a word or two in your paragraph with [[monospace]]<a></a>[[/]] and add the href attribute to any link you want!"
+                        },                
+                        {
+                            "type": "split-content",
+                            "elements": [
+                                {
+                                    "type": "divider"
+                                },
+                                {
+                                    "type": "code",
+                                    "content": "<a href='https://google.com'>\n    Go to Google\n</a>",
+                                    "lang": "html"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "divider"
                 },
                 {
                     "type": "text",
                     "content": "[[h3]]Ordered List[[/]]\n➔ Numbered with a 1, 2, 3 etc.\n➔ Text on each list item or any other item of your choice including images\n➔ Syntax: insert [[monospace]]<ol></ol>[[/]] tags and add [[monospace]]<li></li>[[/]] for each list item\n➔ Type attributes [[monospace]](“1”, “I”, “i”, “A”, “a”)[[/]]\n➔ Practice: Add an ordered list to your webpage with three elements (ex. top 3 favorite movies, books, etc.)"
                 },
                 {
-                    "type": "image",
-                    "src": "/data/modules/webdev-assets/img0/8-2.png"
+                    "type": "split-content",
+                    "elements": [
+                        {
+                            "type": "code",
+                            "content": "<ol type ='1'>\n    <li>Orange</li>\n    <li>Mango</li>\n    <li>Banana</li>\n    <li>Apple</li>\n</o>"
+                        },
+                        {
+                            "type": "iframe",
+                            "src": "/data/modules/webdev-assets/img0/8-1.html"
+                        }
+                    ]
                 },
                 {
                     "type": "text",
                     "content": "[[h3]]Unordered List[[/]]\n➔ Lists for items whose order doesn’t matter and uses bullet points\n➔ Can have text on each list item or any other item of your choice including images\n➔ Syntax includes starting with [[monospace]]<ul></ul>[[/]] tags and adding <li></li> for every list item\n➔ Type attributes ([[monospace]]“disc”, “circle”, “square”, “none”[[/]])\n➔ Practice: Add an unordered list to your webpage with three elements that don’t have a specific order (ex. colors, locations, etc.)"
                 },
                 {
-                    "type": "image",
-                    "src": "/data/modules/webdev-assets/img0/8-3.png"
+                    "type": "split-content",
+                    "elements": [
+                        {
+                            "type": "iframe",
+                            "src": "/data/modules/webdev-assets/img0/8-2.html"
+                        },
+                        {
+                            "type": "code",
+                            "content": "<ul type='circle'>\n    <li>Lion</li>\n    <li>Tiger</li>\n</ul>"
+                        }
+                    ]
                 }
             ]
         },

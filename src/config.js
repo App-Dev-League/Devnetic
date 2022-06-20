@@ -139,9 +139,9 @@
 				...([
 					"img0/0-0.png", "img0/1-0.png", "img0/2-0.png",
 					"img0/2-1.png", "img0/2-2.png", "img0/2-3.png",
-					"img0/4-0.png", "img0/4-1.png", "img0/4-2.png",
-					"img0/4-3.png", "img0/8-0.png", "img0/8-1.png",
-					"img0/8-2.png", "img0/8-3.png", "img1/0-0.png",
+					"img0/4-0.png", "img0/4-1.html",
+					"img0/8-0.png", "img0/8-1.html",
+					"img0/8-2.html", "img1/0-0.png",
 					"img1/3-0.png", "img1/5-0.png", "img1/5-1.png",
 					"img1/5-2.png", "img1/6-0.png", "img1/7-0.png",
 					"img1/8-0.png", "img4/1-0.png", "bootstrap-example.html",
