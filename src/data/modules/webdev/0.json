@@ -376,7 +376,7 @@
                         {
                             "type": "text",
                             "content": "[[h3]]Hyperlinks[[/]]\n➔ Clickable lines of text to add in a website to redirect the user to another page or website\n➔ Use the anchor ([[monospace]]<a></a>[[/]]) tag to add hyperlinks\n➔ Main attribute([[monospace]]href[[/]] tag ) that specifies the URL of the redirect\n➔ Practice: Wrap a word or two in your paragraph with [[monospace]]<a></a>[[/]] and add the href attribute to any link you want!"
-                        },                
+                        },
                         {
                             "type": "split-content",
                             "elements": [
