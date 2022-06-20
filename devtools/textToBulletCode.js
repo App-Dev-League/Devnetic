@@ -44,4 +44,8 @@ for (i = 0; i < text.length; i++) {
         })
     }
 }
-console.log(JSON.stringify(code).slice(1,-1))
+var stringCode = "";
+code.forEach(element => {
+    stringCode += JSON.stringify(element.content).slice(1, -1)+"\\n";
+})
+console.log(`{"type": "text","content": "${stringCode}"}`)
