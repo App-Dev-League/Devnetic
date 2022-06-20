@@ -31,7 +31,8 @@
 		"doesFileExist.js",
 		"Database.js",
 		"plugins.js",
-		"shuffleArray.js"
+		"shuffleArray.js",
+		"renderElement.js"
 	], {
 		path: "./utils/"
 	}, newFileCallback);
@@ -78,7 +79,7 @@
 				...([
 					"codeBlocks", "codeEditor", "codeTemplateToCode",
 					"compileSnippet", "Database", "doesFileExist",
-					"plugins", "shuffleArray"
+					"plugins", "shuffleArray", "renderElement.js"
 				].map(file => `/utils/${file}.js`)),
 
 				"/assets/fonts/codicon.ttf",

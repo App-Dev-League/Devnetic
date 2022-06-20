@@ -1,6 +1,7 @@
 const codeTemplateToCode = require("../utils/codeTemplateToCode.js");
 const codeBlock = require("./codeBlock.js");
 const codeBlockHelper = require("../utils/codeBlocks.js");
+const renderElement = require("../utils/renderElement.js");
 
 class Instructions extends tApp.Component {
 	constructor(state, parent) {
@@ -31,29 +32,7 @@ class Instructions extends tApp.Component {
 		return `<div>
 			<h1 class="info-title">${tApp.escape(this.state.title || "")}</h1>
 			${(this.state.elements || []).map(element => {
-				if(element.type == "code") {
-					return `
-								${new codeBlock({code: codeBlockHelper.escapeHtml(element.content || ""), language: element.lang, name: element.name})} 
-							`
-				} else if (element.type == "image") {
-					let styles = element;
-					if (!styles.width) styles.width = "90%"
-					let style = "";
-					Object.entries(styles).forEach(([key, value]) => {
-						if (key !== "src" && key !== "type") style += `${key}: ${value};`
-					})
-					return `<div class="image-wrapper info-text"><img src="${element.src}" style="display: block; margin-left: auto; margin-right: auto; ${style}"></div>`
-				} else if (element.type == "iframe") {
-					let styles = element;
-					if (!styles.width) styles.width = "90%"
-					let style = "";
-					Object.entries(styles).forEach(([key, value]) => {
-						if (key !== "src" && key !== "type") style += `${key}: ${value};`
-					})
-					return `<div class="image-wrapper info-text"><iframe src="${element.src}" style="display: block; margin-left: auto; margin-right: auto; ${style}" onload="resizeIframe(this)"></iframe></div>`
-				} else {
-				 	return `<pre class="info-text">${codeTemplateToCode(element.content || "")}</pre>`;
-				}
+				return renderElement(element)
 			}).join("")}
 			<button class="info-button" onclick="{{_this}}.parent.checknext();">${this.state.nextText}</button>
 			<div class="hints">
@@ -62,21 +41,7 @@ class Instructions extends tApp.Component {
 					window.maxHints = this.state.hints.length - 1
 					return `<div class="hint none">
 						${element.elements.map(part => {
-							if(part.type == "code") {
-								return `
-											${new codeBlock({code: codeBlockHelper.escapeHtml(part.content || ""), language: element.lang, name: element.name})} 
-										`
-							} else if (part.type == "image") {
-								let styles = part;
-								if (!styles.width) styles.width = "90%"
-								let style = "";
-								Object.entries(styles).forEach(([key, value]) => {
-									if (key !== "src" && key !== "type") style += `${key}: ${value};`
-								})
-								return `<div class="image-wrapper info-text"><img src="${part.src}" style="display: block; margin-left: auto; margin-right: auto; ${style}"></div>`
-							} else {
-								return `<pre class="info-text">${codeTemplateToCode(part.content || "")}</pre>`;
-							}
+							return renderElement(element)
 						}).join("")}
 					</div>`
 				}).join("")}
