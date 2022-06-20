@@ -613,7 +613,39 @@
         .explanation-modal .button-incorrect:hover,
         .explanation-modal .button-incorrect:focus {
             outline: 0;
-            background-color: var(--orange-selected);
+        }
+
+        .info-button:focus::after, .home-module:focus::after, .explanation-modal button:focus::after {
+            content: "";
+            display: block;
+            position: absolute;
+            background-image: linear-gradient(to right, var(--blue) 50%, transparent 50%), linear-gradient(to right, var(--blue) 50%, transparent 50%), linear-gradient(to bottom, var(--blue) 50%, transparent 50%), linear-gradient(to bottom, var(--blue) 50%, transparent 50%);
+            background-position: left top, left bottom, left top, right top;
+            background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+            background-size: 20px 3px, 20px 3px, 3px 20px, 3px 20px;
+            left: -10px;
+            top: -10px;
+            width: calc(100% + 20px);
+            height: calc(100% + 20px);
+            border-radius: 8px;
+            border: none !important;
+            outline: none !important;
+        }
+        *:focus-visible {
+            outline: none !important;
+        }
+        .short-answer-button:focus::after {
+            content: "";
+            display: block;
+            position: absolute;
+            background-image: linear-gradient(to right, var(--blue) 50%, transparent 50%), linear-gradient(to right, var(--blue) 50%, transparent 50%), linear-gradient(to bottom, var(--blue) 50%, transparent 50%), linear-gradient(to bottom, var(--blue) 50%, transparent 50%);
+            background-position: left top, left bottom, left top, right top;
+            background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+            background-size: 20px 3px, 20px 3px, 3px 20px, 3px 20px;
+            width: 118px;
+            height: 72px;
+            border-radius: 8px;
+            transform: translate(-19px, -48px);
         }
 
         .explanation-modal-inactive {
