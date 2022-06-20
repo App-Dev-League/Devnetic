@@ -7,11 +7,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "In this project, you will create your very own personal website using HTML."
-                },
-                {
-                    "type": "text",
-                    "content": "Remember the structure of an HTML tag as you create your personal website:"
+                    "content": "In this project, you will create your very own personal website using HTML.\nRemember the structure of an HTML tag as you create your personal website:"
                 },
                 {
                     "type": "code",

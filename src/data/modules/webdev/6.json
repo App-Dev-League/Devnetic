@@ -7,23 +7,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]What is React?[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ JavaScript front-end framework"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Developed by Facebook"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Easier to display dynamic content compared to Vanilla JS"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Changes info dynamically, allowing users to repeat HTML code for several purposes"
+                    "content": "[[h3]]What is React?[[/]]\n➔ JavaScript front-end framework\n➔ Developed by Facebook\n➔ Easier to display dynamic content compared to Vanilla JS\n➔ Changes info dynamically, allowing users to repeat HTML code for several purposes"
                 },
                 {
                     "type": "image",
@@ -32,19 +16,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]ReactJS vs HTML[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ In HTML, to update text, you would have to query the element in JS and then change it."
-                },
-                {
-                    "type": "text",
-                    "content": "➔ With React, you only need to change one variable to update the text!"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ In HTML, it’s hard to reuse code, while in React, just create Components! "
+                    "content": "[[h3]]ReactJS vs HTML[[/]]\n➔ In HTML, to update text, you would have to query the element in JS and then change it.\n➔ With React, you only need to change one variable to update the text!\n➔ In HTML, it’s hard to reuse code, while in React, just create Components! "
                 },
                 {
                     "type": "image",
@@ -53,27 +25,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]What is JSX?[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Stands for JavaScript XML"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Allows user to write HTML into React"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Part of React’s syntax"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Allows user to split HTML code into multiple components"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Provides a visual aid for web development"
+                    "content": "[[h3]]What is JSX?[[/]]\n➔ Stands for JavaScript XML\n➔ Allows user to write HTML into React\n➔ Part of React’s syntax\n➔ Allows user to split HTML code into multiple components\n➔ Provides a visual aid for web development"
                 },
                 {
                     "type": "image",
@@ -88,35 +40,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]Basic JSX Syntax[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Almost exactly like HTML"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ Few minor differences"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ Differences allow for more functionality"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ All HTML attributes get camelCased"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]][[ ]][[ ]]● [[`]]onclick[[/]] turns into [[`]]onClick[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ The user can display variables in JSX syntax"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ Allows to dynamically render content"
+                    "content": "[[h3]]Basic JSX Syntax[[/]]\n➔ Almost exactly like HTML\n[[ ]][[ ]]◆ Few minor differences\n[[ ]][[ ]]◆ Differences allow for more functionality\n[[ ]][[ ]]◆ All HTML attributes get camelCased\n[[ ]][[ ]][[ ]][[ ]]● [[`]]onclick[[/]] turns into [[`]]onClick[[/]]\n➔ The user can display variables in JSX syntax\n[[ ]][[ ]]◆ Allows to dynamically render content"
                 },
                 {
                     "type": "image",
@@ -124,23 +48,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Things to Keep in Mind[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Unlike HTML, in React, if you forget to add a closing “div” tag, your program will throw an error! This makes it easy to see where errors are."
-                },
-                {
-                    "type": "text",
-                    "content": "➔ All tags in HTML are supported in React, but HTML tags that don’t have closing tags ([[`]]<br>[[/]], [[`]]<img>[[/]], etc.) must have closing tags in React!"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ React supports server-side and client-side rendering! Server-side rendering will be slower for big websites, but may let your site appear higher in search engine results"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ JSX syntax requires just one parent element. You can have whatever you want inside, but remember: Only one parent element!"
+                    "content": "[[h3]]Things to Keep in Mind[[/]]\n➔ Unlike HTML, in React, if you forget to add a closing “div” tag, your program will throw an error! This makes it easy to see where errors are.\n➔ All tags in HTML are supported in React, but HTML tags that don’t have closing tags ([[`]]<br>[[/]], [[`]]<img>[[/]], etc.) must have closing tags in React!\n➔ React supports server-side and client-side rendering! Server-side rendering will be slower for big websites, but may let your site appear higher in search engine results\n➔ JSX syntax requires just one parent element. You can have whatever you want inside, but remember: Only one parent element!"
                 }
             ]
         },
@@ -150,19 +58,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]ReactDOM.render[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Allows user to render elements in a container"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Most commonly found in Index.JS file in the project"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ In the example below, “element” will be rendered and displayed on the HTML element that has ID = “root”"
+                    "content": "[[h3]]ReactDOM.render[[/]]\n➔ Allows user to render elements in a container\n➔ Most commonly found in Index.JS file in the project\n➔ In the example below, “element” will be rendered and displayed on the HTML element that has ID = “root”"
                 },
                 {
                     "type": "image",
@@ -173,51 +69,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]React Components[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ React components allow user to reuse HTML"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Two types of components"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ Class components"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ Functional components - More modern "
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Class components work as “classes” that render HTML"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ They require the use of the render() method"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Functional components are functions that return JSX"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ Within the function, the user can add variables, hooks, etc."
-                },
-                {
-                    "type": "text",
-                    "content": "➔ How to create a component:"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ Create a function of any name (must be capitalized)"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ Add a “return” statement, which returns JSX code"
+                    "content": "[[h3]]React Components[[/]]\n➔ React components allow user to reuse HTML\n➔ Two types of components\n[[ ]][[ ]]◆ Class components\n[[ ]][[ ]]◆ Functional components - More modern \n➔ Class components work as “classes” that render HTML\n[[ ]][[ ]]◆ They require the use of the render() method\n➔ Functional components are functions that return JSX\n[[ ]][[ ]]◆ Within the function, the user can add variables, hooks, etc.\n➔ How to create a component:\n[[ ]][[ ]]◆ Create a function of any name (must be capitalized)\n[[ ]][[ ]]◆ Add a “return” statement, which returns JSX code"
                 },
                 {
                     "type": "image",
@@ -306,23 +158,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]JSX Attributes[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Components can contain custom attributes"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ For instance, if the user wants to pass any value, they can pass it as an attribute"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ These are called props"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Here’s how to create an attribute:"
+                    "content": "[[h3]]JSX Attributes[[/]]\n➔ Components can contain custom attributes\n[[ ]][[ ]]◆ For instance, if the user wants to pass any value, they can pass it as an attribute\n[[ ]][[ ]]◆ These are called props\n➔ Here’s how to create an attribute:"
                 },
                 {
                     "type": "image",
@@ -330,42 +166,14 @@
                 },
                 {
                     "type": "text",
-                    "content": "➔ We first created a functional component, but this time we added a parameter called “props” in the function"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Now, whenever we use this component, we add the attribute onto the component"
+                    "content": "➔ We first created a functional component, but this time we added a parameter called “props” in the function\n➔ Now, whenever we use this component, we add the attribute onto the component"
                 },
                 {
                     "type": "divider"
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]JSX Create Element[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Whenever the user creates components, they get compiled into “React.createElement”"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ React.createElement contains 3 properties"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ Name of the element"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ An object containing all the attributes"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ A string with the element’s content"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Let’s take the previous example:"
+                    "content": "[[h3]]JSX Create Element[[/]]\n➔ Whenever the user creates components, they get compiled into “React.createElement”\n➔ React.createElement contains 3 properties\n[[ ]][[ ]]◆ Name of the element\n[[ ]][[ ]]◆ An object containing all the attributes\n[[ ]][[ ]]◆ A string with the element’s content\n➔ Let’s take the previous example:"
                 },
                 {
                     "type": "image",
@@ -386,35 +194,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Virtual DOM[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ React needs to be able to dynamically update content"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ HTML has “Real DOM,” so it cannot dynamically update"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Therefore, React uses “Virtual DOM”"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ The Virtual DOM is kept in memory"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ It represents the UI itself"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ This Virtual DOM is constantly syncing with the “Real DOM”"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ This process happens through a React library called “ReactDOM”"
+                    "content": "[[h3]]Virtual DOM[[/]]\n➔ React needs to be able to dynamically update content\n➔ HTML has “Real DOM,” so it cannot dynamically update\n➔ Therefore, React uses “Virtual DOM”\n➔ The Virtual DOM is kept in memory\n➔ It represents the UI itself\n➔ This Virtual DOM is constantly syncing with the “Real DOM”\n➔ This process happens through a React library called “ReactDOM”"
                 }
             ]
         },
@@ -438,23 +218,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]Setting up the Repl[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Go to Replit.com and create/login to your account"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ After you do this, click the new repl button, and make a React.JS repl"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ This will create a starter ReactJS template that you can customize later. Go ahead and click “Run”. In React, all of your edits are automatically displayed    - even without refreshing the page!"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ After running, you should see something like this: "
+                    "content": "[[h3]]Setting up the Repl[[/]]\n➔ Go to Replit.com and create/login to your account\n➔ After you do this, click the new repl button, and make a React.JS repl\n➔ This will create a starter ReactJS template that you can customize later. Go ahead and click “Run”. In React, all of your edits are automatically displayed    - even without refreshing the page!\n➔ After running, you should see something like this: "
                 },
                 {
                     "type": "image",
@@ -468,15 +232,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "➔ In React, the React Framework will render everything into an HTML file, typically a div with id “root” in the “index.html” file"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ To render an HTML element in ReactJS, use [[`]]ReactDOM.render([HTML code], [HTML element describing where to render])[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ In “main.jsx” (under the “src” folder), replace all of the code with the following:"
+                    "content": "➔ In React, the React Framework will render everything into an HTML file, typically a div with id “root” in the “index.html” file\n➔ To render an HTML element in ReactJS, use [[`]]ReactDOM.render([HTML code], [HTML element describing where to render])[[/]]\n➔ In “main.jsx” (under the “src” folder), replace all of the code with the following:"
                 },
                 {
                     "type": "image",
@@ -485,11 +241,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "➔ First we import all of the required NPM modules"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Then, we create an element and [[`]]ReactDOM.render[[/]] it into the HTML file named “index.html”"
+                    "content": "➔ First we import all of the required NPM modules\n➔ Then, we create an element and [[`]]ReactDOM.render[[/]] it into the HTML file named “index.html”"
                 }
             ]
         }

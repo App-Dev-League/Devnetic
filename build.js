@@ -5,6 +5,15 @@ var jsonminify = require("jsonminify");
 var minify = require('html-minifier').minify;
 
 
+var actions = {
+    "Webdev Lessons": "webdev",
+    "Webdev Projects": "webdev-projects",
+    "AI Lessons": "ai",
+    //"Intro To CS": "intro-to-cs",
+}
+
+
+
 console.log("Clearing old files...");
 try {
     fs.rmSync('./docs', { recursive: true });
@@ -13,6 +22,8 @@ try {
 console.log("Updating indices...")
 createModuleIndex();
 createPluginSizeIndex();
+console.log("Combining sequential text elements...")
+combineSequentialTextElements();
 console.log("Building...")
 copyFolderSync("./src", "./docs")
 console.log("Cleaning up...");
@@ -56,12 +67,6 @@ function copyFolderSync(from, to) {
 }
 function createModuleIndex() {
     var json = {};
-    var actions = {
-        "Webdev Lessons": "webdev",
-        "Webdev Projects": "webdev-projects",
-        "AI Lessons": "ai",
-        //"Intro To CS": "intro-to-cs",
-    }
     json.actions = actions;
     Object.entries(actions).forEach(([key, value]) => {
         json[value] = {
@@ -96,4 +101,30 @@ function cleanUp() {
     let indexHTML = fs.readFileSync("./docs/index.html", "utf8");
     indexHTML = indexHTML.replace(`window.environment="development"`, `window.environment="production"`);
     fs.writeFileSync("./docs/index.html", indexHTML);
+}
+function combineSequentialTextElements() {
+    Object.entries(actions).forEach(([key, value]) => {
+        fs.readdirSync(`./src/data/modules/${value}`).forEach(element => {
+            let file = JSON.parse(fs.readFileSync(`./src/data/modules/${value}/${element}`, "utf8"));
+            file.pages.forEach(page => {
+                var previousElementType = null;
+                var newPage = page;
+                recurseThrough(0)
+                function recurseThrough(i) {
+                    if (!newPage.elements) return;
+                    let element = newPage.elements[i];
+                    if (!element) return;
+                    if (previousElementType === "text" && element.type === "text") {
+                        newPage.elements[i - 1].content += "\n"+element.content;
+                        newPage.elements.splice(i, 1);
+                        return recurseThrough(i);
+                    } else {
+                        previousElementType = element.type;
+                        return recurseThrough(i + 1);
+                    }
+                }
+            })
+            fs.writeFileSync(`./src/data/modules/${value}/${element}`, JSON.stringify(file, null, 4));
+        })
+    })
 }

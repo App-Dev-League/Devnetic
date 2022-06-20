@@ -15,19 +15,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "Headings define the header of a section or page. For example, [[monospace]]<h1>[[/]] creates a large heading. "
-                },
-                {
-                    "type": "text",
-                    "content": "Paragraphs add bodies of text, and are created with the [[monospace]]<p>[[/]] tag."
-                },
-                {
-                    "type": "text",
-                    "content": "Image dags display images on webpages from URLs or local files."
-                },
-                {
-                    "type": "text",
-                    "content": "Hyperlinks are clickable lines of text to add in a website to redirect the user to another page or website"
+                    "content": "Headings define the header of a section or page. For example, [[monospace]]<h1>[[/]] creates a large heading. \nParagraphs add bodies of text, and are created with the [[monospace]]<p>[[/]] tag.\nImage dags display images on webpages from URLs or local files.\nHyperlinks are clickable lines of text to add in a website to redirect the user to another page or website"
                 }
             ]
         },
@@ -37,15 +25,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "CSS makes websites look nice by changing style, location, and more of elements. CSS stands for \"Cascading Style Sheets\". CSS does not add any new content to the page."
-                },
-                {
-                    "type": "text",
-                    "content": "Some common CSS styles include:"
-                },
-                {
-                    "type": "text",
-                    "content": "  - font-family: Change the font of an element."
+                    "content": "CSS makes websites look nice by changing style, location, and more of elements. CSS stands for \"Cascading Style Sheets\". CSS does not add any new content to the page.\nSome common CSS styles include:\n  - font-family: Change the font of an element."
                 },
                 {
                     "type": "code",
@@ -129,31 +109,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "Purpose of JavaScript:"
-                },
-                {
-                    "type": "text",
-                    "content": "  - Full stack development (client-side execution + server-side scripting)"
-                },
-                {
-                    "type": "text",
-                    "content": "  - Creating animations, graphics, pop-ups, interactive material, etc."
-                },
-                {
-                    "type": "text",
-                    "content": "Console:"
-                },
-                {
-                    "type": "text",
-                    "content": "  - A message/output window display for developers"
-                },
-                {
-                    "type": "text",
-                    "content": "  - Can be used for debugging and shows error/security/network messages"
-                },
-                {
-                    "type": "text",
-                    "content": "Comments:"
+                    "content": "Purpose of JavaScript:\n  - Full stack development (client-side execution + server-side scripting)\n  - Creating animations, graphics, pop-ups, interactive material, etc.\nConsole:\n  - A message/output window display for developers\n  - Can be used for debugging and shows error/security/network messages\nComments:"
                 },
                 {
                     "type": "code",
@@ -169,11 +125,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "JS is loosely typed/dynamic - variables be assigned to any type. The primitive types are string, number, bigint, boolean, undefined, symbol, and null."
-                },
-                {
-                    "type": "text",
-                    "content": "JavaScript properties are data contained by the instance of an object or type. They can be accessed using the dot operator (.) and the property name."
+                    "content": "JS is loosely typed/dynamic - variables be assigned to any type. The primitive types are string, number, bigint, boolean, undefined, symbol, and null.\nJavaScript properties are data contained by the instance of an object or type. They can be accessed using the dot operator (.) and the property name."
                 },
                 {
                     "type": "code",
@@ -211,27 +163,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "Link stylesheets using [[monospace]]<link rel=”stylesheet” href=”style.css”>[[/]] in the head section of the HTML file."
-                },
-                {
-                    "type": "text",
-                    "content": "  - [[monospace]]rel[[/]] attribute is required: specifies the relationship between the linked document and the current document"
-                },
-                {
-                    "type": "text",
-                    "content": "  - [[monospace]]href[[/]] attribute contains the url of the linked document"
-                },
-                {
-                    "type": "text",
-                    "content": "[[monospace]]type[[/]] attribute specifies the media type of the linked document"
-                },
-                {
-                    "type": "text",
-                    "content": "Multiple stylesheets can be linked, but many websites use a single sheet to avoid rewriting code and for faster load time (choose what is best for your project)"
-                },
-                {
-                    "type": "text",
-                    "content": "JavaScript functionality can be added with the script tag (either external or embedded)"
+                    "content": "Link stylesheets using [[monospace]]<link rel=”stylesheet” href=”style.css”>[[/]] in the head section of the HTML file.\n  - [[monospace]]rel[[/]] attribute is required: specifies the relationship between the linked document and the current document\n  - [[monospace]]href[[/]] attribute contains the url of the linked document\n[[monospace]]type[[/]] attribute specifies the media type of the linked document\nMultiple stylesheets can be linked, but many websites use a single sheet to avoid rewriting code and for faster load time (choose what is best for your project)\nJavaScript functionality can be added with the script tag (either external or embedded)"
                 },
                 {
                     "type": "code",

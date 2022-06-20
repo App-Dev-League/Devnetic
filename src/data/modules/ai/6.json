@@ -7,27 +7,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]What is Natural Language Processing?[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Subfield of AI that focuses on understanding language"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Has its own subfields in which there are different tasks"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ There can include text classification, next sentence prediction, and masking"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ We can play with many of these subfields through the website below"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ https://demo.allennlp.org/"
+                    "content": "[[h3]]What is Natural Language Processing?[[/]]\n➔ Subfield of AI that focuses on understanding language\n➔ Has its own subfields in which there are different tasks\n➔ There can include text classification, next sentence prediction, and masking\n➔ We can play with many of these subfields through the website below\n➔ https://demo.allennlp.org/"
                 },
                 {
                     "type": "image",
@@ -37,23 +17,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Word Embeddings[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ We cannot simply parse words into our models for any evaluation"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Models work with numbers, so we must represent the words that way"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ This is done with word embeddings (word vectors)"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Essentially list of numbers of n dimensions"
+                    "content": "[[h3]]Word Embeddings[[/]]\n➔ We cannot simply parse words into our models for any evaluation\n➔ Models work with numbers, so we must represent the words that way\n➔ This is done with word embeddings (word vectors)\n➔ Essentially list of numbers of n dimensions"
                 }
             ]
         },
@@ -63,31 +27,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]Converting words to vectors[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ How do we convert our words to embeddings"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Visualized here: https://projector.tensorflow.org/ (also called word cloud or a semantic space)"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Generally speaking, word vectors will be either 100, 200, or 300 dimensions"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]One-hot encoding[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Uses a matrix of 0s, where each value is represented by a single 1 (or a “hot” value)"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Inefficient; left with very large matrices of mostly 0s"
+                    "content": "[[h3]]Converting words to vectors[[/]]\n➔ How do we convert our words to embeddings\n➔ Visualized here: https://projector.tensorflow.org/ (also called word cloud or a semantic space)\n➔ Generally speaking, word vectors will be either 100, 200, or 300 dimensions\n[[h3]]One-hot encoding[[/]]\n➔ Uses a matrix of 0s, where each value is represented by a single 1 (or a “hot” value)\n➔ Inefficient; left with very large matrices of mostly 0s"
                 },
                 {
                     "type": "image",
@@ -97,11 +37,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "    ◆ Value 0 is shown to be a banana, aka the value 100"
-                },
-                {
-                    "type": "text",
-                    "content": "        ➔ By similar logic, values 1 and 3 are a apples (010) and value 2 is a cherry (001)"
+                    "content": "    ◆ Value 0 is shown to be a banana, aka the value 100\n        ➔ By similar logic, values 1 and 3 are a apples (010) and value 2 is a cherry (001)"
                 }
             ]
         },
@@ -111,47 +47,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]Contextual Word Embeddings[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ One difference from regular word embeddings"
-                },
-                {
-                    "type": "text",
-                    "content": "    ◆ Traditional embeddings = one vector for one word"
-                },
-                {
-                    "type": "text",
-                    "content": "        ➔ Disadvantage: polysemy = one word means multiple things"
-                },
-                {
-                    "type": "text",
-                    "content": "            ◆ Take for example the word “fly”:"
-                },
-                {
-                    "type": "text",
-                    "content": "                ➔ Noun: “This fly is so annoying”"
-                },
-                {
-                    "type": "text",
-                    "content": "                ➔ Adjective: “You look pretty fly today”"
-                },
-                {
-                    "type": "text",
-                    "content": "                ➔ Verb: “I want to fly a plane”"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Change the vector based on the context of the word → solve polysemy"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Takes the part-of-speech of the word as part of the input to the word embedding"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ ELMo embeddings = popular software"
+                    "content": "[[h3]]Contextual Word Embeddings[[/]]\n➔ One difference from regular word embeddings\n    ◆ Traditional embeddings = one vector for one word\n        ➔ Disadvantage: polysemy = one word means multiple things\n            ◆ Take for example the word “fly”:\n                ➔ Noun: “This fly is so annoying”\n                ➔ Adjective: “You look pretty fly today”\n                ➔ Verb: “I want to fly a plane”\n➔ Change the vector based on the context of the word → solve polysemy\n➔ Takes the part-of-speech of the word as part of the input to the word embedding\n➔ ELMo embeddings = popular software"
                 },
                 {
                     "type": "image",
@@ -161,19 +57,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Text Classification[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Text Classification consists of several different tasks"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ They all will output some classification metric about the input sentence"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ For example: Spam messages, Sentiment Analysis, intent classification"
+                    "content": "[[h3]]Text Classification[[/]]\n➔ Text Classification consists of several different tasks\n➔ They all will output some classification metric about the input sentence\n➔ For example: Spam messages, Sentiment Analysis, intent classification"
                 }
             ]
         },
@@ -183,31 +67,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]Sentiment Analysis[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ A subfield of Text Classification that focuses primarily on deriving subjectivity from text"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ What type of emotion does this unstructured data display?"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ https://text2data.com/Demo"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Can be binary or fine-grain (although binary is more common)"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Polarity = whether the sentiment is positive or negative"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Intensity = how positive or negative the sentiment is (fine-grain)"
+                    "content": "[[h3]]Sentiment Analysis[[/]]\n➔ A subfield of Text Classification that focuses primarily on deriving subjectivity from text\n    ➔ What type of emotion does this unstructured data display?\n    ➔ https://text2data.com/Demo\n➔ Can be binary or fine-grain (although binary is more common)\n➔ Polarity = whether the sentiment is positive or negative\n➔ Intensity = how positive or negative the sentiment is (fine-grain)"
                 },
                 {
                     "type": "image",
@@ -217,35 +77,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Machine Translation (MT)[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Translates one language to another using AI"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ More efficient than human translation"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Most popular: Statistical (SMT), Rule-based (RBMT), Hybrid (HMT), Neural (NMT)"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ SMT: Rely on statistical models that investigate bilingual text volumes to find correspondences between words"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ RBMT: Based on grammatical/linguistic rules of each language"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ HMT: Multiple MT approaches to form one MT system (common = mix of RBMT + SMT)"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ Neural: Depend on neural network models to build statistical models that translate text"
+                    "content": "[[h3]]Machine Translation (MT)[[/]]\n➔ Translates one language to another using AI\n➔ More efficient than human translation\n➔ Most popular: Statistical (SMT), Rule-based (RBMT), Hybrid (HMT), Neural (NMT)\n    ➔ SMT: Rely on statistical models that investigate bilingual text volumes to find correspondences between words\n    ➔ RBMT: Based on grammatical/linguistic rules of each language\n    ➔ HMT: Multiple MT approaches to form one MT system (common = mix of RBMT + SMT)\n    ➔ Neural: Depend on neural network models to build statistical models that translate text"
                 }
             ]
         },
@@ -255,19 +87,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]Language Modelling[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Aims to predict and then create language"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ Determine probability of sequence of words occurring in sentence"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ The following are examples of AI generated names"
+                    "content": "[[h3]]Language Modelling[[/]]\n➔ Aims to predict and then create language\n    ➔ Determine probability of sequence of words occurring in sentence\n➔ The following are examples of AI generated names"
                 },
                 {
                     "type": "image",
@@ -282,31 +102,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "➔ The link below is a great example of the GPT-3 model trained for language generation (modelling but produces large amounts of output text)"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ It produces large swaths of relatively comprehensible text"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ https://bellard.org/textsynth/"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Try this for masked language modelling: https://demo.allennlp.org/masked-lm"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]Naïve Bayes Classifier[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Probabilistic machine learning model used for classifying text (primarily sentiment analysis)"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Assumes that predictors are independent and have an equal effect on the outcome"
+                    "content": "➔ The link below is a great example of the GPT-3 model trained for language generation (modelling but produces large amounts of output text)\n    ➔ It produces large swaths of relatively comprehensible text\n➔ https://bellard.org/textsynth/\n➔ Try this for masked language modelling: https://demo.allennlp.org/masked-lm\n[[h3]]Naïve Bayes Classifier[[/]]\n➔ Probabilistic machine learning model used for classifying text (primarily sentiment analysis)\n➔ Assumes that predictors are independent and have an equal effect on the outcome"
                 }
             ]
         },
@@ -322,31 +118,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Neural Networks[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Feedforward Neural Networks have big drawbacks (being unidirectional) in NLP tasks"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ Context is unable to be captured"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ RNNs, specifically bi-LSTMs, are preferred"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Used for word embeddings as well"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]Sequence-to-Sequence Models[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Use “encoders” and “decoders” to parse inputs one token at a time "
+                    "content": "[[h3]]Neural Networks[[/]]\n➔ Feedforward Neural Networks have big drawbacks (being unidirectional) in NLP tasks\n    ➔ Context is unable to be captured\n➔ RNNs, specifically bi-LSTMs, are preferred\n➔ Used for word embeddings as well\n[[h3]]Sequence-to-Sequence Models[[/]]\n➔ Use “encoders” and “decoders” to parse inputs one token at a time "
                 },
                 {
                     "type": "image",
@@ -355,11 +127,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "➔ The memory output from each step in the encoder RNN continues into the decoder"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Encoder vector is then decoded by decoder RNN into output results"
+                    "content": "➔ The memory output from each step in the encoder RNN continues into the decoder\n➔ Encoder vector is then decoded by decoder RNN into output results"
                 }
             ]
         },
@@ -375,35 +143,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Transformers and BERT[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ BERT = Bidirectional Encoder Representations from Transformers"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Essentially uses a stack of encoders and decoders"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ As opposed to a single encoder decoder"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Applies bidirectional training of transformers → language modelling"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Uses Masked Language Model (MLM) + Next Sentence Prediction (NSP) approach"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ MLM: 15% of words are replaced with [MASK] token → model tries to predict the [MASK] token"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ NSP: given sentences A and B, does B follow A? 50% of inputs = subsequent sentence is in the text"
+                    "content": "[[h3]]Transformers and BERT[[/]]\n➔ BERT = Bidirectional Encoder Representations from Transformers\n➔ Essentially uses a stack of encoders and decoders\n    ➔ As opposed to a single encoder decoder\n➔ Applies bidirectional training of transformers → language modelling\n➔ Uses Masked Language Model (MLM) + Next Sentence Prediction (NSP) approach\n    ➔ MLM: 15% of words are replaced with [MASK] token → model tries to predict the [MASK] token\n    ➔ NSP: given sentences A and B, does B follow A? 50% of inputs = subsequent sentence is in the text"
                 }
             ]
         },
@@ -810,215 +550,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "In this module, you learned all about Natural Language Processing:"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]Concept of NLP[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Subset of AI that focuses on understanding and modelling language"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Consists of several subfields that cover more specific tasks"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Use convolutions (filters) to work"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]Word Embeddings[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ A method or structure that is employed to convert words into numbers (or in this case vectors)"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Each word in the dictionary is represented by a vector in a n-dimensional space (referred to in NLP as a semantic space)"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Similar words will have similar vectors (and therefore lower cosine distance from each other in the semantic space)"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Most word vectors offered today will be either 100, 200, or 300 dimensions"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Why are word vectors useful?"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ Most models need to deal directly with numbers"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ A neural network, for example, will not be able to take words as an input, and thus meaningfully representing them numerically is important"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]One-hot encoding[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Uses a matrix of 0s, where each value is represented by a single 1 (or a “hot” value)"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Unfortunately one-hot is rather inefficient, as one is left with a very large matrices of mostly 0s"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]Contextual Word Embeddings[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Essentially same as regular word embeddings, with one special change"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ Traditional embeddings will have only one vector for one word"
-                },
-                {
-                    "type": "text",
-                    "content": "        ➔ Though this poses a problem due to polysemy (where one word means multiple things)"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ To solve polysemy, we can change the vector based on the context of the word"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ This works by taking the PoS (part-of-speech) of the word as part of the input to the word embedding"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]Text Classification[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Subtask of NLP: Tries to organize text input into some predefined categories"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Includes sentiment analysis, spam detection, and intent classification"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]Sentiment Analysis[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Subtask of NLP; also example of Text Classification"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Tries to determine “sentiment” or subjectivity from text"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Polarity = sentiment is positive? negative?"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Intensity = how positive/negative is the sentiment?"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]Machine Translation[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Translates one language to another"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ SMT, RBMT, HMT, Neural models for machine translation"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]Language Modelling[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Can create language by first predicting it"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Useful for finishing sentences"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ [[a]]https://bellard.org/textsynth [[/a]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ [[link=https://demo.allennlp.org/masked-lm]]Masked language modelling[[/link]]"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]Naïve Bayes Classifier[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Probabilistic machine learning model used for classifying text"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Naïve because assumes predictors are independent"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]Neural Networks[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Used for word embeddings"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Feedforward networks = not preferred for NLP because they are not bidirectional"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ RNNs (biLSTMS) = more helpful"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ Bidirectionality is important in understanding text"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]Sequence-to-sequence Models[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Encoders + decoders for input sequences"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Encoder vector → decoder → output"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]Transformers and BERT[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Difference from seq2seq: stack of encoders + decoders"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Bidirectional training"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ MLM + NSP approach"
+                    "content": "In this module, you learned all about Natural Language Processing:\n[[h3]]Concept of NLP[[/]]\n➔ Subset of AI that focuses on understanding and modelling language\n➔ Consists of several subfields that cover more specific tasks\n➔ Use convolutions (filters) to work\n[[h3]]Word Embeddings[[/]]\n➔ A method or structure that is employed to convert words into numbers (or in this case vectors)\n➔ Each word in the dictionary is represented by a vector in a n-dimensional space (referred to in NLP as a semantic space)\n➔ Similar words will have similar vectors (and therefore lower cosine distance from each other in the semantic space)\n➔ Most word vectors offered today will be either 100, 200, or 300 dimensions\n➔ Why are word vectors useful?\n    ➔ Most models need to deal directly with numbers\n    ➔ A neural network, for example, will not be able to take words as an input, and thus meaningfully representing them numerically is important\n[[h3]]One-hot encoding[[/]]\n➔ Uses a matrix of 0s, where each value is represented by a single 1 (or a “hot” value)\n➔ Unfortunately one-hot is rather inefficient, as one is left with a very large matrices of mostly 0s\n[[h3]]Contextual Word Embeddings[[/]]\n➔ Essentially same as regular word embeddings, with one special change\n    ➔ Traditional embeddings will have only one vector for one word\n        ➔ Though this poses a problem due to polysemy (where one word means multiple things)\n➔ To solve polysemy, we can change the vector based on the context of the word\n➔ This works by taking the PoS (part-of-speech) of the word as part of the input to the word embedding\n[[h3]]Text Classification[[/]]\n➔ Subtask of NLP: Tries to organize text input into some predefined categories\n➔ Includes sentiment analysis, spam detection, and intent classification\n[[h3]]Sentiment Analysis[[/]]\n➔ Subtask of NLP; also example of Text Classification\n➔ Tries to determine “sentiment” or subjectivity from text\n➔ Polarity = sentiment is positive? negative?\n➔ Intensity = how positive/negative is the sentiment?\n[[h3]]Machine Translation[[/]]\n➔ Translates one language to another\n➔ SMT, RBMT, HMT, Neural models for machine translation\n[[h3]]Language Modelling[[/]]\n➔ Can create language by first predicting it\n➔ Useful for finishing sentences\n➔ [[a]]https://bellard.org/textsynth [[/a]]\n➔ [[link=https://demo.allennlp.org/masked-lm]]Masked language modelling[[/link]]\n[[h3]]Naïve Bayes Classifier[[/]]\n➔ Probabilistic machine learning model used for classifying text\n➔ Naïve because assumes predictors are independent\n[[h3]]Neural Networks[[/]]\n➔ Used for word embeddings\n➔ Feedforward networks = not preferred for NLP because they are not bidirectional\n➔ RNNs (biLSTMS) = more helpful\n    ➔ Bidirectionality is important in understanding text\n[[h3]]Sequence-to-sequence Models[[/]]\n➔ Encoders + decoders for input sequences\n➔ Encoder vector → decoder → output\n[[h3]]Transformers and BERT[[/]]\n➔ Difference from seq2seq: stack of encoders + decoders\n➔ Bidirectional training\n➔ MLM + NSP approach"
                 }
             ]
         }

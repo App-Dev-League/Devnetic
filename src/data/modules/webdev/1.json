@@ -7,11 +7,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "As of now, our HTML documents look quite bland. This is because it contains only text, without styling. CSS allows us to add awesome effects, colors, sizes, and more to our websites."
-                },
-                {
-                    "type": "text",
-                    "content": "CSS stands for [[b]]C[[/]]ascading [[b]]S[[/]]tyle [[b]]S[[/]]heets. CSS does not write any new content to the website, but is solely for styling."
+                    "content": "As of now, our HTML documents look quite bland. This is because it contains only text, without styling. CSS allows us to add awesome effects, colors, sizes, and more to our websites.\nCSS stands for [[b]]C[[/]]ascading [[b]]S[[/]]tyle [[b]]S[[/]]heets. CSS does not write any new content to the website, but is solely for styling."
                 }
             ]
         },
@@ -31,11 +27,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "You can select HTML elements by class name, element name or id name."
-                },
-                {
-                    "type": "text",
-                    "content": "Pseudo selectors allow you to add styles when elements are in a certain state."
+                    "content": "You can select HTML elements by class name, element name or id name.\nPseudo selectors allow you to add styles when elements are in a certain state."
                 }
             ]
         },
@@ -159,19 +151,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "Animation transitions allow you to apply smoother transitions to elements."
-                },
-                {
-                    "type": "text",
-                    "content": "   - 1 second transition to all styles: [[monospace]]transition: 1s all[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "   - 1 second transition to a specific style option: [[monospace]]transition: 1s color[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "   - Multiple transition rules: [[monospace]]transition: 1s color, 3s border[[/]]"
+                    "content": "Animation transitions allow you to apply smoother transitions to elements.\n   - 1 second transition to all styles: [[monospace]]transition: 1s all[[/]]\n   - 1 second transition to a specific style option: [[monospace]]transition: 1s color[[/]]\n   - Multiple transition rules: [[monospace]]transition: 1s color, 3s border[[/]]"
                 }
             ]
         },
@@ -190,15 +170,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "To import bootstrap into HTML..."
-                },
-                {
-                    "type": "text",
-                    "content": "   1. Navigate to Bootstrap's documentation: [[a]]https://getbootstrap.com/docs/5.0/getting-started/download/#cdn-via-jsdelivr[[/a]]."
-                },
-                {
-                    "type": "text",
-                    "content": "   2. Copy the two tags under CDN via jsDelivr and add them to your HTML code (use the copy button in the corner)"
+                    "content": "To import bootstrap into HTML...\n   1. Navigate to Bootstrap's documentation: [[a]]https://getbootstrap.com/docs/5.0/getting-started/download/#cdn-via-jsdelivr[[/a]].\n   2. Copy the two tags under CDN via jsDelivr and add them to your HTML code (use the copy button in the corner)"
                 },
                 {
                     "type": "code",
@@ -242,23 +214,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "  - Element with class [[monospace]]form-control[[/]] enables bootstrap form features."
-                },
-                {
-                    "type": "text",
-                    "content": "  - Bootstrap enables easy sizing of form elements by setting the class [[monospace]]form-control-[size][[/]]."
-                },
-                {
-                    "type": "text",
-                    "content": "    - The available sizes are \"lg\" for large, nothing for normal, and \"sm\" for small."
-                },
-                {
-                    "type": "text",
-                    "content": "  - The [[monospace]]inline[[/]] class allows multiple elements to be displayed on one line."
-                },
-                {
-                    "type": "text",
-                    "content": "    - The class [[monospace]]form-group[[/]] provides structures for groups by grouping form elements. They are useful when there are several sections of forms."
+                    "content": "  - Element with class [[monospace]]form-control[[/]] enables bootstrap form features.\n  - Bootstrap enables easy sizing of form elements by setting the class [[monospace]]form-control-[size][[/]].\n    - The available sizes are \"lg\" for large, nothing for normal, and \"sm\" for small.\n  - The [[monospace]]inline[[/]] class allows multiple elements to be displayed on one line.\n    - The class [[monospace]]form-group[[/]] provides structures for groups by grouping form elements. They are useful when there are several sections of forms."
                 }
             ]
         },
@@ -522,39 +478,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "You learned some essential CSS properties."
-                },
-                {
-                    "type": "text",
-                    "content": "  - font-family"
-                },
-                {
-                    "type": "text",
-                    "content": "  - font-size"
-                },
-                {
-                    "type": "text",
-                    "content": "  - text-align"
-                },
-                {
-                    "type": "text",
-                    "content": "  - text-decoration"
-                },
-                {
-                    "type": "text",
-                    "content": "  - color"
-                },
-                {
-                    "type": "text",
-                    "content": "  - box-shadow"
-                },
-                {
-                    "type": "text",
-                    "content": "  - Gradients"
-                },
-                {
-                    "type": "text",
-                    "content": "You learned how to utilize selector events."
+                    "content": "You learned some essential CSS properties.\n  - font-family\n  - font-size\n  - text-align\n  - text-decoration\n  - color\n  - box-shadow\n  - Gradients\nYou learned how to utilize selector events."
                 },
                 {
                     "type": "code",

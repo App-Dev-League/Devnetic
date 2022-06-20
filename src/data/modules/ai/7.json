@@ -7,19 +7,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]Unsupervised Learning[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ The transition from supervised to unsupervised learning can be complex, so we will try to break it down here"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Unlike supervised learning, where data is labeled and we are trying to maximize a certain outcome, unsupervised learning is all about hidden patterns"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ We try to discover unknown patterns in data to find anomalies and other factors that can help us model data."
+                    "content": "[[h3]]Unsupervised Learning[[/]]\n➔ The transition from supervised to unsupervised learning can be complex, so we will try to break it down here\n➔ Unlike supervised learning, where data is labeled and we are trying to maximize a certain outcome, unsupervised learning is all about hidden patterns\n➔ We try to discover unknown patterns in data to find anomalies and other factors that can help us model data."
                 },
                 {
                     "type": "image",
@@ -35,31 +23,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Methods of unsupervised learning[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Clustering"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ K-means, mixture models, DBSCAN, and OPTICS algorithm"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Anomaly Detection"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ Local Outlier Factor and Isolation Forest"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Neural Networks"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ Autoencoders, deep belief networks, Hebbian learning, generative adversarial networks (GANs), and self-organizing maps"
+                    "content": "[[h3]]Methods of unsupervised learning[[/]]\n➔ Clustering\n    ➔ K-means, mixture models, DBSCAN, and OPTICS algorithm\n➔ Anomaly Detection\n    ➔ Local Outlier Factor and Isolation Forest\n➔ Neural Networks\n    ➔ Autoencoders, deep belief networks, Hebbian learning, generative adversarial networks (GANs), and self-organizing maps"
                 },
                 {
                     "type": "image",
@@ -81,19 +45,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]K-Means Clustering[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ The algorithm must self-discover clusters that some given data can be separated into"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Applications range from recommendation engines to image segmentation and more"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ There are many ways to do K-means clustering, but typically, we start by forming k random clusters and reduce some metric from there, typically average distances between points inside a cluster"
+                    "content": "[[h3]]K-Means Clustering[[/]]\n➔ The algorithm must self-discover clusters that some given data can be separated into\n➔ Applications range from recommendation engines to image segmentation and more\n➔ There are many ways to do K-means clustering, but typically, we start by forming k random clusters and reduce some metric from there, typically average distances between points inside a cluster"
                 },
                 {
                     "type": "image",
@@ -119,11 +71,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "1. Choose the number of clusters, k."
-                },
-                {
-                    "type": "text",
-                    "content": "2. Choose k random points in the data to be centers"
+                    "content": "1. Choose the number of clusters, k.\n2. Choose k random points in the data to be centers"
                 },
                 {
                     "type": "image",
@@ -133,11 +81,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "3. Assign all points to the closest center"
-                },
-                {
-                    "type": "text",
-                    "content": "4. Recompute the centers of the newly formed clusters"
+                    "content": "3. Assign all points to the closest center\n4. Recompute the centers of the newly formed clusters"
                 },
                 {
                     "type": "image",
@@ -147,11 +91,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "5. Repeat steps 3 and 4 until"
-                },
-                {
-                    "type": "text",
-                    "content": "    a. The centers do not change"
+                    "content": "5. Repeat steps 3 and 4 until\n    a. The centers do not change"
                 },
                 {
                     "type": "image",
@@ -161,11 +101,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "    b. Points remain in the same cluster from iteration to iteration"
-                },
-                {
-                    "type": "text",
-                    "content": "    c. It reaches a set number of maximum iterations (to save computational time and power)"
+                    "content": "    b. Points remain in the same cluster from iteration to iteration\n    c. It reaches a set number of maximum iterations (to save computational time and power)"
                 }
             ]
         },
@@ -175,31 +111,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]Implementing K-means clustering[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Usually, we will use a library that handles the complicated things for us"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ For now, let’s discuss how we would go about implementing this without a library"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Assign a variable to hold “k,” the number of groups"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Take k samples of the dataset and store them in an array called centers or centroids"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Use a loop to calculate the distance from each point to each center and assign each point to a cluster of the closest center"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Recompute the three centers"
+                    "content": "[[h3]]Implementing K-means clustering[[/]]\n➔ Usually, we will use a library that handles the complicated things for us\n➔ For now, let’s discuss how we would go about implementing this without a library\n➔ Assign a variable to hold “k,” the number of groups\n➔ Take k samples of the dataset and store them in an array called centers or centroids\n➔ Use a loop to calculate the distance from each point to each center and assign each point to a cluster of the closest center\n➔ Recompute the three centers"
                 },
                 {
                     "type": "image",
@@ -209,31 +121,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "    ➔ For each point in a cluster, calculate its average distance to all the other points in the cluster"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ The point with the lowest average is the new center for that cluster"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Recompute which cluster each point belongs to"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Put all of this in a loop and continue it until:"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ The centers do not change"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ Points remain in the same cluster from iteration to iteration"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ It reaches a set number of maximum iterations"
+                    "content": "    ➔ For each point in a cluster, calculate its average distance to all the other points in the cluster\n    ➔ The point with the lowest average is the new center for that cluster\n➔ Recompute which cluster each point belongs to\n➔ Put all of this in a loop and continue it until:\n    ➔ The centers do not change\n    ➔ Points remain in the same cluster from iteration to iteration\n    ➔ It reaches a set number of maximum iterations"
                 }
             ]
         },
@@ -253,35 +141,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "➔ Uses the concept of “local density” to figure out which data point is an outlier"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Calculate k-nearest distances from a point to its neighbors"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Compare it to the average distance of other points"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ If the local density of one point is too low, it is considered to be an outlier"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]The Advantage[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Able to identify outliers in a data set that would not be outliers in another area of the data set. "
-                },
-                {
-                    "type": "text",
-                    "content": "➔ For example, a point at a \"small\" distance to a very dense cluster could be an outlier, while a point within a sparse cluster might exhibit similar distances to its neighbors, meaning it is not an outlier."
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Helps determine true anomalies in the data"
+                    "content": "➔ Uses the concept of “local density” to figure out which data point is an outlier\n➔ Calculate k-nearest distances from a point to its neighbors\n➔ Compare it to the average distance of other points\n➔ If the local density of one point is too low, it is considered to be an outlier\n[[h3]]The Advantage[[/]]\n➔ Able to identify outliers in a data set that would not be outliers in another area of the data set. \n➔ For example, a point at a \"small\" distance to a very dense cluster could be an outlier, while a point within a sparse cluster might exhibit similar distances to its neighbors, meaning it is not an outlier.\n➔ Helps determine true anomalies in the data"
                 },
                 {
                     "type": "image",
@@ -297,27 +157,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Subroutines/Parts[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ K-distance"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ Distance between a point and its K-th nearest neighbor"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Reachability Distance between 2 points"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ K minus the K-distance of the second point or the distance between two points"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ Whichever is larger"
+                    "content": "[[h3]]Subroutines/Parts[[/]]\n➔ K-distance\n    ➔ Distance between a point and its K-th nearest neighbor\n➔ Reachability Distance between 2 points\n    ➔ K minus the K-distance of the second point or the distance between two points\n    ➔ Whichever is larger"
                 },
                 {
                     "type": "image",
@@ -327,27 +167,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "➔ Local Reachability Distance (LRD)"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ One over the average reachability distance between a point and its neighbors"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ The farther the points, the lower the density"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Local Outlier Factor (LOF)"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ The ratio of the average LRD of the K neighbors of A to the LRD of A."
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ Generally, LOF > 1 is considered to be an outlier, but it depends on the LOFs of the neighbors"
+                    "content": "➔ Local Reachability Distance (LRD)\n    ➔ One over the average reachability distance between a point and its neighbors\n    ➔ The farther the points, the lower the density\n➔ Local Outlier Factor (LOF)\n    ➔ The ratio of the average LRD of the K neighbors of A to the LRD of A.\n    ➔ Generally, LOF > 1 is considered to be an outlier, but it depends on the LOFs of the neighbors"
                 }
             ]
         },
@@ -357,19 +177,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]Autoencoders[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ A type of artificial neural network used to learn efficient codings of unlabeled data"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ We used this in the form of the sklearn Labelencoder in previous chapters"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Essentially, this converts or compresses data into some usable form by ignoring noise"
+                    "content": "[[h3]]Autoencoders[[/]]\n➔ A type of artificial neural network used to learn efficient codings of unlabeled data\n➔ We used this in the form of the sklearn Labelencoder in previous chapters\n➔ Essentially, this converts or compresses data into some usable form by ignoring noise"
                 },
                 {
                     "type": "image",
@@ -385,31 +193,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Applications[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": " ➔ Dimensionality Reduction"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ The transformation of data from a high-dimensional space into a low-dimensional space so that the low-dimensional representation retains some meaningful properties of the original data"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Information Retrieval"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ The process of obtaining information system resources that are relevant to an information need from a collection of those resources."
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Anomaly Detection"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ The process of detecting outliers and anomalies in a dataset"
+                    "content": "[[h3]]Applications[[/]]\n ➔ Dimensionality Reduction\n    ➔ The transformation of data from a high-dimensional space into a low-dimensional space so that the low-dimensional representation retains some meaningful properties of the original data\n➔ Information Retrieval\n    ➔ The process of obtaining information system resources that are relevant to an information need from a collection of those resources.\n➔ Anomaly Detection\n    ➔ The process of detecting outliers and anomalies in a dataset"
                 },
                 {
                     "type": "image",
@@ -425,27 +209,7 @@
                 },
                 {
                     "type": "text",
-                    "content": " ➔ Drug Discovery"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ In 2019 molecules generated with variational autoencoders were validated experimentally in mice."
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Popularity Prediction"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ Recently, a stacked autoencoder framework produced promising results in predicting popularity of social media posts."
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Machine Translation"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ Translating text using computers"
+                    "content": " ➔ Drug Discovery\n    ➔ In 2019 molecules generated with variational autoencoders were validated experimentally in mice.\n➔ Popularity Prediction\n    ➔ Recently, a stacked autoencoder framework produced promising results in predicting popularity of social media posts.\n➔ Machine Translation\n    ➔ Translating text using computers"
                 },
                 {
                     "type": "image",
@@ -461,27 +225,7 @@
                 },
                 {
                     "type": "text",
-                    "content": " ➔ Customer Segmentation "
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ Helps businesses target advertisement campaigns to consumers who would be interested, maximizing their efficiency."
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Document Classification"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ Cluster documents in multiple categories based on tags, topics, and content of the document. "
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Image-to-image translation"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ Change a scene from day to night, or convert a sketch to what the actual object would look like"
+                    "content": " ➔ Customer Segmentation \n    ➔ Helps businesses target advertisement campaigns to consumers who would be interested, maximizing their efficiency.\n➔ Document Classification\n    ➔ Cluster documents in multiple categories based on tags, topics, and content of the document. \n➔ Image-to-image translation\n    ➔ Change a scene from day to night, or convert a sketch to what the actual object would look like"
                 },
                 {
                     "type": "image",
@@ -745,255 +489,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "In this module, you learned all about Unsupervised Learning:"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]What is Unsupervised Learning?[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Involves recognizing hidden patterns in the dataset in order to better model data"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]Methods of Unsupervised Learning[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Clustering"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ K-means, mixture models, OPTICS algorithm"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Anomaly Detection"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ Local Outlier Factor, Isolation Forest"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Neural Networks"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ Autoencoders, GANs, deep belief networks"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]K-Means Clustering[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Algorithm self discovers clusters that data can be separated into"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Start by forming K random clusters then reduce inter-cluster metric (like the average distance between points)"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]K-Means Procedure[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Choose number of clusters, K"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Choose K random points in the datasets be the centers"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Assign all points to the closest center"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Recompute the centers of the new clusters"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Repeat steps C&D until:"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ Centers do not change"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ After each iteration, the points remain in the same cluster"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ Reach a maximum, predefined number of interactions (in the interest of time and computational power) "
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]Implementing K-Means Clustering (without an auxiliary library)[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Variable K holds the number of groups"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Take K samples of the dataset, store them in an array"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Loop over dataset, calculating the distance from each point to the each center, then assigning the point to its nearest center"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Recompute the three centers by:"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ Calculating each point’s average distance to all the other points in its cluster using the pythagorean theorem"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ Assigning the the point with the lowest average as the new center for that cluster"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Recompute which cluster each point belongs to "
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Repeat (using a looping construct) until: "
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ The centers do not change"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ Points remain in the same cluster from iteration to iteration"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ It reaches a set number of maximum iterations"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]Local Outlier Factor[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Figure out which data point(s) is/are outliers using “local density”"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Calculate the point’s k-nearest distances to its neighbors"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Compare it to the average distances of other points"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Point considered an outlier if its local density is to low"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]Advantages of Local Outlier Factor[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Better identification of Outliers"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Helpful when identifying true anomalies in the dataset"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]Subroutines/ Parts[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ K Distance"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ Distance between a point and its K-th neighbor"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Reachability Distance between 2 points"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ Maximum of the distance between two points and the difference between K and K Distance of a second point"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Local Reachability Distance (LRD)"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ Inverse relationship representing the average reachability between a points and its neighbors"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ The further apart the points are, the lower the density"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Local Outlier Factor (LOF)"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ Ratio of the average LRD of the K neighbors of A to the LRD of A."
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ Outliers are generally considered points with an LOF > 1, but this is also dependent on the LOFs of the neighboring points"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]Autoencoders[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Description"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ Neural Network that learns encodings, or representations, for specific datasets"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ Converts data into usable form by disregarding noise"
-                },
-                {
-                    "type": "text",
-                    "content": "    ➔ We’ve actually used Autoencoders before in the form of Sklearn’s Labelencoder module"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]Applications of Unsupervised Learning[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Drug Discovery"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Social Media Popularity Prediction"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Machine Translation"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Document Classification"
+                    "content": "In this module, you learned all about Unsupervised Learning:\n[[h3]]What is Unsupervised Learning?[[/]]\n➔ Involves recognizing hidden patterns in the dataset in order to better model data\n[[h3]]Methods of Unsupervised Learning[[/]]\n➔ Clustering\n    ➔ K-means, mixture models, OPTICS algorithm\n➔ Anomaly Detection\n    ➔ Local Outlier Factor, Isolation Forest\n➔ Neural Networks\n    ➔ Autoencoders, GANs, deep belief networks\n[[h3]]K-Means Clustering[[/]]\n➔ Algorithm self discovers clusters that data can be separated into\n➔ Start by forming K random clusters then reduce inter-cluster metric (like the average distance between points)\n[[h3]]K-Means Procedure[[/]]\n➔ Choose number of clusters, K\n➔ Choose K random points in the datasets be the centers\n➔ Assign all points to the closest center\n➔ Recompute the centers of the new clusters\n➔ Repeat steps C&D until:\n    ➔ Centers do not change\n    ➔ After each iteration, the points remain in the same cluster\n    ➔ Reach a maximum, predefined number of interactions (in the interest of time and computational power) \n[[h3]]Implementing K-Means Clustering (without an auxiliary library)[[/]]\n➔ Variable K holds the number of groups\n➔ Take K samples of the dataset, store them in an array\n➔ Loop over dataset, calculating the distance from each point to the each center, then assigning the point to its nearest center\n➔ Recompute the three centers by:\n    ➔ Calculating each point’s average distance to all the other points in its cluster using the pythagorean theorem\n    ➔ Assigning the the point with the lowest average as the new center for that cluster\n➔ Recompute which cluster each point belongs to \n➔ Repeat (using a looping construct) until: \n    ➔ The centers do not change\n    ➔ Points remain in the same cluster from iteration to iteration\n    ➔ It reaches a set number of maximum iterations\n[[h3]]Local Outlier Factor[[/]]\n➔ Figure out which data point(s) is/are outliers using “local density”\n➔ Calculate the point’s k-nearest distances to its neighbors\n➔ Compare it to the average distances of other points\n➔ Point considered an outlier if its local density is to low\n[[h3]]Advantages of Local Outlier Factor[[/]]\n➔ Better identification of Outliers\n➔ Helpful when identifying true anomalies in the dataset\n[[h3]]Subroutines/ Parts[[/]]\n➔ K Distance\n    ➔ Distance between a point and its K-th neighbor\n➔ Reachability Distance between 2 points\n    ➔ Maximum of the distance between two points and the difference between K and K Distance of a second point\n➔ Local Reachability Distance (LRD)\n    ➔ Inverse relationship representing the average reachability between a points and its neighbors\n    ➔ The further apart the points are, the lower the density\n➔ Local Outlier Factor (LOF)\n    ➔ Ratio of the average LRD of the K neighbors of A to the LRD of A.\n    ➔ Outliers are generally considered points with an LOF > 1, but this is also dependent on the LOFs of the neighboring points\n[[h3]]Autoencoders[[/]]\n➔ Description\n    ➔ Neural Network that learns encodings, or representations, for specific datasets\n    ➔ Converts data into usable form by disregarding noise\n    ➔ We’ve actually used Autoencoders before in the form of Sklearn’s Labelencoder module\n[[h3]]Applications of Unsupervised Learning[[/]]\n➔ Drug Discovery\n➔ Social Media Popularity Prediction\n➔ Machine Translation\n➔ Document Classification"
                 }
             ]
         }

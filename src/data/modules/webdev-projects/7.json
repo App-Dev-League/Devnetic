@@ -7,19 +7,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "➔ Create a To-Do website built with React.JS which can let users add/remove things that they need to do"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Build this application with React components for each major part of the webpage"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Make this application look decent with some CSS!"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Lastly, we can host it on Replit so others can use it too!"
+                    "content": "➔ Create a To-Do website built with React.JS which can let users add/remove things that they need to do\n➔ Build this application with React components for each major part of the webpage\n➔ Make this application look decent with some CSS!\n➔ Lastly, we can host it on Replit so others can use it too!"
                 }
             ]
         },
@@ -29,19 +17,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "➔ JavaScript front-end framework"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Developed by Facebook"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Easier to display dynamic content compared to Vanilla JS"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Changes info dynamically, allowing users to repeat HTML code for several purposes"
+                    "content": "➔ JavaScript front-end framework\n➔ Developed by Facebook\n➔ Easier to display dynamic content compared to Vanilla JS\n➔ Changes info dynamically, allowing users to repeat HTML code for several purposes"
                 }
             ]
         },
@@ -51,15 +27,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "➔ In HTML, to update text, you would have to query the element in JS and then change it."
-                },
-                {
-                    "type": "text",
-                    "content": "➔ With React, you only need to change one variable to update the text!"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ In HTML, it’s hard to reuse code, while in React, just create Components! "
+                    "content": "➔ In HTML, to update text, you would have to query the element in JS and then change it.\n➔ With React, you only need to change one variable to update the text!\n➔ In HTML, it’s hard to reuse code, while in React, just create Components! "
                 },
                 {
                     "type": "image",
@@ -89,11 +57,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]Getting everything ready[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "We want our React app to have two major components: The item displayer/remover and the item adder. Something like below"
+                    "content": "[[h3]]Getting everything ready[[/]]\nWe want our React app to have two major components: The item displayer/remover and the item adder. Something like below"
                 },
                 {
                     "type": "image",
@@ -132,15 +96,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]Item List Component[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "Inside the Item List component, let’s loop over a prop named “list”"
-                },
-                {
-                    "type": "text",
-                    "content": "Inside, just create a div with key of element.key and contents of element.itemName"
+                    "content": "[[h3]]Item List Component[[/]]\nInside the Item List component, let’s loop over a prop named “list”\nInside, just create a div with key of element.key and contents of element.itemName"
                 },
                 {
                     "type": "code",
@@ -174,15 +130,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]Item List component (testing)[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "To test our component, first go to main.jsx and import the module if you haven’t already."
-                },
-                {
-                    "type": "text",
-                    "content": "Then, pass the “list” prop to it which contains an array of things. (We’ll be changing this later to handle use input)"
+                    "content": "[[h3]]Item List component (testing)[[/]]\nTo test our component, first go to main.jsx and import the module if you haven’t already.\nThen, pass the “list” prop to it which contains an array of things. (We’ll be changing this later to handle use input)"
                 },
                 {
                     "type": "code",
@@ -216,23 +164,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]Add Item Component[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ First, create an input element with a ref"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Then, create a button that runs a function "
-                },
-                {
-                    "type": "text",
-                    "content": "➔ “addItem” when clicked"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ If you don’t know any of these, it’s highly recommended to view the instruction slides, but here’s the code for your convenience"
+                    "content": "[[h3]]Add Item Component[[/]]\n➔ First, create an input element with a ref\n➔ Then, create a button that runs a function \n➔ “addItem” when clicked\n➔ If you don’t know any of these, it’s highly recommended to view the instruction slides, but here’s the code for your convenience"
                 },
                 {
                     "type": "code",
@@ -251,11 +183,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "Let’s make sure everything’s going as planned"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ This should be what you see when you run your webapp!"
+                    "content": "Let’s make sure everything’s going as planned\n➔ This should be what you see when you run your webapp!"
                 },
                 {
                     "type": "image",
@@ -284,15 +212,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "➔ For the main parent to receive updates whenever a user clicks “update,” we need to change the main page to a class. "
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Then, we can create a callback function and pass it down to the child"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ In our case, the callback function is called “callBackFunction” (creative, right?). We then pass this to the AddItem component through a prop called “callback”"
+                    "content": "➔ For the main parent to receive updates whenever a user clicks “update,” we need to change the main page to a class. \n➔ Then, we can create a callback function and pass it down to the child\n➔ In our case, the callback function is called “callBackFunction” (creative, right?). We then pass this to the AddItem component through a prop called “callback”"
                 },
                 {
                     "type": "code",
@@ -327,15 +247,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]Accessing the callback[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ To access the callback function made available to us in the previous slide, access the prop named “callBack” and then run it with a parameter with a value of whatever’s in the textbox"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Now, we can add something in the text box, and it will log it into the console!"
+                    "content": "[[h3]]Accessing the callback[[/]]\n➔ To access the callback function made available to us in the previous slide, access the prop named “callBack” and then run it with a parameter with a value of whatever’s in the textbox\n➔ Now, we can add something in the text box, and it will log it into the console!"
                 },
                 {
                     "type": "image",
@@ -373,19 +285,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]Updating the list[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ To make the list update every time a user inputs a new item, we need to use React States"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Create a React State named “items” and inside it, put our previous “items” variable"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Then, pass this React State to the ItemList component. Then, every time the callback function is called, add a new element to that array and update the state!"
+                    "content": "[[h3]]Updating the list[[/]]\n➔ To make the list update every time a user inputs a new item, we need to use React States\n➔ Create a React State named “items” and inside it, put our previous “items” variable\n➔ Then, pass this React State to the ItemList component. Then, every time the callback function is called, add a new element to that array and update the state!"
                 },
                 {
                     "type": "code",
@@ -419,23 +319,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]Making delete buttons[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "We’re almost there! We just need to make the delete buttons so users can delete items!"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ First, add an X element and style it as you wish."
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Then, create a function named “deleteItem” that runs a callback with a key."
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Lastly, add an onClick listener that runs this function with it’s key."
+                    "content": "[[h3]]Making delete buttons[[/]]\nWe’re almost there! We just need to make the delete buttons so users can delete items!\n➔ First, add an X element and style it as you wish.\n➔ Then, create a function named “deleteItem” that runs a callback with a key.\n➔ Lastly, add an onClick listener that runs this function with it’s key."
                 },
                 {
                     "type": "code",
@@ -469,19 +353,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]Last step! Updating main.jsx[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "Great! We just need to do one more thing! Add the callback functions in main.jsx"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ First, create a function called “deleteCallback” that takes the parameter “key” that when called, deletes that index from the array with the “splice” function. Lastly, update the item state"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Then, pass this function as a prop named “callBack” to “itemList.jsx”"
+                    "content": "[[h3]]Last step! Updating main.jsx[[/]]\nGreat! We just need to do one more thing! Add the callback functions in main.jsx\n➔ First, create a function called “deleteCallback” that takes the parameter “key” that when called, deletes that index from the array with the “splice” function. Lastly, update the item state\n➔ Then, pass this function as a prop named “callBack” to “itemList.jsx”"
                 },
                 {
                     "type": "code",

@@ -7,27 +7,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]What is an API[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Stands for Application Programming Interface"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Allows you to return data based on a certain request"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ It is a connection between computers, or computer programs"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ You can create an API in almost any programming language"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ In JavaScript, a popular framework to use is Express.js"
+                    "content": "[[h3]]What is an API[[/]]\n➔ Stands for Application Programming Interface\n➔ Allows you to return data based on a certain request\n➔ It is a connection between computers, or computer programs\n➔ You can create an API in almost any programming language\n➔ In JavaScript, a popular framework to use is Express.js"
                 },
                 {
                     "type": "image",
@@ -41,15 +21,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]What is Express.JS?[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Express.js is a Node.js framework for creating APIs"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Express.js allows you to create url endpoints that others can access to get certain data"
+                    "content": "[[h3]]What is Express.JS?[[/]]\n➔ Express.js is a Node.js framework for creating APIs\n➔ Express.js allows you to create url endpoints that others can access to get certain data"
                 },
                 {
                     "type": "image",
@@ -60,19 +32,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Setting up Express.js[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ To install Express.js, run npm i express in your terminal"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ This will install Express.js and allow you to use it in your code"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ To import this module and get set up, follow the below code"
+                    "content": "[[h3]]Setting up Express.js[[/]]\n➔ To install Express.js, run npm i express in your terminal\n➔ This will install Express.js and allow you to use it in your code\n➔ To import this module and get set up, follow the below code"
                 },
                 {
                     "type": "code",
@@ -87,11 +47,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "➔ There are multiple different types of REST API calls"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ The GET request is used when the user is getting data from the server"
+                    "content": "➔ There are multiple different types of REST API calls\n➔ The GET request is used when the user is getting data from the server"
                 },
                 {
                     "type": "image",
@@ -100,15 +56,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Express.js GET Requests[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Let’s create our own GET request endpoint using Express.js"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Please reference the below code"
+                    "content": "[[h3]]Express.js GET Requests[[/]]\n➔ Let’s create our own GET request endpoint using Express.js\n➔ Please reference the below code"
                 },
                 {
                     "type": "code",
@@ -122,55 +70,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]Express.js Request Syntax[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ In the last example, you saw how to create a get request with Express.js"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Let’s take a look at what each part actually means"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ First, we use the .get() function which is apart of the app object we created earlier"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ The .get() function takes in 2 parameters, the url endpoint (which can be named anything), and the callback function"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ The call back function gives you access to the request (req), and response (res) objects"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ To send data, use the res.send() method to send any type of data"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]Viewing Requests[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Now that we have created a basic API, let’s run it"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Run [[`]]node filename.js[[/]] (replace filename.js with the name of your file)"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Your server should be running on [[a]]http://localhost:3001[[/a]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ To access that GET request you created, go to [[a]]http://localhost:3001/endpointname[[/a]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ You should see the data that you sent displayed on your screen "
+                    "content": "[[h3]]Express.js Request Syntax[[/]]\n➔ In the last example, you saw how to create a get request with Express.js\n➔ Let’s take a look at what each part actually means\n➔ First, we use the .get() function which is apart of the app object we created earlier\n➔ The .get() function takes in 2 parameters, the url endpoint (which can be named anything), and the callback function\n➔ The call back function gives you access to the request (req), and response (res) objects\n➔ To send data, use the res.send() method to send any type of data\n[[h3]]Viewing Requests[[/]]\n➔ Now that we have created a basic API, let’s run it\n➔ Run [[`]]node filename.js[[/]] (replace filename.js with the name of your file)\n➔ Your server should be running on [[a]]http://localhost:3001[[/a]]\n➔ To access that GET request you created, go to [[a]]http://localhost:3001/endpointname[[/a]]\n➔ You should see the data that you sent displayed on your screen "
                 }
             ]
         },
@@ -180,11 +80,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "➔ In contrast to GET requests, POST requests allow the user to provide the API with data"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ POST requests are not viewable by your normal browser"
+                    "content": "➔ In contrast to GET requests, POST requests allow the user to provide the API with data\n➔ POST requests are not viewable by your normal browser"
                 },
                 {
                     "type": "image",
@@ -193,11 +89,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Express.js POST Requests[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Please reference the below code which shows you how to create a POST request endpoint with Express.js"
+                    "content": "[[h3]]Express.js POST Requests[[/]]\n➔ Please reference the below code which shows you how to create a POST request endpoint with Express.js"
                 },
                 {
                     "type": "code",
@@ -247,46 +139,14 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]Intro[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ In the last example about the POST request, we used the [[`]]req[[/]] object in the callback function"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ This [[`]]req[[/]] object is usually used in POST requests and allows the user to send data"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ The [[`]]req[[/]] object has a property called body, which is an object that can store all kinds of data"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ In this example, we are expecting the user to provide us with a name, email, and username"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Then, we send a message saying that the data was successfully received"
+                    "content": "[[h3]]Intro[[/]]\n➔ In the last example about the POST request, we used the [[`]]req[[/]] object in the callback function\n➔ This [[`]]req[[/]] object is usually used in POST requests and allows the user to send data\n➔ The [[`]]req[[/]] object has a property called body, which is an object that can store all kinds of data\n➔ In this example, we are expecting the user to provide us with a name, email, and username\n➔ Then, we send a message saying that the data was successfully received"
                 },
                 {
                     "type": "divider"
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]req.body[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "This is the body, and this parameter is only accessible when the user POSTs data."
-                },
-                {
-                    "type": "text",
-                    "content": "➔ You can access data not included in the path"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ req.body will allow you to get data in a Javascript Object Literal"
+                    "content": "[[h3]]req.body[[/]]\nThis is the body, and this parameter is only accessible when the user POSTs data.\n➔ You can access data not included in the path\n➔ req.body will allow you to get data in a Javascript Object Literal"
                 },
                 {
                     "type": "image",
@@ -302,11 +162,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]req.params[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "You can access this from any type of endpoint (POST, GET, etc.)\nThese are path parameters, that can be accessed with [[`]]req.params.pathParamName[[/]]"
+                    "content": "[[h3]]req.params[[/]]\nYou can access this from any type of endpoint (POST, GET, etc.)\nThese are path parameters, that can be accessed with [[`]]req.params.pathParamName[[/]]"
                 },
                 {
                     "type": "image",
@@ -322,11 +178,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]req.query[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "These also can be used with any type of request (GET, POST, etc.)\nAccess these with [[`]]req.query.paramName[[/]]"
+                    "content": "[[h3]]req.query[[/]]\nThese also can be used with any type of request (GET, POST, etc.)\nAccess these with [[`]]req.query.paramName[[/]]"
                 },
                 {
                     "type": "image",
@@ -345,19 +197,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]Sending GET requests[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ We can also use axios to send GET requests"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Once again, we are using the async/await approach, so we are wrapping the code inside an async function"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Check out the below code for more details!"
+                    "content": "[[h3]]Sending GET requests[[/]]\n➔ We can also use axios to send GET requests\n➔ Once again, we are using the async/await approach, so we are wrapping the code inside an async function\n➔ Check out the below code for more details!"
                 },
                 {
                     "type": "image",
@@ -366,50 +206,14 @@
                 },
                 {
                     "type": "text",
-                    "content": "➔ We await the [[`]]axios.get[[/]] call which takes in 2 parameters (we only used 1)"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ The first parameter is the endpoint that you want to hit"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ The second parameter is the URL headers object which is optional"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ We assign this to a variable and then [[`]]console.log[[/]] that response"
+                    "content": "➔ We await the [[`]]axios.get[[/]] call which takes in 2 parameters (we only used 1)\n➔ The first parameter is the endpoint that you want to hit\n➔ The second parameter is the URL headers object which is optional\n➔ We assign this to a variable and then [[`]]console.log[[/]] that response"
                 },
                 {
                     "type": "divider"
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Sending POST requests[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Since we can’t view POST requests in the browser, we can use other tools to do so"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ One popular tool is Postman, but it requires a download and is a little hard to use"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ We can use Axios which is a JavaScript library to call APIs"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ To install Axios, run [[`]]npm i axios[[/]] in the terminal"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Then import it using const [[`]]axios = require(‘axios’);[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Follow the below code"
+                    "content": "[[h3]]Sending POST requests[[/]]\n➔ Since we can’t view POST requests in the browser, we can use other tools to do so\n➔ One popular tool is Postman, but it requires a download and is a little hard to use\n➔ We can use Axios which is a JavaScript library to call APIs\n➔ To install Axios, run [[`]]npm i axios[[/]] in the terminal\n➔ Then import it using const [[`]]axios = require(‘axios’);[[/]]\n➔ Follow the below code"
                 },
                 {
                     "type": "image",
@@ -417,27 +221,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "➔ We are using the async/await approach for this, and therefore, we are wrapping the statements in an async function"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ We await the [[`]]axios.post()[[/]] call which takes in 3 parameters (we only used 2 here)"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ The first parameter is the url endpoint of course"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ The second parameter is the body object that we accessed in the req object earlier"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ We are passing in the name, email, and username"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ The last parameter which is optional, are the URL Headers, but we are focus on them later"
+                    "content": "➔ We are using the async/await approach for this, and therefore, we are wrapping the statements in an async function\n➔ We await the [[`]]axios.post()[[/]] call which takes in 3 parameters (we only used 2 here)\n➔ The first parameter is the url endpoint of course\n➔ The second parameter is the body object that we accessed in the req object earlier\n➔ We are passing in the name, email, and username\n➔ The last parameter which is optional, are the URL Headers, but we are focus on them later"
                 }
             ]
         },
@@ -447,49 +231,21 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]Serve Files with Express.JS[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "If you would like to server static files (like HTML files), you have two options. \nOne is to use a static folder, and setting it as a static folder using [[`]]app.use(express.static('static'));[[/]]\nThen, you can put any files you want in the static folder, and then access them like that. \n\n[[b]]NOTE:[[/]]\n If a file is named hello.html in the static folder, you would access it like [[a]]https://server.com/hello.html[[/a]], NOT [[a]]https://server.com/static/hello.html[[/a]]\nThe other option is to use [[`]]res.sendFile(“pathToFile”)[[/]]"
+                    "content": "[[h3]]Serve Files with Express.JS[[/]]\nIf you would like to server static files (like HTML files), you have two options. \nOne is to use a static folder, and setting it as a static folder using [[`]]app.use(express.static('static'));[[/]]\nThen, you can put any files you want in the static folder, and then access them like that. \n\n[[b]]NOTE:[[/]]\n If a file is named hello.html in the static folder, you would access it like [[a]]https://server.com/hello.html[[/a]], NOT [[a]]https://server.com/static/hello.html[[/a]]\nThe other option is to use [[`]]res.sendFile(“pathToFile”)[[/]]"
                 },
                 {
                     "type": "divider"
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Express.JS statuses[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "You can also send status codes in Express.JS! For example, if we wanted to indicate that the request has failed due to missing information, we could use [[`]]req.status(400).send(“error!”)[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Using this feature is really easy! Just simply add [[`]]req.status(statusCode).send(yourData)[[/]] to your code!"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ If you don’t put a status method, express automatically adds it as status code 200 (success)"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ For a full list of status codes, try looking at this article [[a]]https://en.wikipedia.org/wiki/List_of_HTTP_status_codes[[/a]] "
+                    "content": "[[h3]]Express.JS statuses[[/]]\nYou can also send status codes in Express.JS! For example, if we wanted to indicate that the request has failed due to missing information, we could use [[`]]req.status(400).send(“error!”)[[/]]\n➔ Using this feature is really easy! Just simply add [[`]]req.status(statusCode).send(yourData)[[/]] to your code!\n➔ If you don’t put a status method, express automatically adds it as status code 200 (success)\n➔ For a full list of status codes, try looking at this article [[a]]https://en.wikipedia.org/wiki/List_of_HTTP_status_codes[[/a]] "
                 },
                 {
                     "type": "divider"
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Server Sent Events[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "[[b]]What are Server Sent Events? (SSEs)[[/]]\n[[ ]][[ ]][[ ]]SSE’s are a way for a server to directly contact a client after the client opens a session. Let’s say that we have a stock exchange that needs to constantly send updates on price data to clients. It would be really inefficient to have clients constantly poll the server, so we use SSE’s"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ In a nutshell, we change the response header"
+                    "content": "[[h3]]Server Sent Events[[/]]\n[[b]]What are Server Sent Events? (SSEs)[[/]]\n[[ ]][[ ]][[ ]]SSE’s are a way for a server to directly contact a client after the client opens a session. Let’s say that we have a stock exchange that needs to constantly send updates on price data to clients. It would be really inefficient to have clients constantly poll the server, so we use SSE’s\n➔ In a nutshell, we change the response header"
                 },
                 {
                     "type": "image",

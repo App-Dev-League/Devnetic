@@ -17,19 +17,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Introduction[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Convolutional Neural Networks are a subset of Artificial Neural Networks that allow us to better work with 2D image data"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ They have applications in image and video recognition, recommender systems, image classification, medical image analysis, and a lot more"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ They use convolutions (filters) to work"
+                    "content": "[[h3]]Introduction[[/]]\n➔ Convolutional Neural Networks are a subset of Artificial Neural Networks that allow us to better work with 2D image data\n➔ They have applications in image and video recognition, recommender systems, image classification, medical image analysis, and a lot more\n➔ They use convolutions (filters) to work"
                 },
                 {
                     "type": "image",
@@ -45,19 +33,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Why use CNN's?[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Technically, we can just flatten a 2D image into a 1D array and feed it into a “normal” feedforward Neural Network"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ However, this will lose a lot of its spatial dependencies (what pixels are next to each other)"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Convolutional Neural Networks do a great job capturing spatial and temporal arrangements"
+                    "content": "[[h3]]Why use CNN's?[[/]]\n➔ Technically, we can just flatten a 2D image into a 1D array and feed it into a “normal” feedforward Neural Network\n➔ However, this will lose a lot of its spatial dependencies (what pixels are next to each other)\n➔ Convolutional Neural Networks do a great job capturing spatial and temporal arrangements"
                 },
                 {
                     "type": "image",
@@ -79,19 +55,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]Attributes of an input image[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Images have 3 color channels, a width and a height, and every pixels holds 3 values in each color channel"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Usually, this color channel is RGB, but sometimes you may see HSV"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Convolutional Neural Networks make this into a form that is easier to process without losing important features"
+                    "content": "[[h3]]Attributes of an input image[[/]]\n➔ Images have 3 color channels, a width and a height, and every pixels holds 3 values in each color channel\n➔ Usually, this color channel is RGB, but sometimes you may see HSV\n➔ Convolutional Neural Networks make this into a form that is easier to process without losing important features"
                 },
                 {
                     "type": "image",
@@ -107,27 +71,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Filters[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Filters are operations applied to images that can be represented as matrices of numbers"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ This is what Photoshop and other image editing programs use for their filters!"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ By going over the entire image with the filter, we can transform the way it looks"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ This filter process is known as a convolution"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ This forms the basis for a Convolutional Neural Network"
+                    "content": "[[h3]]Filters[[/]]\n➔ Filters are operations applied to images that can be represented as matrices of numbers\n➔ This is what Photoshop and other image editing programs use for their filters!\n➔ By going over the entire image with the filter, we can transform the way it looks\n➔ This filter process is known as a convolution\n➔ This forms the basis for a Convolutional Neural Network"
                 },
                 {
                     "type": "image",
@@ -143,23 +87,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Convolution Layer[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Backbone of a convolutional Neural Network"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ This contains a set of filters (also called kernels) that move along an image and transform it to extract features such as edges and colors"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ They have the same depth as the number of color channels in an image"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ A CNN may have many of these layers to extract more and more high level features"
+                    "content": "[[h3]]Convolution Layer[[/]]\n➔ Backbone of a convolutional Neural Network\n➔ This contains a set of filters (also called kernels) that move along an image and transform it to extract features such as edges and colors\n➔ They have the same depth as the number of color channels in an image\n➔ A CNN may have many of these layers to extract more and more high level features"
                 },
                 {
                     "type": "image",
@@ -181,27 +109,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]Pooling Layer[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ The pooling layer functions to reduce the computational power required to process the image data"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ The pooling layer grabs the most dominant features of an image"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Two main types of pooling: max pooling and average pooling"
-                },
-                {
-                    "type": "text",
-                    "content": "    ◆ Max pooling selects the maximum value in a filter portion"
-                },
-                {
-                    "type": "text",
-                    "content": "    ◆ Average pooling selects the average value in a filter portion (kernel)"
+                    "content": "[[h3]]Pooling Layer[[/]]\n➔ The pooling layer functions to reduce the computational power required to process the image data\n➔ The pooling layer grabs the most dominant features of an image\n➔ Two main types of pooling: max pooling and average pooling\n    ◆ Max pooling selects the maximum value in a filter portion\n    ◆ Average pooling selects the average value in a filter portion (kernel)"
                 },
                 {
                     "type": "image",
@@ -217,19 +125,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Fully Connected Layer[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Now, we can flatten the image and feed it into a feedforward Neural Network"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ This will use backpropagation for a certain number of times until the network learns the dominant features of the image and distinguishes them"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ This layer works exactly as the Neural Network we learned in the previous chapter"
+                    "content": "[[h3]]Fully Connected Layer[[/]]\n➔ Now, we can flatten the image and feed it into a feedforward Neural Network\n➔ This will use backpropagation for a certain number of times until the network learns the dominant features of the image and distinguishes them\n➔ This layer works exactly as the Neural Network we learned in the previous chapter"
                 },
                 {
                     "type": "image",
@@ -251,23 +147,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]The Goal[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Draw a bounding box around the recognized object"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Identify the recognized object according to determined labels"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Predict these with a high accuracy rate"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ For example - Identify cars in a given image"
+                    "content": "[[h3]]The Goal[[/]]\n➔ Draw a bounding box around the recognized object\n➔ Identify the recognized object according to determined labels\n➔ Predict these with a high accuracy rate\n➔ For example - Identify cars in a given image"
                 },
                 {
                     "type": "image",
@@ -283,19 +163,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Bounding Boxes[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Imaginary rectangle that wraps a target object to be detected"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ This helps us create a collision box for the object and we can track changes and compare objects to each other"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ This is one of the most popular image annotation techniques because it reduces costs and increases efficiency"
+                    "content": "[[h3]]Bounding Boxes[[/]]\n➔ Imaginary rectangle that wraps a target object to be detected\n➔ This helps us create a collision box for the object and we can track changes and compare objects to each other\n➔ This is one of the most popular image annotation techniques because it reduces costs and increases efficiency"
                 },
                 {
                     "type": "image",
@@ -311,19 +179,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Segmentation[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Since an image is just a collection of pixels, we can group pixels in the image and label them as objects after using bounding boxes to define the location"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Pixels that are grouped together share similar characteristics"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ This helps in areas like cancer detection, self-driving cars and more that need to separate objects precisely"
+                    "content": "[[h3]]Segmentation[[/]]\n➔ Since an image is just a collection of pixels, we can group pixels in the image and label them as objects after using bounding boxes to define the location\n➔ Pixels that are grouped together share similar characteristics\n➔ This helps in areas like cancer detection, self-driving cars and more that need to separate objects precisely"
                 },
                 {
                     "type": "image",
@@ -609,159 +465,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "In this module, you learned all about Computer Vision:"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]Intro to Convolutional Neural Networks[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Subset of Artificial Neural Networks that allow us to better work with 2D image data"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Applications in image and video recognition, recommender systems, image classification, medical image analysis, and a lot more"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Use convolutions (filters) to work"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]Why use them?[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Why not just flatten an image and use regular Neural Networks?"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Loose a lot of spatial (space-related) and color dependencies - Color boundaries, location of relative objects etc"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Convolutional Neural Networks do a great job capturing arrangements"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]Attributes of images[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Every pixel with three color channels each - Usually RGB or HSV"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Height"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Width"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]Filters[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Operations applied to images that can be represented as matrices of numbers"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Photoshop filters use these"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Going over the entire images changes how it looks"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Filter process is known as convolution"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]Convolutional Layer[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ The backbone of a Convolutional Neural Networks"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Contains a set of filters (also called kernels) that move along an image and transform it to extract features such as edges and colors"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Same depth as the number of color channels in an image"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ A CNN may have many of these layers to extract more and more high-level features"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]Pooling Layer[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Used to reduce the computational power required to process the image data"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Grabs the most dominant features of an image"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Two types - Max Pooling(select max in filter portion) and Average Pooling(get average in filter portion)"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]Fully Connected Layer[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Final Part"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Flatten the image and feed into Neural Network with data from convolutions and pooling"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Uses backpropagation to learn dominant features and distinguish them"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Works exactly as the Neural Network we learned in the previous chapter"
-                },
-                {
-                    "type": "text",
-                    "content": "[[h3]]NeuroEvolution[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Object Detection/Localization"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Draw bounding box within an image around a recognized image"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Identify the recognized object"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Predict with a high accuracy"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Bounding Box - A popular technique to make an area of identification for an object within an image; can track changes in a video"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Segmentation - identify exact parts of an image by drawing boundaries around object and other parts of the image"
+                    "content": "In this module, you learned all about Computer Vision:\n[[h3]]Intro to Convolutional Neural Networks[[/]]\n➔ Subset of Artificial Neural Networks that allow us to better work with 2D image data\n➔ Applications in image and video recognition, recommender systems, image classification, medical image analysis, and a lot more\n➔ Use convolutions (filters) to work\n[[h3]]Why use them?[[/]]\n➔ Why not just flatten an image and use regular Neural Networks?\n➔ Loose a lot of spatial (space-related) and color dependencies - Color boundaries, location of relative objects etc\n➔ Convolutional Neural Networks do a great job capturing arrangements\n[[h3]]Attributes of images[[/]]\n➔ Every pixel with three color channels each - Usually RGB or HSV\n➔ Height\n➔ Width\n[[h3]]Filters[[/]]\n➔ Operations applied to images that can be represented as matrices of numbers\n➔ Photoshop filters use these\n➔ Going over the entire images changes how it looks\n➔ Filter process is known as convolution\n[[h3]]Convolutional Layer[[/]]\n➔ The backbone of a Convolutional Neural Networks\n➔ Contains a set of filters (also called kernels) that move along an image and transform it to extract features such as edges and colors\n➔ Same depth as the number of color channels in an image\n➔ A CNN may have many of these layers to extract more and more high-level features\n[[h3]]Pooling Layer[[/]]\n➔ Used to reduce the computational power required to process the image data\n➔ Grabs the most dominant features of an image\n➔ Two types - Max Pooling(select max in filter portion) and Average Pooling(get average in filter portion)\n[[h3]]Fully Connected Layer[[/]]\n➔ Final Part\n➔ Flatten the image and feed into Neural Network with data from convolutions and pooling\n➔ Uses backpropagation to learn dominant features and distinguish them\n➔ Works exactly as the Neural Network we learned in the previous chapter\n[[h3]]NeuroEvolution[[/]]\n➔ Object Detection/Localization\n➔ Draw bounding box within an image around a recognized image\n➔ Identify the recognized object\n➔ Predict with a high accuracy\n➔ Bounding Box - A popular technique to make an area of identification for an object within an image; can track changes in a video\n➔ Segmentation - identify exact parts of an image by drawing boundaries around object and other parts of the image"
                 }
             ]
         }

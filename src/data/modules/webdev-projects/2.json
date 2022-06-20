@@ -7,19 +7,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "➔ Create mad libs, rock-paper-scissors, and  tic-tac-toe with JavaScript"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Learn how to create interactive programs"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Learn how to utilize the console"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Use global Javascript variables in functions"
+                    "content": "➔ Create mad libs, rock-paper-scissors, and  tic-tac-toe with JavaScript\n➔ Learn how to create interactive programs\n➔ Learn how to utilize the console\n➔ Use global Javascript variables in functions"
                 }
             ]
         },
@@ -69,11 +57,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]Functions[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "Each of the games will be start when their respective functions are called."
+                    "content": "[[h3]]Functions[[/]]\nEach of the games will be start when their respective functions are called."
                 },
                 {
                     "type": "code",
@@ -100,11 +84,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]madLibs function[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "Use string concentration to insert variables into a string"
+                    "content": "[[h3]]madLibs function[[/]]\nUse string concentration to insert variables into a string"
                 },
                 {
                     "type": "code",
@@ -131,19 +111,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]rockPaperScissors function[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Convert the user’s choice to lowercase."
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Validate user’s choice by checking if it’s “rock”, “paper”, or “scissors”."
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Use return statement to exit function and return [[`]]undefined[[`]]."
+                    "content": "[[h3]]rockPaperScissors function[[/]]\n➔ Convert the user’s choice to lowercase.\n➔ Validate user’s choice by checking if it’s “rock”, “paper”, or “scissors”.\n➔ Use return statement to exit function and return [[`]]undefined[[`]]."
                 },
                 {
                     "type": "code",
@@ -171,11 +139,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]rockPaperScissors function (cont.)[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Randomize coin flip"
+                    "content": "[[h3]]rockPaperScissors function (cont.)[[/]]\n➔ Randomize coin flip"
                 },
                 {
                     "type": "code",
@@ -203,19 +167,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]rockPaperScissors function (cont.)[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Check remaining possible combinations of choices."
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ If user choice is rock and the computer’s is paper, than the computer wins."
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ Else, user wins."
+                    "content": "[[h3]]rockPaperScissors function (cont.)[[/]]\n➔ Check remaining possible combinations of choices.\n[[ ]][[ ]]◆ If user choice is rock and the computer’s is paper, than the computer wins.\n[[ ]][[ ]]◆ Else, user wins."
                 },
                 {
                     "type": "code",
@@ -243,19 +195,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]rockPaperScissors function (cont.)[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Check remaining possible combinations of choices."
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ If user choice is paper and the computer’s is scissor, than the computer wins."
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ Else, user wins."
+                    "content": "[[h3]]rockPaperScissors function (cont.)[[/]]\n➔ Check remaining possible combinations of choices.\n[[ ]][[ ]]◆ If user choice is paper and the computer’s is scissor, than the computer wins.\n[[ ]][[ ]]◆ Else, user wins."
                 },
                 {
                     "type": "code",
@@ -283,19 +223,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]rockPaperScissors function (cont.)[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Check remaining possible combinations of choices."
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ If user choice is scissors and the computer’s is rock, than the computer wins."
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ Else, user wins."
+                    "content": "[[h3]]rockPaperScissors function (cont.)[[/]]\n➔ Check remaining possible combinations of choices.\n[[ ]][[ ]]◆ If user choice is scissors and the computer’s is rock, than the computer wins.\n[[ ]][[ ]]◆ Else, user wins."
                 },
                 {
                     "type": "code",
@@ -323,11 +251,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]rockPaperScissors function (cont.)[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Return statement"
+                    "content": "[[h3]]rockPaperScissors function (cont.)[[/]]\n➔ Return statement"
                 },
                 {
                     "type": "code",
@@ -355,31 +279,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]coinFlip function [[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Convert user’s choice to lower case."
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Check that it’s “heads” or tails”. If not, use return statement to exit the function and return undefined."
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Generate random number."
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Use number to choose “heads” or “tails”."
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Compare the user’s and computer’s choice and determine winner."
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Return statement"
+                    "content": "[[h3]]coinFlip function [[/]]\n➔ Convert user’s choice to lower case.\n➔ Check that it’s “heads” or tails”. If not, use return statement to exit the function and return undefined.\n➔ Generate random number.\n➔ Use number to choose “heads” or “tails”.\n➔ Compare the user’s and computer’s choice and determine winner.\n➔ Return statement"
                 },
                 {
                     "type": "code",
