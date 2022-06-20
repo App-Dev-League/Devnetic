@@ -271,8 +271,19 @@
                     "content": "➔ Practice: Add a paragraph after your [[monospace]]<h1>[[/]] tag with any text you want, put a line break, and add another paragraph with new text"
                 },
                 {
-                    "type": "image",
-                    "src": "/data/modules/webdev-assets/img0/4-1.png"
+                    "type": "split-content",
+                    "elements": [
+                        {
+                            "type": "code",
+                            "content": "<p>\n  This is a long paragraph, <br/>\n  So I am splitting it into <br/>\n  multiple lines.\n</p>",
+                            "lang": "html",
+                            "name": "index.html"
+                        },
+                        {
+                            "type": "iframe",
+                            "src": "/data/modules/webdev-assets/img0/4-1.html"
+                        }
+                    ]
                 },
                 {
                     "type": "text",

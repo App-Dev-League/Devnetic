@@ -1,22 +1,9 @@
 var code = `
-<!DOCTYPE html>
-<html>
-  <head>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  </head>
-  <body>
-    <input id="url" type="text" placeholder="URL">
-    <button onclick="sendRequest()">Sbumit!</button>
-    <div id="result"></div>
-  </body>
-</html>
-<script>
-  function sendRequest() {
-    axios.get(document.getElementById("url").value).then(result => {
-      document.getElementById("result").innerHTML = result;
-    })
-  }
-</script>
+<p>
+  This is a long paragraph, <br/>
+  So I am splitting it into <br/>
+  multiple lines.
+</p>
 `
 
 if (code.startsWith("\n")) code = code.slice(1)
