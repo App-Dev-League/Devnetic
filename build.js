@@ -19,6 +19,8 @@ try {
     fs.rmSync('./docs', { recursive: true });
 } catch (err) { }
 
+var fileList = []
+
 console.log("Updating indices...")
 createModuleIndex();
 createPluginSizeIndex();
@@ -28,6 +30,8 @@ console.log("Updating version...")
 updateVersion();
 console.log("Building...")
 copyFolderSync("./src", "./docs")
+console.log("Creatingg offline file map...");
+createOfflineFileMap();
 console.log("Cleaning up...");
 cleanUp();
 console.log("Build complete!");
@@ -61,6 +65,10 @@ function copyFolderSync(from, to) {
             } else {
                 console.log("Copying " + element);
                 fs.copyFileSync(path.join(from, element), path.join(to, element));
+            }
+            if ((to.includes("plugins") && element.endsWith("min.js")) || element === "VERSION") {}
+            else {
+                fileList.push(path.join(to, element).replace("docs", "").replace(/\\/g, "/"))
             }
         } else {
             copyFolderSync(path.join(from, element), path.join(to, element));
@@ -133,4 +141,9 @@ function combineSequentialTextElements() {
 function updateVersion() {
     let version = Number(fs.readFileSync("./src/VERSION", "utf8"));
     fs.writeFileSync("./src/VERSION", (version+1).toString());
+}
+function createOfflineFileMap(){
+    let configFile = fs.readFileSync("./docs/config.js", "utf8");
+    configFile = configFile.replace(`["will_be_replaced_in_build"]`, JSON.stringify(fileList));
+    fs.writeFileSync("./docs/config.js", configFile);
 }
