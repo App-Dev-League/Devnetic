@@ -1341,6 +1341,7 @@
             width: calc(50% - 10px);
             min-width: 420px;
         }
+
         .info-split-content-element .codeblock-wrapper {
             width: 100% !important;
         }
@@ -1819,19 +1820,54 @@
         if (version > currentVersion) {
             console.log("There is a newer version of Devnetic available! Starting background update...");
             await new Promise((resolve, reject) => setTimeout(resolve, 500));
-            codeEditorHelper.showAlertModal("There is a newer version of Devnetic available! Starting background update...", [], null, 60)
+            var modal = codeEditorHelper.showAlertModal("There is a newer version of Devnetic available! Starting background update...", [], null, 60)
             tApp.clearCachedPages()
-            tApp.loadBackgroundPages()
-            tApp.update()
-            tApp.started = false;
-            tApp.start();
-            await new Promise((resolve, reject) => setTimeout(resolve, 60000));
-            localStorage.setItem("version", version);
-
+            try {
+                await refreshBackgroundPages()
+                tApp.update()
+                tApp.started = false;
+                tApp.start();
+                localStorage.setItem("version", version);
+                codeEditorHelper.removeAlertModal(modal.getAttribute('data-editor-alert-modal-index'))
+                codeEditorHelper.showAlertModal("Successfully updated Devnetic! Reload page to see changes. ", [{
+                    text: "Reload",
+                    onclick: function() {
+                        window.location.reload()
+                    }
+                }], "codicon-pass")
+            } catch (err) {
+                codeEditorHelper.removeAlertModal(modal.getAttribute('data-editor-alert-modal-index'))
+                codeEditorHelper.showAlertModal("Background update failed. You probably aren't connected to the internet :( Error: " + err.toString(), [{
+                    text: "Ok",
+                    onclick: function() {
+                        codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index'))
+                    }
+                }], "codicon-error")
+            }
         } else {
             console.log("You are running the latest version of Devnetic!")
         }
 
+    }
+
+    function refreshBackgroundPages() {
+        return new Promise((resolve, reject) => {
+            var jobs = [];
+            for (let i = 0; i < tApp.config.caching.backgroundPages.length; i++) {
+                jobs.push(new Promise((res, rej) => {
+                    tApp.get(tApp.config.caching.backgroundPages[i]).then(() => {
+                        res()
+                    }).catch(err => {
+                        rej();
+                    })
+                }))
+            }
+            Promise.all(jobs).then(() => {
+                resolve()
+            }).catch(err => {
+                reject(err)
+            })
+        })
     }
 </script>
 <script>
