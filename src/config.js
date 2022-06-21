@@ -79,7 +79,7 @@
 				...([
 					"codeBlocks", "codeEditor", "codeTemplateToCode",
 					"compileSnippet", "Database", "doesFileExist",
-					"plugins", "shuffleArray", "renderElement.js"
+					"plugins", "shuffleArray", "renderElement"
 				].map(file => `/utils/${file}.js`)),
 
 				"/assets/fonts/codicon.ttf",
@@ -109,6 +109,7 @@
 				"/assets/libraries/monaco-editor/vs/loader.js",
 				"/assets/libraries/bootstrap/bootstrap.bundle.min.js",
 				"/assets/libraries/bootstrap/bootstrap.min.css",
+				"/assets/libraries/ejs.js",
 
 				...([
 					"ejs", "jquery.min"
@@ -190,12 +191,11 @@
 					"img0/0-0.png"
 				].map(file => `/data/modules/intro-to-cs-assets/${file}`)),
 			],
-			periodicUpdate: 60 * 60 * 1000,
 			persistent: true
 		}
 	}
 
-	if (window.environment == "development") config.caching = null;
+	if (window.environment == "development") config.cachingConfig = null;
 	tApp.configure(config);
 
 	tApp.route("/", function (request) {

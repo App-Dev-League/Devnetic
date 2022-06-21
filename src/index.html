@@ -1408,14 +1408,17 @@
 
         function newFileCallback() {
             downloadFileCount++
-            document.getElementById("loading-filecount").innerHTML = downloadFileCount + "/27";
+            document.getElementById("loading-filecount").innerHTML = downloadFileCount + "/28";
             document.getElementById("loading-loading-bar").style.width = (downloadFileCount / 26) * 100 + "%";
+            if (downloadFileCount === 28) {
+                checkIfNewerVersion();
+            }
         }
     </script>
     <tapp-main>
         <div class="loading-modal">
             <h3 style="display: block; text-align: center; margin-bottom: 0;">Downloading Files...<br>
-                <h4 style="margin: 0; display: block; text-align: center;" id="loading-filecount">0/10</h4>
+                <h4 style="margin: 0; display: block; text-align: center;" id="loading-filecount">~/~</h4>
             </h3>
             <div class="loading-loading-wraper" style="overflow: hidden; margin-top: 20px; width: 90%; height: 15px; background-color: rgba(0,0,0,0.5); border-radius: 20px; margin-left: auto; margin-right: auto; display: block;">
                 <div id="loading-loading-bar" style="height: 15px; background-color: #4bb7ff; width: 2%; z-index: 1; transition: width 1s;"></div>
@@ -1804,6 +1807,32 @@
             }
         }
     })
+
+    async function checkIfNewerVersion() {
+        console.log("Devnetic successfully loaded and initialized. Checking if there is a newer version available...")
+        await new Promise((resolve, reject) => setTimeout(resolve, 1000));
+        let version = await fetch("/VERSION");
+        version = await version.text();
+        version = Number(version);
+        let currentVersion = Number(localStorage.getItem("version") || "0")
+        localStorage.setItem("version", version)
+        if (version > currentVersion) {
+            console.log("There is a newer version of Devnetic available! Starting background update...");
+            await new Promise((resolve, reject) => setTimeout(resolve, 500));
+            codeEditorHelper.showAlertModal("There is a newer version of Devnetic available! Starting background update...", [], null, 60)
+            tApp.clearCachedPages()
+            tApp.loadBackgroundPages()
+            tApp.update()
+            tApp.started = false;
+            tApp.start();
+            await new Promise((resolve, reject) => setTimeout(resolve, 60000));
+            localStorage.setItem("version", version);
+
+        } else {
+            console.log("You are running the latest version of Devnetic!")
+        }
+
+    }
 </script>
 <script>
     function cipher(salt) {

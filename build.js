@@ -24,6 +24,8 @@ createModuleIndex();
 createPluginSizeIndex();
 console.log("Combining sequential text elements...")
 combineSequentialTextElements();
+console.log("Updating version...")
+updateVersion();
 console.log("Building...")
 copyFolderSync("./src", "./docs")
 console.log("Cleaning up...");
@@ -34,7 +36,7 @@ function copyFolderSync(from, to) {
     fs.mkdirSync(to);
     fs.readdirSync(from).forEach(element => {
         if (fs.lstatSync(path.join(from, element)).isFile()) {
-            if (element.endsWith(".js") && !element.endsWith(".min.js")) {
+            if (element.endsWith(".js") && !element.endsWith(".min.js") && !from.includes("monaco-editor")) {
                 console.log("Optimizing " + element);
                 let jsFile = fs.readFileSync(path.join(from, element), "utf8");
                 jsFile = UglifyJS.minify(jsFile, {
@@ -127,4 +129,8 @@ function combineSequentialTextElements() {
             fs.writeFileSync(`./src/data/modules/${value}/${element}`, JSON.stringify(file, null, 4));
         })
     })
+}
+function updateVersion() {
+    let version = Number(fs.readFileSync("./src/VERSION", "utf8"));
+    fs.writeFileSync("./src/VERSION", (version+1).toString());
 }

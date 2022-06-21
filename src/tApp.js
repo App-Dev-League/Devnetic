@@ -1087,7 +1087,7 @@ class tApp {
 							}, false);
 							tApp.updatePage(window.location.hash);
 						}
-						tApp.loadBackgroundPages();
+						//tApp.loadBackgroundPages();
 						resolve(true);
 						
 					};
