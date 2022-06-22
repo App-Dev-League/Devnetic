@@ -40,47 +40,48 @@ module.exports = {
         var code;
         try {
             code = await fetch("/assets/plugins/" + pluginId + "/" + pluginId + ".min.js");
-        }catch(err) {
+            if (code.ok === false) throw "Failed to fetch"
+            let tmpcode = code.clone()
+
+            if (cont) cont(code.clone())
+
+            const reader = code.body.getReader();
+            let bytesReceived = 0;
+            let code_size = Number(code.headers.get('content-length'));
+            while (true) {
+                const result = await reader.read();
+                if (result.done) {
+                    break;
+                }
+                bytesReceived += result.value.length;
+            }
+            let version = await fetch("/assets/plugins/" + pluginId + "/" + "VERSION.txt");
+            version = await version.text();
+            code = await tmpcode.text()
+            if (code_size > 5000000) {
+                codeEditorHelper.showAlertModal("The plugin you are trying to download is very large! Your browser may freeze up while downloading for 15-30 seconds. Please do not close this tab.", [{
+                    text: "Ok", onclick: function () { codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index')) }
+                }], "codicon-warning", 1)
+                await sleep(1000)
+            }
+
+            addPlugin(pluginId, `${version}||STARTPLUGIN||` + code);
+
+            if (done) done(true)
+            let pluginName = this.availablePlugins().find(e => e.id == pluginId).name;
+            if (!silent) {
+                codeEditorHelper.showAlertModal("Successfully downloaded plugin " + pluginName, [{
+                    text: "Ok", onclick: function () { codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index')) }
+                }], "codicon-pass", 7)
+            }
+            return true;
+        } catch (err) {
             codeEditorHelper.showAlertModal("We couldn't download the plugin! Check your internet connection and try again", [{
                 text: "Ok", onclick: function () { codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index')) }
             }], "codicon-error")
             if (done) done("failed")
             return false;
         }
-        let tmpcode = code.clone()
-
-        if (cont) cont(code.clone())
-
-        const reader = code.body.getReader();
-        let bytesReceived = 0;
-        let code_size = Number(code.headers.get('content-length'));
-        while (true) {
-            const result = await reader.read();
-            if (result.done) {
-                break;
-            }
-            bytesReceived += result.value.length;
-        }
-        let version = await fetch("/assets/plugins/" + pluginId + "/" + "VERSION.txt");
-        version = await version.text();
-        code = await tmpcode.text()
-        if (code_size > 5000000) {
-            codeEditorHelper.showAlertModal("The plugin you are trying to download is very large! Your browser may freeze up while downloading for 15-30 seconds. Please do not close this tab.", [{
-                text: "Ok", onclick: function () { codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index')) }
-            }], "codicon-warning", 1)
-            await sleep(1000)
-        }
-
-        addPlugin(pluginId, `${version}||STARTPLUGIN||` + code);
-
-        if (done) done(true)
-        let pluginName = this.availablePlugins().find(e => e.id == pluginId).name;
-        if (!silent) {
-            codeEditorHelper.showAlertModal("Successfully downloaded plugin " + pluginName, [{
-                text: "Ok", onclick: function () { codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index')) }
-            }], "codicon-pass", 7)
-        }
-        return true;
     },
     unload(pluginId) {
         var element = document.getElementById("plugin-" + pluginId)
