@@ -1812,7 +1812,7 @@
     async function checkIfNewerVersion() {
         console.log("Devnetic successfully loaded and initialized. Checking if there is a newer version available...")
         await new Promise((resolve, reject) => setTimeout(resolve, 1000));
-        let version = await fetch("/VERSION");
+        let version = await fetch("/VERSION?v="+Math.random());
         version = await version.text();
         version = Number(version);
         let currentVersion = Number(localStorage.getItem("version") || "0")
@@ -1821,7 +1821,6 @@
             console.log("There is a newer version of Devnetic available! Starting background update...");
             await new Promise((resolve, reject) => setTimeout(resolve, 500));
             var modal = codeEditorHelper.showAlertModal("There is a newer version of Devnetic available! Starting background update...", [], null, 60)
-            tApp.clearCachedPages()
             try {
                 await refreshBackgroundPages()
                 tApp.update()
@@ -1836,8 +1835,11 @@
                     }
                 }], "codicon-pass")
             } catch (err) {
+                console.log("ERROR")
+                localStorage.setItem("version", currentVersion);
                 codeEditorHelper.removeAlertModal(modal.getAttribute('data-editor-alert-modal-index'))
-                codeEditorHelper.showAlertModal("Background update failed. You probably aren't connected to the internet :( Error: " + err.toString(), [{
+                await new Promise((resolve, reject) => setTimeout(resolve, 500))
+                codeEditorHelper.showAlertModal("Background update failed. You probably aren't connected to the internet :(", [{
                     text: "Ok",
                     onclick: function() {
                         codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index'))
@@ -1853,9 +1855,12 @@
     function refreshBackgroundPages() {
         return new Promise((resolve, reject) => {
             var jobs = [];
+            var completed = 0;
             for (let i = 0; i < tApp.config.caching.backgroundPages.length; i++) {
                 jobs.push(new Promise((res, rej) => {
-                    tApp.get(tApp.config.caching.backgroundPages[i]).then(() => {
+                    tApp.get(tApp.config.caching.backgroundPages[i], true).then((r) => {
+                        if (r.ok === false) rej()
+                        completed ++;
                         res()
                     }).catch(err => {
                         rej();
@@ -1863,7 +1868,9 @@
                 }))
             }
             Promise.all(jobs).then(() => {
-                resolve()
+                console.log(jobs.length, completed)
+                if (jobs.length === completed) resolve(true)
+                else reject(false)
             }).catch(err => {
                 reject(err)
             })
