@@ -86,6 +86,7 @@
 			let templated = await recurseEjs(html);
 			tApp.render(templated);
 		}).catch((err) => {
+			console.log(err)
 			tApp.renderPath("#/404");
 		});
 	});
@@ -138,6 +139,7 @@
 			Database.getModuleData(request.data.track, request.data.module, request.data.position).then(async (res) => {
 				showPage(res)
 			}).catch((err) => {
+				console.log(err)
 				tApp.renderPath("#/404");
 			})
 		}
@@ -181,6 +183,7 @@
 			Database.getModuleData(request.data.track, request.data.module, request.data.position).then(async (res) => {
 				showPage(res)
 			}).catch((err) => {
+				console.log(err)
 				tApp.renderPath("#/404");
 			})
 		}
@@ -436,6 +439,7 @@
 
 	tApp.start().then(() => {
 		if (window.environment !== "development") {
+			checkIfNewerVersion();
 			tApp.install().then(() => {
 				tApp.update();
 			});

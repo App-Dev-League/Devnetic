@@ -297,7 +297,6 @@ class tApp {
 					resolve(response);
 				} else {
 					response.clone().arrayBuffer().then((data) => {
-						
 						if(response.status === 200) {
 							tApp.setCachedPage(fullPath, {
 								data: data,
