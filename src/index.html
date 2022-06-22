@@ -1818,16 +1818,20 @@
             console.log("There is a newer version of Devnetic available! Starting background update...");
             await new Promise((resolve, reject) => setTimeout(resolve, 500));
             var modal = codeEditorHelper.showAlertModal("There is a newer version of Devnetic available! Starting background update...", [], null, 60)
+            var startTime = Date.now();
             try {
                 await refreshBackgroundPages()
                 localStorage.setItem("version", version);
-                codeEditorHelper.removeAlertModal(modal.getAttribute('data-editor-alert-modal-index'))
+                if (startTime + 60000 > Date.now()) {
+                    codeEditorHelper.removeAlertModal(modal.getAttribute('data-editor-alert-modal-index'))
+                }
+                await new Promise((resolve, reject) => setTimeout(resolve, 500));
                 codeEditorHelper.showAlertModal("Successfully updated Devnetic! Reload page to see changes. ", [{
-                    text: "Reload",
-                    onclick: function() {
-                        window.location.reload()
-                    }
-                }], "codicon-pass")
+                        text: "Reload",
+                        onclick: function() {
+                            window.location.reload()
+                        }
+                    }], "codicon-pass")
             } catch (err) {
                 console.log("ERROR", err)
                 localStorage.setItem("version", currentVersion);
@@ -1847,20 +1851,27 @@
     }
 
     function refreshBackgroundPages() {
-        return new Promise(async (resolve, reject) => {
-            var errored = false;
-            for (var i = 0; i < tApp.config.caching.backgroundPages.length; i++) {
-                let res = await tApp.get(tApp.config.caching.backgroundPages[i]);
-                if (res.ok === false) {
-                    console.log("Encountered error while downloading and saving file: "+tApp.config.caching.backgroundPages[i])
-                    errored = true;
-                    break;
-                }
-                console.log("Fetched and saved file: "+tApp.config.caching.backgroundPages[i])
+        return new Promise((resolve, reject) => {
+            var jobs = [];
+            var completed = 0;
+            for (let i = 0; i < tApp.config.caching.backgroundPages.length; i++) {
+                jobs.push(new Promise((res, rej) => {
+                    tApp.get(tApp.config.caching.backgroundPages[i]).then((r) => {
+                        if (r.ok === false) rej()
+                        completed++;
+                        res()
+                    }).catch(err => {
+                        rej();
+                    })
+                }))
             }
-            console.log("Downloaded and saved "+i+"/"+tApp.config.caching.backgroundPages.length+" files")
-            if (errored === true) reject()
-            else resolve();
+            Promise.all(jobs).then(() => {
+                console.log(jobs.length, completed)
+                if (jobs.length === completed) resolve(true)
+                else reject(false)
+            }).catch(err => {
+                reject(err)
+            })
         })
     }
 </script>
