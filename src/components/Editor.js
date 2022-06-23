@@ -398,7 +398,10 @@ class Editor extends tApp.Component {
 							}
 							let html = codeEditorHelper.getValue();
 							var errored = false;
-							html = await replaceAsync(html, /(?<=src=("|'))(.*)(?=("|'))/g, async function (module) {
+							html = await replaceAsync(html, /src\=\s*(\"|')(.*?)(\"|')/g, async function (module) {
+								module = module.slice(regexIndexOf(module, /("|')/g, 0) + 1)
+								module = module.slice(0, regexLastIndexOf(module, /("|')/g))
+								console.log(module)
 								if (/^(http(s|):\/\/)/.test(module)) {
 									return module;
 								}
@@ -425,32 +428,34 @@ class Editor extends tApp.Component {
 									return `data:image/png;base64,${btoa(moduleCode)}`
 								}
 								moduleCode = codeEditorHelper.getTextWithoutMetaData(moduleCode)
-								return `data:text/plain;base64,` + plugins.Base64.encode(moduleCode);
+								return `src="data:text/plain;base64,` + plugins.Base64.encode(moduleCode) + "\""
 							})
-							html = await replaceAsync(html, /<link(.*)(?<=href=("|'))(.*)(?=("|'))/g, async function (module) {
+							html = await replaceAsync(html, /<\s*link(.*)href\=\s*(\"|')(.*?)(\"|')/g, async function (module) {
 								if (!module.includes("stylesheet")) return module;
-								module = await replaceAsync(module, /(?<=href=("|'))(.*)/g, async function (url) {
-									if (/^(http(s|):\/\/)/.test(url)) {
-										return url;
+								module = module.replace(/rel=("|')(.*?)("|')/g, "")
+								module = module.replace(/type=("|')(.*?)("|')/g, "")
+								module = module.slice(regexIndexOf(module, /("|')/g, 0) + 1)
+								module = module.slice(0, regexLastIndexOf(module, /("|')/g))
+								if (/^(http(s|):\/\/)/.test(module)) {
+									return url;
+								}
+								module = module.replace(/^(.\/|\/)/g, "")
+								console.log(module)
+								let moduleIndex = self.parent.parent.data().files.findIndex(e => e === module);
+								var moduleCode;
+								if (moduleIndex === -1) {
+									try {
+										moduleCode = await codeEditorHelper.getFile(module);
+										moduleCode = moduleCode.code
+									} catch (e) {
+										showError(`GET ${module} net::ERR_ABORTED 404 (File not found)'`)
+										errored = true;
 									}
-									url = url.replace(/^(.\/|\/)/g, "")
-									let moduleIndex = self.parent.parent.data().files.findIndex(e => e === url);
-									var moduleCode;
-									if (moduleIndex === -1) {
-										try {
-											moduleCode = await codeEditorHelper.getFile(url);
-											moduleCode = moduleCode.code
-										} catch (e) {
-											showError(`GET ${module} net::ERR_ABORTED 404 (File not found)'`)
-											errored = true;
-										}
-									} else {
-										moduleCode = await DB.getCode(self.parent.parent.data().storage_id[moduleIndex]);
-									}
-									moduleCode = codeEditorHelper.getTextWithoutMetaData(moduleCode)
-									return `data:text/plain;base64,` + plugins.Base64.encode(moduleCode);
-								})
-								return module;
+								} else {
+									moduleCode = await DB.getCode(self.parent.parent.data().storage_id[moduleIndex]);
+								}
+								moduleCode = codeEditorHelper.getTextWithoutMetaData(moduleCode)
+								return `<link href="data:text/plain;base64,` + plugins.Base64.encode(moduleCode) + "\" rel='stylesheet'"
 							})
 							html = "<!--Devnetic Loaded-->" + html
 							html = html.replace("<!DOCTYPE html>", "")
@@ -732,10 +737,12 @@ try{
 								let importStatements = "";
 								let secondaryFilesCode = ""
 								code = await replaceAsync(code, /import([\s\S]*?)(?='|").*/g, async function (e) {
-									if (e.replaceAll("\"", "'").match(/(?<=')(.*)(?=')/g)[0] === "react") return "";
-									if (e.replaceAll("\"", "'").match(/(?<=')(.*)(?=')/g)[0] === "react-dom") return "";
-									let moduleName = e.match(/(?<=import)(.*)(?=from)/g)[0];
-									let module = e.replaceAll("\"", "'").match(/(?<=')(.*)(?=')/g)[0]
+									if (e.replaceAll("\"", "'").match(/'(.*?)'/g)[0] === "'react'") return "";
+									if (e.replaceAll("\"", "'").match(/'(.*?)'/g)[0] === "'react-dom'") return "";
+									let moduleName = e.match(/import(.*?)from/g)[0].slice("import".length, "from".length * -1)
+									let module = e.replaceAll("\"", "'").match(/'(.*?)'/g)[0].slice(1, -1)
+
+									console.log(moduleName, module)
 
 									if (!module.startsWith("./")) module = "./" + module;
 									if (!module.startsWith("./") || module.indexOf("/") !== 1) {
@@ -756,8 +763,8 @@ try{
 
 									moduleCode = codeEditorHelper.getTextWithoutMetaData(moduleCode)
 									moduleCode = moduleCode.replaceAll(/import([\s\S]*?)(?='|").*/g, function (e) {
-										if (e.replaceAll("\"", "'").match(/(?<=')(.*)(?=')/g)[0] === "react") return "";
-										if (e.replaceAll("\"", "'").match(/(?<=')(.*)(?=')/g)[0] === "react-dom") return "";
+										if (e.replaceAll("\"", "'").match(/'(.*?)'/g)[0] === "'react'") return "";
+										if (e.replaceAll("\"", "'").match(/'(.*?)'/g)[0] === "'react-dom'") return "";
 										return e;
 									})
 									if (module.endsWith(".module.css")) {
