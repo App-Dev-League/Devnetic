@@ -66,7 +66,7 @@ function copyFolderSync(from, to) {
                 console.log("Copying " + element);
                 fs.copyFileSync(path.join(from, element), path.join(to, element));
             }
-            if ((to.includes("plugins") && element.endsWith("min.js")) || element === "VERSION" || element === ".gitkeep") {}
+            if ((to.includes("plugins") && element.endsWith("min.js")) || element === "VERSION" || element === ".gitkeep" || element === "CNAME") {}
             else {
                 fileList.push(path.join(to, element).replace("docs", "").replace(/\\/g, "/"))
             }
