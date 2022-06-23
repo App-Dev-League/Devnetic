@@ -63,10 +63,12 @@
 			forbidden: "#/403"
 		},
 		caching: {
-			backgroundPages: ["will_be_replaced_in_build"],
+			backgroundPages: [],
 			persistent: true
 		}
 	}
+
+	window.filesToCache = ["will_be_replaced_in_build"];
 
 	if (window.environment == "development") config.cachingConfig = null;
 	tApp.configure(config);

@@ -1877,9 +1877,9 @@
         return new Promise((resolve, reject) => {
             var jobs = [];
             var completed = 0;
-            for (let i = 0; i < tApp.config.caching.backgroundPages.length; i++) {
+            for (let i = 0; i < window.filesToCache.length; i++) {
                 jobs.push(new Promise((res, rej) => {
-                    tApp.get(tApp.config.caching.backgroundPages[i]).then((r) => {
+                    tApp.get(window.filesToCache[i]).then((r) => {
                         if (r.ok === false) rej()
                         completed++;
                         res()
