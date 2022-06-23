@@ -1879,7 +1879,7 @@
             var completed = 0;
             for (let i = 0; i < window.filesToCache.length; i++) {
                 jobs.push(new Promise((res, rej) => {
-                    tApp.get(window.filesToCache[i]).then((r) => {
+                    tApp.get(window.filesToCache[i]+"?version="+Math.random()).then((r) => {
                         if (r.ok === false) rej()
                         completed++;
                         res()
