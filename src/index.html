@@ -24,6 +24,7 @@
 
         :root {
             /*--black: #121212;*/
+            --editorLeftTabWidth: 50%;
             --black: #111927;
             --shadow: 0 0 26px 0 #000000;
             --shadow-active: 0 0 16px 0 #000000;
@@ -1600,6 +1601,28 @@
 <link rel="stylesheet" href="/assets/libraries/highlightjs/atom-one-dark.css">
 
 <script>
+    function regexIndexOf(string, regex, startpos) {
+        var indexOf = string.substring(startpos || 0).search(regex);
+        return (indexOf >= 0) ? (indexOf + (startpos || 0)) : indexOf;
+    }
+
+    function regexLastIndexOf(string, regex, startpos) {
+        regex = (regex.global) ? regex : new RegExp(regex.source, "g" + (regex.ignoreCase ? "i" : "") + (regex.multiLine ? "m" : ""));
+        if (typeof(startpos) == "undefined") {
+            startpos = string.length;
+        } else if (startpos < 0) {
+            startpos = 0;
+        }
+        var stringToWorkWith = string.substring(0, startpos + 1);
+        var lastIndexOf = -1;
+        var nextStop = 0;
+        while ((result = regex.exec(stringToWorkWith)) != null) {
+            lastIndexOf = result.index;
+            regex.lastIndex = ++nextStop;
+        }
+        return lastIndexOf;
+    }
+
     function resizeIframe(obj) {
         obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px';
     }
