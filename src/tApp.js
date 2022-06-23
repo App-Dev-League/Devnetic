@@ -297,7 +297,6 @@ class tApp {
 					resolve(response);
 				} else {
 					response.clone().arrayBuffer().then((data) => {
-						
 						if(response.status === 200) {
 							tApp.setCachedPage(fullPath, {
 								data: data,
@@ -1087,7 +1086,7 @@ class tApp {
 							}, false);
 							tApp.updatePage(window.location.hash);
 						}
-						tApp.loadBackgroundPages();
+						//tApp.loadBackgroundPages();
 						resolve(true);
 						
 					};

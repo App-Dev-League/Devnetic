@@ -19,13 +19,19 @@ try {
     fs.rmSync('./docs', { recursive: true });
 } catch (err) { }
 
+var fileList = []
+
 console.log("Updating indices...")
 createModuleIndex();
 createPluginSizeIndex();
 console.log("Combining sequential text elements...")
 combineSequentialTextElements();
+console.log("Updating version...")
+updateVersion();
 console.log("Building...")
 copyFolderSync("./src", "./docs")
+console.log("Creatingg offline file map...");
+createOfflineFileMap();
 console.log("Cleaning up...");
 cleanUp();
 console.log("Build complete!");
@@ -34,7 +40,7 @@ function copyFolderSync(from, to) {
     fs.mkdirSync(to);
     fs.readdirSync(from).forEach(element => {
         if (fs.lstatSync(path.join(from, element)).isFile()) {
-            if (element.endsWith(".js") && !element.endsWith(".min.js")) {
+            if (element.endsWith(".js") && !element.endsWith(".min.js") && !from.includes("monaco-editor")) {
                 console.log("Optimizing " + element);
                 let jsFile = fs.readFileSync(path.join(from, element), "utf8");
                 jsFile = UglifyJS.minify(jsFile, {
@@ -59,6 +65,10 @@ function copyFolderSync(from, to) {
             } else {
                 console.log("Copying " + element);
                 fs.copyFileSync(path.join(from, element), path.join(to, element));
+            }
+            if ((to.includes("plugins") && element.endsWith("min.js")) || element === "VERSION") {}
+            else {
+                fileList.push(path.join(to, element).replace("docs", "").replace(/\\/g, "/"))
             }
         } else {
             copyFolderSync(path.join(from, element), path.join(to, element));
@@ -127,4 +137,13 @@ function combineSequentialTextElements() {
             fs.writeFileSync(`./src/data/modules/${value}/${element}`, JSON.stringify(file, null, 4));
         })
     })
+}
+function updateVersion() {
+    let version = Number(fs.readFileSync("./src/VERSION", "utf8"));
+    fs.writeFileSync("./src/VERSION", (version+1).toString());
+}
+function createOfflineFileMap(){
+    let configFile = fs.readFileSync("./docs/config.js", "utf8");
+    configFile = configFile.replace(`["will_be_replaced_in_build"]`, JSON.stringify(fileList));
+    fs.writeFileSync("./docs/config.js", configFile);
 }
