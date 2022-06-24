@@ -202,9 +202,9 @@
                     "content": "Another useful feature of Bootstrap is the grid system. The grid system allows for efficient placement of HTML elements. It consists of 12 column units. For example, if you want an element to cover half of the screen, use 6 units. Set the class attribute to [[monospace]]col-[units][[/]] to set column of and element. Bootstrap's grid consists of rows that divide columns, as well."
                 },
                 {
-                    "type": "image",
-                    "src": "/data/modules/webdev-assets/img1/8-0.png",
-                    "width": "60%"
+                    "type": "iframe",
+                    "src": "/data/modules/webdev-assets/img3/bootstrap-example.html",
+                    "width": "90%"
                 }
             ]
         },
@@ -221,7 +221,8 @@
         {
             "type": "short_answer",
             "question": "which CSS property is used to underline text?",
-            "code_template": "#div1 {?: underline;}",
+            "code_template": "#div1 {\n    property: underline;\n}",
+            "lang": "css",
             "answers": [
                 "text-decoration"
             ],
@@ -357,9 +358,7 @@
             "coins": 1,
             "answers": [
                 "True",
-                "False",
-                "",
-                ""
+                "False"
             ],
             "correct": 0
         },
