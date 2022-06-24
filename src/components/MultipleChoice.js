@@ -41,10 +41,10 @@ class MultipleChoice extends ModuleComponent {
 	</div>
 	<div class="mc-answer-table">
 		<div class="mc-answer-container">
-			${this.state.options[0]}
-			${this.state.options[1]}
-			${this.state.options[2]}
-			${this.state.options[3]}
+			${!this.state.options[0].toString().includes("<p>") ? "" : this.state.options[0]}
+			${!this.state.options[1].toString().includes("<p>") ? "" : this.state.options[1]}
+			${!this.state.options[2].toString().includes("<p>") ? "" : this.state.options[2]}
+			${!this.state.options[3].toString().includes("<p>") ? "" : this.state.options[3]}
 		</div>
 	</div>`;
 			if(this.data().selectedAnswer != null) {
