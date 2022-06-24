@@ -5,9 +5,9 @@ const ModuleComponent=require("./ModuleComponent.js"),ExplanationModal=require("
 	</div>
 	<div class="mc-answer-table">
 		<div class="mc-answer-container">
-			${this.state.options[0]}
-			${this.state.options[1]}
-			${this.state.options[2]}
-			${this.state.options[3]}
+			${this.state.options[0].toString().includes("<p>")?this.state.options[0]:""}
+			${this.state.options[1].toString().includes("<p>")?this.state.options[1]:""}
+			${this.state.options[2].toString().includes("<p>")?this.state.options[2]:""}
+			${this.state.options[3].toString().includes("<p>")?this.state.options[3]:""}
 		</div>
 	</div>`;if(null!=this.data().selectedAnswer){let t=this.data();this.state.explanation.state.description=t.descriptions[t.selectedAnswer],t.selectedAnswer==t.correct||Array.isArray(t.correct)&&t.correct.includes(t.selectedAnswer)?(this.state.explanation.state.title="Correct!",this.state.explanation.state.retry=!1):(this.state.explanation.state.title="Incorrect!",this.state.explanation.state.retry=!0)}else this.state.explanation.state.title="";return e+"<div>"+this.state.explanation.toString()+"</div></div>"}closeModal(){this.parent.setState("data.selectedAnswer",null)}}module.exports=MultipleChoice;
