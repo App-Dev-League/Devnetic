@@ -146,4 +146,6 @@ function createOfflineFileMap(){
     let configFile = fs.readFileSync("./docs/config.js", "utf8");
     configFile = configFile.replace(`["will_be_replaced_in_build"]`, JSON.stringify(fileList));
     fs.writeFileSync("./docs/config.js", configFile);
+    fs.writeFileSync("./docs/UPDATE_FILE_MAP.json", JSON.stringify(fileList))
+    fs.writeFileSync("./src/UPDATE_FILE_MAP.json", JSON.stringify(fileList))
 }

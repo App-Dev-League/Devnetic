@@ -1874,12 +1874,14 @@
     }
 
     function refreshBackgroundPages() {
-        return new Promise((resolve, reject) => {
+        return new Promise(async (resolve, reject) => {
+            let cacheFiles = await fetch("/UPDATE_FILE_MAP.json");
+            cacheFiles = await cacheFiles.json();
             var jobs = [];
             var completed = 0;
-            for (let i = 0; i < window.filesToCache.length; i++) {
+            for (let i = 0; i < cacheFiles.length; i++) {
                 jobs.push(new Promise((res, rej) => {
-                    tApp.get(window.filesToCache[i]+"?version="+Math.random()).then((r) => {
+                    tApp.get(cacheFiles[i]+"?version="+Math.random()).then((r) => {
                         if (r.ok === false) rej()
                         completed++;
                         res()
