@@ -34,6 +34,7 @@ a {
   transition: 0.75s width cubic-bezier(0.5,-0.01, 0.98, 0.39), 0.25s height !important;
   width: 100px;
   height: 40px !important;
+  right: 10px;
 }
 .transitioning-to-devnetic-app .navbar-container div {
   border-bottom: 0 !important;
@@ -76,4 +77,16 @@ html {
   max-width: none !important;
   padding-left: 0;
   background-attachment: fixed;
+}
+.navbar-container {
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  width: 100vw;
+}
+.main-content {
+  margin-top: 60px;
+}
+.navbar-container > div {
+  background-color: rgba(255,255,255,0.8);
 }
