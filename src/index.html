@@ -5,17 +5,17 @@
 </script>
 
 <head>
-    <script src="/assets/libraries/jquery.min.js"></script>
+    <script src="./assets/libraries/jquery.min.js"></script>
     <title>Devnetic Learning App</title>
 
-    <!-- <link rel="stylesheet" href="//unpkg.com/@highlightjs/cdn-assets@11.3.1/styles/github-dark.min.css"> -->
-    <link rel="manifest" href="/manifest.json">
-    <script src="/assets/libraries/highlightjs/highlight.min.js"></script>
-    <script src="/tApp.js"></script>
-    <script src="/require-browser.js"></script>
+    <!-- <link rel="stylesheet" href=".//unpkg.com/@highlightjs/cdn-assets@11.3.1/styles/github-dark.min.css"> -->
+    <link rel="manifest" href="./manifest.json">
+    <script src="./assets/libraries/highlightjs/highlight.min.js"></script>
+    <script src="./tApp.js"></script>
+    <script src="./require-browser.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/png" href="/assets/img/icon.png" />
-    <link rel="apple-touch-icon" type="image/png" href="/assets/img/icon.png" />
+    <link rel="shortcut icon" type="image/png" href="./assets/img/icon.png" />
+    <link rel="apple-touch-icon" type="image/png" href="./assets/img/icon.png" />
     <style>
         .info-text::-webkit-scrollbar {
             display: none;
@@ -1379,7 +1379,7 @@
                 let stylesheet = document.createElement("link");
                 stylesheet.setAttribute("id", "theme-stylesheet");
                 stylesheet.setAttribute("rel", "stylesheet");
-                stylesheet.setAttribute("href", "/assets/stylesheets/lighttheme.css");
+                stylesheet.setAttribute("href", "./assets/stylesheets/lighttheme.css");
                 document.head.appendChild(stylesheet)
             }
         }
@@ -1391,7 +1391,7 @@
 <body>
     <header>
         <a class="logo" href="#/">
-            <img src="/assets/img/icon.png" />
+            <img src="./assets/img/icon.png" />
             <span>Devnetic</span>
         </a>
         <h3 class="username">Guest</h3>
@@ -1412,7 +1412,7 @@
 
         function newFileCallback() {
             downloadFileCount++
-            document.getElementById("loading-filecount").innerHTML = downloadFileCount + "/28";
+            document.getElementById("loading-filecount").innerHTML = downloadFileCount + "./28";
             document.getElementById("loading-loading-bar").style.width = (downloadFileCount / 26) * 100 + "%";
         }
     </script>
@@ -1463,7 +1463,7 @@
         <span data-text="rename">Rename<span>F2</span></span>
         <span data-text="delete">Delete<span>ALT+DELETE</span></span>
     </div>
-    <script src="/config.js?v=3"></script>
+    <script src="./config.js?v=3"></script>
     <input id="console-bridge" style="width: 0; height: 0;">
 </body>
 
@@ -1471,27 +1471,27 @@
 <style>
     @font-face {
         font-family: 'Codicon';
-        src: url("/assets/fonts/codicon.ttf");
+        src: url("./assets/fonts/codicon.ttf");
     }
 
     @font-face {
         font-family: 'Nunito';
-        src: url("/assets/fonts/Nunito/Nunito-Regular.woff2");
+        src: url("./assets/fonts/Nunito/Nunito-Regular.woff2");
     }
 
     @font-face {
         font-family: 'Nunito-SemiBold';
-        src: url("/assets/fonts/Nunito/Nunito-SemiBold.woff2");
+        src: url("./assets/fonts/Nunito/Nunito-SemiBold.woff2");
     }
 
     @font-face {
         font-family: 'Nunito-Bold';
-        src: url("/assets/fonts/Nunito/Nunito-Bold.woff2");
+        src: url("./assets/fonts/Nunito/Nunito-Bold.woff2");
     }
 
     @font-face {
         font-family: 'Nunito-ExtraBold';
-        src: url("/assets/fonts/Nunito/Nunito-ExtraBold.woff2");
+        src: url("./assets/fonts/Nunito/Nunito-ExtraBold.woff2");
     }
 </style>
 <!-- Codicon font stuff -->
@@ -1600,7 +1600,7 @@
         }
     }
 </style>
-<link rel="stylesheet" href="/assets/libraries/highlightjs/atom-one-dark.css">
+<link rel="stylesheet" href="./assets/libraries/highlightjs/atom-one-dark.css">
 
 <script>
     function regexIndexOf(string, regex, startpos) {
@@ -1633,7 +1633,7 @@
             document.querySelectorAll(".generated-link").forEach(element => {
                 if (element.dataset.linked === 'no') {
                     element.dataset.linked = "yes";
-                    if (!element.innerText.startsWith("http")) element.href = "//" + element.innerText
+                    if (!element.innerText.startsWith("http")) element.href = ".//" + element.innerText
                     else element.href = element.innerText
                 }
             })
@@ -1664,7 +1664,7 @@
             document.getElementById("back-btn").classList.add("none")
         } else {
             document.getElementById("module-progress-bar-wrapper").style.pointerEvents = "all";
-            if (window.location.hash.split("/")[4] !== "0") document.getElementById("back-btn").classList.remove("none")
+            if (window.location.hash.split('/')[4] !== "0") document.getElementById("back-btn").classList.remove("none")
             else document.getElementById("back-btn").classList.add("none")
         }
 
@@ -1701,8 +1701,8 @@
 
     function goBack() {
         var hash = window.location.hash;
-        if (hash.startsWith("#/learn/") && hash.split("/")[4] !== "0") {
-            tApp.redirect(`#/learn/${hash.split("/")[2]}/${hash.split("/")[3]}/${Number(hash.split("/")[4])-1}`)
+        if (hash.startsWith("#/learn/") && hash.split('/')[4] !== "0") {
+            tApp.redirect(`#/learn/${hash.split('/')[2]}/${hash.split('/')[3]}/${Number(hash.split('/')[4])-1}`)
         }
     }
 
@@ -1834,7 +1834,7 @@
     async function checkIfNewerVersion() {
         console.log("Devnetic successfully loaded and initialized. Checking if there is a newer version available...")
         await new Promise((resolve, reject) => setTimeout(resolve, 1000));
-        let version = await fetch("/VERSION?v=" + Math.random());
+        let version = await fetch("./VERSION?v=" + Math.random());
         version = await version.text();
         version = Number(version);
         let currentVersion = Number(localStorage.getItem("version") || "0")
@@ -1877,13 +1877,13 @@
 
     function refreshBackgroundPages() {
         return new Promise(async (resolve, reject) => {
-            let cacheFiles = await fetch("/UPDATE_FILE_MAP.json");
+            let cacheFiles = await fetch("https://devnetic.appdevleague.org/UPDATE_FILE_MAP.json");
             cacheFiles = await cacheFiles.json();
             var jobs = [];
             var completed = 0;
             for (let i = 0; i < cacheFiles.length; i++) {
                 jobs.push(new Promise((res, rej) => {
-                    tApp.get(cacheFiles[i]+"?version="+Math.random()).then((r) => {
+                    tApp.get("https://devnetic.appdevleague.org"+cacheFiles[i]+"?version="+Math.random()).then((r) => {
                         if (r.ok === false) rej()
                         completed++;
                         res()

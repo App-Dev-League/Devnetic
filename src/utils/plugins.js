@@ -39,7 +39,7 @@ module.exports = {
     async download(pluginId, cont, done, silent) {
         var code;
         try {
-            code = await fetch("/assets/plugins/" + pluginId + "/" + pluginId + ".min.js");
+            code = await fetch("https://devnetic.appdevleague.org/assets/plugins/" + pluginId + "/" + pluginId + ".min.js");
             if (code.ok === false) throw "Failed to fetch"
             let tmpcode = code.clone()
 
@@ -55,7 +55,7 @@ module.exports = {
                 }
                 bytesReceived += result.value.length;
             }
-            let version = await fetch("/assets/plugins/" + pluginId + "/" + "VERSION.txt");
+            let version = await fetch("https://devnetic.appdevleague.org/assets/plugins/" + pluginId + "/" + "VERSION.txt");
             version = await version.text();
             code = await tmpcode.text()
             if (code_size > 5000000) {
@@ -106,7 +106,7 @@ module.exports = {
             {
                 name: "Resizable Editor",
                 description: "This plugin allows you to resize the editor window, as well as re-arange the tabs.",
-                image: "/assets/plugins/betterEditor/betterEditor.png",
+                image: "./assets/plugins/betterEditor/betterEditor.png",
                 id: "betterEditor",
                 onInstall: "plugins.load(\"betterEditor\").then(() => updateEditorSettings({dividerPosition: null}))",
                 latestVersion: "2.4.4"
@@ -115,7 +115,7 @@ module.exports = {
             {
                 name: "Brython",
                 description: "This plugin allows you to run python in the browser!",
-                image: "/assets/plugins/brython/brython.svg",
+                image: "./assets/plugins/brython/brython.svg",
                 id: "brython",
                 latestVersion: "3.0.1"
                 //https://brython.info/
@@ -123,7 +123,7 @@ module.exports = {
             // {
             //     name: "CaptCC",
             //     description: "This plugin allows you to run basic C code in the browser!",
-            //     image: "/assets/plugins/captCC/captCC.svg",
+            //     image: "./assets/plugins/captCC/captCC.svg",
             //     id: "captCC",
             //     latestVersion: "0.0.1"
             //     //https://github.com/Captainarash/CaptCC
@@ -131,7 +131,7 @@ module.exports = {
             {
                 name: "JS-CPP",
                 description: "This plugin compiles C++ code to Javascript!",
-                image: "/assets/plugins/jscpp/jscpp.svg",
+                image: "./assets/plugins/jscpp/jscpp.svg",
                 id: "jscpp",
                 latestVersion: "0.0.1"
                 //https://github.com/felixhao28/JSCPP
@@ -139,7 +139,7 @@ module.exports = {
             {
                 name: "Typescript",
                 description: "This plugin allows you to run typescript in the browser!",
-                image: "/assets/plugins/typescript/typescript.svg",
+                image: "./assets/plugins/typescript/typescript.svg",
                 id: "typescript",
                 latestVersion: "0.0.1"
                 //https://jsfiddle.net/k78t436y/
@@ -147,28 +147,28 @@ module.exports = {
             {
                 name: "Markdown",
                 description: "This plugin allows you to render markdown code in the browser!",
-                image: "/assets/plugins/showdown/markdown-logo.png",
+                image: "./assets/plugins/showdown/markdown-logo.png",
                 id: "showdown",
                 latestVersion: "2.1.0"
             },
             {
                 name: "ReactJS",
                 description: "This plugin allows you to create and preview a ReactJS website!",
-                image: "/assets/plugins/react/react.svg",
+                image: "./assets/plugins/react/react.svg",
                 id: "react",
                 latestVersion: "3.1.1"
             },
             {
                 name: "Perl",
                 description: "This plugin allows you to run perl code directly in the browser!!",
-                image: "/assets/plugins/webperl/webperl.png",
+                image: "./assets/plugins/webperl/webperl.png",
                 id: "webperl",
                 latestVersion: "1.0.0"
             },
             {
                 name: "Hex Editor",
                 description: "View and edit binary files in the code editor!",
-                image: "/assets/plugins/hexy/logo.png",
+                image: "./assets/plugins/hexy/logo.png",
                 id: "hexy",
                 latestVersion: "1.0.0"
             },
@@ -180,7 +180,7 @@ module.exports = {
     },
     async getDownloadSize(pluginId) {
         if (!window.pluginSizes) {
-            let res = await fetch("/assets/plugins/sizes.json");
+            let res = await fetch("./assets/plugins/sizes.json");
             res = await res.json();
             window.pluginSizes = res;
         }

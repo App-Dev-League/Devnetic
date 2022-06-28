@@ -31,7 +31,7 @@
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/webdev-projects-assets/img9/0-0.png",
+                    "src": "./data/modules/webdev-projects-assets/img9/0-0.png",
                     "width": "60%"
                 }
             ]
@@ -61,7 +61,7 @@
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/webdev-projects-assets/img9/1-0.png",
+                    "src": "./data/modules/webdev-projects-assets/img9/1-0.png",
                     "width": "60%",
                     "max-width": "20vw"
                 },
@@ -187,7 +187,7 @@
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/webdev-projects-assets/img9/2-0.png"
+                    "src": "./data/modules/webdev-projects-assets/img9/2-0.png"
                 }
             ]
         },
@@ -251,7 +251,7 @@
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/webdev-projects-assets/img9/3-0.png"
+                    "src": "./data/modules/webdev-projects-assets/img9/3-0.png"
                 },
                 {
                     "type": "code",

@@ -390,7 +390,7 @@
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/ai-assets/img0/0-0.png",
+                    "src": "./data/modules/ai-assets/img0/0-0.png",
                     "width": "50%"
                 }
             ]
@@ -447,7 +447,7 @@
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/ai-assets/img0/1-0.png",
+                    "src": "./data/modules/ai-assets/img0/1-0.png",
                     "width": "50%"
                 }
             ]

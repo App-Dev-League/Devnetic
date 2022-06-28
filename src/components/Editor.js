@@ -1054,7 +1054,7 @@ try{
 			<span id="code-editor-run-btn" class="home-module home-module-complete" style="margin: 0; width: fit-content; padding-left: 20px; padding-right: 20px; margin-left: 20px; position: relative; z-index: 10">Run</span>
 		</div>
 		<div class="code-editor">
-			<iframe id="code-frame" style="width: 100%; height: 100%; border: none" src="/assets/html/${mode}.html"></iframe>
+			<iframe id="code-frame" style="width: 100%; height: 100%; border: none" src="./assets/html/${mode}.html"></iframe>
 		</div>
 		</div>`;
 	}
@@ -1075,7 +1075,15 @@ class TabbedEditor extends tApp.Component {
 		var self = this;
 		var tabs = [];
 
-		await plugins.load("betterEditor")
+		try {
+			if (window.pluginList && window.pluginList.betterEditor) {
+				reloadPluginSettings()
+			} else {
+				await plugins.load("betterEditor")
+			}
+		} catch (err) {
+
+		}
 		if (self.x === true && !force) return;
 		self.x = true;
 

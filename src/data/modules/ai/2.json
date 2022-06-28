@@ -11,7 +11,7 @@
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/ai-assets/img2/0-2.png",
+                    "src": "./data/modules/ai-assets/img2/0-2.png",
                     "width": "50%"
                 }
             ]
@@ -26,12 +26,12 @@
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/ai-assets/img2/1-2.png",
+                    "src": "./data/modules/ai-assets/img2/1-2.png",
                     "width": "50%"
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/ai-assets/img2/2-2.png",
+                    "src": "./data/modules/ai-assets/img2/2-2.png",
                     "width": "50%"
                 }
             ]
@@ -46,7 +46,7 @@
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/ai-assets/img2/3-2.png",
+                    "src": "./data/modules/ai-assets/img2/3-2.png",
                     "width": "50%"
                 }
             ]
@@ -61,7 +61,7 @@
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/ai-assets/img2/4-2.png",
+                    "src": "./data/modules/ai-assets/img2/4-2.png",
                     "width": "50%"
                 },
                 {
@@ -70,7 +70,7 @@
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/ai-assets/img2/5-2.png",
+                    "src": "./data/modules/ai-assets/img2/5-2.png",
                     "width": "50%"
                 },
                 {

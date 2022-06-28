@@ -11,7 +11,7 @@
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/webdev-projects-assets/img1/0-0.png",
+                    "src": "./data/modules/webdev-projects-assets/img1/0-0.png",
                     "width": "10%"
                 }
             ]

@@ -11,7 +11,7 @@
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/ai-assets/img3/0-3.png",
+                    "src": "./data/modules/ai-assets/img3/0-3.png",
                     "width": "50%"
                 },
                 {

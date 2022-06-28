@@ -26,7 +26,7 @@
 
 
 <div id="menu-container" class="codicon codicon-loading" style="position: fixed; top: 60px; right: 10px;">
-    <% include('/views/menu.html').then(res => {document.getElementById("menu-container").classList.remove("codicon-loading"); document.getElementById("menu-container").innerHTML = res;nodeScriptReplace(document.getElementById("menu-container"))}) %>
+    <% include('./views/menu.html').then(res => {document.getElementById("menu-container").classList.remove("codicon-loading"); document.getElementById("menu-container").innerHTML = res;nodeScriptReplace(document.getElementById("menu-container"))}) %>
 </div>
 <% if (myProjectsPage) { %>
 <a href="#/my-projects" class="my-projects codicon codicon-folder" style="position: fixed; top: 60px; right: 50px; text-decoration: underline !important;"></a>
