@@ -30,7 +30,7 @@ console.log("Updating version...")
 updateVersion();
 console.log("Building...")
 copyFolderSync("./src", "./docs")
-console.log("Creatingg offline file map...");
+console.log("Creating offline file map...");
 createOfflineFileMap();
 console.log("Cleaning up...");
 cleanUp();
@@ -130,6 +130,13 @@ function combineSequentialTextElements() {
                         return recurseThrough(i);
                     } else {
                         previousElementType = element.type;
+
+                        if (element.type === "iframe" || element.type === "image") {
+                            if (element.src && element.src.startsWith("/")) {
+                                element.src = "."+element.src;
+                            }
+                        }
+
                         return recurseThrough(i + 1);
                     }
                 }

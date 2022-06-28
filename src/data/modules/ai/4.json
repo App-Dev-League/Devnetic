@@ -11,7 +11,7 @@
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/ai-assets/img4/0-0.png",
+                    "src": "./data/modules/ai-assets/img4/0-0.png",
                     "width": "40%"
                 },
                 {
@@ -20,7 +20,7 @@
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/ai-assets/img4/0-1.png",
+                    "src": "./data/modules/ai-assets/img4/0-1.png",
                     "width": "40%"
                 }
             ]
@@ -35,7 +35,7 @@
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/ai-assets/img4/1-0.png",
+                    "src": "./data/modules/ai-assets/img4/1-0.png",
                     "width": "25%",
                     "float": "right"
                 },
@@ -45,7 +45,7 @@
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/ai-assets/img4/1-1.png",
+                    "src": "./data/modules/ai-assets/img4/1-1.png",
                     "width": "60%",
                     "float": "left"
                 }
@@ -61,7 +61,7 @@
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/ai-assets/img4/2-0.png",
+                    "src": "./data/modules/ai-assets/img4/2-0.png",
                     "width": "15%",
                     "float": "right"
                 },
@@ -71,7 +71,7 @@
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/ai-assets/img4/2-1.png",
+                    "src": "./data/modules/ai-assets/img4/2-1.png",
                     "width": "25%",
                     "float": "right"
                 },
@@ -81,7 +81,7 @@
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/ai-assets/img4/2-2.png",
+                    "src": "./data/modules/ai-assets/img4/2-2.png",
                     "width": "25%",
                     "float": "right"
                 },
@@ -101,7 +101,7 @@
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/ai-assets/img4/3-0.png",
+                    "src": "./data/modules/ai-assets/img4/3-0.png",
                     "width": "25%",
                     "float": "right"
                 },
@@ -111,13 +111,13 @@
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/ai-assets/img4/3-1.png",
+                    "src": "./data/modules/ai-assets/img4/3-1.png",
                     "width": "40%",
                     "float": "left"
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/ai-assets/img4/3-2.png",
+                    "src": "./data/modules/ai-assets/img4/3-2.png",
                     "width": "49%",
                     "float": "right"
                 }

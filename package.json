@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "scripts": {
     "build": "node build.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "electron ./electron-main.js"
   },
   "repository": {
     "type": "git",
@@ -17,10 +18,13 @@
   },
   "homepage": "https://github.com/App-Dev-League/Devnetic#readme",
   "dependencies": {
+    "dictionary-en": "3.2.0",
     "html-minifier": "^4.0.0",
     "jsonminify": "^0.4.2",
-    "uglify-js": "^3.15.5",
     "nspell": "2.1.5",
-    "dictionary-en": "3.2.0"
+    "uglify-js": "^3.15.5"
+  },
+  "devDependencies": {
+    "electron": "^19.0.6"
   }
 }

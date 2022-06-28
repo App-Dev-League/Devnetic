@@ -99,7 +99,7 @@
             "elements": [
                 {
                     "type": "iframe",
-                    "src": "/data/modules/webdev-assets/img3/bootstrap-example.html"
+                    "src": "./data/modules/webdev-assets/img3/bootstrap-example.html"
                 }
             ]
         },

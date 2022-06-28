@@ -1,6 +1,6 @@
 <div id="menu">
     <%
-     var moduleData = await fetch("/data/module_index.json");
+     var moduleData = await fetch("./data/module_index.json");
      moduleData = await moduleData.json();
      var actions = moduleData.actions
      var data = {}
