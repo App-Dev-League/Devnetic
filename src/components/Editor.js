@@ -432,12 +432,13 @@ class Editor extends tApp.Component {
 							})
 							html = await replaceAsync(html, /<\s*link(.*)href\=\s*(\"|')(.*?)(\"|')/g, async function (module) {
 								if (!module.includes("stylesheet")) return module;
+								var originalModule = module;
 								module = module.replace(/rel=("|')(.*?)("|')/g, "")
 								module = module.replace(/type=("|')(.*?)("|')/g, "")
 								module = module.slice(regexIndexOf(module, /("|')/g, 0) + 1)
 								module = module.slice(0, regexLastIndexOf(module, /("|')/g))
 								if (/^(http(s|):\/\/)/.test(module)) {
-									return url;
+									return originalModule;
 								}
 								module = module.replace(/^(.\/|\/)/g, "")
 								console.log(module)
