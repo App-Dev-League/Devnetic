@@ -5,6 +5,9 @@
 </script>
 
 <head>
+    <script>
+        if (window.location.pathname === "/app" || window.location.pathname === "/app/") window.location.redirect("/app/index.html")
+    </script>
     <script src="./assets/libraries/jquery.min.js"></script>
     <title>Devnetic Learning App</title>
 
@@ -1877,13 +1880,13 @@
 
     function refreshBackgroundPages() {
         return new Promise(async (resolve, reject) => {
-            let cacheFiles = await fetch("https://devnetic.appdevleague.org/UPDATE_FILE_MAP.json");
+            let cacheFiles = await fetch("/app/UPDATE_FILE_MAP.json");
             cacheFiles = await cacheFiles.json();
             var jobs = [];
             var completed = 0;
             for (let i = 0; i < cacheFiles.length; i++) {
                 jobs.push(new Promise((res, rej) => {
-                    tApp.get("https://devnetic.appdevleague.org"+cacheFiles[i]+"?version="+Math.random()).then((r) => {
+                    tApp.get(cacheFiles[i]+"?version="+Math.random()).then((r) => {
                         if (r.ok === false) rej()
                         completed++;
                         res()

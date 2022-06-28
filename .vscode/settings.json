@@ -9,6 +9,6 @@
         }
     ],
     "search.exclude": {
-        "**/docs": true
+        "**/app": true
     }
 }

@@ -82,11 +82,11 @@ export default function WithSubnavigation() {
           justify={'flex-end'}
           direction={'row'}
           spacing={6}>
-          <a href="https://devnetic.appdevleague.org" onClick={(e) => {
+          <a href="/app" onClick={(e) => {
             e.preventDefault()
             document.body.classList.add("transitioning-to-devnetic-app")
             setTimeout(function () {
-              window.location.href = "https://devnetic.appdevleague.org"
+              window.location.href = "/app/index.html"
             }, 800)
           }}>
             <Button
