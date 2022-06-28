@@ -52,7 +52,7 @@ export default function SplitWithImage() {
                 style={{ width: "fit-content" }}>
                 For Educators
             </Text>
-            <Heading>Rich, accessible cirriculum slides</Heading>
+            <Heading>Rich, accessible curriculum slides</Heading>
             <Text color={'gray.500'} fontSize={'lg'}>
                 Devnetic was built to improve the experience for educators, in addition to students. Educators have a variety of slides and projects to utilize in their teaching. With Devnetic, teachers can view and track their students' progress over time through the Devnetic dashboard. Devnetic has numerous features that enhance student-teacher interaction.
             </Text>
