@@ -30,8 +30,8 @@ export default function CallToActionWithAnnotation() {
               the easy way
             </Text>
           </Heading>
-          <Text color={'gray.500'} style={{width: "70%", marginLeft: "auto", marginRight: "auto"}}>
-            Devnetic is an interactive teaching app for students to learn about Application Development and AI through a series of interactive multiple choice questions, and includes a gamified leveling up system.
+          <Text color={'gray.500'} style={{width: "55%", minWidth: "300px", marginLeft: "auto", marginRight: "auto"}}>
+          Devnetic is an interactive teaching app developed by App Dev League for students looking to learn about Application Development and AI in the form of multiple choice questions, an integrated code editor, project-oriented curriculum, and a gamified leveling up system.
           </Text>
           <Stack
             direction={'column'}
