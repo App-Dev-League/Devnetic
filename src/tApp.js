@@ -117,6 +117,7 @@ class tApp {
 			if(tApp.config.caching == null) {
 				resolve(false);
 			} else if(tApp.config.caching.persistent) {
+				fullPath = fullPath.slice(0, fullPath.indexOf("?"))
 				let request = tApp.database.transaction(["cachedPages"], "readwrite").objectStore("cachedPages").put(value, fullPath);
 				request.onerror = (event) => {
 					reject("tAppError: Persistent caching is not available in this browser.");
@@ -1114,7 +1115,7 @@ class tApp {
 			}
 		});
 	}
-	static install(pathToServiceWorker = '/tApp-service-worker.js') {
+	static install(pathToServiceWorker = './tApp-service-worker.js') {
 		return new Promise((resolve, reject) => {
 			if ('serviceWorker' in navigator) {
 				navigator.serviceWorker.register(pathToServiceWorker).then(function() {

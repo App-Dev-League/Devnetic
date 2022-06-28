@@ -3,7 +3,7 @@
     "name": "Devnetic",
     "icons": [
       {
-        "src": "/assets/img/icon.png",
+        "src": "./assets/img/icon.png",
         "type": "image/png",
         "sizes": "262x262"
       }
@@ -25,7 +25,7 @@
     "description": "A learning portal for aspiring developers of all ages",
     "screenshots": [
       {
-        "src": "/assets/img/screenshot.png",
+        "src": "./assets/img/screenshot.png",
         "type": "image/png",
         "sizes": "1919x928"
       }

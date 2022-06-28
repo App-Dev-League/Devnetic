@@ -39,7 +39,7 @@ module.exports = {
     async download(pluginId, cont, done, silent) {
         var code;
         try {
-            code = await fetch("https://devnetic.appdevleague.org/assets/plugins/" + pluginId + "/" + pluginId + ".min.js");
+            code = await fetch("https://devnetic.appdevleague.org/app/assets/plugins/" + pluginId + "/" + pluginId + ".min.js");
             if (code.ok === false) throw "Failed to fetch"
             let tmpcode = code.clone()
 
@@ -55,7 +55,7 @@ module.exports = {
                 }
                 bytesReceived += result.value.length;
             }
-            let version = await fetch("https://devnetic.appdevleague.org/assets/plugins/" + pluginId + "/" + "VERSION.txt");
+            let version = await fetch("https://devnetic.appdevleague.org/app/assets/plugins/" + pluginId + "/" + "VERSION.txt");
             version = await version.text();
             code = await tmpcode.text()
             if (code_size > 5000000) {

@@ -16,7 +16,7 @@ var actions = {
 
 console.log("Clearing old files...");
 try {
-    fs.rmSync('./docs', { recursive: true });
+    fs.rmSync('./landing-page/public/app', { recursive: true });
 } catch (err) { }
 
 var fileList = []
@@ -29,7 +29,7 @@ combineSequentialTextElements();
 console.log("Updating version...")
 updateVersion();
 console.log("Building...")
-copyFolderSync("./src", "./docs")
+copyFolderSync("./src", "./landing-page/public/app")
 console.log("Creating offline file map...");
 createOfflineFileMap();
 console.log("Cleaning up...");
@@ -68,7 +68,7 @@ function copyFolderSync(from, to) {
             }
             if ((to.includes("plugins") && element.endsWith("min.js")) || element === "VERSION" || element === ".gitkeep" || element === "CNAME") {}
             else {
-                fileList.push(path.join(to, element).replace("docs", "").replace(/\\/g, "/"))
+                fileList.push(path.join(to, element).replace(/\\/g, "/").replace("landing-page/public", ""))
             }
         } else {
             copyFolderSync(path.join(from, element), path.join(to, element));
@@ -104,13 +104,13 @@ function createPluginSizeIndex() {
     fs.writeFileSync("./src/assets/plugins/sizes.json", JSON.stringify(json, null, 4));
 }
 function cleanUp() {
-    let menu = fs.readFileSync("./docs/views/menu.html", "utf8");
+    let menu = fs.readFileSync("./landing-page/public/app/views/menu.html", "utf8");
     menu = menu.replace(`var actions="<%-JSON.stringify(actions)%>"`, `var actions='<%-JSON.stringify(actions)%>'`)
-    fs.writeFileSync("./docs/views/menu.html", menu);
+    fs.writeFileSync("./landing-page/public/app/views/menu.html", menu);
 
-    let indexHTML = fs.readFileSync("./docs/index.html", "utf8");
+    let indexHTML = fs.readFileSync("./landing-page/public/app/index.html", "utf8");
     indexHTML = indexHTML.replace(`window.environment="development"`, `window.environment="production"`);
-    fs.writeFileSync("./docs/index.html", indexHTML);
+    fs.writeFileSync("./landing-page/public/app/index.html", indexHTML);
 }
 function combineSequentialTextElements() {
     Object.entries(actions).forEach(([key, value]) => {
@@ -150,9 +150,9 @@ function updateVersion() {
     fs.writeFileSync("./src/VERSION", (version+1).toString());
 }
 function createOfflineFileMap(){
-    let configFile = fs.readFileSync("./docs/config.js", "utf8");
+    let configFile = fs.readFileSync("./landing-page/public/app/config.js", "utf8");
     configFile = configFile.replace(`["will_be_replaced_in_build"]`, JSON.stringify(fileList));
-    fs.writeFileSync("./docs/config.js", configFile);
-    fs.writeFileSync("./docs/UPDATE_FILE_MAP.json", JSON.stringify(fileList))
+    fs.writeFileSync("./landing-page/public/app/config.js", configFile);
+    fs.writeFileSync("./landing-page/public/app/UPDATE_FILE_MAP.json", JSON.stringify(fileList))
     fs.writeFileSync("./src/UPDATE_FILE_MAP.json", JSON.stringify(fileList))
 }
