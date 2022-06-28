@@ -1,0 +1,42 @@
+<div class="home-row">
+	<h3>Section 1</h3>
+	<a class="home-module" href="#/learn/ai/0/">
+		<p>Week 1 - Python</p>
+	</a>
+	<a class="home-module" href="#/learn/ai/1/">
+		<p>Week 2 - Intro to AI</p>
+	</a>
+</div>
+<div class="home-row">
+	<h3>Section 2</h3>
+	<a class="home-module" href="#/learn/ai/2/">
+		<p>Week 3 - Regression & SVM</p>
+	</a>
+	<a class="home-module" href="#/learn/ai/3/">
+		<p>Week 4 - Tree ML</p>
+	</a>
+</div>
+<div class="home-row">
+	<h3>Section 3</h3>
+	<a class="home-module" href="#/learn/ai/4/">
+		<p>Week 5 - Neural Networks</p>
+	</a>
+	<a class="home-module" href="#/learn/ai/5/">
+		<p>Week 6 - Computer Vision</p>
+	</a>
+</div>
+<div class="home-row">
+	<h3>Section 4</h3>
+	<a class="home-module" href="#/learn/ai/6/">
+		<p>Week 7 - NLP</p>
+	</a>
+	<a class="home-module" href="#/learn/ai/7/">
+		<p>Week 8 - Unsupervised Learning</p>
+	</a>
+</div>
+<div id="menu-container" class="codicon codicon-loading" style="position:fixed;top:60px;right:10px">
+	<% include('./views/menu.html').then(res => {document.getElementById("menu-container").classList.remove("codicon-loading"); document.getElementById("menu-container").innerHTML = res;nodeScriptReplace(document.getElementById("menu-container"))}) %>
+</div>
+<a href="#/my-projects" class="my-projects codicon codicon-folder" style="position:fixed;top:60px;right:50px"></a>
+<a onclick="downloadSaveFile()" title="Download save file" class="my-projects codicon codicon-desktop-download" style="position:fixed;top:60px;right:90px"></a>
+<a onclick="loadSaveFile()" title="Load a save file" class="my-projects codicon codicon-cloud-upload" style="position:fixed;top:60px;right:130px"></a>
