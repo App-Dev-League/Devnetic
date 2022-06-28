@@ -86,7 +86,7 @@ export default function WithSubnavigation() {
             e.preventDefault()
             document.body.classList.add("transitioning-to-devnetic-app")
             setTimeout(function () {
-              window.location.href = "/app"
+              window.location.href = "/app/index.html"
             }, 800)
           }}>
             <Button
