@@ -3,19 +3,18 @@ const path = require("path");
 
 module.exports = {
     packagerConfig: {
-        dir: "./landing-page/public/app",
-        ignore: ["node_modules"],
-        icon: "./landing-page/public/images/icon.ico"
+        dir: "./app",
+        icon: "./images/icon.ico"
     },
     makers: [
         {
             name: "@electron-forge/maker-squirrel",
             config: {
                 name: "Devnetic",
-                loadingGif: "./landing-page/public/images/installation_loop.gif",
-                setupIcon: path.join("landing-page", "public", "images", "icon.ico"),
+                loadingGif: "./images/installation_loop.gif",
+                setupIcon: path.join("images", "icon.ico"),
                 skipUpdateIcon: true,
-                icon: path.join("landing-page", "public", "images", "icon.ico")
+                icon: path.join("images", "icon.ico")
             }
         },
         {

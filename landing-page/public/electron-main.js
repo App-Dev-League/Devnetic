@@ -81,7 +81,7 @@ const createWindow = () => {
     height: 600,
   })
 
-  mainWindow.loadFile('./landing-page/public/app/index.html')
+  mainWindow.loadFile('./app/index.html')
 }
 
 app.whenReady().then(() => {
