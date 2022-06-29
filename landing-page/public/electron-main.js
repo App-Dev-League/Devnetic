@@ -89,46 +89,21 @@ const createWindow = () => {
 app.whenReady().then(() => {
   createWindow()
 
+  const updateApp = require('update-electron-app')({
+    logger: require('electron-log')
+  })
+
+  updateApp({
+    repo: 'App-Dev-League/Devnetic',
+    updateInterval: '1 minute',
+    notifyUser: true
+  });
+
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
-    checkIfNeedUpdate()
   })
 })
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit()
 })
-
-async function checkIfNeedUpdate() {
-  if (isDev) return console.log("Currently in development. Not checking if there's a newer version.");
-  const server = 'https://your-deployment-url.com'
-  const url = `https://update.electronjs.org/App-Dev-League/Devnetic/win32-x64/${app.getVersion()}`
-
-  autoUpdater.setFeedURL({ url })
-  autoUpdater.checkForUpdates()
-  autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
-    const dialogOpts = {
-      type: 'info',
-      buttons: ['Restart', 'Later'],
-      title: 'Devnetic Update!',
-      message: process.platform === 'win32' ? releaseNotes : releaseName,
-      detail: 'A newer version of Devnetic has been downloaded. Simply restart Devnetic to apply the updates.'
-    }
-
-    dialog.showMessageBox(dialogOpts).then((returnValue) => {
-      if (returnValue.response === 0) autoUpdater.quitAndInstall()
-    })
-  })
-  autoUpdater.on('error', message => {
-    console.error('There was a problem updating the application')
-    console.error(message)
-    const dialogOpts = {
-      type: 'info',
-      buttons: ['Ok'],
-      title: 'Devnetic Error',
-      detail: 'We encountered an error while trying to update Devnetic! '+ message.toString()
-    }
-
-    dialog.showMessageBox(dialogOpts)
-  })
-}

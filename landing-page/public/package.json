@@ -1,14 +1,15 @@
 {
     "name": "devnetic",
     "description": "An interactive teaching app developed by App Dev League for students looking to learn about Application Development and AI in the form of multiple choice questions, an integrated code editor, project-oriented curriculum, and a gamified leveling up system.",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "scripts": {
       "build": "node build.js",
       "test": "echo \"Error: no test specified\" && exit 1",
       "dev": "electron ./electron-main.js",
       "start": "electron-forge start",
       "package": "electron-forge package",
-      "make": "electron-forge make"
+      "make": "electron-forge make",
+      "publish": "electron-forge publish"
     },
     "repository": {
       "type": "git",
@@ -22,7 +23,9 @@
     "homepage": "https://github.com/App-Dev-League/Devnetic#readme",
     "dependencies": {
       "electron-squirrel-startup": "^1.0.0",
-      "electron-is-dev": "2.0.0"
+      "electron-is-dev": "2.0.0",
+      "update-electron-app": "2.0.1",
+      "electron-log": "4.4.8"
     },
     "devDependencies": {
       "@electron-forge/cli": "^6.0.0-beta.64",
@@ -31,6 +34,7 @@
       "@electron-forge/maker-squirrel": "^6.0.0-beta.64",
       "@electron-forge/maker-wix": "^6.0.0-beta.64",
       "@electron-forge/maker-zip": "^6.0.0-beta.64",
+      "@electron-forge/publisher-github": "6.0.0-beta.64",
       "electron": "^19.0.6"
     },
     "config": {

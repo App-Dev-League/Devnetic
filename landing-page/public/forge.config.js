@@ -43,4 +43,15 @@ module.exports = {
         description: 'An interactive teaching app developed by App Dev League for students looking to learn about Application Development and AI in the form of multiple choice questions, an integrated code editor, project-oriented curriculum, and a gamified leveling up system.',
         iconUrl: 'https://devnetic.vercel.app/favicon.ico',
     },
+    publishers: [
+        {
+          name: "@electron-forge/publisher-github",
+          config: {
+            repository: {
+              owner: "App-Dev-League",
+              name: "Devnetic"
+            }
+          }
+        }
+      ],
 }
