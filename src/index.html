@@ -1912,6 +1912,9 @@
         version = await version.json();
         if (version.length === 0) return;
         version = await fetch("https://api.github.com/repos/App-Dev-League/Devnetic/releases/latest");
+        version = await version.json();
+        version = version.tag_name.slice(1);
+        console.log("Remote version is: "+version)
     }
 </script>
 <script>

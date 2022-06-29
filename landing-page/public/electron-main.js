@@ -1,8 +1,10 @@
 // main.js
 
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, autoUpdater, dialog } = require('electron')
 const path = require('path')
-if(require('electron-squirrel-startup')) return;
+const isDev = require('electron-is-dev');
+
+if (require('electron-squirrel-startup')) return;
 
 // this should be placed at top of main.js to handle setup events quickly
 if (handleSquirrelEvent()) {
@@ -23,17 +25,17 @@ function handleSquirrelEvent() {
   const updateDotExe = path.resolve(path.join(rootAtomFolder, 'Update.exe'));
   const exeName = path.basename(process.execPath);
 
-  const spawn = function(command, args) {
+  const spawn = function (command, args) {
     let spawnedProcess, error;
 
     try {
-      spawnedProcess = ChildProcess.spawn(command, args, {detached: true});
-    } catch (error) {}
+      spawnedProcess = ChildProcess.spawn(command, args, { detached: true });
+    } catch (error) { }
 
     return spawnedProcess;
   };
 
-  const spawnUpdate = function(args) {
+  const spawnUpdate = function (args) {
     return spawn(updateDotExe, args);
   };
 
@@ -89,9 +91,44 @@ app.whenReady().then(() => {
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
+    checkIfNeedUpdate()
   })
 })
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit()
 })
+
+async function checkIfNeedUpdate() {
+  if (isDev) return console.log("Currently in development. Not checking if there's a newer version.");
+  const server = 'https://your-deployment-url.com'
+  const url = `https://update.electronjs.org/App-Dev-League/Devnetic/win32-x64/${app.getVersion()}`
+
+  autoUpdater.setFeedURL({ url })
+  autoUpdater.checkForUpdates()
+  autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
+    const dialogOpts = {
+      type: 'info',
+      buttons: ['Restart', 'Later'],
+      title: 'Devnetic Update!',
+      message: process.platform === 'win32' ? releaseNotes : releaseName,
+      detail: 'A newer version of Devnetic has been downloaded. Simply restart Devnetic to apply the updates.'
+    }
+
+    dialog.showMessageBox(dialogOpts).then((returnValue) => {
+      if (returnValue.response === 0) autoUpdater.quitAndInstall()
+    })
+  })
+  autoUpdater.on('error', message => {
+    console.error('There was a problem updating the application')
+    console.error(message)
+    const dialogOpts = {
+      type: 'info',
+      buttons: ['Ok'],
+      title: 'Devnetic Error',
+      detail: 'We encountered an error while trying to update Devnetic! '+ message.toString()
+    }
+
+    dialog.showMessageBox(dialogOpts)
+  })
+}
