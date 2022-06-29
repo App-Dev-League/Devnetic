@@ -1,11 +1,14 @@
 {
   "name": "devnetic",
-  "description": "## Notes  - In the JSON file, for \"text\" elements, DO use the coloring syntax, ex. [[gray]]<!DOCTYPE>[[/]]  - In the JSON file, for \"code\" elements, do NOT use the coloring syntax. Just put the code you want to show up, and it'll automatically highlight it",
+  "description": "An interactive teaching app developed by App Dev League for students looking to learn about Application Development and AI in the form of multiple choice questions, an integrated code editor, project-oriented curriculum, and a gamified leveling up system.",
   "version": "1.0.0",
   "scripts": {
     "build": "node build.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "electron ./electron-main.js"
+    "dev": "electron ./electron-main.js",
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
   "repository": {
     "type": "git",
@@ -19,12 +22,24 @@
   "homepage": "https://github.com/App-Dev-League/Devnetic#readme",
   "dependencies": {
     "dictionary-en": "3.2.0",
+    "electron-squirrel-startup": "^1.0.0",
     "html-minifier": "^4.0.0",
     "jsonminify": "^0.4.2",
     "nspell": "2.1.5",
     "uglify-js": "^3.15.5"
   },
   "devDependencies": {
-    "electron": "^19.0.6"
-  }
+    "@electron-forge/cli": "^6.0.0-beta.64",
+    "@electron-forge/maker-deb": "^6.0.0-beta.64",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.64",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.64",
+    "@electron-forge/maker-wix": "^6.0.0-beta.64",
+    "@electron-forge/maker-zip": "^6.0.0-beta.64",
+    "electron": "^19.0.6",
+    "exe-icon-extractor": "^1.0.8"
+  },
+  "config": {
+    "forge": "./forge.config.js"
+  },
+  "main": "electron-main.js"
 }

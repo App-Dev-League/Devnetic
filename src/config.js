@@ -441,10 +441,14 @@
 
 	tApp.start().then(() => {
 		if (window.environment !== "development") {
-			checkIfNewerVersion();
-			tApp.install().then(() => {
-				tApp.update();
-			});
+			if (window.isElectron) {
+				checkIfNewerElectronVersion();
+			} else {
+				checkIfNewerVersion();
+				tApp.install().then(() => {
+					tApp.update();
+				});
+			}
 		}
 	});
 })();

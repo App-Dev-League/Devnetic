@@ -6,6 +6,7 @@
 
 <head>
     <script>
+        window.isElectron = /electron/i.test(navigator.userAgent)
         if (window.location.pathname === "/app" || window.location.pathname === "/app/") window.location.redirect("/app/index.html")
     </script>
     <script src="./assets/libraries/jquery.min.js"></script>
@@ -1843,6 +1844,7 @@
         let currentVersion = Number(localStorage.getItem("version") || "0")
         localStorage.setItem("version", currentVersion)
         if (version > currentVersion) {
+            if (window.isElectron) return;
             console.log("There is a newer version of Devnetic available! Starting background update...");
             await new Promise((resolve, reject) => setTimeout(resolve, 500));
             var modal = codeEditorHelper.showAlertModal("There is a newer version of Devnetic available! Starting background update...", [], null, 60)
@@ -1903,6 +1905,13 @@
                 reject(err)
             })
         })
+    }
+
+    async function checkIfNewerElectronVersion() {
+        let version = await fetch("https://api.github.com/repos/App-Dev-League/Devnetic/releases");
+        version = await version.json();
+        if (version.length === 0) return;
+        version = await fetch("https://api.github.com/repos/App-Dev-League/Devnetic/releases/latest");
     }
 </script>
 <script>
