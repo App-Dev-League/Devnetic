@@ -4,7 +4,7 @@ const path = require("path");
 module.exports = {
     packagerConfig: {
         dir: "./app",
-        icon: "./images/icon.ico"
+        icon: "./images/icon"
     },
     makers: [
         {
