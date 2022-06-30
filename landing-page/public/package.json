@@ -1,7 +1,8 @@
 {
-    "name": "devnetic",
+    "name": "Devnetic",
     "description": "An interactive teaching app developed by App Dev League for students looking to learn about Application Development and AI in the form of multiple choice questions, an integrated code editor, project-oriented curriculum, and a gamified leveling up system.",
     "version": "1.0.1",
+    "productName ": "Devnetic",
     "scripts": {
       "build": "node build.js",
       "test": "echo \"Error: no test specified\" && exit 1",
