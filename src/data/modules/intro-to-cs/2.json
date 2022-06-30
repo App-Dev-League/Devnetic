@@ -1,0 +1,202 @@
+{
+    "type": "lesson",
+    "pages": [
+        {
+            "type": "information",
+            "title": "The Purpose of OOP",
+            "elements": [
+                {
+                    "type": "split-content",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "➔ Clean code\n[[ ]][[ ]]◆ Encapsulation / Abstraction\n[[ ]][[ ]]◆ Inheritance\n[[ ]][[ ]]◆ Polymorphism\n"
+                        },
+                        {
+                            "type": "image",
+                            "src": "./data/modules/intro-to-cs-assets/img2/0-0.png",
+                            "background-color": "rgba(255,255,255,0.05)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "information",
+            "title": "Classes - Basics of a class",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "➔ Contain variables and methods\n➔ Methods can only be used by the class\n➔ Can be subclasses of other classes\n➔ Making your own custom object\n"
+                }
+            ]
+        },
+        {
+            "type": "information",
+            "title": "Classes - Objects",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "➔ Objects have methods/variables that can be used\n➔ A class could be food and an object could be cake\n[[ ]][[ ]]◆ Cake could have variables such as taste, time to make and so on\n[[ ]][[ ]]◆ Each object can have their specific variables, which vary between each instance of the object, but their can also be variables that are the same for all instances\n➔ Using objects, we can use the methods we have in a class\n[[ ]][[ ]]◆ These methods can use values specific to each instance of an object\n"
+                }
+            ]
+        },
+        {
+            "type": "information",
+            "title": "Classes - __init__",
+            "elements": [
+                {
+                    "type": "split-content",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "➔ Used for [[b]]ini[[/]]tializing the variables in a class\n[[ ]][[ ]]◆ Remember the two underscores on each side\n➔ Constructs an object (hence this method is called a constructor)\n➔ Note the self in the function\n"
+                        },
+                        {
+                            "type": "code",
+                            "lang": "python",
+                            "content": "class MyClass:\n  x = 1\n  def __init__(self, inputX):\n    self.x = inputX"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "information",
+            "title": "Classes - Methods",
+            "elements": [
+                {
+                    "type": "split-content",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "➔ Class methods\n[[ ]][[ ]]◆ Methods that are associated with the specific object\n[[ ]][[ ]]◆ @classmethod not necessary, assumed by default\n"
+                        },
+                        {
+                            "type": "code",
+                            "lang": "python",
+                            "content": "@classmethod\ndef classMethod():\n  return \"This is a class method call\""
+                        }
+                    ]
+                },
+                {
+                    "type": "divider"
+                },
+                {
+                    "type": "divider"
+                },
+                {
+                    "type": "split-content",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "➔ Static methods\n[[ ]][[ ]]◆ Methods that are associated with the whole class\n[[ ]][[ ]]◆ @staticmethod necessary\n[[ ]][[ ]]◆ Do not have to create an object\n"
+                        },
+                        {
+                            "type": "code",
+                            "lang": "python",
+                            "content": "@staticmethod\ndef staticMethod():\n  return \"This is a class method call\""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "information",
+            "title": "Classes - Creation of a class",
+            "elements": [
+                {
+                    "type": "split-content",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "➔ Use the [[`]]class[[/]] keyword along with the name of the class as the class header\n➔ To create class variables, assign a value to [[`]]classVariableName[[/]] after class header\n➔ To create instance variables, assign a value to [[`]]self.instanceVariableName[[/]] in the init function\n➔ To create methods, use the def keyword with self as a parameter\n"
+                        },
+                        {
+                            "type": "code",
+                            "lang": "python",
+                            "content": "class ClassName:\n  k = 3\n  def __init__(self, a, b):\n    self.i = a\n    self.j = b\n\n  def getI(self):\n    return self.i\n  def getJ(self):\n    return self.j\n\nx = ClassName(1, 2)\nprint(x.getI())\nprint(x.getJ())\nprint(ClassName.k)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "information",
+            "title": "Classes - Encapsulation/Abstraction",
+            "elements": [
+                {
+                    "type": "split-content",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "➔ Encapsulation: classes have methods that only they can use\n[[ ]][[ ]]◆ Programmers usually want to access variables from inside the class\n[[ ]][[ ]]◆ Single underscore: can’t access variable from outside class (private)\n[[ ]][[ ]]◆ Double underscore: access allowed, but with a longer name\n➔ Abstraction: only allow access to “essential” components\n[[ ]][[ ]]◆ Import specific parts of a class to use\n"
+                        },
+                        {
+                            "type": "image",
+                            "src": "./data/modules/intro-to-cs-assets/img2/1-0.png"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "information",
+            "title": "Classes - Inheritance",
+            "elements": [
+                {
+                    "type": "split-content",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "➔ Characteristics of certain classes can be inherited by their children (called subclasses)\n➔ Subclass: class derived from another class\n[[ ]][[ ]]◆ Has [[b]]mostly[[/]] same functions and variables\n[[ ]][[ ]]◆ Useful for repurposing code\n"
+                        },
+                        {
+                            "type": "image",
+                            "src": "./data/modules/intro-to-cs-assets/img2/2-0.png"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "information",
+            "title": "Classes - Polymorphism",
+            "elements": [
+                {
+                    "type": "split-content",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "➔ Slightly differentiation between subclasses of the same superclass\n➔ Useful in conjunction with a broad superclass that encompasses some sort of variety\n"
+                        },
+                        {
+                            "type": "image",
+                            "src": "./data/modules/intro-to-cs-assets/img2/3-0.png"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "information",
+            "title": "Objects vs Classes",
+            "elements": [
+                {
+                    "type": "split-content",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "➔ Objects are instances of classes\n[[ ]][[ ]]◆ Using Vehicles as an analogy, classes could be the considered the general type of automobile while the object is its final form\n[[ ]][[ ]]◆ Ex. Class for Cars and objects for Ford and Toyota\n"
+                        },
+                        {
+                            "type": "image",
+                            "src": "./data/modules/intro-to-cs-assets/img2/4-0.png",
+                            "background-color": "white"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

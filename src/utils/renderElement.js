@@ -30,6 +30,19 @@ module.exports = function renderElement(element) {
         }).join("")}
         </div>
         `
+    } else if (element.type == "vertical-content") {
+        return `
+        <div class="info-vertical-content">
+            ${element.elements.map(element => {
+            element.width = "100%" || element.width;
+            return `
+                    <div class="info-vertical-content-element">
+                        ${renderElement(element)}
+                    </div>
+                `
+        }).join("")}
+        </div>
+        `
     } else {
         return `<pre class="info-text">${codeTemplateToCode(element.content || "")}</pre>`;
     }
