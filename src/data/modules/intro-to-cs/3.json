@@ -1,0 +1,143 @@
+{
+    "type": "lesson",
+    "pages": [
+        {
+            "type": "information",
+            "title": "Lists",
+            "elements": [
+                {
+                    "type": "split-content",
+                    "elements": [
+                        {
+                            "type": "vertical-content",
+                            "elements": [
+                                {
+                                    "type": "text",
+                                    "content": "➔ Ordered, mutable container of objects\n[[ ]][[ ]]◆ Mutable: able to be changed\n➔ Elements placed in [[`]][]; list()[[/]]→ turns everything to a list\n➔ Accessing/modifying = 0-based indexing (1st element = [[`]][0][[/]] 2nd element = [[`]][1][[/]],last element = [[`]][-1][[/]], 2nd last element = [[`]][-2][[/]])\n➔ Sublist = [[`]][start:stop:step][[/]]\n➔ [[`]]len(l)[[/]] = number of elements in the list\n"
+                                },
+                                {
+                                    "type": "divider"
+                                },
+                                {
+                                    "type": "text",
+                                    "content": "➔ [[`]]del l[:2][[/]] = deleting first two elements of l\n➔ [[`]]l.remove(x)[[/]] = removing first occurrence of x in l\n➔ [[`]]l.pop(i)[[/]] = removing element at i\n[[ ]][[ ]]◆ If no index is provided, removes last element in l\n[[ ]][[ ]]◆ [[`]]l.insert(i, x)[[/]] = inserting x at i in l\n[[ ]][[ ]]◆ [[`]]l.append(x)[[/]] = adding x at the back of l\n➔ Keyword [[`]]x in l[[/]] = returns true if x is an element of l\n"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "code",
+                            "content": "l = [0, 1, 2, 3, 4, 5, 6] # Initializing a list\nl = list('ABCDE') # ['A', 'B', 'C', 'D', 'E]\n\nprint(l[-3]) # 'C'\nl = [::-1] # ['E', 'D', 'C', 'B', 'A']\nl[0] = 'A' # ['A', 'D', 'C', 'B', 'A']\nprint(len(l)) # 5\n\nif 'C' in l: # 'C' is in l --> returns True\n  del l[1] # ['A', 'C', 'B', 'A']; removes reference to 'D' from l\nl.remove('A') # ['C', 'B', 'A']; removes first occurrence of 'A'\nl.pop() # ['C', 'B']\nl.pop(1) # ['C']\n\nl.insert(0, 'B') # ['B', 'C']\nl.append('D') # ['B', 'C', 'D']",
+                            "lang": "python",
+                            "name": "List_examples.py"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "information",
+            "title": "Sets",
+            "elements": [
+                {
+                    "type": "split-content",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "➔ An unordered, immutable, unindexed collection of objects\n➔ Elements placed in [[`]]{}; set()[[/]] → turns anything into a set\n➔ Automatically removes duplicates\n➔ Accessing = for each loop\n➔ [[`]]s.add(x)[[/]] = append x to the back of s\n➔ [[`]]s.update(l)[[/]] = join a collection to s\n➔ [[`]]s.discard(x)[[/]] = delete x from s\n➔ [[`]]s.issubset(s1)[[/]] = returns true if s’s elements are all in s1\n"
+                        },
+                        {
+                            "type": "code",
+                            "lang": "python",
+                            "name": "sets_example.py",
+                            "content": "s = {'A', 'B', 'B', 'C', 'A'}\nprint(s) # {'A', 'B', 'C'} (unordered)\n\n# accessing\nfor x in s:\n  print(x)\n\ns.add('D') # {'A', 'B', 'C', 'D'} (unordered)\nl = [1, 2, 3, 2, 2]\ns.update(l)\nprint(s) # {'A', 'B', 'C', 'D', 1, 2, 3} (unordered)\n\ns.discard(1)\ns.discard(2)\ns.discard(3)\nprint(s) # {'A', 'B', 'C', 'D'} (unordered)\n\nsl = s.copy() # sl is a copy of s\nsl.add(1)\nprint(s.issubset(s1)) # True"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "information",
+            "title": "Tuples",
+            "elements": [
+                {
+                    "type": "split-content",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "➔ An ordered, immutable collection of objects\n[[ ]][[ ]]◆ Cannot add or remove objects from tuples\n➔ Elements placed in (); [[`]]tuple()[[/]] → turns everything into a tuple\n➔ Accessing = 0-based indexing (exactly like lists)\n➔ Modifying = Convert tuples into lists; modify list → back to tuple\n➔ Unpacking → turning elements in t to variables e.g. [[`]](a,b,c) = ('A','B','C')[[/]]\n[[ ]][[ ]]◆ W/ asterisk: [[`]](a, *b, c) = ('A', 'B', 'B', 'B', 'C')[[/]]\n[[ ]][[ ]]◆ b now references the list of [[`]]['B', 'B', 'B'][[/]]\n"
+                        },
+                        {
+                            "type": "code",
+                            "lang": "python",
+                            "name": "tuple_example.py",
+                            "content": "t = ('A', 'B', 'B', 'B', 'C', 'D')\n\nfor i in range(len(t)):\n  print(t[0])\n  # A\n  # B\n  # B\n  # B\n  # C\n\nl = list(t) # ['A', 'B', 'B', 'B', 'C', 'D']\nl.pop() # ['A', 'B', 'B', 'B', 'C']\nt = tuple(l) # ('A', 'B', 'B', 'B', 'C')\n\n(a, *b, c) = t\nprint(a) # 'A'\nprint(b) # ['B', 'B', 'B']\nprint(c) # 'C'"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "information",
+            "title": "Dictionaries",
+            "elements": [
+                {
+                    "type": "split-content",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "➔ Ordered, mutable collections of objects\n[[ ]][[ ]]◆ Automatically removes duplicate keys (replacing previous value w/ new value of the duplicate) \n➔ Elements placed in [[`]]{key: value, key1: value1}[[/]]\n➔ Accessing/modifying = [[`]]d.get(key); d[key][[/]]\n➔ [[`]]d.keys(), d.values(), d.items()[[/]]\n[[ ]][[ ]]◆ Returns list of keys, values + tuples of key-value pairs\n➔ Adding: [[`]]d.update({key: value})[[/]] or [[`]]d[key] = value[[/]]\n➔ Removal: [[`]]d.pop(key)[[/]]\n"
+                        },
+                        {
+                            "type": "code",
+                            "lang": "python",
+                            "name": "dictionary_example.py",
+                            "content": "d = {\"name\": \"John\",\n  \"age\": 17,\n  \"state\": \"CA\",\n  \"color\": \"blue\"\n}\n\nd.update({\"age\": 18}) # changed age to 18\nd.update({\"grade\": 0.97}) # added grade to d\nprint(d.get(\"name\")) # \"John\"\n\nd.pop(\"color\") # removed color from d\n\nprint(d.keys()) # [\"name\", \"age\", \"state\", \"grade\"]\nprint(d.values()) # [\"John\", 18, \"CA\", 0.97]\nprint(d.items()) # [('name', 'John'), ('age', 18), ('state', 'CA'), ('grade', 0.97)]"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "information",
+            "title": "Searching Algorithms - Linear Search",
+            "elements": [
+                {
+                    "type": "split-content",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "➔ Start from one end all the way to the other end to find a target\n➔ Extremely intuitive\n➔ O(n)\n"
+                        },
+                        {
+                            "type": "code",
+                            "lang": "python",
+                            "name": "linear_search.py",
+                            "content": "l = [1, 2, 3, 4, 5, 6]\nfound = False\nfor i in range(len(l)):\n  if (l[i] === 3):\n    print(i)\n    found = True\n    break\nif (!found):\n  print(-1)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "information",
+            "title": "Dynamic Programming (Recursion)",
+            "elements": [
+                {
+                    "type": "split-content",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "➔ Divide a problem into smaller subproblems that eventually overlap in the approach to solve\n➔ Get the results of the smaller subproblems to solve the entire problem\n"
+                        },
+                        {
+                            "type": "code",
+                            "lang": "python",
+                            "name": "fibonacci.py",
+                            "content": "# fibonacci sequence\n# @precondition n is zero or a positive integer\ndef fib(n):\n  if n <= 1:\n    return n\n  return fib(n-1) + fib(n-2) # breaking into finding sum of previous two values of the sequence"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
