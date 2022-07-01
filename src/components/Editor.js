@@ -554,21 +554,26 @@ async def input(text):
 async def ${main}():
 `
 							const indentRegex = false ? /^/gm : /^(?!\s*$)/gm;
-							let postScript = codeEditorHelper.getValue().replace(indentRegex, '    ').replace(/time\.sleep(?=(?:(?:[^"]*"){2})*[^"]*$)/g, "await aio.sleep").replace(/input(?=(?:(?:[^"]*"){2})*[^"]*$)/g, "await input")
-							postScript = postScript.replace(/    def/g, "    async def")
-							postScript = postScript.replace(/....[a-zA-Z]+\([^\)]*\)(\.[^\)]*\))?/g, function (matched) {
-								if (matched.startsWith("def ")) return matched
+							let postScript = codeEditorHelper.getValue()
+							postScript = postScript.replace(indentRegex, '    ')
+							if (postScript.includes(`time.sleep`) || postScript.includes(`input(`)) {
+								postScript = postScript.replace(/time\.sleep(?=(?:(?:[^"]*"){2})*[^"]*$)/g, "await aio.sleep").replace(/input(?=(?:(?:[^"]*"){2})*[^"]*$)/g, "await input")
+								postScript = postScript.replace(/    def/g, "    async def")
+								postScript = postScript.replace(/....[a-zA-Z]+\([^\)]*\)(\.[^\)]*\))?/g, function (matched) {
+									if (matched.startsWith("def ")) return matched
 
-								let builtins = ["abs(", "aiter(", "all(", "any(", "anext(", "ascii(", "bin(", "bool(", "breakpoint(", "bytearray(", "bytes(", "callable(", "chr(", "classmethod(", "compile(", "complex(", "delattr(", "dict(", "dir(", "divmod(", "enumerate(", "eval(", "exec(", "filter(", "float(", "format(", "frozenset(", "getattr(", "globals(", "hasattr(", "hash(", "help(", "hex(", "id(", "input(", "int(", "isinstance(", "issubclass(", "iter(", "len(", "list(", "locals(", "map(", "max(", "memoryview(", "min(", "next(", "object(", "oct(", "open(", "ord(", "pow(", "print(", "property(", "range(", "repr(", "reversed(", "round(", "set(", "setattr(", "slice(", "sorted(", "staticmethod(", "str(", "sum(", "super(", "tuple(", "type(", "vars("]
+									let builtins = ["abs(", "aiter(", "all(", "any(", "anext(", "ascii(", "bin(", "bool(", "breakpoint(", "bytearray(", "bytes(", "callable(", "chr(", "classmethod(", "compile(", "complex(", "delattr(", "dict(", "dir(", "divmod(", "enumerate(", "eval(", "exec(", "filter(", "float(", "format(", "frozenset(", "getattr(", "globals(", "hasattr(", "hash(", "help(", "hex(", "id(", "input(", "int(", "isinstance(", "issubclass(", "iter(", "len(", "list(", "locals(", "map(", "max(", "memoryview(", "min(", "next(", "object(", "oct(", "open(", "ord(", "pow(", "print(", "property(", "range(", "repr(", "reversed(", "round(", "set(", "setattr(", "slice(", "sorted(", "staticmethod(", "str(", "sum(", "super(", "tuple(", "type(", "vars("]
 
-								for (let i in builtins) {
-									if (matched.slice(4).startsWith(builtins[i])) return matched
-								}
+									for (let i in builtins) {
+										if (matched.slice(4).startsWith(builtins[i])) return matched
+									}
 
-								if (matched.slice(3).startsWith(".")) return matched
-								if (matched.startsWith("ait ")) return matched
-								return matched.substring(0, 4) + "await aio.run(" + matched.slice(4) + ")"
-							})
+									if (matched.slice(3).startsWith(".")) return matched
+									if (matched.startsWith("ait ")) return matched
+									return matched.substring(0, 4) + "await aio.run(" + matched.slice(4) + ")"
+								})
+							}
+
 							let pps = `
 try:
 	aio.run(${main}())
@@ -588,6 +593,7 @@ except Exception:
 							try {
 								window.URL = window.URL || window.webkitURL;
 								let code = preScript + "\n" + postScript + "\n" + pps
+								console.log(code)
 								if (document.getElementById("python-execution-thread")) {
 									let elem = document.getElementById("python-execution-thread")
 									elem.parentElement.removeChild(elem)
