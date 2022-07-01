@@ -7,15 +7,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "➔ One of the most popular programming languages"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Intuitive and readable with simple to traverse code"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Ton of libraries for performing statistical analysis, machine learning, and more"
+                    "content": "➔ One of the most popular programming languages\n➔ Intuitive and readable with simple to traverse code\n➔ Ton of libraries for performing statistical analysis, machine learning, and more"
                 },
                 {
                     "type": "code",
@@ -40,23 +32,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "➔ We will run our python code in the Devnetic IDE"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ To get started, navigate [[link=#/my-projects]]here[[/link]] and click the 'plus' icon"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ You can also choose to use [[link=https://replit.com]]Repl.it[[/link]] to run your code too!"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Repl.it is an online IDE (Integrated Development Environment), which means we can edit our code, as well as run it in the same place"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Follow this [[link=https://docs.google.com/document/d/1-03BHDJsjcR7rTcVrzvgkynDeObkORQ5k1bdO63Xo6U/edit?usp=sharing]]document[[/link]] to get started with Repl"
+                    "content": "➔ We will run our python code in the Devnetic IDE\n➔ To get started, navigate [[link=#/my-projects]]here[[/link]] and click the 'plus' icon\n➔ You can also choose to use [[link=https://replit.com]]Repl.it[[/link]] to run your code too!\n➔ Repl.it is an online IDE (Integrated Development Environment), which means we can edit our code, as well as run it in the same place\n➔ Follow this [[link=https://docs.google.com/document/d/1-03BHDJsjcR7rTcVrzvgkynDeObkORQ5k1bdO63Xo6U/edit?usp=sharing]]document[[/link]] to get started with Repl"
                 }
             ]
         },
@@ -66,27 +42,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "➔ “#” character to write comments"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ Good for complex code"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ ‘’’ for multi-line comments‘’’"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ print() to print something to the console"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ The console is where the program is ran"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ Output will be produced there"
+                    "content": "➔ “#” character to write comments\n[[ ]][[ ]]◆ Good for complex code\n➔ ‘’’ for multi-line comments‘’’\n➔ print() to print something to the console\n➔ The console is where the program is ran\n[[ ]][[ ]]◆ Output will be produced there"
                 },
                 {
                     "type": "code",
@@ -100,19 +56,11 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "➔ To run your code, click the green run button at the top"
-                },
-                {
-                    "type": "text",
-                    "content": "You may need to navigate to the plugins panel and install Brython"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ This will produce the output of the code to the console, on the right"
+                    "content": "➔ To run your code, click the green run button at the top\nYou may need to navigate to the plugins panel and install Brython\n➔ This will produce the output of the code to the console, on the right"
                 },
                 {
                     "type": "image",
-                    "src": "/data/modules/intro-to-cs-assets/img0/0-0.png"
+                    "src": "./data/modules/intro-to-cs-assets/img0/0-0.png"
                 }
             ]
         },
@@ -122,27 +70,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "➔ Assign variables using variable_name = value"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ “=” character assigns the value to a variable, does not mean equals"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Variables store a value of any type"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Python assigns types automatically, the main object types (next slide)"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Check the type of any variable using the type() function"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Check if a type matches a variable using isinstance()"
+                    "content": "➔ Assign variables using variable_name = value\n➔ “=” character assigns the value to a variable, does not mean equals\n➔ Variables store a value of any type\n➔ Python assigns types automatically, the main object types (next slide)\n➔ Check the type of any variable using the type() function\n➔ Check if a type matches a variable using isinstance()"
                 },
                 {
                     "type": "code",
@@ -156,31 +84,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "➔ Numbers - two types of numbers, int and float"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Int can hold integer numbers, and float holds decimals"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Python will automatically distinguish the two and assign them based on your number"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Booleans - Holds a value of true or false"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Strings - Sequence of characters"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Lists - Holds multiple values in the same variable, can be of different types"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ Ex. a list can contain numbers, and strings"
+                    "content": "➔ Numbers - two types of numbers, int and float\n➔ Int can hold integer numbers, and float holds decimals\n➔ Python will automatically distinguish the two and assign them based on your number\n➔ Booleans - Holds a value of true or false\n➔ Strings - Sequence of characters\n➔ Lists - Holds multiple values in the same variable, can be of different types\n[[ ]][[ ]]◆ Ex. a list can contain numbers, and strings"
                 },
                 {
                     "type": "code",
@@ -194,27 +98,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "➔ You can cast different variable types to another"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Ex. making a string into an int or vice versa"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ Only certain things in each data type can be casted"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]][[ ]][[ ]]● Ex: string numbers can only be casted to ints, single letters/number strings can be converted to chars, only ints can be converted to chars, etc"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Each data type has a specific data type that does the casting"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ Use ascii table to see what chars cast to: [[link=https://www.ascii-code.com]]ascii[[/link]] "
+                    "content": "➔ You can cast different variable types to another\n➔ Ex. making a string into an int or vice versa\n[[ ]][[ ]]◆ Only certain things in each data type can be casted\n[[ ]][[ ]][[ ]][[ ]]● Ex: string numbers can only be casted to ints, single letters/number strings can be converted to chars, only ints can be converted to chars, etc\n➔ Each data type has a specific data type that does the casting\n[[ ]][[ ]]◆ Use ascii table to see what chars cast to: [[link=https://www.ascii-code.com]]ascii[[/link]] "
                 },
                 {
                     "type": "code",
@@ -228,35 +112,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "➔ [[`]]x + y[[/]]: The sum of two numbers"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ [[`]]x - y[[/]]: The difference of two numbers"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ [[`]]x * y[[/]]: The product of two numbers"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ [[`]]x / y[[/]]: The quotient of two numbers"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ [[`]]x // y[[/]]: The quotient of two numbers rounded down to an integer"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ [[`]]x % y[[/]]: “modulo”, The remainder when x is divided by y"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ [[`]]x ** y[[/]]: x raised to the y power"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ [[`]]abs(x)[[/]]: The absolute value of a number"
+                    "content": "➔ [[`]]x + y[[/]]: The sum of two numbers\n➔ [[`]]x - y[[/]]: The difference of two numbers\n➔ [[`]]x * y[[/]]: The product of two numbers\n➔ [[`]]x / y[[/]]: The quotient of two numbers\n➔ [[`]]x // y[[/]]: The quotient of two numbers rounded down to an integer\n➔ [[`]]x % y[[/]]: “modulo”, The remainder when x is divided by y\n➔ [[`]]x ** y[[/]]: x raised to the y power\n➔ [[`]]abs(x)[[/]]: The absolute value of a number"
                 },
                 {
                     "type": "code",
@@ -271,15 +127,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "➔ Order of operations is mostly same as math"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Parenthesis, Exponents, Multiplication, Division, Addition, Subtraction, Assignment Operator “=”"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ “=” will be used last, so the entire expression happens, then number is assigned to variable"
+                    "content": "➔ Order of operations is mostly same as math\n➔ Parenthesis, Exponents, Multiplication, Division, Addition, Subtraction, Assignment Operator “=”\n➔ “=” will be used last, so the entire expression happens, then number is assigned to variable"
                 }
             ]
         },
@@ -289,27 +137,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "➔ [[`]]x == y[[/]]: Returns true if x is equivalent to y"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ [[`]]x != y[[/]]: Returns true if x is not equivalent to y "
-                },
-                {
-                    "type": "text",
-                    "content": "➔ [[`]]x > y[[/]] and [[`]]x >= y[[/]]: Returns true if x is more than and more than or equal to y, respectively"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ [[`]]x < y[[/]] and [[`]]x <= y[[/]]: Returns true if x is less than and less than or equal to y, respectively"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ [[`]]or[[/]]: returns true if either statement to its left and right is true"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ [[`]]and[[/]]: Returns true if both statements to its left and right are true"
+                    "content": "➔ [[`]]x == y[[/]]: Returns true if x is equivalent to y\n➔ [[`]]x != y[[/]]: Returns true if x is not equivalent to y \n➔ [[`]]x > y[[/]] and [[`]]x >= y[[/]]: Returns true if x is more than and more than or equal to y, respectively\n➔ [[`]]x < y[[/]] and [[`]]x <= y[[/]]: Returns true if x is less than and less than or equal to y, respectively\n➔ [[`]]or[[/]]: returns true if either statement to its left and right is true\n➔ [[`]]and[[/]]: Returns true if both statements to its left and right are true"
                 },
                 {
                     "type": "code",
@@ -324,27 +152,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "➔ Objects that store a finite collection of objects whose ordering matters"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Sequence indices start at [[b]]0, not 1[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ 3 main types of sequences in Python:"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ Lists: A container that holds [[b]]multiple values[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ Strings: A sequence of [[b]]characters[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ Tuples: A container that holds multiple values that [[b]]cannot be changed[[/]] after initializing"
+                    "content": "➔ Objects that store a finite collection of objects whose ordering matters\n➔ Sequence indices start at [[b]]0, not 1[[/]]\n➔ 3 main types of sequences in Python:\n[[ ]][[ ]]◆ Lists: A container that holds [[b]]multiple values[[/]]\n[[ ]][[ ]]◆ Strings: A sequence of [[b]]characters[[/]]\n[[ ]][[ ]]◆ Tuples: A container that holds multiple values that [[b]]cannot be changed[[/]] after initializing"
                 },
                 {
                     "type": "code",
@@ -359,39 +167,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "➔ Python has many built-in functions for working with sequences"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ Check if an object is contained within a sequence: [[`]]obj in seq[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ To get list element at index: [[`]]seq[x][[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ To get length of list: [[`]]len(seq)[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ Concatenating sequences: [[`]]seq1 + seq2[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ Repeated concatenation of a sequence: [[`]]n*seq1 or seq1*n[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ Asking for the number of members in a sequence: [[`]]len(seq)[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ Getting the index of the first occurrence of x in a sequence: [[`]]seq.index(x)[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ Counting the number of occurrences of x in a sequence: [[`]]seq.count(x)[[/]]"
+                    "content": "➔ Python has many built-in functions for working with sequences\n[[ ]][[ ]]◆ Check if an object is contained within a sequence: [[`]]obj in seq[[/]]\n[[ ]][[ ]]◆ To get list element at index: [[`]]seq[x][[/]]\n[[ ]][[ ]]◆ To get length of list: [[`]]len(seq)[[/]]\n[[ ]][[ ]]◆ Concatenating sequences: [[`]]seq1 + seq2[[/]]\n[[ ]][[ ]]◆ Repeated concatenation of a sequence: [[`]]n*seq1 or seq1*n[[/]]\n[[ ]][[ ]]◆ Asking for the number of members in a sequence: [[`]]len(seq)[[/]]\n[[ ]][[ ]]◆ Getting the index of the first occurrence of x in a sequence: [[`]]seq.index(x)[[/]]\n[[ ]][[ ]]◆ Counting the number of occurrences of x in a sequence: [[`]]seq.count(x)[[/]]"
                 },
                 {
                     "type": "code",
@@ -406,35 +182,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "➔ Sequences can contain sequences (referred to as 2-dimensional)"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ To access an element, first access the index of the inside sequence, and then access the index of that sequence: [[`]]seq[x][y][[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ To get length of inner sequence: [[`]]len(seq[x])[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ Concatenating inner sequences: [[`]]seq[0] + seq[1][[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ Repeated concatenation of inner sequence: [[`]]n*seq[x][[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ Asking for number of members in inner sequence: [[`]]len(seq[x])[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ Getting index of the first occurrence of y in inner sequence: [[`]]seq[x].index(y)[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ Counting the number of occurrences of y in inner sequence: [[`]]seq[x].count(y)[[/]]"
+                    "content": "➔ Sequences can contain sequences (referred to as 2-dimensional)\n[[ ]][[ ]]◆ To access an element, first access the index of the inside sequence, and then access the index of that sequence: [[`]]seq[x][y][[/]]\n[[ ]][[ ]]◆ To get length of inner sequence: [[`]]len(seq[x])[[/]]\n[[ ]][[ ]]◆ Concatenating inner sequences: [[`]]seq[0] + seq[1][[/]]\n[[ ]][[ ]]◆ Repeated concatenation of inner sequence: [[`]]n*seq[x][[/]]\n[[ ]][[ ]]◆ Asking for number of members in inner sequence: [[`]]len(seq[x])[[/]]\n[[ ]][[ ]]◆ Getting index of the first occurrence of y in inner sequence: [[`]]seq[x].index(y)[[/]]\n[[ ]][[ ]]◆ Counting the number of occurrences of y in inner sequence: [[`]]seq[x].count(y)[[/]]"
                 },
                 {
                     "type": "code",
@@ -449,43 +197,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "➔ Strings are basically arrays of characters"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ This means that we can basically use sequence operators on strings"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ To get character at index: [[`]]string[x][[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ To get length of string: [[`]]len(string)[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ Check if an object is contained within a string: [[`]]obj in string[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ Concatenating strings: [[`]]string1 + string2[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ Repeated concatenation of a string: [[`]]n*string1 or string1*n[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ Asking for the number of members in a string: [[`]]len(string)[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ Getting the index of the first occurrence of x in a string: [[`]]string.index(x)[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ Counting the number of occurrences of x in a string: [[`]]string.count(x)[[/]]"
+                    "content": "➔ Strings are basically arrays of characters\n[[ ]][[ ]]◆ This means that we can basically use sequence operators on strings\n[[ ]][[ ]]◆ To get character at index: [[`]]string[x][[/]]\n[[ ]][[ ]]◆ To get length of string: [[`]]len(string)[[/]]\n[[ ]][[ ]]◆ Check if an object is contained within a string: [[`]]obj in string[[/]]\n[[ ]][[ ]]◆ Concatenating strings: [[`]]string1 + string2[[/]]\n[[ ]][[ ]]◆ Repeated concatenation of a string: [[`]]n*string1 or string1*n[[/]]\n[[ ]][[ ]]◆ Asking for the number of members in a string: [[`]]len(string)[[/]]\n[[ ]][[ ]]◆ Getting the index of the first occurrence of x in a string: [[`]]string.index(x)[[/]]\n[[ ]][[ ]]◆ Counting the number of occurrences of x in a string: [[`]]string.count(x)[[/]]"
                 },
                 {
                     "type": "code",
@@ -500,23 +212,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "➔ Get user input through command line when you run the program"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ Syntax: [[`]]input(“String that user will see when prompted to type something”)[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ You must assign the input to a variable, which you can use or edit"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ When using inputs, wrap the input command around parenthesis and specify the type, if you don’t want it to be a string"
-                },
-                {
-                    "type": "text",
-                    "content": "[[ ]][[ ]]◆ Ex. [[`]]x = int(input(“Type a number”))[[/]]"
+                    "content": "➔ Get user input through command line when you run the program\n[[ ]][[ ]]◆ Syntax: [[`]]input(“String that user will see when prompted to type something”)[[/]]\n➔ You must assign the input to a variable, which you can use or edit\n➔ When using inputs, wrap the input command around parenthesis and specify the type, if you don’t want it to be a string\n[[ ]][[ ]]◆ Ex. [[`]]x = int(input(“Type a number”))[[/]]"
                 },
                 {
                     "type": "code",

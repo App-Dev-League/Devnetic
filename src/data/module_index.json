@@ -2,7 +2,8 @@
     "actions": {
         "Webdev Lessons": "webdev",
         "Webdev Projects": "webdev-projects",
-        "AI Lessons": "ai"
+        "AI Lessons": "ai",
+        "Intro To CS": "intro-to-cs"
     },
     "webdev": {
         "totalPages": 117,
@@ -112,6 +113,27 @@
             {
                 "name": "Week 8 - Unsupervised Learning",
                 "moduleLength": 20
+            }
+        ]
+    },
+    "intro-to-cs": {
+        "totalPages": 43,
+        "module_meta_data": [
+            {
+                "name": "Why Python?",
+                "moduleLength": 15
+            },
+            {
+                "name": "Introduction",
+                "moduleLength": 12
+            },
+            {
+                "name": "The Purpose of OOP",
+                "moduleLength": 10
+            },
+            {
+                "name": "Lists",
+                "moduleLength": 6
             }
         ]
     }
