@@ -1,0 +1,92 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Circular Std,sans-serif
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+.transitioning-to-devnetic-app .open-devnetic-header-btn {
+  width: 100vw;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 50px !important;
+  border-radius: 0;
+  color: transparent;
+  cursor: default; 
+  background: var(--chakra-colors-blue-400) !important;
+}
+a {
+  cursor: default;
+}
+.transitioning-to-devnetic-app .navbar-container * {
+  color: transparent;
+}
+.open-devnetic-header-btn {
+  transition: 0.75s width cubic-bezier(0.5,-0.01, 0.98, 0.39), 0.25s height !important;
+  width: 100px;
+  height: 40px !important;
+  right: 10px;
+}
+.transitioning-to-devnetic-app .navbar-container div {
+  border-bottom: 0 !important;
+}
+.main-content {
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+.transitioning-to-devnetic-app .main-content {
+  opacity: 0 !important;
+}
+.transition-cover {
+  position: fixed;
+  left: 0;
+  top: 50px;
+  width: 100vw;
+  height: calc(100vh - 50px);
+  background-color: #111927 !important;
+  opacity: 0;  
+  transition: 1s all;
+  pointer-events: none;
+}
+.transitioning-to-devnetic-app .transition-cover {
+  opacity: 1 !important;
+  z-index: 100;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+.intro-section {
+  box-shadow: rgb(237 242 247) 50vw 0px 0px 0px, rgb(237 242 247) -50vw 0px 0px 0px;
+  background: rgb(237, 242, 247);
+  background-image: url(/images/introsectionbackground.svg);
+  width: 100vw !important;
+  left: -50%;
+  position: relative;
+  transform: translateX(50%);
+  text-align: center;
+  max-width: none !important;
+  padding-left: 0;
+  background-attachment: fixed;
+}
+.navbar-container {
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  width: 100vw;
+}
+.main-content {
+  margin-top: 60px;
+}
+.navbar-container > div {
+  background-color: rgba(255,255,255,0.8);
+}
