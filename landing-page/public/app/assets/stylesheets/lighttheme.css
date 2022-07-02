@@ -220,3 +220,6 @@ code.hljs {
 #editor-tab-context-menu span:hover *{
     color: white !important;
 }
+.rename-file-overlay-textbox {
+    color: black !important;
+}
