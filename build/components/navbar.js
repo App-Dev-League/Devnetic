@@ -84,7 +84,11 @@ export default function WithSubnavigation() {
           spacing={6}>
           <a href="/app" onClick={(e) => {
             e.preventDefault()
-            document.body.classList.add("transitioning-to-devnetic-app")
+            if (!localStorage.getItem("theme") || localStorage.getItem("theme") === "dark") document.body.classList.add("transitioning-to-devnetic-app")
+            else {
+              document.body.classList.add("transitioning-to-devnetic-app-light");
+              document.body.classList.add("transitioning-to-devnetic-app")
+            }
             setTimeout(function () {
               window.location.href = "/app/index.html"
             }, 800)

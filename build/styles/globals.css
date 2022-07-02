@@ -54,8 +54,11 @@ a {
   height: calc(100vh - 50px);
   background-color: #111927 !important;
   opacity: 0;  
-  transition: 1s all;
+  transition: 1s opacity;
   pointer-events: none;
+}
+.transitioning-to-devnetic-app-light .transition-cover {
+  background-color: white !important;
 }
 .transitioning-to-devnetic-app .transition-cover {
   opacity: 1 !important;
