@@ -12,10 +12,8 @@ Just copy everything, and it should be visible in VS CODE or you're favorite cod
 //     Allows to dynamically render content
 // `
 var text = `
-So what is CORS? Well CORS is a thing that keeps the internet safe. It blocks requests from domains that are not it’s own.
-If, for some reason, you wanted to allow requests from all domains to your server, you first need another package: “cors”, and then import it into your program. Then, app.use(cors()) 
-If you would like to allow cors for a 
-specific domain, use app.use(cors({origin: “yourdomain”}))
+Divide a problem into smaller subproblems that eventually overlap in the approach to solve
+Get the results of the smaller subproblems to solve the entire problem
 `
 
 String.prototype.replaceAll = function (find, replace) {

@@ -26,9 +26,9 @@ jobs:
     - name: Install RPM
       run: sudo apt install -y rpm
 
-    - run: npm ci --prefix ./landing-page/public
-    - run: npm run make --prefix ./landing-page/public
+    - run: npm ci --prefix ./build/public
+    - run: npm run make --prefix ./build/public
     - uses: actions/upload-artifact@v3
       with:
         name: linux-installer-deb
-        path: ./landing-page/public/out/make/
+        path: ./build/public/out/make/

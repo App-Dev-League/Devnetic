@@ -1,9 +1,10 @@
 var code = `
-<p>
-  This is a long paragraph, <br/>
-  So I am splitting it into <br/>
-  multiple lines.
-</p>
+# fibonacci sequence
+# @precondition n is zero or a positive integer
+def fib(n):
+  if n <= 1:
+    return n
+  return fib(n-1) + fib(n-2) # breaking into finding sum of previous two values of the sequence
 `
 
 if (code.startsWith("\n")) code = code.slice(1)

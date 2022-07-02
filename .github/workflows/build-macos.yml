@@ -22,9 +22,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'        
-    - run: npm ci --prefix ./landing-page/public
-    - run: npm run make --prefix ./landing-page/public
+    - run: npm ci --prefix ./build/public
+    - run: npm run make --prefix ./build/public
     - uses: actions/upload-artifact@v3
       with:
         name: macos-installer
-        path: ./landing-page/public/out/make/zip/darwin/x64/
+        path: ./build/public/out/make/zip/darwin/x64/
