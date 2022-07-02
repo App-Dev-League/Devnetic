@@ -624,31 +624,37 @@ ${code}
 								console.error = function(){
 									window.newLog(arguments)
 								}
-								brython({pythonpath: ["/assets/plugins/brython/modules/"], cache: true, debug: 1})
+								window.addEventListener("message", () => {
+									brython({pythonpath: ["/assets/plugins/brython/modules/"], cache: true, debug: 1})
+								})
 								</script>
 								`
 								document.body.appendChild(iframe)
-								iframe.contentWindow.newLog = function (log) {
-									let arrLog = []
-									for (let i in log) {
-										arrLog.push(log[i])
+								iframe.onload = function() {
+									iframe.contentWindow.newLog = function (log) {
+										let arrLog = []
+										for (let i in log) {
+											arrLog.push(log[i])
+										}
+										window.consoleLogs.push(arrLog)
+										window.document.getElementById("console-bridge").click()
+										if (window.newLogCallback) window.newLogCallback(log)
 									}
-									window.consoleLogs.push(arrLog)
-									window.document.getElementById("console-bridge").click()
-									if (window.newLogCallback) window.newLogCallback(log)
+									iframe.contentWindow.pyjsCode = code
+									iframe.contentWindow.enableInput = function () {
+										document.querySelector(".console-input").disabled = false
+										document.querySelector(".console-input").focus()
+									}
+									iframe.contentWindow.disableInput = function () {
+										document.querySelector(".console-input").disabled = true
+										document.querySelector(".console-input").value = ""
+									}
+									iframe.contentWindow.getInput = function () {
+										return document.querySelector(".console-input").value
+									}
+									iframe.contentWindow.postMessage("start")
 								}
-								iframe.contentWindow.pyjsCode = code
-								iframe.contentWindow.enableInput = function () {
-									document.querySelector(".console-input").disabled = false
-									document.querySelector(".console-input").focus()
-								}
-								iframe.contentWindow.disableInput = function () {
-									document.querySelector(".console-input").disabled = true
-									document.querySelector(".console-input").value = ""
-								}
-								iframe.contentWindow.getInput = function () {
-									return document.querySelector(".console-input").value
-								}
+
 							} catch (err) {
 								window.consoleLogs.push([err.toString(), err.stack])
 								document.getElementById("console-bridge").click()
@@ -702,36 +708,39 @@ ${code}
 							</html>
 							${extraExternalScripts}
 							<script>
-console.oldLog = console.log
-console.log = function(){
-	window.newLog(arguments)
-}
-console.error = function(){
-	window.newLog(arguments)
-}
-try{
-	${code}
-}catch(err){
-	console.error(err)
-}
+							window.addEventListener("message", (event) => {
+
+								try{
+									${code}
+								}catch(err){
+									console.error(err)
+								}
+							})
 							</script>
 							`
 							document.body.appendChild(iframe)
-							iframe.contentWindow.newLog = function (log) {
-								let arrLog = []
-								for (let i in log) {
-									arrLog.push(log[i])
+							iframe.onload = async function(){
+								iframe.contentWindow.console.log = function () {
+									var log = arguments;
+									let arrLog = []
+									for (let i in log) {
+										arrLog.push(log[i])
+									}
+									window.consoleLogs.push(arrLog)
+									window.document.getElementById("console-bridge").click()
+									if (window.newLogCallback) window.newLogCallback(log)
 								}
-								window.consoleLogs.push(arrLog)
-								window.document.getElementById("console-bridge").click()
-								if (window.newLogCallback) window.newLogCallback(log)
+								iframe.contentWindow.console.error = iframe.contentWindow.console.log
+	
+								iframe.contentWindow.onerror = function (err) {
+									err = err.toString()
+									window.consoleLogs.push([err])
+									window.document.getElementById("console-bridge").click()
+									return false;
+								}
+								iframe.contentWindow.postMessage("start")
 							}
-							iframe.contentWindow.onerror = function (err) {
-								err = err.toString()
-								window.consoleLogs.push([err])
-								window.document.getElementById("console-bridge").click()
-								return false;
-							}
+
 						} else if (fileType === "jsx") {
 							jsxMain()
 							async function jsxMain() {
@@ -880,28 +889,33 @@ console.log = function(){
 console.error = function(){
 	window.newLog(arguments)
 }
-try{
-	${code}
-}catch(err){
-	console.error(err)
-}
+window.addEventListener("message", (event) => {
+	try{
+		${code}
+	}catch(err){
+		console.error(err)
+	}
+})
 							</script>
 							`
 							document.body.appendChild(iframe)
-							iframe.contentWindow.newLog = function (log) {
-								let arrLog = []
-								for (let i in log) {
-									arrLog.push(log[i])
+							iframe.onload = function() {
+								iframe.contentWindow.newLog = function (log) {
+									let arrLog = []
+									for (let i in log) {
+										arrLog.push(log[i])
+									}
+									window.consoleLogs.push(arrLog)
+									window.document.getElementById("console-bridge").click()
+									if (window.newLogCallback) window.newLogCallback(log)
 								}
-								window.consoleLogs.push(arrLog)
-								window.document.getElementById("console-bridge").click()
-								if (window.newLogCallback) window.newLogCallback(log)
-							}
-							iframe.contentWindow.onerror = function (err) {
-								err = err.toString()
-								window.consoleLogs.push([err])
-								window.document.getElementById("console-bridge").click()
-								return false;
+								iframe.contentWindow.onerror = function (err) {
+									err = err.toString()
+									window.consoleLogs.push([err])
+									window.document.getElementById("console-bridge").click()
+									return false;
+								}
+								iframe.contentWindow.postMessage("start")
 							}
 						} else if (fileType === "png" || fileType === "jpg" || fileType === "jpeg" || fileType === "gif") {
 							let url = document.querySelectorAll("#code-editor-component > div:nth-child(1) > div > div.tab-group .tab")[tabindex].innerText;
