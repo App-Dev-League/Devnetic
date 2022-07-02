@@ -20,8 +20,8 @@ function MyApp({ Component, pageProps }) {
     <>
       <Head>
         <title>Devnetic</title>
-        <meta name="description" content="Devnetic, created by App Dev Leage, is a computer science learning portal for all ages"></meta>
-        <meta property="og:description" content="Devnetic, created by App Dev Leage, is a computer science learning portal for all ages"></meta>
+        <meta name="description" content="Devnetic, created by App Dev League, is a computer science learning portal for all ages"></meta>
+        <meta property="og:description" content="Devnetic, created by App Dev League, is a computer science learning portal for all ages"></meta>
       </Head>
       <ChakraProvider theme={theme}>
         <Component {...pageProps} />
