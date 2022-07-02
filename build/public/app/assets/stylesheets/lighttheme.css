@@ -1,0 +1,225 @@
+:root {
+    --black: whitesmoke !important;
+    --shadow: 0 0 26px 0 #b7b7b7;
+    --shadow-active: 0 0 16px 0 #000000;
+    --gray: #ececec;
+    --darkgray: #DCDCDC;
+    --white: #2C2C2C;
+    --orange: #f39c12;
+    --orange-selected: #eeaf49;
+    --green: #2ecc71;
+    --green-selected: #4cd485;
+    --blue: #039BE5;
+    --blue-selected: #3aadfa;
+    --purple: #9b59b6;
+    --purple-selected: #ae68cc;
+}
+
+header>a.logo>img {
+    margin: 0;
+    height: 40px;
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 50%;
+    box-shadow: 0 0 26px 0 #1e5980;
+}
+
+.my-projects:hover {
+    background-color: rgb(98 98 98 / 10%);
+}
+
+header * {
+    color: #FAFAFA;
+}
+
+.editor-alert-modal {
+    background-color: var(--gray);
+    box-shadow: var(--shadow);
+}
+
+.editor-alert-modal:hover {
+    background-color: white;
+}
+
+.editor-alert-modal .codicon-notifications-clear::before {
+    color: var(--white)
+}
+
+.codicon::before {
+    color: var(--white)
+}
+
+.plugin-itm h5 {
+    color: var(--black)
+}
+
+.preview-mode-console {
+    background-color: white !important;
+}
+
+.console-wrapper *::selection {
+    background: black !important;
+    color: white !important;
+}
+
+.console-input::selection {
+    background: black !important;
+    color: white !important;
+}
+.console-input {
+    color: black !important;
+}
+.codicon-new-file::before {
+    color: black !important
+}
+.image-wrapper img {
+    box-shadow: var(--shadow) !important;
+}
+
+.snippet-code pre {
+    background-color: white !important;
+}
+
+.c-monospace {
+    background-color: var(--darkgray);
+}
+
+pre code.hljs {
+    display: block;
+    overflow-x: auto;
+    padding: 1em
+}
+
+code.hljs {
+    padding: 3px 5px
+}
+
+.hljs {
+    background: #fff;
+    color: #000 !important
+}
+
+.hljs-comment,
+.hljs-quote,
+.hljs-variable {
+    color: green !important
+}
+
+.hljs-built_in,
+.hljs-keyword,
+.hljs-name,
+.hljs-selector-tag,
+.hljs-tag {
+    color: #00f !important
+}
+
+.hljs-addition,
+.hljs-attribute,
+.hljs-literal,
+.hljs-section,
+.hljs-string,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-title,
+.hljs-type {
+    color: #a31515 !important
+}
+
+.hljs-deletion,
+.hljs-meta,
+.hljs-selector-attr,
+.hljs-selector-pseudo {
+    color: #2b91af !important
+}
+
+.hljs-doctag {
+    color: grey !important
+}
+
+.hljs-attr {
+    color: red !important
+}
+
+.hljs-bullet,
+.hljs-link,
+.hljs-symbol {
+    color: #00b0e8 !important
+}
+
+.hljs-emphasis {
+    font-style: italic !important
+}
+
+.hljs-strong {
+    font-weight: 700 !important
+}
+#menu-wrapper {
+    background-color: white !important;
+}
+.pie-chart-bg {
+    background-color: white !important;
+}
+.pie-chart-container {
+    background-color: white !important;
+}
+#menu-wrapper hr {
+    border: 1px solid var(--gray) !important;
+}
+.menu-progress-item-map-wrapper .left span:nth-child(3) {
+    color: #5c5c5c !important
+}
+.menu-progress-item-map-wrapper .left {
+    border-right: 2px solid var(--white) !important;
+}
+.menu-progress-item-map-wrapper .right div {
+    color: #5c5c5c !important
+}
+.menu-icon-completed {
+    background-color: var(--white) !important;
+    border: 3px solid var(--white) !important;
+}
+.menu-icon-not-completed {
+    background-color: white !important;
+    border: 3px solid var(--white) !important;
+}
+#module-progress-bar-wrapper:hover {
+    background-color: var(--blue) !important;
+}
+#module-progress-bar-wrapper * {
+    color: whitesmoke;
+}
+.info-button {
+    color: whitesmoke !important;
+}
+.mc-answer p{
+    color: whitesmoke !important;
+}
+.button-incorrect {
+    color: whitesmoke !important;
+}
+.button-correct {
+    color: whitesmoke !important;
+}
+.pie-wrapper .label {
+    margin: -2px;
+}
+#code-editor-run-btn {
+    color: whitesmoke !important;
+}
+.short-answer-button {
+    color: whitesmoke !important;
+}
+#editor-tab-context-menu {
+    background-color: white !important;
+    box-shadow: var(--shadow);
+}
+#editor-tab-context-menu span:hover {
+    background-color: #0060C0;
+    color: white !important;
+}
+#editor-tab-context-menu span:hover *{
+    color: white !important;
+}
+.rename-file-overlay-textbox {
+    color: black !important;
+}

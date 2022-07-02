@@ -12,11 +12,11 @@ var actions = {
     //"Intro To CS": "intro-to-cs",
 }
 
-
+const BUILD_DIR = "build";
 
 console.log("Clearing old files...");
 try {
-    fs.rmSync('./landing-page/public/app', { recursive: true });
+    fs.rmSync(`./${BUILD_DIR}/public/app`, { recursive: true });
 } catch (err) { }
 
 var fileList = []
@@ -29,7 +29,7 @@ combineSequentialTextElements();
 console.log("Updating version...")
 updateVersion();
 console.log("Building...")
-copyFolderSync("./src", "./landing-page/public/app")
+copyFolderSync("./src", `./${BUILD_DIR}/public/app`)
 console.log("Creating offline file map...");
 createOfflineFileMap();
 console.log("Cleaning up...");
@@ -68,7 +68,7 @@ function copyFolderSync(from, to) {
             }
             if ((to.includes("plugins") && element.endsWith("min.js")) || element === "VERSION" || element === ".gitkeep" || element === "CNAME") {}
             else {
-                fileList.push(path.join(to, element).replace(/\\/g, "/").replace("landing-page/public", ""))
+                fileList.push(path.join(to, element).replace(/\\/g, "/").replace(`${BUILD_DIR}/public`, ""))
             }
         } else {
             copyFolderSync(path.join(from, element), path.join(to, element));
@@ -104,13 +104,13 @@ function createPluginSizeIndex() {
     fs.writeFileSync("./src/assets/plugins/sizes.json", JSON.stringify(json, null, 4));
 }
 function cleanUp() {
-    let menu = fs.readFileSync("./landing-page/public/app/views/menu.html", "utf8");
+    let menu = fs.readFileSync(`./${BUILD_DIR}/public/app/views/menu.html`, "utf8");
     menu = menu.replace(`var actions="<%-JSON.stringify(actions)%>"`, `var actions='<%-JSON.stringify(actions)%>'`)
-    fs.writeFileSync("./landing-page/public/app/views/menu.html", menu);
+    fs.writeFileSync(`./${BUILD_DIR}/public/app/views/menu.html`, menu);
 
-    let indexHTML = fs.readFileSync("./landing-page/public/app/index.html", "utf8");
+    let indexHTML = fs.readFileSync(`./${BUILD_DIR}/public/app/index.html`, "utf8");
     indexHTML = indexHTML.replace(`window.environment="development"`, `window.environment="production"`);
-    fs.writeFileSync("./landing-page/public/app/index.html", indexHTML);
+    fs.writeFileSync(`./${BUILD_DIR}/public/app/index.html`, indexHTML);
 }
 function combineSequentialTextElements() {
     Object.entries(actions).forEach(([key, value]) => {
@@ -150,9 +150,9 @@ function updateVersion() {
     fs.writeFileSync("./src/VERSION", (version+1).toString());
 }
 function createOfflineFileMap(){
-    let configFile = fs.readFileSync("./landing-page/public/app/config.js", "utf8");
+    let configFile = fs.readFileSync(`./${BUILD_DIR}/public/app/config.js`, "utf8");
     configFile = configFile.replace(`["will_be_replaced_in_build"]`, JSON.stringify(fileList));
-    fs.writeFileSync("./landing-page/public/app/config.js", configFile);
-    fs.writeFileSync("./landing-page/public/app/UPDATE_FILE_MAP.json", JSON.stringify(fileList))
+    fs.writeFileSync(`./${BUILD_DIR}/public/app/config.js`, configFile);
+    fs.writeFileSync(`./${BUILD_DIR}/public/app/UPDATE_FILE_MAP.json`, JSON.stringify(fileList))
     fs.writeFileSync("./src/UPDATE_FILE_MAP.json", JSON.stringify(fileList))
 }

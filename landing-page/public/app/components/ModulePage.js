@@ -1,3 +1,0 @@
-class ModulePage extends tApp.Component{constructor(t,e){super(t,e)}render(t){return`<div>
-	${this.state.component}
-</div>`}setComponent(t,e){null!=this.state.component&&this.state.component.destroy(),this.state.data=e,this.setState("component",t)}async next(){var t;null!=this.state.next&&("snippet_unlock"==this.state.data.type&&null!=this.state.data.snippet&&await this.state.Database.storeSnippet(this.state.data.snippet),await this.state.Database.updateState(this.state.track,this.state.module,this.state.position),t=await this.state.Database.getScore(),document.querySelector("#score").innerHTML=`${t.points} XP, ${t.coins} Coins`,window.location.hash=this.state.next)}}module.exports=ModulePage;

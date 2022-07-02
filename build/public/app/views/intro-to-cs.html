@@ -1,0 +1,20 @@
+<div class="home-row" style="display:none">
+	<h3>Section 1</h3>
+	<a class="home-module" href="#/learn/intro-to-cs/0/">
+		<p>Week 1 - Introduction to CS and Python</p>
+	</a>
+	<a class="home-module" href="#/learn/intro-to-cs/1/">
+		<p>Week 2 - Loops/Functions/Libraries</p>
+	</a>
+</div>
+<div id="menu-container" class="codicon codicon-loading" style="position:fixed;top:60px;right:10px">
+	<% include('./views/menu.html').then(res => {document.getElementById("menu-container").classList.remove("codicon-loading"); document.getElementById("menu-container").innerHTML = res;nodeScriptReplace(document.getElementById("menu-container"))}) %>
+</div>
+<a href="#/my-projects" class="my-projects codicon codicon-folder" title="Your projects" style="position:fixed;top:60px;right:50px"></a>
+<a onclick="downloadSaveFile()" title="Download save file" class="my-projects codicon codicon-desktop-download" style="position:fixed;top:60px;right:90px"></a>
+<a onclick="loadSaveFile()" title="Load a save file" class="my-projects codicon codicon-cloud-upload" style="position:fixed;top:60px;right:130px"></a>
+
+
+
+
+<h2 style="display:block;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)">Coming soon!</h2>

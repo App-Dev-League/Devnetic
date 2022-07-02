@@ -1,1 +1,0 @@
-function compileSnippet(e,p){let i={};for(let t=0;t<e.attributes.length;t++)i[e.attributes[t].id]=p[t];return tApp.compileTemplate(e.html,{snippet:{attributes:i}})}module.exports=compileSnippet;
