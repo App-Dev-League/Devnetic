@@ -264,6 +264,7 @@ class Editor extends tApp.Component {
 										input.style.filter = "brightness(1.5)";
 										input.style.borderRadius = "10px 10px 0 0";
 										input.style.fontSize = "16px"
+										input.classList.add("rename-file-overlay-textbox")
 										document.body.appendChild(input);
 										input.select(0, input.value.lastIndexOf("."));
 										input.addEventListener("blur", function () {
