@@ -1,0 +1,48 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Build & package & create release capacitor application for Android
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-20.04
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'        
+    
+    
+    - name: Set up JDK 11
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'zulu'
+        java-version: 11
+
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v2
+
+    - run: npm ci --prefix ./build/public
+    - run: |
+        cd ./build/public
+        npx cap add android
+        npx cap sync
+    - name: Build with Gradle
+      run: |
+        cd ./build/public/android
+        ./gradlew build
+    - uses: actions/upload-artifact@v3
+      with:
+        name: android-build
+        path: ./build/public/android/app/build/outputs/apk/release
