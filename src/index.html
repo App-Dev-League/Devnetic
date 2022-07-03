@@ -21,6 +21,110 @@
     <link rel="shortcut icon" type="image/png" href="./assets/img/icon.png" />
     <link rel="apple-touch-icon" type="image/png" href="./assets/img/icon.png" />
     <style>
+        @media (max-width: 700px) {
+            .logo span {
+                display: none !important;
+            }
+
+            .username {
+                margin-left: 70px !important;
+                margin-top: 5px !important;
+                position: relative !important;
+                left: 0 !important;
+                top: 0 !important;
+                transform: none !important;
+            }
+
+            .home-module {
+                min-width: 125px;
+            }
+
+            .codeblock-wrapper {
+                width: 95vw !important;
+            }
+
+            .mc-answer-table {
+                display: block !important;
+            }
+
+            .mc-answer-container {
+                display: block !important;
+            }
+
+            .mc-answer {
+                display: block !important;
+                width: 90vw !important;
+                margin-top: 10px !important;
+                margin-bottom: 10px !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .tab-panel-hidden-mobile {
+                display: none
+            }
+            #code-editor-component .codicon-new-file {
+                right: -245px !important;
+            }
+            #code-editor-component .codicon-cloud-upload {
+                right: -265px !important;
+            }
+            .project-module-tabs {
+                height: calc(100vh - 80px) !important;
+                width: calc(100vw - 5px) !important;
+            }
+            #code-editor-component > div.project-module-tabs {
+                left: 0 !important;
+            }
+            .vertical-divider {
+                height: calc(100vh - 105px) !important;
+            }
+            .code-editor {
+                height: calc(100vh - 200px) !important;
+            }
+            #editor-mobile-switcher {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                align-content: flex-start;
+                justify-content: space-evenly;
+                align-items: center;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                height: 40px;
+                background-color: var(--darkgray);
+                width: 100vw;
+                z-index: 10;
+            }
+
+            #editor-mobile-switcher div {
+                width: 75px;
+                text-align: center;
+                font-size: 12px;
+                cursor: pointer;
+            }
+
+            #editor-mobile-switcher .codicon {
+                font-size: 16px;
+                display: block;
+            }
+            .editor-mobile-switcher-on * {
+                color: #0079f2;
+            }
+            .vertical-divider {
+                display: none !important;
+            }
+        }
+
+        @media (min-width: 1001px) {
+            #editor-mobile-switcher {
+                display: none !important;
+            }
+        }
+
         .info-text::-webkit-scrollbar {
             display: none;
         }
@@ -846,9 +950,11 @@
         .mc-codeblock.codeblock-wrapper .snippet-code pre {
             height: 100%;
         }
+
         .project-module-tabs .codeblock-wrapper {
             width: 99%;
         }
+
         .hints {
             margin-top: 20px;
             display: block;
@@ -1467,6 +1573,16 @@
         <span data-text="rename">Rename<span>F2</span></span>
         <span data-text="delete">Delete<span>ALT+DELETE</span></span>
     </div>
+    <div id="editor-mobile-switcher">
+        <div class="editor-mobile-switcher-on" onclick="mobileShow(0)">
+            <span class="codicon codicon-file-code"></span>
+            <span>Editor</span>
+        </div>
+        <div>
+            <span class="codicon codicon-tools" onclick="mobileShow(1)"></span>
+            <span>Tools</span>
+        </div>
+    </div>
     <script src="./config.js?v=3"></script>
     <input id="console-bridge" style="width: 0; height: 0;">
 </body>
@@ -1500,6 +1616,10 @@
 </style>
 <!-- Codicon font stuff -->
 <style>
+    .codicon-tools:before {
+        content: "\eb6d";
+    }
+
     .codicon-info:before {
         content: '\ea74';
         color: #3794ff;
@@ -1594,6 +1714,14 @@
         content: "\eb9c";
     }
 
+    .codicon-file-code:before {
+        content: "\eae9";
+    }
+
+    .codicon-open-preview:before {
+        content: "\eb28";
+    }
+
     @keyframes codicon-loading {
         0% {
             transform: rotate(0deg);
@@ -1607,6 +1735,24 @@
 <link rel="stylesheet" href="./assets/libraries/highlightjs/atom-one-dark.css">
 
 <script>
+    function mobileShow(index, tabindex) {
+        if (window.innerWidth > 650) return;
+        document.querySelectorAll(".project-module-tabs").forEach((element, i) => {
+            if (i === index) {
+                element.classList.remove("tab-panel-hidden-mobile")
+            } else {
+                element.classList.add("tab-panel-hidden-mobile")
+            }
+        })
+        document.querySelectorAll("#editor-mobile-switcher > div").forEach((element, i) => {
+            if (i === index) {
+                element.classList.add("editor-mobile-switcher-on")
+            } else {
+                element.classList.remove("editor-mobile-switcher-on")
+            }
+        })
+        if (tabindex) document.querySelectorAll(".project-module-tabs")[index].querySelectorAll(".tab")[tabindex].click()
+    }
     function regexIndexOf(string, regex, startpos) {
         var indexOf = string.substring(startpos || 0).search(regex);
         return (indexOf >= 0) ? (indexOf + (startpos || 0)) : indexOf;
@@ -1651,6 +1797,7 @@
     window.addEventListener('hashchange', onWindowHashChange)
 
     function onWindowHashChange() {
+        mobileShow(0)
         window.codeEditorTabIsChanging = true;
         window.consoleLogs = [];
         if (document.getElementById("preview-container")) tApp.getComponentFromDOM(document.getElementById("preview-container")).update()
@@ -1673,6 +1820,7 @@
         }
 
         if (window.location.hash.toLowerCase().includes("projects/")) {
+            document.getElementById("editor-mobile-switcher").style.display = "flex"
             // apply project UI and event listeners
             document.getElementById("back-btn").classList.add("none")
 
@@ -1697,6 +1845,7 @@
             }
         } else {
             // remove project UI and event listeners
+            document.getElementById("editor-mobile-switcher").style.display = "none"
             let logo = document.querySelector(".logo");
             logo.setAttribute("href", "#/");
             logo.onclick = function() {}
@@ -1857,11 +2006,11 @@
                 }
                 await new Promise((resolve, reject) => setTimeout(resolve, 500));
                 codeEditorHelper.showAlertModal("Successfully updated Devnetic! Reload page to see changes. ", [{
-                        text: "Reload",
-                        onclick: function() {
-                            window.location.reload()
-                        }
-                    }], "codicon-pass")
+                    text: "Reload",
+                    onclick: function() {
+                        window.location.reload()
+                    }
+                }], "codicon-pass")
             } catch (err) {
                 console.log("ERROR", err)
                 localStorage.setItem("version", currentVersion);
@@ -1888,7 +2037,7 @@
             var completed = 0;
             for (let i = 0; i < cacheFiles.length; i++) {
                 jobs.push(new Promise((res, rej) => {
-                    tApp.get(cacheFiles[i]+"?version="+Math.random()).then((r) => {
+                    tApp.get(cacheFiles[i] + "?version=" + Math.random()).then((r) => {
                         if (r.ok === false) rej()
                         completed++;
                         res()
@@ -1914,7 +2063,7 @@
         version = await fetch("https://api.github.com/repos/App-Dev-League/Devnetic/releases/latest");
         version = await version.json();
         version = version.tag_name.slice(1);
-        console.log("Remote version is: "+version)
+        console.log("Remote version is: " + version)
     }
 </script>
 <script>

@@ -207,6 +207,7 @@ class Editor extends tApp.Component {
 				window.addedEditorEventListeners = true;
 				try {
 					console.log("ADDING EVENT LISTENERS")
+					mobileShow(0)
 					document.querySelectorAll(".tab").forEach(element => {
 						if (element.innerText === "Preview") {
 							element.addEventListener("click", handleClicks)
@@ -366,6 +367,8 @@ class Editor extends tApp.Component {
 						document.getElementById("code-editor-status").innerText = "Saving...";
 						saveFile(parentThis)
 
+
+						mobileShow(1, 1)
 
 						let fileType = filenamex.split('.').pop().toLowerCase().replace(" •", "")
 						updatePreview(fileType, filenamex)

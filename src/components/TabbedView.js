@@ -35,7 +35,11 @@ class TabbedView extends tApp.Component {
 
 	render(props) {
 		var self = this;
-		return `<div class="project-module-tabs">
+		var classString = ""
+		if (this.state.classList) {
+			this.state.classList.forEach(c => classString += " " + c)
+		}
+		return `<div class="project-module-tabs ${classString}">
 			<div class="tab-group">
 				${this.state.tabs.map((tab, index) => {
 					let dataset = tab.tabDataset || {};
