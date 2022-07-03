@@ -66,10 +66,10 @@
                 display: none
             }
             #code-editor-component .codicon-new-file {
-                right: -245px !important;
+                right: 50px !important;
             }
             #code-editor-component .codicon-cloud-upload {
-                right: -265px !important;
+                right: 30px !important;
             }
             .project-module-tabs {
                 height: calc(100vh - 80px) !important;
@@ -78,11 +78,29 @@
             #code-editor-component > div.project-module-tabs {
                 left: 0 !important;
             }
+            #code-editor-component > div:nth-child(1) > div {
+                top: 0px !important;
+                left: 0px !important;
+            }
+            #code-editor-component > div:nth-child(1) {
+                position: absolute !important;
+                left: auto !important;
+                transform: none !important;
+                top: 0 !important;
+                left: 0 !important;
+            }
             .vertical-divider {
                 height: calc(100vh - 105px) !important;
             }
             .code-editor {
-                height: calc(100vh - 200px) !important;
+                height: calc(100vh - 190px) !important;
+            }
+            .selected-tab {
+                height: calc(100% - 70px) !important;
+            }
+            .tab-panel-hidden-mobile ~ .codicon {
+                opacity: 0 !important;
+                pointer-events: none !important;
             }
             #editor-mobile-switcher {
                 display: flex;
@@ -1578,8 +1596,8 @@
             <span class="codicon codicon-file-code"></span>
             <span>Editor</span>
         </div>
-        <div>
-            <span class="codicon codicon-tools" onclick="mobileShow(1)"></span>
+        <div onclick="mobileShow(1)">
+            <span class="codicon codicon-tools"></span>
             <span>Tools</span>
         </div>
     </div>
