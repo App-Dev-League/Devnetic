@@ -1197,12 +1197,14 @@ class TabbedEditor extends tApp.Component {
 
 	}
 	render() {
+		if (window.pluginList && window.pluginList.betterEditor === "loaded") var styles = ["left: calc(var(--editorLeftTabWidth) + 45vw);", "left: calc(var(--editorLeftTabWidth) + 45vw + 25px);"]
+		else var styles = ["", ""]
 		delete window.addedEditorEventListeners;
 		this.getData()
 		return `<div style="position: absolute; left: 0; width: 100%; transform: translateX(-50%);">
 		${this.state.tabbedView}
-		<span class="codicon codicon-new-file" style="position: absolute; left: calc(var(--editorLeftTabWidth) + 45vw); top: 20px; cursor: pointer; z-index: 2"></span>
-		<span class="codicon codicon-cloud-upload" style="position: absolute; left: calc(var(--editorLeftTabWidth) + 45vw + 25px); top: 20px; cursor: pointer; z-index: 2"></span>
+		<span class="codicon codicon-new-file" style="${styles[0]} position: absolute; top: 20px; cursor: pointer; z-index: 2"></span>
+		<span class="codicon codicon-cloud-upload" style="${styles[1]} position: absolute; top: 20px; cursor: pointer; z-index: 2"></span>
 		</div>`;
 	}
 }
