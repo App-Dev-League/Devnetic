@@ -1,18 +1,18 @@
 :root {
-    --black: whitesmoke !important;
-    --shadow: 0 0 26px 0 #b7b7b7;
+    --black: #FFFFFF !important;
+    --shadow: 0 0 26px 0 #ADADAD;
     --shadow-active: 0 0 16px 0 #000000;
-    --gray: #ececec;
-    --darkgray: #DCDCDC;
+    --gray: #F2F2F2;
+    --darkgray: #DBDBDB;
     --white: #2C2C2C;
-    --orange: #f39c12;
-    --orange-selected: #eeaf49;
-    --green: #2ecc71;
-    --green-selected: #4cd485;
-    --blue: #039BE5;
-    --blue-selected: #3aadfa;
-    --purple: #9b59b6;
-    --purple-selected: #ae68cc;
+    --orange: #E58648;
+    --orange-selected: #EAA170;
+    --green: #42BD7B;
+    --green-selected: #64C993;
+    --blue: #3182CE;
+    --blue-selected: #5698D7;
+    --purple: #AB2EFF;
+    --purple-selected: #BE5CFF;
 }
 
 header>a.logo>img {
