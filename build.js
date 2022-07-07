@@ -57,10 +57,15 @@ function copyFolderSync(from, to) {
             } else if (element.endsWith(".html")) {
                 console.log("Optimizing " + element);
                 let htmlFile = fs.readFileSync(path.join(from, element), "utf8");
-                htmlFile = minify(htmlFile, {
-                    minifyCSS: true,
-                    minifyJS: true,
-                });
+                try {
+                    htmlFile = minify(htmlFile, {
+                        minifyCSS: true,
+                        minifyJS: true,
+                    });
+                } catch(err) {
+                    console.log("Failed to optimize " + element);
+                    htmlFile = fs.readFileSync(path.join(from, element), "utf8");
+                }
                 fs.writeFileSync(path.join(to, element), htmlFile);
             } else {
                 console.log("Copying " + element);
