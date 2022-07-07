@@ -130,7 +130,7 @@
                 display: block;
             }
             .editor-mobile-switcher-on * {
-                color: #0079f2;
+                color: var(--blue);
             }
             .vertical-divider {
                 display: none !important;
@@ -167,6 +167,7 @@
             --green: #2ecc71;
             --green-selected: #27ae60;
 
+
             --blue: #3498db;
             --blue-selected: #2980b9;
 
@@ -184,6 +185,8 @@
             margin: 0;
             padding: 0;
             background-color: var(--black);
+            /* Easing the background change */
+            transition: background 0.5s ease, color 0.5s ease;
         }
 
         pre {
