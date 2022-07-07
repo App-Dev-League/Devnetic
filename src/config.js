@@ -108,13 +108,54 @@
 	});
 
 	tApp.route("#/preview/<track>/<module>/<position>/<fileIndex>", async function (request) {
-		request.data.module = parseInt(request.data.module);
-		request.data.position = parseInt(request.data.position);
-		request.data.fileIndex = parseInt(request.data.fileIndex);
+		if (request.data.track === "demos") {
+			modulePage.state.track = "demos"
+			modulePage.state.module = 0;
+			modulePage.state.position = 0;
+			let filePath = "./data/modules/"+request.data.module + "/" + request.data.position + "/" + request.data.fileIndex
+			let fileData = await tApp.get(filePath);
+			fileData = await fileData.text();
 
-		modulePage.state.track = request.data.track;
-		modulePage.state.module = request.data.module;
-		modulePage.state.position = request.data.position;
+			showPage({
+				type: "project",
+				moduleLength: 1,
+				next: {
+					hasNext: true,
+					module: request.data.module,
+					position: 1
+				},
+				data: {
+					"type": "code_editor",
+					"storage_id": [
+						"temp_demo_cache."+request.data.fileIndex.split(".").at(-1)
+					],
+					"files": [
+						request.data.fileIndex
+					],
+					"default": [],
+					"display_type": "web",
+					"elements": [],
+					"hints": [],
+					"validation": [],
+					"points": 0,
+					"coins": 0,
+					"demo_data": {
+						"filename": request.data.fileIndex,
+						"fileData": fileData
+					}
+				}
+			}, false, true)
+			return tApp.render(modulePage.toString())
+		} else {
+			request.data.module = parseInt(request.data.module);
+			request.data.position = parseInt(request.data.position);
+			request.data.fileIndex = parseInt(request.data.fileIndex);
+	
+			modulePage.state.track = request.data.track;
+			modulePage.state.module = request.data.module;
+			modulePage.state.position = request.data.position;
+		}
+		
 		if (request.data.track === "customUserProjects") {
 			showPage({
 				type: "project",
@@ -145,12 +186,14 @@
 				tApp.renderPath("#/404");
 			})
 		}
-		async function showPage(res, isUserProject = false) {
+		async function showPage(res, isUserProject = false, isDemo = false) {
 			let { data, type, moduleLength, next, moduleData } = res;
 			window.tAppRequestInstance = request;
 			window.currentModuleData = moduleData;
 			data.isUserProject = isUserProject;
+			data.isDemo = isDemo
 			data.previewIndex = request.data.fileIndex;
+			if (isDemo) data.previewIndex = 0;
 			modulePage.setComponent(new Preview({}, modulePage), data);
 		}
 		tApp.render(modulePage.toString())

@@ -1,0 +1,303 @@
+{
+    "type": "lesson",
+    "pages": [
+        {
+            "type": "information",
+            "title": "Binary Search",
+            "elements": [
+                {
+                    "type": "split-content",
+                    "elements": [
+                        {
+                            "type": "vertical-content",
+                            "elements": [
+                                {
+                                    "type": "text",
+                                    "content": "➔ Search a sorted array by repeatedly cutting the elements to search in half\n[[ ]][[ ]]◆ Increasing order [0, 1, 2, 3]\n➔ If the value of the middle key term is:\n[[ ]][[ ]]◆ Less than the target = target is going to be in the upper half\n[[ ]][[ ]]◆ More than the target = target is going to be in the lower half\n➔ Repeat until all elements are searched\n"
+                                },
+                                {
+                                    "type": "image",
+                                    "src": "./data/modules/intro-to-cs-assets/img4/0-0.gif"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "code",
+                            "content": " # O(log n)\n\n l = ... # some sorted list\n\n # binary search\n maxNum = N-1\n target = 5\n minNum = 0\n while maxNum >= minNum:\n  mid = (maxNum + minNum) // 2\n  if l[mid] === target:\n    print(mid)\n    break\n  elif l[mid] < target:\n    minNum = mid + 1\n  else:\n    maxNum = mid - 1",
+                            "lang": "python",
+                            "name": "binary_search.py"
+                        }
+                    ]
+                },
+                {
+                    "type": "divider"
+                },
+                {
+                    "type": "text",
+                    "content": "[[h3]]Practice[[/]]"
+                },
+                {
+                    "type": "divider"
+                },
+                {
+                    "type": "split-content",
+                    "elements": [
+                        {
+                            "type": "iframe",
+                            "src": "./data/modules/intro-to-cs-assets/img4/0-1.html"
+                        },
+                        {
+                            "type": "code",
+                            "content": "def b_s(target):\n    maxl = n -1\n    minl = 0\n    if target < notes[minl]:\n        return 1\n    elif target >= notes[maxl]:\n        return n\n    while minl <= maxl:\n        midl = (maxl + minl) // 2\n        if notes[midl] > target:\n            if notes[midl - 1] <= target:\n                return midl + 1\n            else:\n                maxl = midl - 1\n        elif notes[midl] < target:\n            if notes[midl + 1] > target:\n                return midl + 2\n        else:\n                minl = midl + 1\n    else:\n        return midl + 2\nn_q= input().split()\nn = int(n_q[0])\nq = int(n_q[1])\nnotes = []\nx = 0\nfor i in range(n):\n    x += int(input())\n    notes.append(x)\nfor j in range(q):\n    print(b_s(int(input())))",
+                            "lang": "python"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "information",
+            "title": "Stacks",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "➔ Stacks of cards, dishes\n➔ LIFO (Last In First Out) + FILO (First In Last Out)\n➔ Collections’ deque library or normal lists\n"
+                },
+                {
+                    "type": "code",
+                    "content": "from collections import deque\n\n# initialize a deque called numbers\nnumbers = deque()\n\n# use append to add elements\nnumbers.append(1)\nnumbers.append(2)\nnumbers.append(3)\nnumbers.append(4)\nnumbers.append(5)\n\n# pop last element (stack)\nlast = numbers.pop()\nprint(last) # 5\nprint(numbers) # deque([1, 2, 3, 4])\n\n# deque or remove first element (queue)\nfirst = numbers.popleft()\nprint(first) # 1\nprint(numbers) # deque([2, 3, 4])",
+                    "lang": "python"
+                },
+                {
+                    "type": "divider"
+                },
+                {
+                    "type": "split-content",
+                    "elements": [
+                        {
+                            "type": "iframe",
+                            "src": "#/preview/demos/intro-to-cs-assets/img4/1-0.py",
+                            "height": "100%"
+                        },
+                        {
+                            "type": "code",
+                            "content": "stack = []\n\n# add to stack\nstack.append(1)\nstack.append(2)\nstack.append(3)\n\nprint(stack) # [1, 2, 3]\n\n# remove from stack\nstack.pop() # 3\nprint(stack) # [1, 2]\nstack.pop() # 2\nprint(stack) # [1, 2]",
+                            "lang": "python"
+                        }
+                    ]
+                },
+                {
+                    "type": "divider"
+                },
+                {
+                    "type": "text",
+                    "content": "[[h3]]Practice[[/]]"
+                },
+                {
+                    "type": "divider"
+                },
+                {
+                    "type": "split-content",
+                    "elements": [
+                        {
+                            "type": "code",
+                            "content": "n = int(input())\nunwashed = []\nwashedbutnotdried = []\nwashedanddried = [] \na=n \nfor i in range(n):\n    unwashed. append(a) \n    a -= 1 \ns = [] \nwhile True:\n    try: \n        s1 = input().split()\n    except EOFError:\n          break\n    if not sl:\n          pass\n    else:\n        s.append(s1)\nfor i in range(len(s)):\n    s[i][0] = int(s[i][0])\n    s[i][1] = int(s[i][1])\n    if s[i][0] == 1:\n        for j in range(s[i][1]):\n            washedbutnotdried.append(unwashed. pop()) \n              \n    else:\n          for j in range(s[i][1]):\n            washedanddried.append(washedbutnotdried. pop( ))\nfor i in range(n - 1, -1, -1):\n    print(washedanddried[i])",
+                            "lang": "python"
+                        },
+                        {
+                            "type": "iframe",
+                            "src": "./data/modules/intro-to-cs-assets/img4/1-1.html"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "information",
+            "title": "Queues",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "➔ Printer queues, drive thrus, lines\n➔ LILO (Last In Last Out) + FIFO (First In First Out)\n➔ Collections’ deque library or normal lists\n"
+                },
+                {
+                    "type": "code",
+                    "content": "from collections import deque\n\n# initialize a deque called numbers\nnumbers = deque()\n\n# use append to add elements\nnumbers.append(1)\nnumbers.append(2)\nnumbers.append(3)\nnumbers.append(4)\nnumbers.append(5)\n\n# pop last element (stack)\nlast = numbers.pop()\nprint(last) # 5\nprint(numbers) # deque([1, 2, 3, 4])\n\n# deque or remove first element (queue)\nfirst = numbers.popleft()\nprint(first) # 1\nprint(numbers) # deque([2, 3, 4])",
+                    "lang": "python"
+                },
+                {
+                    "type": "divider"
+                },
+                {
+                    "type": "split-content",
+                    "elements": [
+                        {
+                            "type": "iframe",
+                            "src": "#/preview/demos/intro-to-cs-assets/img4/2-0.py",
+                            "height": "100%"
+                        },
+                        {
+                            "type": "code",
+                            "content": "stack = []\n\n# add to stack\nstack.append(1)\nstack.append(2)\nstack.append(3)\n\nprint(stack) # [1, 2, 3]\n\n# remove from stack\nstack.pop() # 3\nprint(stack) # [1, 2]\nstack.pop() # 2\nprint(stack) # [1, 2]",
+                            "lang": "python"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "information",
+            "title": "Breadth-first search (BFS)",
+            "elements": [
+                {
+                    "type": "split-content",
+                    "elements": [
+                        {
+                            "type": "vertical-content",
+                            "elements": [
+                                {
+                                    "type": "text",
+                                    "content": "➔ Algorithm used to search all elements in a tree/graph (shortest path)\n➔ Starting point → unvisited nodes adjacent to starting point → unvisited nodes adjacent to unvisited nodes to starting point → etc.\n➔ O(Vertices + Edges)\n"
+                                },
+                                {
+                                    "type": "image",
+                                    "src": "./data/modules/intro-to-cs-assets/img4/3-0.gif"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "code",
+                            "content": "# O(V + E) or O(Vertices + Edges)\ngraph = {\n  'A': ['B', 'C'],\n  'B': ['D', 'E'],\n  'C': ['F'],\n  'D': [],\n  'E': ['F'],\n  'F': []\n}\n\nvisited = [] # List to keep track of visited nodes.\nqueue = [] # Initialize a queue\nstart = 'A'\nvisited.append(start)\nqueue.append(start)\nwhile queue:\n    s = queue.pop(0)\n    print(s, end = \" \")\n    for neighbour in graph[s]:\n      if neighbour not in visited:\n        visited.append(neighbour) # going to unvisited nodes adjacent to current node\n        queue.append(neighbour)",
+                            "lang": "python"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "information",
+            "title": "Depth-first search (DFS)",
+            "elements": [
+                {
+                    "type": "split-content",
+                    "elements": [
+                        {
+                            "type": "vertical-content",
+                            "elements": [
+                                {
+                                    "type": "text",
+                                    "content": "➔ Algorithm used to search all elements in a tree/graph\n➔ If can go ahead, continue; else, backtrack\n"
+                                },
+                                {
+                                    "type": "image",
+                                    "src": "./data/modules/intro-to-cs-assets/img4/4-0.gif"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "code",
+                            "content": "# O(V+E) or O(Vertices + Edges)\ngraph = {\n    '0': ['1', '2'],\n    '1': ['0', '3', '4'],\n    '2': ['0'],\n    '3': ['1'],\n    '4': ['2', '3'],\n}\nvisited = set() # set to keep track of visited nodes\n\ndef dfs(start):\n    global graph, visited\n    visited.add(start)\n    print(start)\n\n    for next in graph[start]:\n        if next not in visited:\n            dfs(graph, next, visited)\n# driver code\ndfs('0')",
+                            "lang": "python"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "information",
+            "title": "Practice",
+            "elements": [
+                {
+                    "type": "iframe",
+                    "src": "./data/modules/intro-to-cs-assets/img4/5-0.html",
+                    "width": "100%"
+                },
+                {
+                    "type": "divider"
+                },
+                {
+                    "type": "code",
+                    "content": "def dfs(row, col, total):\n    global maxscore\n    if row == R-1:\n        if total > maxscore:\n            maxscore = total\n        return\n    else:\n        dfs(row+1, col, total + int(pachinko[row+1][col]))\n        dfs(row+1, col+1, total + int(pachinko[row+1][col+1]))\nR = int(input())\npachinko = []\nfor i in range(R):\n    pachinko.append(input().split())\nmaxscore = -1\ndfs(0, 0, 0)\nprint(maxscore+int(pachinko[0][0]))",
+                    "lang": "python"
+                }
+            ]
+        },
+        {
+            "type": "information",
+            "title": "Floodfill",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "➔ Determines area that is connected to a given node in a multidimensional array\n➔ Similar in theory to DFS\n"
+                },
+                {
+                    "type": "divider"
+                },
+                {
+                    "type": "code",
+                    "content": "def floodfill(row, col, old, color):\n  # check the validity of row and col\n  if row < 0 or row >= N or col < 0 or col >= M or grid[row][col] != old:\n      return\n  grid[row][col] = color\n  floodfill(row - 1, col, old, color) # up\n  floodfill(row + 1, col, old, color) # down\n  floodfill(row, col - 1, old, color) # left\n  floodfill(row, col + 1, old, color) # right",
+                    "lang": "python"
+                },
+                {
+                    "type": "divider"
+                },
+                {
+                    "type": "text",
+                    "content": "[[h3]]Practice[[/]]"
+                },
+                {
+                    "type": "divider"
+                },
+                {
+                    "type": "iframe",
+                    "src": "./data/modules/intro-to-cs-assets/img4/6-0.html",
+                    "width": "100%"
+                },
+                {
+                    "type": "divider"
+                },
+                {
+                    "type": "code",
+                    "content": "import sys\nsys.setrecursionlimit (10000)\ndef floodfill(row, col):\n    global curr\n    if row >= N or col >= M or row < 0 or col < 0 or hide[row][col] == \".\":\n        return\n    if hide[row][col] == \"X\":\n        xy[curr].append( (row, col))\n    hide[row][col] = \".\"\n    floodfill(row+1, col)\n    floodfill(row-1, col)\n    floodfill(row, col+1)\n    floodfill(row, col-1)\n    return\nN_M = input().split()\nN = int(N_M[0])\nM = int(N_M[1])\nhide = []\nxy = [[] for i in range(2)]\nfor i in range(N):\n    z = list(input())\n    hide.append(z)\ncurr = -1\nfor i in range(N):\n    for j in range(M):\n        if hide[i][j] == \"X\":\n            curr += 1\n        floodfill(i, j)\nmindis = 100000000000000000000000000000000000\nfor i in range(len(xy[0])):\n    for j in range(len(xy[1])):\n        mindis = min(abs(xy[0][i][0]- xy[1][j][0]) + abs(xy[0][i][1]- xy[1][j][1]) - 1, mindis)\nprint(mindis)",
+                    "lang": "python"
+                }
+            ]
+        },
+        {
+            "type": "information",
+            "title": "Quick Sort",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "➔ Divide into two parts with one value as the pivot\n➔ Elements smaller than pivot → left of the pivot; elements larger than pivot → right of the pivot\n➔ O(n log n)\n"
+                },
+                {
+                    "type": "divider"
+                },
+                {
+                    "type": "code",
+                    "content": "# 0(n log n)\ndef partition(l, r):\n    global arr\n    pivoti = r\n    pivot = int(arr[r])\n    r -= 1\n    while True:\n        while l <= r and int(arr[l]) <= pivot:\n            l += 1  # find element that is less than or equal to pivot\n        while l <= r and int(arr[r]) > pivot:\n            r -= 1  # find element that is greater than pivot\n        if l > r:\n            break\n        else:\n            arr[1], arr[r] = arr[r], arr[l]  # swap high and low elements\n    arr[pivoti], arr[l] = arr[l], arr[pivoti]  # swap low and pivot elements\n    print(' '.join(arr))\n    return l\n\n\ndef qsort(lo, hi):\n    if hi-lo <= 0:\n        return\n    p = partition(lo, hi)\n    # divided into two parts\n    qsort(lo, p-1)\n    qsort(p+1, hi)\n\n\nN = int(input())\narr = input().split()\nqsort(0, N-1)",
+                    "lang": "python"
+                }
+            ]
+        },
+        {
+            "type": "information",
+            "title": "Merge Sort",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "➔ Divides array into equal halves and keeps doing so until only one element left\n➔ Combines these elements in a sorted manner\n➔ O(n log n)\n"
+                },
+                {
+                    "type": "divider"
+                },
+                {
+                    "type": "code",
+                    "content": "# 0(n log n)\ndef ms(L, R):\n    if L >= R:\n        return\n    mid = (L + R)//2\n    ms(L, mid)\n    ms(mid+1, R)\n    i = L  # beginning of first array\n    index = L\n    j = mid + 1  # beginning of second array\n    while i <= mid and j <= R:\n        if int(arr[i]) < int(arr[j]):\n            temp[index] = arr[i]\n            i += 1\n            index += 1\n        else:\n            temp[index] = arr[j]\n            j += 1\n            index += 1\n    for k in range(i, mid+1):\n        temp[index] = arr[k]\n        index += 1\n    for k in range(j, R+1):\n        temp[index] = arr[k]\n        index += 1\n    for k in range(L, R+1):\n        arr[k] = temp[k]\n    print(' '.join(arr))\n\n\nN = int(input())\narr = input().split()\ntemp = [0 for i in range(N)]\nms(0, N-1)",
+                    "lang": "python"
+                }
+            ]
+        }
+    ]
+}

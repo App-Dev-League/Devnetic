@@ -49,7 +49,9 @@ class Editor extends tApp.Component {
 		var tabindex = this.state.tabindex
 		var storageId = this.state.storage_id;
 		var filename = parentThis.parent.parent.data().files[tabindex] || this.state.file.filename;
-
+		if (parentThis.parent.parent.data().isDemo) {
+			filename = parentThis.parent.parent.data().demo_data.filename
+		}
 		if (document.getElementById("code-editor-run-btn") && (filename.split('.').pop().toLowerCase() === "html" || filename.split('.').pop().toLowerCase() === "png" || filename.split('.').pop().toLowerCase() === "jpg" || filename.split('.').pop().toLowerCase() === "jpeg" || filename.split('.').pop().toLowerCase() === "gif")) {
 			setTimeout(run, 100)
 			function run() {
@@ -85,6 +87,11 @@ class Editor extends tApp.Component {
 			} else {
 				var text = await DB.getCode(parentThis.parent.parent.data().storage_id[tabindex]);
 			}
+
+			if (self.parent.parent.data().isDemo) {
+				text = self.parent.parent.data().demo_data.fileData;
+			}
+
 			if (text === null) {
 				text = parentThis.parent.parent.data().default[tabindex]
 				document.getElementById("code-editor-status").innerText = "Ready"
