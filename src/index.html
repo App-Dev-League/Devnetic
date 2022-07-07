@@ -130,7 +130,7 @@
                 display: block;
             }
             .editor-mobile-switcher-on * {
-                color: #0079f2;
+                color: var(--blue);
             }
             .vertical-divider {
                 display: none !important;
@@ -149,29 +149,28 @@
 
 
         :root {
-            /*--black: #121212;*/
             --editorLeftTabWidth: 50%;
-            --black: #111927;
+            --black: #121212;
             --shadow: 0 0 26px 0 #000000;
             --shadow-active: 0 0 16px 0 #000000;
 
-            --gray: #2c3e50;
+            --gray: #666666;
             /*--darkgray: #191919;*/
-            --darkgray: #1a2538;
+            --darkgray: #333333;
 
-            --white: #efefef;
+            --white: #FFFFFF;
 
-            --orange: #f39c12;
-            --orange-selected: #e67e22;
+            --orange: #EAA170;
+            --orange-selected: #E58648;
 
-            --green: #2ecc71;
-            --green-selected: #27ae60;
+            --green: #64C993;
+            --green-selected: #42BD7B;
 
-            --blue: #3498db;
-            --blue-selected: #2980b9;
+            --blue: #5698D7;
+            --blue-selected: #3182CE;
 
-            --purple: #9b59b6;
-            --purple-selected: #8e44ad;
+            --purple: #BE5CFF;
+            --purple-selected: #AB2EFF;
         }
 
         * {
@@ -184,6 +183,8 @@
             margin: 0;
             padding: 0;
             background-color: var(--black);
+            /* Easing the background change */
+            transition: background 0.5s ease, color 0.5s ease;
         }
 
         pre {
@@ -260,51 +261,51 @@
 
         /* code colors */
         .c-red {
-            color: #e74c3c;
+            color: #E64747;
         }
 
         .c-darkred {
-            color: #c0392b;
+            color: #E11E1E;
         }
 
         .c-lightorange {
-            color: #ffbd55;
+            color: #EAA170;
         }
 
         .c-orange {
-            color: #ff8519;
+            color: #E58648;
         }
 
         .c-darkorange {
-            color: #d35400;
+            color: #DF6C20;
         }
 
         .c-yellow {
-            color: #f1c40f;
+            color: #E4C077;
         }
 
         .c-green {
-            color: #2ecc71;
+            color: #64C993;
         }
 
         .c-darkgreen {
-            color: #27ae60;
+            color: #42BD7B;
         }
 
         .c-turquoise {
-            color: #1abc9c;
+            color: #3EC1BE;
         }
 
         .c-darkturquoise {
-            color: #16a085;
+            color: #329A98;
         }
 
         .c-lightblue {
-            color: #74c7ff;
+            color: #7BAFE0;
         }
 
         .c-blue {
-            color: #2980b9;
+            color: #3182CE;
         }
 
         .c-bold {
@@ -341,27 +342,27 @@
         }
 
         .url {
-            color: #3498db;
+            color: #5698D7;
         }
 
         .c-lightpurple {
-            color: #db84ff;
+            color: #BE5CFF;
         }
 
         .c-purple {
-            color: #8e44ad;
+            color: #AB2EFF;
         }
 
         .c-lightgray {
-            color: #c9c9c9;
+            color: #C4C4C4;
         }
 
         .c-gray {
-            color: #aba9a9;
+            color: #ADADAD;
         }
 
         .c-white {
-            color: #ffffff;
+            color: #FFFFFF;
         }
 
         /* index.html */
