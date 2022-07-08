@@ -65,43 +65,54 @@
             .tab-panel-hidden-mobile {
                 display: none
             }
+
             #code-editor-component .codicon-new-file {
                 right: 50px !important;
             }
+
             #code-editor-component .codicon-cloud-upload {
                 right: 30px !important;
             }
+
             .project-module-tabs {
                 height: calc(100vh - 80px) !important;
                 width: calc(100vw - 5px) !important;
             }
-            #code-editor-component > div.project-module-tabs {
+
+            #code-editor-component>div.project-module-tabs {
                 left: 0 !important;
             }
-            #code-editor-component > div:nth-child(1) > div {
+
+            #code-editor-component>div:nth-child(1)>div {
                 top: 0px !important;
                 left: 0px !important;
             }
-            #code-editor-component > div:nth-child(1) {
+
+            #code-editor-component>div:nth-child(1) {
                 position: absolute !important;
                 left: auto !important;
                 transform: none !important;
                 top: 0 !important;
                 left: 0 !important;
             }
+
             .vertical-divider {
                 height: calc(100vh - 105px) !important;
             }
+
             .code-editor {
                 height: calc(100vh - 190px) !important;
             }
+
             .selected-tab {
                 height: calc(100% - 70px) !important;
             }
-            .tab-panel-hidden-mobile ~ .codicon {
+
+            .tab-panel-hidden-mobile~.codicon {
                 opacity: 0 !important;
                 pointer-events: none !important;
             }
+
             #editor-mobile-switcher {
                 display: flex;
                 flex-direction: row;
@@ -129,9 +140,11 @@
                 font-size: 16px;
                 display: block;
             }
+
             .editor-mobile-switcher-on * {
                 color: var(--blue);
             }
+
             .vertical-divider {
                 display: none !important;
             }
@@ -141,6 +154,26 @@
             #editor-mobile-switcher {
                 display: none !important;
             }
+        }
+
+        #preview-demo-loading-cover {
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: black;
+        }
+
+        #preview-demo-loading-cover>div {
+            position: fixed;
+            z-index: 1000;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            color: white !important;
+            text-align: center;
         }
 
         .info-text::-webkit-scrollbar {
@@ -794,9 +827,11 @@
         .image-wrapper img {
             border-radius: 10px;
         }
+
         .image-wrapper {
             height: 100%;
         }
+
         .code-editor {
             position: absolute;
             left: 0;
@@ -1523,6 +1558,19 @@
 
 
 <body>
+    <div id="preview-demo-loading-cover" class="none">
+        <div>
+            <span class="codicon codicon-loading" style="font-size: 70px;"></span>
+            <br>
+            <br>
+            <span>Preview Loading...</span>
+        </div>
+    </div>
+    <script>
+        if (window.location.hash.split("/")[1] === "preview") {
+            document.getElementById("preview-demo-loading-cover").classList.remove("none")
+        }
+    </script>
     <header>
         <a class="logo" href="#/">
             <img src="./assets/img/icon.png" />
@@ -1761,7 +1809,7 @@
 <script>
     function mobileShow(index, tabindex) {
         if (window.innerWidth > 650) return;
-        if (window.location.hash.split("/")[1] === "preview" ) return;
+        if (window.location.hash.split("/")[1] === "preview") return;
         document.querySelectorAll(".project-module-tabs").forEach((element, i) => {
             if (i === index) {
                 element.classList.remove("tab-panel-hidden-mobile")
@@ -1778,6 +1826,7 @@
         })
         if (tabindex) document.querySelectorAll(".project-module-tabs")[index].querySelectorAll(".tab")[tabindex].click()
     }
+
     function regexIndexOf(string, regex, startpos) {
         var indexOf = string.substring(startpos || 0).search(regex);
         return (indexOf >= 0) ? (indexOf + (startpos || 0)) : indexOf;

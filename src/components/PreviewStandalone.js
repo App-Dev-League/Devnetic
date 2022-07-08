@@ -18,6 +18,7 @@ class CodeEditor extends ModuleComponent {
         }
     }
     render(props) {
+        document.getElementById("preview-demo-loading-cover").classList.add("none")
         if (this.data() != null) {
             var self = this;
             if (document.getElementById("code-editor-tab")) {
