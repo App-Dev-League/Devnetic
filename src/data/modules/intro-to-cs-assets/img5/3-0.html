@@ -1,0 +1,85 @@
+<html>
+
+<body style="background-color: white;">
+    <span id="probtext-text" class="mathjax">Farmer John has opened a swimming pool for his cows, figuring it will help them
+        relax and produce more milk.  
+        
+        <p>To ensure safety, he hires <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-1-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mi>N</mi></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-1" style="width: 0.984em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.914em; height: 0px; font-size: 102%;"><span style="position: absolute; clip: rect(0.984em, 1000.91em, 2.104em, -999.996em); top: -1.887em; left: 0em;"><span class="mrow" id="MathJax-Span-2"><span class="mi" id="MathJax-Span-3" style="font-family: MathJax_Math-italic;">N<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.074em;"></span></span></span><span style="display: inline-block; width: 0px; height: 1.894em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.068em; border-left: 0px solid; width: 0px; height: 0.861em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>N</mi></math></span></span><script type="math/tex" id="MathJax-Element-1">N</script> cows as lifeguards, each of which has a shift
+        that covers some contiguous interval of time during the day.  For simplicity,
+        the pool is open from time <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-2-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mi>t</mi><mo>=</mo><mn>0</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-4" style="width: 2.314em; display: inline-block;"><span style="display: inline-block; position: relative; width: 2.244em; height: 0px; font-size: 102%;"><span style="position: absolute; clip: rect(1.264em, 1002.17em, 2.384em, -999.996em); top: -2.167em; left: 0em;"><span class="mrow" id="MathJax-Span-5"><span class="mi" id="MathJax-Span-6" style="font-family: MathJax_Math-italic;">t</span><span class="mo" id="MathJax-Span-7" style="font-family: MathJax_Main; padding-left: 0.284em;">=</span><span class="mn" id="MathJax-Span-8" style="font-family: MathJax_Main; padding-left: 0.284em;">0</span></span><span style="display: inline-block; width: 0px; height: 2.174em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.068em; border-left: 0px solid; width: 0px; height: 0.861em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>t</mi><mo>=</mo><mn>0</mn></math></span></span><script type="math/tex" id="MathJax-Element-2">t=0</script> until time <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-3-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mi>t</mi><mo>=</mo><mn>1000</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-9" style="width: 3.785em; display: inline-block;"><span style="display: inline-block; position: relative; width: 3.715em; height: 0px; font-size: 102%;"><span style="position: absolute; clip: rect(1.264em, 1003.64em, 2.384em, -999.996em); top: -2.167em; left: 0em;"><span class="mrow" id="MathJax-Span-10"><span class="mi" id="MathJax-Span-11" style="font-family: MathJax_Math-italic;">t</span><span class="mo" id="MathJax-Span-12" style="font-family: MathJax_Main; padding-left: 0.284em;">=</span><span class="mn" id="MathJax-Span-13" style="font-family: MathJax_Main; padding-left: 0.284em;">1000</span></span><span style="display: inline-block; width: 0px; height: 2.174em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.068em; border-left: 0px solid; width: 0px; height: 0.861em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>t</mi><mo>=</mo><mn>1000</mn></math></span></span><script type="math/tex" id="MathJax-Element-3">t=1000</script> on a daily basis, so each shift can
+        be described by two integers, giving the time at which a cow starts and ends her
+        shift.  For example, a lifeguard starting at time <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-4-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mi>t</mi><mo>=</mo><mn>4</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-14" style="width: 2.314em; display: inline-block;"><span style="display: inline-block; position: relative; width: 2.244em; height: 0px; font-size: 102%;"><span style="position: absolute; clip: rect(1.264em, 1002.24em, 2.384em, -999.996em); top: -2.167em; left: 0em;"><span class="mrow" id="MathJax-Span-15"><span class="mi" id="MathJax-Span-16" style="font-family: MathJax_Math-italic;">t</span><span class="mo" id="MathJax-Span-17" style="font-family: MathJax_Main; padding-left: 0.284em;">=</span><span class="mn" id="MathJax-Span-18" style="font-family: MathJax_Main; padding-left: 0.284em;">4</span></span><span style="display: inline-block; width: 0px; height: 2.174em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.068em; border-left: 0px solid; width: 0px; height: 0.861em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>t</mi><mo>=</mo><mn>4</mn></math></span></span><script type="math/tex" id="MathJax-Element-4">t = 4</script> and ending at  time
+        <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-5-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mi>t</mi><mo>=</mo><mn>7</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-19" style="width: 2.314em; display: inline-block;"><span style="display: inline-block; position: relative; width: 2.244em; height: 0px; font-size: 102%;"><span style="position: absolute; clip: rect(1.264em, 1002.24em, 2.384em, -999.996em); top: -2.167em; left: 0em;"><span class="mrow" id="MathJax-Span-20"><span class="mi" id="MathJax-Span-21" style="font-family: MathJax_Math-italic;">t</span><span class="mo" id="MathJax-Span-22" style="font-family: MathJax_Main; padding-left: 0.284em;">=</span><span class="mn" id="MathJax-Span-23" style="font-family: MathJax_Main; padding-left: 0.284em;">7</span></span><span style="display: inline-block; width: 0px; height: 2.174em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.068em; border-left: 0px solid; width: 0px; height: 0.861em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>t</mi><mo>=</mo><mn>7</mn></math></span></span><script type="math/tex" id="MathJax-Element-5">t = 7</script> covers three units of time (note that the endpoints are "points" in
+        time).
+        
+        </p><p>Unfortunately, Farmer John hired 1 more lifeguard than he has the funds to
+        support.  Given that he must fire exactly one lifeguard, what is the maximum
+        amount of time that can still be covered by the shifts of the remaining
+        lifeguards?  An interval of time is covered if at least one lifeguard is
+        present.
+        
+        </p><p></p><div class="prob-in-spec"><h4>INPUT FORMAT (file lifeguards.in):</h4>
+        The first line of input contains <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-6-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mi>N</mi></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-24" style="width: 0.984em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.914em; height: 0px; font-size: 102%;"><span style="position: absolute; clip: rect(0.984em, 1000.91em, 2.104em, -999.996em); top: -1.887em; left: 0em;"><span class="mrow" id="MathJax-Span-25"><span class="mi" id="MathJax-Span-26" style="font-family: MathJax_Math-italic;">N<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.074em;"></span></span></span><span style="display: inline-block; width: 0px; height: 1.894em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.068em; border-left: 0px solid; width: 0px; height: 0.861em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>N</mi></math></span></span><script type="math/tex" id="MathJax-Element-6">N</script> (<span class="MathJax_Preview" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-7-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>1</mn><mo>&amp;#x2264;</mo><mi>N</mi><mo>&amp;#x2264;</mo><mn>100</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-27" style="width: 5.746em; display: inline-block;"><span style="display: inline-block; position: relative; width: 5.606em; height: 0px; font-size: 102%;"><span style="position: absolute; clip: rect(1.264em, 1005.54em, 2.525em, -999.996em); top: -2.167em; left: 0em;"><span class="mrow" id="MathJax-Span-28"><span class="mn" id="MathJax-Span-29" style="font-family: MathJax_Main;">1</span><span class="mo" id="MathJax-Span-30" style="font-family: MathJax_Main; padding-left: 0.284em;">&#8804;</span><span class="mi" id="MathJax-Span-31" style="font-family: MathJax_Math-italic; padding-left: 0.284em;">N<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.074em;"></span></span><span class="mo" id="MathJax-Span-32" style="font-family: MathJax_Main; padding-left: 0.284em;">&#8804;</span><span class="mn" id="MathJax-Span-33" style="font-family: MathJax_Main; padding-left: 0.284em;">100</span></span><span style="display: inline-block; width: 0px; height: 2.174em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.211em; border-left: 0px solid; width: 0px; height: 1.004em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>1</mn><mo>&#8804;</mo><mi>N</mi><mo>&#8804;</mo><mn>100</mn></math></span></span><script type="math/tex" id="MathJax-Element-7">1 \leq N \leq 100</script>). Each of the next <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-8-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mi>N</mi></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-34" style="width: 0.984em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.914em; height: 0px; font-size: 102%;"><span style="position: absolute; clip: rect(0.984em, 1000.91em, 2.104em, -999.996em); top: -1.887em; left: 0em;"><span class="mrow" id="MathJax-Span-35"><span class="mi" id="MathJax-Span-36" style="font-family: MathJax_Math-italic;">N<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.074em;"></span></span></span><span style="display: inline-block; width: 0px; height: 1.894em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.068em; border-left: 0px solid; width: 0px; height: 0.861em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>N</mi></math></span></span><script type="math/tex" id="MathJax-Element-8">N</script> lines describes a lifeguard in
+        terms of two integers in the  range <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-9-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>0</mn><mo>&amp;#x2026;</mo><mn>1000</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-37" style="width: 4.065em; display: inline-block;"><span style="display: inline-block; position: relative; width: 3.995em; height: 0px; font-size: 102%;"><span style="position: absolute; clip: rect(1.264em, 1003.92em, 2.384em, -999.996em); top: -2.167em; left: 0em;"><span class="mrow" id="MathJax-Span-38"><span class="mn" id="MathJax-Span-39" style="font-family: MathJax_Main;">0</span><span class="mo" id="MathJax-Span-40" style="font-family: MathJax_Main; padding-left: 0.144em;">...</span><span class="mn" id="MathJax-Span-41" style="font-family: MathJax_Main; padding-left: 0.144em;">1000</span></span><span style="display: inline-block; width: 0px; height: 2.174em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.068em; border-left: 0px solid; width: 0px; height: 0.861em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>0</mn><mo>...</mo><mn>1000</mn></math></span></span><script type="math/tex" id="MathJax-Element-9">0 \ldots 1000</script>, giving the starting and ending
+        point of a lifeguard's shift. All such endpoints are distinct.  Shifts of
+        different lifeguards might overlap.
+        </div>
+        
+        <p></p><div class="prob-out-spec"><h4>OUTPUT FORMAT (file lifeguards.out):</h4>
+        Please write a single number, giving the maximum amount of time that can still
+        be covered if Farmer John fires 1 lifeguard.
+        </div>
+        
+        <p></p><h4>SAMPLE INPUT:</h4><pre class="in">
+    3
+    5 9
+    1 4
+    3 7
+        </pre><h4>SAMPLE OUTPUT:</h4> <pre class="out">
+    7
+        </pre>
+        
+        <p>
+        </p></span>
+</body>
+
+</html>
+<style>
+    .MathJax {
+        display: inline;
+        font-style: normal;
+        font-weight: normal;
+        line-height: normal;
+        font-size: 100%;
+        font-size-adjust: none;
+        text-indent: 0;
+        text-align: left;
+        text-transform: none;
+        letter-spacing: normal;
+        word-spacing: normal;
+        word-wrap: normal;
+        white-space: normal;
+        float: none;
+        direction: ltr;
+        max-width: none;
+        max-height: none;
+        min-width: 0;
+        min-height: 0;
+        border: 0;
+        padding: 0;
+        margin: 0;
+    }
+
+    body {
+        font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    .math {
+        font-weight: bold;
+        font-style: italic;
+        font-family: normal;
+    }
+    .MJX_Assistive_MathML {
+        display: none;
+    }
+</style>
