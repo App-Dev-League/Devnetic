@@ -1,0 +1,79 @@
+<html>
+
+<body style="background-color:#fff">
+    <span id="probtext-text" class="mathjax">Farmer John, in his old age, has unfortunately become increasingly grumpy and
+        paranoid. Forgetting the extent to which bovine diversity helped his farm truly
+        flourish over the years, he has recently decided to build a huge fence around
+        the farm, discouraging cows from neighboring farms from visiting, and completely
+        prohibiting entry from a handful of neighboring farms. The cows are quite
+        upset by this state of affairs, not only since they can no longer visit with
+        their friends, but since it has caused them to cancel participation in the
+        International Milking Olympiad, an event to which they look forward all year.
+
+        <p>Neighboring cows that still have the ability to enter Farmer John's property
+            find the process has become more arduous, as they can enter only through a
+            single gate where each cow is subject to intense questioning, often causing the
+            cows to queue up in a long line.
+
+        </p>
+        <p>For each of the <span class="MathJax_Preview" style="color:inherit;display:none"></span><span class="MathJax" id="MathJax-Element-1-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mi>N</mi></math>" role="presentation" style="position:relative">
+                <nobr aria-hidden="true"><span class="math" id="MathJax-Span-1" style="width:.984em;display:inline-block"><span style="display:inline-block;position:relative;width:.914em;height:0;font-size:102%"><span style="position:absolute;clip:rect(.984em,1000.91em,2.104em,-999.996em);top:-1.887em;left:0"><span class="mrow" id="MathJax-Span-2"><span class="mi" id="MathJax-Span-3" style="font-family:MathJax_Math-italic">N<span style="display:inline-block;overflow:hidden;height:1px;width:.074em"></span></span></span><span style="display:inline-block;width:0;height:1.894em"></span></span></span><span style="display:inline-block;overflow:hidden;vertical-align:-.068em;border-left:0 solid;width:0;height:.861em"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <mi>N</mi>
+                    </math></span>
+            </span>
+            <script type="math/tex" id="MathJax-Element-1">N</script> cows visiting the farm, you are told the time she arrives
+            at the gate and the duration of time required for her to answer her entry
+            questions. Only one cow can be undergoing questioning at any given time, so if
+            many cows arrive near the same time, they will likely need to wait in line to be
+            processed one by one. For example, if a cow arrives at time 5 and answers
+            questions for 7 units of time, another cow arriving at time 8 would need to wait
+            until time 12 to start answering questions herself.
+
+        </p>
+        <p>Please determine the earliest possible time by which all cows are able to enter
+            the farm.
+
+        </p>
+        <p></p>
+        <div class="prob-in-spec">
+            <h4>INPUT FORMAT (file cowqueue.in):</h4>
+            The first line of input contains <span class="MathJax_Preview" style="color:inherit;display:none"></span><span class="MathJax" id="MathJax-Element-2-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mi>N</mi></math>" role="presentation" style="position:relative">
+                <nobr aria-hidden="true"><span class="math" id="MathJax-Span-4" style="width:.984em;display:inline-block"><span style="display:inline-block;position:relative;width:.914em;height:0;font-size:102%"><span style="position:absolute;clip:rect(.984em,1000.91em,2.104em,-999.996em);top:-1.887em;left:0"><span class="mrow" id="MathJax-Span-5"><span class="mi" id="MathJax-Span-6" style="font-family:MathJax_Math-italic">N<span style="display:inline-block;overflow:hidden;height:1px;width:.074em"></span></span></span><span style="display:inline-block;width:0;height:1.894em"></span></span></span><span style="display:inline-block;overflow:hidden;vertical-align:-.068em;border-left:0 solid;width:0;height:.861em"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <mi>N</mi>
+                    </math></span>
+            </span>
+            <script type="math/tex" id="MathJax-Element-2">N</script>, a positive integer at most 100. Each of
+            the next <span class="MathJax_Preview" style="color:inherit;display:none"></span><span class="MathJax" id="MathJax-Element-3-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mi>N</mi></math>" role="presentation" style="position:relative">
+                <nobr aria-hidden="true"><span class="math" id="MathJax-Span-7" style="width:.984em;display:inline-block"><span style="display:inline-block;position:relative;width:.914em;height:0;font-size:102%"><span style="position:absolute;clip:rect(.984em,1000.91em,2.104em,-999.996em);top:-1.887em;left:0"><span class="mrow" id="MathJax-Span-8"><span class="mi" id="MathJax-Span-9" style="font-family:MathJax_Math-italic">N<span style="display:inline-block;overflow:hidden;height:1px;width:.074em"></span></span></span><span style="display:inline-block;width:0;height:1.894em"></span></span></span><span style="display:inline-block;overflow:hidden;vertical-align:-.068em;border-left:0 solid;width:0;height:.861em"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <mi>N</mi>
+                    </math></span>
+            </span>
+            <script type="math/tex" id="MathJax-Element-3">N</script> lines describes one cow, giving the time it arrives and the time it
+            requires for questioning; each of these numbers are positive integers at most
+            1,000,000.
+        </div>
+
+        <p></p>
+        <div class="prob-out-spec">
+            <h4>OUTPUT FORMAT (file cowqueue.out):</h4>
+            Please determine the minimum possible time at which all the cows could have
+            completed processing.
+        </div>
+
+        <p></p>
+        <h4>SAMPLE INPUT:</h4>
+        <pre class="in">
+        3
+        2 1
+        8 3
+        5 7
+            </pre>
+        <h4>SAMPLE OUTPUT:</h4>
+        <pre class="out">
+        15
+            </pre>
+    </span>
+</body>
+
+</html>
+<style>.MathJax{display:inline;font-style:normal;font-weight:400;line-height:normal;font-size:100%;font-size-adjust:none;text-indent:0;text-align:left;text-transform:none;letter-spacing:normal;word-spacing:normal;word-wrap:normal;white-space:normal;float:none;direction:ltr;max-width:none;max-height:none;min-width:0;min-height:0;border:0;padding:0;margin:0}body{font-family:Raleway,"Helvetica Neue",Helvetica,Arial,sans-serif}.math{font-weight:700;font-style:italic;font-family:normal}.MJX_Assistive_MathML{display:none}</style>
