@@ -1,6 +1,3 @@
-<h3 style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);">Coming Soon!</h3>
-
-
 <div class="home-row">
 	<h3>Section 1</h3>
 	<a class="home-module" href="#/learn/intro-to-cs/0/">
@@ -37,11 +34,6 @@
 		<p>Week 8 - USACO Gold Concepts</p>
 	</a>
 </div>
-<style>
-	.home-row {
-		display: none;
-	}
-</style>
 <div id="menu-container" class="codicon codicon-loading" style="position: fixed; top: 60px; right: 10px;">
 	<% include('./views/menu.html').then(res => {document.getElementById("menu-container").classList.remove("codicon-loading"); document.getElementById("menu-container").innerHTML = res;nodeScriptReplace(document.getElementById("menu-container"))}) %>
 </div>

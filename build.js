@@ -9,7 +9,7 @@ var actions = {
     "Webdev Lessons": "webdev",
     "Webdev Projects": "webdev-projects",
     "AI Lessons": "ai",
-    //"Intro To CS": "intro-to-cs",
+    "Intro To CS": "intro-to-cs",
 }
 
 const BUILD_DIR = "build";
