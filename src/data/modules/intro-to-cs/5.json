@@ -42,11 +42,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]I/O in USACO[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ USACO now supports using [[`]]input()[[/]] and [[`]]print()[[/]] for input/output\n➔ Though, a more time efficient way is [[`]]stdin[[/]] and [[`]]stdout[[/]]\n"
+                    "content": "[[h3]]I/O in USACO[[/]]\n➔ USACO now supports using [[`]]input()[[/]] and [[`]]print()[[/]] for input/output\n➔ Though, a more time efficient way is [[`]]stdin[[/]] and [[`]]stdout[[/]]\n"
                 },
                 {
                     "type": "split-content",
@@ -178,11 +174,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Example Problem[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Three possible starting pos (1, 2, 3)\n[[ ]][[ ]]◆ Start pos = 1 → second pos = 2 (+0) → third pos = 3 (+0) → final pos = 1 (+1)\n[[ ]][[ ]]◆ Start pos = 2 → second pos = 1 (+1) → third pos = 1 (+1) → final pos = 3 (+0)\n[[ ]][[ ]]◆ Start pos = 3 → second pos = 3 (+0) → third pos = 2 (+0) → final pos = 2 (+0)\n"
+                    "content": "[[h3]]Example Problem[[/]]\n➔ Three possible starting pos (1, 2, 3)\n[[ ]][[ ]]◆ Start pos = 1 → second pos = 2 (+0) → third pos = 3 (+0) → final pos = 1 (+1)\n[[ ]][[ ]]◆ Start pos = 2 → second pos = 1 (+1) → third pos = 1 (+1) → final pos = 3 (+0)\n[[ ]][[ ]]◆ Start pos = 3 → second pos = 3 (+0) → third pos = 2 (+0) → final pos = 2 (+0)\n"
                 },
                 {
                     "type": "iframe",
@@ -269,11 +261,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Sorting Problem[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Should sort by time of arrival"
+                    "content": "[[h3]]Sorting Problem[[/]]\n➔ Should sort by time of arrival"
                 },
                 {
                     "type": "iframe",

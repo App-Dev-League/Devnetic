@@ -26,22 +26,14 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]The modulo[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Modular arithmetic is based on taking remainders of divisions, and modulo is the mathematical name of a function that returns the remainder of a certain division, abbreviated as mod\n➔ For example, [[`]]2 mod 3[[/]] is 2 because 3 goes into 2 zero times, and the entirety of the 2 is left as a remainder\n➔ We use this to avoid working with numbers that would cause the memory limit of integers and other data types to overflow, so instead of working with some entire number x, we work with x mod m where m can be any number we choose.\n"
+                    "content": "[[h3]]The modulo[[/]]\n➔ Modular arithmetic is based on taking remainders of divisions, and modulo is the mathematical name of a function that returns the remainder of a certain division, abbreviated as mod\n➔ For example, [[`]]2 mod 3[[/]] is 2 because 3 goes into 2 zero times, and the entirety of the 2 is left as a remainder\n➔ We use this to avoid working with numbers that would cause the memory limit of integers and other data types to overflow, so instead of working with some entire number x, we work with x mod m where m can be any number we choose.\n"
                 },
                 {
                     "type": "divider"
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Problems Involving Modulo[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Problem from: [[a]]https://cses.fi/problemset/task/1095[[/a]]\n➔ Problem statement: \n[[ ]][[ ]]◆ “The first input line contains an integer n: the number of calculations. After this, there are n lines, each containing two integers a and b. Print each value ab modulo 109 + 7“\n➔ The main issue with this is that directly calculating exponents and then using modulo will almost certainly cause the data type to overflow\n➔ Hence, we must use some clever manipulation to solve this problem within the memory limit\n"
+                    "content": "[[h3]]Problems Involving Modulo[[/]]\n➔ Problem from: [[a]]https://cses.fi/problemset/task/1095[[/a]]\n➔ Problem statement: \n[[ ]][[ ]]◆ “The first input line contains an integer n: the number of calculations. After this, there are n lines, each containing two integers a and b. Print each value ab modulo 109 + 7“\n➔ The main issue with this is that directly calculating exponents and then using modulo will almost certainly cause the data type to overflow\n➔ Hence, we must use some clever manipulation to solve this problem within the memory limit\n"
                 },
                 {
                     "type": "divider"
@@ -69,11 +61,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Delving Deeper[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ To achieve quick speeds and perform modulo automatically, Python uses binary exponentiation along with a modulo. Our implementation of this is shown below.\n"
+                    "content": "[[h3]]Delving Deeper[[/]]\n➔ To achieve quick speeds and perform modulo automatically, Python uses binary exponentiation along with a modulo. Our implementation of this is shown below.\n"
                 },
                 {
                     "type": "code",
@@ -109,11 +97,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]Fibonacci[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ The fibonacci sequence involves starting with 2 ones and adding two previous terms to make the current term\n[[ ]][[ ]]◆ Here’s a few terms of the sequence: 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377...\n➔ In programming, we typically use recursion or iteration to calculate the terms of a fibonacci sequence, but we will run out of time when calculating later terms of the sequence if we just use recursion\n➔ Hence, we must employ a technique called memoization to speed up this process\n"
+                    "content": "[[h3]]Fibonacci[[/]]\n➔ The fibonacci sequence involves starting with 2 ones and adding two previous terms to make the current term\n[[ ]][[ ]]◆ Here’s a few terms of the sequence: 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377...\n➔ In programming, we typically use recursion or iteration to calculate the terms of a fibonacci sequence, but we will run out of time when calculating later terms of the sequence if we just use recursion\n➔ Hence, we must employ a technique called memoization to speed up this process\n"
                 },
                 {
                     "type": "divider"
@@ -184,22 +168,14 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]About Hashing[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Hashing is a process used to compare strings in an efficient manner, and also encrypt things like passwords and other secret data\n➔ Hashing is a (typically one-way) function that converts a string to an integer so that it can be compared efficiently\n➔ In the normal brute force method of comparison, we compare strings character by character so the amount of time it takes depends on the length of the string. Comparing hashes on the other hand takes constant time, independent of string length.\n"
+                    "content": "[[h3]]About Hashing[[/]]\n➔ Hashing is a process used to compare strings in an efficient manner, and also encrypt things like passwords and other secret data\n➔ Hashing is a (typically one-way) function that converts a string to an integer so that it can be compared efficiently\n➔ In the normal brute force method of comparison, we compare strings character by character so the amount of time it takes depends on the length of the string. Comparing hashes on the other hand takes constant time, independent of string length.\n"
                 },
                 {
                     "type": "divider"
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Polynomial Rolling Hash Function[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ A widely used way to get the hash of a string is to use the polynomial rolling hash function\n➔ The math for this function is shown below, and you can learn more in the resources\n"
+                    "content": "[[h3]]Polynomial Rolling Hash Function[[/]]\n➔ A widely used way to get the hash of a string is to use the polynomial rolling hash function\n➔ The math for this function is shown below, and you can learn more in the resources\n"
                 },
                 {
                     "type": "image",
@@ -214,11 +190,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Hashing in Python[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Hashing in Python is as easy as writing one line of code\n➔ You simply use Python’s built-in hash function and put in the string as the input\n➔ Therefore, if you wish to check equality efficiently, using the built-in hash function can be very efficient\n"
+                    "content": "[[h3]]Hashing in Python[[/]]\n➔ Hashing in Python is as easy as writing one line of code\n➔ You simply use Python’s built-in hash function and put in the string as the input\n➔ Therefore, if you wish to check equality efficiently, using the built-in hash function can be very efficient\n"
                 },
                 {
                     "type": "code",
@@ -230,11 +202,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Extra Hashing Resources[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ [[a]]https://searchsqlserver.techtarget.com/definition/hashing[[/a]]\n➔ [[a]]https://www.programiz.com/python-programming/methods/built-in/hash[[/a]]\n➔ [[a]]https://cp-algorithms.com/string/string-hashing.html[[/a]]\n➔ [[a]]https://en.wikipedia.org/wiki/Hash_function[[/a]]\n➔ [[a]]https://usaco.guide/gold/string-hashing?lang=py[[/a]]\n"
+                    "content": "[[h3]]Extra Hashing Resources[[/]]\n➔ [[a]]https://searchsqlserver.techtarget.com/definition/hashing[[/a]]\n➔ [[a]]https://www.programiz.com/python-programming/methods/built-in/hash[[/a]]\n➔ [[a]]https://cp-algorithms.com/string/string-hashing.html[[/a]]\n➔ [[a]]https://en.wikipedia.org/wiki/Hash_function[[/a]]\n➔ [[a]]https://usaco.guide/gold/string-hashing?lang=py[[/a]]\n"
                 }
             ]
         },
@@ -244,11 +212,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]Trees[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Trees are data structures that store data in a hierarchical manner\n➔ They are used for storing data like family hierarchies, organizational structures and more\n➔ Trees start with nodes that connect to each other via edges that define hierarchy\n"
+                    "content": "[[h3]]Trees[[/]]\n➔ Trees are data structures that store data in a hierarchical manner\n➔ They are used for storing data like family hierarchies, organizational structures and more\n➔ Trees start with nodes that connect to each other via edges that define hierarchy\n"
                 },
                 {
                     "type": "split-content",
@@ -268,11 +232,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Extra Resources[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ [[a]]https://en.wikipedia.org/wiki/Tree_(data_structure)[[/a]]\n➔ [[a]]https://www.delftstack.com/howto/python/trees-in-python/ [[/a]]\n➔ [[a]]https://usaco.guide/gold/tree-euler?lang=py[[/a]]\n➔ [[a]]https://www.freecodecamp.org/news/all-you-need-to-know-about-tree-data-structures-bceacb85490c/[[/a]]\n➔ [[a]]https://stackoverflow.com/questions/2358045/how-can-i-implement-a-tree-in-python[[/a]]\n"
+                    "content": "[[h3]]Extra Resources[[/]]\n➔ [[a]]https://en.wikipedia.org/wiki/Tree_(data_structure)[[/a]]\n➔ [[a]]https://www.delftstack.com/howto/python/trees-in-python/ [[/a]]\n➔ [[a]]https://usaco.guide/gold/tree-euler?lang=py[[/a]]\n➔ [[a]]https://www.freecodecamp.org/news/all-you-need-to-know-about-tree-data-structures-bceacb85490c/[[/a]]\n➔ [[a]]https://stackoverflow.com/questions/2358045/how-can-i-implement-a-tree-in-python[[/a]]\n"
                 }
             ]
         }

@@ -24,11 +24,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Original Problem[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Problem from [[a]]https://judge.yosupo.jp/problem/static_range_sum[[/a]]"
+                    "content": "[[h3]]Original Problem[[/]]\n➔ Problem from [[a]]https://judge.yosupo.jp/problem/static_range_sum[[/a]]"
                 },
                 {
                     "type": "image",
@@ -67,11 +63,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Code Solution[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ In the generateList function, we are generating the partial sums for the given list by setting the first index in our new list to be generated (g) to 0 and then iterating over the input list to add each number and create the partial sums list.\n➔ Next, we work on getting our inputs by using the input() function and convert them to ints as needed.\n➔ In the loop at the end, we iterate over each query Q and use our generated list of partial sums to compute the partial sums from a to b\n"
+                    "content": "[[h3]]Code Solution[[/]]\n➔ In the generateList function, we are generating the partial sums for the given list by setting the first index in our new list to be generated (g) to 0 and then iterating over the input list to add each number and create the partial sums list.\n➔ Next, we work on getting our inputs by using the input() function and convert them to ints as needed.\n➔ In the loop at the end, we iterate over each query Q and use our generated list of partial sums to compute the partial sums from a to b\n"
                 }
             ]
         },
@@ -81,26 +73,14 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]Binary Search - introduction[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ In the generateList function, we are generating the partial sums for the given list by setting the first index in our new list to be generated (g) to 0 and then iterating over the input list to add each number and create the partial sums list.\n➔ Next, we work on getting our inputs by using the input() function and convert them to ints as needed.\n➔ In the loop at the end, we iterate over each query Q and use our generated list of partial sums to compute the partial sums from a to b\n"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ One way of solving the above problem might be to simply look through every element in the array and stop once we find the element we are looking for\n➔ This requires a time complexity of O(n) because if n is the size of the array we may need to search all elements before we come to our solution\n➔ However, binary search offers a much faster way of doing this.\n"
+                    "content": "[[h3]]Binary Search - introduction[[/]]\n➔ In the generateList function, we are generating the partial sums for the given list by setting the first index in our new list to be generated (g) to 0 and then iterating over the input list to add each number and create the partial sums list.\n➔ Next, we work on getting our inputs by using the input() function and convert them to ints as needed.\n➔ In the loop at the end, we iterate over each query Q and use our generated list of partial sums to compute the partial sums from a to b\n\n➔ One way of solving the above problem might be to simply look through every element in the array and stop once we find the element we are looking for\n➔ This requires a time complexity of O(n) because if n is the size of the array we may need to search all elements before we come to our solution\n➔ However, binary search offers a much faster way of doing this.\n"
                 },
                 {
                     "type": "divider"
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Binary Search - the algorithm[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ As the name suggests, binary search is based on the idea of division into two parts.\n➔ Here’s the algorithm: We start by checking the middle element of the array. If it is more than the element we are looking for, we now reduce the array into just the left half. \n➔ If it is less than the element we are looking for, we reduce the array into just the right half\n"
+                    "content": "[[h3]]Binary Search - the algorithm[[/]]\n➔ As the name suggests, binary search is based on the idea of division into two parts.\n➔ Here’s the algorithm: We start by checking the middle element of the array. If it is more than the element we are looking for, we now reduce the array into just the left half. \n➔ If it is less than the element we are looking for, we reduce the array into just the right half\n"
                 }
             ]
         },
@@ -110,15 +90,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]Binary Search - walk through[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Don’t get it? Let’s walk through it\n➔ Problem: Look for the element 5 in [2, 5, 6, 7, 8, 10, 12, 15, 21]\n➔ The middle element in this array is 8\n➔ 8 is more than 5 so we reduce the array into the left half and search again\n➔ The new problem: Look for the element 5 in [2, 5, 6, 7]\n"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ The middle element here is 6\n➔ 6 is more than 5 so we once again look in the left half\n➔ New problem: Look for the element 5 in [2, 5]\n➔ Now the middle element is 5\n➔ 5 is equal to 5 so we have found our result!\n"
+                    "content": "[[h3]]Binary Search - walk through[[/]]\n➔ Don’t get it? Let’s walk through it\n➔ Problem: Look for the element 5 in [2, 5, 6, 7, 8, 10, 12, 15, 21]\n➔ The middle element in this array is 8\n➔ 8 is more than 5 so we reduce the array into the left half and search again\n➔ The new problem: Look for the element 5 in [2, 5, 6, 7]\n\n➔ The middle element here is 6\n➔ 6 is more than 5 so we once again look in the left half\n➔ New problem: Look for the element 5 in [2, 5]\n➔ Now the middle element is 5\n➔ 5 is equal to 5 so we have found our result!\n"
                 }
             ]
         },
@@ -128,11 +100,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]Binary Search - Complexity Analysis[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Now that you saw the algorithm perform, let’s discuss the complexity of this algorithm in terms of time complexity.\n➔ Since we reduce the array to half its original size each time, we will never have to search through all n elements\n➔ However, as we keep going, if our number is in just the right spot, we may need to divide until our sub-array has just one element left in it\n➔ This number of divisions is log2(n)\n➔ Therefore, out time complexity is O(log2(n)) and this is much faster than O(n)!\n"
+                    "content": "[[h3]]Binary Search - Complexity Analysis[[/]]\n➔ Now that you saw the algorithm perform, let’s discuss the complexity of this algorithm in terms of time complexity.\n➔ Since we reduce the array to half its original size each time, we will never have to search through all n elements\n➔ However, as we keep going, if our number is in just the right spot, we may need to divide until our sub-array has just one element left in it\n➔ This number of divisions is log2(n)\n➔ Therefore, out time complexity is O(log2(n)) and this is much faster than O(n)!\n"
                 },
                 {
                     "type": "code",
@@ -167,22 +135,14 @@
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Examples of Graphs[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ Mazes can be represented by graphs, where each space is a node and each way to move is an edge. In this case the graph would be directional.\n➔ The “web” can be represented by a graph because each webpage (node) is connected to the other via hyperlinks (edges)\n➔ Social networking can be represented by a graph, where the nodes could be individual people and edges could connect people who are friends.\n"
+                    "content": "[[h3]]Examples of Graphs[[/]]\n➔ Mazes can be represented by graphs, where each space is a node and each way to move is an edge. In this case the graph would be directional.\n➔ The “web” can be represented by a graph because each webpage (node) is connected to the other via hyperlinks (edges)\n➔ Social networking can be represented by a graph, where the nodes could be individual people and edges could connect people who are friends.\n"
                 },
                 {
                     "type": "divider"
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Pathfinding[[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ The pathfinding problem is one of the most famous problems in competitive programming. It involves finding the best way to get from some node in a graph to another node via edges. \n"
+                    "content": "[[h3]]Pathfinding[[/]]\n➔ The pathfinding problem is one of the most famous problems in competitive programming. It involves finding the best way to get from some node in a graph to another node via edges. \n"
                 },
                 {
                     "type": "split-content",
@@ -202,11 +162,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Depth First Search [[/]]"
-                },
-                {
-                    "type": "text",
-                    "content": "➔ For the silver level of USACO, depth first search (DFS) pops up fairly often. \n➔ DFS is a pathfinding algorithm that involves searching through each possible path until you reach some dead-end.\n➔ Then, the algorithm returns to each previously visited node and explores other paths\n➔ Once the algorithm finds a path to the target node, it returns that path.\n"
+                    "content": "[[h3]]Depth First Search [[/]]\n➔ For the silver level of USACO, depth first search (DFS) pops up fairly often. \n➔ DFS is a pathfinding algorithm that involves searching through each possible path until you reach some dead-end.\n➔ Then, the algorithm returns to each previously visited node and explores other paths\n➔ Once the algorithm finds a path to the target node, it returns that path.\n"
                 }
             ]
         },
