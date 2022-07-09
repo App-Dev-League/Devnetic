@@ -21,6 +21,9 @@
     <link rel="shortcut icon" type="image/png" href="./assets/img/icon.png" />
     <link rel="apple-touch-icon" type="image/png" href="./assets/img/icon.png" />
     <style>
+        html {
+            overflow-x: hidden;
+        }
         @media (max-width: 700px) {
             .logo span {
                 display: none !important;
@@ -1081,11 +1084,39 @@
         }
 
         .console-stop {
-            color: black;
+            color: transparent;
             position: fixed;
             right: 30px;
+            background-color: transparent;
+            font-size: 12px;
+            padding: 4px;
+            line-height: 14px;
+            border: 1px solid transparent;
+        }
+        .console-start {
+            color: #8AE28A;
+            position: fixed;
+            right: 60px;
+            background-color: transparent;
+            font-size: 19px;
+            padding: 5px;
+            line-height: 12px;
+            border: 1px solid transparent;
+            width: 24px;
+        }
+        .console-stop::before {
+            background-color: #C04048;
+            border: 1px solid #F44B56;
         }
 
+        .console-stop:hover,.console-start:hover {
+            border: 1px solid #666666;
+            background: #1e1e1e;
+        }
+        .console-start::before {
+            position: relative;
+            left: -4px;
+        }
         .console-wrapper {
             height: calc(100% - 50px);
         }
@@ -1147,11 +1178,6 @@
             overflow: auto;
         }
 
-        .console-stop {
-            color: black;
-            position: fixed;
-            right: 30px;
-        }
 
         .console-wrapper {
             height: calc(100% - 50px);
@@ -1688,6 +1714,18 @@
 </style>
 <!-- Codicon font stuff -->
 <style>
+    .codicon-debug-start:before {
+        content: "\ead3";
+    }
+
+    .codicon-debug-stop:before {
+        content: "\ead7";
+    }
+
+    .codicon-stop-circle:before {
+        content: "\eba5";
+    }
+
     .codicon-tools:before {
         content: "\eb6d";
     }

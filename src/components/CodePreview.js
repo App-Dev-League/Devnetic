@@ -168,10 +168,17 @@ class CodePreview extends tApp.Component {
 					d.classList = ["console-wrapper"];
 					document.getElementById("preview-container").appendChild(d)
 					let stop = document.createElement("button");
-					stop.classList = ["console-stop"];
-					stop.innerText = "Stop";
+					stop.classList = ["console-stop codicon codicon-debug-stop"];
 					stop.onclick = quitFunction
+					stop.title = "Stop"
 					document.getElementById("preview-container").querySelector(".console-wrapper").appendChild(stop)
+					let start = document.createElement("button");
+					start.classList = ["console-start codicon codicon-debug-start"];
+					start.onclick = () => {
+						document.getElementById("code-editor-run-btn").click();
+					}
+					start.title = "Start"
+					document.getElementById("preview-container").querySelector(".console-wrapper").appendChild(start)
 				}
 				if (!document.getElementById("preview-container").querySelector(".console-input")) {
 					let input = document.createElement("input");
