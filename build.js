@@ -11,30 +11,37 @@ var actions = {
     "AI Lessons": "ai",
     "Intro To CS": "intro-to-cs",
 }
+var colors = {
+    "webdev": "linear-gradient(to right, #c33764, #1d2671)",
+    "webdev-projects": "linear-gradient(to right, #4776e6, #8e54e9)",
+    "ai": "linear-gradient(to right, #348f50, #56b4d3)",
+    "intro-to-cs": "linear-gradient(to right, #4ecdc4, #556270)"
+}
+
 
 const BUILD_DIR = "build";
 
 console.log("Clearing old files...");
 try {
-    fs.rmSync(`./${BUILD_DIR}/public/app`, { recursive: true });
+    //fs.rmSync(`./${BUILD_DIR}/public/app`, { recursive: true });
 } catch (err) { }
 
 var fileList = []
 
 console.log("Updating indices...")
 createModuleIndex();
-createPluginSizeIndex();
-console.log("Combining sequential text elements...")
-combineSequentialTextElements();
-console.log("Updating version...")
-updateVersion();
-console.log("Building...")
-copyFolderSync("./src", `./${BUILD_DIR}/public/app`)
-console.log("Creating offline file map...");
-createOfflineFileMap();
-console.log("Cleaning up...");
-cleanUp();
-console.log("Build complete!");
+// createPluginSizeIndex();
+// console.log("Combining sequential text elements...")
+// combineSequentialTextElements();
+// console.log("Updating version...")
+// updateVersion();
+// console.log("Building...")
+// copyFolderSync("./src", `./${BUILD_DIR}/public/app`)
+// console.log("Creating offline file map...");
+// createOfflineFileMap();
+// console.log("Cleaning up...");
+// cleanUp();
+// console.log("Build complete!");
 
 function copyFolderSync(from, to) {
     fs.mkdirSync(to);
@@ -86,7 +93,8 @@ function createModuleIndex() {
     Object.entries(actions).forEach(([key, value]) => {
         json[value] = {
             totalPages: 0,
-            module_meta_data: []
+            module_meta_data: [],
+            background: colors[value]
         };
         fs.readdirSync(`./src/data/modules/${value}`).forEach(element => {
             if (element.endsWith("-example.json")) return;

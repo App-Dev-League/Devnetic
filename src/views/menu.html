@@ -5,6 +5,7 @@
      var actions = moduleData.actions
      var data = {}
      window.menuData = {};
+     window.rawModuleData = moduleData;
 
      for (let p = 0; p<Object.entries(actions).length; p++) {
         var key = Object.entries(actions)[p][0]
@@ -45,6 +46,7 @@
         }
      }
      console.log(window.menuData)
+     window.onNewMenuData(window.menuData)
     %>
     <span id="menu-icon" class="codicon codicon-checklist" title="Dashboard" onclick="showMainMenu()"></span>
     <div id="menu-wrapper" class="closed">
@@ -373,4 +375,11 @@
             document.getElementById("menu-wrapper").querySelector(".pie-chart-bg").classList.add("minimized")
         }
     })
+    if (document.querySelector(".track-header-bg") && window.rawModuleData) {
+        document.querySelector(".track-header-bg").style.background = window.rawModuleData[window.location.hash.split("/")[2]].background
+        let totalPages = window.rawModuleData[window.location.hash.split("/")[2]].totalPages;
+        if (window.location.hash.split("/")[2].endsWith("-projects")) totalPages = totalPages * 1.5
+        let hours = Math.round(totalPages / 60)
+        document.querySelector(".track-header-card .time > span").innerText = `${hours} - ${hours+2}hr`
+    }
 </script>
