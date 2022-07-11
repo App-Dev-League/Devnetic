@@ -34,9 +34,9 @@ class MultipleChoice extends ModuleComponent {
 				this.state.explanation.state.points = this.data().points;
 				this.state.explanation.state.coins = this.data().coins;
 			}
-			let returnStr = `<div>
+			let returnStr = `<div class="stack-width">
 	<h1 class="mc-question">${tApp.escape(this.data().question || "")}</h1>
-	<div class="mc-codeblock codeblock-wrapper">
+	<div class="mc-codeblock codeblock-wrapper stack-width">
 		${new codeBlock({code: this.data().code || "", language: this.data().lang})}
 	</div>
 	<div class="mc-answer-table">

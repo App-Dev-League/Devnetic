@@ -34,7 +34,7 @@ class Instructions extends tApp.Component {
 			${(this.state.elements || []).map(element => {
 				return renderElement(element)
 			}).join("")}
-			<button class="info-button" onclick="{{_this}}.parent.checknext();">${this.state.nextText}</button>
+			<button class="info-button" id="continue-button" onclick="{{_this}}.parent.checknext();">${this.state.nextText}</button>
 			<div class="hints">
 				<h2>Stuck?</h2>
 				${(this.state.hints || [{elements: [{type: "text", content: ""}]}]).map(element => {

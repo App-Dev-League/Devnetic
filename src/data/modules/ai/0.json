@@ -39,10 +39,10 @@
             "type": "multiple_choice",
             "question": "Why is Python so great?",
             "answers": [
-                "All of the above",
                 "Extremely Popular",
                 "Easy and redable syntax",
-                "Tons of libraries for AI, data science, and more"
+                "Tons of libraries for AI, data science, and more",
+                "All of the above"
             ],
             "correct": 0,
             "descriptions": [

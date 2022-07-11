@@ -141,28 +141,32 @@
                 {
                     "type": "code",
                     "content": "<body>\n\tDisplayed content tags go here\n</body>"
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content":  "[[h6]]What could be included in the below tag?[[/]]\n [[`]]<head></head>[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "The header of the website",
+                        "The main webpage",
+                        "The webpage's metadata",
+                        "The website's footer"
+                    ],
+                    "correct": 2,
+                    "descriptions": [
+                        "Incorrect! The header of the webpage should be included in the body!",
+                        "Incorrect, the main webpage should all be included in the body!",
+                        "Correct! The head tags is used to include metadata about the website like it's title and descriptions",
+                        "That doesn't seem correct! Try again"
+                    ],
+                    "points": 5,
+                    "coins": 1
                 }
             ]
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What could be included in the below tag?",
-            "code_template": "<head>\n</head>",
-            "answers": [
-                "The header of the website",
-                "The main webpage",
-                "The webpage's metadata",
-                "The website's footer"
-            ],
-            "correct": 2,
-            "descriptions": [
-                "Incorrect! The header of the webpage should be included in the body!",
-                "Incorrect, the main webpage should all be included in the body!",
-                "Correct! The head tags is used to include metadata about the website like it's title and descriptions",
-                "That doesn't seem correct! Try again"
-            ],
-            "points": 5,
-            "coins": 1
         },
         {
             "type": "information",

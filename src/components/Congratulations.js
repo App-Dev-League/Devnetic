@@ -13,7 +13,7 @@ class Congratulations extends ModuleComponent {
 	${(this.data().elements || []).map(element => {
 		return renderElement(element)
 	}).join("")}
-	<button class="info-button" onclick="{{_this}}.parent.next();">Next Module</button>
+	<button class="info-button" id="continue-button" onclick="{{_this}}.parent.next();">Next Module</button>
 </div>`;
 		}
 		return "<div></div>";

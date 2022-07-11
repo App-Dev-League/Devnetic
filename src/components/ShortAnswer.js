@@ -33,7 +33,7 @@ class ShortAnswer extends ModuleComponent {
 			if(this.data().value == null) {
 				this.data().value = "";
 			}
-			let returnStr = `<div>
+			let returnStr = `<div class="stack-width">
 	<h1 class="mc-question">${tApp.escape(this.data().question || "")}</h1>
 	<div class="codeblock-wrapper mc-codeblock">
 		${new codeBlock({code: this.data().code || "", language: this.data().lang, name: this.data().name})}

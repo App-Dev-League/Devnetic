@@ -42,7 +42,7 @@ class ExplanationModal extends tApp.Component {
 							{% endif %}
 							</p>
 						{% endif %}
-						<button class="button-correct" onclick="{{_this}}.parent.parent.next();">Next</button>
+						<button class="button-correct" onclick="{{_this}}.parent.correct();">Ok</button>
 					{% endif %}
 				</center>
 			</div>

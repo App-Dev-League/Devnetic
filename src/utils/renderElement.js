@@ -2,11 +2,14 @@ const codeBlock = require("../components/codeBlock.js");
 const codeBlockHelper = require("./codeBlocks.js");
 
 const codeTemplateToCode = require("./codeTemplateToCode.js");
+const MultipleChoice = require("../components/EmbededMultipleChoice.js")
+
 
 module.exports = function renderElement(element) {
+
     if (element.type == "code") {
         return `<div class="codeblock-wrapper">
-        ${new codeBlock({ code: codeBlockHelper.escapeHtml(element.content || ""), language: element.lang, name: element.name})}
+        ${new codeBlock({ code: codeBlockHelper.escapeHtml(element.content || ""), language: element.lang, name: element.name })}
 </div>`
     } else if (element.type == "divider") {
         if (element.height) return `<div style="width: 100%; height: ${element.height}px; background-color: rgba(0,0,0,0)"></div>`;
@@ -41,6 +44,24 @@ module.exports = function renderElement(element) {
                     </div>
                 `
         }).join("")}
+        </div>
+        `
+    } else if (element.type == "embedded_multiple_choice") {
+        const multipleChoiceElement = new MultipleChoice({ answers: element.answers, correct: element.correct, descriptions: element.descriptions, points: element.points, coins: element.coins }, null)
+        return `
+        <div class="multiple-choice-wrapper">
+        <div class="indicator-symbol">Multiple Choice Question</div>
+        <canvas class="mc-answer-confetti"></canvas>
+
+            ${element.elements.map(element => {
+            element.width = "100%" || element.width;
+            return `
+                    <div class="info-vertical-content-element">
+                        ${renderElement(element)}
+                    </div>
+                `
+        }).join("")}
+        ${multipleChoiceElement}
         </div>
         `
     } else {

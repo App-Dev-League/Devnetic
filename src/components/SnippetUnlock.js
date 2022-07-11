@@ -16,7 +16,7 @@ class SnippetUnlock extends ModuleComponent {
 	<div class="codeblock-wrapper">
 	${new codeBlock({ code: this.data().code, language: this.data().lang, name: this.data().name}, this)}
 		</div>
-	<button class="info-button" onclick="{{_this}}.parent.next();">Continue</button>
+	<button class="info-button" id="continue-button" onclick="{{_this}}.parent.next();">Continue</button>
 </div>`;
 		}
 		return "<div></div>";
