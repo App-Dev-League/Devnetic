@@ -23,25 +23,25 @@ const BUILD_DIR = "build";
 
 console.log("Clearing old files...");
 try {
-    //fs.rmSync(`./${BUILD_DIR}/public/app`, { recursive: true });
+    fs.rmSync(`./${BUILD_DIR}/public/app`, { recursive: true });
 } catch (err) { }
 
 var fileList = []
 
 console.log("Updating indices...")
 createModuleIndex();
-// createPluginSizeIndex();
-// console.log("Combining sequential text elements...")
-// combineSequentialTextElements();
-// console.log("Updating version...")
-// updateVersion();
-// console.log("Building...")
-// copyFolderSync("./src", `./${BUILD_DIR}/public/app`)
-// console.log("Creating offline file map...");
-// createOfflineFileMap();
-// console.log("Cleaning up...");
-// cleanUp();
-// console.log("Build complete!");
+createPluginSizeIndex();
+console.log("Combining sequential text elements...")
+combineSequentialTextElements();
+console.log("Updating version...")
+updateVersion();
+console.log("Building...")
+copyFolderSync("./src", `./${BUILD_DIR}/public/app`)
+console.log("Creating offline file map...");
+createOfflineFileMap();
+console.log("Cleaning up...");
+cleanUp();
+console.log("Build complete!");
 
 function copyFolderSync(from, to) {
     fs.mkdirSync(to);
