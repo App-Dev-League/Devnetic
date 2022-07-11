@@ -15,7 +15,7 @@ class ModulePage extends tApp.Component {
 		this.setState("component", component);
 	}
 	async next() {
-		if (document.getElementById("continue-button").classList.contains("continue-button-disabled")) return;
+		if (document.getElementById("continue-button") && document.getElementById("continue-button").classList.contains("continue-button-disabled")) return;
 		if(this.state.next != null) {
 			if(this.state.data.type == "snippet_unlock" && this.state.data.snippet != null) {
 				await this.state.Database.storeSnippet(this.state.data.snippet);
