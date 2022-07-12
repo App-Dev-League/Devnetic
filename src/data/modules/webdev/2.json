@@ -206,122 +206,152 @@
                 {
                     "type": "code",
                     "content": "element = $('#your_id'); // Simplify getting element by ID\nelement = $('h2'); // Get elements by tag name\nelement = $('.pop_up'); // Get elements by class name\nelement.text('New text'); // set text content\ntext = element.text(); // get element text\nelement.html('<h2>New title</h2>'); // Set HTML content\ncontent = element.html(); // Get HTML content"
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]Which of the following is javascript NOT used for[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "Animations",
+                        "Interactive material",
+                        "Styling documents",
+                        "Implimenting logic"
+                    ],
+                    "correct": 2,
+                    "descriptions": [
+                        "JavaScript is a great way to create animations.",
+                        "JavaScript is perfect for creating interactive material.",
+                        "CSS is used for this reason.",
+                        "JavaScript is great at implimenting logic."
+                    ],
+                    "points": 5,
+                    "coins": 1
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]Which of the following characters can start a comment?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "//",
+                        "--",
+                        "**",
+                        "\\\\"
+                    ],
+                    "correct": 0,
+                    "descriptions": [
+                        "Also, '/*' can start can start comments.",
+                        "Wrong. '--' is incorrect syntax.",
+                        "Wrong. '**' is incorrect syntax.",
+                        "Check the kind of slash you use."
+                    ],
+                    "points": 5,
+                    "coins": 1
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]What do developers primarily use the console for?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "Viewing their code",
+                        "Debugging",
+                        "Reading the documentation of javascript",
+                        ""
+                    ],
+                    "correct": 1,
+                    "descriptions": [
+                        "The console is not a way to view code.",
+                        "Logging variables and viewing errors are great ways to use the console for debugging.",
+                        "The console does not fulfill this.",
+                        ""
+                    ],
+                    "points": 5,
+                    "coins": 1
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]Which of the following is a not a console method[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "upload",
+                        "log",
+                        "clear",
+                        ""
+                    ],
+                    "correct": 0,
+                    "descriptions": [
+                        "The upload function doesn't exist!",
+                        "This prints to the console.",
+                        "This clears all text from the console.",
+                        ""
+                    ],
+                    "points": 5,
+                    "coins": 1
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]Which of the following is an invalid comparison operator?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "===",
+                        ">=",
+                        "=",
+                        "=="
+                    ],
+                    "correct": 2,
+                    "descriptions": [
+                        "'==' checks if two values are equal.",
+                        "'>=' checks if one value is greater than or equal to another.",
+                        "'=' assigns a variable a value and does not compare two values.",
+                        "'===' checks if two values are equal."
+                    ],
+                    "points": 5,
+                    "coins": 1
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]What does a conditional statement do?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "Executes a code block if a condition is true",
+                        "Catches errors from a code block",
+                        "Returns a conditional",
+                        ""
+                    ],
+                    "correct": 0,
+                    "descriptions": [
+                        "Also known as the if statement.",
+                        "This is what the try-catch statement is for.",
+                        "They simply execute code, not return values.",
+                        ""
+                    ],
+                    "points": 5,
+                    "coins": 1
                 }
             ]
-        },
-        {
-            "type": "multiple_choice",
-            "question": "Which of the following is javascript NOT used for",
-            "descriptions": [
-                "JavaScript is a great way to create animations.",
-                "JavaScript is perfect for creating interactive material.",
-                "CSS is used for this reason.",
-                "JavaScript is great at implimenting logic."
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "Animations",
-                "Interactive material",
-                "Styling documents",
-                "Implimenting logic"
-            ],
-            "correct": 2
-        },
-        {
-            "type": "multiple_choice",
-            "question": "Which of the following characters can start a comment?",
-            "descriptions": [
-                "Also, '/*' can start can start comments.",
-                "Wrong. '--' is incorrect syntax.",
-                "Wrong. '**' is incorrect syntax.",
-                "Check the kind of slash you use."
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "//",
-                "--",
-                "**",
-                "\\\\"
-            ],
-            "correct": 0
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What do developers primarily use the console for?",
-            "descriptions": [
-                "The console is not a way to view code.",
-                "Logging variables and viewing errors are great ways to use the console for debugging.",
-                "The console does not fulfill this.",
-                ""
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "Viewing their code",
-                "Debugging",
-                "Reading the documentation of javascript",
-                ""
-            ],
-            "correct": 1
-        },
-        {
-            "type": "multiple_choice",
-            "question": "Which of the following is a not a console method",
-            "descriptions": [
-                "The upload function doesn't exist!",
-                "This prints to the console.",
-                "This clears all text from the console.",
-                ""
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "upload",
-                "log",
-                "clear",
-                ""
-            ],
-            "correct": 0
-        },
-        {
-            "type": "multiple_choice",
-            "question": "Which of the following is an invalid comparison operator?",
-            "descriptions": [
-                "'==' checks if two values are equal.",
-                "'>=' checks if one value is greater than or equal to another.",
-                "'=' assigns a variable a value and does not compare two values.",
-                "'===' checks if two values are equal."
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "===",
-                ">=",
-                "=",
-                "=="
-            ],
-            "correct": 2
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What does a conditional statement do?",
-            "descriptions": [
-                "Also known as the if statement.",
-                "This is what the try-catch statement is for.",
-                "They simply execute code, not return values.",
-                ""
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "Executes a code block if a condition is true",
-                "Catches errors from a code block",
-                "Returns a conditional",
-                ""
-            ],
-            "correct": 0
         },
         {
             "type": "multiple_choice",

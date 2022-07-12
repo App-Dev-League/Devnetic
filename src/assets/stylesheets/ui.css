@@ -143,6 +143,7 @@ header * {
     border-radius: 12px;
     padding-top: 38px;
     position: relative;
+    margin-top: 40px;
 }
 
 .multiple-choice-wrapper .info-text {
@@ -240,4 +241,17 @@ header * {
     left: 15px;
     font-size: 0.9em;
     color: var(--chakra-colors-yellow-600);
+}
+html {
+    scroll-behavior: smooth;
+}
+.mc-answer>p {
+    overflow-wrap: break-word;
+}
+.mc-answer-table {
+    margin-left: auto;
+    margin-right: auto;
+}
+.explanation-modal {
+    position: fixed !important;
 }

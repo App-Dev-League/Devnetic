@@ -74,28 +74,32 @@
                 {
                     "type": "image",
                     "src": "./data/modules/webdev-assets/img6/2-1.png"
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]How would we create a React element with class \"main\"?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "<element class=\"main\"></element>",
+                        "<element className=\"main\"></element>",
+                        "<element class={main}></element>",
+                        "<element className={main}></element>"
+                    ],
+                    "correct": 1,
+                    "descriptions": [
+                        "That would be correct if we were working with normal HTML",
+                        "Great work! React camelCases classNames!",
+                        "Remember that the curly brackets {} are only used when injecting variables into text!",
+                        "Remember that the curly brackets {} are only used when injecting variables into text!"
+                    ],
+                    "points": 5,
+                    "coins": 1
                 }
             ]
-        },
-        {
-            "type": "multiple_choice",
-            "question": "How would we create a React element with class \"main\"?",
-            "code_template": ".main {\n    color: red\n}",
-            "answers": [
-                "<element class=\"main\"></element>",
-                "<element className=\"main\"></element>",
-                "<element class={main}></element>",
-                "<element className={main}></element>"
-            ],
-            "correct": 1,
-            "descriptions": [
-                "That would be correct if we were working with normal HTML",
-                "Great work! React camelCases classNames!",
-                "Remember that the curly brackets {} are only used when injecting variables into text!",
-                "Remember that the curly brackets {} are only used when injecting variables into text!"
-            ],
-            "points": 5,
-            "coins": 1
         },
         {
             "type": "short_answer",

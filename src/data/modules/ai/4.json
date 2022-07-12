@@ -120,126 +120,152 @@
                     "src": "./data/modules/ai-assets/img4/3-2.png",
                     "width": "49%",
                     "float": "right"
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]What can Neural Networks be used for?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "Supervised Learning",
+                        "Unsupervised Learning",
+                        "Image Classification",
+                        "All of the above"
+                    ],
+                    "correct": 3,
+                    "descriptions": [
+                        "Neural Networks can do more than just supervised learning tasks! They are highly versatile.",
+                        "Neural Networks can do more than just unsupervised learning tasks! They are highly versatile.",
+                        "Neural Networks can do more than just image classification tasks! They are highly versatile!",
+                        "Correct! Neural Networks are extremely useful due to their versatility that allows us to use them for many different ML tasks."
+                    ],
+                    "points": 5,
+                    "coins": 1
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]What inspired the structure of Neural Networks?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "The Human Brain",
+                        "Communication Networks",
+                        "Graph Theory",
+                        "Particle Physics"
+                    ],
+                    "correct": 0,
+                    "descriptions": [
+                        "Correct! The human brain inspired the the way the neural network is structured!",
+                        "Communication networks did not inspire the neural network. Hint: think of the term \"neural\" and why it could be used.",
+                        "While graph theory was involved in its development, it did not directly inspire the Neural Network. Hint: think of the term \"neural\" and why it could be used.",
+                        "Particle physics played no role in the structure of a neural network. Hint: think of the term \"neural\" and why it could be used."
+                    ],
+                    "points": 5,
+                    "coins": 1
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]What are the parts of a neural network?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "Neurons, Weights, Biases, and Layers",
+                        "Neurons, Dendrites, Axons, and Myelin Sheaths",
+                        "Nodes, Edges, Multiplicatives, and Results",
+                        "Inputs and Ouputs only"
+                    ],
+                    "correct": 0,
+                    "descriptions": [
+                        "Correct! Neural Networks consist of neurons, weights, biases and layers!",
+                        "These are the parts of the brain, not an artificial neural network.",
+                        "These parts do not accurately describe the parts of a neural network.",
+                        "Inputs and outputs are part of a neural network, but they are not the only parts."
+                    ],
+                    "points": 5,
+                    "coins": 1
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]What is a neuron?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "Another name for a layer",
+                        "The hidden processing layer of a Neural Network",
+                        "An input to the Neural Network",
+                        "A single processing unit of a Neural Network"
+                    ],
+                    "correct": 3,
+                    "descriptions": [
+                        "Neuron is not an alternative name for a layer. Rather, a layer is made up of many neurons.",
+                        "The neuron is not a layer. Rather, a layer is made up of many neurons.",
+                        "A neuron is not an input to the Neural Network. Rather, a neuron can process inputs.",
+                        "Correct! A neuron is a single processing unit in a Neural Network"
+                    ],
+                    "points": 5,
+                    "coins": 1
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]How do you conduct feedforward in a Neural Network?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "Feed data forward using a chain of neurons",
+                        "Subsequent neurons make calculations in layers and send them to weights.",
+                        "Multiply inputs by weights and sum them at neurons until you reach the end.",
+                        "Take in input and pass them through multiple calculations"
+                    ],
+                    "correct": 2,
+                    "descriptions": [
+                        "Feed forward does not feed data into a chain of neurons. Think of the diagrams in this chapter.",
+                        "Neurons do not send calculations to weights. Think of the diagrams in this chapter.",
+                        "Correct! Feedforward takes every input, multiplies by weights, and sums them at every neuron till the final layer is reached.",
+                        "Feedforward does not simply pass inputs through many calculations. Think of the diagrams in this chapter"
+                    ],
+                    "points": 10,
+                    "coins": 3
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]What happens if all your inputs are zero AND there are no biases[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "The result is always 1",
+                        "The result is always 0",
+                        "The neural network cannot conduct feedforward",
+                        "The result is always 2"
+                    ],
+                    "correct": 1,
+                    "descriptions": [
+                        "The result of all inputs being 0 with no weights is not 1. What happens when you multiply numbers by 0?",
+                        "Correct! If no biases are present, no adjustment is made to the feedforward and the result is always 0",
+                        "Even if there are no biases and the inputs are 0, feedforward can be conducted. What is the result of feedforward with all 0 inputs?",
+                        "The result of all inputs being 0 with no weights is not 2. What happens when you multiply numbers by 0?"
+                    ],
+                    "points": 5,
+                    "coins": 1
                 }
             ]
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What can Neural Networks be used for?",
-            "answers": [
-                "Supervised Learning",
-                "Unsupervised Learning",
-                "Image Classification",
-                "All of the above"
-            ],
-            "correct": 3,
-            "descriptions": [
-                "Neural Networks can do more than just supervised learning tasks! They are highly versatile.",
-                "Neural Networks can do more than just unsupervised learning tasks! They are highly versatile.",
-                "Neural Networks can do more than just image classification tasks! They are highly versatile!",
-                "Correct! Neural Networks are extremely useful due to their versatility that allows us to use them for many different ML tasks."
-            ],
-            "points": 5,
-            "coins": 1
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What inspired the structure of Neural Networks?",
-            "answers": [
-                "The Human Brain",
-                "Communication Networks",
-                "Graph Theory",
-                "Particle Physics"
-            ],
-            "correct": 0,
-            "descriptions": [
-                "Correct! The human brain inspired the the way the neural network is structured!",
-                "Communication networks did not inspire the neural network. Hint: think of the term \"neural\" and why it could be used.",
-                "While graph theory was involved in its development, it did not directly inspire the Neural Network. Hint: think of the term \"neural\" and why it could be used.",
-                "Particle physics played no role in the structure of a neural network. Hint: think of the term \"neural\" and why it could be used."
-            ],
-            "points": 5,
-            "coins": 1
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What are the parts of a neural network?",
-            "code_template": "",
-            "answers": [
-                "Neurons, Weights, Biases, and Layers",
-                "Neurons, Dendrites, Axons, and Myelin Sheaths",
-                "Nodes, Edges, Multiplicatives, and Results",
-                "Inputs and Ouputs only"
-            ],
-            "correct": 0,
-            "descriptions": [
-                "Correct! Neural Networks consist of neurons, weights, biases and layers!",
-                "These are the parts of the brain, not an artificial neural network.",
-                "These parts do not accurately describe the parts of a neural network.",
-                "Inputs and outputs are part of a neural network, but they are not the only parts."
-            ],
-            "points": 5,
-            "coins": 1
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What is a neuron?",
-            "code_template": "",
-            "answers": [
-                "Another name for a layer",
-                "The hidden processing layer of a Neural Network",
-                "An input to the Neural Network",
-                "A single processing unit of a Neural Network"
-            ],
-            "correct": 3,
-            "descriptions": [
-                "Neuron is not an alternative name for a layer. Rather, a layer is made up of many neurons.",
-                "The neuron is not a layer. Rather, a layer is made up of many neurons.",
-                "A neuron is not an input to the Neural Network. Rather, a neuron can process inputs.",
-                "Correct! A neuron is a single processing unit in a Neural Network"
-            ],
-            "points": 5,
-            "coins": 1
-        },
-        {
-            "type": "multiple_choice",
-            "question": "How do you conduct feedforward in a Neural Network?",
-            "code_template": "",
-            "answers": [
-                "Feed data forward using a chain of neurons",
-                "Subsequent neurons make calculations in layers and send them to weights.",
-                "Multiply inputs by weights and sum them at neurons until you reach the end.",
-                "Take in input and pass them through multiple calculations"
-            ],
-            "correct": 2,
-            "descriptions": [
-                "Feed forward does not feed data into a chain of neurons. Think of the diagrams in this chapter.",
-                "Neurons do not send calculations to weights. Think of the diagrams in this chapter.",
-                "Correct! Feedforward takes every input, multiplies by weights, and sums them at every neuron till the final layer is reached.",
-                "Feedforward does not simply pass inputs through many calculations. Think of the diagrams in this chapter"
-            ],
-            "points": 10,
-            "coins": 3
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What happens if all your inputs are zero AND there are no biases",
-            "code_template": "",
-            "answers": [
-                "The result is always 1",
-                "The result is always 0",
-                "The neural network cannot conduct feedforward",
-                "The result is always 2"
-            ],
-            "correct": 1,
-            "descriptions": [
-                "The result of all inputs being 0 with no weights is not 1. What happens when you multiply numbers by 0?",
-                "Correct! If no biases are present, no adjustment is made to the feedforward and the result is always 0",
-                "Even if there are no biases and the inputs are 0, feedforward can be conducted. What is the result of feedforward with all 0 inputs?",
-                "The result of all inputs being 0 with no weights is not 2. What happens when you multiply numbers by 0?"
-            ],
-            "points": 5,
-            "coins": 1
         },
         {
             "type": "short_answer",

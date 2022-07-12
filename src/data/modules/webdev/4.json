@@ -74,27 +74,32 @@
                 {
                     "type": "code",
                     "content": "module.exports.greet = (name) => { console.log(`Hello ${name}`) };"
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]Which of the following is Node.js primarily used for?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "Styling documents",
+                        "Writing frontend code",
+                        "Writing backend code",
+                        "Styling code"
+                    ],
+                    "correct": 2,
+                    "descriptions": [
+                        "Incorrect! CSS is used for styling documents",
+                        "Incorrect! HTML, CSS, and regular JavaScript is used for frontend",
+                        "Correct! Good job.",
+                        "Incorrect, try again."
+                    ],
+                    "points": 5,
+                    "coins": 1
                 }
             ]
-        },
-        {
-            "type": "multiple_choice",
-            "question": "Which of the following is Node.js primarily used for?",
-            "answers": [
-                "Styling documents",
-                "Writing frontend code",
-                "Writing backend code",
-                "Styling code"
-            ],
-            "correct": 2,
-            "descriptions": [
-                "Incorrect! CSS is used for styling documents",
-                "Incorrect! HTML, CSS, and regular JavaScript is used for frontend",
-                "Correct! Good job.",
-                "Incorrect, try again."
-            ],
-            "points": 5,
-            "coins": 1
         },
         {
             "type": "short_answer",

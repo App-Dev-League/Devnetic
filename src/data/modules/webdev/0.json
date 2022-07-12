@@ -147,7 +147,7 @@
                     "elements": [
                         {
                             "type": "text",
-                            "content":  "[[h6]]What could be included in the below tag?[[/]]\n [[`]]<head></head>[[/]]"
+                            "content": "[[h6]]What could be included in the below tag?[[/]]\n [[`]]<head></head>[[/]]"
                         }
                     ],
                     "answers": [
@@ -432,28 +432,32 @@
                             "content": "<ul type='circle'>\n    <li>Lion</li>\n    <li>Tiger</li>\n</ul>"
                         }
                     ]
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]What are the two main attributes of the below tag?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "src and alt",
+                        "source and alt",
+                        "description and src",
+                        "description and source"
+                    ],
+                    "correct": 0,
+                    "descriptions": [
+                        "Correct! We use src to set the image's source and alt to set the description of the image",
+                        "Incorrect, remember that some attributes in HTML are simplified",
+                        "Incorrect! Description is the wrong attribute name, but you're on the correct track!",
+                        "Incorrect! Try again"
+                    ],
+                    "points": 5,
+                    "coins": 1
                 }
             ]
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What are the two main attributes of the below tag?",
-            "code_template": "<img ____=\" \" ____=\" \">",
-            "answers": [
-                "src and alt",
-                "source and alt",
-                "description and src",
-                "description and source"
-            ],
-            "correct": 0,
-            "descriptions": [
-                "Correct! We use src to set the image's source and alt to set the description of the image",
-                "Incorrect, remember that some attributes in HTML are simplified",
-                "Incorrect! Description is the wrong attribute name, but you're on the correct track!",
-                "Incorrect! Try again"
-            ],
-            "points": 5,
-            "coins": 1
         },
         {
             "type": "short_answer",

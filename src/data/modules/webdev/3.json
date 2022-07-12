@@ -172,122 +172,152 @@
                 {
                     "type": "text",
                     "content": "If you plan to use libraries such as JQuery, Bootstrap, etc., you can add their JS files from a CDN before your other scripts in the HTML file."
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]What is the purpose of HTML[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "To style the site",
+                        "To process logic on the site",
+                        "To design layout and structure of the site",
+                        "To render javascript templates"
+                    ],
+                    "correct": 2,
+                    "descriptions": [
+                        "CSS does this.",
+                        "JavaScript does this.",
+                        "Yes, HTML's purpose is just this.",
+                        "HTML does not serve this purpose."
+                    ],
+                    "points": 5,
+                    "coins": 1
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]What is the purpose of CSS[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "To style the site",
+                        "To process logic on the site",
+                        "To design layout and structure of the site",
+                        "To render javascript templates"
+                    ],
+                    "correct": 0,
+                    "descriptions": [
+                        "CSS does this.",
+                        "JavaScript does this.",
+                        "HTML's purpose is just this.",
+                        "HTML does not serve this purpose."
+                    ],
+                    "points": 5,
+                    "coins": 1
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]What is the purpose of javascript[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "To style the site",
+                        "To process logic on the site",
+                        "To design layout and structure of the site",
+                        "To render javascript templates"
+                    ],
+                    "correct": 1,
+                    "descriptions": [
+                        "CSS does this.",
+                        "JavaScript does this.",
+                        "Yes, HTML's purpose is just this.",
+                        "HTML does not serve this purpose."
+                    ],
+                    "points": 5,
+                    "coins": 1
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]What is the class attribute primarily used for?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "To style multiple elements",
+                        "To group elements together",
+                        "To remove elements",
+                        "To duplicate elements"
+                    ],
+                    "correct": 0,
+                    "descriptions": [
+                        "CSS classes does this.",
+                        "This is not the purpose of CSS classes!",
+                        "This is not the purpose of CSS classes!",
+                        "This is not the purpose of CSS classes!"
+                    ],
+                    "points": 5,
+                    "coins": 1
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]Which of the following is correct CSS syntax?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "p { color: red }",
+                        "p { color red }",
+                        "p { color -  red }",
+                        "p [color: red]"
+                    ],
+                    "correct": 0,
+                    "descriptions": [
+                        "Well done.",
+                        "Nope, this code is missing a key punctuation.",
+                        "Nope, the dash needs to be replaced with something else.",
+                        "Nope, the squar brackets need to be replaced with something else."
+                    ],
+                    "points": 5,
+                    "coins": 1
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]How do you select an ID in CSS?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        ".id",
+                        "@id",
+                        "-id",
+                        "#id"
+                    ],
+                    "correct": 3,
+                    "descriptions": [
+                        "'.' is for classes.",
+                        "'@' is not a valid selector",
+                        "'-' is not a valid selector",
+                        "'#' is for selecting by IDs"
+                    ],
+                    "points": 5,
+                    "coins": 1
                 }
             ]
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What is the purpose of HTML",
-            "descriptions": [
-                "CSS does this.",
-                "JavaScript does this.",
-                "Yes, HTML's purpose is just this.",
-                "HTML does not serve this purpose."
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "To style the site",
-                "To process logic on the site",
-                "To design layout and structure of the site",
-                "To render javascript templates"
-            ],
-            "correct": 2
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What is the purpose of CSS",
-            "descriptions": [
-                "CSS does this.",
-                "JavaScript does this.",
-                "HTML's purpose is just this.",
-                "HTML does not serve this purpose."
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "To style the site",
-                "To process logic on the site",
-                "To design layout and structure of the site",
-                "To render javascript templates"
-            ],
-            "correct": 0
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What is the purpose of javascript",
-            "descriptions": [
-                "CSS does this.",
-                "JavaScript does this.",
-                "Yes, HTML's purpose is just this.",
-                "HTML does not serve this purpose."
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "To style the site",
-                "To process logic on the site",
-                "To design layout and structure of the site",
-                "To render javascript templates"
-            ],
-            "correct": 1
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What is the class attribute primarily used for?",
-            "descriptions": [
-                "CSS classes does this.",
-                "This is not the purpose of CSS classes!",
-                "This is not the purpose of CSS classes!",
-                "This is not the purpose of CSS classes!"
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "To style multiple elements",
-                "To group elements together",
-                "To remove elements",
-                "To duplicate elements"
-            ],
-            "correct": 0
-        },
-        {
-            "type": "multiple_choice",
-            "question": "Which of the following is correct CSS syntax?",
-            "descriptions": [
-                "Well done.",
-                "Nope, this code is missing a key punctuation.",
-                "Nope, the dash needs to be replaced with something else.",
-                "Nope, the squar brackets need to be replaced with something else."
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "p { color: red }",
-                "p { color red }",
-                "p { color -  red }",
-                "p [color: red]"
-            ],
-            "correct": 0
-        },
-        {
-            "type": "multiple_choice",
-            "question": "How do you select an ID in CSS?",
-            "descriptions": [
-                "'.' is for classes.",
-                "'@' is not a valid selector",
-                "'-' is not a valid selector",
-                "'#' is for selecting by IDs"
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                ".id",
-                "@id",
-                "-id",
-                "#id"
-            ],
-            "correct": 3
         },
         {
             "type": "multiple_choice",

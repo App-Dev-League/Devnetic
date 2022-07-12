@@ -24,28 +24,32 @@
                 {
                     "type": "text",
                     "content": "In the above code, a paragraph tag ([[lightpurple]]<p>[[/]]) is used to display the text \"Hello, world!\" on the screen."
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]What is the output of the following code?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "<p>Hello, world!</p>",
+                        "Hello",
+                        "Hello, world!",
+                        "<p>"
+                    ],
+                    "correct": 2,
+                    "descriptions": [
+                        "Since <p> and </p> are html tags, they are not directly displayed on the screen.",
+                        "It seems that you missed some words. Remember that everything between <p>...</p> is displayed on the screen.",
+                        "Everything between <p>...</p> is displayed as text to the screen. Good job!",
+                        "Since <p> is an html tag, it is not directly displayed on the screen. Rather, the text between the opening and closing tag is displayed."
+                    ],
+                    "points": 5,
+                    "coins": 1
                 }
             ]
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What is the output of the following code?",
-            "code_template": "<p>Hello, world!</p>",
-            "answers": [
-                "<p>Hello, world!</p>",
-                "Hello",
-                "Hello, world!",
-                "<p>"
-            ],
-            "correct": 2,
-            "descriptions": [
-                "Since <p> and </p> are html tags, they are not directly displayed on the screen.",
-                "It seems that you missed some words. Remember that everything between <p>...</p> is displayed on the screen.",
-                "Everything between <p>...</p> is displayed as text to the screen. Good job!",
-                "Since <p> is an html tag, it is not directly displayed on the screen. Rather, the text between the opening and closing tag is displayed."
-            ],
-            "points": 5,
-            "coins": 1
         },
         {
             "type": "short_answer",

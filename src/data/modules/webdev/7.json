@@ -70,28 +70,32 @@
                     "type": "image",
                     "src": "./data/modules/webdev-assets/img7/3-0.png",
                     "width": "60%"
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]What is the method that runs when the component is first rendered?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "componentWillMount()",
+                        "componentHasMounted()",
+                        "componentDidMount()",
+                        "componentMounted()"
+                    ],
+                    "correct": 2,
+                    "descriptions": [
+                        "Incorrect. This is method is run right after the component is rendered for the first time.",
+                        "Incorrect. This is not the correct syntax",
+                        "Correct! This is the correct syntax",
+                        "Incorrect. This is not the correct syntax"
+                    ],
+                    "points": 5,
+                    "coins": 1
                 }
             ]
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What is the method that runs when the component is first rendered?",
-            "code_template": "________(){\n    // run when component is first rendered\n}",
-            "answers": [
-                "componentWillMount()",
-                "componentHasMounted()",
-                "componentDidMount()",
-                "componentMounted()"
-            ],
-            "correct": 2,
-            "descriptions": [
-                "Incorrect. This is method is run right after the component is rendered for the first time.",
-                "Incorrect. This is not the correct syntax",
-                "Correct! This is the correct syntax",
-                "Incorrect. This is not the correct syntax"
-            ],
-            "points": 5,
-            "coins": 1
         },
         {
             "type": "information",

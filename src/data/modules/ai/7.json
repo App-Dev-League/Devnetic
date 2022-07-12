@@ -238,65 +238,80 @@
                     "src": "./data/modules/ai-assets/img7/4-7.png",
                     "width": "40%",
                     "float": "right"
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]The data we used for unsupervised learning is...[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "Varied",
+                        "Too large for supervised learning",
+                        "Unlabelled",
+                        "Too small for supervised learning"
+                    ],
+                    "correct": 2,
+                    "descriptions": [
+                        "The data used for unsupervised learning may or may not be varied",
+                        "The data used for unsupervised learning is not too large for supervised learning",
+                        "Correct! The data used for supervised learning is unlabelled and the model tries to figure out patterns in this unlabelled data",
+                        "The data used for unsupervised learning is not too small for supervised learning"
+                    ],
+                    "points": 5,
+                    "coins": 1
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]What is the goal behind unsupervised learning?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "To discover patterns in data",
+                        "Only to cluster data",
+                        "To maximize correct predicions",
+                        "To supervised learning more efficient"
+                    ],
+                    "correct": 0,
+                    "descriptions": [
+                        "Correct! Unsupervised learning discovers patterns in data",
+                        "While clustering may be an unsupervised learning task, it is certainly not the only one",
+                        "maximizing correct predictions is the goal of some supervised learning methods",
+                        "Unsupervised learning is not meant to make supervised learning more efficient"
+                    ],
+                    "points": 5,
+                    "coins": 1
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]Which one of these is not an unsupervised learning method?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "Clustering",
+                        "Anomaly Detection",
+                        "Neural Networks",
+                        "Regression"
+                    ],
+                    "correct": 3,
+                    "descriptions": [
+                        "Clustering is an unsupervised learning method",
+                        "Anomaly detection is an unsupervised learning method",
+                        "Neural Netowrks can be used for unsupervised learning",
+                        "Correct! Regression is a supervised learning method"
+                    ],
+                    "points": 5,
+                    "coins": 1
                 }
             ]
-        },
-        {
-            "type": "multiple_choice",
-            "question": "The data we used for unsupervised learning is...",
-            "descriptions": [
-                "The data used for unsupervised learning may or may not be varied",
-                "The data used for unsupervised learning is not too large for supervised learning",
-                "Correct! The data used for supervised learning is unlabelled and the model tries to figure out patterns in this unlabelled data",
-                "The data used for unsupervised learning is not too small for supervised learning"
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "Varied",
-                "Too large for supervised learning",
-                "Unlabelled",
-                "Too small for supervised learning"
-            ],
-            "correct": 2
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What is the goal behind unsupervised learning?",
-            "descriptions": [
-                "Correct! Unsupervised learning discovers patterns in data",
-                "While clustering may be an unsupervised learning task, it is certainly not the only one",
-                "maximizing correct predictions is the goal of some supervised learning methods",
-                "Unsupervised learning is not meant to make supervised learning more efficient"
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "To discover patterns in data",
-                "Only to cluster data",
-                "To maximize correct predicions",
-                "To supervised learning more efficient"
-            ],
-            "correct": 0
-        },
-        {
-            "type": "multiple_choice",
-            "question": "Which one of these is not an unsupervised learning method?",
-            "descriptions": [
-                "Clustering is an unsupervised learning method",
-                "Anomaly detection is an unsupervised learning method",
-                "Neural Netowrks can be used for unsupervised learning",
-                "Correct! Regression is a supervised learning method"
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "Clustering",
-                "Anomaly Detection",
-                "Neural Networks",
-                "Regression"
-            ],
-            "correct": 3
         },
         {
             "type": "short_answer",

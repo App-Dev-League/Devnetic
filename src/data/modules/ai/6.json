@@ -144,46 +144,56 @@
                 {
                     "type": "text",
                     "content": "[[h3]]Transformers and BERT[[/]]\n➔ BERT = Bidirectional Encoder Representations from Transformers\n➔ Essentially uses a stack of encoders and decoders\n    ➔ As opposed to a single encoder decoder\n➔ Applies bidirectional training of transformers → language modelling\n➔ Uses Masked Language Model (MLM) + Next Sentence Prediction (NSP) approach\n    ➔ MLM: 15% of words are replaced with [MASK] token → model tries to predict the [MASK] token\n    ➔ NSP: given sentences A and B, does B follow A? 50% of inputs = subsequent sentence is in the text"
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]What is Natural Language Processing?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "Subfield of AI that focuses on understanding language",
+                        "The biological process by which humans understand language",
+                        "The study of animal language-related behavior",
+                        "The academic field that encompasses all of AI"
+                    ],
+                    "correct": 0,
+                    "descriptions": [
+                        "Correct! NLP is a subfield of AI that focuses on understanding language",
+                        "NLP is not the biological process by which humans understand language",
+                        "NLP has nothing to do with animal languge",
+                        "NLP is a subfield of AI, not the academic field including all of AI"
+                    ],
+                    "points": 5,
+                    "coins": 1
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]Which of the following are NLP tasks?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "Linear Regression",
+                        "Image Classification",
+                        "Text Classification",
+                        "Audio Recording"
+                    ],
+                    "correct": 2,
+                    "descriptions": [
+                        "Linear regression is not a Natural Language Processing task",
+                        "Image Classification is not a Natural Language Processing task",
+                        "Correct! Text classification is an NLP task that includes sentiment analysis and more",
+                        "Audio recording is not an NLP task"
+                    ],
+                    "points": 5,
+                    "coins": 1
                 }
             ]
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What is Natural Language Processing?",
-            "descriptions": [
-                "Correct! NLP is a subfield of AI that focuses on understanding language",
-                "NLP is not the biological process by which humans understand language",
-                "NLP has nothing to do with animal languge",
-                "NLP is a subfield of AI, not the academic field including all of AI"
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "Subfield of AI that focuses on understanding language",
-                "The biological process by which humans understand language",
-                "The study of animal language-related behavior",
-                "The academic field that encompasses all of AI"
-            ],
-            "correct": 0
-        },
-        {
-            "type": "multiple_choice",
-            "question": "Which of the following are NLP tasks?",
-            "descriptions": [
-                "Linear regression is not a Natural Language Processing task",
-                "Image Classification is not a Natural Language Processing task",
-                "Correct! Text classification is an NLP task that includes sentiment analysis and more",
-                "Audio recording is not an NLP task"
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "Linear Regression",
-                "Image Classification",
-                "Text Classification",
-                "Audio Recording"
-            ],
-            "correct": 2
         },
         {
             "type": "short_answer",

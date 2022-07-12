@@ -36,8 +36,12 @@ class EmbededMultipleChoice extends ModuleComponent {
 			decay: 0.91,
 			scalar: 0.8
 		});
-		window.pog = canvas;
-		canvas.parentElement.querySelector(".indicator-symbol").style.color = "var(--chakra-colors-green-500)"
+		canvas.parentElement.querySelector(".indicator-symbol").style.color = "var(--chakra-colors-green-500)";
+		document.querySelector(".stack-width").children[getElementIndex(canvas.parentElement)+1].scrollIntoView({
+            behavior: 'auto',
+            block: 'center',
+            inline: 'center'
+        });
 	}
 	render(props) {
 		if (!this.state.explanation) {
@@ -51,6 +55,7 @@ class EmbededMultipleChoice extends ModuleComponent {
 			let returnStr = `<div>
 	<div class="mc-answer-container mc-answer-container-embeded">
 			${this.state.answers.map((answer, index) => {
+				if (!answer) return;
 				return `
 					<button class="mc-answer-option ${this.parent.state.options[index].status}" onclick="{{_this}}.handleOptionClick(${index})">
 						<span class="number">${index + 1}</span>
@@ -93,3 +98,11 @@ class MultipleChoiceWrapper extends tApp.Component {
 }
 
 module.exports = MultipleChoiceWrapper;
+
+function getElementIndex(node) {
+    var index = 0;
+    while ( (node = node.previousElementSibling) ) {
+        index++;
+    }
+    return index;
+}

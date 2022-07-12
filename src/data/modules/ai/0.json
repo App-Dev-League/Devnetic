@@ -32,27 +32,32 @@
                     "type": "code",
                     "content": "print(“This is how you print a sentence”)\n# The above lets us print a sentence\n\n# This is a comment\n\nName = input(“enter your name: “)\n# the above helps us takes in a name and store it in a variable called name",
                     "float": "left"
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]Why is Python so great?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "Extremely Popular",
+                        "Easy and redable syntax",
+                        "Tons of libraries for AI, data science, and more",
+                        "All of the above"
+                    ],
+                    "correct": 3,
+                    "descriptions": [
+                        "Incorrect! This option is correct, but what about some others?",
+                        "Incorrect! This option is correct, but what about some others?",
+                        "Incorrect! This option is correct, but what about some others?",
+                        "Correct! These are all what makes Python so good for learning and using"
+                    ],
+                    "points": 5,
+                    "coins": 1
                 }
             ]
-        },
-        {
-            "type": "multiple_choice",
-            "question": "Why is Python so great?",
-            "answers": [
-                "Extremely Popular",
-                "Easy and redable syntax",
-                "Tons of libraries for AI, data science, and more",
-                "All of the above"
-            ],
-            "correct": 0,
-            "descriptions": [
-                "Correct! These are all what makes Python so good for learning and using",
-                "Incorrect! This option is correct, but what about some others?",
-                "Incorrect! This option is correct, but what about some others?",
-                "Incorrect! This option is correct, but what about some others?"
-            ],
-            "points": 5,
-            "coins": 1
         },
         {
             "type": "information",
@@ -64,68 +69,82 @@
                 },
                 {
                     "type": "code",
-                    "content": "# assign the variable `x` to the integer 1\nx = 1\n\n# checking the type of `x`\nprint(type(x))\n# will print int\n\n# verifying that `x` is an integer-type object\nprint(isinstance(x, int))\n# will print True",
-                    "float": "left"
+                    "content": "# assign the variable `x` to the integer 1\nx = 1\n\n# checking the type of `x`\nprint(type(x))\n# will print int\n\n# verifying that `x` is an integer-type object\nprint(isinstance(x, int))\n# will print True"
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]How do you declare a variable in Python?[[/]]"
+                        }
+                    ],
+                    "code_template": "var x = 1\nint x = 1\nx = 1",
+                    "answers": [
+                        "var x = 1",
+                        "int x = 1",
+                        "x = 1",
+                        "None of the above"
+                    ],
+                    "correct": 2,
+                    "descriptions": [
+                        "Incorrect! Python automatically knows variables",
+                        "Incorrect! Python automatically assigns types",
+                        "Correct, this is proper syntax",
+                        "Incorrect!"
+                    ],
+                    "points": 5,
+                    "coins": 1
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]Which of the following are main Python Object types?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "Booleans",
+                        "Strings",
+                        "List",
+                        "All of the above"
+                    ],
+                    "correct": 3,
+                    "descriptions": [
+                        "Incorrect! This option is correct, but what about some others?",
+                        "Incorrect! This option is correct, but what about some others?",
+                        "Incorrect! This option is correct, but what about some others?",
+                        "Correct! These are all main Python Object types"
+                    ],
+                    "points": 5,
+                    "coins": 1
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]How would you create your own object type in Python[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "Recode Python",
+                        "Make a class",
+                        "use the type() function",
+                        "Not Possible"
+                    ],
+                    "correct": 1,
+                    "descriptions": [
+                        "Incorrect!",
+                        "Correct!",
+                        "Incorrect! This does not create a new object",
+                        "Incorrect!"
+                    ],
+                    "points": 5,
+                    "coins": 1
                 }
             ]
-        },
-        {
-            "type": "multiple_choice",
-            "question": "How do you declare a variable in Python?",
-            "code_template": "var x = 1\nint x = 1\nx = 1",
-            "answers": [
-                "var x = 1",
-                "int x = 1",
-                "x = 1",
-                "None of the above"
-            ],
-            "correct": 2,
-            "descriptions": [
-                "Incorrect! Python automatically knows variables",
-                "Incorrect! Python automatically assigns types",
-                "Correct, this is proper syntax",
-                "Incorrect!"
-            ],
-            "points": 5,
-            "coins": 1
-        },
-        {
-            "type": "multiple_choice",
-            "question": "Which of the following are main Python Object types?",
-            "answers": [
-                "Booleans",
-                "Strings",
-                "List",
-                "All of the above"
-            ],
-            "correct": 3,
-            "descriptions": [
-                "Incorrect! This option is correct, but what about some others?",
-                "Incorrect! This option is correct, but what about some others?",
-                "Incorrect! This option is correct, but what about some others?",
-                "Correct! These are all main Python Object types"
-            ],
-            "points": 5,
-            "coins": 1
-        },
-        {
-            "type": "multiple_choice",
-            "question": "How would you create your own object type in Python",
-            "descriptions": [
-                "Incorrect!",
-                "Correct!",
-                "Incorrect! This does not create a new object",
-                "Incorrect!"
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "Recode Python",
-                "Make a class",
-                "use the type() function",
-                "Not Possible"
-            ],
-            "correct": 1
         },
         {
             "type": "information",
@@ -134,103 +153,128 @@
                 {
                     "type": "text",
                     "content": "[[h3]]Number Operators[[/]]\n➔ [[b]]x + y[[/]]: The sum of two numbers\n➔ [[b]]x - y[[/]]: The difference of two numbers\n➔ [[b]]x * y[[/]]: The product of two numbers\n➔ [[b]]x / y[[/]]: The quotient of two numbers\n➔ [[b]]x // y[[/]]: The quotient of two numbers rounded down to an integer\n➔ [[b]]x % y[[/]]: “modulo”, The remainder when x is divided by y\n➔ [[b]]x ** y[[/]]: x raised to the y power\n➔ [[b]]-x[[/]]: x in its negated form (-1 * x)\n➔ [[b]]abs(x)[[/]]: The absolute value of a number"
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]How would you get the sum of two numbers in Python?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "x + y",
+                        "x ++ y",
+                        "x ^+ y",
+                        "var x + var y"
+                    ],
+                    "correct": 0,
+                    "descriptions": [
+                        "Correct!",
+                        "Incorrect!",
+                        "Incorrect!",
+                        "Incorrect!"
+                    ],
+                    "points": 5,
+                    "coins": 1
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]What does x // y do?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "Finds the root of x with y",
+                        "Divides X and Y",
+                        "Rounds the quotient of x and  y to an integer value",
+                        "Finds the decimal value of the quotient of x and y"
+                    ],
+                    "correct": 2,
+                    "descriptions": [
+                        "Incorrect!",
+                        "Incorrect! That is a single division symbol",
+                        "Correct!",
+                        "Incorrect! That is a single division symbol"
+                    ],
+                    "points": 5,
+                    "coins": 1
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]What does x % y do?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "Divides x and y",
+                        "Finds the remainder of x / y",
+                        "Finds decimal points of x /  y",
+                        "Rounds the quotient of x and y to the nearest hundredth."
+                    ],
+                    "correct": 1,
+                    "descriptions": [
+                        "Incorrect! Wrong symbol",
+                        "Correct!",
+                        "Incorrect!",
+                        "Incorrect! Wrong symbol"
+                    ],
+                    "points": 5,
+                    "coins": 1
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]What does x ** y do?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "Adds x * y by itself.",
+                        "Multiplies x by y",
+                        "Rounds the value of x * y by the tens place.",
+                        "Raises X to the Y power."
+                    ],
+                    "correct": 3,
+                    "descriptions": [
+                        "Incorrect!",
+                        "Incorrect! That is a single multiplcation sign",
+                        "Incorrect!",
+                        "Correct!"
+                    ],
+                    "points": 5,
+                    "coins": 1
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]How do you find the absolute value of a number x in Python?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "absolute(x)",
+                        "absolueVal(x)",
+                        "abs(x)",
+                        "absoluteValue(x)"
+                    ],
+                    "correct": 2,
+                    "descriptions": [
+                        "Incorrect!",
+                        "Incorrect!",
+                        "Correct!",
+                        "Incorrect!"
+                    ],
+                    "points": 5,
+                    "coins": 1
                 }
             ]
-        },
-        {
-            "type": "multiple_choice",
-            "question": "How would you get the sum of two numbers in Python?",
-            "descriptions": [
-                "Correct!",
-                "Incorrect!",
-                "Incorrect!",
-                "Incorrect!"
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "x + y",
-                "x ++ y",
-                "x ^+ y",
-                "var x + var y"
-            ],
-            "correct": 0
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What does x // y do?",
-            "descriptions": [
-                "Incorrect!",
-                "Incorrect! That is a single division symbol",
-                "Correct!",
-                "Incorrect! That is a single division symbol"
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "Finds the root of x with y",
-                "Divides X and Y",
-                "Rounds the quotient of x and  y to an integer value",
-                "Finds the decimal value of the quotient of x and y"
-            ],
-            "correct": 2
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What does x % y do?",
-            "descriptions": [
-                "Incorrect! Wrong symbol",
-                "Correct!",
-                "Incorrect!",
-                "Incorrect! Wrong symbol"
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "Divides x and y",
-                "Finds the remainder of x / y",
-                "Finds decimal points of x /  y",
-                "Rounds the quotient of x and y to the nearest hundredth."
-            ],
-            "correct": 1
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What does x ** y do?",
-            "descriptions": [
-                "Incorrect!",
-                "Incorrect! That is a single multiplcation sign",
-                "Incorrect!",
-                "Correct!"
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "Adds x * y by itself.",
-                "Multiplies x by y",
-                "Rounds the value of x * y by the tens place.",
-                "Raises X to the Y power."
-            ],
-            "correct": 3
-        },
-        {
-            "type": "multiple_choice",
-            "question": "How do you find the absolute value of a number x in Python?",
-            "descriptions": [
-                "Incorrect!",
-                "Incorrect!",
-                "Correct!",
-                "Incorrect!"
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "absolute(x)",
-                "absolueVal(x)",
-                "abs(x)",
-                "absoluteValue(x)"
-            ],
-            "correct": 2
         },
         {
             "type": "information",
@@ -244,44 +288,54 @@
                     "type": "code",
                     "content": "x = 1\ny = 2\n\nprint(x == y)\n# false\nprint(x != y)\n# true\nprint(x > y)\n# false\nprint(x <= y)\n# true\nprint(x <= y or x != y)\n# true\nprint(x <= y and x != y)\n# true",
                     "float": "left"
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]What does x != y return?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "True if x is equal to y",
+                        "False if x is equal to y",
+                        "False if x is NOT equal to y.",
+                        "True if x is NOT equal to y."
+                    ],
+                    "correct": 3,
+                    "descriptions": [
+                        "Incorrect! It won't have \"!\"",
+                        "Incorrect!",
+                        "Incorrect! It won't have \"!\"",
+                        "Correct!"
+                    ],
+                    "points": 5,
+                    "coins": 1
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]What Does x == y return if x is the same value as y?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "True",
+                        "False",
+                        "",
+                        ""
+                    ],
+                    "correct": 0,
+                    "descriptions": [
+                        "Correct!",
+                        "Incorrect!"
+                    ],
+                    "points": 5,
+                    "coins": 1
                 }
             ]
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What does x != y return?",
-            "descriptions": [
-                "Incorrect! It won't have \"!\"",
-                "Incorrect!",
-                "Incorrect! It won't have \"!\"",
-                "Correct!"
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "True if x is equal to y",
-                "False if x is equal to y",
-                "False if x is NOT equal to y.",
-                "True if x is NOT equal to y."
-            ],
-            "correct": 3
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What Does x == y return if x is the same value as y?",
-            "descriptions": [
-                "Correct!",
-                "Incorrect!"
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "True",
-                "False",
-                "",
-                ""
-            ],
-            "correct": 0
         },
         {
             "type": "information",
@@ -294,59 +348,74 @@
                 {
                     "type": "code",
                     "content": "seq1 = [\"a\", 2, 9, None]\nseq2 = [\"WHAT\", 1, 1, 3]\n\nprint(\"a\" in seq1)\n# True\nprint(seq1 + seq2)\n# [“a”, 2, 9, None, “WHAT”, 1, 1, 3]\nprint(seq1*2)\n# [“a”, 2, 9, None, “a”, 2, 9, None]\nprint(len(seq2))\n# 4\nprint(seq1.index(9))\n# 2\nprint(seq2.count(1))\n# 2"
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]What number index does a sequence start at?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "0",
+                        "1",
+                        "",
+                        ""
+                    ],
+                    "correct": 0,
+                    "descriptions": [
+                        "Correct!",
+                        "Incorrect!"
+                    ],
+                    "points": 5,
+                    "coins": 1
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]True Or False: Ordering in Sequences Matter[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "True",
+                        "False",
+                        "",
+                        ""
+                    ],
+                    "correct": 0,
+                    "descriptions": [
+                        "Correct!",
+                        "Incorrect! They are very important"
+                    ],
+                    "points": 5,
+                    "coins": 1
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]True Or False: Values of tuples can be changed after initiated.[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "True",
+                        "False",
+                        "",
+                        ""
+                    ],
+                    "correct": 1,
+                    "descriptions": [
+                        "Incorrect!",
+                        "Correct!"
+                    ],
+                    "points": 5,
+                    "coins": 1
                 }
             ]
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What number index does a sequence start at?",
-            "descriptions": [
-                "Correct!",
-                "Incorrect!"
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "0",
-                "1",
-                "",
-                ""
-            ],
-            "correct": 0
-        },
-        {
-            "type": "multiple_choice",
-            "question": "True Or False: Ordering in Sequences Matter",
-            "descriptions": [
-                "Correct!",
-                "Incorrect! They are very important"
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "True",
-                "False",
-                "",
-                ""
-            ],
-            "correct": 0
-        },
-        {
-            "type": "multiple_choice",
-            "question": "True of False: Values of tuples can be changed after initiated.",
-            "descriptions": [
-                "Incorrect!",
-                "Correct!"
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "True",
-                "False",
-                "",
-                ""
-            ],
-            "correct": 1
         },
         {
             "type": "information",
@@ -359,26 +428,31 @@
                 {
                     "type": "code",
                     "content": "seq1 = [\"a\", 2, 9, None]\nseq2 = [\"WHAT\", 1, 1, 3]\n\nprint(\"a\" in seq1)\n# True\nprint(seq1 + seq2)\n# [“a”, 2, 9, None, “WHAT”, 1, 1, 3]\nprint(seq1*2)\n# [“a”, 2, 9, None, “a”, 2, 9, None]\nprint(len(seq2))\n# 4\nprint(seq1.index(9))\n# 2\nprint(seq2.count(1))\n# 2"
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]How would you concatenate two sequences x and y?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "seq x + seq y",
+                        "x.addSeq(y)",
+                        "x + y",
+                        ""
+                    ],
+                    "correct": 2,
+                    "descriptions": [
+                        "Incorrect! \"seq\" is not required",
+                        "Incorrect!",
+                        "Correct!"
+                    ],
+                    "points": 5,
+                    "coins": 1
                 }
             ]
-        },
-        {
-            "type": "multiple_choice",
-            "question": "How would you concatenate two sequences x and y?",
-            "descriptions": [
-                "Incorrect! \"seq\" is not required",
-                "Incorrect!",
-                "Correct!"
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "seq x + seq y",
-                "x.addSeq(y)",
-                "x + y",
-                ""
-            ],
-            "correct": 2
         },
         {
             "type": "information",

@@ -192,27 +192,32 @@
                     "src": "./data/modules/ai-assets/img5/3-5.png",
                     "width": "44%",
                     "float": "right"
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]What is a Convolutional Neural Network?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "A subset of Artificial Neural Networks that allow us to work with images",
+                        "A superset of Neural Networks that is the best way to do AI",
+                        "A subset of Artificial Neural Networks for camera work ",
+                        "The basic structure required for any image processing with code"
+                    ],
+                    "correct": 0,
+                    "descriptions": [
+                        "Correct! CNNs are  a type of neural network specializing in images",
+                        "CNNs are not a superset of neural networks and there is no way to",
+                        "CNNs are not used to make cameras work",
+                        "CNNs are not absolutely necessary for image processing, though they can be helpful"
+                    ],
+                    "points": 5,
+                    "coins": 1
                 }
             ]
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What is a Convolutional Neural Network?",
-            "descriptions": [
-                "Correct! CNNs are  a type of neural network specializing in images",
-                "CNNs are not a superset of neural networks and there is no way to",
-                "CNNs are not used to make cameras work",
-                "CNNs are not absolutely necessary for image processing, though they can be helpful"
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "A subset of Artificial Neural Networks that allow us to work with images",
-                "A superset of Neural Networks that is the best way to do AI",
-                "A subset of Artificial Neural Networks for camera work ",
-                "The basic structure required for any image processing with code"
-            ],
-            "correct": 0
         },
         {
             "type": "short_answer",
