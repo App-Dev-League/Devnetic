@@ -48,10 +48,18 @@ module.exports = function renderElement(element) {
         `
     } else if (element.type == "embedded_multiple_choice") {
         var text = "Multiple Choice Question"
+        if (element.question && !element.elements) {
+            element.elements = [
+                {
+                    type: "text",
+                    content: `[[h6]]${element.question}[[/]]`
+                }
+            ]
+        }
         if (element.elements[0].content && element.elements[0].content.toLowerCase().replaceAll(" ", "").includes("trueorfalse")) text =  "True or False"
         const multipleChoiceElement = new MultipleChoice({ answers: element.answers, correct: element.correct, descriptions: element.descriptions, points: element.points, coins: element.coins }, null)
         return `
-        <div class="multiple-choice-wrapper">
+        <div class="multiple-choice-wrapper" onclick="document.querySelector('.stack-width').classList.add('blur-all-non-mc-questions')">
         <div class="indicator-symbol">${text}</div>
         <canvas class="mc-answer-confetti"></canvas>
 

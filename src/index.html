@@ -1584,12 +1584,23 @@
                 document.head.appendChild(stylesheet)
             }
         }
+        function revealAllElements() {
+            if (!document.querySelector('.stack-width')) return
+            let allMC = document.querySelectorAll(".multiple-choice-wrapper");
+            var bad = false;
+            allMC.forEach(element => {
+                if (event.target.contains(element)) bad = true;
+                else if (element.contains(event.target)) bad = true;
+            })
+            if (bad) return;
+            document.querySelector('.stack-width').classList.remove('blur-all-non-mc-questions')
+        }
     </script>
 </head>
 
 
 
-<body>
+<body onclick="revealAllElements()">
     <div id="preview-demo-loading-cover" class="none">
         <div>
             <span class="codicon codicon-loading" style="font-size: 70px;"></span>

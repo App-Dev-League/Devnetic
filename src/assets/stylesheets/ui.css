@@ -255,3 +255,8 @@ html {
 .explanation-modal {
     position: fixed !important;
 }
+
+.blur-all-non-mc-questions > *:not(.multiple-choice-wrapper) {
+    transition: 0.5s filter;
+    filter: blur(3px);
+}

@@ -1,0 +1,68 @@
+<body style="background-color: rgba(0,0,0,0.6); color: white;">
+    <span style="font-size: 0.5em; color: gray;">Hover or tap on different parts of the element</span>
+    <div class="container">
+        <span class="x1">
+            &lt;element&gt;
+        </span>
+        Content
+        <span class="x2">
+            &lt;/element&gt;
+        </span>
+    </div>
+
+</body>
+<style>
+    body {
+        font-family: Helvetica, sans-serif;
+        padding: 20px;
+        font-size: 1.5em;
+        overflow: hidden;
+    }
+
+    .container {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: fit-content;
+    }
+
+    .x1 {
+        color: rgb(150, 79, 216);
+        cursor: pointer;
+    }
+
+    .x2 {
+        color: rgb(150, 79, 216);
+        cursor: pointer;
+    }
+
+    .x1::before {
+        content: "Opening Tag";
+        font-size: 0.6em;
+        color: white;
+        position: absolute;
+        left: 15px;
+        opacity: 0;
+        transition: 0.5s all;
+        bottom: -100px;
+    }
+    .x1:hover::before {
+        bottom: -30px !important;
+        opacity: 1 !important;
+    }
+    .x2::before {
+        content: "Closing Tag";
+        font-size: 0.6em;
+        color: white;
+        position: absolute;
+        right: 20px;
+        opacity: 0;
+        transition: 0.5s all;
+        bottom: -100px;
+    }
+    .x2:hover::before {
+        bottom: -30px !important;
+        opacity: 1 !important;
+    }
+</style>

@@ -78,24 +78,12 @@
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Quick Repl Tour (Workspace)[[/]]"
-                },
-                {
-                    "type": "image",
-                    "src": "./data/modules/webdev-assets/img0/2-1.png"
-                },
-                {
-                    "type": "divider"
-                },
-                {
-                    "type": "text",
                     "content": "[[h3]]HTML Elements[[/]]\n[[h6]]Paired tag:[[/]]"
                 },
                 {
-                    "type": "image",
-                    "src": "./data/modules/webdev-assets/img0/2-2.png",
-                    "width": "70%",
-                    "box-shadow": "0px 0px 20px 7px #686868"
+                    "type": "iframe",
+                    "src": "./data/modules/webdev-assets/img0/2-2.html",
+                    "width": "70%"
                 },
                 {
                     "type": "divider"
@@ -105,10 +93,9 @@
                     "content": "[[h6]]Unpaired/Self-Closing Tag[[/]]"
                 },
                 {
-                    "type": "image",
-                    "src": "./data/modules/webdev-assets/img0/2-3.png",
-                    "width": "70%",
-                    "box-shadow": "0px 0px 20px 7px #686868"
+                    "type": "iframe",
+                    "src": "./data/modules/webdev-assets/img0/2-3.html",
+                    "width": "70%"
                 }
             ]
         },

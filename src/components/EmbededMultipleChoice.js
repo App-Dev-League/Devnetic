@@ -1,6 +1,7 @@
 const ModuleComponent = require("./ModuleComponent.js");
 
 const ExplanationModal = require("./ExplanationModal.js");
+const codeTemplateToCode = require("../utils/codeTemplateToCode.js");
 
 class EmbededMultipleChoice extends ModuleComponent {
 	constructor(state, parent) {
@@ -37,11 +38,16 @@ class EmbededMultipleChoice extends ModuleComponent {
 			scalar: 0.8
 		});
 		canvas.parentElement.querySelector(".indicator-symbol").style.color = "var(--chakra-colors-green-500)";
-		document.querySelector(".stack-width").children[getElementIndex(canvas.parentElement)+1].scrollIntoView({
-            behavior: 'auto',
-            block: 'center',
-            inline: 'center'
-        });
+		document.querySelector(".stack-width").children[getElementIndex(canvas.parentElement) + 1].scrollIntoView({
+			behavior: 'auto',
+			block: 'center',
+			inline: 'center'
+		});
+		if (document.querySelector(".stack-width").children[getElementIndex(canvas.parentElement) + 1].id === "continue-button") {
+			setTimeout(function() {
+				document.querySelector('.stack-width').classList.remove('blur-all-non-mc-questions')
+			}, 100)
+		}
 	}
 	render(props) {
 		if (!this.state.explanation) {
@@ -59,7 +65,7 @@ class EmbededMultipleChoice extends ModuleComponent {
 				return `
 					<button class="mc-answer-option ${this.parent.state.options[index].status}" onclick="{{_this}}.handleOptionClick(${index})">
 						<span class="number">${index + 1}</span>
-						<span class="text">${answer}</span>
+						<span class="text">${codeTemplateToCode(answer)}</span>
 					</button>
 				`
 			}).join("")}
@@ -100,9 +106,9 @@ class MultipleChoiceWrapper extends tApp.Component {
 module.exports = MultipleChoiceWrapper;
 
 function getElementIndex(node) {
-    var index = 0;
-    while ( (node = node.previousElementSibling) ) {
-        index++;
-    }
-    return index;
+	var index = 0;
+	while ((node = node.previousElementSibling)) {
+		index++;
+	}
+	return index;
 }
