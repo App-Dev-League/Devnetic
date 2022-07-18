@@ -276,3 +276,30 @@ html {
     left: 15px;
     top: 10px;
 }
+.loading-bar-indeterminate.editor-alert-modal-loading-bar-wrapper {
+    display: flex;
+}
+
+.loading-bar-indeterminate.editor-alert-modal-loading-bar-wrapper:before {
+    background-color: #4D78CC;
+    content: '';
+    animation: running-progress 1.8s cubic-bezier(0.4, 0, 1, 1) infinite;
+    width: 100%;
+}
+
+@keyframes running-progress {
+    0% {
+        margin-left: -50px;
+        margin-right: 100%;
+    }
+
+    50% {
+        margin-left: 25%;
+        margin-right: 0%;
+    }
+    
+    100% {
+        margin-left: 175%;
+        margin-right: 0;
+    }
+}

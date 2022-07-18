@@ -95,7 +95,7 @@ function showAlertModal(message, buttons, icon, deleteTime) {
 		clone.style.opacity = "1"
 		clone.style.bottom = 10 + newIndex * 100 + "px";
 	}, 10)
-	if (deleteTime) {
+	if (deleteTime && deleteTime !== "indeterminate") {
 		setTimeout(async function () {
 			clone.querySelector(".editor-alert-modal-loading-bar").style.setProperty('--deletetime', deleteTime + "s");
 			clone.querySelector(".editor-alert-modal-loading-bar").classList.add("loading-bar-active");
@@ -105,6 +105,9 @@ function showAlertModal(message, buttons, icon, deleteTime) {
 			if (!document.getElementById(clone.id)) return;
 			removeAlertModal(clone.getAttribute("data-editor-alert-modal-index"));
 		}, 10)
+	} else if (deleteTime === "indeterminate") {
+		//clone.querySelector(".editor-alert-modal-loading-bar").classList.add("loading-bar-active");
+		clone.querySelector(".editor-alert-modal-loading-bar-wrapper").classList.add("loading-bar-indeterminate");
 	}
 	clone.querySelector(".text").innerHTML = message;
 	buttons.forEach(element => {

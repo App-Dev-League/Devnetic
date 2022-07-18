@@ -1584,6 +1584,7 @@
                 document.head.appendChild(stylesheet)
             }
         }
+
         function revealAllElements() {
             if (!document.querySelector('.stack-width')) return
             let allMC = document.querySelectorAll(".multiple-choice-wrapper");
@@ -4324,7 +4325,7 @@
             if (window.isElectron) return;
             console.log("There is a newer version of Devnetic available! Starting background update...");
             await new Promise((resolve, reject) => setTimeout(resolve, 500));
-            var modal = codeEditorHelper.showAlertModal("There is a newer version of Devnetic available! Starting background update...", [], null, 60)
+            var modal = codeEditorHelper.showAlertModal("There is a newer version of Devnetic available! Starting background update...", [], null, "indeterminate")
             var startTime = Date.now();
             try {
                 await refreshBackgroundPages()
