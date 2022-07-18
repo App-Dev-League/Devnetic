@@ -74,6 +74,11 @@ module.exports = function renderElement(element) {
         ${multipleChoiceElement}
         </div>
         `
+    } else if (element.type === "note") {
+        return `
+        <div class="info-text info-note">
+            ${codeTemplateToCode(element.content || "")}
+        </div>`
     } else {
         return `<pre class="info-text">${codeTemplateToCode(element.content || "")}</pre>`;
     }

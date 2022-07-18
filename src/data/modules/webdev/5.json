@@ -61,6 +61,30 @@
                 {
                     "type": "code",
                     "content": "app.get(\"/endpointname\", (req, res) => {\n\tres.send(\"I am sending some data\")\n})"
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]Which parameter is NOT supported by GET requests?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "Query parameters",
+                        "Body parameters",
+                        "URL parameters",
+                        "All of these are supported"
+                    ],
+                    "correct": 1,
+                    "descriptions": [
+                        "Query parameters are accessible through the request.query object",
+                        "Body parameters are only accessible through POST requests",
+                        "URL parameters are accessible through the request.params object",
+                        "One of these are not supported by GET requests"
+                    ],
+                    "points": 5,
+                    "coins": 1
                 }
             ]
         },
@@ -94,6 +118,30 @@
                 {
                     "type": "code",
                     "content": "app.post(\"/endpointname\", (req, res) => {\n\tconst name = req.body.name;\n\tconst email = req.body.email;\n\tconst username = req.body.username;\n\n\tres.send(\"I am sending some data\")\n})"
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]Which parameter is NOT supported by POST requests?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "Query parameters",
+                        "Body parameters",
+                        "URL parameters",
+                        "All of these are supported"
+                    ],
+                    "correct": 3,
+                    "descriptions": [
+                        "Query parameters are accessible through the request.query object",
+                        "Body parameters are accessible through request.body requests",
+                        "URL parameters are accessible through the request.params object",
+                        "All of these are supported by POST requests!"
+                    ],
+                    "points": 5,
+                    "coins": 1
                 }
             ]
         },
@@ -149,13 +197,13 @@
                     "content": "[[h3]]req.body[[/]]\nThis is the body, and this parameter is only accessible when the user POSTs data.\n➔ You can access data not included in the path\n➔ req.body will allow you to get data in a Javascript Object Literal"
                 },
                 {
-                    "type": "image",
-                    "src": "./data/modules/webdev-assets/img5/5-0.png",
-                    "width": "60%"
+                    "type": "code",
+                    "content": "app.post(\"/endpointName\", (req, res) => {\n  res.send(\"You have \"+req.body.dogAmount+\" dogs\")\n})",
+                    "lang": "javascript"
                 },
                 {
                     "type": "text",
-                    "content": "To send data with a body, use \n[[`]]axios.post(‘https://server.com/endpoint’,{dogAmount: 1});[[/]]"
+                    "content": "To send data with a body, use \n[[`]]axios.post('https://server.com/endpoint',{dogAmount: 1});[[/]]"
                 },
                 {
                     "type": "divider"
@@ -165,13 +213,13 @@
                     "content": "[[h3]]req.params[[/]]\nYou can access this from any type of endpoint (POST, GET, etc.)\nThese are path parameters, that can be accessed with [[`]]req.params.pathParamName[[/]]"
                 },
                 {
-                    "type": "image",
-                    "src": "./data/modules/webdev-assets/img5/5-1.png",
-                    "width": "60%"
+                    "type": "code",
+                    "content": "app.get(\"/endpoint\", (req, res) => {\n  console.log(req.params.id)\n  console.log(req.params.type)\n})",
+                    "lang": "javascript"
                 },
                 {
                     "type": "text",
-                    "content": "Use axios to send path parameters.\n[[`]]axios.get(‘https://server.com/endpoint/id123/dogtype’);[[/]]"
+                    "content": "Use axios to send path parameters.\n[[`]]axios.get('https://server.com/endpoint/id123/dogtype');[[/]]"
                 },
                 {
                     "type": "divider"
@@ -181,9 +229,9 @@
                     "content": "[[h3]]req.query[[/]]\nThese also can be used with any type of request (GET, POST, etc.)\nAccess these with [[`]]req.query.paramName[[/]]"
                 },
                 {
-                    "type": "image",
-                    "src": "./data/modules/webdev-assets/img5/5-2.png",
-                    "width": "60%"
+                    "type": "code",
+                    "content": "app.get(\"/endpoint\", (req, res) => {\n  console.log(req.query.id)\n  console.log(req.query.type)\n})",
+                    "lang": "javascript"
                 },
                 {
                     "type": "text",
@@ -200,9 +248,9 @@
                     "content": "[[h3]]Sending GET requests[[/]]\n➔ We can also use axios to send GET requests\n➔ Once again, we are using the async/await approach, so we are wrapping the code inside an async function\n➔ Check out the below code for more details!"
                 },
                 {
-                    "type": "image",
-                    "src": "./data/modules/webdev-assets/img5/6-0.png",
-                    "width": "70%"
+                    "type": "code",
+                    "content": "const postRequest = async () => {\n  const response = await axios.get('https://localhost:3000/endpointname')\n  console.log(response)\n}\npostRequest()",
+                    "lang": "javascript"
                 },
                 {
                     "type": "text",
@@ -213,11 +261,11 @@
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Sending POST requests[[/]]\n➔ Since we can’t view POST requests in the browser, we can use other tools to do so\n➔ One popular tool is Postman, but it requires a download and is a little hard to use\n➔ We can use Axios which is a JavaScript library to call APIs\n➔ To install Axios, run [[`]]npm i axios[[/]] in the terminal\n➔ Then import it using const [[`]]axios = require(‘axios’);[[/]]\n➔ Follow the below code"
+                    "content": "[[h3]]Sending POST requests[[/]]\n➔ Since we can't view POST requests in the browser, we can use other tools to do so\n➔ One popular tool is Postman, but it requires a download and is a little hard to use\n➔ We can use Axios which is a JavaScript library to call APIs\n➔ To install Axios, run [[`]]npm i axios[[/]] in the terminal\n➔ Then import it using const [[`]]axios = require(‘axios’);[[/]]\n➔ Follow the below code"
                 },
                 {
-                    "type": "image",
-                    "src": "./data/modules/webdev-assets/img5/6-1.png"
+                    "type": "code",
+                    "content": "const postRequest = async () => {\n  const response = await axios.post('https://localhost:3000/endpointname', {\n    name: \"App Dev League\",\n    username: \"ADL\",\n    email: \"adl@adl.com\"\n  })\n  console.log(response)\n}\npostRequest()"
                 },
                 {
                     "type": "text",
@@ -231,7 +279,11 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]Serve Files with Express.JS[[/]]\nIf you would like to server static files (like HTML files), you have two options. \nOne is to use a static folder, and setting it as a static folder using [[`]]app.use(express.static('static'));[[/]]\nThen, you can put any files you want in the static folder, and then access them like that. \n\n[[b]]NOTE:[[/]]\n If a file is named hello.html in the static folder, you would access it like [[a]]https://server.com/hello.html[[/a]], NOT [[a]]https://server.com/static/hello.html[[/a]]\nThe other option is to use [[`]]res.sendFile(“pathToFile”)[[/]]"
+                    "content": "[[h3]]Serve Files with Express.JS[[/]]\nIf you would like to server static files (like HTML files), you have two options. \nOne is to use a static folder, and setting it as a static folder using [[`]]app.use(express.static('static'));[[/]]\nThen, you can put any files you want in the static folder, and then access them like that. "
+                },
+                {
+                    "type": "note",
+                    "content": "If a file is named hello.html in the static folder, you would access it like [[a]]https://server.com/hello.html[[/a]], NOT [[a]]https://server.com/static/hello.html[[/a]] The other option is to use [[`]]res.sendFile(“pathToFile”)[[/]]"
                 },
                 {
                     "type": "divider"
@@ -241,15 +293,39 @@
                     "content": "[[h3]]Express.JS statuses[[/]]\nYou can also send status codes in Express.JS! For example, if we wanted to indicate that the request has failed due to missing information, we could use [[`]]req.status(400).send(“error!”)[[/]]\n➔ Using this feature is really easy! Just simply add [[`]]req.status(statusCode).send(yourData)[[/]] to your code!\n➔ If you don’t put a status method, express automatically adds it as status code 200 (success)\n➔ For a full list of status codes, try looking at this article [[a]]https://en.wikipedia.org/wiki/List_of_HTTP_status_codes[[/a]] "
                 },
                 {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]What is the status code for OK?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "100",
+                        "200",
+                        "300",
+                        "400"
+                    ],
+                    "correct": 1,
+                    "descriptions": [
+                        "100 actually is a code for the browser to continue",
+                        "Correct! 200 means OK!",
+                        "300 actually is a redirect code for the browser",
+                        "400 is an error code! Not a OK code."
+                    ],
+                    "points": 5,
+                    "coins": 1
+                },
+                {
                     "type": "divider"
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Server Sent Events[[/]]\n[[b]]What are Server Sent Events? (SSEs)[[/]]\n[[ ]][[ ]][[ ]]SSE’s are a way for a server to directly contact a client after the client opens a session. Let’s say that we have a stock exchange that needs to constantly send updates on price data to clients. It would be really inefficient to have clients constantly poll the server, so we use SSE’s\n➔ In a nutshell, we change the response header"
+                    "content": "[[h3]]Server Sent Events[[/]]\n[[b]]What are Server Sent Events? (SSEs)[[/]]\n[[ ]][[ ]][[ ]]SSE's are a way for a server to directly contact a client after the client opens a session. Let’s say that we have a stock exchange that needs to constantly send updates on price data to clients. It would be really inefficient to have clients constantly poll the server, so we use SSE’s\n➔ In a nutshell, we change the response header"
                 },
                 {
-                    "type": "image",
-                    "src": "./data/modules/webdev-assets/img5/7-0.png"
+                    "type": "code",
+                    "content": "app.get(\"/server-time\", async (req, res) => {\n  res.writeHead(200, {\n    'Content-Type': 'text/event-stream',\n    'Cache-Control': 'no-cache',\n    'Connection': 'keep-alive'\n  })\n\n  for (var x = 0; x < 10; x++) {\n    let data = \"hello world! The current time is \" + Date.now();\n    res.write(\"data: \" + data + '\n\n'); // whenever you send two line characters the message is sent automatically\n    await sleep(1000);\n  }\n  return res.end()\n})"
                 },
                 {
                     "type": "text",
@@ -258,6 +334,26 @@
                 {
                     "type": "image",
                     "src": "./data/modules/webdev-assets/img5/7-1.gif"
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]True or False: SSE's allow the client to send information to the server without new requests[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "True",
+                        "False"
+                    ],
+                    "correct": 1,
+                    "descriptions": [
+                        "SSE's do not have this functionality! You may have gotten the terms mixed up!",
+                        "Correct! SSE's do not have this functionality!"
+                    ],
+                    "points": 5,
+                    "coins": 1
                 }
             ]
         }

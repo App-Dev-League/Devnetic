@@ -1,10 +1,18 @@
 var code = `
-# fibonacci sequence
-# @precondition n is zero or a positive integer
-def fib(n):
-  if n <= 1:
-    return n
-  return fib(n-1) + fib(n-2) # breaking into finding sum of previous two values of the sequence
+app.get("/server-time", async (req, res) => {
+  res.writeHead(200, {
+    'Content-Type': 'text/event-stream',
+    'Cache-Control': 'no-cache',
+    'Connection': 'keep-alive'
+  })
+
+  for (var x = 0; x < 10; x++) {
+    let data = "hello world! The current time is " + Date.now();
+    res.write("data: " + data + '\n\n'); // whenever you send two line characters the message is sent automatically
+    await sleep(1000);
+  }
+  return res.end()
+})
 `
 
 if (code.startsWith("\n")) code = code.slice(1)

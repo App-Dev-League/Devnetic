@@ -260,3 +260,19 @@ html {
     transition: 0.5s filter;
     filter: blur(3px);
 }
+.info-note {
+    white-space: normal !important;
+    padding: 12px 16px;
+    background-color: var(--chakra-colors-blue-900);
+    border-radius: 7px;
+    padding-left: 50px;
+    position: relative;
+}
+.info-note::before {
+    content: "\ea74";
+    font-family: "codicon";
+    font-size: 1.5em;
+    position: absolute;
+    left: 15px;
+    top: 10px;
+}

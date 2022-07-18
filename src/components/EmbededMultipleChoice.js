@@ -43,7 +43,7 @@ class EmbededMultipleChoice extends ModuleComponent {
 			block: 'center',
 			inline: 'center'
 		});
-		if (document.querySelector(".stack-width").children[getElementIndex(canvas.parentElement) + 1].id === "continue-button") {
+		if (!document.querySelector(".stack-width").children[getElementIndex(canvas.parentElement) + 1].className.includes("multiple-choice-wrapper")) {
 			setTimeout(function() {
 				document.querySelector('.stack-width').classList.remove('blur-all-non-mc-questions')
 			}, 100)
