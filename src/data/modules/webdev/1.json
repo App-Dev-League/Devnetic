@@ -373,7 +373,7 @@
                 },
                 {
                     "type": "embedded_multiple_choice",
-                    "question": "CSS rules can be applied to mutliple elements",
+                    "question": "CSS rules can be applied to multiple elements",
                     "descriptions": [
                         "Correct! You can do #hi, #bye {}",
                         "Incorrect! This would make CSS very tedious."
@@ -409,7 +409,7 @@
                     "type": "embedded_multiple_choice",
                     "question": "What is the optional fourth parameter in the rgb function?",
                     "descriptions": [
-                        "Incorrect. Color doesnot have depth.",
+                        "Incorrect. Color does not have depth.",
                         "Incorrect. The first three parameters affect the color.",
                         "Correct! Opacity is the condition of lacking transparency."
                     ],
@@ -455,7 +455,7 @@
                     "answers": [
                         "Allows CSS to be written in a single line",
                         "Allows elements to be shows side-by-side.",
-                        "Allows mutliple HTML documents to be shows side-by-side.",
+                        "Allows multiple HTML documents to be shows side-by-side.",
                         ""
                     ],
                     "correct": 1

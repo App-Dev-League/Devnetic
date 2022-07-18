@@ -43,7 +43,7 @@
                     ],
                     "answers": [
                         "Extremely Popular",
-                        "Easy and redable syntax",
+                        "Easy and readable syntax",
                         "Tons of libraries for AI, data science, and more",
                         "All of the above"
                     ],
@@ -243,7 +243,7 @@
                     "correct": 3,
                     "descriptions": [
                         "Incorrect!",
-                        "Incorrect! That is a single multiplcation sign",
+                        "Incorrect! That is a single multiplication sign",
                         "Incorrect!",
                         "Correct!"
                     ],

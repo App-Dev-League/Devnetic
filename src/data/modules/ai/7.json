@@ -274,7 +274,7 @@
                     "answers": [
                         "To discover patterns in data",
                         "Only to cluster data",
-                        "To maximize correct predicions",
+                        "To maximize correct predictions",
                         "To supervised learning more efficient"
                     ],
                     "correct": 0,
@@ -305,7 +305,7 @@
                     "descriptions": [
                         "Clustering is an unsupervised learning method",
                         "Anomaly detection is an unsupervised learning method",
-                        "Neural Netowrks can be used for unsupervised learning",
+                        "Neural Networks can be used for unsupervised learning",
                         "Correct! Regression is a supervised learning method"
                     ],
                     "points": 5,

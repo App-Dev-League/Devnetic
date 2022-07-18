@@ -289,14 +289,14 @@
                         "Animations",
                         "Interactive material",
                         "Styling documents",
-                        "Implimenting logic"
+                        "Implementing logic"
                     ],
                     "correct": 2,
                     "descriptions": [
                         "JavaScript is a great way to create animations.",
                         "JavaScript is perfect for creating interactive material.",
                         "CSS is used for this reason.",
-                        "JavaScript is great at implimenting logic."
+                        "JavaScript is great at implementing logic."
                     ],
                     "points": 5,
                     "coins": 1
