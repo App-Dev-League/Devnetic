@@ -24,7 +24,7 @@ module.exports = function renderElement(element) {
         return `
         <div class="info-split-content">
             ${element.elements.map(element => {
-            element.width = "100%" || element.width;
+            element.width = element.width || "100%";
             return `
                     <div class="info-split-content-element">
                         ${renderElement(element)}
@@ -37,7 +37,7 @@ module.exports = function renderElement(element) {
         return `
         <div class="info-vertical-content">
             ${element.elements.map(element => {
-            element.width = "100%" || element.width;
+            element.width = element.width || "100%";
             return `
                     <div class="info-vertical-content-element">
                         ${renderElement(element)}
@@ -56,7 +56,7 @@ module.exports = function renderElement(element) {
                 }
             ]
         }
-        if (element.elements[0].content && element.elements[0].content.toLowerCase().replaceAll(" ", "").includes("trueorfalse")) text =  "True or False"
+        if (element.elements[0].content && element.elements[0].content.toLowerCase().replaceAll(" ", "").includes("trueorfalse")) text = "True or False"
         const multipleChoiceElement = new MultipleChoice({ answers: element.answers, correct: element.correct, descriptions: element.descriptions, points: element.points, coins: element.coins }, null)
         return `
         <div class="multiple-choice-wrapper" onclick="document.querySelector('.stack-width').classList.add('blur-all-non-mc-questions')">
@@ -64,7 +64,7 @@ module.exports = function renderElement(element) {
         <canvas class="mc-answer-confetti"></canvas>
 
             ${element.elements.map(element => {
-            element.width = "100%" || element.width;
+            element.width = element.width || "100%";
             return `
                     <div class="info-vertical-content-element">
                         ${renderElement(element)}
