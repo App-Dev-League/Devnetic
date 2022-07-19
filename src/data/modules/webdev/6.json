@@ -6,31 +6,74 @@
             "title": "Week 7 - JSX and React Intro",
             "elements": [
                 {
-                    "type": "text",
-                    "content": "[[h3]]What is React?[[/]]\n➔ JavaScript front-end framework\n➔ Developed by Facebook\n➔ Easier to display dynamic content compared to Vanilla JS\n➔ Changes info dynamically, allowing users to repeat HTML code for several purposes"
+                    "type": "split-content",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h3]]What is React?[[/]]\n➔ JavaScript front-end framework\n➔ Developed by Facebook\n➔ Easier to display dynamic content compared to Vanilla JS\n➔ Changes info dynamically, allowing users to repeat HTML code for several purposes"
+                        },
+                        {
+                            "type": "image",
+                            "src": "./data/modules/webdev-assets/img6/0-0.png",
+                            "width": "60%"
+                        }
+                    ]
                 },
                 {
-                    "type": "image",
-                    "src": "./data/modules/webdev-assets/img6/0-0.png",
-                    "width": "30%"
+                    "type": "divider"
                 },
                 {
-                    "type": "text",
-                    "content": "[[h3]]ReactJS vs HTML[[/]]\n➔ In HTML, to update text, you would have to query the element in JS and then change it.\n➔ With React, you only need to change one variable to update the text!\n➔ In HTML, it’s hard to reuse code, while in React, just create Components! "
+                    "type": "split-content",
+                    "elements": [
+                        {
+                            "type": "image",
+                            "src": "./data/modules/webdev-assets/img6/0-1.png",
+                            "width": "90%"
+                        },
+                        {
+                            "type": "text",
+                            "content": "[[h3]]ReactJS vs HTML[[/]]\n➔ In HTML, to update text, you would have to query the element in JS and then change it.\n➔ With React, you only need to change one variable to update the text!\n➔ In HTML, it’s hard to reuse code, while in React, just create Components! "
+                        }
+                    ]
                 },
                 {
-                    "type": "image",
-                    "src": "./data/modules/webdev-assets/img6/0-1.png",
-                    "width": "40%"
+                    "type": "divider"
                 },
                 {
-                    "type": "text",
-                    "content": "[[h3]]What is JSX?[[/]]\n➔ Stands for JavaScript XML\n➔ Allows user to write HTML into React\n➔ Part of React’s syntax\n➔ Allows user to split HTML code into multiple components\n➔ Provides a visual aid for web development"
+                    "type": "split-content",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h3]]What is JSX?[[/]]\n➔ Stands for JavaScript XML\n➔ Allows user to write HTML into React\n➔ Part of React’s syntax\n➔ Allows user to split HTML code into multiple components\n➔ Provides a visual aid for web development"
+                        },
+                        {
+                            "type": "image",
+                            "src": "./data/modules/webdev-assets/img6/0-2.png",
+                            "width": "75%",
+                            "padding-top": "10px",
+                            "border-radius": "0px"
+                        }
+                    ]
                 },
                 {
-                    "type": "image",
-                    "src": "./data/modules/webdev-assets/img6/0-2.png",
-                    "width": "40%"
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]True or False: React allows you to change elements without querying them[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "True",
+                        "False"
+                    ],
+                    "correct": 0,
+                    "descriptions": [
+                        "That is correct! We'll go further into this in the next few pages",
+                        "Changing elements without manually querying them is actually a very nice React feature!"
+                    ],
+                    "points": 5,
+                    "coins": 1
                 }
             ]
         },
@@ -43,12 +86,45 @@
                     "content": "[[h3]]Basic JSX Syntax[[/]]\n➔ Almost exactly like HTML\n[[ ]][[ ]]◆ Few minor differences\n[[ ]][[ ]]◆ Differences allow for more functionality\n[[ ]][[ ]]◆ All HTML attributes get camelCased\n[[ ]][[ ]][[ ]][[ ]]● [[`]]onclick[[/]] turns into [[`]]onClick[[/]]\n➔ The user can display variables in JSX syntax\n[[ ]][[ ]]◆ Allows to dynamically render content"
                 },
                 {
-                    "type": "image",
-                    "src": "./data/modules/webdev-assets/img6/1-0.png"
+                    "type": "split-content",
+                    "elements": [
+                        {
+                            "type": "code",
+                            "lang": "html",
+                            "content": "<h1 class='red'>This is HTML syntax</h1>\n\n<h1 className='red'>This is HTML syntax</h1>"
+                        },
+                        {
+                            "type": "code",
+                            "lang": "js",
+                            "content": "const variable1 = \"This is a variable\";\n\n<h1>{variable1}</h1>"
+                        }
+                    ]
                 },
                 {
                     "type": "text",
                     "content": "[[h3]]Things to Keep in Mind[[/]]\n➔ Unlike HTML, in React, if you forget to add a closing “div” tag, your program will throw an error! This makes it easy to see where errors are.\n➔ All tags in HTML are supported in React, but HTML tags that don’t have closing tags ([[`]]<br>[[/]], [[`]]<img>[[/]], etc.) must have closing tags in React!\n➔ React supports server-side and client-side rendering! Server-side rendering will be slower for big websites, but may let your site appear higher in search engine results\n➔ JSX syntax requires just one parent element. You can have whatever you want inside, but remember: Only one parent element!"
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]What is the React.JS equivalent for the property \"onkeydown\"[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "onkeydown",
+                        "onKeyDown",
+                        "onKeydown"
+                    ],
+                    "correct": 1,
+                    "descriptions": [
+                        "Remember that attributes in React.JS are camelCased",
+                        "Correct! Attributes and css properties are all camelCased",
+                        "You're on the correct track! Try camelCasing some more!"
+                    ],
+                    "points": 5,
+                    "coins": 1
                 }
             ]
         },
@@ -61,8 +137,8 @@
                     "content": "[[h3]]ReactDOM.render[[/]]\n➔ Allows user to render elements in a container\n➔ Most commonly found in Index.JS file in the project\n➔ In the example below, “element” will be rendered and displayed on the HTML element that has ID = “root”"
                 },
                 {
-                    "type": "image",
-                    "src": "./data/modules/webdev-assets/img6/2-0.png"
+                    "type": "code",
+                    "content": "const element = <h1>This will be rendered</h1>\nReactDOM.render(element, document.getElementById(\"root\"))"
                 },
                 {
                     "type": "divider"
@@ -72,8 +148,19 @@
                     "content": "[[h3]]React Components[[/]]\n➔ React components allow user to reuse HTML\n➔ Two types of components\n[[ ]][[ ]]◆ Class components\n[[ ]][[ ]]◆ Functional components - More modern \n➔ Class components work as “classes” that render HTML\n[[ ]][[ ]]◆ They require the use of the render() method\n➔ Functional components are functions that return JSX\n[[ ]][[ ]]◆ Within the function, the user can add variables, hooks, etc.\n➔ How to create a component:\n[[ ]][[ ]]◆ Create a function of any name (must be capitalized)\n[[ ]][[ ]]◆ Add a “return” statement, which returns JSX code"
                 },
                 {
-                    "type": "image",
-                    "src": "./data/modules/webdev-assets/img6/2-1.png"
+                    "type": "split-content",
+                    "elements": [
+                        {
+                            "type": "code",
+                            "content": "function Welcome() {\n  return <h1>This is the return statement</h1>\n}\n\n\nReactDOM.render(<Welcome />, document.getElementById('root'))",
+                            "name": "Functional Component"
+                        },
+                        {
+                            "type": "code",
+                            "content": "class Welcome extends React.Component {\n  render() {\n    return <h1>This is the return statement</h1>\n  }\n}\nReactDOM.render(<Welcome />, document.getElementById('root'))",
+                            "name": "Class Component"
+                        }
+                    ]
                 },
                 {
                     "type": "embedded_multiple_choice",
@@ -165,12 +252,35 @@
                     "content": "[[h3]]JSX Attributes[[/]]\n➔ Components can contain custom attributes\n[[ ]][[ ]]◆ For instance, if the user wants to pass any value, they can pass it as an attribute\n[[ ]][[ ]]◆ These are called props\n➔ Here’s how to create an attribute:"
                 },
                 {
-                    "type": "image",
-                    "src": "./data/modules/webdev-assets/img6/3-0.png"
+                    "type": "code",
+                    "content": "function Welcome(props) {\n  return <h1>This is how you display react props: {props.name}</h1>\n}\n\nReactDOM.render(<Welcome name=\"your name\"/>, document.getElementById('root'))",
+                    "lang": "js"
                 },
                 {
                     "type": "text",
                     "content": "➔ We first created a functional component, but this time we added a parameter called “props” in the function\n➔ Now, whenever we use this component, we add the attribute onto the component"
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]React props allow for us to: [[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "Change properties of parent components",
+                        "Pass parameters into React components",
+                        "Create properties and push them to the DOM"
+                    ],
+                    "correct": 1,
+                    "descriptions": [
+                        "Look closer, there is probably a better answer",
+                        "React props allow us to pass parameters into React components, just like functions",
+                        "Look closer. There probably is a better answer"
+                    ],
+                    "points": 5,
+                    "coins": 1
                 },
                 {
                     "type": "divider"
@@ -180,18 +290,18 @@
                     "content": "[[h3]]JSX Create Element[[/]]\n➔ Whenever the user creates components, they get compiled into “React.createElement”\n➔ React.createElement contains 3 properties\n[[ ]][[ ]]◆ Name of the element\n[[ ]][[ ]]◆ An object containing all the attributes\n[[ ]][[ ]]◆ A string with the element’s content\n➔ Let’s take the previous example:"
                 },
                 {
-                    "type": "image",
-                    "src": "./data/modules/webdev-assets/img6/3-1.png",
-                    "width": "60%"
+                    "type": "code",
+                    "content": "<Welcome name=\"yourName\">Content</Welcome>",
+                    "lang": "xml"
                 },
                 {
                     "type": "text",
                     "content": "➔ That component compiles into the React.createElement code, as shown below:"
                 },
                 {
-                    "type": "image",
-                    "src": "./data/modules/webdev-assets/img6/3-2.png",
-                    "width": "60%"
+                    "type": "code",
+                    "content": "React.createElement(Welcome, {name: \"yourName\"}, \"Content\")",
+                    "lang": "js"
                 },
                 {
                     "type": "divider"
@@ -199,6 +309,30 @@
                 {
                     "type": "text",
                     "content": "[[h3]]Virtual DOM[[/]]\n➔ React needs to be able to dynamically update content\n➔ HTML has “Real DOM,” so it cannot dynamically update\n➔ Therefore, React uses “Virtual DOM”\n➔ The Virtual DOM is kept in memory\n➔ It represents the UI itself\n➔ This Virtual DOM is constantly syncing with the “Real DOM”\n➔ This process happens through a React library called “ReactDOM”"
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]The virtual DOM's main goal is to[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "Pre-render components to increase performance",
+                        "Act as a security buffer to prevent cross site scripting",
+                        "Queue changes to the DOM before rendering",
+                        "Act as a dynamically updatable DOM in place of the real DOM"
+                    ],
+                    "correct": 3,
+                    "descriptions": [
+                        "This may be a valid answer, but is not the main goal of the virtual DOM",
+                        "The virtual DOM does not do this!",
+                        "This may be a valid answer, but is not the main goal of the virtual DOM",
+                        "As the real DOM is not dynamically updatable, but the virtual DOM is, so it constantly syncs with the real DOM"
+                    ],
+                    "points": 5,
+                    "coins": 1
                 }
             ]
         },
@@ -239,9 +373,9 @@
                     "content": "➔ In React, the React Framework will render everything into an HTML file, typically a div with id “root” in the “index.html” file\n➔ To render an HTML element in ReactJS, use [[`]]ReactDOM.render([HTML code], [HTML element describing where to render])[[/]]\n➔ In “main.jsx” (under the “src” folder), replace all of the code with the following:"
                 },
                 {
-                    "type": "image",
-                    "src": "./data/modules/webdev-assets/img6/5-0.png",
-                    "width": "70%"
+                    "type": "code",
+                    "lang": "js",
+                    "content": "import React from 'react';\nimport ReactDOM from 'react-dom';\n\nconst element = <h1>Hello World!</h1>\nReactDOM.render(element, document.getElementById('root'))"
                 },
                 {
                     "type": "text",
