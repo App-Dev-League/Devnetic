@@ -325,3 +325,12 @@ html {
 .editor-alert-modal .text {
     line-height: 20px;
 }
+.info-text {
+    line-height: 1.75;
+}
+.explanation-modal p {
+    line-height: 1.75;
+}
+.plugin-itm * {
+    line-height: 1.75;
+}

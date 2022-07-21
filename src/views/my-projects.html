@@ -4,7 +4,7 @@
 %>
 <div class="home-row">
     <% Object.entries(projects).forEach(([key, value]) => { %>
-    <h3><%- value.name %></h3>
+    <h3 style="font-weight: 500"><%- value.name %></h3>
     <div class="my-project-list-item" data-name="<%-key%>">
         <a href="#/learn/<%-value.track%>/<%-value.module%>/<%-value.position%>">Open</a>
         |
