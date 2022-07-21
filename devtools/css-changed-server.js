@@ -9,12 +9,23 @@ app.get("/tApp.js", function (req, res) {
     let file = fs.readFileSync("../src/tApp.js")
     file = file + `
         var uiFile = document.querySelector("[href='./assets/stylesheets/ui.css']");
+        var lightThemeFile = document.getElementById('theme-stylesheet')
         const evtSource = new EventSource("/watch/assetspath_seperatorstylesheetspath_seperatorui.css");
         evtSource.onmessage = function(event) {
             let data = JSON.parse(event.data);
             if (data.event === "change") {
                 if (!uiFile) uiFile = document.querySelector("[href='./assets/stylesheets/ui.css']");
                 uiFile.href="./assets/stylesheets/ui.css?version="+Math.random()
+            }
+        }
+        if (localStorage.getItem('theme') === "light") {
+            const lightThemeEvtSrc = new EventSource("/watch/assetspath_seperatorstylesheetspath_seperatorlighttheme.css");
+            lightThemeEvtSrc.onmessage = function(event) {
+                let data = JSON.parse(event.data);
+                if (data.event === "change") {
+                    if (!lightThemeFile) lightThemeFile = document.getElementById('theme-stylesheet')
+                    lightThemeFile.href="./assets/stylesheets/lighttheme.css?version="+Math.random()
+                }
             }
         }
     `
