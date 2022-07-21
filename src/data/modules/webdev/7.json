@@ -19,6 +19,28 @@
                 {
                     "type": "text",
                     "content": "[[h3]]React Components[[/]]\n➔ React components allow for us to quickly re-use common components (like a navbar)\n➔ When you are writing code inside of a component, you can treat it like it’s own HTML website! (If you have a class named “hello” in one component, but also another element with the “hello” class in a different component, they will not interfere with one another.\n➔ Components are a bit like Javascript functions. You can pass parameters in by using React “props”, and you [[`]]return[[/]] the HTML/JSX code!"
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]React components are mainly used to:[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "Isolate and reuse parts of a website",
+                        "Keep track of an element's state",
+                        "Change attributes of an element"
+                    ],
+                    "correct": 0,
+                    "descriptions": [
+                        "That is correct! This is the main purpose of React components!",
+                        "Although react components can do this, this is not that the main purpose",
+                        "React components don't do this!"
+                    ],
+                    "points": 5,
+                    "coins": 1
                 }
             ]
         },
@@ -31,8 +53,33 @@
                     "content": "➔ Once you navigate to your replit, replicate the filesystem to the right. Mainly, pay attention to the “components” folder - this is where we’ll be putting all of our components\n➔ After this, navigate to the “header.jsx” file and import the React module and the header.module.css file.\n➔ Then, create a function with a return function inside returning some HTML! Once you’re satisfied, export the function, (since remember, this is treated as a JS module)\n➔ If you don’t see anything yet, don’t worry. We still need to navigate to “main.jsx” and import the “Header” module and stick it into the DOM."
                 },
                 {
-                    "type": "image",
-                    "src": "./data/modules/webdev-assets/img7/1-0.png"
+                    "type": "split-content",
+                    "elements": [
+                        {
+                            "type": "image",
+                            "src": "./data/modules/webdev-assets/img7/1-0.png"
+                        },
+                        {
+                            "type": "vertical-content",
+                            "elements": [
+                                {
+                                    "type": "code",
+                                    "lang": "javascript",
+                                    "name": "header.jsx",
+                                    "content": "import React from 'react'; \nimport './header.module.css';\n\nfunction navbar() {\n    return (\n        <main>\n          Hello from the header component!\n        </main>\n    );\n}\n\nexport default navbar;"
+                                },
+                                {
+                                    "type": "divider"
+                                },
+                                {
+                                    "type": "code",
+                                    "lang": "javascript",
+                                    "content": "import React from 'react'; \nimport ReactDOM from 'react-dom'\n import './index.css'\nimport Header from './components/header/header'\n\nReactDOM.render(\n    <React.StrictMode>\n        <Header />\n    </React.StrictMode>,\n    document.getElementById('root')\n)",
+                                    "name": "main.jsx"
+                                }
+                            ]
+                        }
+                    ]
                 }
             ]
         },
@@ -45,8 +92,44 @@
                     "content": "➔ To further increase a component’s reusability, pass parameters using react props\n➔ In a function, props can be accessed in the first function parameter.\n➔ To pass a prop to a component, use the component with a HTML attribute. For example, [[`]]<Navbar mood=“hi”/>[[/]]"
                 },
                 {
-                    "type": "image",
-                    "src": "./data/modules/webdev-assets/img7/2-0.png"
+                    "type": "split-content",
+                    "elements": [
+                        {
+                            "type": "code",
+                            "name": "main.jsx",
+                            "content": "import React from 'react'\nimport ReactDOM from 'react-dom'\nimport './index.css'\nimport Header from './components/header/header'\n\nReactDOM.render (\n  <React.StrictMode>\n      <Header mood=\"good!\"/>\n  </React.StrictMode>,\n  document.getElementById('root')\n)\n"
+                        },
+                        {
+                            "type": "code",
+                            "content": "import React from 'react';\nimport './header.module.css';\n\nfunction navbar(props) {\n  return (\n    <div className=\"Comment\">\n      Hello from the header component! I'm currently feeling <u>{props.mood}</|\n    </div>\n  );\n\nexport default navbar;",
+                            "lang": "javascript",
+                            "name": "navbar.jsx"
+                        }
+                    ]
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]React props allow us to [[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "Queue changes to the React virtual DOM",
+                        "Change an HTML element's attributes",
+                        "Free up resources when a component mounts or unmounts",
+                        "Pass parameters into a component"
+                    ],
+                    "correct": 3,
+                    "descriptions": [
+                        "React props do not do this.",
+                        "They can change component attributes, but not standard HTML elements",
+                        "Component lifecycle methods actually do this, not props!",
+                        "Correct! This allows us to further reuse React components"
+                    ],
+                    "points": 5,
+                    "coins": 1
                 }
             ]
         },
@@ -56,7 +139,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "➔ Let’s take a quick detour and talk about React.JS classes. While functions get the job done easily, they don’t allow for much customization. \n➔ In React Classes, the declaratory syntax is"
+                    "content": "➔ Let's take a quick detour and talk about React.JS classes. While functions get the job done easily, they don’t allow for much customization. \n➔ In React Classes, the declaratory syntax is"
                 },
                 {
                     "type": "code",
@@ -67,9 +150,9 @@
                     "content": "➔ In React Classes, there are many methods, and most notably:\n[[ ]][[ ]]◆ [[`]]constructor(props)[[/]] allows you to get/set props/states/anything in the “this” variable\n[[ ]][[ ]]◆ [[`]]componentDidMount()[[/]] allows you to run JS when as soon as the component is rendered for the first time  - This is a [[red]]lifecycle method[[/]]\n[[ ]][[ ]]◆ [[`]]componentWillUnmount()[[/]] allows you to run JS (to free up resources) when the component is about to be removed - This is a [[red]]lifecycle method[[/]]\n[[ ]][[ ]]◆ [[`]]render()[[/]] - what you put your return [html] statement in"
                 },
                 {
-                    "type": "image",
-                    "src": "./data/modules/webdev-assets/img7/3-0.png",
-                    "width": "60%"
+                    "type": "code",
+                    "content": "import React from 'react';\nimport '../header.module.css';\n\nclass navbar extends React.Component {\n    constructor(props) {\n        super (props)\n    }\n    render() {\n        return (\n            <div className=\"Comment\">\n                Hello from the header component! I'm current feeling <u>{this.props.mood}</u>\n            </div>\n        )\n    }\n}\nexport default navbar;\n// converted navbar from a functional component to a class component",
+                    "name": "navbar.jsx"
                 },
                 {
                     "type": "embedded_multiple_choice",
@@ -114,8 +197,9 @@
                     "content": "[[ ]][[ ]]◆ You can ONLY add new keys/values to the “state” object in the constructor!\n➔ To update something in the “state” variable, use [[`]]this.setState({“key”: “new value”});[[/]]\n➔ To read something in the “state” variable, use [[`]]this.state[“your key”][[/]]\n[[ ]][[ ]]◆ (Note: you cannot use this method to update the “state” variable)"
                 },
                 {
-                    "type": "image",
-                    "src": "./data/modules/webdev-assets/img7/4-0.png"
+                    "type": "code",
+                    "lang": "javascript",
+                    "content": "// creating a React state\nclass MyComponent extends React.Component {\n    constructor(props) {\n        super(props);\n        this.state = {\"a JS object key\": \"a value\"};\n    }\n\n    // updating the state\n    this.setState({\"a JS object key\": \"a new value\"})\n\n    // reading the prop\n    console.log(this.state[\"a JS object key\"])\n}"
                 },
                 {
                     "type": "divider"
@@ -127,6 +211,28 @@
                 {
                     "type": "code",
                     "content": "const [count, setCount] = useState(0);"
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]React states allow us:[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "Isolate and reuse parts of a website",
+                        "Quickly manipulate text in the DOM without forcing React to re-render",
+                        "Keep track of variables across react renders"
+                    ],
+                    "correct": 1,
+                    "descriptions": [
+                        "React props actually do that!",
+                        "That is correct! This is the main purpose of React states!",
+                        "Although React states technically do this, there is a better answer"
+                    ],
+                    "points": 5,
+                    "coins": 1
                 }
             ]
         },
@@ -157,8 +263,8 @@
                     "content": "➔ In React.JS, handling events is very similar to HTML. For example, [[`]]onclick=“myFunction()”[[/]] becomes [[`]]onClick={myFunction}[[/]]\n➔ All event handlers become camelCased, (onscroll -> onScroll)\n➔ If the current component is a class, then the event handler becomes [[`]]onclick={this.myFunction}[[/]] You will also need to bind the function in the constructor of the class with [[`]]this.myFunction = this.myFunction.bind(this)[[/]]. (We bind “this” to the function so the function will be able to access the correct “this” variable). Then, define the function as [[`]]myFunction() {yourStuff;}[[/]] \n➔ Preventing default actions in React.JS is different than HTML. In React.JS, you have to add [[`]]event.preventDefault();[[/]] in the function that is being called."
                 },
                 {
-                    "type": "image",
-                    "src": "./data/modules/webdev-assets/img7/5-0.png"
+                    "type": "code",
+                    "content": "class MyComponent extends React.Component {\n    constructor(props) {\n        super(props);\n        // binding the event handlers\n        this.myFunction = this.myFunction.bind(this)\n    }\n    myFunction(e, parameter1) {\n        // preventing default actions\n        e.preventDefault();\n        console.log(\"Parameter 1: \" + parameter1)\n    }\n    render() {\n        // defining event handler function\n        return (\n            <button onClick={(e) => this.myFunction(e, \"hello!\")}>myFunction with parameters</button>\n        )\n    }\n}"
                 }
             ]
         },
@@ -175,8 +281,28 @@
                     "content": "render() {\n\tvar things = [\"hi\", \"foo\", \"bar\", \"hello\"]\n\treturn (\n\t\tthings.map((thing) => {\n\t\t\t<h1 key={thing}>{thing}</h1>\n\t\t}) \n\t)\n}"
                 },
                 {
-                    "type": "text",
+                    "type": "note",
                     "content": "    Note! The element that you are repetitively looping over needs a “key” attribute. This can be anything you want, just make sure it’s unique. You can then use the key later to get the element"
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]True or False: React keys are required when using array.map[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "True",
+                        "False"
+                    ],
+                    "correct": 0,
+                    "descriptions": [
+                        "Correct! This is how React keeps track of where elements are located.",
+                        "Keys are required, as this is how React keeps track of what elements are what"
+                    ],
+                    "points": 5,
+                    "coins": 1
                 }
             ]
         },

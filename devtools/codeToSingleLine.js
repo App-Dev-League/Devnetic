@@ -1,18 +1,22 @@
 var code = `
-app.get("/server-time", async (req, res) => {
-  res.writeHead(200, {
-    'Content-Type': 'text/event-stream',
-    'Cache-Control': 'no-cache',
-    'Connection': 'keep-alive'
-  })
-
-  for (var x = 0; x < 10; x++) {
-    let data = "hello world! The current time is " + Date.now();
-    res.write("data: " + data + '\n\n'); // whenever you send two line characters the message is sent automatically
-    await sleep(1000);
-  }
-  return res.end()
-})
+class MyComponent extends React.Component {
+    constructor(props) {
+        super(props);
+        // binding the event handlers
+        this.myFunction = this.myFunction.bind(this)
+    }
+    myFunction(e, parameter1) {
+        // preventing default actions
+        e.preventDefault();
+        console.log("Parameter 1: " + parameter1)
+    }
+    render() {
+        // defining event handler function
+        return (
+            <button onClick={(e) => this.myFunction(e, "hello!")}>myFunction with parameters</button>
+        )
+    }
+}
 `
 
 if (code.startsWith("\n")) code = code.slice(1)

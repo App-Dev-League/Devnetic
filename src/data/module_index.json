@@ -6,27 +6,27 @@
         "Intro To CS": "intro-to-cs"
     },
     "webdev": {
-        "totalPages": 117,
+        "totalPages": 85,
         "module_meta_data": [
             {
                 "name": "Week 1 - Quick Intro to Web Development",
-                "moduleLength": 21
+                "moduleLength": 19
             },
             {
                 "name": "Week 2 - CSS",
-                "moduleLength": 23
+                "moduleLength": 12
             },
             {
                 "name": "Week 3 - JavaScript",
-                "moduleLength": 18
+                "moduleLength": 12
             },
             {
                 "name": "Week 4 - HTML Recap",
-                "moduleLength": 15
+                "moduleLength": 5
             },
             {
                 "name": "Week 5 - Intro to Node.js",
-                "moduleLength": 8
+                "moduleLength": 7
             },
             {
                 "name": "Week 6 - REST API and Express JS",
@@ -34,11 +34,11 @@
             },
             {
                 "name": "Week 7 - JSX and React Intro",
-                "moduleLength": 11
+                "moduleLength": 10
             },
             {
                 "name": "Week 8 - Advanced React.JS/JSX",
-                "moduleLength": 11
+                "moduleLength": 10
             }
         ],
         "background": "linear-gradient(to right, #c33764, #1d2671)"
@@ -82,11 +82,11 @@
         "background": "linear-gradient(to right, #4776e6, #8e54e9)"
     },
     "ai": {
-        "totalPages": 127,
+        "totalPages": 100,
         "module_meta_data": [
             {
                 "name": "Week 1 - Python Review",
-                "moduleLength": 27
+                "moduleLength": 12
             },
             {
                 "name": "Week 2 - Introduction to Artificial Intelligence",
@@ -102,19 +102,19 @@
             },
             {
                 "name": "Week 5 - Intro to Neural Networks",
-                "moduleLength": 19
+                "moduleLength": 13
             },
             {
                 "name": "Week 6 - Computer Vision: Convolutional Neural Networks",
-                "moduleLength": 20
+                "moduleLength": 19
             },
             {
                 "name": "Week 7 - Natural Language Processing",
-                "moduleLength": 30
+                "moduleLength": 28
             },
             {
                 "name": "Week 8 - Unsupervised Learning",
-                "moduleLength": 20
+                "moduleLength": 17
             }
         ],
         "background": "linear-gradient(to right, #348f50, #56b4d3)"

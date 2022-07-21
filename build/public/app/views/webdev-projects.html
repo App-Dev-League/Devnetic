@@ -1,38 +1,47 @@
-<div class="home-row">
-	<h3>Frontend</h3>
-	<a class="home-module" href="#/learn/webdev-projects/0/">
-		<p>Week 1 - Personal Website</p>
-	</a>
-	<a class="home-module" href="#/learn/webdev-projects/1/">
-		<p>Week 2 - Store Interface</p>
-	</a>
+<div class="track-header-bg"></div>
+<div class="track-header-card stack-width">
+	<a class="backhome" href="#/"><span class="codicon codicon-arrow-left"></span>Back Home</a>
+	<span class="name">Web Development Projects</span>
+	<span class="desc">Put your HTML, CSS, JS, React, and Express.JS skills to use! Create useful web apps, publish your first package for others to use, and much, much more!</span>
+	<span class="time"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M232 120C232 106.7 242.7 96 256 96C269.3 96 280 106.7 280 120V243.2L365.3 300C376.3 307.4 379.3 322.3 371.1 333.3C364.6 344.3 349.7 347.3 338.7 339.1L242.7 275.1C236 271.5 232 264 232 255.1L232 120zM256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0zM48 256C48 370.9 141.1 464 256 464C370.9 464 464 370.9 464 256C464 141.1 370.9 48 256 48C141.1 48 48 141.1 48 256z"/></svg><span>0-0hr</span></span>
 </div>
-<div class="home-row">
-	<h3>Scripting</h3>
-	<a class="home-module" href="#/learn/webdev-projects/2/">
-		<p>Week 3 - Console Games</p>
+
+<div class="stack-width lesson-chooser">
+	<h2>Lessons</h2>
+
+	<a class="module-button" href="#/learn/webdev-projects/0/">
+		<span class="title"><span class="week">Week 1</span>Personal Website</span>
+		<span class="status-indic"></span>
 	</a>
-	<a class="home-module" href="#/learn/webdev-projects/3/">
-		<p>Week 4 - Calculator</p>
+	<a class="module-button" href="#/learn/webdev-projects/1/">
+		<span class="title"><span class="week">Week 2</span>Store Interface</span>
+		<span class="status-indic"></span>
 	</a>
-</div>
-<div class="home-row">
-	<h3>Backend</h3>
-	<a class="home-module" href="#/learn/webdev-projects/4/">
-		<p>Week 5 - NPM Module</p>
+	<a class="module-button" href="#/learn/webdev-projects/2/">
+		<span class="title"><span class="week">Week 3</span>Console Games</span>
+		<span class="status-indic"></span>
 	</a>
-	<a class="home-module" href="#/learn/webdev-projects/5/">
-		<p>Week 6 - Express.JS</p>
+	<a class="module-button" href="#/learn/webdev-projects/3/">
+		<span class="title"><span class="week">Week 4</span>Calculator</span>
+		<span class="status-indic"></span>
 	</a>
-</div>
-<div class="home-row">
-	<h3>React</h3>
-	<a class="home-module" href="#/learn/webdev-projects/6/">
-		<p>Week 7 - Information Displayer</p>
+	<a class="module-button" href="#/learn/webdev-projects/4/">
+		<span class="title"><span class="week">Week 5</span>NPM Module</span>
+		<span class="status-indic"></span>
 	</a>
-	<a class="home-module" href="#/learn/webdev-projects/7/">
-		<p>Week 8 - To-do List</p>
+	<a class="module-button" href="#/learn/webdev-projects/5/">
+		<span class="title"><span class="week">Week 6</span>Express.JS</span>
+		<span class="status-indic"></span>
 	</a>
+	<a class="module-button" href="#/learn/webdev-projects/6/">
+		<span class="title"><span class="week">Week 7</span>Information Displayer</span>
+		<span class="status-indic"></span>
+	</a>
+	<a class="module-button" href="#/learn/webdev-projects/7/">
+		<span class="title"><span class="week">Week 8</span>To-do List</span>
+		<span class="status-indic"></span>
+	</a>
+
 </div>
 <div id="menu-container" class="codicon codicon-loading" style="position:fixed;top:60px;right:10px">
 	<% include('./views/menu.html').then(res => {document.getElementById("menu-container").classList.remove("codicon-loading"); document.getElementById("menu-container").innerHTML = res;nodeScriptReplace(document.getElementById("menu-container"))}) %>
@@ -40,3 +49,6 @@
 <a href="#/my-projects" class="my-projects codicon codicon-folder" title="Your projects" style="position:fixed;top:60px;right:50px"></a>
 <a onclick="downloadSaveFile()" title="Download save file" class="my-projects codicon codicon-desktop-download" style="position:fixed;top:60px;right:90px"></a>
 <a onclick="loadSaveFile()" title="Load a save file" class="my-projects codicon codicon-cloud-upload" style="position:fixed;top:60px;right:130px"></a>
+
+
+<script>window.onNewMenuData()</script>
