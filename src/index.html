@@ -24,6 +24,7 @@
     <link rel="stylesheet" type="text/css" href="./assets/stylesheets/chakra-variables.css">
     <link rel="stylesheet" type="text/css" href="./assets/stylesheets/ui.css">
     <style>
+        @import url("./assets/fonts/Inter/inter.css");
         html {
             overflow-x: hidden;
         }
@@ -217,7 +218,8 @@
 
         * {
             color: var(--white);
-            font-family: 'Nunito', sans-serif;
+            font-family: 'Inter', sans-serif;
+            font-weight: var(--chakra-fontWeights-normal);
         }
 
         html,
@@ -274,7 +276,7 @@
         header>h3.username {
             margin: 0;
             font-size: 2em;
-            font-family: 'Nunito-ExtraBold', sans-serif;
+            font-weight: bold;
             position: absolute;
             left: 50%;
             top: 50%;
@@ -284,7 +286,7 @@
         header>p.score {
             margin: 0;
             font-size: 1.4em;
-            font-family: 'Nunito-SemiBold', sans-serif;
+            font-weight: var(--chakra-fontWeights-medium);
             position: absolute;
             right: 20px;
             top: 50%;
@@ -351,27 +353,27 @@
         }
 
         .c-bold {
-            font-weight: bold;
+            font-weight: var(--chakra-fontWeights-semibold);
         }
 
         .c-h3 {
             font-size: 1.5em;
-            font-weight: bold;
+            font-weight: var(--chakra-fontWeights-semibold);
         }
 
         .c-h4 {
             font-size: 1.4em;
-            font-weight: bold;
+            font-weight: var(--chakra-fontWeights-semibold);
         }
 
         .c-h5 {
             font-size: 1.3em;
-            font-weight: bold;
+            font-weight: var(--chakra-fontWeights-semibold);
         }
 
         .c-h6 {
             font-size: 1.2em;
-            font-weight: bold;
+            font-weight: var(--chakra-fontWeights-semibold);
         }
 
         .c-monospace {
@@ -416,7 +418,6 @@
         .home-row>h3 {
             margin: 0;
             font-size: 1.5em;
-            font-family: 'Nunito-Bold', sans-serif;
         }
 
         .home-module {
@@ -424,7 +425,6 @@
             margin: 0;
             font-size: 1.2em;
             text-align: center;
-            font-family: 'Nunito-Bold', sans-serif;
             text-decoration: none;
             border: 3px solid var(--white);
             width: calc(25% - 44px);
@@ -496,7 +496,7 @@
             margin-top: 50px;
             font-size: 1.8em;
             text-align: center;
-            font-family: 'Nunito-Bold', sans-serif;
+            font-weight: var(--chakra-fontWeights-medium)
         }
 
         .mc-codeblock {
@@ -525,7 +525,6 @@
             display: table-cell;
             font-size: 1.2em;
             text-align: center;
-            font-family: 'Nunito-Bold', sans-serif;
             width: calc(25vw - 44px);
             box-sizing: border-box;
             padding-left: 20px;
@@ -622,6 +621,7 @@
             font-size: 1.2em;
             cursor: pointer;
             box-shadow: var(--shadow);
+            font-weight: var(--chakra-fontWeights-semibold);
             transition: background-color 0.15s ease-in-out,
                 border 0.15s ease-in-out,
                 transform 0.15s ease-in-out,
@@ -647,7 +647,6 @@
             margin-bottom: 50px;
             font-size: 1.8em;
             text-align: center;
-            font-family: 'Nunito-Bold', sans-serif;
         }
 
         .info-text {
@@ -904,7 +903,7 @@
         .tab-group>.tab {
             display: inline;
             padding-top: 10px;
-            padding-bottom: 10px;
+            padding-bottom: 12px;
             padding-left: 5px;
             padding-right: 5px;
             border-radius: 10px 10px 0 0;
@@ -993,7 +992,7 @@
 
         .snippet-title {
             margin-left: 10px;
-            font-weight: bold;
+            font-weight: var(--chakra-fontWeights-semibold);
         }
 
         .none {
@@ -1475,7 +1474,7 @@
             opacity: 0;
             transition: all 0.5s;
             pointer-events: none;
-            font-weight: bold;
+            font-weight: var(--chakra-fontWeights-semibold);
             width: 1000px;
         }
 
@@ -1550,7 +1549,7 @@
             width: 100% !important;
         }
 
-        .info-split-content-element .info-text {
+        .info-split-content-element .info-text:not(.image-wrapper) {
             margin-top: 0 !important;
         }
     </style>
@@ -1730,149 +1729,6 @@
         src: url("./assets/fonts/Nunito/Nunito-ExtraBold.woff2");
     }
 
-    @font-face {
-        font-family: 'Inter';
-        font-style: normal;
-        font-weight: 100;
-        font-display: swap;
-        src: url("./assets/fonts/InterInter-Thin.woff2") format("woff2");
-    }
-
-    @font-face {
-        font-family: 'Inter';
-        font-style: italic;
-        font-weight: 100;
-        font-display: swap;
-        src: url("./assets/fonts/InterInter-ThinItalic.woff2") format("woff2");
-    }
-
-    @font-face {
-        font-family: 'Inter';
-        font-style: normal;
-        font-weight: 200;
-        font-display: swap;
-        src: url("./assets/fonts/InterInter-ExtraLight.woff2") format("woff2");
-    }
-
-    @font-face {
-        font-family: 'Inter';
-        font-style: italic;
-        font-weight: 200;
-        font-display: swap;
-        src: url("./assets/fonts/InterInter-ExtraLightItalic.woff2") format("woff2");
-    }
-
-    @font-face {
-        font-family: 'Inter';
-        font-style: normal;
-        font-weight: 300;
-        font-display: swap;
-        src: url("./assets/fonts/InterInter-Light.woff2") format("woff2");
-    }
-
-    @font-face {
-        font-family: 'Inter';
-        font-style: italic;
-        font-weight: 300;
-        font-display: swap;
-        src: url("./assets/fonts/InterInter-LightItalic.woff2") format("woff2");
-    }
-
-    @font-face {
-        font-family: 'Inter';
-        font-style: normal;
-        font-weight: 400;
-        font-display: swap;
-        src: url("./assets/fonts/InterInter-Regular.woff2") format("woff2");
-    }
-
-    @font-face {
-        font-family: 'Inter';
-        font-style: italic;
-        font-weight: 400;
-        font-display: swap;
-        src: url("./assets/fonts/InterInter-Italic.woff2") format("woff2");
-    }
-
-    @font-face {
-        font-family: 'Inter';
-        font-style: normal;
-        font-weight: 500;
-        font-display: swap;
-        src: url("./assets/fonts/InterInter-Medium.woff2") format("woff2");
-    }
-
-    @font-face {
-        font-family: 'Inter';
-        font-style: italic;
-        font-weight: 500;
-        font-display: swap;
-        src: url("./assets/fonts/InterInter-MediumItalic.woff2") format("woff2");
-    }
-
-    @font-face {
-        font-family: 'Inter';
-        font-style: normal;
-        font-weight: 600;
-        font-display: swap;
-        src: url("./assets/fonts/InterInter-SemiBold.woff2") format("woff2");
-    }
-
-    @font-face {
-        font-family: 'Inter';
-        font-style: italic;
-        font-weight: 600;
-        font-display: swap;
-        src: url("./assets/fonts/InterInter-SemiBoldItalic.woff2") format("woff2");
-    }
-
-    @font-face {
-        font-family: 'Inter';
-        font-style: normal;
-        font-weight: 700;
-        font-display: swap;
-        src: url("./assets/fonts/InterInter-Bold.woff2") format("woff2");
-    }
-
-    @font-face {
-        font-family: 'Inter';
-        font-style: italic;
-        font-weight: 700;
-        font-display: swap;
-        src: url("./assets/fonts/InterInter-BoldItalic.woff2") format("woff2");
-    }
-
-    @font-face {
-        font-family: 'Inter';
-        font-style: normal;
-        font-weight: 800;
-        font-display: swap;
-        src: url("./assets/fonts/InterInter-ExtraBold.woff2") format("woff2");
-    }
-
-    @font-face {
-        font-family: 'Inter';
-        font-style: italic;
-        font-weight: 800;
-        font-display: swap;
-        src: url("./assets/fonts/InterInter-ExtraBoldItalic.woff2") format("woff2");
-    }
-
-    @font-face {
-        font-family: 'Inter';
-        font-style: normal;
-        font-weight: 900;
-        font-display: swap;
-        src: url("./assets/fonts/InterInter-Black.woff2") format("woff2");
-    }
-
-    @font-face {
-        font-family: 'Inter';
-        font-style: italic;
-        font-weight: 900;
-        font-display: swap;
-        src: url("./assets/fonts/InterInter-BlackItalic.woff2") format("woff2");
-    }
 </style>
 <!-- Codicon font stuff -->
 <style>

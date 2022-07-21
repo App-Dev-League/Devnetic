@@ -162,6 +162,7 @@ header * {
     background: inherit;
     width: 100%;
     text-align: left;
+    line-height: 25px;
 }
 .mc-answer-option:hover {
     background-color: rgba(255,255,255,0.05)
@@ -178,7 +179,6 @@ header * {
     border-radius: 100px;
 }
 .mc-answer-option .text {
-    font-weight: 500;
     font-size: 1.1em;
     margin-left: 10px;
 }
@@ -305,4 +305,23 @@ html {
         margin-left: 175%;
         margin-right: 0;
     }
+}
+.hljs * {
+    font-family: 'Nunito';
+}
+.codeblock-wrapper {
+    margin-top: 10px;
+}
+.image-wrapper {
+    margin-top: 10px !important;
+}
+.explanation-modal .button-correct {
+    font-weight: var(--chakra-fontWeights-semibold);
+    line-height: 20px;
+}
+#continue-button {
+    font-weight: var(--chakra-fontWeights-semibold);
+}
+.editor-alert-modal .text {
+    line-height: 20px;
 }
