@@ -1,0 +1,30 @@
+<html>
+
+<head>
+    <script src="./webperl.js"></script>
+</head>
+
+<body>
+    <div id="python-sandbox-bridge"></div>
+</body>
+
+</html>
+<script class="code-to-run" type="text/perl">
+</script>
+<script>
+    window.addEventListener("message", async (event) => {
+        if (event.data !== "start") return;
+        document.querySelector(".code-to-run").innerHTML = window.perlCode
+        Perl.startScriptScan()
+    })
+
+    console.oldLog = console.log;
+    console.log = function() {
+        if (arguments[0] === "STDOUT") {
+            window.logFunction(arguments[1])
+        }
+    }
+    console.warn = function(warning) {
+        window.logFunction(warning.toString())
+    }
+</script>

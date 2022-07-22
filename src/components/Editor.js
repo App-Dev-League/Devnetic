@@ -821,52 +821,13 @@ window.addEventListener("message", (event) => {
 							`
 							setPreviewHTML(html)
 						} else if (fileType === "pl") {
-							document.getElementById("console-bridge").dispatchEvent(new Event('change'));
-							window.consoleLogs = []
-							try {
-								let remove = document.querySelector("#python-execution-thread")
-								if (remove) {
-									remove.parentElement.removeChild(remove)
-								}
-							} catch (err) { }
-							window.consoleLogs.push(["Starting Perl engine..."])
-							document.getElementById("console-bridge").click()
-							try {
-								if (!window.Perl) {
-									await plugins.load("webperl");
-								}
-								Perl.noMountIdbfs = true;
-								Perl.output = function (text) {
-									if (text !== "\n") {
-										if (!window.tmpPerlTextBuffer) window.tmpPerlTextBuffer = "";
-										window.tmpPerlTextBuffer += text;
-									} else {
-										window.consoleLogs.push([window.tmpPerlTextBuffer])
-										document.getElementById("console-bridge").click()
-										if (window.newLogCallback) window.newLogCallback([window.tmpPerlTextBuffer])
-										window.tmpPerlTextBuffer = "";
-									}
-								}
-								if (Perl.state === "Uninitialized") {
-									Perl.init()
-									while (true) {
-										if (Perl.state === "Ready") break;
-										await new Promise(resolve => setTimeout(resolve, 250));
-									}
-									Perl.start();
-								} else if (Perl.state === "Ended") {
-									Perl.state = "Ready"
-									Perl.start()
-								}
-							} catch (err) {
-								window.consoleLogs.push(["We couldn't find the necessary plugins to run Perl (.pl) files! Please install Perl in the plugins panel."])
+							if (!plugins.checkPluginStatus("brython")) {
+								window.consoleLogs.push(["We couldn't find the necessary plugins to run perl files! Please install Webperl in the plugins panel."])
 								document.getElementById("console-bridge").click()
-								console.log(err)
+								if (window.newLogCallback) window.newLogCallback(["We couldn't find the necessary plugins to run perl files! Please install Webperl in the plugins panel."])
 							}
-							let code = codeEditorHelper.getValue();
-							window.consoleLogs.push(["> perl " + filenamex])
-							document.getElementById("console-bridge").click()
-							Perl.eval(code)
+							await plugins.load("webperl")
+							webPerlw.start(codeEditorHelper.getValue())
 						}
 					}
 					document.getElementById("code-frame").contentWindow.listeners.ctrlS = function () {
