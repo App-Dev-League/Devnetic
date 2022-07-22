@@ -1,3 +1,5 @@
+const doesFileExist = require("./doesFileExist.js")
+
 window.currentReadOnly = false;
 window.onhashchange = function () {
 	window.currentReadOnly = false;
@@ -764,6 +766,62 @@ function getTextWithoutMetaData(text) {
 	text = text.slice(endMetaData + "______DEVNETIC_PROJECT_META_DATA_END______".length);
 	return text;
 }
+function showDependencyManager(filetype) {
+	let template = document.getElementById("snippets-modal")
+	let modal = template.cloneNode(true);
+	modal.removeAttribute("id")
+	modal.classList.remove("none")
+	if (filetype === "js") {
+		modal.querySelector("h3").innerHTML = "Javascript Dependency Manager";
+	} else {
+		modal.querySelector("h3").innerHTML = "Python Dependency Manager";
+	}
+	modal.querySelector("h3").style.marginBottom = "10px"
+	modal.querySelector(".button-correct").innerHTML = "Add";
+
+
+	Object.entries(window.currentFileMetaData.dependencies || {}).forEach(([key, value]) => {
+		let dependency = document.createElement("span");
+		dependency.style.display = "block"
+		dependency.style.textAlign = "center"
+		dependency.innerHTML = key;
+		let deleteBtn = document.createElement("span");
+		deleteBtn.style = "float: right; font-weight: bold; cursor: pointer; font-size: 0.8em; color: red; margin-right: 10px;"
+		deleteBtn.innerHTML = "X"
+		deleteBtn.onclick = function () {
+			delete window.currentFileMetaData.dependencies[key];
+			this.parentElement.parentElement.removeChild(this.parentElement);
+			tApp.getComponentFromDOM(document.getElementById("code-editor-tab")).save({
+				dependencies: window.currentFileMetaData.dependencies
+			})
+		}
+		dependency.appendChild(deleteBtn)
+		modal.querySelector(".inputs").appendChild(dependency)
+	})
+
+
+	modal.querySelector("span").onclick = function () {
+		modal.parentNode.removeChild(modal)
+	}
+	modal.querySelector(".button-correct").onclick = async function () {
+		let value = modal.querySelector("input").value;
+		if (!(await doesFileExist(value)) && filetype === "js") return alert("File does not exist!")
+		window.currentFileMetaData.dependencies = window.currentFileMetaData.dependencies || {};
+		window.currentFileMetaData.dependencies[value] = true;
+		tApp.getComponentFromDOM(document.getElementById("code-editor-tab")).save({
+			dependencies: window.currentFileMetaData.dependencies
+		})
+		modal.parentElement.removeChild(modal)
+	}
+	let elm = document.createElement("input");
+	elm.className = "short-answer-input";
+	elm.classList.add("insert-snippet-input")
+	elm.placeholder = "Enter dependency cdn url here";
+	modal.querySelector(".inputs").appendChild(elm);
+
+	document.body.appendChild(modal);
+	modal.querySelector("input").focus()
+}
 
 
 // internal functions
@@ -859,7 +917,7 @@ function byteCount(s) {
 	return encodeURI(s).split(/%..|./).length - 1;
 }
 module.exports = {
-	updateLanguage, updateContent, getValue, insertAtCursor, format, getCurrentEditorIndex, setCurrentEditorIndex, showAlertModal, removeAlertModal, uploadFile, getModuleFile, getPageFile, getAllUserFiles, deleteFile, updateFile, getFile, renameFile, getFileWithId, updateReadOnly, getCurrentEditorOption, newMyProject, deleteMyProject, getMyProjects, getMetaDataFromText, embedMetaDataIntoText, getTextWithoutMetaData, sizeOfMyProject, exportToJson, importFromJson,
+	updateLanguage, updateContent, getValue, insertAtCursor, format, getCurrentEditorIndex, setCurrentEditorIndex, showAlertModal, removeAlertModal, uploadFile, getModuleFile, getPageFile, getAllUserFiles, deleteFile, updateFile, getFile, renameFile, getFileWithId, updateReadOnly, getCurrentEditorOption, newMyProject, deleteMyProject, getMyProjects, getMetaDataFromText, embedMetaDataIntoText, getTextWithoutMetaData, sizeOfMyProject, exportToJson, importFromJson,showDependencyManager,
 	internals: {
 		openConnectionWithNewVersion
 	}

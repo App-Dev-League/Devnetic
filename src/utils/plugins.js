@@ -16,8 +16,15 @@ module.exports = {
         if (!window.pluginList) window.pluginList = {};
         window.pluginList[pluginId] = "loading";
 
-        let plugin = await getFile("assets/plugins/"+pluginId+"/"+ pluginId+".min.js");
-        if (!plugin) { delete window.pluginList[pluginId]; throw "Error: plugin " + pluginId + " not found locally!" }
+        var plugin;
+
+        if (window.environment === "production") {
+            plugin = await getFile("assets/plugins/"+pluginId+"/"+ pluginId+".min.js");
+            if (!plugin) { delete window.pluginList[pluginId]; throw "Error: plugin " + pluginId + " not found locally!" }
+        } else {
+            plugin = await fetch("./assets/plugins/"+pluginId+"/"+pluginId+".min.js");
+            plugin = await plugin.text();
+        }
 
         var code = plugin
         var script = document.createElement('script');
@@ -100,12 +107,11 @@ module.exports = {
                 //https://interactjs.io/
             },
             {
-                name: "Brython",
+                name: "Pyscript",
                 description: "This plugin allows you to run python in the browser!",
                 image: "./assets/plugins/brython/brython.svg",
                 id: "brython",
-                latestVersion: "3.0.1"
-                //https://brython.info/
+                latestVersion: "4.0.0"
             },
             // {
             //     name: "CaptCC",
@@ -227,7 +233,7 @@ function getFile(file) {
         openConnection().then(db => {
             const txn = db.transaction('cachedPages', 'readwrite');
             const store = txn.objectStore('cachedPages')
-            let query = store.get(window.location.origin + window.location.pathname + file);
+            let query = store.get(window.location.origin + window.location.pathname.replace("index.html", "") + file);
             query.onsuccess = async function (event) {
                 if (!query.result) return reject("File not found!");
                 var response = new Response(query.result.data, query.result.response)
@@ -244,12 +250,11 @@ function getFile(file) {
         })
     })
 }
-window.getFile = getFile
 function deleteFile(file) {
     openConnection().then(db => {
         const txn = db.transaction('cachedPages', 'readwrite');
         const store = txn.objectStore('cachedPages')
-        let query = store.openKeyCursor(window.location.origin + window.location.pathname + file);
+        let query = store.openKeyCursor(window.location.origin + window.location.pathname.replace("index.html", "") + file);
 
         query.onsuccess = function (event) {
             store.delete(event.target.result.primaryKey)
@@ -263,7 +268,6 @@ function deleteFile(file) {
         };
     })
 }
-window.deleteFile = deleteFile;
 
 function addPlugin(id, text) {
     openConnection().then(db => {

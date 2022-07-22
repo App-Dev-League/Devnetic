@@ -91,7 +91,7 @@ function copyFolderSync(from, to) {
                 console.log("Copying " + element);
                 fs.copyFileSync(path.join(from, element), path.join(to, element));
             }
-            if ((to.includes("plugins") && element.endsWith("min.js")) || element === "VERSION" || element === ".gitkeep" || element === "CNAME") { }
+            if ((to.includes("plugins") && !element.endsWith(".svg") && !element.endsWith(".png")) || element === "VERSION" || element === ".gitkeep" || element === "CNAME") { }
             else {
                 fileList.push(path.join(to, element).replace(/\\/g, "/").replace(`${BUILD_DIR}/public`, ""))
             }
