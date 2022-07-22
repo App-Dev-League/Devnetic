@@ -267,15 +267,18 @@ html {
     border-radius: 7px;
     padding-left: 50px;
     position: relative;
+    width: auto !important;
 }
-.info-note::before {
-    content: "\ea74";
-    font-family: "codicon";
-    font-size: 1.5em;
+.info-note svg {
+    width: 1.25em;
+    top: 18px;
     position: absolute;
-    left: 15px;
-    top: 10px;
+    left: 20px;
 }
+.info-note svg path {
+    fill: var(--chakra-colors-blue-300);
+}
+
 .loading-bar-indeterminate.editor-alert-modal-loading-bar-wrapper {
     display: flex;
 }
