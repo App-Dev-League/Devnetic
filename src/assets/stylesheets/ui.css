@@ -338,7 +338,12 @@ html {
     line-height: 1.75;
 }
 .plugin-itm * {
-    line-height: 1.75;
+    line-height: 1.5;
+    font-weight: 300;
+}
+.plugin-itm h5 {
+    font-weight: 500;
+    padding: 1px 5px !important;
 }
 .desc {
     line-height: 1.4;

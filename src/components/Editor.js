@@ -338,7 +338,10 @@ class Editor extends tApp.Component {
 								if (!(clickedFileType === "js" || clickedFileType === "py")) option.style.display = "none"
 								else option.style.display = "" 
 								option.onclick = function() {
-									codeEditorHelper.showDependencyManager(clickedFileType)
+									e.target.click()
+									setTimeout(function() {
+										codeEditorHelper.showDependencyManager(clickedFileType)
+									}, 500)
 								}
 							}
 						}
