@@ -6,7 +6,6 @@ const plugins = require("../utils/plugins.js");
 
 const buttons = `
 <a class="codicon codicon-debug-console" title="Run Console" style="cursor: pointer; position: absolute; top: -20px; color: var(--white); z-index: 1;" onclick="{{_this}}.showRunConsole()"></a>
-<a class="codicon codicon-library" title="Dependency Manager" style="cursor: pointer; position: absolute; top: -20px; color: var(--white); z-index: 1; left: 32px" onclick="{{_this}}.showDependencyManager()"></a>
 `
 
 class CodePreview extends tApp.Component {
@@ -24,12 +23,6 @@ class CodePreview extends tApp.Component {
 		document.getElementById("popout").onclick = function () {
 			window.open(`#/preview/html/${tApp.getComponentFromDOM(document.querySelector("tapp-main").children[0].children[0]).data().storage_id[tabindex]}/autoupdate`, '1', `width=${window.innerWidth},height=${window.innerHeight},toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0`);
 			return false;
-		}
-		var filename = tApp.getComponentFromDOM(document.querySelector("tapp-main").children[0].children[0]).data().files[tabindex] || document.querySelector("tapp-main").children[0].children[0].children[0].children[0].children[0].children[tabindex].innerText;
-		if (filename.slice(-3) == ".js") {
-			this.setState("runCmdBtn", buttons)
-		} else {
-			this.setState("runCmdBtn", "")
 		}
 	}
 	showRunConsole() {
@@ -86,58 +79,6 @@ class CodePreview extends tApp.Component {
 		   }
 		   return result;
 		}
-	}
-	showDependencyManager() {
-		let template = document.getElementById("snippets-modal")
-		let modal = template.cloneNode(true);
-		modal.removeAttribute("id")
-		modal.classList.remove("none")
-		modal.querySelector("h3").innerHTML = "JS Dependency Manager";
-		modal.querySelector("h3").style.marginBottom = "10px"
-		modal.querySelector(".button-correct").innerHTML = "Add";
-
-		
-		Object.entries(window.currentFileMetaData.dependencies || {}).forEach(([key, value]) => {
-			let dependency = document.createElement("span");
-			dependency.style.display = "block"
-			dependency.style.textAlign = "left"
-			dependency.innerHTML = key;
-			let deleteBtn = document.createElement("span");
-			deleteBtn.style = "float: right; font-weight: bold; cursor: pointer; font-size: 0.8em; color: red; margin-right: 10px;"
-			deleteBtn.innerHTML = "X"
-			deleteBtn.onclick = function() {
-				delete window.currentFileMetaData.dependencies[key];
-				this.parentElement.parentElement.removeChild(this.parentElement);
-				tApp.getComponentFromDOM(document.getElementById("code-editor-tab")).save({
-					dependencies: window.currentFileMetaData.dependencies
-				})
-			}
-			dependency.appendChild(deleteBtn)
-			modal.querySelector(".inputs").appendChild(dependency)
-		})
-		
-		
-		modal.querySelector("span").onclick = function () {
-			modal.parentNode.removeChild(modal)
-		}
-		modal.querySelector(".button-correct").onclick = async function () {
-			let value = modal.querySelector("input").value;
-			if (!(await doesFileExist(value))) return alert("File does not exist!") 
-			window.currentFileMetaData.dependencies = window.currentFileMetaData.dependencies || {};
-			window.currentFileMetaData.dependencies[value] = true;
-			tApp.getComponentFromDOM(document.getElementById("code-editor-tab")).save({
-				dependencies: window.currentFileMetaData.dependencies
-			})
-			modal.parentElement.removeChild(modal)
-		}
-		let elm = document.createElement("input");
-		elm.className = "short-answer-input";
-		elm.classList.add("insert-snippet-input")
-		elm.placeholder = "Enter dependency cdn url here";
-		modal.querySelector(".inputs").appendChild(elm);
-
-		document.body.appendChild(modal);
-		modal.querySelector("input").focus()
 	}
 	popout() {
 		window.open(`#/preview/${tAppRequestInstance.data.track}/${tAppRequestInstance.data.module}/${tAppRequestInstance.data.position}/${codeEditorHelper.getCurrentEditorIndex()}`,'1',`width=${window.innerWidth},height=${window.innerHeight},toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0`)
@@ -217,7 +158,7 @@ class CodePreview extends tApp.Component {
 				t.style = "display: block;";
 				for (let i in newLogs) {
 					console.log(newLogs[i])
-					if (newLogs[i].__class__) {
+					if (newLogs[i] && newLogs[i].__class__) {
 						if (newLogs[i].value){
 							newLogs[i] = newLogs[i].value
 						} else if (newLogs[i].__package__) {

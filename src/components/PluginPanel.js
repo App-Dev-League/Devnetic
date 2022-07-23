@@ -10,7 +10,7 @@ class PluginPanel extends tApp.Component {
             this.state.plugins[i].installed = false;
         }
         var self = this;
-        async function getPluginSizes(){
+        async function getPluginSizes() {
             for (let i in plugins.availablePlugins()) {
                 let plugin = plugins.availablePlugins()[i];
                 self.state.pluginSizes[plugin.id] = await plugins.getDownloadSize(plugin.id);
@@ -25,13 +25,13 @@ class PluginPanel extends tApp.Component {
                     {
                         text: "Update", onclick: function () {
                             codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index'))
-    
+
                             document.querySelectorAll(".project-module-tabs")[1].children[0].children[3].click()
                             codeEditorHelper.removeAlertModal(this.parentElement.getAttribute('data-editor-alert-modal-index'))
                             setTimeout(function () {
                                 if (document.getElementById("plugin-list-" + plugin.id).querySelector("h5").innerText !== "Uninstall") return;
                                 document.getElementById("plugin-list-" + plugin.id).querySelector("h5").click()
-                                setTimeout(function(){
+                                setTimeout(function () {
                                     document.getElementById("plugin-list-" + plugin.id).querySelector("h5").click()
                                 }, 1000)
                             }, 1000)
@@ -48,21 +48,12 @@ class PluginPanel extends tApp.Component {
         plugin.querySelector("h5").style.pointerEvents = "none"
         plugin.querySelector(".loading-bar-container").style.opacity = 1;
         plugin.querySelector(".loading-bar").style.width = "10%";
-        plugins.download(id, async function (code) {
-            const reader = code.body.getReader();
-            let bytesReceived = 0;
-            let code_size = await plugins.getDownloadSize(id)
-            while (true) {
-                const result = await reader.read();
-                if (result.done) {
-                    break;
-                }
-                bytesReceived += result.value.length;
-                plugin.querySelector("h5").innerText = "Installing..."
-                plugin.querySelector("h5").style.pointerEvents = "none"
-                plugin.querySelector(".loading-bar-container").style.opacity = 1;
-                plugin.querySelector(".loading-bar").style.width = Math.round(bytesReceived / code_size * 100) + "%";
-            }
+        plugins.download(id, async function (progress) {
+            console.log(progress)
+            plugin.querySelector("h5").innerText = "Installing..."
+            plugin.querySelector("h5").style.pointerEvents = "none"
+            plugin.querySelector(".loading-bar-container").style.opacity = 1;
+            plugin.querySelector(".loading-bar").style.width = Math.round(progress * 100) + "%";
         }, function (status) {
             if (status === "failed") {
                 plugin.querySelector(".loading-bar-container").style.opacity = 0;
@@ -89,7 +80,7 @@ class PluginPanel extends tApp.Component {
     }
     render(props) {
         var self = this;
-        async function getPluginData(){
+        async function getPluginData() {
             let newPluginData = [];
             for (let p in plugins.availablePlugins()) {
                 let element = plugins.availablePlugins()[p];

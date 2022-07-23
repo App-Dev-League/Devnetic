@@ -230,6 +230,8 @@ class Editor extends tApp.Component {
 						var menu = document.getElementById("editor-tab-context-menu");
 						let clickIndex = Array.from(e.target.parentNode.children).indexOf(e.target);
 						let storageId = e.target.getAttribute("data-storage_id");
+						let clickedFileName = e.target.innerText.replace(" •", "")
+						let clickedFileType = clickedFileName.split(".")[clickedFileName.split(".").length-1]
 						for (let i in menu.children) {
 							let option = menu.children[i];
 							if (option.nodeName === "HR" || typeof option === "number" || typeof option === "function") continue;
@@ -331,6 +333,12 @@ class Editor extends tApp.Component {
 							} else if (option.innerText.startsWith("Upload File")) {
 								option.onclick = async function () {
 									uploadFile();
+								}
+							} else if (option.innerText.startsWith("Dependencies")) {
+								if (!(clickedFileType === "js" || clickedFileType === "py")) option.style.display = "none"
+								else option.style.display = "" 
+								option.onclick = function() {
+									codeEditorHelper.showDependencyManager(clickedFileType)
 								}
 							}
 						}
@@ -527,150 +535,13 @@ class Editor extends tApp.Component {
 							}
 							startCpp();
 						} else if (fileType === "py") {
-							document.getElementById("console-bridge").dispatchEvent(new Event('change'));
-							window.consoleLogs = []
-							try {
-								let remove = document.querySelector("#python-execution-thread")
-								if (remove) {
-									remove.parentElement.removeChild(remove)
-								}
-								plugins.unload("brython")
-							} catch (err) { }
-							window.consoleLogs.push(["Starting python emulator..."])
-							document.getElementById("console-bridge").click()
-							if (await plugins.checkPluginStatus("brython") === false) {
-								window.consoleLogs.push(["Running python files requires the brython plugin! Install it first in the plugins tab"])
-								document.getElementById("console-bridge").click()
-								return;
-							}
-							console.log("Starting python emulator")
-							if (window.newLogCallback) window.newLogCallback(["Starting python emulator..."])
-							let main = makeid(10)
-							let preScript = `
-import sys
-import browser
-import traceback
-from browser import aio
-_print = print
-def print(*args, **kw):
-	browser.window.newLog(args)
-sys.stderr = print
-async def input(text):
-	print(text)
-	browser.window.enableInput()
-	await aio.event(browser.window.document.getElementById("python-sandbox-bridge"), "click")
-	value = browser.window.getInput()
-	browser.window.disableInput()
-	return value
-async def ${main}():
-`
-							const indentRegex = false ? /^/gm : /^(?!\s*$)/gm;
-							let postScript = codeEditorHelper.getValue()
-							postScript = postScript.replace(indentRegex, '    ')
-							if (postScript.includes(`time.sleep`) || postScript.includes(`input(`)) {
-								postScript = postScript.replace(/time\.sleep(?=(?:(?:[^"]*"){2})*[^"]*$)/g, "await aio.sleep").replace(/input(?=(?:(?:[^"]*"){2})*[^"]*$)/g, "await input")
-								postScript = postScript.replace(/    def/g, "    async def")
-								postScript = postScript.replace(/....[a-zA-Z]+\([^\)]*\)(\.[^\)]*\))?/g, function (matched) {
-									if (matched.startsWith("def ")) return matched
-
-									let builtins = ["abs(", "aiter(", "all(", "any(", "anext(", "ascii(", "bin(", "bool(", "breakpoint(", "bytearray(", "bytes(", "callable(", "chr(", "classmethod(", "compile(", "complex(", "delattr(", "dict(", "dir(", "divmod(", "enumerate(", "eval(", "exec(", "filter(", "float(", "format(", "frozenset(", "getattr(", "globals(", "hasattr(", "hash(", "help(", "hex(", "id(", "input(", "int(", "isinstance(", "issubclass(", "iter(", "len(", "list(", "locals(", "map(", "max(", "memoryview(", "min(", "next(", "object(", "oct(", "open(", "ord(", "pow(", "print(", "property(", "range(", "repr(", "reversed(", "round(", "set(", "setattr(", "slice(", "sorted(", "staticmethod(", "str(", "sum(", "super(", "tuple(", "type(", "vars("]
-
-									for (let i in builtins) {
-										if (matched.slice(4).startsWith(builtins[i])) return matched
-									}
-
-									if (matched.slice(3).startsWith(".")) return matched
-									if (matched.startsWith("ait ")) return matched
-									return matched.substring(0, 4) + "await aio.run(" + matched.slice(4) + ")"
-								})
-							}
-
-							let pps = `
-try:
-	aio.run(${main}())
-except Exception:
-    print(traceback.format_exc())
-`
-							try {
-								if (!window.__BRYTHON__) {
-									await plugins.load("brython");
-									brython({ pythonpath: ["/assets/plugins/brython/modules/"], cache: true, debug: 0 })
-								}
-							} catch (err) {
+							if (!plugins.checkPluginStatus("brython")) {
 								window.consoleLogs.push(["We couldn't find the necessary plugins to run python files! Please install brython in the plugins panel."])
 								document.getElementById("console-bridge").click()
 								if (window.newLogCallback) window.newLogCallback(["We couldn't find the necessary plugins to run python files! Please install brython in the plugins panel."])
 							}
-							try {
-								window.URL = window.URL || window.webkitURL;
-								let code = preScript + "\n" + postScript + "\n" + pps
-								console.log(code)
-								if (document.getElementById("python-execution-thread")) {
-									let elem = document.getElementById("python-execution-thread")
-									elem.parentElement.removeChild(elem)
-								}
-								let iframe = document.createElement("iframe")
-								iframe.style.width = 0
-								iframe.style.height = 0
-								iframe.id = "python-execution-thread"
-								iframe.srcdoc = `
-								<html>
-									<body>
-										<div id="python-sandbox-bridge"></div>
-									</body>
-								</html>
-								<script>
-								${await plugins.getCode("brython")}
-								</script>
-								<script type="text/python">
-${code}
-								</script>
-								<script>
-								console.oldLog = console.log
-								console.log = function(){
-									console.oldLog("err")
-									window.newLog(arguments)
-								}
-								console.error = function(){
-									window.newLog(arguments)
-								}
-								window.addEventListener("message", () => {
-									brython({pythonpath: ["/assets/plugins/brython/modules/"], cache: true, debug: 1})
-								})
-								</script>
-								`
-								document.body.appendChild(iframe)
-								iframe.onload = function() {
-									iframe.contentWindow.newLog = function (log) {
-										let arrLog = []
-										for (let i in log) {
-											arrLog.push(log[i])
-										}
-										window.consoleLogs.push(arrLog)
-										window.document.getElementById("console-bridge").click()
-										if (window.newLogCallback) window.newLogCallback(log)
-									}
-									iframe.contentWindow.pyjsCode = code
-									iframe.contentWindow.enableInput = function () {
-										document.querySelector(".console-input").disabled = false
-										document.querySelector(".console-input").focus()
-									}
-									iframe.contentWindow.disableInput = function () {
-										document.querySelector(".console-input").disabled = true
-										document.querySelector(".console-input").value = ""
-									}
-									iframe.contentWindow.getInput = function () {
-										return document.querySelector(".console-input").value
-									}
-									iframe.contentWindow.postMessage("start")
-								}
-
-							} catch (err) {
-								window.consoleLogs.push([err.toString(), err.stack])
-								document.getElementById("console-bridge").click()
-								if (window.newLogCallback) window.newLogCallback([err.toString(), err.stack])
-								throw err
-							}
+							await plugins.load("brython");
+							pyscriptw.start(codeEditorHelper.getValue(), window.currentFileMetaData.dependencies)
 						} else if (fileType === "md") {
 							if (document.getElementById("preview")) {
 								try {
@@ -729,7 +600,7 @@ ${code}
 							</script>
 							`
 							document.body.appendChild(iframe)
-							iframe.onload = async function(){
+							iframe.onload = async function () {
 								iframe.contentWindow.console.log = function () {
 									var log = arguments;
 									let arrLog = []
@@ -741,7 +612,7 @@ ${code}
 									if (window.newLogCallback) window.newLogCallback(log)
 								}
 								iframe.contentWindow.console.error = iframe.contentWindow.console.log
-	
+
 								iframe.contentWindow.onerror = function (err) {
 									err = err.toString()
 									window.consoleLogs.push([err])
@@ -909,7 +780,7 @@ window.addEventListener("message", (event) => {
 							</script>
 							`
 							document.body.appendChild(iframe)
-							iframe.onload = function() {
+							iframe.onload = function () {
 								iframe.contentWindow.newLog = function (log) {
 									let arrLog = []
 									for (let i in log) {
@@ -950,52 +821,13 @@ window.addEventListener("message", (event) => {
 							`
 							setPreviewHTML(html)
 						} else if (fileType === "pl") {
-							document.getElementById("console-bridge").dispatchEvent(new Event('change'));
-							window.consoleLogs = []
-							try {
-								let remove = document.querySelector("#python-execution-thread")
-								if (remove) {
-									remove.parentElement.removeChild(remove)
-								}
-							} catch (err) { }
-							window.consoleLogs.push(["Starting Perl engine..."])
-							document.getElementById("console-bridge").click()
-							try {
-								if (!window.Perl) {
-									await plugins.load("webperl");
-								}
-								Perl.noMountIdbfs = true;
-								Perl.output = function (text) {
-									if (text !== "\n") {
-										if (!window.tmpPerlTextBuffer) window.tmpPerlTextBuffer = "";
-										window.tmpPerlTextBuffer += text;
-									} else {
-										window.consoleLogs.push([window.tmpPerlTextBuffer])
-										document.getElementById("console-bridge").click()
-										if (window.newLogCallback) window.newLogCallback([window.tmpPerlTextBuffer])
-										window.tmpPerlTextBuffer = "";
-									}
-								}
-								if (Perl.state === "Uninitialized") {
-									Perl.init()
-									while (true) {
-										if (Perl.state === "Ready") break;
-										await new Promise(resolve => setTimeout(resolve, 250));
-									}
-									Perl.start();
-								} else if (Perl.state === "Ended") {
-									Perl.state = "Ready"
-									Perl.start()
-								}
-							} catch (err) {
-								window.consoleLogs.push(["We couldn't find the necessary plugins to run Perl (.pl) files! Please install Perl in the plugins panel."])
+							if (!plugins.checkPluginStatus("brython")) {
+								window.consoleLogs.push(["We couldn't find the necessary plugins to run perl files! Please install Webperl in the plugins panel."])
 								document.getElementById("console-bridge").click()
-								console.log(err)
+								if (window.newLogCallback) window.newLogCallback(["We couldn't find the necessary plugins to run perl files! Please install Webperl in the plugins panel."])
 							}
-							let code = codeEditorHelper.getValue();
-							window.consoleLogs.push(["> perl " + filenamex])
-							document.getElementById("console-bridge").click()
-							Perl.eval(code)
+							await plugins.load("webperl")
+							webPerlw.start(codeEditorHelper.getValue())
 						}
 					}
 					document.getElementById("code-frame").contentWindow.listeners.ctrlS = function () {
@@ -1056,7 +888,7 @@ window.addEventListener("message", (event) => {
 				loadCodeFromDb()
 				let fileType = filename.split('.').pop().toLowerCase().replace(" •", "")
 				codeEditorHelper.updateLanguage(languages[fileType])
-				if (window.pluginList && window.pluginList.betterEditor) {
+				if (window.pluginList && window.pluginList.betterEditor === "loaded") {
 					reloadPluginSettings()
 				}
 			} else {
@@ -1068,7 +900,7 @@ window.addEventListener("message", (event) => {
 						let fileType = filename.split('.').pop().toLowerCase().replace(" •", "")
 						codeEditorHelper.updateLanguage(languages[fileType])
 						try {
-							if (window.pluginList && window.pluginList.betterEditor) {
+							if (window.pluginList && window.pluginList.betterEditor === "loaded") {
 								reloadPluginSettings()
 							} else {
 								await plugins.load("betterEditor")
@@ -1108,7 +940,7 @@ class TabbedEditor extends tApp.Component {
 		var tabs = [];
 
 		try {
-			if (window.pluginList && window.pluginList.betterEditor) {
+			if (window.pluginList && window.pluginList.betterEditor === "loaded") {
 				reloadPluginSettings()
 			} else {
 				await plugins.load("betterEditor")

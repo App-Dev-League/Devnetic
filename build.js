@@ -3,7 +3,14 @@ const path = require("path");
 var UglifyJS = require("uglify-js");
 var jsonminify = require("jsonminify");
 var minify = require('html-minifier').minify;
+const { readdir, stat } = require('fs/promises');
 
+const dirSize = async directory => {
+    const files = await readdir(directory);
+    const stats = files.map(file => stat(path.join(directory, file)));
+
+    return (await Promise.all(stats)).reduce((accumulator, { size }) => accumulator + size, 0);
+}
 
 var actions = {
     "Webdev Lessons": "webdev",
@@ -28,20 +35,26 @@ try {
 
 var fileList = []
 
-console.log("Updating indices...")
-createModuleIndex();
-createPluginSizeIndex();
-console.log("Combining sequential text elements...")
-combineSequentialTextElements();
-console.log("Updating version...")
-updateVersion();
-console.log("Building...")
-copyFolderSync("./src", `./${BUILD_DIR}/public/app`)
-console.log("Creating offline file map...");
-createOfflineFileMap();
-console.log("Cleaning up...");
-cleanUp();
-console.log("Build complete!");
+
+main()
+async function main() {
+    console.log("Updating indices...")
+    await createModuleIndex();
+    await createPluginSizeIndex();
+    console.log("Combining sequential text elements...")
+    await combineSequentialTextElements();
+    console.log("Updating version...")
+    await updateVersion();
+    console.log("Building...")
+    await copyFolderSync("./src", `./${BUILD_DIR}/public/app`)
+    console.log("Creating offline file map...");
+    await createOfflineFileMap();
+    console.log("Cleaning up...");
+    await cleanUp();
+    console.log("Build complete!");
+
+}
+
 
 function copyFolderSync(from, to) {
     fs.mkdirSync(to);
@@ -69,7 +82,7 @@ function copyFolderSync(from, to) {
                         minifyCSS: true,
                         minifyJS: true,
                     });
-                } catch(err) {
+                } catch (err) {
                     console.log("Failed to optimize " + element);
                     htmlFile = fs.readFileSync(path.join(from, element), "utf8");
                 }
@@ -78,7 +91,7 @@ function copyFolderSync(from, to) {
                 console.log("Copying " + element);
                 fs.copyFileSync(path.join(from, element), path.join(to, element));
             }
-            if ((to.includes("plugins") && element.endsWith("min.js")) || element === "VERSION" || element === ".gitkeep" || element === "CNAME") {}
+            if ((to.includes("plugins") && !element.endsWith(".svg") && !element.endsWith(".png")) || element === "VERSION" || element === ".gitkeep" || element === "CNAME") { }
             else {
                 fileList.push(path.join(to, element).replace(/\\/g, "/").replace(`${BUILD_DIR}/public`, ""))
             }
@@ -108,13 +121,23 @@ function createModuleIndex() {
     })
     fs.writeFileSync("./src/data/module_index.json", JSON.stringify(json, null, 4));
 }
-function createPluginSizeIndex() {
+async function createPluginSizeIndex() {
     var json = {};
-    fs.readdirSync("./src/assets/plugins").forEach(element => {
-        if (element === "sizes.json") return;
-        json[element] = fs.statSync(path.join("./src/assets/plugins", element, element+".min.js")).size;
-    })
+    let allFiles = fs.readdirSync("./src/assets/plugins");
+    for (let i in allFiles) {
+        let element = allFiles[i];
+        if (element === "sizes.json") continue;
+        json[element] = await dirSize(path.join("./src/assets/plugins", element))
+    }
     fs.writeFileSync("./src/assets/plugins/sizes.json", JSON.stringify(json, null, 4));
+
+    for (let i in allFiles) {
+        let element = allFiles[i]
+        if (element === "sizes.json") continue;
+        fs.writeFileSync(`./src/assets/plugins/${element}/files.map`, "temp")
+        let files = fs.readdirSync(`./src/assets/plugins/${element}`)
+        fs.writeFileSync(`./src/assets/plugins/${element}/files.map`, JSON.stringify(files))
+    }
 }
 function cleanUp() {
     let menu = fs.readFileSync(`./${BUILD_DIR}/public/app/views/menu.html`, "utf8");
@@ -138,7 +161,7 @@ function combineSequentialTextElements() {
                     let element = newPage.elements[i];
                     if (!element) return;
                     if (previousElementType === "text" && element.type === "text") {
-                        newPage.elements[i - 1].content += "\n"+element.content;
+                        newPage.elements[i - 1].content += "\n" + element.content;
                         newPage.elements.splice(i, 1);
                         return recurseThrough(i);
                     } else {
@@ -146,7 +169,7 @@ function combineSequentialTextElements() {
 
                         if (element.type === "iframe" || element.type === "image") {
                             if (element.src && element.src.startsWith("/")) {
-                                element.src = "."+element.src;
+                                element.src = "." + element.src;
                             }
                         }
 
@@ -160,9 +183,9 @@ function combineSequentialTextElements() {
 }
 function updateVersion() {
     let version = Number(fs.readFileSync("./src/VERSION", "utf8"));
-    fs.writeFileSync("./src/VERSION", (version+1).toString());
+    fs.writeFileSync("./src/VERSION", (version + 1).toString());
 }
-function createOfflineFileMap(){
+function createOfflineFileMap() {
     let configFile = fs.readFileSync(`./${BUILD_DIR}/public/app/config.js`, "utf8");
     configFile = configFile.replace(`["will_be_replaced_in_build"]`, JSON.stringify(fileList));
     fs.writeFileSync(`./${BUILD_DIR}/public/app/config.js`, configFile);
