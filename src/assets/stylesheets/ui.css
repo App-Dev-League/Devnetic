@@ -334,3 +334,87 @@ html {
 .plugin-itm * {
     line-height: 1.75;
 }
+.desc {
+    line-height: 1.4;
+}
+
+.ui-modal {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--darkgray);
+    width: 512px;
+    padding: 25px;
+    z-index: 100;
+    display: block;
+    border-radius: 8px;
+}
+.ui-modal-dimmer {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(17 24 39/0.75);
+    z-index: 99 !important;
+    display: block;
+}
+.ui-modal .ui-modal-header {
+    font-weight: 500;
+    display: block;
+    font-size: 18px;
+}
+.ui-modal .ui-modal-desc {
+    color: var(--secondary-white);
+    display: block;
+    margin-top: 8px;
+    font-size: 14px;
+    line-height: 20px;
+}
+.ui-modal-footer {
+    margin-top: 20px
+}
+.ui-modal-buttons button {
+    border-radius: 6px;
+    padding: 8px 16px;
+    background-color: #2f3e52;
+    border: none;
+    font-weight: 500;
+    line-height: 20px;
+    font-size: 14px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: 0.25s background;
+}
+.ui-modal-buttons button:hover {
+    background-color: #586478;
+}
+.ui-modal .fa-xmark {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    color: #6b717c;
+    cursor: pointer;
+    font-size: 1.4em;
+}
+.ui-modal-wrapper, .ui-modal {
+    transition: 0.5s all;
+}
+
+.ui-modal-wrapper.hidden .ui-modal {
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(0.5);
+}
+.ui-modal-wrapper.hidden .ui-modal-dimmer {
+    opacity: 0;
+    pointer-events: none;
+}
+.ui-modal input {
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 8px;
+    line-height: 18px;
+    background-color: #2f3e52;
+    color: white;
+    padding: 8px 20px;
+}
