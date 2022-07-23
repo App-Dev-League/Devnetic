@@ -2,7 +2,7 @@ import { ChakraProvider, extendTheme, createLocalStorageManager} from '@chakra-u
 import "../styles/globals.css"
 import "../styles/fonts.css"
 import Head from 'next/head'
-import theme from "./theme"
+import theme from "../theme.js"
 
 
 
