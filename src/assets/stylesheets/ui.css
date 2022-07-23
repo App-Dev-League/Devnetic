@@ -95,7 +95,7 @@ header * {
     border: 1px solid var(--chakra-colors-blue-400);
 }
 
-.module-button .status-indic::before {
+.module-button .status-indic {
     content: "----------";
     display: inline-block;
     background-color: gray;
@@ -103,32 +103,37 @@ header * {
     padding: 4px 12px;
     font-family: "Nunito";
 }
-
-.module-button .incomplete::before {
-    content: "Incomplete";
+.module-button .status-indic i {
+    margin-right: 5px;
+    font-size: 0.8em;
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+}
+.module-button .incomplete {
     background-color: var(--chakra-colors-gray-600);
 }
 
-.module-button .complete::before {
-    content: "Completed";
+.module-button .complete {
     background-color: var(--chakra-colors-green-600);
 }
 
-.module-button .inprogress::before {
-    content: "In Progress";
+.module-button .inprogress {
     background-color: var(--chakra-colors-blue-600);
 }
 
 .module-button .title {
     color: var(--chakra-colors-gray-200);
-    font-size: 1.2em;
+    font-size: 18px;
+    font-weight: 500;
 }
 
 .module-button .title .week {
     font-weight: normal;
     color: var(--chakra-colors-gray-400);
     margin-right: 15px;
-    font-size: 0.8em;
+    font-size: 0.9em;
+    font-weight: 400;
 }
 
 .multiple-choice-wrapper .codeblock-wrapper {
@@ -320,13 +325,14 @@ html {
     line-height: 20px;
 }
 #continue-button {
-    font-weight: var(--chakra-fontWeights-semibold);
+    font-weight: var(--chakra-fontWeights-medium);
 }
 .editor-alert-modal .text {
     line-height: 20px;
 }
 .info-text {
     line-height: 1.75;
+    color: rgba(255, 255, 255, 0.87);
 }
 .explanation-modal p {
     line-height: 1.75;
@@ -417,4 +423,12 @@ html {
     background-color: #2f3e52;
     color: white;
     padding: 8px 20px;
+}
+.ui-modal hr {
+    width: 50%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.info-title {
+    font-weight: 600;
 }

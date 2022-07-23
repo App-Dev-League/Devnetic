@@ -3925,9 +3925,16 @@
 
             var buttons = document.querySelectorAll(".lesson-chooser .module-button")
             window.menuData[topicName].data.forEach((element, index) => {
-                if (element.currentUserPosition === 0) buttons[index].children[1].classList.add("incomplete")
-                else if (element.currentUserPosition === element.moduleLength) buttons[index].children[1].classList.add("complete")
-                else buttons[index].children[1].classList.add("inprogress")
+                if (element.currentUserPosition === 0) {
+                    buttons[index].children[1].classList.add("incomplete")
+                    buttons[index].children[1].innerHTML = '<i class="fa-solid fa-circle-xmark"></i>Incomplete'
+                } else if (element.currentUserPosition === element.moduleLength) {
+                    buttons[index].children[1].classList.add("complete")
+                    buttons[index].children[1].innerHTML = '<i class="fa-solid fa-circle-check"></i>Complete'
+                } else {
+                    buttons[index].children[1].classList.add("inprogress")
+                    buttons[index].children[1].innerHTML = '<i class="fa-solid fa-fire-flame-simple"></i>In Progress'
+                }
             })
 
         }

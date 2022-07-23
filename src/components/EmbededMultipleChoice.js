@@ -2,22 +2,44 @@ const ModuleComponent = require("./ModuleComponent.js");
 
 const ExplanationModal = require("./ExplanationModal.js");
 const codeTemplateToCode = require("../utils/codeTemplateToCode.js");
+const modals = require("../utils/modal.js")
 
 class EmbededMultipleChoice extends ModuleComponent {
 	constructor(state, parent) {
 		super(state, parent);
 	}
+
 	handleOptionClick(optionIndex) {
+		var self = this;
 		if (this.parent.state.options[optionIndex].status === "incorrect_chosen") return;
-		this.state.explanation.state.description = this.state.descriptions[optionIndex]
 		if (optionIndex === this.state.correct) {
-			this.state.explanation.state.title = "Correct!";
-			this.state.explanation.state.retry = false;
 			this.parent.state.options[optionIndex].status = "correct_chosen"
+			modals.show("Correct! 🎉",
+				`${this.state.descriptions[optionIndex]}<br><br>+${this.state.points} XP<br>+${this.state.coins} coins`, [
+				{
+					type: "button",
+					text: "Continue",
+					onclick: function () {self.correct()}
+				},
+				{
+					type: "cancel",
+					onclick: function () {self.correct()}
+				}
+			]
+			)
 		} else {
-			this.state.explanation.state.title = "Incorrect!";
-			this.state.explanation.state.retry = true;
 			this.parent.state.options[optionIndex].status = "incorrect_chosen"
+			modals.show("Incorrect!",
+			`${this.state.descriptions[optionIndex]}<br>
+			<hr>
+			"${modals.randomQuote()}"
+			`, [
+			{
+				type: "button",
+				text: "Try again"
+			}
+		]
+		)
 		}
 		this.setState("options", this.state.options)
 	}
@@ -44,7 +66,7 @@ class EmbededMultipleChoice extends ModuleComponent {
 			inline: 'center'
 		});
 		if (!document.querySelector(".stack-width").children[getElementIndex(canvas.parentElement) + 1].className.includes("multiple-choice-wrapper")) {
-			setTimeout(function() {
+			setTimeout(function () {
 				document.querySelector('.stack-width').classList.remove('blur-all-non-mc-questions')
 			}, 100)
 		}
