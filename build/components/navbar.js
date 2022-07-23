@@ -23,6 +23,7 @@ import {
   ChevronRightIcon,
 } from '@chakra-ui/icons';
 
+
 import Image from "next/image"
 
 export default function WithSubnavigation() {
@@ -37,9 +38,6 @@ export default function WithSubnavigation() {
         minH={'60px'}
         py={{ base: 2 }}
         px={{ base: 4 }}
-        borderBottom={1}
-        borderStyle={'solid'}
-        borderColor={useColorModeValue('gray.200', 'gray.900')}
         align={'center'}>
         <Flex
           flex={{ base: 1, md: 'auto' }}
@@ -54,18 +52,18 @@ export default function WithSubnavigation() {
             aria-label={'Toggle Navigation'}
           />
         </Flex>
-        
 
-        <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }} style={{alignItems: "center"}}>
 
-        <a style={{ background: "none", display: "inline-flex", cursor: "pointer", textAlign: useBreakpointValue({ base: 'center', md: 'left' }) }} href="/">
-          <Image
-            alt="Devnetic"
-            src="/images/devnetic-logo.png"
-            width="43px"
-            height="43px"
-          />
-        </a>
+        <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }} style={{ alignItems: "center" }}>
+
+          <a style={{ background: "none", display: "inline-flex", cursor: "pointer", textAlign: useBreakpointValue({ base: 'center', md: 'left' }) }} href="/">
+            <Image
+              alt="Devnetic"
+              src="/images/devnetic-logo.png"
+              width="43px"
+              height="43px"
+            />
+          </a>
 
           <Text
             textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
@@ -82,6 +80,7 @@ export default function WithSubnavigation() {
           justify={'flex-end'}
           direction={'row'}
           spacing={6}>
+
           <a href="/app" onClick={(e) => {
             e.preventDefault()
             if (!localStorage.getItem("theme") || localStorage.getItem("theme") === "dark") document.body.classList.add("transitioning-to-devnetic-app")
@@ -262,11 +261,46 @@ const MobileNavItem = ({ label, children, href }) => {
 
 const NAV_ITEMS = [
   {
+    label: <span>Sections<Icon
+      as={ChevronDownIcon}
+      transition={'all .25s ease-in-out'}
+      w={6}
+      h={6}
+    /></span>,
+    children: [
+      {
+        label: "Web Development",
+        subLabel: "Learn technologies like Express.JS and React!",
+        href: "/app/index.html#/track/webdev/"
+      },
+      {
+        label: "Web Dev Projects",
+        subLabel: "Put your skills to use with our interactive IDE!",
+        href: "/app/index.html#/track/webdev-projects/"
+      },
+      {
+        label: "Artificial Intelligence",
+        subLabel: "Learn tree AI, regression, SVG, and much more!",
+        href: "/app/index.html#/track/ai/"
+      },
+      {
+        label: "Intro to CS",
+        subLabel: "Learn to solve USACO problems with Python!",
+        href: "/app/index.html#/track/intro-to-cs/"
+      }
+    ]
+  },
+  {
     label: 'App Dev League',
     href: "https://appdevleague.org/#"
   },
   {
-    label: 'Open Source',
+    label: <span>Open Source<Icon
+      as={ChevronDownIcon}
+      transition={'all .25s ease-in-out'}
+      w={6}
+      h={6}
+    /></span>,
     children: [
       {
         label: 'Github',

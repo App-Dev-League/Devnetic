@@ -10,12 +10,18 @@ import {
   Icon,
   useColorModeValue,
   createIcon,
+  useColorMode
 } from '@chakra-ui/react';
 
+import { BsCircleHalf } from "react-icons/bs"
+
 export default function CallToActionWithAnnotation() {
+  const { colorMode, toggleColorMode } = useColorMode()
+
   return (
     <>
-      <Container maxW={'3xl'} className="intro-section">
+      <Container maxW={'3xl'} className="intro-section" style={{backgroundColor: colorMode==="light" ? "var(--chakra-colors-gray-100)" : "var(--chakra-colors-gray-900)"}}>
+      <Icon as={BsCircleHalf} style={{ cursor: "pointer", fontSize: "20px", position: "absolute", left: "20px", top: "10px"}} onClick={toggleColorMode} />
         <Stack
           as={Box}
           textAlign={'center'}
