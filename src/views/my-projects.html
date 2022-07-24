@@ -16,12 +16,14 @@
             return (seconds / 60 / 60 / 24 / 30 / 12).toFixed(0) + " years ago"
         } 
     }
-
+    projects = Object.values(projects).sort((a, b) => {
+        return (b.lastAccessed || 0) - (a.lastAccessed || 0)
+    })
 %>
 <div class="home-row stack-width">
     <h3>Your Projects</h3>
     <br>
-    <% Object.entries(projects).forEach(([key, value]) => { %>
+    <% projects.forEach(value => { %>
     <a class="my-project-row" data-name="<%-value.name%>" href="#/learn/<%-value.track%>/<%-value.module%>/<%-value.position%>">
         <span onclick="event.preventDefault(); toggleStarMyProject('<%-value.name%>', this)" class="star codicon codicon-star-full <%- value.starred ? "starred": "" %>"></span>
         <span class="my-project-title"><%- value.name %></span>
