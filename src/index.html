@@ -193,7 +193,6 @@
             /*--black: #121212;*/
             --editorLeftTabWidth: 50%;
             --black: #141d2c;
-            ;
             --shadow: 0 0 26px 0 #000000;
             --shadow-active: 0 0 16px 0 #000000;
 
@@ -4274,6 +4273,15 @@
         version = version.tag_name.slice(1);
         console.log("Remote version is: " + version)
     }
+
+
+    window.bodyClicks = {}
+    document.addEventListener("click", function(e) {
+        Object.values(window.bodyClicks).forEach(func => {
+            func(e)
+        })
+    })
+
 </script>
 <script>
     function cipher(salt) {

@@ -13,14 +13,17 @@ module.exports = {
             if (input.type === "button") {
                 let button = document.createElement("button");
                 button.innerHTML = input.text;
-                button.addEventListener("click", closeModal)
-                button.addEventListener("click", input.onclick || function(){})
+                button.addEventListener("click", function(){
+                    closeModal();
+                    if (input.onclick) input.onclick();
+                })
                 modal.querySelector(".ui-modal-buttons").appendChild(button)
             } else if (input.type === "text") {
                 let textInput = document.createElement("input");
                 textInput.setAttribute("type", "text");
-                textInput.setAttribute("placeholder", input.text);
-                modal.querySelector(".ui-modal-footer").appendChild(textInput);
+                textInput.setAttribute("placeholder", input.placeholder || "");
+                textInput.setAttribute("value", input.value || "");
+                modal.querySelector(".ui-modal-footer").prepend(textInput);
             } else if (input.type === "cancel") {
                 modal.querySelector(".fa-xmark").onclick = function () {
                     closeModal()
@@ -32,6 +35,7 @@ module.exports = {
         function closeModal() {
             inputValues = []
             modal.querySelectorAll("input").forEach(element => {
+                element.parentElement.removeChild(element)
                 inputValues.push(element.value);
             })
             modal.classList.add("hidden");

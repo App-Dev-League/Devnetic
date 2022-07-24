@@ -663,7 +663,9 @@ function newMyProject(name) {
 		name: name,
 		track: "customUserProjects",
 		module: Math.floor(Math.random() * 100000000000),
-		position: 0
+		position: 0,
+		starred: false,
+		lastAccessed: Date.now()
 	}
 	localStorage.setItem("myProjects", JSON.stringify(myProjects));
 	return true;
@@ -687,6 +689,18 @@ function deleteMyProject(name) {
 		}
 		resolve(true);
 	})
+}
+function renameMyProject(currentName, newName) {
+	let myProjects = localStorage.getItem("myProjects");
+	if (!myProjects) myProjects = "{}";
+	myProjects = JSON.parse(myProjects);
+	if (!myProjects[currentName]) throw ("Project with that name does not exist!")
+	if (myProjects[newName]) throw ("Project with that name already exists")
+	let myProject = myProjects[currentName];
+	myProjects[newName] = myProject;
+	myProjects[newName].name = newName;
+	delete myProjects[currentName];
+	localStorage.setItem("myProjects", JSON.stringify(myProjects));
 }
 function getMyProjects() {
 	let myProjects = localStorage.getItem("myProjects");
@@ -743,6 +757,66 @@ function sizeOfMyProject(name) {
 		}
 	});
 };
+function lastAccessedUserProject(projectId) {
+	projectId = Number(projectId);
+	let myProjects = localStorage.getItem("myProjects");
+	if (!myProjects) myProjects = "{}";
+	myProjects = JSON.parse(myProjects);
+	Object.entries(myProjects).forEach(([key, value]) => {
+		if (value.module === projectId) {
+			myProjects[key].lastAccessed = Date.now()
+		}
+	})
+	localStorage.setItem('myProjects', JSON.stringify(myProjects));
+	return true;
+}
+function getProjectFileBreakdown(name) {
+	return new Promise(async (resolve, reject) => {
+		let myProjects = localStorage.getItem("myProjects");
+		if (!myProjects) myProjects = "{}";
+		myProjects = JSON.parse(myProjects);
+		if (!myProjects[name]) reject("Project with that name does not exist!")
+		let myProject = myProjects[name];
+		let storeName = myProject.track + "-" + myProject.module + "-" + myProject.position
+
+		let db = await openConnection()
+		var tx;
+		try {
+			tx = db.transaction([storeName], 'readonly');
+		} catch (e) {
+			resolve(0)
+		}
+		const store = tx.objectStore(storeName);
+		const cursorReq = store.openCursor();
+		let fileTypes = {}
+		cursorReq.onsuccess = function (e) {
+			const cursor = cursorReq.result;
+			if (cursor) {
+				fileTypes[cursor.value.filename.split(".")[cursor.value.filename.split(".").length-1]] = true;
+				cursor.continue();
+			}
+		};
+		cursorReq.onerror = function (e) {
+			close()
+			reject(e);
+		};
+		tx.oncomplete = function (e) {
+			close()
+			resolve(Object.keys(fileTypes));
+		};
+		tx.onabort = function (e) {
+			close()
+			reject(e);
+		};
+		tx.onerror = function (e) {
+			close()
+			reject(e);
+		};
+		function close() {
+			db.close();
+		}
+	});
+}
 
 // metadata processing
 function getMetaDataFromText(text) {
@@ -917,7 +991,7 @@ function byteCount(s) {
 	return encodeURI(s).split(/%..|./).length - 1;
 }
 module.exports = {
-	updateLanguage, updateContent, getValue, insertAtCursor, format, getCurrentEditorIndex, setCurrentEditorIndex, showAlertModal, removeAlertModal, uploadFile, getModuleFile, getPageFile, getAllUserFiles, deleteFile, updateFile, getFile, renameFile, getFileWithId, updateReadOnly, getCurrentEditorOption, newMyProject, deleteMyProject, getMyProjects, getMetaDataFromText, embedMetaDataIntoText, getTextWithoutMetaData, sizeOfMyProject, exportToJson, importFromJson,showDependencyManager,
+	updateLanguage, updateContent, getValue, insertAtCursor, format, getCurrentEditorIndex, setCurrentEditorIndex, showAlertModal, removeAlertModal, uploadFile, getModuleFile, getPageFile, getAllUserFiles, deleteFile, updateFile, getFile, renameFile, getFileWithId, updateReadOnly, getCurrentEditorOption, newMyProject, deleteMyProject, getMyProjects, getMetaDataFromText, embedMetaDataIntoText, getTextWithoutMetaData, sizeOfMyProject, exportToJson, importFromJson, showDependencyManager, renameMyProject, lastAccessedUserProject,getProjectFileBreakdown,
 	internals: {
 		openConnectionWithNewVersion
 	}

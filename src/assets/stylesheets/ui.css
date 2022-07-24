@@ -437,3 +437,82 @@ html {
 .info-title {
     font-weight: 600;
 }
+.my-project-row {
+    display: block;
+    text-align: left;
+    width: 100%;
+    font-size: 16px;
+    text-decoration: none;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 5px;
+    transition: 0.15s background;
+    position: relative;
+}
+.my-project-row .star {
+    font-size: 27px;
+    vertical-align: middle;
+    width: 5%;
+    display: inline-block;
+    color: var(--chakra-colors-gray-500);
+}
+.my-project-row .star:hover {
+    color: var(--chakra-colors-yellow-500);
+}
+.my-project-row .star.starred {
+    color: var(--chakra-colors-yellow-500);
+}
+.my-project-row .my-project-title {
+    font-weight: 500;
+    vertical-align: middle;
+    width: 25%;
+    display: inline-block;
+    text-overflow: ellipsis;
+}
+.my-project-row .language-breakdown, .my-project-row .last-viewed, .my-project-row .my-project-size{
+    vertical-align: middle;
+    font-size: 12px;
+    color: #c2c8cc;
+    width: 10%;
+    display: inline-block;
+}
+.my-project-row:hover {
+    background-color: var(--chakra-colors-blue-900);
+}
+.my-project-row .more-options {
+    padding: 10px 15px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: 0.3s background;
+}
+.my-project-row .more-options:hover {
+    background-color: var(--gray)
+}
+.my-project-row .dropdown {
+    position: absolute;
+    border-radius: 8px;
+    background-color: var(--darkgray);
+    border: 1px solid var(--chakra-colors-blue-800);
+    top: 50px;
+    right: 30px;
+    z-index: 10;
+    transition: 0.2s opacity;
+    width: 150px;
+}
+.my-project-row .dropdown.closed {
+    opacity: 0;
+    pointer-events: none;
+}
+.my-project-row .dropdown span {
+    display: block;
+    padding: 8px;
+    font-size: 14px;
+}
+.my-project-row .dropdown span:hover {
+    background-color: var(--gray);
+}
