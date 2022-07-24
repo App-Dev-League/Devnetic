@@ -503,6 +503,7 @@ html {
     z-index: 10;
     transition: 0.2s opacity;
     width: 150px;
+    overflow: hidden;
 }
 .my-project-row .dropdown.closed {
     opacity: 0;

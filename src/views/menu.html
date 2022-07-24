@@ -118,7 +118,7 @@
 </div>
 
 <div id="toggle-theme">
-    <a onclick="toggleTheme()" title="Toggle theme" class="my-projects codicon codicon-color-mode" style="position: fixed; top: 60px; left: 10px; width: fit-content;"></a>
+    <a onclick="toggleTheme()" title="Toggle theme" class="my-projects codicon codicon-color-mode" style="position: absolute; top: 0px; width: fit-content; right: calc(100vw - 60px);"></a>
 </div>
 
 <style>
@@ -129,8 +129,8 @@
     }
 
     #menu-icon {
-        position: fixed;
-        top: 60px;
+        position: absolute;
+        top: 0;
         right: 10px;
         font-size: 1.5em;
         cursor: pointer;
