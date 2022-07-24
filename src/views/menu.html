@@ -102,7 +102,7 @@
                         <% } else { %>
                         <div class="menu-icon-completed"></div>
                         <% } %>
-                        <a onclick="document.body.style.overflow='auto'" href="#/learn/<%-value%>/<%-i%>/<%-window.menuData[value].data[i].currentUserPosition%>" style="text-decoration: none;">
+                        <a onclick="document.body.style.overflow='auto'" href="#/learn/<%-value%>/<%-i%>/<%-window.menuData[value].data[i].currentUserPosition%>" style="text-decoration: none; position: relative; top: -3px;">
                             <span><%-window.menuData[value].data[i].title%></span> -
                             <span><%-Math.round(window.menuData[value].data[i].currentUserPosition/window.menuData[value].data[i].moduleLength*100)%>%</span>
                         </a>
