@@ -58,8 +58,10 @@
 
     console.oldLog = console.log;
     console.log = function(logs) {
-        if (logs.toString().includes("ModuleNotFoundError") || logs.toString().includes("Exception")) {
+        if (logs.toString().includes("ModuleNotFoundError") || logs.toString().includes("Exception") || logs.toString().includes("PythonError")) {
             window.logFunction(logs.toString())
+        } else {
+            console.oldLog("Pyscript log > "+logs.toString())
         }
     }
     console.warn = function(warning) {
