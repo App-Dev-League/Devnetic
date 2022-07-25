@@ -34,7 +34,8 @@
 		"plugins.js",
 		"shuffleArray.js",
 		"renderElement.js",
-		"modal.js"
+		"modal.js",
+		"window.js"
 	], {
 		path: "./utils/"
 	}, newFileCallback);

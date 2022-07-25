@@ -8,9 +8,11 @@
 <py-env class="pyscript-dependencies">
     ...
 </py-env>
-<py-script class="pyscript-script-out loading">
+<py-script class="pyscript-script-out loading" output="output">
     ...
 </py-script>
+<div id="output"></div>
+
 <script>
     window.addEventListener("message", (event) => {
         if (event.data !== "start") return;
@@ -29,7 +31,7 @@
 
 
     function registerWatchers() {
-        var target = document.querySelector(".pyscript-script-out");
+        var target = document.querySelector("#output");
 
         var observer = new MutationObserver(function(mutations) {
             if (target.classList.contains("loading")) return;
@@ -37,6 +39,8 @@
                 if (mutation.addedNodes.length) {
                     if (mutation.addedNodes[0].nodeValue) {
                         window.logFunction(mutation.addedNodes[0].nodeValue)
+                    } else if (document.getElementById("output").lastChild.querySelector("img")) {
+                        window.showImage(document.getElementById("output").lastChild.innerHTML)
                     }
                 }
 
@@ -54,7 +58,7 @@
 
     console.oldLog = console.log;
     console.log = function(logs) {
-        if (logs.toString().includes("ModuleNotFoundError")) {
+        if (logs.toString().includes("ModuleNotFoundError") || logs.toString().includes("Exception")) {
             window.logFunction(logs.toString())
         }
     }
