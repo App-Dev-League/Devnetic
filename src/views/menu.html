@@ -1,52 +1,6 @@
 <div id="menu">
     <%
-     var moduleData = await fetch("./data/module_index.json");
-     moduleData = await moduleData.json();
-     var actions = moduleData.actions
-     var data = {}
-     window.menuData = {};
-     window.rawModuleData = moduleData;
-
-     for (let p = 0; p<Object.entries(actions).length; p++) {
-        var key = Object.entries(actions)[p][0]
-        var value = Object.entries(actions)[p][1]
-        data[value] = []
-        var totalPages = 0;
-        var userPages = 0;
-        let count = moduleData[value].module_meta_data.length
-        var modules = []
-        for (let i = 0; i < count; i++) {
-            let module = moduleData[value].module_meta_data[i]
-            let modulePosition = await DB.getModulePosition(value, i);
-
-            data[value].push(modulePosition)
-            modules.push({
-                currentUserPosition: modulePosition,
-                moduleLength: module.moduleLength,
-                title: module.name
-            });
-            let length = module.moduleLength;
-            totalPages += length;
-        }
-        if (!data[value]) {
-            window.menuData[value] = {
-                totalPages: totalPages,
-                userPages: 0,
-                data: modules
-            }
-        } else {
-            data[value].forEach(element => {
-                if (element !== null) userPages += element
-            })
-            window.menuData[value] = {
-                totalPages: totalPages,
-                userPages: userPages,
-                data: modules
-            }
-        }
-     }
-     console.log(window.menuData)
-     window.onNewMenuData(window.menuData)
+    var actions = await fetchMenuData();
     %>
     <span id="menu-icon" class="codicon codicon-checklist" title="Dashboard" onclick="showMainMenu()"></span>
     <div id="menu-wrapper" class="closed">
@@ -103,7 +57,7 @@
                         <div class="menu-icon-completed"></div>
                         <% } %>
                         <a onclick="document.body.style.overflow='auto'" href="#/learn/<%-value%>/<%-i%>/<%-window.menuData[value].data[i].currentUserPosition%>" style="text-decoration: none; position: relative; top: -3px;">
-                            <span><%-window.menuData[value].data[i].title%></span> -
+                            <span>Week <%-i+1%> - <%-window.rawModuleData[value].weeks[i]%></span> -
                             <span><%-Math.round(window.menuData[value].data[i].currentUserPosition/window.menuData[value].data[i].moduleLength*100)%>%</span>
                         </a>
                         <br>

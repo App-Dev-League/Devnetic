@@ -33,7 +33,11 @@ class ShortAnswer extends ModuleComponent {
 			if(this.data().value == null) {
 				this.data().value = "";
 			}
-			let returnStr = `<div class="stack-width">
+			let returnStr = `<div class="information-wrapper"><div class="left-panel" id="progress-panel">
+			<span class="panel-title"></span>
+		</div>
+		<div class="stack-width-wrapper">
+		<div class="stack-width">
 	<h1 class="mc-question">${tApp.escape(this.data().question || "")}</h1>
 	<div class="codeblock-wrapper mc-codeblock">
 		${new codeBlock({code: this.data().code || "", language: this.data().lang, name: this.data().name})}
@@ -42,6 +46,8 @@ class ShortAnswer extends ModuleComponent {
 	<div class="short-answer-container">
 		${this.state.input}
 		<button class="short-answer-button" onclick="{{_this}}.update();">Submit</button>
+	</div>
+	</div>
 	</div>`;
 			if(this.data().selectedAnswer != null) {
 				let data = this.data();

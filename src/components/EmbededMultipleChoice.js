@@ -62,8 +62,7 @@ class EmbededMultipleChoice extends ModuleComponent {
 		canvas.parentElement.querySelector(".indicator-symbol").style.color = "var(--chakra-colors-green-500)";
 		document.querySelector(".stack-width").children[getElementIndex(canvas.parentElement) + 1].scrollIntoView({
 			behavior: 'auto',
-			block: 'center',
-			inline: 'center'
+			block: 'center'
 		});
 		if (!document.querySelector(".stack-width").children[getElementIndex(canvas.parentElement) + 1].className.includes("multiple-choice-wrapper")) {
 			setTimeout(function () {

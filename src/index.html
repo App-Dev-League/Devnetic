@@ -26,6 +26,7 @@
     <script src="./assets/libraries/interact.js"></script>
     <style>
         @import url('./assets/fonts/Lato/lato.css');
+
         html {
             overflow-x: hidden;
         }
@@ -242,7 +243,7 @@
             height: 50px;
             margin: 0;
             padding: 0;
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             background-color: var(--blue);
@@ -1397,114 +1398,7 @@
             top: -50px;
         }
 
-        #module-progress-bar {
-            background-color: #34db77;
-            transition: all 0.5s;
-            z-index: 11;
-            height: 5px;
-            position: absolute;
-        }
 
-        #module-progress-bar-wrapper {
-            position: absolute;
-            top: 50px;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            z-index: 10;
-            transition: all 0.5s;
-            transition-delay: all 1s;
-            background-color: none;
-        }
-
-        #module-progress-bar-wrapper:hover {
-            background-color: #2d89c7;
-            height: 100px;
-        }
-
-        #module-progress-bar-wrapper:hover #module-progress-bar {
-            transform: translateY(45px);
-        }
-
-        #module-progress-bar-wrapper:hover::before {
-            background-color: rgba(0, 0, 0, 0.2) !important;
-            transform: translateY(45px);
-        }
-
-        #module-progress-bar-wrapper:before {
-            position: fixed;
-            top: 50px;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            z-index: 9;
-            background-color: rgba(0, 0, 0, 0.0);
-            transition: 0.5s all;
-            content: "";
-        }
-
-        .module-progress-bar-timeline-element {
-            position: absolute;
-            z-index: 11;
-            width: 9px;
-            height: 9px;
-            border-radius: 50%;
-            border: 3px solid white;
-            opacity: 0;
-            transition: 0.5s all;
-        }
-
-        .module-progress-bar-timeline-element.filled {
-            background-color: white
-        }
-
-        .module-progress-bar-timeline-element.template {
-            display: none;
-        }
-
-        .module-progress-bar-timeline-element .descriptor {
-            position: absolute;
-            top: 20px;
-            opacity: 0;
-            transition: all 0.5s;
-            pointer-events: none;
-            width: 1000px;
-        }
-
-        .module-progress-bar-timeline-element .name {
-            position: absolute;
-            top: -30px;
-            opacity: 0;
-            transition: all 0.5s;
-            pointer-events: none;
-            font-weight: var(--chakra-fontWeights-semibold);
-            width: 1000px;
-        }
-
-        .module-progress-bar-timeline-element.filled {
-            background-color: white
-        }
-
-        .module-progress-bar-timeline-element:hover .descriptor {
-            opacity: 1 !important;
-        }
-
-        .module-progress-bar-timeline-element:hover {
-            width: 11px;
-            height: 11px;
-            border: 4px solid white;
-            transform: translate(-2px, 38px) !important;
-        }
-
-        .module-progress-bar-timeline-element:hover .name {
-            opacity: 1 !important;
-        }
-
-        #module-progress-bar-wrapper:hover .module-progress-bar-timeline-element {
-            transform: translateY(40px);
-            opacity: 1;
-            transition: 0.2s all !important;
-        }
 
         .changing-themes * {
             transition: 1s all !important;
@@ -1626,13 +1520,6 @@
         <h3 class="username">Guest</h3>
         <p class="score" id="score">- XP, - Coins</p>
     </header>
-    <div id="module-progress-bar-wrapper">
-        <div id="module-progress-bar"></div>
-        <div class="module-progress-bar-timeline-element template">
-            <div class="descriptor"></div>
-            <div class="name"></div>
-        </div>
-    </div>
 
     <a onclick="goBack()" title="Go back" class="my-projects codicon codicon-arrow-left none" id="back-btn" style="position: absolute; top: 60px; left: 10px; width: fit-content; z-index: 6;"></a>
 
@@ -1719,6 +1606,7 @@
     <script src="./config.js?v=3"></script>
     <input id="console-bridge" style="width: 0; height: 0;">
     <div id="window-container"></div>
+    <i id="progress-panel-mobile-btn" class="fa-solid fa-bars" onclick="let panel = document.querySelector('.left-panel');if (panel) panel.classList.toggle('mobile-opened')"></i>
 </body>
 
 </html>
@@ -4019,15 +3907,6 @@
         delete window.monacoAlreadyLoaded
 
         window.scrollTo(0, 0);
-        if (!window.location.hash.startsWith("#/learn")) {
-            document.getElementById("module-progress-bar").style.width = 0;
-            document.getElementById("module-progress-bar-wrapper").style.pointerEvents = "none";
-            document.getElementById("back-btn").classList.add("none")
-        } else {
-            document.getElementById("module-progress-bar-wrapper").style.pointerEvents = "all";
-            if (window.location.hash.split('/')[4] !== "0") document.getElementById("back-btn").classList.remove("none")
-            else document.getElementById("back-btn").classList.add("none")
-        }
 
         if (window.location.hash.toLowerCase().includes("projects/")) {
             document.getElementById("editor-mobile-switcher").style.display = "flex"
@@ -4060,6 +3939,13 @@
             logo.setAttribute("href", "#/");
             logo.onclick = function() {}
         }
+
+        if (window.location.hash.split("/")[1] === "learn" && !window.location.hash.includes("project")) {
+            document.getElementById("progress-panel-mobile-btn").classList.remove("invisible")
+        } else {
+            document.getElementById("progress-panel-mobile-btn").classList.add("invisible")
+        }
+
     }
 
     function goBack() {
@@ -4283,7 +4169,6 @@
             func(e)
         })
     })
-
 </script>
 <script>
     function cipher(salt) {
@@ -4319,5 +4204,58 @@
         element.click();
 
         document.body.removeChild(element);
+    }
+
+    async function fetchMenuData() {
+        var moduleData;
+        if (!window.rawModuleData) {
+            moduleData = await fetch("./data/module_index.json");
+            moduleData = await moduleData.json();
+        } else moduleData = window.rawModuleData
+        var actions = moduleData.actions
+        var data = {}
+        window.menuData = {};
+        window.rawModuleData = moduleData;
+
+        for (let p = 0; p < Object.entries(actions).length; p++) {
+            var key = Object.entries(actions)[p][0]
+            var value = Object.entries(actions)[p][1]
+            data[value] = []
+            var totalPages = 0;
+            var userPages = 0;
+            let count = moduleData[value].module_meta_data.length
+            var modules = []
+            for (let i = 0; i < count; i++) {
+                let module = moduleData[value].module_meta_data[i]
+                let modulePosition = await DB.getModulePosition(value, i);
+
+                data[value].push(modulePosition)
+                modules.push({
+                    currentUserPosition: modulePosition,
+                    moduleLength: module.moduleLength,
+                    title: module.name
+                });
+                let length = module.moduleLength;
+                totalPages += length;
+            }
+            if (!data[value]) {
+                window.menuData[value] = {
+                    totalPages: totalPages,
+                    userPages: 0,
+                    data: modules
+                }
+            } else {
+                data[value].forEach(element => {
+                    if (element !== null) userPages += element
+                })
+                window.menuData[value] = {
+                    totalPages: totalPages,
+                    userPages: userPages,
+                    data: modules
+                }
+            }
+        }
+        if (window.onNewMenuData) window.onNewMenuData(window.menuData)
+        return actions;
     }
 </script>

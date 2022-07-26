@@ -3,7 +3,7 @@ const codeEditorHelper=require("../utils/codeEditor.js"),plugins=require("../uti
                     <img src="${e.image}" style="width: 60px; display: inline-block"/>
                     <div style="display: inline-block; margin-left: 20px; vertical-align: top; width: 80%">
                         <div>
-                            <h3 style="margin-bottom: 0; margin-top: 0; display: inline-block">${e.name}</h3>
+                            <h3 style="margin-bottom: 0; margin-top: 0; display: inline-block; font-weight: 500;">${e.name}</h3>
                             ${e.installed?`<h5 style="display: inline-block; margin: 0; margin-left: 30px; transform: translateY(-2px); font-size: 0.8em; padding: 0 5px; line-height: 14px; background-color: #b12c2c; cursor: pointer" onclick="{{_this}}.uninstall('${e.id}')">Uninstall</h5>`:`<h5 style="display: inline-block; margin: 0; margin-left: 30px; transform: translateY(-2px); font-size: 0.8em; padding: 0 5px; line-height: 14px; background-color: #2BA143; cursor: pointer" onclick="{{_this}}.install('${e.id}')">Install</h5>`}
                             <h6 style="display: inline-block; margin: 0; margin-left: 20px">${Math.round(this.state.pluginSizes[e.id]/1e3)} KB</h6>
                         </div>

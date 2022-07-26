@@ -3,7 +3,7 @@ class ModulePage extends tApp.Component {
 		super(state, parent);
 	}
 	render(props) {
-		return `<div>
+		return `<div class="module-container">
 	${this.state.component}
 </div>`;
 	}
