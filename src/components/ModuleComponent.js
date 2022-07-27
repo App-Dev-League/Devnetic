@@ -50,11 +50,15 @@ class ModuleComponent extends tApp.Component {
 				body.appendChild(accordion, body.firstChild);
 				
 				trackData[index].pageBreakdown.forEach((info, i) => {
-					let div = document.createElement("div");
+					let div = document.createElement("a");
 					div.innerHTML = `${info.title.replace(/Week...-/, "")}`
 					div.classList.add("accordion-entry");
 					div.title = info.title.replace(/Week...-/, "")
 					if (index === lessonIndex && i === pageIndex) div.classList.add("highlight")
+					else if (i <= window.menuData[track].data[index].currentUserPosition) {
+						div.classList.add("passed");
+						div.href = `#/learn/${track}/${index}/${i}`
+					}
 					accordion.appendChild(div)
 				})
 

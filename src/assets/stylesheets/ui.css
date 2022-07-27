@@ -631,7 +631,7 @@ html {
     left: 0;
     top: 0;
     padding-top: 60px;
-    overflow: scroll;
+    overflow: auto;
 }
 
 .information-wrapper {
@@ -694,6 +694,7 @@ html {
     overflow: hidden;
     position: relative;
     color: var(--chakra-colors-gray-300);
+    text-decoration: none;
 }
 
 .left-panel .accordion.open .accordion-entry {
@@ -758,6 +759,12 @@ html {
 }
 .left-panel .accordion .accordion-entry.highlight::before {
     background-color: var(--chakra-colors-blue-300);
+}
+.left-panel .accordion .accordion-entry.passed::after {
+    background-color: var(--chakra-colors-blue-600);
+}
+.left-panel .accordion .accordion-entry.passed::before {
+    background-color: var(--chakra-colors-blue-600);
 }
 @media (max-width: 1000px) {
     .left-panel {

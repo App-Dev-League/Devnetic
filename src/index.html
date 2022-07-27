@@ -4071,11 +4071,17 @@
                 let modal = document.querySelectorAll(".explanation-modal")[1];
                 modal.querySelector("span").click()
             }
+            if (document.getElementById("ui-modal")) {
+                document.querySelector("#ui-modal .fa-xmark").click()
+            }
         }
         if (e.key === "Enter") {
             if (document.querySelectorAll(".explanation-modal")[1]) {
                 let modal = document.querySelectorAll(".explanation-modal")[1];
                 modal.querySelector("button").click()
+            }
+            if (document.getElementById("ui-modal")) {
+                document.querySelector("#ui-modal .ui-modal-buttons button").click()
             }
         }
     })
