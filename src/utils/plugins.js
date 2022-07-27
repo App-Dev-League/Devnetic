@@ -111,7 +111,7 @@ module.exports = {
                 description: "This plugin allows you to run python in the browser!",
                 image: "./assets/plugins/brython/brython.svg",
                 id: "brython",
-                latestVersion: "4.0.0"
+                latestVersion: "4.0.1"
             },
             // {
             //     name: "CaptCC",
@@ -156,7 +156,7 @@ module.exports = {
                 description: "This plugin allows you to run perl code directly in the browser!!",
                 image: "./assets/plugins/webperl/webperl.png",
                 id: "webperl",
-                latestVersion: "1.0.0"
+                latestVersion: "1.0.1"
             },
             {
                 name: "Hex Editor",
