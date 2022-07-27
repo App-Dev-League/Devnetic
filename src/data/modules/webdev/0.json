@@ -78,24 +78,12 @@
                 },
                 {
                     "type": "text",
-                    "content": "[[h3]]Quick Repl Tour (Workspace)[[/]]"
-                },
-                {
-                    "type": "image",
-                    "src": "./data/modules/webdev-assets/img0/2-1.png"
-                },
-                {
-                    "type": "divider"
-                },
-                {
-                    "type": "text",
                     "content": "[[h3]]HTML Elements[[/]]\n[[h6]]Paired tag:[[/]]"
                 },
                 {
-                    "type": "image",
-                    "src": "./data/modules/webdev-assets/img0/2-2.png",
-                    "width": "70%",
-                    "box-shadow": "0px 0px 20px 7px #686868"
+                    "type": "iframe",
+                    "src": "./data/modules/webdev-assets/img0/2-2.html",
+                    "width": "70%"
                 },
                 {
                     "type": "divider"
@@ -105,10 +93,9 @@
                     "content": "[[h6]]Unpaired/Self-Closing Tag[[/]]"
                 },
                 {
-                    "type": "image",
-                    "src": "./data/modules/webdev-assets/img0/2-3.png",
-                    "width": "70%",
-                    "box-shadow": "0px 0px 20px 7px #686868"
+                    "type": "iframe",
+                    "src": "./data/modules/webdev-assets/img0/2-3.html",
+                    "width": "70%"
                 }
             ]
         },
@@ -141,28 +128,32 @@
                 {
                     "type": "code",
                     "content": "<body>\n\tDisplayed content tags go here\n</body>"
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]What could be included in the below tag?[[/]]\n [[`]]<head></head>[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "The header of the website",
+                        "The main webpage",
+                        "The webpage's metadata",
+                        "The website's footer"
+                    ],
+                    "correct": 2,
+                    "descriptions": [
+                        "Incorrect! The header of the webpage should be included in the body!",
+                        "Incorrect, the main webpage should all be included in the body!",
+                        "Correct! The head tags is used to include metadata about the website like it's title and descriptions",
+                        "That doesn't seem correct! Try again"
+                    ],
+                    "points": 5,
+                    "coins": 1
                 }
             ]
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What could be included in the below tag?",
-            "code_template": "<head>\n</head>",
-            "answers": [
-                "The header of the website",
-                "The main webpage",
-                "The webpage's metadata",
-                "The website's footer"
-            ],
-            "correct": 2,
-            "descriptions": [
-                "Incorrect! The header of the webpage should be included in the body!",
-                "Incorrect, the main webpage should all be included in the body!",
-                "Correct! The head tags is used to include metadata about the website like it's title and descriptions",
-                "That doesn't seem correct! Try again"
-            ],
-            "points": 5,
-            "coins": 1
         },
         {
             "type": "information",
@@ -428,28 +419,32 @@
                             "content": "<ul type='circle'>\n    <li>Lion</li>\n    <li>Tiger</li>\n</ul>"
                         }
                     ]
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]What are the two main attributes of the below tag?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "src and alt",
+                        "source and alt",
+                        "description and src",
+                        "description and source"
+                    ],
+                    "correct": 0,
+                    "descriptions": [
+                        "Correct! We use src to set the image's source and alt to set the description of the image",
+                        "Incorrect, remember that some attributes in HTML are simplified",
+                        "Incorrect! Description is the wrong attribute name, but you're on the correct track!",
+                        "Incorrect! Try again"
+                    ],
+                    "points": 5,
+                    "coins": 1
                 }
             ]
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What are the two main attributes of the below tag?",
-            "code_template": "<img ____=\" \" ____=\" \">",
-            "answers": [
-                "src and alt",
-                "source and alt",
-                "description and src",
-                "description and source"
-            ],
-            "correct": 0,
-            "descriptions": [
-                "Correct! We use src to set the image's source and alt to set the description of the image",
-                "Incorrect, remember that some attributes in HTML are simplified",
-                "Incorrect! Description is the wrong attribute name, but you're on the correct track!",
-                "Incorrect! Try again"
-            ],
-            "points": 5,
-            "coins": 1
         },
         {
             "type": "short_answer",

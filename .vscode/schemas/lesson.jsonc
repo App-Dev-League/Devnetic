@@ -72,7 +72,7 @@
                                 "type": {
                                     "description": "Element type",
                                     "type": "string",
-                                    "enum": ["text", "code", "image", "divider", "iframe", "split-content", "vertical-content"]
+                                    "enum": ["text", "code", "image", "divider", "iframe", "split-content", "vertical-content", "embedded_multiple_choice", "note"]
                                 },
                                 "content": {
                                     "description": "Element content",

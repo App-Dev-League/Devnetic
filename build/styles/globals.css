@@ -67,13 +67,14 @@ a {
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 .intro-section {
   box-shadow: rgb(237 242 247) 50vw 0px 0px 0px, rgb(237 242 247) -50vw 0px 0px 0px;
-  background: rgb(237, 242, 247);
+  background: var(--chakra-colors-gray-100);
   background-image: url(/images/introsectionbackground.svg);
   width: 100vw !important;
-  left: -50%;
+  left: -51%;
   position: relative;
   transform: translateX(50%);
   text-align: center;
@@ -89,7 +90,4 @@ html {
 }
 .main-content {
   margin-top: 60px;
-}
-.navbar-container > div {
-  background-color: rgba(255,255,255,0.8);
 }

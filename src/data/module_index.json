@@ -6,40 +6,408 @@
         "Intro To CS": "intro-to-cs"
     },
     "webdev": {
-        "totalPages": 117,
+        "totalPages": 85,
         "module_meta_data": [
             {
                 "name": "Week 1 - Quick Intro to Web Development",
-                "moduleLength": 21
+                "moduleLength": 19,
+                "pageBreakdown": [
+                    {
+                        "title": "Week 1 - Quick Intro to Web Development",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 1 - Overview of HTML",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 1 - Structuring Websites with HTML",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 1 - Anatomy of an HTML document",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 1 - Basic HTML Tags",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Create the largest heading on your page with the text: Hello World!",
+                        "type": "short_answer"
+                    },
+                    {
+                        "title": "What is the smallest header tag?",
+                        "type": "multiple_choice"
+                    },
+                    {
+                        "title": "What does the below tag do?",
+                        "type": "multiple_choice"
+                    },
+                    {
+                        "title": "Heading Tags",
+                        "type": "snippet_unlock"
+                    },
+                    {
+                        "title": "Line Break",
+                        "type": "snippet_unlock"
+                    },
+                    {
+                        "title": "Divisions",
+                        "type": "snippet_unlock"
+                    },
+                    {
+                        "title": "Week 1 - Attribute Based Tags",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Create an image with a source of https://www.demo.com/test.png and a description of \"A funny image\"",
+                        "type": "short_answer"
+                    },
+                    {
+                        "title": "Image tag",
+                        "type": "snippet_unlock"
+                    },
+                    {
+                        "title": "How would we make a hyperlink to https://google.com with text \"Google\"?",
+                        "type": "short_answer"
+                    },
+                    {
+                        "title": "Anchor tag",
+                        "type": "snippet_unlock"
+                    },
+                    {
+                        "title": "Which tag is used for list items?",
+                        "type": "multiple_choice"
+                    },
+                    {
+                        "title": "Unordered List",
+                        "type": "snippet_unlock"
+                    },
+                    {
+                        "title": "Ordered List",
+                        "type": "snippet_unlock"
+                    }
+                ]
             },
             {
                 "name": "Week 2 - CSS",
-                "moduleLength": 23
+                "moduleLength": 12,
+                "pageBreakdown": [
+                    {
+                        "title": "Week 2 - CSS",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 2 - CSS Rule Sets",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 2 - Linking CSS to HTML",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 2 - Text Styling",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 2 - Text Styling Continued",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 2 - Selector Events",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 2 - Bootstrap",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 2 - Bootstrap Continued...",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 2 - Bootstrap Forms",
+                        "type": "information"
+                    },
+                    {
+                        "title": "which CSS property is used to underline text?",
+                        "type": "short_answer"
+                    },
+                    {
+                        "title": "Short Quiz",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Congratulations!",
+                        "type": "congratulations"
+                    }
+                ]
             },
             {
                 "name": "Week 3 - JavaScript",
-                "moduleLength": 18
+                "moduleLength": 12,
+                "pageBreakdown": [
+                    {
+                        "title": "Week 3 - JavaScript",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 3 - JavaScript Statements",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 3 - JavaScript Variables",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 3 - JavaScript Methods and Data Types",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 3 - JavaScript Numbers, Booleans, Properties, and Arithmetic",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 3 - JavaScript Comparisons",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 3 - JavaScript Conditionals",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 3 - JavaScript Functions",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 3 - DOM",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 3 - jQuery",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 3 - Short Quiz",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Congratulations!",
+                        "type": "congratulations"
+                    }
+                ]
             },
             {
                 "name": "Week 4 - HTML Recap",
-                "moduleLength": 15
+                "moduleLength": 5,
+                "pageBreakdown": [
+                    {
+                        "title": "Week 4 - HTML Recap",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 4 - CSS Recap",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 4 - JavaScript Recap",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Quick Recap Quiz",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Project Setup",
+                        "type": "information"
+                    }
+                ]
             },
             {
                 "name": "Week 5 - Intro to Node.js",
-                "moduleLength": 8
+                "moduleLength": 7,
+                "pageBreakdown": [
+                    {
+                        "title": "Week 5 - Intro to Node.js",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 5 - NPM",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 5 - Node Project Management",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 5 - CommonJS Modules",
+                        "type": "information"
+                    },
+                    {
+                        "title": "If util.js is in the parent directory, what is its relative path?",
+                        "type": "short_answer"
+                    },
+                    {
+                        "title": "How are Node.js scripts run?",
+                        "type": "multiple_choice"
+                    },
+                    {
+                        "title": "Congratulations!",
+                        "type": "congratulations"
+                    }
+                ]
             },
             {
                 "name": "Week 6 - REST API and Express JS",
-                "moduleLength": 10
+                "moduleLength": 10,
+                "pageBreakdown": [
+                    {
+                        "title": "Week 6 - REST API and Express JS",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 6 - Express.JS",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 6 - GET Requests",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 6 - Requests",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 6 - POST Requests",
+                        "type": "information"
+                    },
+                    {
+                        "title": "What is the type of request viewable by standard browsers?",
+                        "type": "short_answer"
+                    },
+                    {
+                        "title": "Express.JS requests",
+                        "type": "snippet_unlock"
+                    },
+                    {
+                        "title": "Week 6 - Express.JS req Object",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 6 - Sending requests with Axios",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 6 - Extra Info",
+                        "type": "information"
+                    }
+                ]
             },
             {
                 "name": "Week 7 - JSX and React Intro",
-                "moduleLength": 11
+                "moduleLength": 10,
+                "pageBreakdown": [
+                    {
+                        "title": "Week 7 - JSX and React Intro",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 7 - JSX and React Intro",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 7 - JSX Syntax",
+                        "type": "information"
+                    },
+                    {
+                        "title": "What is printed to the screen when the following code is run?",
+                        "type": "short_answer"
+                    },
+                    {
+                        "title": "JSX Functional Component",
+                        "type": "snippet_unlock"
+                    },
+                    {
+                        "title": "JSX Class Component",
+                        "type": "snippet_unlock"
+                    },
+                    {
+                        "title": "Week 7 - JSX Syntax (Continued)",
+                        "type": "information"
+                    },
+                    {
+                        "title": "How would we include and pass a prop named “weather” with value “sunny” to the component below?",
+                        "type": "short_answer"
+                    },
+                    {
+                        "title": "Creating a new React workspace",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Hello World with React.JS",
+                        "type": "information"
+                    }
+                ]
             },
             {
                 "name": "Week 8 - Advanced React.JS/JSX",
-                "moduleLength": 11
+                "moduleLength": 10,
+                "pageBreakdown": [
+                    {
+                        "title": "Week 8 - Advanced React.JS/JSX",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 8 - Creating your first React Component",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 8 - Passing parameters (props) into your React component",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 8 - React classes/lifecycles",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 8 - React states",
+                        "type": "information"
+                    },
+                    {
+                        "title": "How would run the following Pseudocode? (In a class component)",
+                        "type": "short_answer"
+                    },
+                    {
+                        "title": "Week 8 - Handling events in React",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 8 - React repetitions and keys",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 8 - React.JS forms",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 8 - Lifting React states (making states more global)",
+                        "type": "information"
+                    }
+                ]
             }
+        ],
+        "background": "linear-gradient(to right, #c33764, #1d2671)",
+        "desc": "By the end of the course, you will be very familiar with languages HTML, CSS, JavaScript, Node.js, and have a strong understanding of technologies like Express, JSX, and React.",
+        "weeks": [
+            "HTML",
+            "CSS",
+            "Javascript",
+            "HTML, CSS, & JS",
+            "Node.JS",
+            "Express.JS",
+            "JSX & React",
+            "Advanced React"
         ]
     },
     "webdev-projects": {
@@ -47,73 +415,805 @@
         "module_meta_data": [
             {
                 "name": "Week 1 Project - Personal Website",
-                "moduleLength": 7
+                "moduleLength": 7,
+                "pageBreakdown": [
+                    {
+                        "title": "Week 1 Project - Personal Website",
+                        "type": "information"
+                    },
+                    {
+                        "title": "The HTML boilerplate",
+                        "type": "code_editor"
+                    },
+                    {
+                        "title": "Add Headings and Descriptions",
+                        "type": "code_editor"
+                    },
+                    {
+                        "title": "Add (Ordered/Unordered List)",
+                        "type": "code_editor"
+                    },
+                    {
+                        "title": "Add External Hyperlinks",
+                        "type": "code_editor"
+                    },
+                    {
+                        "title": "Add External Hyperlinks",
+                        "type": "code_editor"
+                    },
+                    {
+                        "title": "Add Local Image and Embed Video",
+                        "type": "code_editor"
+                    }
+                ]
             },
             {
                 "name": "Week 2 Project - Store Interface with CSS",
-                "moduleLength": 6
+                "moduleLength": 6,
+                "pageBreakdown": [
+                    {
+                        "title": "Week 2 Project - Store Interface with CSS",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Setup Project\n(This is already done for you if you are following along in Devnetic)\n➔ Create a folder in your directory for images which will be used for the store items\n➔ Create another html file which will be one of the sites navigation links (it is just a placeholder as the main focus is styling the main page)\n➔ Link fonts from google (in your head section) using the following code:",
+                        "type": "code_editor"
+                    },
+                    {
+                        "title": "Add a header and Navigation LInks",
+                        "type": "code_editor"
+                    },
+                    {
+                        "title": "Create a Grid of Items",
+                        "type": "code_editor"
+                    },
+                    {
+                        "title": "Grid Item Hover Styling",
+                        "type": "code_editor"
+                    },
+                    {
+                        "title": "Add and Style a Footer\n➔ Similar to the header tag, a footer can be added at the bottom of the page",
+                        "type": "code_editor"
+                    }
+                ]
             },
             {
                 "name": "Week 3 Project - Console Games with JS",
-                "moduleLength": 11
+                "moduleLength": 11,
+                "pageBreakdown": [
+                    {
+                        "title": "Week 3 Project - Console Games with JS",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Initialize global variables.",
+                        "type": "code_editor"
+                    },
+                    {
+                        "title": "Functions\nEach of the games will be start when their respective functions are called.",
+                        "type": "code_editor"
+                    },
+                    {
+                        "title": "madLibs function\nUse string concentration to insert variables into a string",
+                        "type": "code_editor"
+                    },
+                    {
+                        "title": "rockPaperScissors function\n➔ Convert the user’s choice to lowercase.\n➔ Validate user’s choice by checking if it’s “rock”, “paper”, or “scissors”.\n➔ Use return statement to exit function and return undefined.",
+                        "type": "code_editor"
+                    },
+                    {
+                        "title": "rockPaperScissors function (cont.)\n➔ Randomize coin flip",
+                        "type": "code_editor"
+                    },
+                    {
+                        "title": "rockPaperScissors function (cont.)\n➔ Check remaining possible combinations of choices.\n◆ If user choice is rock and the computer’s is paper, than the computer wins.\n◆ Else, user wins.",
+                        "type": "code_editor"
+                    },
+                    {
+                        "title": "rockPaperScissors function (cont.)\n➔ Check remaining possible combinations of choices.\n◆ If user choice is paper and the computer’s is scissor, than the computer wins.\n◆ Else, user wins.",
+                        "type": "code_editor"
+                    },
+                    {
+                        "title": "rockPaperScissors function (cont.)\n➔ Check remaining possible combinations of choices.\n◆ If user choice is scissors and the computer’s is rock, than the computer wins.\n◆ Else, user wins.",
+                        "type": "code_editor"
+                    },
+                    {
+                        "title": "rockPaperScissors function (cont.)\n➔ Return statement",
+                        "type": "code_editor"
+                    },
+                    {
+                        "title": "coinFlip function \n➔ Convert user’s choice to lower case.\n➔ Check that it’s “heads” or tails”. If not, use return statement to exit the function and return undefined.\n➔ Generate random number.\n➔ Use number to choose “heads” or “tails”.\n➔ Compare the user’s and computer’s choice and determine winner.\n➔ Return statement",
+                        "type": "code_editor"
+                    }
+                ]
             },
             {
                 "name": "Week 4 Project - Calculator",
-                "moduleLength": 10
+                "moduleLength": 10,
+                "pageBreakdown": [
+                    {
+                        "title": "Week 4 Project - Calculator",
+                        "type": "information"
+                    },
+                    {
+                        "title": "The HTML boilerplate\n➔ Create a new file called index.html\n➔ Title to create title\n➔ Link element links to the stylesheet that we will make in a while",
+                        "type": "code_editor"
+                    },
+                    {
+                        "title": "HTML Part 1\n➔ Create a body and a calculator div",
+                        "type": "code_editor"
+                    },
+                    {
+                        "title": "JS Setup\n➔ Add a script tag under all the elements\n➔ Includes all the JS for the project",
+                        "type": "code_editor"
+                    },
+                    {
+                        "title": "JS Part 1\n➔ Global variable value will store current numbers on calculators\n➔ Global variable cursor will store where the cursor is\n➔ Place in script tag",
+                        "type": "code_editor"
+                    },
+                    {
+                        "title": "JS Part 4\n➔ Make keys change the calculator state\n➔ Create a function called keyHandler(e) that takes a single argument\n➔ Use e.key to get the key name\n➔ To bind the function to the document, use the following: ",
+                        "type": "code_editor"
+                    },
+                    {
+                        "title": "CSS with HTML\n➔ Create a new file called style.css. (Right click on a file, and hit \"New File\". Then, click \"Lesson Wide\" - This is EXTREMELY IMPORTANT!\n➔ The link element in the html code will link to the css file\n➔ What css will do:\n◆ Add styling for header, elements, etc.\n◆ Add the calculator font",
+                        "type": "code_editor"
+                    },
+                    {
+                        "title": "CSS Part 3: Calculator Div\n➔ Use .calculator selector to select calculator class\n➔ box-shadow gives a little shadow around calculator\n➔ width and height use calc css method to make them 30 pixels less than the full width and height\n➔ max-width and max-height make sure the calculator can only expand a certain amount\n➔ position: absolute makes sure the calculator stays where it is and doesn’t move when other elements move\n➔ left and top push the top right corner of the element to the middle\n➔ transform centers the image after the top right corner has been moved",
+                        "type": "code_editor"
+                    },
+                    {
+                        "title": "CSS Part 6: Media + Value\n➔ @media makes css run only under certain conditions (ie. when the max-width is 400px)",
+                        "type": "code_editor"
+                    },
+                    {
+                        "title": "Congratulations!",
+                        "type": "congratulations"
+                    }
+                ]
             },
             {
                 "name": "Week 5 Project - NPM Module",
-                "moduleLength": 9
+                "moduleLength": 9,
+                "pageBreakdown": [
+                    {
+                        "title": "Week 5 Project - NPM Module",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Setup your workspace",
+                        "type": "information"
+                    },
+                    {
+                        "title": "index.js",
+                        "type": "information"
+                    },
+                    {
+                        "title": "index.js (Math functions)",
+                        "type": "information"
+                    },
+                    {
+                        "title": "index.js (word counter)",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Package testing",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Getting ready to publish to NPM",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Setup your workspace",
+                        "type": "information"
+                    },
+                    {
+                        "title": "NPM commands",
+                        "type": "information"
+                    }
+                ]
             },
             {
                 "name": "Week 6 Project - Express.JS",
-                "moduleLength": 8
+                "moduleLength": 8,
+                "pageBreakdown": [
+                    {
+                        "title": "Week 6 Project - Express.JS",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Setup your workspace",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Creating your first endpoint",
+                        "type": "information"
+                    },
+                    {
+                        "title": "index.js - Server Code",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Client code",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Going further",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Going even further",
+                        "type": "information"
+                    },
+                    {
+                        "title": "CORS (Cross Origin Resource Sharing)",
+                        "type": "information"
+                    }
+                ]
             },
             {
                 "name": "Week 7 Project - Information Displayer with React",
-                "moduleLength": 5
+                "moduleLength": 5,
+                "pageBreakdown": [
+                    {
+                        "title": "Week 7 Project - Information Displayer with React",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Setting up our workspace\nImportant: You can skip this step if you are following along in \n➔ Let’s first setup a React.JS app in replit. (Hit create and then select “react” as a language)\n➔ Then, create a component called “header”, and import it into your project (You can put anything you want in here)\n➔ Next, let’s create another folder inside of “components” named “infoDisplayer,” and create a file named “infoDisplayer.jsx” inside of it\n➔ Lastly, import it into “main.jsx” again.",
+                        "type": "code_editor"
+                    },
+                    {
+                        "title": "infoDisplayer.jsx\n➔ Inside of this file, first create a function with a parameter named “props”. \n➔ Then, display some props like “stats” (Like name, age, favorite color, etc.)\n➔ Lastly, export this function\n➔ Just a refresher, access the props with {props.yourPropName} \n➔ When you run the project right now, you probably won’t see much, but we’ll change this in the next slide ",
+                        "type": "code_editor"
+                    },
+                    {
+                        "title": "Passing in props\nTo actually make the website show info, we need to pass in some props into the React component\n➔ To call this, just pass in the props like you would with standard HTML attributes (ex. name=”FooBar”) ",
+                        "type": "code_editor"
+                    },
+                    {
+                        "title": "Going further",
+                        "type": "information"
+                    }
+                ]
             },
             {
                 "name": "Week 8 Project - To Do List with React Components",
-                "moduleLength": 13
+                "moduleLength": 13,
+                "pageBreakdown": [
+                    {
+                        "title": "Week 8 Project - To Do List with React Components",
+                        "type": "information"
+                    },
+                    {
+                        "title": "What is React?",
+                        "type": "information"
+                    },
+                    {
+                        "title": "What is React?",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Getting everything ready\nWe want our React app to have two major components: The item displayer/remover and the item adder. Something like below",
+                        "type": "code_editor"
+                    },
+                    {
+                        "title": "Item List Component\nInside the Item List component, let’s loop over a prop named “list”\nInside, just create a div with key of element.key and contents of element.itemName",
+                        "type": "code_editor"
+                    },
+                    {
+                        "title": "Item List component (testing)\nTo test our component, first go to main.jsx and import the module if you haven’t already.\nThen, pass the “list” prop to it which contains an array of things. (We’ll be changing this later to handle use input)",
+                        "type": "code_editor"
+                    },
+                    {
+                        "title": "Add Item Component\n➔ First, create an input element with a ref\n➔ Then, create a button that runs a function \n➔ “addItem” when clicked\n➔ If you don’t know any of these, it’s highly recommended to view the instruction slides, but here’s the code for your convenience",
+                        "type": "code_editor"
+                    },
+                    {
+                        "title": "Rain Check",
+                        "type": "information"
+                    },
+                    {
+                        "title": "➔ For the main parent to receive updates whenever a user clicks “update,” we need to change the main page to a class. \n➔ Then, we can create a callback function and pass it down to the child\n➔ In our case, the callback function is called “callBackFunction” (creative, right?). We then pass this to the AddItem component through a prop called “callback”",
+                        "type": "code_editor"
+                    },
+                    {
+                        "title": "Accessing the callback\n➔ To access the callback function made available to us in the previous slide, access the prop named “callBack” and then run it with a parameter with a value of whatever’s in the textbox\n➔ Now, we can add something in the text box, and it will log it into the console!",
+                        "type": "code_editor"
+                    },
+                    {
+                        "title": "Updating the list\n➔ To make the list update every time a user inputs a new item, we need to use React States\n➔ Create a React State named “items” and inside it, put our previous “items” variable\n➔ Then, pass this React State to the ItemList component. Then, every time the callback function is called, add a new element to that array and update the state!",
+                        "type": "code_editor"
+                    },
+                    {
+                        "title": "Making delete buttons\nWe’re almost there! We just need to make the delete buttons so users can delete items!\n➔ First, add an X element and style it as you wish.\n➔ Then, create a function named “deleteItem” that runs a callback with a key.\n➔ Lastly, add an onClick listener that runs this function with it’s key.",
+                        "type": "code_editor"
+                    },
+                    {
+                        "title": "Last step! Updating main.jsx\nGreat! We just need to do one more thing! Add the callback functions in main.jsx\n➔ First, create a function called “deleteCallback” that takes the parameter “key” that when called, deletes that index from the array with the “splice” function. Lastly, update the item state\n➔ Then, pass this function as a prop named “callBack” to “itemList.jsx”",
+                        "type": "code_editor"
+                    }
+                ]
             }
+        ],
+        "background": "linear-gradient(to right, #4776e6, #8e54e9)",
+        "desc": "Put your HTML, CSS, JS, React, and Express.JS skills to use! Create useful web apps, publish your first package for others to use, and much, much more!",
+        "weeks": [
+            "Personal Website",
+            "Store Interface",
+            "Console Games",
+            "Calculator",
+            "NPM Module",
+            "Express.JS",
+            "Information Displayer",
+            "To-do List"
         ]
     },
     "ai": {
-        "totalPages": 127,
+        "totalPages": 100,
         "module_meta_data": [
             {
                 "name": "Week 1 - Python Review",
-                "moduleLength": 27
+                "moduleLength": 12,
+                "pageBreakdown": [
+                    {
+                        "title": "Week 1 - Python Review",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 1 - Python Review",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 1 - Python Review",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 1 - Python Review",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 1 - Python Review",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 1 - Python Review",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 1 - Python Review",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 1 - Python Review",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 1 - Python Review",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 1 - Python Review",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 1 - Python Review",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 1 - Python Review",
+                        "type": "information"
+                    }
+                ]
             },
             {
                 "name": "Week 2 - Introduction to Artificial Intelligence",
-                "moduleLength": 3
+                "moduleLength": 3,
+                "pageBreakdown": [
+                    {
+                        "title": "Week 2 - Introduction to Artificial Intelligence",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 2 - Introduction to Artificial Intelligence",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 2 - Introduction to Artificial Intelligence",
+                        "type": "information"
+                    }
+                ]
             },
             {
                 "name": "Week 3 - Regression and SVMs",
-                "moduleLength": 4
+                "moduleLength": 4,
+                "pageBreakdown": [
+                    {
+                        "title": "Week 3 - Regression and SVMs",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 3 - Regression and SVMs",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 3 - Regression and SVMs",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 3 - Regression and SVMs",
+                        "type": "information"
+                    }
+                ]
             },
             {
                 "name": "Week 4 - Decision Trees, Random Forest, XGBoost",
-                "moduleLength": 4
+                "moduleLength": 4,
+                "pageBreakdown": [
+                    {
+                        "title": "Week 4 - Decision Trees, Random Forest, XGBoost",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 4 - Decision Trees, Random Forest, XGBoost",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 4 - Decision Trees, Random Forest, XGBoost",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 4 - Decision Trees, Random Forest, XGBoost",
+                        "type": "information"
+                    }
+                ]
             },
             {
                 "name": "Week 5 - Intro to Neural Networks",
-                "moduleLength": 19
+                "moduleLength": 13,
+                "pageBreakdown": [
+                    {
+                        "title": "Week 5 - Intro to Neural Networks",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 5 - Feedforward Process",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 5 - Biases and Activation Functions",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 5 - Applications",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Consider the following neural network: All weights are 1 and all inputs are 0. If the sum of the biases is 16 and there is only one output node, what is the output?",
+                        "type": "short_answer"
+                    },
+                    {
+                        "title": "Which of the following is not an activation function?",
+                        "type": "multiple_choice"
+                    },
+                    {
+                        "title": "What is the sum of the values produced by a Softmax activation function?",
+                        "type": "short_answer"
+                    },
+                    {
+                        "title": "What is the difference between Sigmoid and Softmax?",
+                        "type": "multiple_choice"
+                    },
+                    {
+                        "title": "How can we use Neural Networks for supervised learning?",
+                        "type": "multiple_choice"
+                    },
+                    {
+                        "title": "What is neuroevolution?",
+                        "type": "multiple_choice"
+                    },
+                    {
+                        "title": "How can neural networks be used for unsupervised learning?",
+                        "type": "multiple_choice"
+                    },
+                    {
+                        "title": "What is gradient descent?",
+                        "type": "multiple_choice"
+                    },
+                    {
+                        "title": "Congratulations!",
+                        "type": "congratulations"
+                    }
+                ]
             },
             {
                 "name": "Week 6 - Computer Vision: Convolutional Neural Networks",
-                "moduleLength": 20
+                "moduleLength": 19,
+                "pageBreakdown": [
+                    {
+                        "title": "Week 6 - Computer Vision: Convolutional Neural Networks",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 6 - Convolutional Neural Networks: Inputs and Layers",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 6 - Convolutional Neural Networks: More Layers",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 6 - Object Detection and Localization",
+                        "type": "information"
+                    },
+                    {
+                        "title": "What is another name for a filter in a CNN?",
+                        "type": "short_answer"
+                    },
+                    {
+                        "title": "Which of these are applications of CNNs?",
+                        "type": "multiple_choice"
+                    },
+                    {
+                        "title": "Why should you use CNNs over regular Neural Networks?",
+                        "type": "multiple_choice"
+                    },
+                    {
+                        "title": "Images have colors that are defined in color ______.",
+                        "type": "short_answer"
+                    },
+                    {
+                        "title": "Which of these is not an attribute of an image?",
+                        "type": "multiple_choice"
+                    },
+                    {
+                        "title": "What is a convolution?",
+                        "type": "multiple_choice"
+                    },
+                    {
+                        "title": "Therea are two types of ______: max ______ and average ______",
+                        "type": "short_answer"
+                    },
+                    {
+                        "title": "What determines the depth of a convolutional layer?",
+                        "type": "multiple_choice"
+                    },
+                    {
+                        "title": "How many convolutional layers can a CNN have?",
+                        "type": "multiple_choice"
+                    },
+                    {
+                        "title": "What does the pooling layer do?",
+                        "type": "multiple_choice"
+                    },
+                    {
+                        "title": "Why do we use pooling layers?",
+                        "type": "multiple_choice"
+                    },
+                    {
+                        "title": "What is the Fully Connected Layer in a CNN similar to?",
+                        "type": "multiple_choice"
+                    },
+                    {
+                        "title": "What is a bounding box?",
+                        "type": "multiple_choice"
+                    },
+                    {
+                        "title": "What is segmentation?",
+                        "type": "multiple_choice"
+                    },
+                    {
+                        "title": "Congratulations!",
+                        "type": "congratulations"
+                    }
+                ]
             },
             {
                 "name": "Week 7 - Natural Language Processing",
-                "moduleLength": 30
+                "moduleLength": 28,
+                "pageBreakdown": [
+                    {
+                        "title": "Week 7 - Natural Language Processing",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 7 - Natural Language Processing",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 7 - Natural Language Processing",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 7 - Natural Language Processing",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 7 - Natural Language Processing",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 7 - Natural Language Processing",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 7 - Natural Language Processing",
+                        "type": "information"
+                    },
+                    {
+                        "title": "What is the dimensionality of the following vector: [3, 7, 6, 3, 10, 8, 2, 5, 4, 2]?",
+                        "type": "short_answer"
+                    },
+                    {
+                        "title": "What is Word Embedding?",
+                        "type": "multiple_choice"
+                    },
+                    {
+                        "title": "How many dimensions is a typical word?",
+                        "type": "multiple_choice"
+                    },
+                    {
+                        "title": "How do we vectorize sentences?",
+                        "type": "multiple_choice"
+                    },
+                    {
+                        "title": "Why is one-hot encoding inefficient?",
+                        "type": "multiple_choice"
+                    },
+                    {
+                        "title": "What is one problem with traditional word embeddings?",
+                        "type": "multiple_choice"
+                    },
+                    {
+                        "title": "What is the term for the phenomenon where a word has multiple meanings?",
+                        "type": "short_answer"
+                    },
+                    {
+                        "title": "What additional input do contextual word embeddings need that is different from traditional word embeddings?",
+                        "type": "multiple_choice"
+                    },
+                    {
+                        "title": "Sentiment analysis is what type of NLP task?",
+                        "type": "multiple_choice"
+                    },
+                    {
+                        "title": "Which of the following is NOT a text classification task",
+                        "type": "multiple_choice"
+                    },
+                    {
+                        "title": "What are the two types of sentiment analysis?",
+                        "type": "multiple_choice"
+                    },
+                    {
+                        "title": "What is the term for a measure of whether a sentiment is positive or negative?",
+                        "type": "short_answer"
+                    },
+                    {
+                        "title": "Which of the following is NOT a reason for which we might use Machine Translation over human translation?",
+                        "type": "multiple_choice"
+                    },
+                    {
+                        "title": "Which of the following is not a type of machine translation?",
+                        "type": "multiple_choice"
+                    },
+                    {
+                        "title": "Which of the following best describes language modelling?",
+                        "type": "multiple_choice"
+                    },
+                    {
+                        "title": "What is the Naïve Bayes Classifier?",
+                        "type": "multiple_choice"
+                    },
+                    {
+                        "title": "The Naïve Bayes classifier assumes that predictors are ______ and have an equal effect on the outcome",
+                        "type": "short_answer"
+                    },
+                    {
+                        "title": "What type of neural network is preferred for NLP?",
+                        "type": "multiple_choice"
+                    },
+                    {
+                        "title": "What are sequence-to-sequence models?",
+                        "type": "multiple_choice"
+                    },
+                    {
+                        "title": "What NLP task does BERT perform?",
+                        "type": "multiple_choice"
+                    },
+                    {
+                        "title": "Congratulations!",
+                        "type": "congratulations"
+                    }
+                ]
             },
             {
                 "name": "Week 8 - Unsupervised Learning",
-                "moduleLength": 20
+                "moduleLength": 17,
+                "pageBreakdown": [
+                    {
+                        "title": "Week 8 - Unsupervised Learning",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 8 - Unsupervised Learning",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 8 - Unsupervised Learning",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 8 - Unsupervised Learning",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Week 8 - Unsupervised Learning",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Local Outlier Factor and Isolation Forest are examples of what unsupervised learning method?",
+                        "type": "short_answer"
+                    },
+                    {
+                        "title": "Autoencoders are examples of what unsupervised learning method?",
+                        "type": "short_answer"
+                    },
+                    {
+                        "title": "What does K-means clustering do?",
+                        "type": "multiple_choice"
+                    },
+                    {
+                        "title": "Which of these is not a k-means clustering step?",
+                        "type": "multiple_choice"
+                    },
+                    {
+                        "title": "\"K minus the K-distance of the second point or the distance between two points\" is the formula for calculating what?",
+                        "type": "short_answer"
+                    },
+                    {
+                        "title": "Local outlier factor is designed for which of these Unsupervised Learning subtasks?",
+                        "type": "multiple_choice"
+                    },
+                    {
+                        "title": "Which of these is the main metric for the Local Outlier Factor?",
+                        "type": "multiple_choice"
+                    },
+                    {
+                        "title": "Dimensionality _________ is an application of Autoencoders",
+                        "type": "short_answer"
+                    },
+                    {
+                        "title": "What is an autoencoder?",
+                        "type": "multiple_choice"
+                    },
+                    {
+                        "title": "Dimensionality _________ is an application of Autoencoders",
+                        "type": "short_answer"
+                    },
+                    {
+                        "title": "What is the best student-led non-profit of them all?",
+                        "type": "short_answer"
+                    },
+                    {
+                        "title": "Congratulations!",
+                        "type": "congratulations"
+                    }
+                ]
             }
+        ],
+        "background": "linear-gradient(to right, #348f50, #56b4d3)",
+        "desc": "Students will be skilled in topics such as tree AI, regression, SVM, neural networks, computer vision, NLP, and unsupervised learning. Python is primarily used.",
+        "weeks": [
+            "Python",
+            "Intro to AI",
+            "Regression & SVM",
+            "Tree ML",
+            "Neural Networks",
+            "Computer Vision",
+            "NLP",
+            "Unsupervised Learning"
         ]
     },
     "intro-to-cs": {
@@ -121,36 +1221,360 @@
         "module_meta_data": [
             {
                 "name": "Why Python?",
-                "moduleLength": 15
+                "moduleLength": 15,
+                "pageBreakdown": [
+                    {
+                        "title": "Why Python?",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Run Code",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Basic Syntax of Python",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Running Python",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Python Variables",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Object Types",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Casting",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Mathematical Operators",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Order of Operations",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Logical/Boolean Operators",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Sequences",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Sequence Operators",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Sequence Operators (pt. 2)",
+                        "type": "information"
+                    },
+                    {
+                        "title": "String Concatenation",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Input",
+                        "type": "information"
+                    }
+                ]
             },
             {
                 "name": "Introduction",
-                "moduleLength": 12
+                "moduleLength": 12,
+                "pageBreakdown": [
+                    {
+                        "title": "Introduction",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Loop Syntax",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Conditional Loops",
+                        "type": "information"
+                    },
+                    {
+                        "title": "While Loops",
+                        "type": "information"
+                    },
+                    {
+                        "title": "For Loops",
+                        "type": "information"
+                    },
+                    {
+                        "title": "For Loops Continued",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Introduction to Functions",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Functions with Parameters",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Functions with return values",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Introduction to Libraries",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Library: Random",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Library: Time",
+                        "type": "information"
+                    }
+                ]
             },
             {
                 "name": "The Purpose of OOP",
-                "moduleLength": 10
+                "moduleLength": 10,
+                "pageBreakdown": [
+                    {
+                        "title": "The Purpose of OOP",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Classes - Basics of a class",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Classes - Objects",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Classes - __init__",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Classes - Methods",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Classes - Creation of a class",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Classes - Encapsulation/Abstraction",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Classes - Inheritance",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Classes - Polymorphism",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Objects vs Classes",
+                        "type": "information"
+                    }
+                ]
             },
             {
                 "name": "Lists",
-                "moduleLength": 6
+                "moduleLength": 6,
+                "pageBreakdown": [
+                    {
+                        "title": "Lists",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Sets",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Tuples",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Dictionaries",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Searching Algorithms - Linear Search",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Dynamic Programming (Recursion)",
+                        "type": "information"
+                    }
+                ]
             },
             {
                 "name": "Binary Search",
-                "moduleLength": 9
+                "moduleLength": 9,
+                "pageBreakdown": [
+                    {
+                        "title": "Binary Search",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Stacks",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Queues",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Breadth-first search (BFS)",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Depth-first search (DFS)",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Practice",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Floodfill",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Quick Sort",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Merge Sort",
+                        "type": "information"
+                    }
+                ]
             },
             {
                 "name": "What is USACO?",
-                "moduleLength": 8
+                "moduleLength": 8,
+                "pageBreakdown": [
+                    {
+                        "title": "What is USACO?",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Downsides of Python in USACO",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Time Complexity",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Additional Information",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Simulation",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Complete Search",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Sorting",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Greedy Algorithms",
+                        "type": "information"
+                    }
+                ]
             },
             {
                 "name": "Intro to USACO Silver",
-                "moduleLength": 7
+                "moduleLength": 7,
+                "pageBreakdown": [
+                    {
+                        "title": "Intro to USACO Silver",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Partial Sums",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Sorting and Searching",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Sorting and Searching (continued)",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Complexity Analysis",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Graphs",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Content Review Problems",
+                        "type": "congratulations"
+                    }
+                ]
             },
             {
                 "name": "Intro to USACO Gold",
-                "moduleLength": 7
+                "moduleLength": 7,
+                "pageBreakdown": [
+                    {
+                        "title": "Intro to USACO Gold",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Modular Arithmetic",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Modular Arithmetic Resources",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Memoization",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Memoization Resources",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Hashing",
+                        "type": "information"
+                    },
+                    {
+                        "title": "Graphs",
+                        "type": "information"
+                    }
+                ]
             }
+        ],
+        "background": "linear-gradient(to right, #4ecdc4, #556270)",
+        "desc": "Students will be able to demonstrate loops, functions, classes, and more in their Python code. They will be able to solve USACO-style problems with these tools.",
+        "weeks": [
+            "Introduction to CS and Python",
+            "Loops/Functions/Libraries",
+            "Object Orientated Programing",
+            "Data Structures & Algorithms Pt. 1",
+            "Data Structures and Algorithms Pt. 2",
+            "USACO Bronze Concepts",
+            "USACO Silver Concepts",
+            "USACO Gold Concepts"
         ]
     }
 }

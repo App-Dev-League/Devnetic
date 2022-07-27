@@ -1,3 +1,5 @@
+const doesFileExist = require("./doesFileExist.js")
+
 window.currentReadOnly = false;
 window.onhashchange = function () {
 	window.currentReadOnly = false;
@@ -95,7 +97,7 @@ function showAlertModal(message, buttons, icon, deleteTime) {
 		clone.style.opacity = "1"
 		clone.style.bottom = 10 + newIndex * 100 + "px";
 	}, 10)
-	if (deleteTime) {
+	if (deleteTime && deleteTime !== "indeterminate") {
 		setTimeout(async function () {
 			clone.querySelector(".editor-alert-modal-loading-bar").style.setProperty('--deletetime', deleteTime + "s");
 			clone.querySelector(".editor-alert-modal-loading-bar").classList.add("loading-bar-active");
@@ -105,6 +107,9 @@ function showAlertModal(message, buttons, icon, deleteTime) {
 			if (!document.getElementById(clone.id)) return;
 			removeAlertModal(clone.getAttribute("data-editor-alert-modal-index"));
 		}, 10)
+	} else if (deleteTime === "indeterminate") {
+		//clone.querySelector(".editor-alert-modal-loading-bar").classList.add("loading-bar-active");
+		clone.querySelector(".editor-alert-modal-loading-bar-wrapper").classList.add("loading-bar-indeterminate");
 	}
 	clone.querySelector(".text").innerHTML = message;
 	buttons.forEach(element => {
@@ -658,7 +663,9 @@ function newMyProject(name) {
 		name: name,
 		track: "customUserProjects",
 		module: Math.floor(Math.random() * 100000000000),
-		position: 0
+		position: 0,
+		starred: false,
+		lastAccessed: Date.now()
 	}
 	localStorage.setItem("myProjects", JSON.stringify(myProjects));
 	return true;
@@ -682,6 +689,18 @@ function deleteMyProject(name) {
 		}
 		resolve(true);
 	})
+}
+function renameMyProject(currentName, newName) {
+	let myProjects = localStorage.getItem("myProjects");
+	if (!myProjects) myProjects = "{}";
+	myProjects = JSON.parse(myProjects);
+	if (!myProjects[currentName]) throw ("Project with that name does not exist!")
+	if (myProjects[newName]) throw ("Project with that name already exists")
+	let myProject = myProjects[currentName];
+	myProjects[newName] = myProject;
+	myProjects[newName].name = newName;
+	delete myProjects[currentName];
+	localStorage.setItem("myProjects", JSON.stringify(myProjects));
 }
 function getMyProjects() {
 	let myProjects = localStorage.getItem("myProjects");
@@ -738,6 +757,66 @@ function sizeOfMyProject(name) {
 		}
 	});
 };
+function lastAccessedUserProject(projectId) {
+	projectId = Number(projectId);
+	let myProjects = localStorage.getItem("myProjects");
+	if (!myProjects) myProjects = "{}";
+	myProjects = JSON.parse(myProjects);
+	Object.entries(myProjects).forEach(([key, value]) => {
+		if (value.module === projectId) {
+			myProjects[key].lastAccessed = Date.now()
+		}
+	})
+	localStorage.setItem('myProjects', JSON.stringify(myProjects));
+	return true;
+}
+function getProjectFileBreakdown(name) {
+	return new Promise(async (resolve, reject) => {
+		let myProjects = localStorage.getItem("myProjects");
+		if (!myProjects) myProjects = "{}";
+		myProjects = JSON.parse(myProjects);
+		if (!myProjects[name]) reject("Project with that name does not exist!")
+		let myProject = myProjects[name];
+		let storeName = myProject.track + "-" + myProject.module + "-" + myProject.position
+
+		let db = await openConnection()
+		var tx;
+		try {
+			tx = db.transaction([storeName], 'readonly');
+		} catch (e) {
+			resolve(0)
+		}
+		const store = tx.objectStore(storeName);
+		const cursorReq = store.openCursor();
+		let fileTypes = {}
+		cursorReq.onsuccess = function (e) {
+			const cursor = cursorReq.result;
+			if (cursor) {
+				fileTypes[cursor.value.filename.split(".")[cursor.value.filename.split(".").length-1]] = true;
+				cursor.continue();
+			}
+		};
+		cursorReq.onerror = function (e) {
+			close()
+			reject(e);
+		};
+		tx.oncomplete = function (e) {
+			close()
+			resolve(Object.keys(fileTypes));
+		};
+		tx.onabort = function (e) {
+			close()
+			reject(e);
+		};
+		tx.onerror = function (e) {
+			close()
+			reject(e);
+		};
+		function close() {
+			db.close();
+		}
+	});
+}
 
 // metadata processing
 function getMetaDataFromText(text) {
@@ -760,6 +839,62 @@ function getTextWithoutMetaData(text) {
 	let endMetaData = text.indexOf("______DEVNETIC_PROJECT_META_DATA_END______");
 	text = text.slice(endMetaData + "______DEVNETIC_PROJECT_META_DATA_END______".length);
 	return text;
+}
+function showDependencyManager(filetype) {
+	let template = document.getElementById("snippets-modal")
+	let modal = template.cloneNode(true);
+	modal.removeAttribute("id")
+	modal.classList.remove("none")
+	if (filetype === "js") {
+		modal.querySelector("h3").innerHTML = "Javascript Dependency Manager";
+	} else {
+		modal.querySelector("h3").innerHTML = "Python Dependency Manager";
+	}
+	modal.querySelector("h3").style.marginBottom = "10px"
+	modal.querySelector(".button-correct").innerHTML = "Add";
+
+
+	Object.entries(window.currentFileMetaData.dependencies || {}).forEach(([key, value]) => {
+		let dependency = document.createElement("span");
+		dependency.style.display = "block"
+		dependency.style.textAlign = "center"
+		dependency.innerHTML = key;
+		let deleteBtn = document.createElement("span");
+		deleteBtn.style = "float: right; font-weight: bold; cursor: pointer; font-size: 0.8em; color: red; margin-right: 10px;"
+		deleteBtn.innerHTML = "X"
+		deleteBtn.onclick = function () {
+			delete window.currentFileMetaData.dependencies[key];
+			this.parentElement.parentElement.removeChild(this.parentElement);
+			tApp.getComponentFromDOM(document.getElementById("code-editor-tab")).save({
+				dependencies: window.currentFileMetaData.dependencies
+			})
+		}
+		dependency.appendChild(deleteBtn)
+		modal.querySelector(".inputs").appendChild(dependency)
+	})
+
+
+	modal.querySelector("span").onclick = function () {
+		modal.parentNode.removeChild(modal)
+	}
+	modal.querySelector(".button-correct").onclick = async function () {
+		let value = modal.querySelector("input").value;
+		if (!(await doesFileExist(value)) && filetype === "js") return alert("File does not exist!")
+		window.currentFileMetaData.dependencies = window.currentFileMetaData.dependencies || {};
+		window.currentFileMetaData.dependencies[value] = true;
+		tApp.getComponentFromDOM(document.getElementById("code-editor-tab")).save({
+			dependencies: window.currentFileMetaData.dependencies
+		})
+		modal.parentElement.removeChild(modal)
+	}
+	let elm = document.createElement("input");
+	elm.className = "short-answer-input";
+	elm.classList.add("insert-snippet-input")
+	elm.placeholder = "Enter dependency cdn url here";
+	modal.querySelector(".inputs").appendChild(elm);
+
+	document.body.appendChild(modal);
+	modal.querySelector("input").focus()
 }
 
 
@@ -856,7 +991,7 @@ function byteCount(s) {
 	return encodeURI(s).split(/%..|./).length - 1;
 }
 module.exports = {
-	updateLanguage, updateContent, getValue, insertAtCursor, format, getCurrentEditorIndex, setCurrentEditorIndex, showAlertModal, removeAlertModal, uploadFile, getModuleFile, getPageFile, getAllUserFiles, deleteFile, updateFile, getFile, renameFile, getFileWithId, updateReadOnly, getCurrentEditorOption, newMyProject, deleteMyProject, getMyProjects, getMetaDataFromText, embedMetaDataIntoText, getTextWithoutMetaData, sizeOfMyProject, exportToJson, importFromJson,
+	updateLanguage, updateContent, getValue, insertAtCursor, format, getCurrentEditorIndex, setCurrentEditorIndex, showAlertModal, removeAlertModal, uploadFile, getModuleFile, getPageFile, getAllUserFiles, deleteFile, updateFile, getFile, renameFile, getFileWithId, updateReadOnly, getCurrentEditorOption, newMyProject, deleteMyProject, getMyProjects, getMetaDataFromText, embedMetaDataIntoText, getTextWithoutMetaData, sizeOfMyProject, exportToJson, importFromJson, showDependencyManager, renameMyProject, lastAccessedUserProject,getProjectFileBreakdown,
 	internals: {
 		openConnectionWithNewVersion
 	}

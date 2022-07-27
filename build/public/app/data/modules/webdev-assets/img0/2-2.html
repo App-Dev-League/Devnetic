@@ -1,0 +1,14 @@
+<body style="background-color:rgba(0,0,0,.6);color:#fff">
+    <span style="font-size:.5em;color:gray">Hover or tap on different parts of the element</span>
+    <div class="container">
+        <span class="x1">
+            &lt;element&gt;
+        </span>
+        Content
+        <span class="x2">
+            &lt;/element&gt;
+        </span>
+    </div>
+
+</body>
+<style>body{font-family:Helvetica,sans-serif;padding:20px;font-size:1.5em;overflow:hidden}.container{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:fit-content}.x1{color:#964fd8;cursor:pointer}.x2{color:#964fd8;cursor:pointer}.x1::before{content:"Opening Tag";font-size:.6em;color:#fff;position:absolute;left:15px;opacity:0;transition:.5s all;bottom:-100px}.x1:hover::before{bottom:-30px!important;opacity:1!important}.x2::before{content:"Closing Tag";font-size:.6em;color:#fff;position:absolute;right:20px;opacity:0;transition:.5s all;bottom:-100px}.x2:hover::before{bottom:-30px!important;opacity:1!important}</style>

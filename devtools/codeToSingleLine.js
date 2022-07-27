@@ -1,10 +1,22 @@
 var code = `
-# fibonacci sequence
-# @precondition n is zero or a positive integer
-def fib(n):
-  if n <= 1:
-    return n
-  return fib(n-1) + fib(n-2) # breaking into finding sum of previous two values of the sequence
+class MyComponent extends React.Component {
+    constructor(props) {
+        super(props);
+        // binding the event handlers
+        this.myFunction = this.myFunction.bind(this)
+    }
+    myFunction(e, parameter1) {
+        // preventing default actions
+        e.preventDefault();
+        console.log("Parameter 1: " + parameter1)
+    }
+    render() {
+        // defining event handler function
+        return (
+            <button onClick={(e) => this.myFunction(e, "hello!")}>myFunction with parameters</button>
+        )
+    }
+}
 `
 
 if (code.startsWith("\n")) code = code.slice(1)

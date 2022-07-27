@@ -182,12 +182,6 @@ code.hljs {
     background-color: white !important;
     border: 3px solid var(--white) !important;
 }
-#module-progress-bar-wrapper:hover {
-    background-color: var(--blue) !important;
-}
-#module-progress-bar-wrapper * {
-    color: whitesmoke;
-}
 .info-button {
     color: whitesmoke !important;
 }

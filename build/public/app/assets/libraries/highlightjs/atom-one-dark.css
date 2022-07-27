@@ -57,3 +57,12 @@ code.hljs {
 .hljs-link {
     text-decoration: underline
 }
+.hljs-property {
+    color: #e06c75;
+}
+.language-xml {
+    color: #c4cddd;
+}
+.hljs-title.class_ {
+    color: #e06c75;
+}

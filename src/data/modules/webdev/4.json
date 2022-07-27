@@ -44,6 +44,28 @@
                 {
                     "type": "code",
                     "content": "node filename.js"
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]What does the node_modules folder contain?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "A text file containing meta data about all of your dependencies",
+                        "A folder containing the code for all of your dependencies",
+                        "A folder containing the versions of all of your dependencies"
+                    ],
+                    "correct": 1,
+                    "descriptions": [
+                        "This is mainly done by your package-lock.json!",
+                        "It is a common joke among Node.JS developers that this folder is extremely big and \"Heavier than black holes\"",
+                        "This is mainly done by your package-lock.json or package.json file!"
+                    ],
+                    "points": 5,
+                    "coins": 1
                 }
             ]
         },
@@ -74,31 +96,36 @@
                 {
                     "type": "code",
                     "content": "module.exports.greet = (name) => { console.log(`Hello ${name}`) };"
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]Which of the following is Node.js primarily used for?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "Styling documents",
+                        "Writing frontend code",
+                        "Writing backend code",
+                        "Styling code"
+                    ],
+                    "correct": 2,
+                    "descriptions": [
+                        "Incorrect! CSS is used for styling documents",
+                        "Incorrect! HTML, CSS, and regular JavaScript is used for frontend",
+                        "Correct! Good job.",
+                        "Incorrect, try again."
+                    ],
+                    "points": 5,
+                    "coins": 1
                 }
             ]
         },
         {
-            "type": "multiple_choice",
-            "question": "Which of the following is Node.js primarily used for?",
-            "answers": [
-                "Styling documents",
-                "Writing frontend code",
-                "Writing backend code",
-                "Styling code"
-            ],
-            "correct": 2,
-            "descriptions": [
-                "Incorrect! CSS is used for styling documents",
-                "Incorrect! HTML, CSS, and regular JavaScript is used for frontend",
-                "Correct! Good job.",
-                "Incorrect, try again."
-            ],
-            "points": 5,
-            "coins": 1
-        },
-        {
             "type": "short_answer",
-            "question": "If util.js is in the parent directory, how what is its relative path?",
+            "question": "If util.js is in the parent directory, what is its relative path?",
             "answers": [
                 "../util.js"
             ],

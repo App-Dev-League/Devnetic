@@ -1,0 +1,71 @@
+<body style="background-color: rgba(0,0,0,0.6); color: white;">
+    <span style="font-size: 0.5em; color: gray;">Hover or tap on different parts of the element</span>
+    <div class="container">
+        &lt;
+        <span class="x1 hover">
+            img
+        </span>
+        <span class="x2 hover">
+            &nbsp;src
+        </span>
+        =
+        <span class="x3 hover">
+            "cat.jpg"
+        </span>
+        &gt;
+    </div>
+
+</body>
+<style>
+    body {
+        font-family: Helvetica, sans-serif;
+        padding: 20px;
+        font-size: 1.5em;
+        overflow: hidden;
+    }
+
+    .container {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: fit-content;
+    }
+    .x1 {
+        color: rgb(150, 79, 216);
+    }
+    .hover {
+        cursor: pointer;
+        position: relative;
+        left: -4px;
+    }
+
+    .x2 {
+        color: rgb(243, 215, 59);
+        cursor: pointer;
+    }
+    .x1::before {
+        content: "Tag Name";
+    }
+    .hover::before {
+        font-size: 0.6em;
+        color: white;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        transition: 0.5s all;
+        bottom: -100px;
+        width: max-content;
+    }
+    .hover:hover::before {
+        bottom: -30px !important;
+        opacity: 1 !important;
+    }
+    .x2::before {
+        content: "Attribute Name";
+    }
+    .x3::before {
+        content: "Attribute Value"
+    }
+</style>

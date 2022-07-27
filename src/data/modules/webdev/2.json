@@ -8,6 +8,26 @@
                 {
                     "type": "text",
                     "content": "JavaScript is a web programming language for...\n  - Full stack development (client-side execution + server-side scripting)\n  - Creating animations, graphics, pop-ups, interactive material, etc.\n  - Execute complex logic, calculations, and algorithms for the web page to use\n  - Keep constant communication with the server and decrease taskload"
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]True or False: Javascript is only used in the front end [[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "True",
+                        "False"
+                    ],
+                    "correct": 1,
+                    "descriptions": [
+                        "Javascript may also be used in the server with Node.JS. Try again!",
+                        "Great! Javascript can be used in the browser, or in the backend with Node.JS"
+                    ],
+                    "points": 5,
+                    "coins": 1
                 }
             ]
         },
@@ -30,6 +50,26 @@
                 {
                     "type": "code",
                     "content": "// this is a single-line comment\n/*\nthis\nis\na\nmulti-line\ncomment\n*/"
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]True or False: Javascript Statements require semicolons at the end [[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "True",
+                        "False"
+                    ],
+                    "correct": 1,
+                    "descriptions": [
+                        "Although it is recommended to add a semicolon at the end, it is not required.",
+                        "Great! Although it is not required, it is still recommended to add a semicolon"
+                    ],
+                    "points": 5,
+                    "coins": 1
                 }
             ]
         },
@@ -100,6 +140,30 @@
                 {
                     "type": "code",
                     "content": "console.log(10 + 5); // 15\nconsole.log(10 - 5); //5\nconsole.log(10 * 5); // 50\nconsole.log(10 / 5); // 2\n console.log(10 % 5); // 0\nconsole.log(10 ** 5); // 100000"
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]What is the correct operator for finding the remainder[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "//",
+                        "/",
+                        "%",
+                        "**"
+                    ],
+                    "correct": 2,
+                    "descriptions": [
+                        "That actually is a JavaScript comment! Try again",
+                        "That operator does division, and not remainders",
+                        "Correct! The % operator finds remainders",
+                        "That operator actually finds exponents, and not remainders"
+                    ],
+                    "points": 5,
+                    "coins": 1
                 }
             ]
         },
@@ -210,137 +274,227 @@
             ]
         },
         {
-            "type": "multiple_choice",
-            "question": "Which of the following is javascript NOT used for",
-            "descriptions": [
-                "JavaScript is a great way to create animations.",
-                "JavaScript is perfect for creating interactive material.",
-                "CSS is used for this reason.",
-                "JavaScript is great at implimenting logic."
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "Animations",
-                "Interactive material",
-                "Styling documents",
-                "Implimenting logic"
-            ],
-            "correct": 2
-        },
-        {
-            "type": "multiple_choice",
-            "question": "Which of the following characters can start a comment?",
-            "descriptions": [
-                "Also, '/*' can start can start comments.",
-                "Wrong. '--' is incorrect syntax.",
-                "Wrong. '**' is incorrect syntax.",
-                "Check the kind of slash you use."
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "//",
-                "--",
-                "**",
-                "\\\\"
-            ],
-            "correct": 0
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What do developers primarily use the console for?",
-            "descriptions": [
-                "The console is not a way to view code.",
-                "Logging variables and viewing errors are great ways to use the console for debugging.",
-                "The console does not fulfill this.",
-                ""
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "Viewing their code",
-                "Debugging",
-                "Reading the documentation of javascript",
-                ""
-            ],
-            "correct": 1
-        },
-        {
-            "type": "multiple_choice",
-            "question": "Which of the following is a not a console method",
-            "descriptions": [
-                "The upload function doesn't exist!",
-                "This prints to the console.",
-                "This clears all text from the console.",
-                ""
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "upload",
-                "log",
-                "clear",
-                ""
-            ],
-            "correct": 0
-        },
-        {
-            "type": "multiple_choice",
-            "question": "Which of the following is an invalid comparison operator?",
-            "descriptions": [
-                "'==' checks if two values are equal.",
-                "'>=' checks if one value is greater than or equal to another.",
-                "'=' assigns a variable a value and does not compare two values.",
-                "'===' checks if two values are equal."
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "===",
-                ">=",
-                "=",
-                "=="
-            ],
-            "correct": 2
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What does a conditional statement do?",
-            "descriptions": [
-                "Also known as the if statement.",
-                "This is what the try-catch statement is for.",
-                "They simply execute code, not return values.",
-                ""
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "Executes a code block if a condition is true",
-                "Catches errors from a code block",
-                "Returns a conditional",
-                ""
-            ],
-            "correct": 0
-        },
-        {
-            "type": "multiple_choice",
-            "question": "Which of the following is not a method?",
-            "descriptions": [
-                "This selects and element of a given ID.",
-                "This selects elements that are of a given class.",
-                "This function doesn't exist.",
-                "This function selects elements of a given tag."
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "document.getElementById",
-                "document.getElementsByClassName",
-                "document.getElements",
-                "document.getElementsByTagName"
-            ],
-            "correct": 2
+            "title": "Week 3 - Short Quiz",
+            "type": "information",
+            "elements": [
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]Which of the following is javascript NOT used for[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "Animations",
+                        "Interactive material",
+                        "Styling documents",
+                        "Implementing logic"
+                    ],
+                    "correct": 2,
+                    "descriptions": [
+                        "JavaScript is a great way to create animations.",
+                        "JavaScript is perfect for creating interactive material.",
+                        "CSS is used for this reason.",
+                        "JavaScript is great at implementing logic."
+                    ],
+                    "points": 5,
+                    "coins": 1
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]Which of the following characters can start a comment?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "//",
+                        "--",
+                        "**",
+                        "\\\\"
+                    ],
+                    "correct": 0,
+                    "descriptions": [
+                        "Also, '/*' can start can start comments.",
+                        "Wrong. '--' is incorrect syntax.",
+                        "Wrong. '**' is incorrect syntax.",
+                        "Check the kind of slash you use."
+                    ],
+                    "points": 5,
+                    "coins": 1
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]What do developers primarily use the console for?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "Viewing their code",
+                        "Debugging",
+                        "Reading the documentation of javascript",
+                        ""
+                    ],
+                    "correct": 1,
+                    "descriptions": [
+                        "The console is not a way to view code.",
+                        "Logging variables and viewing errors are great ways to use the console for debugging.",
+                        "The console does not fulfill this.",
+                        ""
+                    ],
+                    "points": 5,
+                    "coins": 1
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]Which of the following is a not a console method[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "upload",
+                        "log",
+                        "clear",
+                        ""
+                    ],
+                    "correct": 0,
+                    "descriptions": [
+                        "The upload function doesn't exist!",
+                        "This prints to the console.",
+                        "This clears all text from the console.",
+                        ""
+                    ],
+                    "points": 5,
+                    "coins": 1
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]Which of the following is an invalid comparison operator?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "===",
+                        ">=",
+                        "=",
+                        "=="
+                    ],
+                    "correct": 2,
+                    "descriptions": [
+                        "'==' checks if two values are equal.",
+                        "'>=' checks if one value is greater than or equal to another.",
+                        "'=' assigns a variable a value and does not compare two values.",
+                        "'===' checks if two values are equal."
+                    ],
+                    "points": 5,
+                    "coins": 1
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]What does a conditional statement do?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "Executes a code block if a condition is true",
+                        "Catches errors from a code block",
+                        "Returns a conditional",
+                        ""
+                    ],
+                    "correct": 0,
+                    "descriptions": [
+                        "Also known as the if statement.",
+                        "This is what the try-catch statement is for.",
+                        "They simply execute code, not return values.",
+                        ""
+                    ],
+                    "points": 5,
+                    "coins": 1
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "question": "Which of the following is not a method?",
+                    "descriptions": [
+                        "This selects and element of a given ID.",
+                        "This selects elements that are of a given class.",
+                        "This function doesn't exist.",
+                        "This function selects elements of a given tag."
+                    ],
+                    "points": 5,
+                    "coins": 1,
+                    "answers": [
+                        "document.getElementById",
+                        "document.getElementsByClassName",
+                        "document.getElements",
+                        "document.getElementsByTagName"
+                    ],
+                    "correct": 2
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]What does the following function do?[[/]]"
+                        },
+                        {
+                            "type": "code",
+                            "content": "function aFunction(a,b,c){\n    return a+b+c;\n}",
+                            "lang": "js"
+                        }
+                    ],
+                    "answers": [
+                        "Adds three numbers together and returns the sum",
+                        "Divides three numbers together and returns the remainder",
+                        "Divides three numbers together and returns the quotient"
+                    ],
+                    "correct": 0,
+                    "descriptions": [
+                        "This may also be used to combine strings!",
+                        "Remember what the + operator does. (It's similar to its use in Math)",
+                        "Remember what the + operator does. (It's similar to its use in Math)"
+                    ],
+                    "points": 5,
+                    "coins": 1
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]What does the following function do?[[/]]"
+                        },
+                        {
+                            "type": "code",
+                            "content": "function largestNum(a,b,c,d) {\n    return Math.max(a,b,c,d);\n}",
+                            "lang": "js"
+                        }
+                    ],
+                    "answers": [
+                        "Adds three numbers together and returns the sum",
+                        "Find the lowest number and returns it",
+                        "Finds the highest number and returns it"
+                    ],
+                    "correct": 2,
+                    "descriptions": [
+                        "What does the Math.max function do? (It does what it says it does)",
+                        "What does the Math.max function do? (It does what it says it does)",
+                        "Great Job!"
+                    ],
+                    "points": 5,
+                    "coins": 1
+                }
+            ]
         },
         {
             "type": "congratulations",
@@ -348,7 +502,7 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "You learned the purpose of JavaScript.\n  - Full stack development (client side and server side execution\n  - Animations and interactive elements\n  - Calculations and logic\nYou learned some of the components that make up JavaScript code.\n  - Comments ([[monospace]]/* comment */[[/]]\n  - Statements (end with [[monospace]];[[/]]\n  - You learned about of the JavaScript console.\n  - Used for displaying messages and outputs\n  - Used for debugging\n  - Right click and inspect to open the console\n  - [[monospace]]console.log[[/]] to print to the console.\nYou learned about variables.\n  - A way to store values\n  - Assigned with the [[monospace]]=[[/]] sign.\n  - [[monospace]]let x = 0;[[/]]\n  - Constants can't be changed ([[monospace]]const x = 0[[/]]\nYou learned about data types\n  - string\n  - number\n  - bigint\n  - boolean\n  - undefined\n  - symbol\n  - null\nYou learned about arithmetic operators in JavaScript.\n  - addition\n  - subtraction\n  - multiplication\n  - division\n  - remainder\n  - exponents\nYou learned about comparison operators.\n  - == (equal value)\n  - === (equal value and type)\n  - != (not equal)\n  - > and < (greater and less than)\n  - >= and <= (greater and less than or equal to)\nYou learned how to utilize some useful JavaScript features\n  - Properties (data contained by objects)\n  - Methods\n  - Conditionals\n  - DOM"
+                    "content": "[[h5]]You learned the purpose of JavaScript.[[/]]\n  - Full stack development (client side and server side execution\n  - Animations and interactive elements\n  - Calculations and logic\n[[h5]]You learned some of the components that make up JavaScript code.[[/]]\n  - Comments ([[monospace]]/* comment */[[/]]\n  - Statements (end with [[monospace]];[[/]]\n  - You learned about of the JavaScript console.\n  - Used for displaying messages and outputs\n  - Used for debugging\n  - Right click and inspect to open the console\n  - [[monospace]]console.log[[/]] to print to the console.\n[[h5]]You learned about variables.[[/]]\n  - A way to store values\n  - Assigned with the [[monospace]]=[[/]] sign.\n  - [[monospace]]let x = 0;[[/]]\n  - Constants can't be changed ([[monospace]]const x = 0[[/]]\n[[h5]]You learned about data types[[/]]\n  - string\n  - number\n  - bigint\n  - boolean\n  - undefined\n  - symbol\n  - null\n[[h5]]You learned about arithmetic operators in JavaScript.[[/]]\n  - addition\n  - subtraction\n  - multiplication\n  - division\n  - remainder\n  - exponents\n[[h5]]You learned about comparison operators.[[/]]\n  - == (equal value)\n  - === (equal value and type)\n  - != (not equal)\n  - > and < (greater and less than)\n  - >= and <= (greater and less than or equal to)\n[[h5]]You learned how to utilize some useful JavaScript features[[/]]\n  - Properties (data contained by objects)\n  - Methods\n  - Conditionals\n  - DOM"
                 }
             ]
         }

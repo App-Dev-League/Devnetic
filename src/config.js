@@ -19,6 +19,7 @@
 		"codeBlock.js",
 		"PluginPanel.js",
 		"PreviewStandalone.js",
+		"EmbededMultipleChoice.js"
 	], {
 		path: "./components/"
 	}, newFileCallback);
@@ -32,7 +33,9 @@
 		"Database.js",
 		"plugins.js",
 		"shuffleArray.js",
-		"renderElement.js"
+		"renderElement.js",
+		"modal.js",
+		"window.js"
 	], {
 		path: "./utils/"
 	}, newFileCallback);
@@ -52,6 +55,8 @@
 	const shuffleArray = require("./utils/shuffleArray.js");
 	const Database = require("./utils/Database.js");
 	const plugins = require("./utils/plugins.js");
+	const modals = require("./utils/modal.js");
+
 	require("./assets/libraries/ejs.js");
 
 	var config = {
@@ -92,9 +97,9 @@
 			tApp.renderPath("#/404");
 		});
 	});
-	tApp.route("#/my-projects", function(request) {
+	tApp.route("#/my-projects", function (request) {
 		tApp.get("./views/my-projects.html").then(res => res.text()).then(async html => {
-			let templated = await recurseEjs(html, {myProjectsPage: true});
+			let templated = await recurseEjs(html, { myProjectsPage: true });
 			tApp.render(templated);
 		})
 	})
@@ -112,7 +117,7 @@
 			modulePage.state.track = "demos"
 			modulePage.state.module = 0;
 			modulePage.state.position = 0;
-			let filePath = "./data/modules/"+request.data.module + "/" + request.data.position + "/" + request.data.fileIndex
+			let filePath = "./data/modules/" + request.data.module + "/" + request.data.position + "/" + request.data.fileIndex
 			let fileData = await tApp.get(filePath);
 			fileData = await fileData.text();
 
@@ -127,7 +132,7 @@
 				data: {
 					"type": "code_editor",
 					"storage_id": [
-						"temp_demo_cache."+request.data.fileIndex.split(".").at(-1)
+						"temp_demo_cache." + request.data.fileIndex.split(".").at(-1)
 					],
 					"files": [
 						request.data.fileIndex
@@ -150,12 +155,12 @@
 			request.data.module = parseInt(request.data.module);
 			request.data.position = parseInt(request.data.position);
 			request.data.fileIndex = parseInt(request.data.fileIndex);
-	
+
 			modulePage.state.track = request.data.track;
 			modulePage.state.module = request.data.module;
 			modulePage.state.position = request.data.position;
 		}
-		
+
 		if (request.data.track === "customUserProjects") {
 			showPage({
 				type: "project",
@@ -234,59 +239,16 @@
 		}
 		async function showPage(res, isUserProject = false) {
 			let { data, type, moduleLength, next, moduleData } = res;
-			document.getElementById("module-progress-bar").style.width = request.data.position / moduleLength * 100 + "%";
 			window.tAppRequestInstance = request;
 			window.currentModuleData = moduleData;
-			let currentTraverse = 0;
-			document.querySelectorAll(".module-progress-bar-timeline-element").forEach((el) => {
-				if (!el.classList.contains("template")) el.parentElement.removeChild(el)
-			})
-			if (!isUserProject) {
-				window.currentModuleData.pages.forEach(element => {
-					let parent = document.getElementById("module-progress-bar-wrapper");
-					let template = parent.querySelector(".template");
-					let newElement = template.cloneNode(true);
-					newElement.classList.remove("template");
-					newElement.style.left = (currentTraverse / window.currentModuleData.pages.length * 100) + "%";
-					if (request.data.position > currentTraverse) newElement.classList.add("filled");
-					else newElement.classList.remove("filled");
-	
-					if (element.type === "information") {
-						newElement.querySelector(".name").innerText = element.title || "";
-						newElement.querySelector(".descriptor").innerHTML = "<b>Type: </b>Learn"
-					}
-					if (element.type === "multiple_choice") {
-						newElement.querySelector(".name").innerText = element.question.slice(0, 10) + "..." || "";
-						newElement.querySelector(".descriptor").innerHTML = "<b>Type: </b>Question"
-					}
-					if (element.type === "snippet_unlock") {
-						newElement.querySelector(".name").innerText = element.name.slice(0, 10) + "..." || "";
-						newElement.querySelector(".descriptor").innerHTML = "<b>Type: </b>Snippet"
-					}
-					if (element.type === "short_answer") {
-						newElement.querySelector(".name").innerText = element.question.slice(0, 10) + "..." || "";
-						newElement.querySelector(".descriptor").innerHTML = "<b>Type: </b>Question"
-					}
-					if (element.type === "congratulations") {
-						newElement.querySelector(".name").innerText = "Lesson summary"
-						newElement.querySelector(".descriptor").innerHTML = "<b>Type: </b>Summary"
-					}
-					if (element.type === "code_editor") {
-						newElement.querySelector(".name").innerText = element.elements[0].content.replaceAll("[[h3]]", "").replaceAll("[[/]]", "")
-						newElement.querySelector(".descriptor").innerHTML = "<b>Type: </b>Project"
-					}
-					currentTraverse++;
-					parent.appendChild(newElement);
-				})
-			}
 
 			if (request.data.position >= moduleLength) {
-				let redoLesson = await confirmRedoLesson()
+				let redoLesson = await confirmRedoLesson(modals)
 				if (redoLesson === true) {
 					return tApp.redirect(`#/learn/${request.data.track}/${request.data.module}/0`);
 				} else if (redoLesson === "stay") {
 					return tApp.redirect(`#/track/${request.data.track}`);
-				} 
+				}
 				if (next.hasNext) {
 					tApp.redirect(`#/learn/${request.data.track}/${next.module}/${next.position}`);
 				} else {
@@ -495,7 +457,7 @@
 		}
 	});
 })();
-function recurseEjs(html, parameters={}) {
+function recurseEjs(html, parameters = {}) {
 	return new Promise(async (resolve, reject) => {
 		parameters.include = async function (path) {
 			let res = await tApp.get(path);
@@ -506,33 +468,26 @@ function recurseEjs(html, parameters={}) {
 		resolve(rtemplated)
 	})
 }
-function confirmRedoLesson() {
+function confirmRedoLesson(modals) {
 	return new Promise((resolve, reject) => {
-		let template = document.getElementById("snippets-modal")
-		let modal = template.cloneNode(true);
-		modal.removeAttribute("id")
-		modal.classList.remove("none")
-		modal.querySelector("h3").innerHTML = "You have already completed this module!";
-		modal.querySelector("h3").style.fontSize = "1.5em"
-		modal.querySelector(".button-correct").innerHTML = "Redo Module";
-		let continueButton = modal.querySelector(".button-correct").cloneNode()
-		continueButton.innerHTML = "Next Module"
-		continueButton.style.marginLeft = "10px"
-		continueButton.style.backgroundColor = "var(--blue-selected)"
-		modal.querySelector(".button-correct").parentNode.appendChild(continueButton)
-		modal.querySelector("span").onclick = function () {
-			resolve("stay")
-			modal.parentNode.removeChild(modal)
-		}
-		modal.querySelector(".button-correct").onclick = async function () {
-			modal.parentElement.removeChild(modal)
-			resolve(true)
-		}
-		continueButton.onclick = function (){
-			modal.parentElement.removeChild(modal)
-			resolve(false)
-		}
-		document.body.appendChild(modal);
+		modals.show("You have already completed this lesson!",
+			"Are you sure you want to redo this lesson! If you choose to, your progress won't change even if you don't finish it!", [
+			{
+				type: "button",
+				text: "Redo Module",
+				onclick: function() {resolve(true)}
+			},
+			{
+				type: "button",
+				text: "Next Module",
+				onclick: function(){resolve(false)}
+			},
+			{
+				type: "cancel",
+				onclick: function() {resolve("stay")}
+			}
+		]
+		)
 	})
 }
 let redirectFunction = tApp.redirect;

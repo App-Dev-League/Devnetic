@@ -1,4 +1,4 @@
-class ExplanationModal extends tApp.Component{constructor(t,e){super(t,e),null==this.state.title&&(this.state.title=""),null==this.state.description&&(this.state.description=""),null==this.state.retry&&(this.state.retry=!0)}render(t){return`<div>
+class ExplanationModal extends tApp.Component{constructor(t,e){super(t,e),null==this.state.title&&(this.state.title=""),null==this.state.description&&(this.state.description=""),null==this.state.retry&&(this.state.retry=!0)}goNext(){this.parent.correct?this.parent.correct():this.parent.parent.next()}render(t){return`<div>
 	{% if(state.title == "") %}
 		<div class="explanation-wrapper explanation-wrapper-inactive">
 			<div class="explanation-modal explanation-modal-inactive">
@@ -28,7 +28,7 @@ class ExplanationModal extends tApp.Component{constructor(t,e){super(t,e),null==
 							{% endif %}
 							</p>
 						{% endif %}
-						<button class="button-correct" onclick="{{_this}}.parent.parent.next();">Next</button>
+						<button class="button-correct" onclick="{{_this}}.goNext()">Next</button>
 					{% endif %}
 				</center>
 			</div>

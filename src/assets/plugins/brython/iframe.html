@@ -1,0 +1,73 @@
+<html>
+
+<body>
+    <div id="python-sandbox-bridge"></div>
+</body>
+
+</html>
+<py-env class="pyscript-dependencies">
+    ...
+</py-env>
+<py-script class="pyscript-script-out loading" output="output">
+    ...
+</py-script>
+<div id="output"></div>
+
+<script>
+    window.addEventListener("message", (event) => {
+        if (event.data !== "start") return;
+        document.querySelector(".pyscript-script-out").innerHTML = window.pythonCode
+        document.querySelector(".pyscript-dependencies").innerHTML = Object.keys(window.pythonDependencies).map(e => {
+            return `- ${e}`
+        }).join("\n")
+        document.querySelector(".pyscript-script-out").classList.remove("loading")
+
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = "./pyscript.js"
+        document.head.appendChild(script);
+        registerWatchers()
+    })
+
+
+    function registerWatchers() {
+        var target = document.querySelector("#output");
+
+        var observer = new MutationObserver(function(mutations) {
+            if (target.classList.contains("loading")) return;
+            mutations.forEach(function(mutation) {
+                if (mutation.addedNodes.length) {
+                    if (mutation.addedNodes[0].nodeValue) {
+                        window.logFunction(mutation.addedNodes[0].nodeValue)
+                    } else if (document.getElementById("output").lastChild.querySelector("img")) {
+                        window.showImage(document.getElementById("output").lastChild.innerHTML)
+                    }
+                }
+
+            });
+        });
+
+        var config = {
+            childList: true,
+            subtree: true,
+            characterData: true
+        };
+
+        observer.observe(target, config);
+    }
+
+    console.oldLog = console.log;
+    console.log = function(logs) {
+        if (logs.toString().includes("ModuleNotFoundError") || logs.toString().includes("Exception") || logs.toString().includes("PythonError")) {
+            window.logFunction(logs.toString())
+        } else {
+            console.oldLog("Pyscript log > "+logs.toString())
+        }
+    }
+    console.warn = function(warning) {
+        if (warning.toString().startsWith("Python")) {
+            window.logFunction(warning.toString())
+
+        }
+    }
+</script>

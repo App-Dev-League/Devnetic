@@ -11,6 +11,10 @@ class ExplanationModal extends tApp.Component {
 			this.state.retry = true;
 		}
 	}
+	goNext() {
+		if (this.parent.correct) this.parent.correct(); 
+		else this.parent.parent.next();
+	}
 	render(props) {
 		return `<div>
 	{% if(state.title == "") %}
@@ -42,7 +46,7 @@ class ExplanationModal extends tApp.Component {
 							{% endif %}
 							</p>
 						{% endif %}
-						<button class="button-correct" onclick="{{_this}}.parent.parent.next();">Next</button>
+						<button class="button-correct" onclick="{{_this}}.goNext()">Next</button>
 					{% endif %}
 				</center>
 			</div>

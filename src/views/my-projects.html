@@ -1,20 +1,45 @@
 <%
     let projects = codeEditorHelper.getMyProjects();
     console.log(projects)
+    function normalizeSeconds(seconds) {
+        if (seconds < 60) {
+            return seconds.toFixed(0) + " seconds ago"
+        } else if (seconds < 60 * 60) {
+            return (seconds / 60).toFixed(0) + " minutes ago"
+        } else if (seconds < 60 * 60 * 60) {
+            return (seconds / 60 / 60).toFixed(0) + " hours ago"
+        } else if (seconds < 60 * 60 * 60 * 24) {
+            return (seconds / 60 / 60 / 24).toFixed(0) + " days ago"
+        } else if (seconds < 60 * 60 * 60 * 24 * 30) {
+            return (seconds / 60 / 60 / 24 / 30).toFixed(0) + " months ago"
+        } else if (seconds < 60 * 60 * 60 * 24 * 30 * 12) {
+            return (seconds / 60 / 60 / 24 / 30 / 12).toFixed(0) + " years ago"
+        } 
+    }
+    projects = Object.values(projects).sort((a, b) => {
+        return (b.lastAccessed || 0) - (a.lastAccessed || 0)
+    })
 %>
-<div class="home-row">
-    <% Object.entries(projects).forEach(([key, value]) => { %>
-    <h3><%- value.name %></h3>
-    <div class="my-project-list-item" data-name="<%-key%>">
-        <a href="#/learn/<%-value.track%>/<%-value.module%>/<%-value.position%>">Open</a>
-        |
-        <a href="#/my-projects" onclick="deleteMyProject('<%-value.name%>')">Delete</a>
-        |
-        <span class="c-monospace">
+<div class="home-row stack-width">
+    <h3>Your Projects</h3>
+    <br>
+    <% projects.forEach(value => { %>
+    <a class="my-project-row" data-name="<%-value.name%>" href="#/learn/<%-value.track%>/<%-value.module%>/<%-value.position%>">
+        <span onclick="event.preventDefault(); toggleStarMyProject('<%-value.name%>', this)" class="star codicon codicon-star-full <%- value.starred ? "starred": "" %>"></span>
+        <span class="my-project-title"><%- value.name %></span>
+
+        <span class="language-breakdown">~</span>
+        <span class="last-viewed"><%-normalizeSeconds((Date.now() - value.lastAccessed || 0)/1000)%></span>
+        <span class="my-project-size">
             <span class="codicon codicon-loading" style="vertical-align: middle;"></span> Bytes
         </span>
-    </div>
-    <br>
+        <i class="fa-solid fa-ellipsis-vertical more-options" onclick="event.preventDefault();this.parentElement.querySelector('.dropdown').classList.remove('closed')"></i>
+        <div class="dropdown closed">
+            <span><i class="fa-solid fa-arrow-up-right-from-square"></i>&nbsp;&nbsp;Open</span>
+            <span onclick="event.preventDefault(); renameMyProject('<%-value.name%>')"><i class="fa-solid fa-pencil"></i>&nbsp;&nbsp;Rename</span>
+            <span onclick="event.preventDefault(); deleteMyProject('<%-value.name%>')"><i class="fa-regular fa-trash-can"></i>&nbsp;&nbsp;Delete</span>
+        </div>
+    </a>
     <% }) %>
     <% if ( Object.entries(projects).length === 0) { %>
     You don't have any projects! Create one to get started!
@@ -25,17 +50,24 @@
 
 
 
-<div id="menu-container" class="codicon codicon-loading" style="position: fixed; top: 60px; right: 10px;">
+<div id="menu-container" class="codicon codicon-loading" style="position: absolute; top: 10px; right: 10px;">
     <% include('./views/menu.html').then(res => {document.getElementById("menu-container").classList.remove("codicon-loading"); document.getElementById("menu-container").innerHTML = res;nodeScriptReplace(document.getElementById("menu-container"))}) %>
 </div>
 <% if (myProjectsPage) { %>
-<a href="#/my-projects" class="my-projects codicon codicon-folder" title="Your projects" style="position: fixed; top: 60px; right: 50px; text-decoration: underline !important;"></a>
-<div onclick="showNewMyProjectModal()" class="my-projects codicon codicon-add" style="position: fixed; top: 60px; right: 90px;"></div>
+<a href="#/my-projects" class="my-projects codicon codicon-folder" title="Your projects" style="position: absolute; top: 10px; right: 50px; text-decoration: underline !important;"></a>
+<div onclick="showNewMyProjectModal()" class="my-projects codicon codicon-add" style="position: absolute; top: 10px; right: 83px;"></div>
 <% } else { %>
-<a href="#/my-projects" class="my-projects codicon codicon-folder" title="Your projects" style="position: fixed; top: 60px; right: 50px;"></a>
+<a href="#/my-projects" class="my-projects codicon codicon-folder" title="Your projects" style="position: absolute; top: 10px; right: 50px;"></a>
 <% } %>
 
 <script>
+    window.bodyClicks.myProjects = function(event) {
+        document.querySelectorAll(".dropdown").forEach(e => {
+            if (e.parentElement.querySelector(".more-options").contains(event.target)) return
+            e.classList.add("closed")
+        })
+    }
+
     function showNewMyProjectModal() {
         let template = document.getElementById("snippets-modal")
         let modal = template.cloneNode(true);
@@ -84,8 +116,56 @@
             return (bytes / 1024 / 1024 / 1024).toFixed(2) + " GB"
         }
     }
-    document.querySelectorAll(".my-project-list-item").forEach(async elem => {
+
+    function renameMyProject(name) {
+        const modals =  require("./utils/modal.js")
+       modals.show("Rename your project", `Rename the project "${name}"`, [{
+                type: "text",
+                placeholder: "Project name",
+                value: name
+            },
+            {
+                type: "button",
+                text: "Rename",
+                onclick: function() {
+                    let newname = modals.getInputValues()[0]
+                    try {
+                        codeEditorHelper.renameMyProject(name, newname)
+                        tApp.redirect("#/my-projects")
+                    } catch (e) {
+                        alert("A project with the same name already exists!")
+                    }
+                }
+            }
+        ])
+    }
+
+
+    function toggleStarMyProject(name, starElement) {
+        let projects = JSON.parse(localStorage.getItem("myProjects") || "{}")
+        projects[name].starred = !projects[name].starred
+        localStorage.setItem("myProjects", JSON.stringify(projects))
+        starElement.classList.toggle("starred")
+    }
+
+    document.querySelectorAll(".my-project-row").forEach(async elem => {
         let name = elem.getAttribute("data-name");
-        elem.querySelector(".c-monospace").innerHTML = normalizeBytes(await codeEditorHelper.sizeOfMyProject(name));
+        elem.querySelector(".my-project-size").innerHTML = normalizeBytes(await codeEditorHelper.sizeOfMyProject(name));
+        let fileTypes = await codeEditorHelper.getProjectFileBreakdown(name);
+        let languages = {
+			"html": "HTML",
+			"py": "Python",
+			"md": "Markdown",
+			"js": "Javascript",
+			"jsx": "JSX",
+			"css": "CSS",
+			"ts": "typescript",
+			"cpp": "C++",
+			"pl": "Perl"
+		}
+        for (let i in fileTypes) {
+            fileTypes[i] = languages[fileTypes[i]] || ""
+        }
+        elem.querySelector(".language-breakdown").innerHTML = fileTypes.join(",")
     })
 </script>

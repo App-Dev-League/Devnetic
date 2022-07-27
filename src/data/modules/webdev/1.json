@@ -16,18 +16,19 @@
             "title": "Week 2 - CSS Rule Sets",
             "elements": [
                 {
-                    "type": "text",
-                    "content": "Selectors identify the element being styled. Styles are added in a [[monospace]]key: value[[/]] pattern"
-                },
-                {
-                    "type": "image",
-                    "src": "./data/modules/webdev-assets/img1/0-0.png",
-                    "width": "30%",
-                    "box-shadow": "0px 0px 20px 1px #686868"
-                },
-                {
-                    "type": "text",
-                    "content": "You can select HTML elements by class name, element name or id name.\nPseudo selectors allow you to add styles when elements are in a certain state."
+                    "type": "split-content",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "Selectors identify the element being styled. Styles are added in a [[monospace]]key: value[[/]] pattern\nYou can select HTML elements by class name, element name or id name.\nPseudo selectors allow you to add styles when elements are in a certain state."
+                        },
+                        {
+                            "type": "image",
+                            "src": "./data/modules/webdev-assets/img1/0-0.png",
+                            "box-shadow": "0px 0px 20px 1px #686868",
+                            "margin-left": "30px"
+                        }
+                    ]
                 }
             ]
         },
@@ -152,6 +153,25 @@
                 {
                     "type": "text",
                     "content": "Animation transitions allow you to apply smoother transitions to elements.\n   - 1 second transition to all styles: [[monospace]]transition: 1s all[[/]]\n   - 1 second transition to a specific style option: [[monospace]]transition: 1s color[[/]]\n   - Multiple transition rules: [[monospace]]transition: 1s color, 3s border[[/]]"
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "question": "What do selector events do?",
+                    "descriptions": [
+                        "Correct. Hover is an example of this.",
+                        "Nope. The hashtag selector is used for this.",
+                        "Nope. The dot selector is used for this.",
+                        "Nope. Look at all of the questions carefully; one of them is correct."
+                    ],
+                    "points": 5,
+                    "coins": 1,
+                    "answers": [
+                        "Define CSS that becomes active under a certain condition",
+                        "Define CSS that becomes active under a certain element with ID",
+                        "Define CSS that becomes active under a certain element in a class",
+                        "All of the above"
+                    ],
+                    "correct": 0
                 }
             ]
         },
@@ -234,226 +254,213 @@
             "coins": 3
         },
         {
-            "type": "multiple_choice",
-            "question": "What is the primary purpose of CSS?",
-            "descriptions": [
-                "Nope. That's JavaScript.",
-                "Yep! CSS is used for styling.",
-                "Nope. CSS is not involved in publishing website.",
-                "Nope. CSS is not used for this aspect of web development."
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "To make websites interactive",
-                "To make websites look nice",
-                "To publish websites",
-                "To create HTML tags"
-            ],
-            "correct": 1
-        },
-        {
-            "type": "multiple_choice",
-            "question": "Which of the following is an invalid selector?",
-            "descriptions": [
-                "Incorrect. This selects validly selects p tags with the xyz class.",
-                "Incorrect. This selects p tags with the xyz ID.",
-                "Correct. '+' is not a CSS selector.",
-                "Incorrect. This selects all elements."
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "p.xyz",
-                "p#xyz",
-                "+xyz",
-                "*"
-            ],
-            "correct": 2
-        },
-        {
-            "type": "multiple_choice",
-            "question": "How do you link CSS to an HTML document?",
-            "descriptions": [
-                "Nope. Watch the href and rel attributes!",
-                "Yep. This tag links CSS to an HTML documents.",
-                "Nope. Script tags are used for including JavaScript.",
-                "Nope. Script tags are used for including JavaScript."
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "<link href=\"stylesheet\" rel=\"styles.css\">",
-                "<link rel=\"stylesheet\" href=\"style.css\">",
-                "<script rel=\"stylesheet\" href=\"styles.css\">",
-                "<script src=\"styles.css\">"
-            ],
-            "correct": 1
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What is padding?",
-            "descriptions": [
-                "Correct! Understanding padding adds a lot to your web development toolbox.",
-                "Incorrect. Borders do this.",
-                "Incorrect. Padding does not achieve this.",
-                "Incorrect. Look carefully at each of the options."
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "Spacing within an element",
-                "Outer edge/outline of an element",
-                "Spacing between the elements",
-                "None of the above"
-            ],
-            "correct": 0
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What is border?",
-            "descriptions": [
-                "Incorrect. Wrong CSS property!",
-                "Correct. Borders are incredible useful in styling documents.",
-                "Nope. Wrong CSS property!",
-                "Incorrect. Look carefully at each of the options."
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "Spacing within an element",
-                "Outer edge/outline of an element",
-                "Spacing between the elements",
-                "None of the above"
-            ],
-            "correct": 1
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What is margin?",
-            "descriptions": [
-                "Nope. This is padding.",
-                "Nope. This is border.",
-                "Correct. Margin is used for spacing.",
-                "Incorrect. Look carefully at each of the options."
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "Spacing within an element",
-                "Outer edge/outline of an element",
-                "Spacing between the elements",
-                "None of the above"
-            ],
-            "correct": 2
-        },
-        {
-            "type": "multiple_choice",
-            "question": "CSS rules can be applied to mutliple elements",
-            "descriptions": [
-                "Correct! You can do #hi, #bye {}",
-                "Incorrect! This would make CSS very tedious."
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "True",
-                "False"
-            ],
-            "correct": 0
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What is the correct way to show a shadow on an element?",
-            "descriptions": [
-                "Incorrect. The underline property is used for underlining text.",
-                "Nope. 'shadow' is not a CSS property.",
-                "Nope. Hover is not a CSS property.",
-                "Yes. box-shadow is used for shadow."
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "underline: 10px 10px blue",
-                "shadow: 10px 10px 10px blue",
-                "hover: 10px 10px 10px blue",
-                "box-shadow: 10px 10px 10px blue"
-            ],
-            "correct": 3
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What is the optional fourth parameter in the rgb function?",
-            "descriptions": [
-                "Incorrect. Color doesnot have depth.",
-                "Incorrect. The first three parameters affect the color.",
-                "Correct! Opacity is the condition of lacking transparency."
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "depth",
-                "color",
-                "opacity",
-                ""
-            ],
-            "correct": 2
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What do selector events do?",
-            "descriptions": [
-                "Correct. Hover is an example of this.",
-                "Nope. The hashtag selector is used for this.",
-                "Nope. The dot selector is used for this.",
-                "Nope. Look at all of the questions carefully; one of them is correct."
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "Define CSS that becomes active under a certain condition",
-                "Define CSS that becomes active under a certain element with ID",
-                "Define CSS that becomes active under a certain element in a class",
-                "All of the above"
-            ],
-            "correct": 0
-        },
-        {
-            "type": "multiple_choice",
-            "question": "How many column units are there in Bootstrap?",
-            "descriptions": [
-                "Incorrect. It's more than ten.",
-                "Incorrect. It more than that.",
-                "Correct! Bootstrap uses 12 units.",
-                "Incorrect! It's less than that."
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "10",
-                "11",
-                "12",
-                "13"
-            ],
-            "correct": 2
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What is the \"inline\" class in Bootstrap?",
-            "descriptions": [
-                "Incorrect! CSS syntax does not care about new lines; rather cares about semicolons.",
-                "Well done!",
-                "Incorrect. You could use HTML frames or something similar for this."
-            ],
-            "points": 5,
-            "coins": 1,
-            "answers": [
-                "Allows CSS to be written in a single line",
-                "Allows elements to be shows side-by-side.",
-                "Allows mutliple HTML documents to be shows side-by-side.",
-                ""
-            ],
-            "correct": 1
+            "type": "information",
+            "title": "Short Quiz",
+            "elements": [
+                {
+                    "type": "embedded_multiple_choice",
+                    "question": "What is the primary purpose of CSS?",
+                    "descriptions": [
+                        "Nope. That's JavaScript.",
+                        "Yep! CSS is used for styling.",
+                        "Nope. CSS is not involved in publishing website.",
+                        "Nope. CSS is not used for this aspect of web development."
+                    ],
+                    "points": 5,
+                    "coins": 1,
+                    "answers": [
+                        "To make websites interactive",
+                        "To make websites look nice",
+                        "To publish websites",
+                        "To create HTML tags"
+                    ],
+                    "correct": 1
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "question": "Which of the following is an invalid selector?",
+                    "descriptions": [
+                        "Incorrect. This selects validly selects p tags with the xyz class.",
+                        "Incorrect. This selects p tags with the xyz ID.",
+                        "Correct. '+' is not a CSS selector.",
+                        "Incorrect. This selects all elements."
+                    ],
+                    "points": 5,
+                    "coins": 1,
+                    "answers": [
+                        "p.xyz",
+                        "p#xyz",
+                        "+xyz",
+                        "*"
+                    ],
+                    "correct": 2
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "question": "How do you link CSS to an HTML document?",
+                    "descriptions": [
+                        "Nope. Watch the href and rel attributes!",
+                        "Yep. This tag links CSS to an HTML documents.",
+                        "Nope. Script tags are used for including JavaScript.",
+                        "Nope. Script tags are used for including JavaScript."
+                    ],
+                    "points": 5,
+                    "coins": 1,
+                    "answers": [
+                        "<link href=\"stylesheet\" rel=\"styles.css\">",
+                        "<link rel=\"stylesheet\" href=\"style.css\">",
+                        "<script rel=\"stylesheet\" href=\"styles.css\">",
+                        "<script src=\"styles.css\">"
+                    ],
+                    "correct": 1
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "question": "What is padding?",
+                    "descriptions": [
+                        "Correct! Understanding padding adds a lot to your web development toolbox.",
+                        "Incorrect. Borders do this.",
+                        "Incorrect. Padding does not achieve this.",
+                        "Incorrect. Look carefully at each of the options."
+                    ],
+                    "points": 5,
+                    "coins": 1,
+                    "answers": [
+                        "Spacing within an element",
+                        "Outer edge/outline of an element",
+                        "Spacing between the elements",
+                        "None of the above"
+                    ],
+                    "correct": 0
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "question": "What is border?",
+                    "descriptions": [
+                        "Incorrect. Wrong CSS property!",
+                        "Correct. Borders are incredible useful in styling documents.",
+                        "Nope. Wrong CSS property!",
+                        "Incorrect. Look carefully at each of the options."
+                    ],
+                    "points": 5,
+                    "coins": 1,
+                    "answers": [
+                        "Spacing within an element",
+                        "Outer edge/outline of an element",
+                        "Spacing between the elements",
+                        "None of the above"
+                    ],
+                    "correct": 1
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "question": "What is margin?",
+                    "descriptions": [
+                        "Nope. This is padding.",
+                        "Nope. This is border.",
+                        "Correct. Margin is used for spacing.",
+                        "Incorrect. Look carefully at each of the options."
+                    ],
+                    "points": 5,
+                    "coins": 1,
+                    "answers": [
+                        "Spacing within an element",
+                        "Outer edge/outline of an element",
+                        "Spacing between the elements",
+                        "None of the above"
+                    ],
+                    "correct": 2
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "question": "CSS rules can be applied to multiple elements",
+                    "descriptions": [
+                        "Correct! You can do #hi, #bye {}",
+                        "Incorrect! This would make CSS very tedious."
+                    ],
+                    "points": 5,
+                    "coins": 1,
+                    "answers": [
+                        "True",
+                        "False"
+                    ],
+                    "correct": 0
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "question": "What is the correct way to show a shadow on an element?",
+                    "descriptions": [
+                        "Incorrect. The underline property is used for underlining text.",
+                        "Nope. 'shadow' is not a CSS property.",
+                        "Nope. Hover is not a CSS property.",
+                        "Yes. box-shadow is used for shadow."
+                    ],
+                    "points": 5,
+                    "coins": 1,
+                    "answers": [
+                        "underline: 10px 10px blue",
+                        "shadow: 10px 10px 10px blue",
+                        "hover: 10px 10px 10px blue",
+                        "box-shadow: 10px 10px 10px blue"
+                    ],
+                    "correct": 3
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "question": "What is the optional fourth parameter in the rgb function?",
+                    "descriptions": [
+                        "Incorrect. Color does not have depth.",
+                        "Incorrect. The first three parameters affect the color.",
+                        "Correct! Opacity is the condition of lacking transparency."
+                    ],
+                    "points": 5,
+                    "coins": 1,
+                    "answers": [
+                        "depth",
+                        "color",
+                        "opacity",
+                        ""
+                    ],
+                    "correct": 2
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "question": "How many column units are there in Bootstrap?",
+                    "descriptions": [
+                        "Incorrect. It's more than ten.",
+                        "Incorrect. It more than that.",
+                        "Correct! Bootstrap uses 12 units.",
+                        "Incorrect! It's less than that."
+                    ],
+                    "points": 5,
+                    "coins": 1,
+                    "answers": [
+                        "10",
+                        "11",
+                        "12",
+                        "13"
+                    ],
+                    "correct": 2
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "question": "What is the \"inline\" class in Bootstrap?",
+                    "descriptions": [
+                        "Incorrect! CSS syntax does not care about new lines; rather cares about semicolons.",
+                        "Well done!",
+                        "Incorrect. You could use HTML frames or something similar for this."
+                    ],
+                    "points": 5,
+                    "coins": 1,
+                    "answers": [
+                        "Allows CSS to be written in a single line",
+                        "Allows elements to be shows side-by-side.",
+                        "Allows multiple HTML documents to be shows side-by-side.",
+                        ""
+                    ],
+                    "correct": 1
+                }
+            ]
         },
         {
             "type": "congratulations",

@@ -20,7 +20,7 @@ const codeTemplateToCode=require("../utils/codeTemplateToCode.js"),codeBlock=req
 		</div>`:`<div>
 			<h1 class="info-title">${tApp.escape(this.state.title||"")}</h1>
 			${(this.state.elements||[]).map(t=>renderElement(t)).join("")}
-			<button class="info-button" onclick="{{_this}}.parent.checknext();">${this.state.nextText}</button>
+			<button class="info-button" id="continue-button" onclick="{{_this}}.parent.checknext();">${this.state.nextText}</button>
 			<div class="hints">
 				<h2>Stuck?</h2>
 				${(this.state.hints||[{elements:[{type:"text",content:""}]}]).map(e=>(window.maxHints=this.state.hints.length-1,`<div class="hint none">

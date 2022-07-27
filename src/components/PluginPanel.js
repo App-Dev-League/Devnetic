@@ -10,7 +10,7 @@ class PluginPanel extends tApp.Component {
             this.state.plugins[i].installed = false;
         }
         var self = this;
-        async function getPluginSizes(){
+        async function getPluginSizes() {
             for (let i in plugins.availablePlugins()) {
                 let plugin = plugins.availablePlugins()[i];
                 self.state.pluginSizes[plugin.id] = await plugins.getDownloadSize(plugin.id);
@@ -25,13 +25,13 @@ class PluginPanel extends tApp.Component {
                     {
                         text: "Update", onclick: function () {
                             codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index'))
-    
+
                             document.querySelectorAll(".project-module-tabs")[1].children[0].children[3].click()
                             codeEditorHelper.removeAlertModal(this.parentElement.getAttribute('data-editor-alert-modal-index'))
                             setTimeout(function () {
                                 if (document.getElementById("plugin-list-" + plugin.id).querySelector("h5").innerText !== "Uninstall") return;
                                 document.getElementById("plugin-list-" + plugin.id).querySelector("h5").click()
-                                setTimeout(function(){
+                                setTimeout(function () {
                                     document.getElementById("plugin-list-" + plugin.id).querySelector("h5").click()
                                 }, 1000)
                             }, 1000)
@@ -48,21 +48,12 @@ class PluginPanel extends tApp.Component {
         plugin.querySelector("h5").style.pointerEvents = "none"
         plugin.querySelector(".loading-bar-container").style.opacity = 1;
         plugin.querySelector(".loading-bar").style.width = "10%";
-        plugins.download(id, async function (code) {
-            const reader = code.body.getReader();
-            let bytesReceived = 0;
-            let code_size = await plugins.getDownloadSize(id)
-            while (true) {
-                const result = await reader.read();
-                if (result.done) {
-                    break;
-                }
-                bytesReceived += result.value.length;
-                plugin.querySelector("h5").innerText = "Installing..."
-                plugin.querySelector("h5").style.pointerEvents = "none"
-                plugin.querySelector(".loading-bar-container").style.opacity = 1;
-                plugin.querySelector(".loading-bar").style.width = Math.round(bytesReceived / code_size * 100) + "%";
-            }
+        plugins.download(id, async function (progress) {
+            console.log(progress)
+            plugin.querySelector("h5").innerText = "Installing..."
+            plugin.querySelector("h5").style.pointerEvents = "none"
+            plugin.querySelector(".loading-bar-container").style.opacity = 1;
+            plugin.querySelector(".loading-bar").style.width = Math.round(progress * 100) + "%";
         }, function (status) {
             if (status === "failed") {
                 plugin.querySelector(".loading-bar-container").style.opacity = 0;
@@ -89,7 +80,7 @@ class PluginPanel extends tApp.Component {
     }
     render(props) {
         var self = this;
-        async function getPluginData(){
+        async function getPluginData() {
             let newPluginData = [];
             for (let p in plugins.availablePlugins()) {
                 let element = plugins.availablePlugins()[p];
@@ -106,7 +97,7 @@ class PluginPanel extends tApp.Component {
                     <img src="${plugin.image}" style="width: 60px; display: inline-block"/>
                     <div style="display: inline-block; margin-left: 20px; vertical-align: top; width: 80%">
                         <div>
-                            <h3 style="margin-bottom: 0; margin-top: 0; display: inline-block">${plugin.name}</h3>
+                            <h3 style="margin-bottom: 0; margin-top: 0; display: inline-block; font-weight: 500;">${plugin.name}</h3>
                             ${plugin.installed ? `<h5 style="display: inline-block; margin: 0; margin-left: 30px; transform: translateY(-2px); font-size: 0.8em; padding: 0 5px; line-height: 14px; background-color: #b12c2c; cursor: pointer" onclick="{{_this}}.uninstall('${plugin.id}')">Uninstall</h5>` : `<h5 style="display: inline-block; margin: 0; margin-left: 30px; transform: translateY(-2px); font-size: 0.8em; padding: 0 5px; line-height: 14px; background-color: #2BA143; cursor: pointer" onclick="{{_this}}.install('${plugin.id}')">Install</h5>`}
                             <h6 style="display: inline-block; margin: 0; margin-left: 20px">${Math.round(this.state.pluginSizes[plugin.id] / 1000)} KB</h6>
                         </div>

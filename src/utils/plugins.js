@@ -5,7 +5,7 @@ var Base64 = { _keyStr: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz012
 var downloadUrl;
 if (window.isElectron) {
     downloadUrl = "https://devnetic.appdevleague.org/app/assets/plugins/"
-}else {
+} else {
     downloadUrl = "./assets/plugins/"
 }
 
@@ -16,12 +16,17 @@ module.exports = {
         if (!window.pluginList) window.pluginList = {};
         window.pluginList[pluginId] = "loading";
 
-        let plugin = await getPlugin(pluginId);
-        if (!plugin) { delete window.pluginList[pluginId]; throw "Error: plugin " + pluginId + " not found locally!" }
-        plugin = plugin.code;
+        var plugin;
 
-        plugin = plugin.slice(plugin.indexOf("||STARTPLUGIN||") + 15)
-        var code = plugin.toString();
+        if (window.environment === "production") {
+            plugin = await getFile("assets/plugins/"+pluginId+"/"+ pluginId+".min.js");
+            if (!plugin) { delete window.pluginList[pluginId]; throw "Error: plugin " + pluginId + " not found locally!" }
+        } else {
+            plugin = await fetch("./assets/plugins/"+pluginId+"/"+pluginId+".min.js");
+            plugin = await plugin.text();
+        }
+
+        var code = plugin
         var script = document.createElement('script');
         script.type = 'text/javascript';
         script.innerHTML = code;
@@ -31,51 +36,28 @@ module.exports = {
         return true
     },
     async getCode(pluginId) {
-        let plugin = await getPlugin(pluginId);
+        let plugin = await getFile("assets/plugins/"+pluginId+"/"+ pluginId+".min.js");
         if (!plugin) { delete window.pluginList[pluginId]; throw "Error: plugin " + pluginId + " not found locally!" }
-        plugin = plugin.code;
-        plugin = plugin.slice(plugin.indexOf("||STARTPLUGIN||") + 15)
-        var code = plugin;
-        return code
-    },
-    async getVersion(pluginId) {
-        let plugin = await getPlugin(pluginId);
-        plugin = plugin.code;
-        plugin = plugin.slice(0, plugin.indexOf("||STARTPLUGIN||"));
         return plugin
     },
-    async download(pluginId, cont, done, silent) {
-        var code;
+    async getVersion(pluginId) {
+        let version = await getFile("assets/plugins/"+pluginId+"/VERSION.txt");
+        return version
+    },
+    async download(pluginId, progress, done, silent) {
+        var map;
+        var currentProgress = 0;
         try {
-            code = await fetch(downloadUrl + pluginId + "/" + pluginId + ".min.js");
-            if (code.ok === false) throw "Failed to fetch"
-            let tmpcode = code.clone()
-
-            if (cont) cont(code.clone())
-
-            const reader = code.body.getReader();
-            let bytesReceived = 0;
-            let code_size = Number(code.headers.get('content-length'));
-            while (true) {
-                const result = await reader.read();
-                if (result.done) {
-                    break;
-                }
-                bytesReceived += result.value.length;
-            }
-            let version = await fetch(downloadUrl + pluginId + "/" + "VERSION.txt");
-            version = await version.text();
-            code = await tmpcode.text()
-            if (code_size > 5000000) {
-                codeEditorHelper.showAlertModal("The plugin you are trying to download is very large! Your browser may freeze up while downloading for 15-30 seconds. Please do not close this tab.", [{
-                    text: "Ok", onclick: function () { codeEditorHelper.removeAlertModal(this.parentElement.parentElement.getAttribute('data-editor-alert-modal-index')) }
-                }], "codicon-warning", 1)
-                await sleep(1000)
+            map = await fetch(downloadUrl + pluginId + "/files.map?version=" + Math.random());
+            if (map.ok === false) throw "Failed to fetch"
+            map = await map.json()
+            for (let i in map) {
+                let file = map[i];
+                await fetchWithProgress(`${downloadUrl}${pluginId}/${file}`, i, map.length, progress || function () { })
             }
 
-            addPlugin(pluginId, `${version}||STARTPLUGIN||` + code);
 
-            if (done) done(true)
+            done(true)
             let pluginName = this.availablePlugins().find(e => e.id == pluginId).name;
             if (!silent) {
                 codeEditorHelper.showAlertModal("Successfully downloaded plugin " + pluginName, [{
@@ -97,10 +79,14 @@ module.exports = {
         element.remove()
         delete window.pluginList[pluginId];
     },
-    remove(pluginId) {
+    async remove(pluginId) {
         //localStorage.removeItem("plugin::" + pluginId);
-        deletePlugin(pluginId)
-
+        let fileMap = await getFile("assets/plugins/" + pluginId + "/files.map")
+        fileMap = JSON.parse(fileMap)
+        fileMap.forEach(file => {
+            console.log("Deleting file: " + file)
+            deleteFile(`assets/plugins/${pluginId}/${file}`)
+        })
 
 
         let pluginName = this.availablePlugins().find(e => e.id == pluginId).name;
@@ -121,12 +107,11 @@ module.exports = {
                 //https://interactjs.io/
             },
             {
-                name: "Brython",
+                name: "Pyscript",
                 description: "This plugin allows you to run python in the browser!",
                 image: "./assets/plugins/brython/brython.svg",
                 id: "brython",
-                latestVersion: "3.0.1"
-                //https://brython.info/
+                latestVersion: "4.0.0"
             },
             // {
             //     name: "CaptCC",
@@ -183,8 +168,12 @@ module.exports = {
         ]
     },
     async checkPluginStatus(pluginId) {
-        if (await getPlugin(pluginId)) return true
-        else return false;
+        try {
+            await getFile("assets/plugins/"+pluginId+"/files.map")
+            return true;
+        }catch(err) {
+            return false;
+        }
     },
     async getDownloadSize(pluginId) {
         if (!window.pluginSizes) {
@@ -225,7 +214,7 @@ module.exports = {
 }
 function openConnection() {
     return new Promise((resolve, reject) => {
-        const request = indexedDB.open('PLUGINS', 1);
+        const request = indexedDB.open('tAppCache');
         request.onsuccess = (event) => {
             let db = event.target.result;
             resolve(db)
@@ -233,24 +222,43 @@ function openConnection() {
         request.onupgradeneeded = (event) => {
             let db = event.target.result;
 
-            let store = db.createObjectStore('Plugincode', {
+            let store = db.createObjectStore('cachedPages', {
                 autoIncrement: true
-            });
-            store.createIndex('pluginIds', 'pluginId', {
-                unique: true
             });
         };
     })
 }
-function deletePlugin(id) {
+function getFile(file) {
+    return new Promise((resolve, reject) => {
+        openConnection().then(db => {
+            const txn = db.transaction('cachedPages', 'readwrite');
+            const store = txn.objectStore('cachedPages')
+            let query = store.get(window.location.origin + window.location.pathname.replace("index.html", "") + file);
+            query.onsuccess = async function (event) {
+                if (!query.result) return reject("File not found!");
+                var response = new Response(query.result.data, query.result.response)
+                response = await response.text()
+                resolve(response)
+
+            };
+            query.onerror = function (event) {
+                console.log(event.target.errorCode);
+            }
+            txn.oncomplete = function () {
+                db.close();
+            };
+        })
+    })
+}
+function deleteFile(file) {
     openConnection().then(db => {
-        const txn = db.transaction('Plugincode', 'readwrite');
-        const store = txn.objectStore('Plugincode');
-        const index = store.index('pluginIds');
-        let query = index.openKeyCursor(id);
+        const txn = db.transaction('cachedPages', 'readwrite');
+        const store = txn.objectStore('cachedPages')
+        let query = store.openKeyCursor(window.location.origin + window.location.pathname.replace("index.html", "") + file);
 
         query.onsuccess = function (event) {
             store.delete(event.target.result.primaryKey)
+            console.log("Deleted file!")
         };
         query.onerror = function (event) {
             console.log(event.target.errorCode);
@@ -260,6 +268,7 @@ function deletePlugin(id) {
         };
     })
 }
+
 function addPlugin(id, text) {
     openConnection().then(db => {
         const txn = db.transaction('Plugincode', 'readwrite');
@@ -275,26 +284,34 @@ function addPlugin(id, text) {
         };
     })
 }
-function getPlugin(id) {
-    return new Promise((resolve, reject) => {
-        openConnection().then(db => {
-            const txn = db.transaction('Plugincode', 'readwrite');
-            const store = txn.objectStore('Plugincode');
-            const index = store.index('pluginIds');
-            let query = index.get(id);
-            query.onsuccess = function (event) {
-                resolve(event.target.result)
-            };
-            query.onerror = function (event) {
-                console.log(event.target.errorCode);
-            }
-            txn.oncomplete = function () {
-                db.close();
-            };
-        })
-    })
-}
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
+}
+function fetchWithProgress(path, fileNumber, fileCount, progressCallback) {
+    console.log("Starting to download file " + path)
+    return new Promise(async (resolve, reject) => {
+        let response = await fetch(path);
+        if (response.ok === false) reject("Failed to fetch")
+
+        const reader = response.body.getReader();
+
+        const contentLength = +response.headers.get('Content-Length');
+
+        let receivedLength = 0; // received that many bytes at the moment
+        let chunks = []; // array of received binary chunks (comprises the body)
+        while (true) {
+            const { done, value } = await reader.read();
+
+            if (done) {
+                break;
+            }
+
+            chunks.push(value);
+            receivedLength += value.length;
+            var currentProgress = (receivedLength / contentLength / fileCount) + (fileNumber / fileCount)
+            progressCallback(currentProgress)
+        }
+        resolve()
+    })
 }
