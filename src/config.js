@@ -204,7 +204,7 @@
 		tApp.render(modulePage.toString())
 	})
 
-	tApp.route("#/learn/<track>/<module>/<position>", function (request) {
+	tApp.route("#/learn/<track>/<module>/<position>", async function (request) {
 		request.data.module = parseInt(request.data.module);
 		request.data.position = parseInt(request.data.position);
 		if (request.data.track === "customUserProjects") {
@@ -230,6 +230,11 @@
 				}
 			}, true)
 		} else {
+			await fetchMenuData();
+			localStorage.setItem('last-accessed-module', JSON.stringify({
+				path: `#/learn/${request.data.track}/${request.data.module}/${request.data.position}`,
+				name: window.rawModuleData[request.data.track].weeks[request.data.module]
+			}))
 			Database.getModuleData(request.data.track, request.data.module, request.data.position).then(async (res) => {
 				showPage(res)
 			}).catch((err) => {

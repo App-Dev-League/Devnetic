@@ -1,26 +1,51 @@
-<div class="home-row">
-	<h3>Web Development</h3>
-	<a class="home-module" href="#/track/webdev/">
-		<p>WebDev Lessons</p>
-	</a>
-	<a class="home-module" href="#/track/webdev-projects/">
-		<p>WebDev Projects</p>
-	</a>
+<div class="stack-width">
+    <div class="next-action-d">
+        <div class="left">
+            <span class="welcome-back"><%-localStorage.getItem("last-accessed-module") ? "Welcome Back!" : "Welcome to Devnetic!"%></span>
+            <span class="action-text">
+
+
+				<%-localStorage.getItem("last-accessed-module") ? `Continue where you last left off, in the module: \"${JSON.parse(localStorage.getItem("last-accessed-module")).name}\"` : "Learn the ropes of Devnetic by starting in your first ever Devnetic module!"%>
+			</span>
+        </div>
+        <a class="action-btn" href="<%-JSON.parse(localStorage.getItem('last-accessed-module') || '{\"name\": \"HTML\", \"path\": \"#/learn/webdev/0/21/\"}').path%>">Lesson: <%-JSON.parse(localStorage.getItem('last-accessed-module') || '{\"name\": \"HTML\", \"path\": \"#/learn/webdev/0/21/\"}').name%></a>
+    </div>
+    <h2>
+        Sections
+    </h2>
+    <div class="sec-container">
+        <div class="sec-card">
+            <span class="sec-name">WebDev Lessons</span>
+            <span class="sec-description">
+                By the end of the course, you will be very familiar with languages HTML, CSS, JavaScript, Node.js, and have a strong understanding of technologies like Express, JSX, and React.
+            </span>
+            <a class="sec-btn" href="#/track/webdev/">View Modules</a>
+        </div>
+        <div class="sec-card">
+            <span class="sec-name">WebDev Projects</span>
+            <span class="sec-description">
+                Put your HTML, CSS, JS, React, and Express.JS skills to use! Create useful web apps, publish your first package for others to use, and much, much more!
+            </span>
+            <a class="sec-btn" href="#/track/webdev-projects/"">View Modules</a>
+		</div>
+		<div class=" sec-card">
+                <span class="sec-name">AI Lessons</span>
+                <span class="sec-description">
+                    Students will be skilled in topics such as tree AI, regression, SVM, neural networks, computer vision, NLP, and unsupervised learning. Python is primarily used. </span>
+                <a class="sec-btn" href="#/track/ai">View Modules</a>
+        </div>
+        <div class="sec-card">
+            <span class="sec-name">Intro to CS Lessons</span>
+            <span class="sec-description">
+                Students will be able to demonstrate loops, functions, classes, and more in their Python code. They will be able to solve USACO-style problems with these tools. </span>
+            <a class="sec-btn" href="#/track/intro-to-cs/">View Modules</a>
+        </div>
+    </div>
 </div>
-<div class="home-row">
-	<h3>Artificial Intelligence</h3>
-	<a class="home-module" href="#/track/ai/">
-		<p>AI Lessons</p>
-	</a>
-</div>
-<div class="home-row">
-	<h3>Introduction to Computer Science</h3>
-	<a class="home-module" href="#/track/intro-to-cs/">
-		<p>Intro To CS Lessons</p>
-	</a>
-</div>
+
+
 <div id="menu-container" class="codicon codicon-loading" style="position: absolute; top: 10px; right: 10px;">
-	<% include('./views/menu.html').then(res => {document.getElementById("menu-container").classList.remove("codicon-loading"); document.getElementById("menu-container").innerHTML = res;nodeScriptReplace(document.getElementById("menu-container"))}) %>
+    <% include('./views/menu.html').then(res => {document.getElementById("menu-container").classList.remove("codicon-loading"); document.getElementById("menu-container").innerHTML = res;nodeScriptReplace(document.getElementById("menu-container"))}) %>
 </div>
 <a href="#/my-projects" class="my-projects codicon codicon-folder" title="Your projects" style="position: absolute; top: 10px; right: 50px;"></a>
 <a onclick="downloadSaveFile()" title="Download save file" class="my-projects codicon codicon-desktop-download" style="position: absolute; top: 10px; right: 83px;"></a>
