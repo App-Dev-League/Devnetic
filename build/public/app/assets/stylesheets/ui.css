@@ -797,3 +797,94 @@ html {
     opacity: 0 !important;
     pointer-events: none !important;
 }
+.next-action-d {
+    background-color: #10419b;
+    margin-top: 70px;
+    border-radius: 7px;
+    padding: 30px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    align-items: center;
+}
+.next-action-d .welcome-back {
+    font-size: 22px;
+}
+.next-action-d .action-text {
+    display: block;
+    margin-top: 5px;
+    color: var(--chakra-colors-teal-100);
+}
+.next-action-d .left {
+    display: inline-block;
+    width: 50%;
+    min-width: 300px;
+    margin-right: 20px;
+    vertical-align: middle;
+    margin-bottom: 20px;
+}
+.next-action-d .action-btn {
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 6px;
+    padding: 8px 16px;
+    background-color: #1f50aa;
+    border: none;
+    font-weight: 500;
+    line-height: 20px;
+    font-size: 14px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: 0.25s background;
+    font-size: 1.1em;
+    vertical-align: bottom;
+    text-align: right;
+    height: fit-content;
+    padding-top: 13px;
+    padding-bottom: 13px;
+}
+.next-action-d .action-btn:hover {
+    background-color: #2351a5;
+}
+.sec-container {
+    display: grid;
+    justify-items: center;
+    align-items: stretch;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+}
+.sec-card {
+    background-color: var(--chakra-colors-gray-900);
+    padding: 20px;
+    width: calc(100% - 20px);
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+.sec-name {
+    font-size: 1.3em;
+    display: block;
+    margin-bottom: 10px;
+}
+.sec-description {
+    margin-bottom: 15px;
+    display: block;
+    color: var(--chakra-colors-gray-400)
+}
+.sec-btn {
+    border-radius: 6px;
+    padding: 8px 16px;
+    background-color: #1f50aa;
+    border: none;
+    font-weight: 500;
+    line-height: 20px;
+    font-size: 14px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: 0.25s background;
+    height: fit-content;
+    display: block;
+    margin-left: auto;
+    width: fit-content;
+    text-decoration: none;
+}
