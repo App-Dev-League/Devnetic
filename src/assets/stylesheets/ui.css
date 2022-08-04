@@ -391,6 +391,7 @@ html {
     top: 50%;
     transform: translate(-50%, -50%);
     background-color: var(--darkgray);
+    max-width: 90vw;
     width: 512px;
     padding: 25px;
     z-index: 100;

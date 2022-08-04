@@ -50,7 +50,7 @@
             }
 
             .codeblock-wrapper {
-                width: 95vw !important;
+                width: auto !important;
             }
 
             .mc-answer-table {
@@ -3940,7 +3940,7 @@
             logo.onclick = function() {}
         }
 
-        if (window.location.hash.split("/")[1] === "learn" && !window.location.hash.includes("project")) {
+        if (window.location.hash.split("/")[1] === "learn" && !window.location.hash.toLowerCase().includes("project")) {
             document.getElementById("progress-panel-mobile-btn").classList.remove("invisible")
         } else {
             document.getElementById("progress-panel-mobile-btn").classList.add("invisible")

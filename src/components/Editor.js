@@ -1,3 +1,6 @@
+//issues: Dependency manager does not display the current dependencies if you go to a file, modify it, save it, and then open it again.
+
+
 const codeTemplateToCode = require("../utils/codeTemplateToCode.js");
 const codeEditorHelper = require("../utils/codeEditor.js");
 const DB = require("../utils/Database.js");
@@ -131,6 +134,7 @@ class Editor extends tApp.Component {
 
 				}
 			} else {
+				console.log("Updating window's cached file meta data", text)
 				window.currentFileMetaData = codeEditorHelper.getMetaDataFromText(text)
 				codeEditorHelper.updateReadOnly(false);
 				codeEditorHelper.updateContent(codeEditorHelper.getTextWithoutMetaData(text))
@@ -1197,6 +1201,7 @@ async function uploadFile() {
 	input.addEventListener('change', readSingleFile, false);
 }
 async function saveFile(parentThis, newMetaDataEntries = {}) {
+	console.log("Saving file...")
 	var filenamex;
 	var tabindex = codeEditorHelper.getCurrentEditorIndex();
 	updateCodeTabSavedIndicator(tabindex, true, parentThis);
