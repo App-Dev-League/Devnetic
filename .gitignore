@@ -3,5 +3,4 @@ node_modules
 problemWords.txt
 .next
 out/
-android/
 ios/

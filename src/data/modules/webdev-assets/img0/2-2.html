@@ -36,7 +36,9 @@
         color: rgb(150, 79, 216);
         cursor: pointer;
     }
-
+    .light .x1::before {
+        color: black !important
+    }
     .x1::before {
         content: "Opening Tag";
         font-size: 0.6em;
@@ -61,8 +63,18 @@
         transition: 0.5s all;
         bottom: -100px;
     }
+    .light .x2::before {
+        color: black !important
+    }
     .x2:hover::before {
         bottom: -30px !important;
         opacity: 1 !important;
     }
 </style>
+<script>
+    if (localStorage.theme === "light") {
+        document.body.style.backgroundColor = "rgba(0,0,0,0.1)";
+        document.body.style.color = "black";
+        document.body.classList.add("light")
+    }
+</script>

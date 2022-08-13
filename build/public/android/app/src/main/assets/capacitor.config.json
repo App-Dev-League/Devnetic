@@ -1,0 +1,6 @@
+{
+	"appId": "org.appdevleague.devnetic",
+	"appName": "Devnetic",
+	"webDir": "./app",
+	"bundledWebRuntime": false
+}

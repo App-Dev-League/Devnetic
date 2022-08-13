@@ -39,7 +39,9 @@
         position: relative;
         left: -4px;
     }
-
+    .light .x2 {
+        color: rgb(243, 186, 0);
+    }
     .x2 {
         color: rgb(243, 215, 59);
         cursor: pointer;
@@ -68,4 +70,20 @@
     .x3::before {
         content: "Attribute Value"
     }
+    .light .x1::before {
+        color: black !important
+    }
+    .light .x2::before {
+        color: black !important
+    }
+    .light .x3::before {
+        color: black !important
+    }
 </style>
+<script>
+    if (localStorage.theme === "light") {
+        document.body.style.backgroundColor = "rgba(0,0,0,0.1)";
+        document.body.style.color = "black";
+        document.body.classList.add("light")
+    }
+</script>
