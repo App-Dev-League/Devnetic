@@ -1,18 +1,18 @@
 :root {
     --black: #FFFFFF !important;
-    --shadow: 0 0 26px 0 #ADADAD;
-    --shadow-active: 0 0 16px 0 #000000;
-    --gray: #F2F2F2;
-    --darkgray: #DBDBDB;
-    --white: #2C2C2C;
-    --orange: #E58648;
-    --orange-selected: #EAA170;
-    --green: #42BD7B;
-    --green-selected: #64C993;
-    --blue: #3182CE;
-    --blue-selected: #5698D7;
-    --purple: #AB2EFF;
-    --purple-selected: #BE5CFF;
+    --shadow: 0 0 26px 0 #ADADAD !important;
+    --shadow-active: 0 0 16px 0 #000000 !important;
+    --gray: #F2F2F2 !important;
+    --darkgray: #DBDBDB !important;
+    --white: #2C2C2C !important;
+    --orange: #E58648 !important;
+    --orange-selected: #EAA170 !important;
+    --green: #42BD7B !important;
+    --green-selected: #64C993 !important;
+    --blue: #3182CE !important;
+    --blue-selected: #5698D7 !important;
+    --purple: #AB2EFF !important;
+    --purple-selected: #BE5CFF !important;
 }
 
 header>a.logo>img {
@@ -77,7 +77,11 @@ header * {
 }
 
 .snippet-code pre {
-    background-color: white !important;
+    background-color: #f7faff !important;
+}
+
+.image-wrapper iframe {
+    filter: sepia(1) hue-rotate(180deg) brightness(0.99);
 }
 
 .c-monospace {
@@ -216,4 +220,148 @@ code.hljs {
 }
 .rename-file-overlay-textbox {
     color: black !important;
+}
+.next-action-d {
+    background-color: #1d4ed8 !important;
+}
+.next-action-d .welcome-back {
+    color: white !important;
+}
+.next-action-d .action-btn {
+    background-color: #1e40af !important;
+    color: white !important;
+}
+.next-action-d .action-text {
+    color: var(--chakra-colors-blue-900)
+}
+.sec-card {
+    background-color: whitesmoke;
+}
+.sec-btn {
+    background-color: #1d4ed8 !important;
+    color: white !important;
+}
+.track-header-card {
+    background-color: #f7faff !important;
+}
+:root {
+    --chakra-colors-gray-900 : #F7FAFC !important;
+    --chakra-colors-gray-900 : #EDF2F7 !important;
+    --chakra-colors-gray-800 : #E2E8F0 !important;
+    --chakra-colors-gray-700 : #CBD5E0 !important;
+    --chakra-colors-gray-600 : #A0AEC0 !important;
+    --chakra-colors-gray-500: #718096 !important;
+    --chakra-colors-gray-400 : #4A5568 !important;
+    --chakra-colors-gray-300 : #2D3748 !important;
+    --chakra-colors-gray-200 : #1A202C !important;
+    --chakra-colors-gray-100 : #171923 !important;
+    --chakra-colors-red-900 : #FFF5F5 !important;
+    --chakra-colors-red-900 : #FED7D7 !important;
+    --chakra-colors-red-800 : #FEB2B2 !important;
+    --chakra-colors-red-700 : #FC8181 !important;
+    --chakra-colors-red-600 : #F56565 !important;
+    --chakra-colors-red-500: #E53E3E !important;
+    --chakra-colors-red-400 : #C53030 !important;
+    --chakra-colors-red-300 : #9B2C2C !important;
+    --chakra-colors-red-200 : #822727 !important;
+    --chakra-colors-red-100 : #63171B !important;
+    --chakra-colors-orange-900 : #FFFAF0 !important;
+    --chakra-colors-orange-900 : #FEEBC8 !important;
+    --chakra-colors-orange-800 : #FBD38D !important;
+    --chakra-colors-orange-700 : #F6AD55 !important;
+    --chakra-colors-orange-600 : #ED8936 !important;
+    --chakra-colors-orange-500: #DD6B20 !important;
+    --chakra-colors-orange-400 : #C05621 !important;
+    --chakra-colors-orange-300 : #9C4221 !important;
+    --chakra-colors-orange-200 : #7B341E !important;
+    --chakra-colors-orange-100 : #652B19 !important;
+    --chakra-colors-yellow-900 : #FFFFF0 !important;
+    --chakra-colors-yellow-900 : #FEFCBF !important;
+    --chakra-colors-yellow-800 : #FAF089 !important;
+    --chakra-colors-yellow-700 : #F6E05E !important;
+    --chakra-colors-yellow-600 : #ECC94B !important;
+    --chakra-colors-yellow-500: #D69E2E !important;
+    --chakra-colors-yellow-400 : #B7791F !important;
+    --chakra-colors-yellow-300 : #975A16 !important;
+    --chakra-colors-yellow-200 : #744210 !important;
+    --chakra-colors-yellow-100 : #5F370E !important;
+    --chakra-colors-green-900 : #F0FFF4 !important;
+    --chakra-colors-green-900 : #C6F6D5 !important;
+    --chakra-colors-green-800 : #9AE6B4 !important;
+    --chakra-colors-green-700 : #68D391 !important;
+    --chakra-colors-green-600 : #48BB78 !important;
+    --chakra-colors-green-500: #38A169 !important;
+    --chakra-colors-green-400 : #2F855A !important;
+    --chakra-colors-green-300 : #276749 !important;
+    --chakra-colors-green-200 : #22543D !important;
+    --chakra-colors-green-100 : #1C4532 !important;
+    --chakra-colors-teal-900 : #E6FFFA !important;
+    --chakra-colors-teal-900 : #B2F5EA !important;
+    --chakra-colors-teal-800 : #81E6D9 !important;
+    --chakra-colors-teal-700 : #4FD1C5 !important;
+    --chakra-colors-teal-600 : #38B2AC !important;
+    --chakra-colors-teal-500: #319795 !important;
+    --chakra-colors-teal-400 : #2C7A7B !important;
+    --chakra-colors-teal-300 : #285E61 !important;
+    --chakra-colors-teal-200 : #234E52 !important;
+    --chakra-colors-teal-100 : #1D4044 !important;
+    --chakra-colors-blue-900 : #ebf8ff !important;
+    --chakra-colors-blue-900 : #bee3f8 !important;
+    --chakra-colors-blue-800 : #90cdf4 !important;
+    --chakra-colors-blue-700 : #63b3ed !important;
+    --chakra-colors-blue-600 : #4299e1 !important;
+    --chakra-colors-blue-500: #3182ce !important;
+    --chakra-colors-blue-400 : #2b6cb0 !important;
+    --chakra-colors-blue-300 : #2c5282 !important;
+    --chakra-colors-blue-200 : #2a4365 !important;
+    --chakra-colors-blue-100 : #1A365D !important;
+    --chakra-colors-cyan-900 : #EDFDFD !important;
+    --chakra-colors-cyan-900 : #C4F1F9 !important;
+    --chakra-colors-cyan-800 : #9DECF9 !important;
+    --chakra-colors-cyan-700 : #76E4F7 !important;
+    --chakra-colors-cyan-600 : #0BC5EA !important;
+    --chakra-colors-cyan-500: #00B5D8 !important;
+    --chakra-colors-cyan-400 : #00A3C4 !important;
+    --chakra-colors-cyan-300 : #0987A0 !important;
+    --chakra-colors-cyan-200 : #086F83 !important;
+    --chakra-colors-cyan-100 : #065666 !important;
+    --chakra-colors-purple-900 : #FAF5FF !important;
+    --chakra-colors-purple-900 : #E9D8FD !important;
+    --chakra-colors-purple-800 : #D6BCFA !important;
+    --chakra-colors-purple-700 : #B794F4 !important;
+    --chakra-colors-purple-600 : #9F7AEA !important;
+    --chakra-colors-purple-500: #805AD5 !important;
+    --chakra-colors-purple-400 : #6B46C1 !important;
+    --chakra-colors-purple-300 : #553C9A !important;
+    --chakra-colors-purple-200 : #44337A !important;
+    --chakra-colors-purple-100 : #322659 !important;
+    --chakra-colors-pink-900 : #FFF5F7 !important;
+    --chakra-colors-pink-900 : #FED7E2 !important;
+    --chakra-colors-pink-800 : #FBB6CE !important;
+    --chakra-colors-pink-700 : #F687B3 !important;
+    --chakra-colors-pink-600 : #ED64A6 !important;
+    --chakra-colors-pink-500: #D53F8C !important;
+    --chakra-colors-pink-400 : #B83280 !important;
+    --chakra-colors-pink-300 : #97266D !important;
+    --chakra-colors-pink-200 : #702459 !important;
+    --chakra-colors-pink-100 : #521B41 !important;
+}
+.status-indic, .status-indic * {
+    color: white !important
+}
+.ui-modal-buttons button {
+    background-color: #b8b8b8 !important;
+}
+.multiple-choice-wrapper {
+    background-color: var(--chakra-colors-gray-900);
+    box-shadow: none !important;
+}
+.multiple-choice-wrapper .indicator-symbol {
+    color: var(--chakra-colors-orange-600)
+}
+.ui-modal .ui-modal-desc {
+    color: var(--chakra-colors-gray-200);
+}
+.info-text {
+    color: var(--chakra-colors-gray-200);
 }
