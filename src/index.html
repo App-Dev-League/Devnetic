@@ -7,7 +7,7 @@
 <head>
     <script>
         window.isElectron = /electron/i.test(navigator.userAgent)
-        if (window.location.pathname === "/app" || window.location.pathname === "/app/") window.location.redirect("/app/index.html")
+        if (window.location.pathname === "/app" || window.location.pathname === "/app/") window.location.href = ("/app/index.html")
     </script>
     <script src="./assets/libraries/jquery.min.js"></script>
     <title>Devnetic Learning App</title>
@@ -24,7 +24,91 @@
     <link rel="stylesheet" type="text/css" href="./assets/stylesheets/chakra-variables.css">
     <link rel="stylesheet" type="text/css" href="./assets/stylesheets/ui.css">
     <script src="./assets/libraries/interact.js"></script>
+    <script src="./assets/libraries/nprogress.js"></script>
     <style>
+        /* Make clicks pass-through */
+        .nprogress-busy tapp-main {
+            opacity: 0.4
+        }
+        tapp-main {
+            transition: opacity 0.4s;
+            pointer-events: none;
+        }
+        #nprogress {
+            pointer-events: none;
+        }
+
+        #nprogress .bar {
+            background: #72ffb4;
+
+            position: fixed;
+            z-index: 1031;
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 5px;
+        }
+
+        /* Fancy blur effect */
+        #nprogress .peg {
+            display: block;
+            position: absolute;
+            right: 0px;
+            width: 100px;
+            height: 100%;
+            box-shadow: 0 0 10px #72ffb4, 0 0 5px #72ffb4;
+            opacity: 1.0;
+
+            -webkit-transform: rotate(3deg) translate(0px, -4px);
+            -ms-transform: rotate(3deg) translate(0px, -4px);
+            transform: rotate(3deg) translate(0px, -4px);
+        }
+
+        #nprogress .spinner-icon {
+            width: 18px;
+            height: 18px;
+            box-sizing: border-box;
+
+            border: solid 2px transparent;
+            border-top-color: #72ffb4;
+            border-left-color: #72ffb4;
+            border-radius: 50%;
+
+            -webkit-animation: nprogress-spinner 400ms linear infinite;
+            animation: nprogress-spinner 400ms linear infinite;
+        }
+
+        .nprogress-custom-parent {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .nprogress-custom-parent #nprogress .spinner,
+        .nprogress-custom-parent #nprogress .bar {
+            position: absolute;
+        }
+
+        @-webkit-keyframes nprogress-spinner {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @keyframes nprogress-spinner {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
         @import url('./assets/fonts/Lato/lato.css');
 
         html {
@@ -1451,6 +1535,7 @@
         }
     </style>
     <script>
+        window.loadState = "loading"
         changeTheme(localStorage.getItem("theme") || "dark");
 
         function toggleTheme() {
@@ -1528,7 +1613,7 @@
 
         function newFileCallback() {
             downloadFileCount++
-            document.getElementById("loading-filecount").innerHTML = downloadFileCount + "/28";
+            document.getElementById("loading-filecount").innerHTML = downloadFileCount + "/31";
             document.getElementById("loading-loading-bar").style.width = (downloadFileCount / 26) * 100 + "%";
         }
     </script>
@@ -3895,6 +3980,7 @@
     window.addEventListener('hashchange', onWindowHashChange)
 
     function onWindowHashChange() {
+        window.loadState = "loading"
         mobileShow(0)
         window.codeEditorTabIsChanging = true;
         window.consoleLogs = [];
@@ -3945,7 +4031,16 @@
         } else {
             document.getElementById("progress-panel-mobile-btn").classList.add("invisible")
         }
+        setTimeout(function() {
+            if (window.loadState === "loaded") return;
+            NProgress.configure({ trickleSpeed: 500 });
+            NProgress.start();
+        }, 100)
+    }
 
+    function pageHasLoaded() {
+        window.loadState = "loaded"
+        NProgress.done();
     }
 
     function goBack() {
@@ -4096,12 +4191,13 @@
         localStorage.setItem("version", currentVersion)
         if (version > currentVersion) {
             if (window.isElectron) return;
-            console.log("There is a newer version of Devnetic available! Starting background update...");
+            console.log("There is a newer version of Devnetic available! Starting background update... Parts of Devnetic may be slow until the update finishes!");
             await new Promise((resolve, reject) => setTimeout(resolve, 500));
-            var modal = codeEditorHelper.showAlertModal("There is a newer version of Devnetic available! Starting background update...", [], null, "indeterminate")
+            var modal = codeEditorHelper.showAlertModal("There is a newer version of Devnetic available! Starting background update...", [], null)
             var startTime = Date.now();
             try {
-                await refreshBackgroundPages()
+                await refreshBackgroundPages(modal)
+                codeEditorHelper.removeAlertModal(modal.getAttribute("data-editor-alert-modal-index"));
                 localStorage.setItem("version", version);
                 if (startTime + 60000 > Date.now()) {
                     codeEditorHelper.removeAlertModal(modal.getAttribute('data-editor-alert-modal-index'))
@@ -4131,24 +4227,63 @@
 
     }
 
-    function refreshBackgroundPages() {
+    function refreshBackgroundPages(modal) {
         return new Promise(async (resolve, reject) => {
             let cacheFiles = await fetch("/app/UPDATE_FILE_MAP.json");
             cacheFiles = await cacheFiles.json();
             var jobs = [];
             var completed = 0;
-            for (let i = 0; i < cacheFiles.length; i++) {
-                jobs.push(new Promise((res, rej) => {
-                    tApp.get(cacheFiles[i] + "?version=" + Math.random()).then((r) => {
+            // creating jobs to run
+
+
+            function getFile(file) {
+                return new Promise((res, rej) => {
+                    tApp.get(file + "?version=" + Math.random()).then((r) => {
                         if (r.ok === false) rej()
                         completed++;
+                        if (modal) modal.querySelector(".editor-alert-modal-loading-bar").style.width = (completed/jobs.length*100) + "%"
                         res()
                     }).catch(err => {
-                        rej();
+                        rej(err);
                     })
-                }))
+                })
             }
-            Promise.all(jobs).then(() => {
+
+            for (let i = 0; i < cacheFiles.length; i++) {
+                let job = async () => {
+                    await getFile(cacheFiles[i])
+                }
+                jobs.push(job)
+            }
+
+            // splitting jobs up into 5 executor chains
+            var chains = [
+                [],
+                [],
+                [],
+                [],
+                []
+            ]
+            var nextChain = 0;
+            jobs.forEach((job) => {
+                chains[nextChain].push(job)
+                nextChain++;
+                if (nextChain === 5) nextChain = 0
+            })
+
+            var allActions = []
+            chains.forEach(chain => {
+                allActions.push(
+                    new Promise(async (rs, rj) => {
+                        for (let i in chain) {
+                            let action = chain[i]
+                            await action()
+                        }
+                        rs()
+                    })
+                )
+            })
+            Promise.all(allActions).then(() => {
                 console.log(jobs.length, completed)
                 if (jobs.length === completed) resolve(true)
                 else reject(false)

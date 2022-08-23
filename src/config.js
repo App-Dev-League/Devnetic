@@ -496,7 +496,12 @@ function confirmRedoLesson(modals) {
 	})
 }
 let redirectFunction = tApp.redirect;
+let renderFunction = tApp.render;
 tApp.redirect = function (path, title) {
 	redirectFunction(path, title);
 	onWindowHashChange()
+}
+tApp.render = function (param1) {
+	pageHasLoaded();
+	renderFunction(param1)
 }
