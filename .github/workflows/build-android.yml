@@ -46,9 +46,3 @@ jobs:
       with:
         name: android-build
         path: ./build/public/android/app/build/outputs/apk/release
-
-    - run: git config user.name github-actions
-    - run: git config user.email github-actions@github.com
-    - run: git add .
-    - run: git commit -am "Build for Android"
-    - run: git push

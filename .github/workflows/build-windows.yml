@@ -28,9 +28,3 @@ jobs:
       with:
         name: windows-installer
         path: ./build/public/out/make/squirrel.windows/x64/
-
-    - run: git config user.name github-actions
-    - run: git config user.email github-actions@github.com
-    - run: git add .
-    - run: git commit -am "Build for Windows x86"
-    - run: git push

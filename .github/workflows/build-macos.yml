@@ -28,9 +28,3 @@ jobs:
       with:
         name: macos-installer
         path: ./build/public/out/make/zip/darwin/x64/
-
-    - run: git config user.name github-actions
-    - run: git config user.email github-actions@github.com
-    - run: git add .
-    - run: git commit -am "Build for macOS"
-    - run: git push

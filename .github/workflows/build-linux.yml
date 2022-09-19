@@ -32,9 +32,3 @@ jobs:
       with:
         name: linux-installer-deb
         path: ./build/public/out/make/
-
-    - run: git config user.name github-actions
-    - run: git config user.email github-actions@github.com
-    - run: git add .
-    - run: git commit -am "Build for Linux x86"
-    - run: git push
