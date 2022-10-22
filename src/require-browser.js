@@ -66,7 +66,7 @@ const { install, installAll, require, requireBrowser, _getInstalledData, _regist
 				if(options.reinstall || cache[options.name] == null) {
 					fetch(filename).then(async (res) => {
 						callback();
-						if(res.status == 200) {
+						if(res.status == 200 || res.status === 0) {
 							res.text().then(async (data) => {
 								let pathList = filename.split("/");
 								pathList.splice(pathList.length - 1, 1);
@@ -104,7 +104,7 @@ const { install, installAll, require, requireBrowser, _getInstalledData, _regist
 					requestPath = options.node_modules + filename + "/";
 				}
 				fetch(requestPath + "package.json").then(async (res) => {
-					if(res.status == 200) {
+					if(res.status == 200 || res.status === 0) {
 						res.json().then(async (data) => {
 							let file = "index.js";
 							if(data.main != null) {

@@ -193,7 +193,7 @@ class Editor extends tApp.Component {
 						pluginFileRequired: {}
 					}
 				}
-				if (requiredPlugins[checkFileType] && await plugins.checkPluginStatus(requiredPlugins[checkFileType]) === false && requiredPlugins[checkFileType] !== false && !window.alertModals.pluginFileRequired[checkFileType]) {
+				if (requiredPlugins[checkFileType] && await plugins.checkPluginStatus(requiredPlugins[checkFileType]) === false && requiredPlugins[checkFileType] !== false && !window.alertModals.pluginFileRequired[checkFileType] && window.environment !== "development") {
 					window.alertModals.pluginFileRequired[checkFileType] = true;
 					codeEditorHelper.showAlertModal(`This file extention (.${checkFileType}) requires the ${requiredPlugins[checkFileType]} plugin to run`, [
 						{

@@ -30,26 +30,45 @@ class CodeEditor extends ModuleComponent {
 			this.state.pluginPanel = new PluginPanel({}, this);
 		}
 		if (this.state.tabbedView == null) {
-			this.state.tabbedView = new TabbedView({
-				tabs: [{
-					name: "Instructions",
-					component: this.state.instructions,
-					tabDataset: { tabname: "instructions" }
-				}, {
-					name: "Preview",
-					component: this.state.codePreview,
-					tabDataset: { tabname: "preview" }
-				}, {
-					name: "Snippets",
-					component: this.state.snippetsPanel,
-					tabDataset: { tabname: "snippets" }
-				}, {
-					name: "Plugins",
-					component: this.state.pluginPanel,
-					tabDataset: { tabname: "plugins" }
-				}],
-				forceReRender: true
-			}, this);
+            if (window.MacGap) {
+                this.state.tabbedView = new TabbedView({
+                    tabs: [{
+                        name: "Instructions",
+                        component: this.state.instructions,
+                        tabDataset: { tabname: "instructions" }
+                    }, {
+                        name: "Preview",
+                        component: this.state.codePreview,
+                        tabDataset: { tabname: "preview" }
+                    }, {    
+                        name: "Snippets",
+                        component: this.state.snippetsPanel,
+                        tabDataset: { tabname: "snippets" }
+                    }],
+                    forceReRender: true
+                }, this);
+            } else {
+                this.state.tabbedView = new TabbedView({
+                    tabs: [{
+                        name: "Instructions",
+                        component: this.state.instructions,
+                        tabDataset: { tabname: "instructions" }
+                    }, {
+                        name: "Preview",
+                        component: this.state.codePreview,
+                        tabDataset: { tabname: "preview" }
+                    }, {
+                        name: "Snippets",
+                        component: this.state.snippetsPanel,
+                        tabDataset: { tabname: "snippets" }
+                    }, {
+                        name: "Plugins",
+                        component: this.state.pluginPanel,
+                        tabDataset: { tabname: "plugins" }
+                    }],
+                    forceReRender: true
+                }, this);
+            }
 		}
 	}
 	async checknext() {

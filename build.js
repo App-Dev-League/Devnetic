@@ -54,8 +54,9 @@ var fileList = []
 
 main()
 async function main() {
-    console.log("Updating indices...")
+    console.log("Updating indices... (1/2)")
     await createModuleIndex();
+    console.log("Updating indeces... (2/2)")
     await createPluginSizeIndex();
     console.log("Combining sequential text elements...")
     await combineSequentialTextElements();
@@ -181,14 +182,14 @@ async function createPluginSizeIndex() {
     let allFiles = fs.readdirSync("./src/assets/plugins");
     for (let i in allFiles) {
         let element = allFiles[i];
-        if (element === "sizes.json") continue;
+        if (element === "sizes.json" || element.startsWith(".")) continue;
         json[element] = await dirSize(path.join("./src/assets/plugins", element))
     }
     fs.writeFileSync("./src/assets/plugins/sizes.json", JSON.stringify(json, null, 4));
 
     for (let i in allFiles) {
         let element = allFiles[i]
-        if (element === "sizes.json") continue;
+        if (element === "sizes.json" || element.startsWith(".")) continue;
         fs.writeFileSync(`./src/assets/plugins/${element}/files.map`, "temp")
         let files = fs.readdirSync(`./src/assets/plugins/${element}`)
         fs.writeFileSync(`./src/assets/plugins/${element}/files.map`, JSON.stringify(files))

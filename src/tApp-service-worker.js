@@ -89,7 +89,7 @@ self.addEventListener("fetch", function(event) {
 							};
 							request.onsuccess = () => {
 								myFetch(url).then((response) => {
-									if(response.status === 200) {
+									if(response.status === 200 || response.status === 0) {
 										response.clone().arrayBuffer().then((buffer) => {
 											setCachedPage(url, {
 												data: buffer,

@@ -4083,6 +4083,7 @@
     const salt = 'Devnetic made with love by the ADL dev team found here: https://appdevleague.org/about#team. Discord: https://discord.gg/FtegFYAuZ6'
     async function downloadSaveFile() {
         var stop = false;
+        if (window.MacGap) return alert("Sorry, this isn't currently supported :(")
         var firstModal = codeEditorHelper.showAlertModal("Generating save file... This may take some time. Your browser may freeze up", [{
                 text: "Cancel",
                 onclick: function() {
@@ -4338,7 +4339,6 @@
         var element = document.createElement('a');
         element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
         element.setAttribute('download', filename);
-
         element.style.display = 'none';
         document.body.appendChild(element);
 

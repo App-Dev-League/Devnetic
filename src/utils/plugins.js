@@ -49,7 +49,7 @@ module.exports = {
         var currentProgress = 0;
         try {
             map = await fetch(downloadUrl + pluginId + "/files.map?version=" + Math.random());
-            if (map.ok === false) throw "Failed to fetch"
+            if (map.ok === false && !window.MacGap) throw "Failed to fetch"
             map = await map.json()
             for (let i in map) {
                 let file = map[i];
@@ -292,7 +292,7 @@ function fetchWithProgress(path, fileNumber, fileCount, progressCallback) {
     console.log("Starting to download file " + path)
     return new Promise(async (resolve, reject) => {
         let response = await fetch(path);
-        if (response.ok === false) reject("Failed to fetch")
+        if (response.ok === false && !window.MacGap) reject("Failed to fetch")
 
         const reader = response.body.getReader();
 
