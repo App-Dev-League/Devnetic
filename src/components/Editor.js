@@ -968,6 +968,7 @@ class TabbedEditor extends tApp.Component {
 				console.log("This is a user-generated project! Applying custom settings...")
 				window.isUserProject = true;
 				codeEditorHelper.lastAccessedUserProject(window.location.hash.split("/")[3])
+				pageHasLoaded()
 			} else window.isUserProject = false;
 			for (var i = 0; i < data.files.length; i++) {
 				if (self.state[data.storage_id[i]] == null) {
