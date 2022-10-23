@@ -5,7 +5,7 @@ const ModuleComponent=require("./ModuleComponent.js"),renderElement=require("../
 			<div class="stack-width-wrapper">
 				<div class="stack-width">
 					<h1 class="info-title">${tApp.escape(this.data().title||"")}</h1>
-					${(this.data().elements||[]).map(e=>renderElement(e)).join("")}
+					${(this.data().elements||[]).map((e,t)=>renderElement(e,t)).join("")}
 					<button class="info-button" id="continue-button" onclick="{{_this}}.parent.next();">Next Module</button>
 				</div>
 			</div>
