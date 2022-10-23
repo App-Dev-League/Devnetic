@@ -48,6 +48,50 @@ const Database = {
 			resolve(true)
 		});
 	},
+	getAnsweredInlineMC: function() {
+		return new Promise(async (resolve, reject) => {
+			let actions = {};
+			if(localStorage.getItem("answeredmc") == null) {
+				await Database.setAnsweredInlineMC(actions);
+			}
+			try {
+				actions = JSON.parse(localStorage.getItem("answeredmc"));
+				resolve(actions);
+			} catch(err) {
+				await Database.setAnsweredInlineMC({});
+				resolve({});
+			}
+		});
+	},
+	setAnsweredInlineMC: function(answeredInlineMC) {
+		return new Promise(async (resolve, reject) => {
+			localStorage.setItem("answeredmc", JSON.stringify(answeredInlineMC));
+			resolve(true)
+		});
+	},
+	updateMCPoints: function(track, moduleNum, position, elementNum, xp, coins) {
+		return new Promise(async (resolve, reject) => {
+			let actions = await Database.getAnsweredInlineMC();
+			if(actions[track] == null) {
+				actions[track] = {};
+			}
+			if(actions[track][moduleNum] == null) {
+				actions[track][moduleNum] = {};
+			}
+			if(actions[track][moduleNum][position] == null) {
+				actions[track][moduleNum][position] = {};
+			}
+			if(actions[track][moduleNum][position][elementNum] == null) {
+				actions[track][moduleNum][position][elementNum] = true;
+				await Database.setAnsweredInlineMC(actions);
+				let score = await Database.getScore();
+				score.points += xp || 0;
+				score.coins += coins || 0;
+				await Database.setScore(score);
+			}
+			resolve();
+		});
+	},
 	getScore: function() {
 		return new Promise(async (resolve, reject) => {
 			let score = {

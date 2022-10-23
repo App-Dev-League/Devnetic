@@ -31,8 +31,8 @@ class Instructions extends tApp.Component {
 		</div>`;
 		return `<div>
 			<h1 class="info-title">${tApp.escape(this.state.title || "")}</h1>
-			${(this.state.elements || []).map(element => {
-				return renderElement(element)
+			${(this.state.elements || []).map((element, i) => {
+				return renderElement(element, i)
 			}).join("")}
 			<button class="info-button" id="continue-button" onclick="{{_this}}.parent.checknext();">${this.state.nextText}</button>
 			<div class="hints">
@@ -40,8 +40,8 @@ class Instructions extends tApp.Component {
 				${(this.state.hints || [{elements: [{type: "text", content: ""}]}]).map(element => {
 					window.maxHints = this.state.hints.length - 1
 					return `<div class="hint none">
-						${element.elements.map(part => {
-							return renderElement(element)
+						${element.elements.map((part, i) => {
+							return renderElement(element, i)
 						}).join("")}
 					</div>`
 				}).join("")}

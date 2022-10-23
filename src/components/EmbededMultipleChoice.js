@@ -2,7 +2,8 @@ const ModuleComponent = require("./ModuleComponent.js");
 
 const ExplanationModal = require("./ExplanationModal.js");
 const codeTemplateToCode = require("../utils/codeTemplateToCode.js");
-const modals = require("../utils/modal.js")
+const modals = require("../utils/modal.js");
+const Database = require("../utils/Database.js");
 
 class EmbededMultipleChoice extends ModuleComponent {
 	constructor(state, parent) {
@@ -13,7 +14,8 @@ class EmbededMultipleChoice extends ModuleComponent {
 		var self = this;
 		if (this.parent.state.options[optionIndex].status === "incorrect_chosen") return;
 		if (optionIndex === this.state.correct) {
-			this.parent.state.options[optionIndex].status = "correct_chosen"
+			this.parent.state.options[optionIndex].status = "correct_chosen";
+			Database.updateMCPoints(window.location.hash.split("/")[2], window.location.hash.split("/")[3], window.location.hash.split("/")[4], this.state.elementNum, this.state.points, this.state.coins)
 			modals.show("Correct! 🎉",
 				`${this.state.descriptions[optionIndex]}<br><br>+${this.state.points} XP<br>+${this.state.coins} coins`, [
 				{

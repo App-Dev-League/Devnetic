@@ -5,7 +5,7 @@ const codeTemplateToCode = require("./codeTemplateToCode.js");
 const MultipleChoice = require("../components/EmbededMultipleChoice.js")
 
 
-module.exports = function renderElement(element) {
+module.exports = function renderElement(element, elementNum) {
 
     if (element.type == "code") {
         return `<div class="codeblock-wrapper">
@@ -57,7 +57,7 @@ module.exports = function renderElement(element) {
             ]
         }
         if (element.elements[0].content && element.elements[0].content.toLowerCase().replaceAll(" ", "").includes("trueorfalse")) text = "True or False"
-        const multipleChoiceElement = new MultipleChoice({ answers: element.answers, correct: element.correct, descriptions: element.descriptions, points: element.points, coins: element.coins }, null)
+        const multipleChoiceElement = new MultipleChoice({ answers: element.answers, correct: element.correct, descriptions: element.descriptions, points: element.points, coins: element.coins, elementNum: elementNum}, null)
         return `
         <div class="multiple-choice-wrapper" onclick="document.querySelector('.stack-width').classList.add('blur-all-non-mc-questions')">
         <div class="indicator-symbol">${text}</div>

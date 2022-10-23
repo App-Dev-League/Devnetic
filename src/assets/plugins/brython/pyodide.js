@@ -289,7 +289,7 @@
 			return __awaiter(this, void 0, void 0, (function*() {
 				if (path.includes("://")) {
 					let response = yield nodeFetch(path);
-					if (!response.ok) throw new Error(`Failed to load '${path}': request failed.`);
+					if (!response.ok && !window.MacGap) throw new Error(`Failed to load '${path}': request failed.`);
 					return yield response.arrayBuffer()
 				} {
 					const data = yield nodeFsPromisesMod.readFile(`${indexURL}${path}`);
@@ -303,7 +303,7 @@
                 let href = url.href
                 console.log(href)
 				let response = yield fetch(href);
-				if (!response.ok) {
+				if (!response.ok && !window.MacGap) {
                     let sliceIndex = href.indexOf("/brython") + "brython".length + 1;
                     href = href.slice(sliceIndex)
                     href = "https://cdn.jsdelivr.net/pyodide/v0.20.0/full"+href
