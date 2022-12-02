@@ -30,7 +30,9 @@ function codeTemplateToCode(template) {
 	template = template.replaceAll("[[a]]", "<a target='_blank' class='generated-link url' data-linked='no''>")
 	template = template.replaceAll("[[/a]]", "</a>")
 	template = template.replaceAll(/\[\[link=(.*?)\]\]/g, e => {
-		return `<a target='_blank' class='generated-link url' data-linked='yes' href='${e.replaceAll('[[link=', '').replaceAll(']]', '')}'>`;
+		var shouldOpenNewTab = true;
+		if (e.replaceAll('[[link=', '').replaceAll(']]', '').startsWith("#")) shouldOpenNewTab = false;
+		return `<a ${shouldOpenNewTab ? "target='_blank'" : ""} class='generated-link url' data-linked='yes' href='${e.replaceAll('[[link=', '').replaceAll(']]', '')}'>`;
 	})
 	template = template.replaceAll("[[/link]]", "</a>")
 	return template;
