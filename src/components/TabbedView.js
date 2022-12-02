@@ -62,6 +62,8 @@ class TabbedView extends tApp.Component {
 					this.state.currentTabComponent
 				}
 			</div>
+			<span class="codicon codicon-new-file" style="right: 35px; position: absolute; top: 20px; cursor: pointer; z-index: 2" onClick="addFile()"></span>
+		<span class="codicon codicon-cloud-upload" style="right: 15px; position: absolute; top: 20px; cursor: pointer; z-index: 2" onClick="uploadFile()"></span>
 		</div>`;
 	}
 }

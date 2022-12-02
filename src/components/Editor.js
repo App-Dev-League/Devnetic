@@ -1032,27 +1032,18 @@ class TabbedEditor extends tApp.Component {
 				if (!document.body.classList.contains("data-loadingfile")) return;
 				document.body.classList.remove("data-loadingfile")
 				document.body.classList.remove("tester-testing")
-				if (!await plugins.checkPluginStatus("betterEditor")) {
-					document.querySelector(".codicon.codicon-new-file").style.left = "auto"
-					document.querySelector(".codicon.codicon-new-file").style.right = "35px"
-					document.querySelector(".codicon.codicon-cloud-upload").style.left = "auto"
-					document.querySelector(".codicon.codicon-cloud-upload").style.right = "15px"
-				}
-				document.querySelector(".codicon.codicon-new-file").onclick = addFile;
-				document.querySelector(".codicon.codicon-cloud-upload").onclick = uploadFile;
+
+				window.addFile = addFile;
+				window.uploadFile = uploadFile;
 			}
 		}
 
 	}
 	render() {
-		if (window.pluginList && window.pluginList.betterEditor === "loaded") var styles = ["left: calc(var(--editorLeftTabWidth) + 45vw);", "left: calc(var(--editorLeftTabWidth) + 45vw + 25px);"]
-		else var styles = ["", ""]
 		delete window.addedEditorEventListeners;
 		this.getData()
 		return `<div style="position: absolute; left: 0; width: 100%; transform: translateX(-50%);">
 		${this.state.tabbedView}
-		<span class="codicon codicon-new-file" style="${styles[0]} position: absolute; top: 20px; cursor: pointer; z-index: 2"></span>
-		<span class="codicon codicon-cloud-upload" style="${styles[1]} position: absolute; top: 20px; cursor: pointer; z-index: 2"></span>
 		</div>`;
 	}
 }
