@@ -3,7 +3,7 @@
     "pages": [
         {
             "type": "information",
-            "title": "Week 4 - Decision Trees, Random Forest, XGBoost",
+            "title": "Week 4 - Decision Trees",
             "elements": [
                 {
                     "type": "text",
@@ -22,7 +22,7 @@
         },
         {
             "type": "information",
-            "title": "Week 4 - Decision Trees, Random Forest, XGBoost",
+            "title": "Week 4 - Random Forest",
             "elements": [
                 {
                     "type": "text",
@@ -32,7 +32,7 @@
         },
         {
             "type": "information",
-            "title": "Week 4 - Decision Trees, Random Forest, XGBoost",
+            "title": "Week 4 - XGBoost",
             "elements": [
                 {
                     "type": "text",
@@ -42,7 +42,7 @@
         },
         {
             "type": "information",
-            "title": "Week 4 - Decision Trees, Random Forest, XGBoost",
+            "title": "Week 4 - Summary",
             "elements": [
                 {
                     "type": "text",

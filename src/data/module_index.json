@@ -755,117 +755,117 @@
         "totalPages": 100,
         "module_meta_data": [
             {
-                "name": "Week 1 - Python Review",
+                "name": "Week 1 - Python Review - Comparisons",
                 "moduleLength": 12,
                 "pageBreakdown": [
                     {
-                        "title": "Week 1 - Python Review",
+                        "title": "Week 1 - Python Review - Comparisons",
                         "type": "information"
                     },
                     {
-                        "title": "Week 1 - Python Review",
+                        "title": "Week 1 - Python Review - Objects",
                         "type": "information"
                     },
                     {
-                        "title": "Week 1 - Python Review",
+                        "title": "Week 1 - Python Review - Number Operations",
                         "type": "information"
                     },
                     {
-                        "title": "Week 1 - Python Review",
+                        "title": "Week 1 - Python Review - Boolean Operations",
                         "type": "information"
                     },
                     {
-                        "title": "Week 1 - Python Review",
+                        "title": "Week 1 - Python Review - Sequence Operators",
                         "type": "information"
                     },
                     {
-                        "title": "Week 1 - Python Review",
+                        "title": "Week 1 - Python Review - Sequence Operators 2",
                         "type": "information"
                     },
                     {
-                        "title": "Week 1 - Python Review",
+                        "title": "Week 1 - Python Review - Flow Control",
                         "type": "information"
                     },
                     {
-                        "title": "Week 1 - Python Review",
+                        "title": "Week 1 - Python Review - Conditionals",
                         "type": "information"
                     },
                     {
-                        "title": "Week 1 - Python Review",
+                        "title": "Week 1 - Python Review - Loops",
                         "type": "information"
                     },
                     {
-                        "title": "Week 1 - Python Review",
+                        "title": "Week 1 - Python Review - Functions",
                         "type": "information"
                     },
                     {
-                        "title": "Week 1 - Python Review",
+                        "title": "Week 1 - Python Review - OOP",
                         "type": "information"
                     },
                     {
-                        "title": "Week 1 - Python Review",
+                        "title": "Week 1 - Python Review - Classes",
                         "type": "information"
                     }
                 ]
             },
             {
-                "name": "Week 2 - Introduction to Artificial Intelligence",
+                "name": "Week 2 - What is AI?",
                 "moduleLength": 3,
                 "pageBreakdown": [
                     {
-                        "title": "Week 2 - Introduction to Artificial Intelligence",
+                        "title": "Week 2 - What is AI?",
                         "type": "information"
                     },
                     {
-                        "title": "Week 2 - Introduction to Artificial Intelligence",
+                        "title": "Week 2 - Training AI",
                         "type": "information"
                     },
                     {
-                        "title": "Week 2 - Introduction to Artificial Intelligence",
+                        "title": "Week 2 - Types of ML",
                         "type": "information"
                     }
                 ]
             },
             {
-                "name": "Week 3 - Regression and SVMs",
+                "name": "Week 3 - Regression and SVMs - Context",
                 "moduleLength": 4,
                 "pageBreakdown": [
                     {
-                        "title": "Week 3 - Regression and SVMs",
+                        "title": "Week 3 - Regression and SVMs - Context",
                         "type": "information"
                     },
                     {
-                        "title": "Week 3 - Regression and SVMs",
+                        "title": "Week 3 - Regression and SVMs - Types",
                         "type": "information"
                     },
                     {
-                        "title": "Week 3 - Regression and SVMs",
+                        "title": "Week 3 - Regression and SVMs - Methods",
                         "type": "information"
                     },
                     {
-                        "title": "Week 3 - Regression and SVMs",
+                        "title": "Week 3 - Regression and SVMs - Machines",
                         "type": "information"
                     }
                 ]
             },
             {
-                "name": "Week 4 - Decision Trees, Random Forest, XGBoost",
+                "name": "Week 4 - Decision Trees",
                 "moduleLength": 4,
                 "pageBreakdown": [
                     {
-                        "title": "Week 4 - Decision Trees, Random Forest, XGBoost",
+                        "title": "Week 4 - Decision Trees",
                         "type": "information"
                     },
                     {
-                        "title": "Week 4 - Decision Trees, Random Forest, XGBoost",
+                        "title": "Week 4 - Random Forest",
                         "type": "information"
                     },
                     {
-                        "title": "Week 4 - Decision Trees, Random Forest, XGBoost",
+                        "title": "Week 4 - XGBoost",
                         "type": "information"
                     },
                     {
-                        "title": "Week 4 - Decision Trees, Random Forest, XGBoost",
+                        "title": "Week 4 - Summary",
                         "type": "information"
                     }
                 ]
@@ -1011,35 +1011,35 @@
                 ]
             },
             {
-                "name": "Week 7 - Natural Language Processing",
+                "name": "Week 7 - What is NLP?",
                 "moduleLength": 28,
                 "pageBreakdown": [
                     {
-                        "title": "Week 7 - Natural Language Processing",
+                        "title": "Week 7 - What is NLP?",
                         "type": "information"
                     },
                     {
-                        "title": "Week 7 - Natural Language Processing",
+                        "title": "Week 7 - Converting Words to Vectors",
                         "type": "information"
                     },
                     {
-                        "title": "Week 7 - Natural Language Processing",
+                        "title": "Week 7 - Contextual Word Embeddings",
                         "type": "information"
                     },
                     {
-                        "title": "Week 7 - Natural Language Processing",
+                        "title": "Week 7 - Sentiment Analysis",
                         "type": "information"
                     },
                     {
-                        "title": "Week 7 - Natural Language Processing",
+                        "title": "Week 7 - Language Modeling",
                         "type": "information"
                     },
                     {
-                        "title": "Week 7 - Natural Language Processing",
+                        "title": "Week 7 - Neural Networks",
                         "type": "information"
                     },
                     {
-                        "title": "Week 7 - Natural Language Processing",
+                        "title": "Week 7 - Transformers",
                         "type": "information"
                     },
                     {

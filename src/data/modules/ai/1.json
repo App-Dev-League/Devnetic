@@ -3,7 +3,7 @@
     "pages": [
         {
             "type": "information",
-            "title": "Week 2 - Introduction to Artificial Intelligence",
+            "title": "Week 2 - What is AI?",
             "elements": [
                 {
                     "type": "text",
@@ -13,7 +13,7 @@
         },
         {
             "type": "information",
-            "title": "Week 2 - Introduction to Artificial Intelligence",
+            "title": "Week 2 - Training AI",
             "elements": [
                 {
                     "type": "text",
@@ -23,7 +23,7 @@
         },
         {
             "type": "information",
-            "title": "Week 2 - Introduction to Artificial Intelligence",
+            "title": "Week 2 - Types of ML",
             "elements": [
                 {
                     "type": "text",

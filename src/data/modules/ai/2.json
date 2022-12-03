@@ -3,7 +3,7 @@
     "pages": [
         {
             "type": "information",
-            "title": "Week 3 - Regression and SVMs",
+            "title": "Week 3 - Regression and SVMs - Context",
             "elements": [
                 {
                     "type": "text",
@@ -18,7 +18,7 @@
         },
         {
             "type": "information",
-            "title": "Week 3 - Regression and SVMs",
+            "title": "Week 3 - Regression and SVMs - Types",
             "elements": [
                 {
                     "type": "text",
@@ -38,7 +38,7 @@
         },
         {
             "type": "information",
-            "title": "Week 3 - Regression and SVMs",
+            "title": "Week 3 - Regression and SVMs - Methods",
             "elements": [
                 {
                     "type": "text",
@@ -53,7 +53,7 @@
         },
         {
             "type": "information",
-            "title": "Week 3 - Regression and SVMs",
+            "title": "Week 3 - Regression and SVMs - Machines",
             "elements": [
                 {
                     "type": "text",

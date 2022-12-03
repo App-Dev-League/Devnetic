@@ -3,7 +3,7 @@
     "pages": [
         {
             "type": "information",
-            "title": "Week 1 - Python Review",
+            "title": "Week 1 - Python Review - Comparisons",
             "elements": [
                 {
                     "type": "text",
@@ -61,7 +61,7 @@
         },
         {
             "type": "information",
-            "title": "Week 1 - Python Review",
+            "title": "Week 1 - Python Review - Objects",
             "elements": [
                 {
                     "type": "text",
@@ -148,7 +148,7 @@
         },
         {
             "type": "information",
-            "title": "Week 1 - Python Review",
+            "title": "Week 1 - Python Review - Number Operations",
             "elements": [
                 {
                     "type": "text",
@@ -278,7 +278,7 @@
         },
         {
             "type": "information",
-            "title": "Week 1 - Python Review",
+            "title": "Week 1 - Python Review - Boolean Operations",
             "elements": [
                 {
                     "type": "text",
@@ -339,7 +339,7 @@
         },
         {
             "type": "information",
-            "title": "Week 1 - Python Review",
+            "title": "Week 1 - Python Review - Sequence Operators",
             "elements": [
                 {
                     "type": "text",
@@ -419,7 +419,7 @@
         },
         {
             "type": "information",
-            "title": "Week 1 - Python Review",
+            "title": "Week 1 - Python Review - Sequence Operators 2",
             "elements": [
                 {
                     "type": "text",
@@ -456,7 +456,7 @@
         },
         {
             "type": "information",
-            "title": "Week 1 - Python Review",
+            "title": "Week 1 - Python Review - Flow Control",
             "elements": [
                 {
                     "type": "text",
@@ -471,7 +471,7 @@
         },
         {
             "type": "information",
-            "title": "Week 1 - Python Review",
+            "title": "Week 1 - Python Review - Conditionals",
             "elements": [
                 {
                     "type": "text",
@@ -485,7 +485,7 @@
         },
         {
             "type": "information",
-            "title": "Week 1 - Python Review",
+            "title": "Week 1 - Python Review - Loops",
             "elements": [
                 {
                     "type": "text",
@@ -499,7 +499,7 @@
         },
         {
             "type": "information",
-            "title": "Week 1 - Python Review",
+            "title": "Week 1 - Python Review - Functions",
             "elements": [
                 {
                     "type": "text",
@@ -513,7 +513,7 @@
         },
         {
             "type": "information",
-            "title": "Week 1 - Python Review",
+            "title": "Week 1 - Python Review - OOP",
             "elements": [
                 {
                     "type": "text",
@@ -528,7 +528,7 @@
         },
         {
             "type": "information",
-            "title": "Week 1 - Python Review",
+            "title": "Week 1 - Python Review - Classes",
             "elements": [
                 {
                     "type": "text",

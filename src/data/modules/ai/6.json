@@ -3,7 +3,7 @@
     "pages": [
         {
             "type": "information",
-            "title": "Week 7 - Natural Language Processing",
+            "title": "Week 7 - What is NLP?",
             "elements": [
                 {
                     "type": "text",
@@ -23,7 +23,7 @@
         },
         {
             "type": "information",
-            "title": "Week 7 - Natural Language Processing",
+            "title": "Week 7 - Converting Words to Vectors",
             "elements": [
                 {
                     "type": "text",
@@ -43,7 +43,7 @@
         },
         {
             "type": "information",
-            "title": "Week 7 - Natural Language Processing",
+            "title": "Week 7 - Contextual Word Embeddings",
             "elements": [
                 {
                     "type": "text",
@@ -63,7 +63,7 @@
         },
         {
             "type": "information",
-            "title": "Week 7 - Natural Language Processing",
+            "title": "Week 7 - Sentiment Analysis",
             "elements": [
                 {
                     "type": "text",
@@ -83,7 +83,7 @@
         },
         {
             "type": "information",
-            "title": "Week 7 - Natural Language Processing",
+            "title": "Week 7 - Language Modeling",
             "elements": [
                 {
                     "type": "text",
@@ -108,7 +108,7 @@
         },
         {
             "type": "information",
-            "title": "Week 7 - Natural Language Processing",
+            "title": "Week 7 - Neural Networks",
             "elements": [
                 {
                     "type": "image",
@@ -133,7 +133,7 @@
         },
         {
             "type": "information",
-            "title": "Week 7 - Natural Language Processing",
+            "title": "Week 7 - Transformers",
             "elements": [
                 {
                     "type": "image",
