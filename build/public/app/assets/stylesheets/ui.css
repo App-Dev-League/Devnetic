@@ -585,7 +585,7 @@ html {
     background-color: white;
     border-radius: 10px;
     overflow: hidden;
-    border: 2px solid rgb(230, 230, 230);
+    border: 2px solid rgb(98 98 98)
 }
 
 .window-header {
