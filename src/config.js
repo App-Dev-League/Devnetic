@@ -465,7 +465,7 @@
 	window.newLinkWindow = function(link) {
 		event.preventDefault();
 		windows.newWindow("Devnetic Tab", `
-		<iframe src="${link}" style="width: 100%; height: 100%; border: none; margin-top: -2px" frameBorder="0" />`, window.innerWidth/2, window.innerHeight)
+		<iframe src="${link.replace("#/", "?interframe=true#/")}" style="width: 100%; height: 100%; border: none; margin-top: -2px" frameBorder="0" />`, window.innerWidth/2, window.innerHeight)
 	}
 })();
 function recurseEjs(html, parameters = {}) {
