@@ -13,7 +13,7 @@ module.exports = {
                 <span onclick="require('./utils/window.js').killWindow('${element.id}')" class="codicon codicon-close"></span>
             </div>
         </div>
-        <div class="window-content">${innerHTML}</div>
+        <div class="window-content" style="height: 100%">${innerHTML}</div>
         `
         element.classList.add("window-window")
         //element.style.zIndex = windowManager.length - 1 + 300; // current index within windowManager array + 300
@@ -29,6 +29,10 @@ module.exports = {
                         var target = event.target
                         if (target.classList.contains('window-maximized')) return;
 
+                        if (target.querySelector("iframe")) {
+                            // then the target is an iframe and we need to do some extra work
+                            target.querySelector("iframe").style.pointerEvents = "none"
+                        }
                         var x = (parseFloat(target.getAttribute('data-x')) || 0)
                         var y = (parseFloat(target.getAttribute('data-y')) || 0)
 
@@ -44,7 +48,12 @@ module.exports = {
 
                         target.setAttribute('data-x', x)
                         target.setAttribute('data-y', y)
-                    }
+                    },
+
+                }
+            }).on("resizeend", function(event) {
+                if (event.target.querySelector("iframe")) {
+                    event.target.querySelector("iframe").style.pointerEvents = "all"
                 }
             })
         interact("#" + element.id + " .window-header").draggable({

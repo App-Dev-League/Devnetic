@@ -56,6 +56,7 @@
 	const Database = require("./utils/Database.js");
 	const plugins = require("./utils/plugins.js");
 	const modals = require("./utils/modal.js");
+	const windows = require("./utils/window.js")
 
 	require("./assets/libraries/ejs.js");
 
@@ -461,6 +462,11 @@
 			}
 		}
 	});
+	window.newLinkWindow = function(link) {
+		event.preventDefault();
+		windows.newWindow("Devnetic Tab", `
+		<iframe src="${link}" style="width: 100%; height: 100%; border: none; margin-top: -2px" frameBorder="0" />`, window.innerWidth/2, window.innerHeight)
+	}
 })();
 function recurseEjs(html, parameters = {}) {
 	return new Promise(async (resolve, reject) => {
@@ -505,3 +511,4 @@ tApp.render = function (param1) {
 	pageHasLoaded();
 	renderFunction(param1)
 }
+

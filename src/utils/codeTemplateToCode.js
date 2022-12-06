@@ -31,8 +31,14 @@ function codeTemplateToCode(template) {
 	template = template.replaceAll("[[/a]]", "</a>")
 	template = template.replaceAll(/\[\[link=(.*?)\]\]/g, e => {
 		var shouldOpenNewTab = true;
+		var href = e.replaceAll('[[link=', '').replaceAll(']]', '')
 		if (e.replaceAll('[[link=', '').replaceAll(']]', '').startsWith("#")) shouldOpenNewTab = false;
-		return `<a ${shouldOpenNewTab ? "target='_blank'" : ""} class='generated-link url' data-linked='yes' href='${e.replaceAll('[[link=', '').replaceAll(']]', '')}'>`;
+		return `<a ${shouldOpenNewTab ? "target='_blank'" : ""} class='generated-link url' data-linked='yes' href='${href}'>${shouldOpenNewTab ? "" :
+		`<div class="link-tooltip">
+			<div class="codicon codicon-multiple-windows" onclick="window.newLinkWindow('${href}')"></div>
+			<div class="codicon codicon-link" onclick="window.location.href='${href}'"></div>
+			<div class="codicon codicon-link-external" onclick="window.open('${href}'); event.preventDefault()"></div>
+		</div>`}`;
 	})
 	template = template.replaceAll("[[/link]]", "</a>")
 	return template;
