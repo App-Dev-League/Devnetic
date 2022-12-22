@@ -6,22 +6,35 @@
             "title": "Week 5 - Intro to Neural Networks",
             "elements": [
                 {
-                    "type": "text",
-                    "content": "[[h3]]What is a Neural Network?[[/]]\n➔ Inspired by the human brain, a neural network is a machine learning algorithm which can be used for nearly all machine learning tasks.\n➔ A Neural Network consists of neurons, weights, biases, and layers."
+                    "type": "split-content",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h3]]What is a Neural Network?[[/]]\n➔ Inspired by the human brain, a neural network is a machine learning algorithm which can be used for nearly all machine learning tasks.\n➔ A Neural Network consists of neurons, weights, biases, and layers."
+                        },
+                        {
+                            "type": "image",
+                            "src": "./data/modules/ai-assets/img4/0-0.png",
+                            "width": "100%"
+                        }
+                    ]
                 },
                 {
-                    "type": "image",
-                    "src": "./data/modules/ai-assets/img4/0-0.png",
-                    "width": "40%"
+                    "type": "divider"
                 },
                 {
-                    "type": "text",
-                    "content": "[[h3]]Anatomy of a Neural Network[[/]]"
-                },
-                {
-                    "type": "image",
-                    "src": "./data/modules/ai-assets/img4/0-1.png",
-                    "width": "40%"
+                    "type": "split-content",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h3]]Anatomy of a Neural Network:[[/]]"
+                        },
+                        {
+                            "type": "image",
+                            "src": "./data/modules/ai-assets/img4/0-1.png",
+                            "width": "100%"
+                        }
+                    ]
                 }
             ]
         },
@@ -30,24 +43,37 @@
             "title": "Week 5 - Feedforward Process",
             "elements": [
                 {
-                    "type": "text",
-                    "content": "[[h3]]Getting to the outputs[[/]]"
+                    "type": "split-content",
+                    "elements": [
+                        {
+                            "type": "vertical-content",
+                            "elements": [
+                                {
+                                    "type": "text",
+                                    "content": "[[h3]]Getting to the outputs[[/]]"
+                                },
+                                {
+                                    "type": "text",
+                                    "content": "➔ We start by taking the inputs and multiplying them by all connected weights (arrows in picture).\n➔ Then we take these multiplied inputs and put them into respective neurons (circles).\n➔ The neuron adds up every input it gets, and runs an activation function (more later).\n➔ Do this process for every layer (there can be many middle/\"hidden\" layers).\n"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "image",
+                            "src": "./data/modules/ai-assets/img4/1-0.png",
+                            "width": "100%",
+                            "margin-top": "20px"
+                        }
+                    ]
                 },
                 {
-                    "type": "image",
-                    "src": "./data/modules/ai-assets/img4/1-0.png",
-                    "width": "25%",
-                    "float": "right"
-                },
-                {
                     "type": "text",
-                    "content": "➔ We start by taking the inputs and multiplying them by all connected weights (arrows in picture).\n➔ Then we take these multiplied inputs and put them into respective neurons (circles).\n➔ The neuron adds up every input it gets, and runs an activation function (more later).\n➔ Do this process for every layer (there can be many middle/\"hidden\" layers).\n[[h3]]Example[[/]]\n➔ Let’s take an oversimplified example with two inputs, one hidden layer with two nodes and one output. There is no activation function here. The diagram below shows all the feedforward processing."
+                    "content": "[[h3]]Example[[/]]\n➔ Let’s take an oversimplified example with two inputs, one hidden layer with two nodes and one output. There is no activation function here. The diagram below shows all the feedforward processing."
                 },
                 {
                     "type": "image",
                     "src": "./data/modules/ai-assets/img4/1-1.png",
-                    "width": "60%",
-                    "float": "left"
+                    "width": "100%"
                 }
             ]
         },
@@ -57,33 +83,42 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]Biases[[/]]"
+                    "content": "[[h3]]Biases[[/]]\n➔ Consider a scenario where all the inputs are zero. No matter what the weights are, the output will always be zero.\n➔ In many cases, we don’t want a zero when all inputs are zero. To fix this, we add another fixed input known as the bias.\n    This happens at every single layer."
                 },
                 {
-                    "type": "image",
-                    "src": "./data/modules/ai-assets/img4/2-0.png",
-                    "width": "15%",
-                    "float": "right"
+                    "type": "split-content",
+                    "elements": [
+                        {
+                            "type": "image",
+                            "src": "./data/modules/ai-assets/img4/2-1.png",
+                            "width": "80%"
+                        },
+                        {
+                            "type": "image",
+                            "src": "./data/modules/ai-assets/img4/2-0.png",
+                            "width": "100%"
+                        }
+                    ]
                 },
                 {
-                    "type": "text",
-                    "content": "➔ Consider a scenario where all the inputs are zero. No matter what the weights are, the output will always be zero.\n➔ In many cases, we don’t want a zero when all inputs are zero. To fix this, we add another fixed input known as the bias.\n    This happens at every single layer."
+                    "type": "divider"
                 },
                 {
-                    "type": "image",
-                    "src": "./data/modules/ai-assets/img4/2-1.png",
-                    "width": "25%",
-                    "float": "right"
+                    "type": "divider"
                 },
                 {
-                    "type": "text",
-                    "content": "[[h3]]Activation Function[[/]]\n➔ Activation functions help Neural Nets identify patterns in data.\n➔ Sigmoid\n    ◆ Non-linear function that is used for binary classification.\n    ◆ Produces a value between 0-1.\n    ◆ Used on the output layer."
-                },
-                {
-                    "type": "image",
-                    "src": "./data/modules/ai-assets/img4/2-2.png",
-                    "width": "25%",
-                    "float": "right"
+                    "type": "split-content",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h3]]Activation Functions[[/]]\n➔ Activation functions help Neural Nets identify patterns in data.\n➔ Sigmoid\n    ◆ Non-linear function that is used for binary classification.\n    ◆ Produces a value between 0-1.\n    ◆ Used on the output layer."
+                        },
+                        {
+                            "type": "image",
+                            "src": "./data/modules/ai-assets/img4/2-2.png",
+                            "width": "80%"
+                        }
+                    ]
                 },
                 {
                     "type": "text",
@@ -97,29 +132,28 @@
             "elements": [
                 {
                     "type": "text",
-                    "content": "[[h3]]Using Neural Networks for ML[[/]]"
+                    "content": "[[h3]]Using Neural Networks for ML[[/]]\n➔ Supervised Learning - Find the optimal combinations of weights that minimizes some error metric.\n➔ Reinforcement Learning (Neuroevolution) - generate many random neural networks, judge their\n      fitness, and evolve them.\n➔ Unsupervised learning - neural networks can often find hidden patterns in data.\n[[h3]]Backpropagation and Gradient Descent[[/]]\n➔ This is the mathematics that powers supervised Neural Network algorithms.\n➔ Gradient descent - Neural networks find the gradient that minimizes error. Error can be calculated many different ways.\n➔ Backpropagation - Allows us to calculate the gradient which will produce that error reduction.\n[[h3]]Neuroevolution Crash Course[[/]]\n➔ Other than backpropagation and gradient descent, neuroevolution is another way to use neural networks.\n➔ In a basic sense, neurevolution initializes many randomly weighted neural networks, and picks the ones that are most effective at some task.\n➔ Then, the networks are evolved like genomes to produce a better agent over time."
                 },
                 {
-                    "type": "image",
-                    "src": "./data/modules/ai-assets/img4/3-0.png",
-                    "width": "25%",
-                    "float": "right"
+                    "type": "split-content",
+                    "elements": [
+                        {
+                            "type": "image",
+                            "src": "./data/modules/ai-assets/img4/3-1.png",
+                            "width": "100%"
+                        },
+                        {
+                            "type": "image",
+                            "src": "./data/modules/ai-assets/img4/3-2.png",
+                            "width": "100%"
+                        }
+                    ]
                 },
                 {
-                    "type": "text",
-                    "content": "➔ Supervised Learning - Find the optimal combinations of weights that minimizes some error metric.\n➔ Reinforcement Learning (Neuroevolution) - generate many random neural networks, judge their\n      fitness, and evolve them.\n➔ Unsupervised learning - neural networks can often find hidden patterns in data.\n[[h3]]Backpropagation and Gradient Descent[[/]]\n➔ This is the mathematics that powers supervised Neural Network algorithms.\n➔ Gradient descent - Neural networks find the gradient that minimizes error. Error can be calculated many different ways.\n➔ Backpropagation - Allows us to calculate the gradient which will produce that error reduction.\n[[h3]]Neuroevolution Crash Course[[/]]\n➔ Other than backpropagation and gradient descent, neuroevolution is another way to use neural networks.\n➔ In a basic sense, neurevolution initializes many randomly weighted neural networks, and picks the ones that are most effective at some task.\n➔ Then, the networks are evolved like genomes to produce a better agent over time."
-                },
-                {
-                    "type": "image",
-                    "src": "./data/modules/ai-assets/img4/3-1.png",
-                    "width": "40%",
-                    "float": "left"
-                },
-                {
-                    "type": "image",
-                    "src": "./data/modules/ai-assets/img4/3-2.png",
-                    "width": "49%",
-                    "float": "right"
+                    "type": "iframe",
+                    "src": "https://www.youtube.com/embed/An5z8lR8asY",
+                    "width": "100%",
+                    "height": "500px"
                 },
                 {
                     "type": "embedded_multiple_choice",
@@ -282,26 +316,6 @@
             "coins": 3
         },
         {
-            "type": "multiple_choice",
-            "question": "Which of the following is not an activation function?",
-            "code_template": "",
-            "answers": [
-                "ReLu",
-                "Softmax",
-                "Sigmoid",
-                "Backpropogation"
-            ],
-            "correct": 3,
-            "descriptions": [
-                "ReLu is a linear activation function used on input and hidden layers.",
-                "Softmax is an activation function that produces values between 0 and 1 that all add up to 1.",
-                "Sigmoid is a non-linear function that is used for binary classification that produces values between 0 and 1",
-                "Correct! Backpropogation is a ML algorithm used with neural networks, not an activation function."
-            ],
-            "points": 10,
-            "coins": 3
-        },
-        {
             "type": "short_answer",
             "question": "What is the sum of the values produced by a Softmax activation function?",
             "code_template": "",
@@ -316,104 +330,154 @@
             "coins": 3
         },
         {
-            "type": "multiple_choice",
-            "question": "What is the difference between Sigmoid and Softmax?",
-            "code_template": "",
-            "answers": [
-                "Sigmoid produces a distribution of values between 0 and 1; Softmax does not",
-                "Softmax produces a distribution of values between 0 and 1; Sigmoid does not",
-                "In the Sigmoid distribution, all values produces are between 0 and 1 and add up to 1; values do not add up to 1 in Softmax",
-                "In the Softmax distribution, all values produces are between 0 and 1 and add up to 1; values do not add up to 1 in Sigmoid"
-            ],
-            "correct": 3,
-            "descriptions": [
-                "Both Softmax and Sigmoid produce values between 0 and 1",
-                "Both Softmax and Sigmoid produce values between 0 and 1",
-                "Sigmoid values do not add up to 1",
-                "Correct! Softmax produces values between 0 and 1 that add to 1 but Sigmoid produces values between 0 and 1 that may not add up to 1"
-            ],
-            "points": 10,
-            "coins": 3
-        },
-        {
-            "type": "multiple_choice",
-            "question": "How can we use Neural Networks for supervised learning?",
-            "code_template": "",
-            "answers": [
-                "Find the optimal combination of weights and biases using math and error",
-                "Find the optimal Neurons using math and error",
-                "Find hidden patterns in data",
-                "Evolve the network to over time"
-            ],
-            "correct": 0,
-            "descriptions": [
-                "Correct! By finding the optimal combination of weights and biases, the neural network can make accurate predictions.",
-                "The neurons are unaffected in a naural network as they simply add up any inputs to them",
-                "Finding hidden patterns is an unsupervised rather than supervised learning task.",
-                "Evolving neural networks with a genetic algorithm is not a supervised learning task."
-            ],
-            "points": 10,
-            "coins": 3
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What is neuroevolution?",
-            "code_template": "",
-            "answers": [
-                "A process by which the brains on animals evolve",
-                "Evolving neural networks by genetic algorithms to find optimal weights",
-                "Evolving neural networks via a reward",
-                "Using evolution to code a process for feedforward in Neural Networks"
-            ],
-            "correct": 1,
-            "descriptions": [
-                "Neuroevolution is a machine learning process, not a biological one",
-                "Correct! Neuroevolution involves using genetic algorithms to \"evolve\" neural networks",
-                "Rewards are involved in other types of reinforcement learning, not neuroevolution",
-                "The feedforward process does not change between neural networks"
-            ],
-            "points": 10,
-            "coins": 3
-        },
-        {
-            "type": "multiple_choice",
-            "question": "How can neural networks be used for unsupervised learning?",
-            "code_template": "",
-            "answers": [
-                "They can find hidden patterns in data",
-                "Then can use backpropogation and gradient descent",
-                "They can find the optimal neurons for learning",
-                "They can train without any data"
-            ],
-            "correct": 0,
-            "descriptions": [
-                "Correct! Neural Networks can find hidden patterns in data - an unsupervised learning task",
-                "This process is used for supervised rather than unsupervised learning",
-                "Neurons are unchanged during learning for Neural Networks",
-                "Every machine learning process requires the use of data"
-            ],
-            "points": 5,
-            "coins": 1
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What is gradient descent?",
-            "code_template": "",
-            "answers": [
-                "A way to lower the amount of resources used by Neural Networks",
-                "A way to optimize Neural Network training",
-                "A method that reduces the number of training steps required",
-                "A mathematical process to calculate error gradients to train Neural Networks"
-            ],
-            "correct": 3,
-            "descriptions": [
-                "Gradient descent does not lower the amount of resources used by Neural Networks",
-                "Gradient descent does not optimize Neural Network training",
-                "Gradient descent does not reduce the number of training steps required",
-                "Correct! Gradient descent helps calculate error gradients in order to train our Neural Network for supervised learning"
-            ],
-            "points": 10,
-            "coins": 3
+            "type": "information",
+            "title": "Week 5 - Short Quiz",
+            "elements": [
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]Which of the following is not an activation function?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "ReLu",
+                        "Softmax",
+                        "Sigmoid",
+                        "Backpropogation"
+                    ],
+                    "correct": 3,
+                    "descriptions": [
+                        "ReLu is a linear activation function used on input and hidden layers.",
+                        "Softmax is an activation function that produces values between 0 and 1 that all add up to 1.",
+                        "Sigmoid is a non-linear function that is used for binary classification that produces values between 0 and 1",
+                        "Correct! Backpropogation is a ML algorithm used with neural networks, not an activation function."
+                    ],
+                    "points": 10,
+                    "coins": 3
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]What is the difference between Sigmoid and Softmax?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "Sigmoid produces a distribution of values between 0 and 1; Softmax does not",
+                        "Softmax produces a distribution of values between 0 and 1; Sigmoid does not",
+                        "In the Sigmoid distribution, all values produces are between 0 and 1 and add up to 1; values do not add up to 1 in Softmax",
+                        "In the Softmax distribution, all values produces are between 0 and 1 and add up to 1; values do not add up to 1 in Sigmoid"
+                    ],
+                    "correct": 3,
+                    "descriptions": [
+                        "Both Softmax and Sigmoid produce values between 0 and 1",
+                        "Both Softmax and Sigmoid produce values between 0 and 1",
+                        "Sigmoid values do not add up to 1",
+                        "Correct! Softmax produces values between 0 and 1 that add to 1 but Sigmoid produces values between 0 and 1 that may not add up to 1"
+                    ],
+                    "points": 10,
+                    "coins": 3
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]How can we use Neural Networks for supervised learning?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "Find the optimal combination of weights and biases using math and error",
+                        "Find the optimal Neurons using math and error",
+                        "Find hidden patterns in data",
+                        "Evolve the network to over time"
+                    ],
+                    "correct": 0,
+                    "descriptions": [
+                        "Correct! By finding the optimal combination of weights and biases, the neural network can make accurate predictions.",
+                        "The neurons are unaffected in a naural network as they simply add up any inputs to them",
+                        "Finding hidden patterns is an unsupervised rather than supervised learning task.",
+                        "Evolving neural networks with a genetic algorithm is not a supervised learning task."
+                    ],
+                    "points": 10,
+                    "coins": 3
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]What is neuroevolution?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "A process by which the brains on animals evolve",
+                        "Evolving neural networks by genetic algorithms to find optimal weights",
+                        "Evolving neural networks via a reward",
+                        "Using evolution to code a process for feedforward in Neural Networks"
+                    ],
+                    "correct": 1,
+                    "descriptions": [
+                        "Neuroevolution is a machine learning process, not a biological one",
+                        "Correct! Neuroevolution involves using genetic algorithms to \"evolve\" neural networks",
+                        "Rewards are involved in other types of reinforcement learning, not neuroevolution",
+                        "The feedforward process does not change between neural networks"
+                    ],
+                    "points": 10,
+                    "coins": 3
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]How can neural networks be used for unsupervised learning?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "They can find hidden patterns in data",
+                        "Then can use backpropogation and gradient descent",
+                        "They can find the optimal neurons for learning",
+                        "They can train without any data"
+                    ],
+                    "correct": 0,
+                    "descriptions": [
+                        "Correct! Neural Networks can find hidden patterns in data - an unsupervised learning task",
+                        "This process is used for supervised rather than unsupervised learning",
+                        "Neurons are unchanged during learning for Neural Networks",
+                        "Every machine learning process requires the use of data"
+                    ],
+                    "points": 5,
+                    "coins": 1
+                },
+                {
+                    "type": "embedded_multiple_choice",
+                    "elements": [
+                        {
+                            "type": "text",
+                            "content": "[[h6]]What is gradient descent?[[/]]"
+                        }
+                    ],
+                    "answers": [
+                        "A way to lower the amount of resources used by Neural Networks",
+                        "A way to optimize Neural Network training",
+                        "A method that reduces the number of training steps required",
+                        "A mathematical process to calculate error gradients to train Neural Networks"
+                    ],
+                    "correct": 3,
+                    "descriptions": [
+                        "Gradient descent does not lower the amount of resources used by Neural Networks",
+                        "Gradient descent does not optimize Neural Network training",
+                        "Gradient descent does not reduce the number of training steps required",
+                        "Correct! Gradient descent helps calculate error gradients in order to train our Neural Network for supervised learning"
+                    ],
+                    "points": 10,
+                    "coins": 3
+                }
+            ]
         },
         {
             "type": "congratulations",

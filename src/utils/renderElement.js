@@ -86,7 +86,7 @@ module.exports = function renderElement(element, elementNum) {
 }
 function convertStyles(element) {
     let styles = element;
-    if (!styles.width) styles.width = "90%"
+    if (!styles.width) styles.width = "100%"
     let style = "";
     Object.entries(styles).forEach(([key, value]) => {
         if (key !== "src" && key !== "type") style += `${key}: ${value};`

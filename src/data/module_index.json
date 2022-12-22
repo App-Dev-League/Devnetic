@@ -752,7 +752,7 @@
         ]
     },
     "ai": {
-        "totalPages": 100,
+        "totalPages": 64,
         "module_meta_data": [
             {
                 "name": "Week 1 - Python Review - Comparisons",
@@ -872,7 +872,7 @@
             },
             {
                 "name": "Week 5 - Intro to Neural Networks",
-                "moduleLength": 13,
+                "moduleLength": 8,
                 "pageBreakdown": [
                     {
                         "title": "Week 5 - Intro to Neural Networks",
@@ -895,32 +895,12 @@
                         "type": "short_answer"
                     },
                     {
-                        "title": "Which of the following is not an activation function?",
-                        "type": "multiple_choice"
-                    },
-                    {
                         "title": "What is the sum of the values produced by a Softmax activation function?",
                         "type": "short_answer"
                     },
                     {
-                        "title": "What is the difference between Sigmoid and Softmax?",
-                        "type": "multiple_choice"
-                    },
-                    {
-                        "title": "How can we use Neural Networks for supervised learning?",
-                        "type": "multiple_choice"
-                    },
-                    {
-                        "title": "What is neuroevolution?",
-                        "type": "multiple_choice"
-                    },
-                    {
-                        "title": "How can neural networks be used for unsupervised learning?",
-                        "type": "multiple_choice"
-                    },
-                    {
-                        "title": "What is gradient descent?",
-                        "type": "multiple_choice"
+                        "title": "Week 5 - Short Quiz",
+                        "type": "information"
                     },
                     {
                         "title": "Congratulations!",
@@ -929,19 +909,19 @@
                 ]
             },
             {
-                "name": "Week 6 - Computer Vision: Convolutional Neural Networks",
-                "moduleLength": 19,
+                "name": "Week 6 - Computer Vision: CNNs",
+                "moduleLength": 9,
                 "pageBreakdown": [
                     {
-                        "title": "Week 6 - Computer Vision: Convolutional Neural Networks",
+                        "title": "Week 6 - Computer Vision: CNNs",
                         "type": "information"
                     },
                     {
-                        "title": "Week 6 - Convolutional Neural Networks: Inputs and Layers",
+                        "title": "Week 6 - CNNs: Inputs and Layers",
                         "type": "information"
                     },
                     {
-                        "title": "Week 6 - Convolutional Neural Networks: More Layers",
+                        "title": "Week 6 - CNNs: More Layers",
                         "type": "information"
                     },
                     {
@@ -953,56 +933,16 @@
                         "type": "short_answer"
                     },
                     {
-                        "title": "Which of these are applications of CNNs?",
-                        "type": "multiple_choice"
-                    },
-                    {
-                        "title": "Why should you use CNNs over regular Neural Networks?",
-                        "type": "multiple_choice"
-                    },
-                    {
                         "title": "Images have colors that are defined in color ______.",
                         "type": "short_answer"
                     },
                     {
-                        "title": "Which of these is not an attribute of an image?",
-                        "type": "multiple_choice"
-                    },
-                    {
-                        "title": "What is a convolution?",
-                        "type": "multiple_choice"
-                    },
-                    {
-                        "title": "Therea are two types of ______: max ______ and average ______",
+                        "title": "There are two types of ______: max ______ and average ______",
                         "type": "short_answer"
                     },
                     {
-                        "title": "What determines the depth of a convolutional layer?",
-                        "type": "multiple_choice"
-                    },
-                    {
-                        "title": "How many convolutional layers can a CNN have?",
-                        "type": "multiple_choice"
-                    },
-                    {
-                        "title": "What does the pooling layer do?",
-                        "type": "multiple_choice"
-                    },
-                    {
-                        "title": "Why do we use pooling layers?",
-                        "type": "multiple_choice"
-                    },
-                    {
-                        "title": "What is the Fully Connected Layer in a CNN similar to?",
-                        "type": "multiple_choice"
-                    },
-                    {
-                        "title": "What is a bounding box?",
-                        "type": "multiple_choice"
-                    },
-                    {
-                        "title": "What is segmentation?",
-                        "type": "multiple_choice"
+                        "title": "Week 6 - Short Quiz",
+                        "type": "information"
                     },
                     {
                         "title": "Congratulations!",
@@ -1012,7 +952,7 @@
             },
             {
                 "name": "Week 7 - What is NLP?",
-                "moduleLength": 28,
+                "moduleLength": 13,
                 "pageBreakdown": [
                     {
                         "title": "Week 7 - What is NLP?",
@@ -1043,84 +983,24 @@
                         "type": "information"
                     },
                     {
+                        "title": "Multiple Choice Quiz",
+                        "type": "information"
+                    },
+                    {
                         "title": "What is the dimensionality of the following vector: [3, 7, 6, 3, 10, 8, 2, 5, 4, 2]?",
                         "type": "short_answer"
-                    },
-                    {
-                        "title": "What is Word Embedding?",
-                        "type": "multiple_choice"
-                    },
-                    {
-                        "title": "How many dimensions is a typical word?",
-                        "type": "multiple_choice"
-                    },
-                    {
-                        "title": "How do we vectorize sentences?",
-                        "type": "multiple_choice"
-                    },
-                    {
-                        "title": "Why is one-hot encoding inefficient?",
-                        "type": "multiple_choice"
-                    },
-                    {
-                        "title": "What is one problem with traditional word embeddings?",
-                        "type": "multiple_choice"
                     },
                     {
                         "title": "What is the term for the phenomenon where a word has multiple meanings?",
                         "type": "short_answer"
                     },
                     {
-                        "title": "What additional input do contextual word embeddings need that is different from traditional word embeddings?",
-                        "type": "multiple_choice"
-                    },
-                    {
-                        "title": "Sentiment analysis is what type of NLP task?",
-                        "type": "multiple_choice"
-                    },
-                    {
-                        "title": "Which of the following is NOT a text classification task",
-                        "type": "multiple_choice"
-                    },
-                    {
-                        "title": "What are the two types of sentiment analysis?",
-                        "type": "multiple_choice"
-                    },
-                    {
                         "title": "What is the term for a measure of whether a sentiment is positive or negative?",
                         "type": "short_answer"
                     },
                     {
-                        "title": "Which of the following is NOT a reason for which we might use Machine Translation over human translation?",
-                        "type": "multiple_choice"
-                    },
-                    {
-                        "title": "Which of the following is not a type of machine translation?",
-                        "type": "multiple_choice"
-                    },
-                    {
-                        "title": "Which of the following best describes language modelling?",
-                        "type": "multiple_choice"
-                    },
-                    {
-                        "title": "What is the Naïve Bayes Classifier?",
-                        "type": "multiple_choice"
-                    },
-                    {
                         "title": "The Naïve Bayes classifier assumes that predictors are ______ and have an equal effect on the outcome",
                         "type": "short_answer"
-                    },
-                    {
-                        "title": "What type of neural network is preferred for NLP?",
-                        "type": "multiple_choice"
-                    },
-                    {
-                        "title": "What are sequence-to-sequence models?",
-                        "type": "multiple_choice"
-                    },
-                    {
-                        "title": "What NLP task does BERT perform?",
-                        "type": "multiple_choice"
                     },
                     {
                         "title": "Congratulations!",
@@ -1130,7 +1010,7 @@
             },
             {
                 "name": "Week 8 - Unsupervised Learning",
-                "moduleLength": 17,
+                "moduleLength": 11,
                 "pageBreakdown": [
                     {
                         "title": "Week 8 - Unsupervised Learning",
@@ -1161,40 +1041,16 @@
                         "type": "short_answer"
                     },
                     {
-                        "title": "What does K-means clustering do?",
-                        "type": "multiple_choice"
-                    },
-                    {
-                        "title": "Which of these is not a k-means clustering step?",
-                        "type": "multiple_choice"
-                    },
-                    {
                         "title": "\"K minus the K-distance of the second point or the distance between two points\" is the formula for calculating what?",
                         "type": "short_answer"
                     },
                     {
-                        "title": "Local outlier factor is designed for which of these Unsupervised Learning subtasks?",
-                        "type": "multiple_choice"
-                    },
-                    {
-                        "title": "Which of these is the main metric for the Local Outlier Factor?",
-                        "type": "multiple_choice"
-                    },
-                    {
                         "title": "Dimensionality _________ is an application of Autoencoders",
                         "type": "short_answer"
                     },
                     {
-                        "title": "What is an autoencoder?",
-                        "type": "multiple_choice"
-                    },
-                    {
-                        "title": "Dimensionality _________ is an application of Autoencoders",
-                        "type": "short_answer"
-                    },
-                    {
-                        "title": "What is the best student-led non-profit of them all?",
-                        "type": "short_answer"
+                        "title": "Week 7 - Multiple Choice Quiz",
+                        "type": "information"
                     },
                     {
                         "title": "Congratulations!",

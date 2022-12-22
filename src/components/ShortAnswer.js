@@ -53,7 +53,7 @@ class ShortAnswer extends ModuleComponent {
 				let data = this.data();
 				this.state.explanation.state.description = data.descriptions[data.selectedAnswer] || data.description_default;
 				
-				if(data.answers.includes(data.selectedAnswer)) {
+				if(data.answers.map(e => e.toLowerCase()).includes(data.selectedAnswer.toLowerCase())) {
 					this.state.explanation.state.title = "Correct!";
 					this.state.explanation.state.retry = false;
 				} else {

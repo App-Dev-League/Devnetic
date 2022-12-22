@@ -16,12 +16,12 @@ class tApp {
 		return "v0.10.10";
 	}
 	static configure(params) {
-		if(params == null) {
+		if (params == null) {
 			throw "tAppError: No params specified for configuring."
 		}
-		if(!tApp.started) {
+		if (!tApp.started) {
 			let validation = tApp.validateConfig(params);
-			if(validation.valid) {
+			if (validation.valid) {
 				tApp.config = validation.params;
 			} else {
 				throw validation.error;
@@ -31,50 +31,50 @@ class tApp {
 		}
 	}
 	static validateConfig(params) {
-		if(params.target != null && !(params.target instanceof HTMLElement)) {
+		if (params.target != null && !(params.target instanceof HTMLElement)) {
 			return {
 				valid: false,
 				error: "tAppError: Invalid configure parameter, target is not of type HTMLElement."
 			}
 		}
-		if(params.ignoreRoutes != null && !(params.ignoreRoutes instanceof Array)) {
+		if (params.ignoreRoutes != null && !(params.ignoreRoutes instanceof Array)) {
 			return {
 				valid: false,
 				error: "tAppError: Invalid configure parameter, ignoreRoutes is not of type Array."
 			}
 		}
-		if(params.forbiddenRoutes != null && !(params.forbiddenRoutes instanceof Array)) {
+		if (params.forbiddenRoutes != null && !(params.forbiddenRoutes instanceof Array)) {
 			return {
 				valid: false,
 				error: "tAppError: Invalid configure parameter, forbiddenRoutes is not of type Array."
 			}
 		}
-		if(params.errorPages != null && !(params.errorPages instanceof Object)) {
+		if (params.errorPages != null && !(params.errorPages instanceof Object)) {
 			return {
 				valid: false,
 				error: "tAppError: Invalid configure parameter, errorPages is not of type Object."
 			}
 		}
-		if(params.caching != null && !(params.caching instanceof Object)) {
+		if (params.caching != null && !(params.caching instanceof Object)) {
 			return {
 				valid: false,
 				error: "tAppError: Invalid configure parameter, caching is not of type Object."
 			}
 		}
-		if(params.caching != null && params.caching.backgroundPages != null && !(params.caching.backgroundPages instanceof Array)) {
+		if (params.caching != null && params.caching.backgroundPages != null && !(params.caching.backgroundPages instanceof Array)) {
 			return {
 				valid: false,
 				error: "tAppError: Invalid configure parameter, caching.backgroundPages is not of type Array."
 			}
 		}
-		if(params.caching != null && params.caching.backgroundPages == null) {
+		if (params.caching != null && params.caching.backgroundPages == null) {
 			params.caching.backgroundPages = [];
 		}
-		if(params.caching != null && params.caching.persistent == null) {
+		if (params.caching != null && params.caching.persistent == null) {
 			params.caching.persistent = false;
 		}
 		if (window.indexedDB == null) {
-			if(params.caching.persistent) {
+			if (params.caching.persistent) {
 				console.warn("tAppWarning: Persistent caching is not available in this browser.");
 				params.caching.persistent = false;
 			}
@@ -86,20 +86,20 @@ class tApp {
 		};
 	}
 	static route(path, renderFunction) {
-		if(path == "/" || path.substring(0, 1) == "#") {
+		if (path == "/" || path.substring(0, 1) == "#") {
 			tApp.routes[path] = renderFunction;
 		} else {
 			throw "tAppError: Invalid path, the path can only be \"/\" or start with \"#\".";
 		}
-		if(tApp.started) {
+		if (tApp.started) {
 			tApp.updatePage(window.location.hash);
 		}
 	}
 	static getCachedPage(fullPath) {
 		return new Promise((resolve, reject) => {
-			if(tApp.config.caching == null) {
+			if (tApp.config.caching == null) {
 				resolve(null);
-			} else if(tApp.config.caching.persistent) {
+			} else if (tApp.config.caching.persistent) {
 				let request = tApp.database.transaction(["cachedPages"], "readwrite").objectStore("cachedPages").get(fullPath);
 				request.onerror = (event) => {
 					reject("tAppError: Persistent caching is not available in this browser.");
@@ -114,9 +114,9 @@ class tApp {
 	}
 	static setCachedPage(fullPath, value) {
 		return new Promise((resolve, reject) => {
-			if(tApp.config.caching == null) {
+			if (tApp.config.caching == null) {
 				resolve(false);
-			} else if(tApp.config.caching.persistent) {
+			} else if (tApp.config.caching.persistent) {
 				fullPath = fullPath.slice(0, fullPath.indexOf("?"))
 				let request = tApp.database.transaction(["cachedPages"], "readwrite").objectStore("cachedPages").put(value, fullPath);
 				request.onerror = (event) => {
@@ -133,9 +133,9 @@ class tApp {
 	}
 	static removeCachedPage(fullPath) {
 		return new Promise(async (resolve, reject) => {
-			if(tApp.config.caching == null) {
+			if (tApp.config.caching == null) {
 				resolve(null);
-			} else if(tApp.config.caching.persistent) {
+			} else if (tApp.config.caching.persistent) {
 				let tmp = await tApp.getCachedPage(fullPath);
 				let request = tApp.database.transaction(["cachedPages"], "readwrite").objectStore("cachedPages").delete(fullPath);
 				request.onerror = (event) => {
@@ -153,9 +153,9 @@ class tApp {
 	}
 	static getCachedPaths() {
 		return new Promise((resolve, reject) => {
-			if(tApp.config.caching == null) {
+			if (tApp.config.caching == null) {
 				resolve([]);
-			} else if(tApp.config.caching.persistent) {
+			} else if (tApp.config.caching.persistent) {
 				let request = tApp.database.transaction(["cachedPages"], "readwrite").objectStore("cachedPages").getAllKeys();
 				request.onerror = (event) => {
 					reject("tAppError: Persistent caching is not available in this browser.");
@@ -170,12 +170,12 @@ class tApp {
 	}
 	static getCachedPages() {
 		return new Promise(async (resolve, reject) => {
-			if(tApp.config.caching == null) {
+			if (tApp.config.caching == null) {
 				resolve({});
-			} else if(tApp.config.caching.persistent) {
+			} else if (tApp.config.caching.persistent) {
 				let keys = await tApp.getCachedPaths();
 				let cached = {};
-				for(let i = 0; i < keys.length; i++) {
+				for (let i = 0; i < keys.length; i++) {
 					cached[keys[i]] = await tApp.getCachedPage(keys[i]);
 				}
 				resolve(cached);
@@ -186,9 +186,9 @@ class tApp {
 	}
 	static clearCachedPages() {
 		return new Promise((resolve, reject) => {
-			if(tApp.config.caching == null) {
+			if (tApp.config.caching == null) {
 				resolve(false);
-			} else if(tApp.config.caching.persistent) {
+			} else if (tApp.config.caching.persistent) {
 				let request = tApp.database.transaction(["cachedPages"], "readwrite").objectStore("cachedPages").clear();
 				request.onerror = (event) => {
 					reject("tAppError: Persistent caching is not available in this browser.");
@@ -252,7 +252,7 @@ class tApp {
 		return new Promise(async (resolve, reject) => {
 			let keys = await tApp.getAllOfflineDataKeys();
 			let offline = {};
-			for(let i = 0; i < keys.length; i++) {
+			for (let i = 0; i < keys.length; i++) {
 				offline[keys[i]] = await tApp.getOfflineData(keys[i]);
 			}
 			resolve(offline);
@@ -276,12 +276,12 @@ class tApp {
 			let cachedPage = await tApp.getCachedPage(fullPath);
 			function responseToJSON(request) {
 				let jsonRequest = {};
-				for(let property in request) {
-					if(property != "bodyUsed" && typeof request[property] != "object" && typeof request[property] != "function") {
+				for (let property in request) {
+					if (property != "bodyUsed" && typeof request[property] != "object" && typeof request[property] != "function") {
 						jsonRequest[property] = request[property];
 					}
 				}
-				if(request.headers != null) {
+				if (request.headers != null) {
 					jsonRequest.headers = {};
 					request.headers.forEach((value, key) => {
 						jsonRequest.headers[key] = value;
@@ -294,17 +294,17 @@ class tApp {
 					"tApp-Ignore-Cache": "Ignore-Cache"
 				}
 			}).then((response) => {
-				if(ignoreCache) {
+				if (ignoreCache) {
 					resolve(response);
 				} else {
 					response.clone().arrayBuffer().then((data) => {
-						if(response.status === 200 || response.status === 0) {
+						if (response.status === 200 || response.status === 0) {
 							tApp.setCachedPage(fullPath, {
 								data: data,
 								cachedAt: new Date().getTime(),
 								response: responseToJSON(response)
 							});
-							if(cachedPage == null) {
+							if (cachedPage == null) {
 								resolve(response);
 							}
 						} else {
@@ -313,13 +313,13 @@ class tApp {
 					});
 				}
 			}).catch((err) => {
-				if(cachedPage == null) {
+				if (cachedPage == null) {
 					reject(err);
 				}
 			});
-			if(!ignoreCache && cachedPage != null) {
+			if (!ignoreCache && cachedPage != null) {
 				let res = new Response(cachedPage.data, cachedPage.response);
-				Object.defineProperty(res, "url", {value: fullPath});
+				Object.defineProperty(res, "url", { value: fullPath });
 				resolve(res);
 			}
 		});
@@ -329,10 +329,10 @@ class tApp {
 		tApp.updatePage(path);
 	}
 	static render(html) {
-		if(html == null) {
+		if (html == null) {
 			throw "tAppError: No HTML specified for rendering."
 		}
-		if(tApp.config.target == null) {
+		if (tApp.config.target == null) {
 			throw "tAppError: No target DOM specified, use tApp.config.target to set the target."
 		}
 		tApp.config.target.innerHTML = html;
@@ -347,17 +347,17 @@ class tApp {
 			}
 			return node;
 		}
-		function nodeScriptClone(node){
-			var script  = document.createElement("script");
+		function nodeScriptClone(node) {
+			var script = document.createElement("script");
 			script.text = node.innerHTML;
-			
+
 			var i = -1, attrs = node.attributes, attr;
-			while (++i < attrs.length) {                                    
+			while (++i < attrs.length) {
 				script.setAttribute((attr = attrs[i]).name, attr.value);
 			}
 			return script;
 		}
-			
+
 		function nodeScriptIs(node) {
 			return node.tagName === 'SCRIPT';
 		}
@@ -396,26 +396,26 @@ class tApp {
 			"&amp;": "&"
 		};
 		let keys = Object.keys(entityMap);
-		for(let i = 0; i < keys.length; i++) {
+		for (let i = 0; i < keys.length; i++) {
 			string = string.replaceAll(keys[i], entityMap[keys[i]]);
 		}
 		return string;
 	}
 	static eval(code) {
-		return (function(code) {
+		return (function (code) {
 			return eval(code);
 		})(code);
 	}
 	static optionsToEval(data) {
 		let evalStr = "";
 		let keys = Object.keys(data);
-		for(let i = 0; i < keys.length; i++) {
-			if(typeof data[keys[i]] == "function") {
+		for (let i = 0; i < keys.length; i++) {
+			if (typeof data[keys[i]] == "function") {
 				evalStr += "let " + keys[i] + " = " + data[keys[i]].toString() + ";";
 			} else {
 				try {
 					evalStr += "let " + keys[i] + " = " + JSON.stringify(data[keys[i]]) + ";";
-				} catch(err) {
+				} catch (err) {
 					evalStr += "let " + keys[i] + " = " + data[keys[i]] + ";";
 				}
 			}
@@ -425,23 +425,23 @@ class tApp {
 	static restoreOptions(data) {
 		let evalStr = "let _____tApp_____returnOptions = {};";
 		let keys = Object.keys(data);
-		for(let i = 0; i < keys.length; i++) {
+		for (let i = 0; i < keys.length; i++) {
 			evalStr += "_____tApp_____returnOptions." + keys[i] + " = " + keys[i] + ";";
 		}
 		return evalStr;
 	}
 	static evalInContext(code, data) {
-		if(data == null) {
+		if (data == null) {
 			data = {};
 		}
 		return tApp.eval(tApp.optionsToEval(data) + `let _____tApp_____result = (function() {return eval("${code.replaceAll("\"", "\\\"")}")})();${tApp.restoreOptions(data)}[_____tApp_____result, _____tApp_____returnOptions]`);
 	}
 	static getComponentFromDOM(domElement) {
 		let component = null;
-		while((domElement != null && domElement.nodeName.substring(0, 1) != "#") && domElement.getAttribute('tapp-component') == null) {
+		while ((domElement != null && domElement.nodeName.substring(0, 1) != "#") && domElement.getAttribute('tapp-component') == null) {
 			domElement = domElement.parentNode;
 		}
-		if(domElement == null || domElement.nodeName.substring(0, 1) == "#") {
+		if (domElement == null || domElement.nodeName.substring(0, 1) == "#") {
 			return null;
 		} else {
 			return tApp.getComponent(domElement.getAttribute('tapp-component'));
@@ -452,10 +452,10 @@ class tApp {
 	}
 	static removeComponent(id) {
 		let els = document.querySelectorAll(`[tapp-component="${id}"]`);
-		for(let i = 0; i < els.length; i++) {
+		for (let i = 0; i < els.length; i++) {
 			els[i].remove();
 		}
-		if(tApp.getComponent(id) == null) {
+		if (tApp.getComponent(id) == null) {
 			return false;
 		} else {
 			delete tApp.components[id];
@@ -466,7 +466,7 @@ class tApp {
 		tApp.updateComponent(tApp.GlobalComponent, true);
 	}
 	static queueUpdateComponent(component, timer = tApp.queueTimer) {
-		if(!tApp.updateQueue.includes(component.id)) {
+		if (!tApp.updateQueue.includes(component.id)) {
 			tApp.updateQueue.push(component.id);
 			setTimeout(() => {
 				tApp.updateQueue.splice(tApp.updateQueue.findIndex(el => el == component.id), 1);
@@ -475,102 +475,102 @@ class tApp {
 		}
 	}
 	static updateComponent(component, topLevel = false) {
-		if(tApp.debugComponentRendering != null) {
-			if(typeof tApp.debugComponentRendering == "function") {
+		if (tApp.debugComponentRendering != null) {
+			if (typeof tApp.debugComponentRendering == "function") {
 				tApp.debugComponentRendering(component, topLevel);
-			} else if(tApp.debugComponentRendering) {
+			} else if (tApp.debugComponentRendering) {
 				console.log("update", component, topLevel);
 			}
 		}
 		let updateStartTime;
-		if(tApp.debugComponentTiming != null && topLevel) {
+		if (tApp.debugComponentTiming != null && topLevel) {
 			updateStartTime = new Date().getTime();
 		}
 		component.componentWillUpdate();
 		function htmlToDOM(html) {
-			if(html.includes("<body")) {
+			if (html.includes("<body")) {
 				return new DOMParser().parseFromString(html, "text/html").childNodes[0];
 			} else {
 				return new DOMParser().parseFromString(html, "text/html").body.childNodes[0];
 			}
 		}
 		function compareNode(before, after) {
-			if(before.nodeName != after.nodeName) {
+			if (before.nodeName != after.nodeName) {
 				return false;
 			}
 			return true;
 		}
 		function compareChildren(before, after) {
-			if(before.childNodes.length != after.childNodes.length) {
+			if (before.childNodes.length != after.childNodes.length) {
 				return false;
 			}
-			for(let i = 0; i < before.childNodes.length; i++) {
-				if(!compareNode(before, after)) {
+			for (let i = 0; i < before.childNodes.length; i++) {
+				if (!compareNode(before, after)) {
 					return false;
 				}
 			}
 			return true;
 		}
 		function convertNode(before, after) {
-			if(before.nodeName != after.nodeName) {
+			if (before.nodeName != after.nodeName) {
 				after.outerHTML = before.outerHTML;
 			} else {
-				if(before.attributes != null && after.attributes != null) {
+				if (before.attributes != null && after.attributes != null) {
 					let removeAttributes = [];
 					let updateAttributes = [];
 					let beforeAttributes = [...before.attributes];
 					let afterAttributes = [...after.attributes];
-					if((after.value != null && after.value != "") || (before.value != null && before.value != "")) {
-						if((after.value == "" || after.value == null) && (before.value != "" || before.value != null)) {
-							removeAttributes.push({nodeName: "value", nodeValue: ""});
-						} else if(after.value != before.value) {
-							updateAttributes.push({nodeName: "value", nodeValue: after.value});
+					if ((after.value != null && after.value != "") || (before.value != null && before.value != "")) {
+						if ((after.value == "" || after.value == null) && (before.value != "" || before.value != null)) {
+							removeAttributes.push({ nodeName: "value", nodeValue: "" });
+						} else if (after.value != before.value) {
+							updateAttributes.push({ nodeName: "value", nodeValue: after.value });
 						}
 					}
-					for(let i = 0; i < beforeAttributes.length; i++) {
-						if(beforeAttributes[i].nodeName != "value") {
+					for (let i = 0; i < beforeAttributes.length; i++) {
+						if (beforeAttributes[i].nodeName != "value") {
 							let afterAttribute = afterAttributes.find(attribute => attribute.nodeName == beforeAttributes[i].nodeName);
-							if(afterAttribute == null) {
+							if (afterAttribute == null) {
 								removeAttributes.push(beforeAttributes[i]);
-							} else if(afterAttribute.nodeValue != beforeAttributes[i].nodeValue) {
+							} else if (afterAttribute.nodeValue != beforeAttributes[i].nodeValue) {
 								updateAttributes.push(afterAttributes[i]);
 							}
 						}
 					}
-					for(let i = 0; i < afterAttributes.length; i++) {
-						if(afterAttributes[i].nodeName != "value") {
+					for (let i = 0; i < afterAttributes.length; i++) {
+						if (afterAttributes[i].nodeName != "value") {
 							let beforeAttribute = beforeAttributes.find(attribute => attribute.nodeName == afterAttributes[i].nodeName);
-							if(beforeAttribute == null) {
+							if (beforeAttribute == null) {
 								updateAttributes.push(afterAttributes[i]);
 							}
 						}
 					}
-					for(let i = 0; i < removeAttributes.length; i++) {
-						if(removeAttributes[i].nodeName == "value") {
+					for (let i = 0; i < removeAttributes.length; i++) {
+						if (removeAttributes[i].nodeName == "value") {
 							before.value = "";
 						} else {
 							before.removeAttribute(removeAttributes[i].nodeName);
 						}
 					}
-					for(let i = 0; i < updateAttributes.length; i++) {
-						if(updateAttributes[i].nodeName == "value") {
+					for (let i = 0; i < updateAttributes.length; i++) {
+						if (updateAttributes[i].nodeName == "value") {
 							before.value = updateAttributes[i].nodeValue;
 						} else {
 							before.setAttribute(updateAttributes[i].nodeName, updateAttributes[i].nodeValue);
 						}
 					}
 				}
-				if(before.nodeName == "#text" && after.nodeName == "#text" && before.textContent != after.textContent) {
+				if (before.nodeName == "#text" && after.nodeName == "#text" && before.textContent != after.textContent) {
 					before.textContent = after.textContent;
 				}
-				
-				if(after.childNodes.length == 0 || after.childNodes.length == 1 && after.childNodes[0].nodeName == "#text") {
-					if(before.innerHTML != after.innerHTML) {
+
+				if (after.childNodes.length == 0 || after.childNodes.length == 1 && after.childNodes[0].nodeName == "#text") {
+					if (before.innerHTML != after.innerHTML) {
 						before.innerHTML = after.innerHTML;
 					}
 				} else {
-					if(compareChildren(before, after)) {
-						for(let i = 0; i < after.childNodes.length; i++) {
+					if (compareChildren(before, after)) {
+						for (let i = 0; i < after.childNodes.length; i++) {
 							convertNode(before.childNodes[i], after.childNodes[i])
 						}
 					} else {
@@ -580,14 +580,14 @@ class tApp {
 						let afterChildrenPersist = [...after.childNodes];
 						let pointerBefore = 0;
 						let pointerAfter = 0;
-						while(pointerBefore < beforeChildren.length || pointerAfter < afterChildren.length) {
-							if(pointerBefore >= beforeChildren.length) {
+						while (pointerBefore < beforeChildren.length || pointerAfter < afterChildren.length) {
+							if (pointerBefore >= beforeChildren.length) {
 								beforeChildren.splice(pointerBefore, 0, null);
-							} else if(pointerAfter >= afterChildren.length) {
+							} else if (pointerAfter >= afterChildren.length) {
 								afterChildren.splice(pointerAfter, 0, null);
 							} else {
-								if(beforeChildren[pointerBefore].nodeName != afterChildren[pointerAfter].nodeName) {
-									if(beforeChildrenPersist.length > afterChildrenPersist.length) {
+								if (beforeChildren[pointerBefore].nodeName != afterChildren[pointerAfter].nodeName) {
+									if (beforeChildrenPersist.length > afterChildrenPersist.length) {
 										afterChildren.splice(pointerAfter, 0, null);
 									} else {
 										beforeChildren.splice(pointerBefore, 0, null);
@@ -597,23 +597,23 @@ class tApp {
 							pointerBefore++;
 							pointerAfter++;
 						}
-						for(let i = 0; i < beforeChildren.length; i++) {
+						for (let i = 0; i < beforeChildren.length; i++) {
 							let nullBefore = beforeChildren.length == beforeChildren.filter(el => el == null || el.nodeName == "#text").length;
-							if(beforeChildren[i] == null && afterChildren[i] == null) {
-							} else if(beforeChildren[i] == null) {
-								if(nullBefore) {
+							if (beforeChildren[i] == null && afterChildren[i] == null) {
+							} else if (beforeChildren[i] == null) {
+								if (nullBefore) {
 									before.appendChild(afterChildren[i]);
 								} else {
 									let nextNotNull;
-									for(let j = i; nextNotNull == null && j < beforeChildren.length; j++) {
-										if(beforeChildren[j] != null) {
+									for (let j = i; nextNotNull == null && j < beforeChildren.length; j++) {
+										if (beforeChildren[j] != null) {
 											nextNotNull = beforeChildren[j];
 										}
 									}
-									if(nextNotNull == null) {
+									if (nextNotNull == null) {
 										let prevNotNull;
-										for(let j = i; prevNotNull == null && j < beforeChildren.length; j--) {
-											if(beforeChildren[j] != null) {
+										for (let j = i; prevNotNull == null && j < beforeChildren.length; j--) {
+											if (beforeChildren[j] != null) {
 												prevNotNull = beforeChildren[j];
 											}
 										}
@@ -624,7 +624,7 @@ class tApp {
 										beforeChildren[i] = afterChildren[i];
 									}
 								}
-							} else if(afterChildren[i] == null) {
+							} else if (afterChildren[i] == null) {
 								beforeChildren[i].remove();
 								beforeChildren[i] = null;
 							} else {
@@ -637,57 +637,57 @@ class tApp {
 		}
 		let compiled = htmlToDOM(tApp.compileComponent(component, component.props, component.parent));
 		let els = document.querySelectorAll(`[tapp-component="${component.id}"]`);
-		for(let i = 0; i < els.length; i++) {
+		for (let i = 0; i < els.length; i++) {
 			convertNode(els[i], compiled);
 		}
 		component.componentHasUpdated();
-		for(let i = 0; i < component.children.length; i++) {
+		for (let i = 0; i < component.children.length; i++) {
 			tApp.updateComponent(component.children[i]);
 		}
 		component.componentChildrenHaveUpdated();
-		if(tApp.debugComponentTiming != null && topLevel) {
-			if(typeof tApp.debugComponentTiming == "function") {
+		if (tApp.debugComponentTiming != null && topLevel) {
+			if (typeof tApp.debugComponentTiming == "function") {
 				tApp.debugComponentTiming((new Date().getTime() - updateStartTime))
-			} else if(tApp.debugComponentTiming) {
+			} else if (tApp.debugComponentTiming) {
 				console.log((new Date().getTime() - updateStartTime) + "ms");
 			}
 		}
 	}
 	static compileComponent(component, props = {}, parent = "global") {
 		function htmlToDOM(html) {
-			if(html.includes("</html>")) {
+			if (html.includes("</html>")) {
 				return new DOMParser().parseFromString(html, "text/html").children[0];
-			} else if(html.includes("</head>")) {
+			} else if (html.includes("</head>")) {
 				return new DOMParser().parseFromString(html, "text/html").body.parentNode.children[0];
-			} else if(html.includes("</body>")) {
+			} else if (html.includes("</body>")) {
 				return new DOMParser().parseFromString(html, "text/html").body.parentNode.children[1];
 			} else {
 				return new DOMParser().parseFromString(html, "text/html").body.childNodes[0];
 			}
 		}
 		function htmlToDOMCount(html) {
-			if(html.includes("</body>")) {
+			if (html.includes("</body>")) {
 				return new DOMParser().parseFromString(html, "text/html").childNodes.length;
 			} else {
 				return new DOMParser().parseFromString(html, "text/html").body.childNodes.length;
 			}
 		}
-		if(component instanceof tApp.Component) {
+		if (component instanceof tApp.Component) {
 			tApp.components[component.id] = component;
-			if(typeof props == "string") {
+			if (typeof props == "string") {
 				props = JSON.parse(props);
 			}
 			let rendered = component.render(props);
 			let parentState = null;
-			if(component.parent != null) {
+			if (component.parent != null) {
 				parentState = component.parent.state;
 			}
 			let parentId = null;
-			if(component.parent != null) {
+			if (component.parent != null) {
 				parentId = component.parent.id;
 			}
 			let count = htmlToDOMCount(rendered);
-			if(count != 1) {
+			if (count != 1) {
 				throw "tAppComponentError: Component render output must contain exactly one node/element but can contain subnodes/subelements. To resolve this issue, wrap the entire output of the render in a div or another grouping element. If you only have one node/element, unintentional whitespace at the beginning or end of the render output could be the source of the issue since whitespace can be interpreted as a text node/element.";
 			}
 			let domRendered = htmlToDOM(rendered);
@@ -695,19 +695,19 @@ class tApp {
 			rendered = domRendered.outerHTML;
 			let it = rendered.matchAll(new RegExp("{{{[\\s|\\t]*(.+?(?=}}}))[\\s|\\t]*}}}", "g"));
 			let next = it.next();
-			while(!next.done) {
+			while (!next.done) {
 				rendered = rendered.replace(next.value[0], tApp.unescape(next.value[0]));
 				next = it.next();
 			}
 			it = rendered.matchAll(new RegExp("{%[\\s|\\t]*(.+?(?=%}))[\\s|\\t]*%}", "g"));
 			next = it.next();
-			while(!next.done) {
+			while (!next.done) {
 				rendered = rendered.replace(next.value[0], tApp.unescape(next.value[0]));
 				next = it.next();
 			}
 			it = rendered.matchAll(new RegExp("\\[\\[[\\s|\\t]*(.+?(?=\\]\\]))[\\s|\\t]*\\]\\]", "g"));
 			next = it.next();
-			while(!next.done) {
+			while (!next.done) {
 				rendered = rendered.replace(next.value[0], tApp.unescape(next.value[0]));
 				next = it.next();
 			}
@@ -725,18 +725,18 @@ class tApp {
 			function trim(str) {
 				let returnStr = "";
 				let word = false;
-				for(let i = 0; i < str.length; i++) {
-					if(!word && str[i] != " " && str[i] != "\t") {
+				for (let i = 0; i < str.length; i++) {
+					if (!word && str[i] != " " && str[i] != "\t") {
 						word = true;
 					}
-					if(word) {
+					if (word) {
 						returnStr += str[i];
 					}
 				}
 				word = false;
 				let index = returnStr.length - 1;
-				for(let i = returnStr.length - 1; i >= 0; i--) {
-					if(!word && returnStr[i] != " " && returnStr[i] != "\t") {
+				for (let i = returnStr.length - 1; i >= 0; i--) {
+					if (!word && returnStr[i] != " " && returnStr[i] != "\t") {
 						word = true;
 						index = i;
 					}
@@ -747,7 +747,7 @@ class tApp {
 			let componentName = trim(component.substring(0, component.indexOf("{")));
 			let componentProps = trim(component.substring(component.indexOf("{")));
 			let evalInContext = tApp.evalInContext("let _____tApp_____componentProps = " + componentProps + "; _____tApp_____componentProps", props);
-			let componentObject = tApp.evalInContext(`new ${componentName}({}, _____tApp_____parent)`, {_____tApp_____parent: parent})[0];
+			let componentObject = tApp.evalInContext(`new ${componentName}({}, _____tApp_____parent)`, { _____tApp_____parent: parent })[0];
 			componentObject.props = evalInContext[0];
 			return tApp.compileComponent(componentObject, evalInContext[0]);
 		}
@@ -755,8 +755,8 @@ class tApp {
 	static compileTemplate(html, options, componentParent = "global") {
 		function convertTemplate(template, parameters, prefix) {
 			let keys = Object.keys(parameters);
-			for(let i = 0; i < keys.length; i++) {
-				if(parameters[keys[i]] instanceof Object) {
+			for (let i = 0; i < keys.length; i++) {
+				if (parameters[keys[i]] instanceof Object) {
 					template = convertTemplate(template, parameters[keys[i]], prefix + keys[i] + ".");
 				} else {
 					template = template.replaceAll(new RegExp("{{[\\s|\\t]*" + prefix + keys[i] + "[\\s|\\t]*}}", "g"), parameters[keys[i]]);
@@ -767,18 +767,18 @@ class tApp {
 		function trim(str) {
 			let returnStr = "";
 			let word = false;
-			for(let i = 0; i < str.length; i++) {
-				if(!word && str[i] != " " && str[i] != "\t") {
+			for (let i = 0; i < str.length; i++) {
+				if (!word && str[i] != " " && str[i] != "\t") {
 					word = true;
 				}
-				if(word) {
+				if (word) {
 					returnStr += str[i];
 				}
 			}
 			word = false;
 			let index = returnStr.length - 1;
-			for(let i = returnStr.length - 1; i >= 0; i--) {
-				if(!word && returnStr[i] != " " && returnStr[i] != "\t") {
+			for (let i = returnStr.length - 1; i >= 0; i--) {
+				if (!word && returnStr[i] != " " && returnStr[i] != "\t") {
 					word = true;
 					index = i;
 				}
@@ -790,45 +790,45 @@ class tApp {
 			let newLineStack = [];
 			let newStrList = [];
 			let tmpLoader = "";
-			for(let i = 0; i < str.length; i++) {
-				if(tmpLoader == "" && ["[", "]", "{", "}"].includes(str[i])) {
+			for (let i = 0; i < str.length; i++) {
+				if (tmpLoader == "" && ["[", "]", "{", "}"].includes(str[i])) {
 					newStrList.push(str[i]);
 					tmpLoader = str[i];
-				} else if(tmpLoader == "{{{" || tmpLoader == "[[") {
-					if(tmpLoader == "{{{" && str[i] == "\n") {
+				} else if (tmpLoader == "{{{" || tmpLoader == "[[") {
+					if (tmpLoader == "{{{" && str[i] == "\n") {
 						//newStrList.push(";");
-					} else if(tmpLoader == "[[" && str[i] == "\n") {
-						
+					} else if (tmpLoader == "[[" && str[i] == "\n") {
+
 					} else {
 						newStrList.push(str[i]);
 					}
 					newLineStack.push(tmpLoader);
-					if(["[", "]", "{", "}"].includes(str[i])) {
+					if (["[", "]", "{", "}"].includes(str[i])) {
 						tmpLoader = str[i];
 					} else {
 						tmpLoader = "";
 					}
-				} else if((newLineStack[newLineStack.length - 1] == "{{{" && tmpLoader == "}}}") || (newLineStack[newLineStack.length - 1] == "[[" && tmpLoader == "]]")) {
+				} else if ((newLineStack[newLineStack.length - 1] == "{{{" && tmpLoader == "}}}") || (newLineStack[newLineStack.length - 1] == "[[" && tmpLoader == "]]")) {
 					newStrList.push(str[i]);
 					newLineStack.pop();
-					if(["[", "]", "{", "}"].includes(str[i])) {
+					if (["[", "]", "{", "}"].includes(str[i])) {
 						tmpLoader = str[i];
 					} else {
 						tmpLoader = "";
 					}
-				} else if(str[i] == tmpLoader[0]) {
+				} else if (str[i] == tmpLoader[0]) {
 					newStrList.push(str[i]);
 					tmpLoader += str[i];
 				} else {
-					if(["[", "]", "{", "}"].includes(str[i])) {
+					if (["[", "]", "{", "}"].includes(str[i])) {
 						tmpLoader = str[i];
 					} else {
 						tmpLoader = "";
 					}
-					if(newLineStack[newLineStack.length - 1] == "{{{" && str[i] == "\n") {
+					if (newLineStack[newLineStack.length - 1] == "{{{" && str[i] == "\n") {
 						//newStrList.push(";");
-					} else if(newLineStack[newLineStack.length - 1] == "[[" && str[i] == "\n") {
-						
+					} else if (newLineStack[newLineStack.length - 1] == "[[" && str[i] == "\n") {
+
 					} else {
 						newStrList.push(str[i]);
 					}
@@ -839,7 +839,7 @@ class tApp {
 		}
 		let it = html.matchAll(new RegExp("{#.+?(?=#})#}", "g"));
 		let next = it.next();
-		while(!next.done) {
+		while (!next.done) {
 			html = html.replace(next.value[0], "");
 			next = it.next();
 		}
@@ -857,26 +857,26 @@ class tApp {
 		function shouldCheckLine() {
 			return (tokenStack[tokenStack.length - 1] == "IF" && stateStack[stateStack.length - 1].result) || tokenStack[tokenStack.length - 1] == null || (tokenStack[tokenStack.length - 1] == "WHILE" && stateStack[stateStack.length - 1].result);
 		}
-		for(let i = 0; i < splitLines.length; i++) {
+		for (let i = 0; i < splitLines.length; i++) {
 			let trimmed = trim(splitLines[i]);
-			if(tokenStack[tokenStack.length - 1] == "IF" && trimmed.replaceAll(" ", "").replaceAll("\t", "") == "{%endif%}") {
+			if (tokenStack[tokenStack.length - 1] == "IF" && trimmed.replaceAll(" ", "").replaceAll("\t", "") == "{%endif%}") {
 				tokenStack.pop();
 				stateStack.pop();
-			} else if(tokenStack[tokenStack.length - 1] == "WHILE" && trimmed.replaceAll(" ", "").replaceAll("\t", "") == "{%endwhile%}") {
+			} else if (tokenStack[tokenStack.length - 1] == "WHILE" && trimmed.replaceAll(" ", "").replaceAll("\t", "") == "{%endwhile%}") {
 				stateStack[stateStack.length - 1].result = tApp.eval(tApp.optionsToEval(options) + stateStack[stateStack.length - 1].condition);
-				if(!stateStack[stateStack.length - 1].result) {
+				if (!stateStack[stateStack.length - 1].result) {
 					tokenStack.pop();
 					stateStack.pop();
 				} else {
 					i = stateStack[stateStack.length - 1].startLine;
 				}
-			} else if(trimmed.substring(0, 2) == "{%" && trimmed.substring(trimmed.length - 2, trimmed.length) == "%}") {
+			} else if (trimmed.substring(0, 2) == "{%" && trimmed.substring(trimmed.length - 2, trimmed.length) == "%}") {
 				let parsedStatement = trim(trimmed.substring(2, trimmed.length - 2));
-				if(["if ", "if\t", "if("].includes(parsedStatement.substring(0, 3))) {
+				if (["if ", "if\t", "if("].includes(parsedStatement.substring(0, 3))) {
 					tokenStack.push("IF");
 					let condition = trim(parsedStatement.substring(2));
 					let additional = true;
-					if(tokenStack[tokenStack.length - 2] == "IF" || tokenStack[tokenStack.length - 2] == "WHILE") {
+					if (tokenStack[tokenStack.length - 2] == "IF" || tokenStack[tokenStack.length - 2] == "WHILE") {
 						additional = stateStack[stateStack.length - 1].result;
 					}
 					stateStack.push({
@@ -884,9 +884,9 @@ class tApp {
 						additional: additional
 					});
 					stateStack[stateStack.length - 1].executed = stateStack[stateStack.length - 1].result;
-				} else if(["elseif ", "elseif\t", "elseif("].includes(parsedStatement.substring(0, 7))) {
-					if(tokenStack[tokenStack.length - 1] == "IF") {
-						if(!stateStack[stateStack.length - 1].executed) {
+				} else if (["elseif ", "elseif\t", "elseif("].includes(parsedStatement.substring(0, 7))) {
+					if (tokenStack[tokenStack.length - 1] == "IF") {
+						if (!stateStack[stateStack.length - 1].executed) {
 							let condition = trim(parsedStatement.substring(6));
 							stateStack[stateStack.length - 1].result = tApp.eval(tApp.optionsToEval(options) + condition) && stateStack[stateStack.length - 1].additional;
 							stateStack[stateStack.length - 1].executed = stateStack[stateStack.length - 1].result;
@@ -896,9 +896,9 @@ class tApp {
 					} else {
 						throw "tAppError: Else-if missing an if-statement on line " + (i + 1) + ".";
 					}
-				} else if(["else if ", "else if\t", "else if("].includes(parsedStatement.substring(0, 8))) {
-					if(tokenStack[tokenStack.length - 1] == "IF") {
-						if(!stateStack[stateStack.length - 1].executed) {
+				} else if (["else if ", "else if\t", "else if("].includes(parsedStatement.substring(0, 8))) {
+					if (tokenStack[tokenStack.length - 1] == "IF") {
+						if (!stateStack[stateStack.length - 1].executed) {
 							let condition = trim(parsedStatement.substring(7));
 							stateStack[stateStack.length - 1].result = tApp.eval(tApp.optionsToEval(options) + condition) && stateStack[stateStack.length - 1].additional;
 							stateStack[stateStack.length - 1].executed = stateStack[stateStack.length - 1].result;
@@ -908,14 +908,14 @@ class tApp {
 					} else {
 						throw "tAppError: Else-if missing an if-statement on line " + (i + 1) + ".";
 					}
-				} else if(trimmed.replaceAll(" ", "").replaceAll("\t", "") == "{%else%}") {
-					if(tokenStack[tokenStack.length - 1] == "IF") {
+				} else if (trimmed.replaceAll(" ", "").replaceAll("\t", "") == "{%else%}") {
+					if (tokenStack[tokenStack.length - 1] == "IF") {
 						stateStack[stateStack.length - 1].result = !stateStack[stateStack.length - 1].executed && stateStack[stateStack.length - 1].additional;
 						stateStack[stateStack.length - 1].executed = stateStack[stateStack.length - 1].result;
 					} else {
 						throw "tAppError: Else missing an if-statement on line " + (i + 1) + ".";
 					}
-				} else if(["while ", "while\t", "while("].includes(parsedStatement.substring(0, 6))) {
+				} else if (["while ", "while\t", "while("].includes(parsedStatement.substring(0, 6))) {
 					tokenStack.push("WHILE");
 					let condition = trim(parsedStatement.substring(5));
 					stateStack.push({
@@ -924,11 +924,11 @@ class tApp {
 						startLine: i
 					});
 				}
-			} else if(shouldCheckLine()) {
+			} else if (shouldCheckLine()) {
 				let newRes = splitLines[i];
 				let it = newRes.matchAll(new RegExp("{{{@[\\s|\\t]*(.+?(?=}}}))[\\s|\\t]*}}}", "g"));
 				let next = it.next();
-				while(!next.done) {
+				while (!next.done) {
 					let contextEval = tApp.evalInContext(trim(next.value[1]), options);
 					options = contextEval[1];
 					newRes = newRes.replace(next.value[0], "");
@@ -936,9 +936,9 @@ class tApp {
 				}
 				it = newRes.matchAll(new RegExp("{{{[\\s|\\t]*(.+?(?=}}}))[\\s|\\t]*}}}", "g"));
 				next = it.next();
-				while(!next.done) {
+				while (!next.done) {
 					let contextEval = tApp.evalInContext(trim(next.value[1]), options);
-					if(contextEval[0] == null) {
+					if (contextEval[0] == null) {
 						contextEval[0] = "";
 					}
 					options = contextEval[1];
@@ -947,7 +947,7 @@ class tApp {
 				}
 				it = newRes.matchAll(new RegExp("\\[\\[[\\s|\\t]*(.+?(?=\\]\\]))[\\s|\\t]*\\]\\]", "g"));
 				next = it.next();
-				while(!next.done) {
+				while (!next.done) {
 					newRes = newRes.replace(next.value[0], tApp.compileComponent(next.value[1], options, componentParent));
 					next = it.next();
 				}
@@ -975,23 +975,23 @@ class tApp {
 		});
 	}
 	static renderPath(path) {
-		if(path == null) {
+		if (path == null) {
 			throw "tAppError: No path specified for rendering."
 		}
 		tApp.updatePage(path);
 	}
 	static updatePage(hash) {
-		if(hash == null || hash == "") {
+		if (hash == null || hash == "") {
 			hash = "/";
 		}
 		let tmpCurrentHash = tApp.currentHash;
 		tApp.currentHash = hash;
 		let splitHash = hash.split("/").filter(s => s != "");
-		if(tApp.config.ignoreRoutes != null && tApp.config.ignoreRoutes instanceof Array && tApp.config.ignoreRoutes.includes(hash)) {
-			
-		} else if(tApp.config.forbiddenRoutes != null && tApp.config.forbiddenRoutes instanceof Array && tApp.config.forbiddenRoutes.includes(hash) && tApp.config.errorPages != null && tApp.config.errorPages.forbidden != null) {
+		if (tApp.config.ignoreRoutes != null && tApp.config.ignoreRoutes instanceof Array && tApp.config.ignoreRoutes.includes(hash)) {
+
+		} else if (tApp.config.forbiddenRoutes != null && tApp.config.forbiddenRoutes instanceof Array && tApp.config.forbiddenRoutes.includes(hash) && tApp.config.errorPages != null && tApp.config.errorPages.forbidden != null) {
 			tApp.updatePage(tApp.config.errorPages.forbidden);
-		} else if(tApp.routes[hash] != null) {
+		} else if (tApp.routes[hash] != null) {
 			tApp.routes[hash]({
 				type: "GET",
 				path: hash,
@@ -1002,23 +1002,23 @@ class tApp {
 			let routeHashes = Object.keys(tApp.routes);
 			let routeHash;
 			let routeParams = {};
-			for(let i = 0; i < routeHashes.length; i++) {
-				if(routeHash == null) {
+			for (let i = 0; i < routeHashes.length; i++) {
+				if (routeHash == null) {
 					let splitRoute = routeHashes[i].split("/").filter(s => s != "");
-					if(splitHash.length == splitRoute.length) {
+					if (splitHash.length == splitRoute.length) {
 						let correctRoute = true;
-						for(let j = 0; j < splitHash.length; j++) {
-							if(correctRoute) {
-								if(splitHash[j] == splitRoute[j]) {
-									
-								} else if(splitRoute[j][0] == "<" && splitRoute[j][splitRoute[j].length - 1] == ">") {
+						for (let j = 0; j < splitHash.length; j++) {
+							if (correctRoute) {
+								if (splitHash[j] == splitRoute[j]) {
+
+								} else if (splitRoute[j][0] == "<" && splitRoute[j][splitRoute[j].length - 1] == ">") {
 									routeParams[splitRoute[j].substring(1, splitRoute[j].length - 1)] = decodeURI(splitHash[j]);
 								} else {
 									correctRoute = false;
 								}
 							}
 						}
-						if(correctRoute) {
+						if (correctRoute) {
 							routeHash = routeHashes[i];
 						} else {
 							routeParams = {};
@@ -1026,14 +1026,14 @@ class tApp {
 					}
 				}
 			}
-			if(routeHash != null) {
+			if (routeHash != null) {
 				tApp.routes[routeHash]({
 					type: "GET",
 					path: hash,
 					referrer: tmpCurrentHash,
 					data: routeParams
 				});
-			} else if(tApp.config.errorPages != null && tApp.config.errorPages.notFound != null) {
+			} else if (tApp.config.errorPages != null && tApp.config.errorPages.notFound != null) {
 				tApp.updatePage(tApp.config.errorPages.notFound);
 			} else {
 				tApp.render("");
@@ -1041,11 +1041,11 @@ class tApp {
 		}
 	}
 	static loadBackgroundPages() {
-		if(tApp.config.caching != null) {
-			for(let i = 0; i < tApp.config.caching.backgroundPages.length; i++) {
+		if (tApp.config.caching != null) {
+			for (let i = 0; i < tApp.config.caching.backgroundPages.length; i++) {
 				tApp.get(tApp.config.caching.backgroundPages[i]);
 			}
-			if(tApp.config.caching.periodicUpdate != null) {
+			if (tApp.config.caching.periodicUpdate != null) {
 				setTimeout(() => {
 					tApp.loadBackgroundPages();
 				}, tApp.config.caching.periodicUpdate)
@@ -1054,9 +1054,9 @@ class tApp {
 	}
 	static start() {
 		return new Promise((resolve, reject) => {
-			if(!tApp.started) {
+			if (!tApp.started) {
 				tApp.started = true;
-				if(tApp.config.caching != null && tApp.config.caching.persistent) {
+				if (tApp.config.caching != null && tApp.config.caching.persistent) {
 					Object.defineProperty(window, 'indexedDB', {
 						value: window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB
 					});
@@ -1070,7 +1070,7 @@ class tApp {
 					request.onerror = (event) => {
 						console.warn("tAppWarning: Persistent caching is not available in this browser.");
 						tApp.config.caching.persistent = false;
-						if(Object.keys(tApp.routes).length > 0) {
+						if (Object.keys(tApp.routes).length > 0) {
 							window.addEventListener("hashchange", () => {
 								tApp.updatePage(window.location.hash);
 							}, false);
@@ -1081,7 +1081,7 @@ class tApp {
 					};
 					request.onsuccess = async (event) => {
 						tApp.database = request.result;
-						if(Object.keys(tApp.routes).length > 0) {
+						if (Object.keys(tApp.routes).length > 0) {
 							window.addEventListener("hashchange", () => {
 								tApp.updatePage(window.location.hash);
 							}, false);
@@ -1089,19 +1089,19 @@ class tApp {
 						}
 						tApp.loadBackgroundPages();
 						resolve(true);
-						
+
 					};
 					request.onupgradeneeded = (event) => {
 						tApp.database = request.result;
-						if(!tApp.database.objectStoreNames.contains("cachedPages")) {
+						if (!tApp.database.objectStoreNames.contains("cachedPages")) {
 							tApp.database.createObjectStore("cachedPages");
 						}
-						if(!tApp.database.objectStoreNames.contains("offlineStorage")) {
+						if (!tApp.database.objectStoreNames.contains("offlineStorage")) {
 							tApp.database.createObjectStore("offlineStorage");
 						}
 					};
 				} else {
-					if(Object.keys(tApp.routes).length > 0) {
+					if (Object.keys(tApp.routes).length > 0) {
 						window.addEventListener("hashchange", () => {
 							tApp.updatePage(window.location.hash);
 						}, false);
@@ -1118,9 +1118,9 @@ class tApp {
 	static install(pathToServiceWorker = './tApp-service-worker.js') {
 		return new Promise((resolve, reject) => {
 			if ('serviceWorker' in navigator) {
-				navigator.serviceWorker.register(pathToServiceWorker).then(function() {
+				navigator.serviceWorker.register(pathToServiceWorker).then(function () {
 					resolve(true);
-				}, function() {
+				}, function () {
 					reject("tAppError: Unable to install full offline functionality, an error occurred.");
 				});
 			} else {
@@ -1130,8 +1130,8 @@ class tApp {
 	}
 	static uninstall() {
 		return new Promise((resolve, reject) => {
-			navigator.serviceWorker.getRegistrations().then(function(registrations) {
-				for(let registration of registrations) {
+			navigator.serviceWorker.getRegistrations().then(function (registrations) {
+				for (let registration of registrations) {
 					registration.unregister()
 				}
 				resolve(true);
@@ -1140,8 +1140,8 @@ class tApp {
 	}
 	static update() {
 		return new Promise((resolve, reject) => {
-			navigator.serviceWorker.getRegistrations().then(function(registrations) {
-				for(let registration of registrations) {
+			navigator.serviceWorker.getRegistrations().then(function (registrations) {
+				for (let registration of registrations) {
 					registration.update()
 				}
 				resolve(true);
@@ -1156,8 +1156,8 @@ tApp.Component = class {
 	#children;
 	constructor(state, parent = "global") {
 		this.#id = new Date().toJSON() + "::" + Math.random().toString(36).substr(2) + "::" + Math.random().toString(36).substr(2);
-		if(parent != null) {
-			if(typeof parent == "string") {
+		if (parent != null) {
+			if (typeof parent == "string") {
 				this.#parent = tApp.getComponent(parent);
 			} else {
 				this.#parent = parent;
@@ -1169,8 +1169,8 @@ tApp.Component = class {
 		this.#children = [];
 		this.state = {};
 		this.props = {};
-		if(state != null && typeof state == "object") {
-			for(let property in state) {
+		if (state != null && typeof state == "object") {
+			for (let property in state) {
 				this.state[property] = state[property]
 			}
 		}
@@ -1188,7 +1188,7 @@ tApp.Component = class {
 		return this.#children;
 	}
 	removeChild(child) {
-		if(this.#children.indexOf(child) > -1) {
+		if (this.#children.indexOf(child) > -1) {
 			this.#children.splice(this.#children.indexOf(child), 1);
 			return true;
 		} else {
@@ -1196,10 +1196,10 @@ tApp.Component = class {
 		}
 	}
 	get childrenIds() {
-		return this.#children.map((child) => {return child.id});
+		return this.#children.map((child) => { return child.id });
 	}
 	addChild(child) {
-		if(this.#children.includes(child)) {
+		if (this.#children.includes(child)) {
 			return false;
 		} else {
 			this.#children.push(child);
@@ -1208,10 +1208,10 @@ tApp.Component = class {
 	}
 	setState(key, val, timer = tApp.queueTimer) {
 		function recursivelySetState(key, val, state) {
-			if(key.includes(".")) {
+			if (key.includes(".")) {
 				let keyList = key.split(".");
 				let thisKey = keyList.splice(0, 1);
-				if(state[thisKey] == null) {
+				if (state[thisKey] == null) {
 					state[thisKey] = {};
 				}
 				state[thisKey] = recursivelySetState(keyList.join("."), val, state[thisKey]);
@@ -1221,7 +1221,7 @@ tApp.Component = class {
 			return state;
 		}
 		this.state = recursivelySetState(key, val, this.state);
-		if(tApp.optimizedUpdating) {
+		if (tApp.optimizedUpdating) {
 			tApp.queueUpdateComponent(this, timer);
 		} else {
 			tApp.updateDOM();
@@ -1232,19 +1232,19 @@ tApp.Component = class {
 		throw "tAppComponentError: Render method must be overridden.";
 	}
 	componentWillUpdate() {
-		
+
 	}
 	componentHasUpdated() {
-		
+
 	}
 	componentChildrenHaveUpdated() {
-		
+
 	}
 	destroy() {
-		while(this.#children.length > 0) {
+		while (this.#children.length > 0) {
 			this.#children[0].destroy();
 		}
-		if(this.#parent != null) {
+		if (this.#parent != null) {
 			this.#parent.removeChild(this);
 		}
 		this.#parent = null;
@@ -1259,7 +1259,7 @@ tApp.Component = class {
 	}
 }
 
-tApp.GlobalComponent = (function() {
+tApp.GlobalComponent = (function () {
 	class GlobalComponent extends tApp.Component {
 		#id;
 		constructor(state, parent) {
