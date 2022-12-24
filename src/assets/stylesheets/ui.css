@@ -1,3 +1,7 @@
+html {
+    overflow: auto;
+}
+
 .track-header-bg {
     background: gray;
     height: 300px;
