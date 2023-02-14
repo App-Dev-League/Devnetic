@@ -24,9 +24,11 @@ Pages are each individual page inside of a lesson/module
 *MDD Extends all Markdown syntax!*
 ### Components
 **Code Block**:
-\`\`\`langname-filename
+```
+```langname-filename
 content
-\`\`\`
+```\
+```
  **Divider Line**: `----` (four or more dash symbols, so `--------` would also work)
  **Iframe**: `!!(url)`
  **Embedded Multiple Choice**: 
@@ -58,3 +60,13 @@ content
 	|sourcename|resource title|resource description|resource url|
 </R>
 ```
+
+## MDD IDE
+The MDD IDE is a powerful WYSIWYG editor. It drastically improves your productivity, as you now don't have to go into each JSON file, copy the mdd attribute, paste into a .md file, make your changes, and then remove all line breaks. \
+The IDE does all this for you, and even gives you a live preview of what's going on.
+### Usage:
+1) First, clone the repository and navigate to the devtools folder. 
+2) Run `npm install` to install dependencies
+3) Start the local server with the command: `node mddideserver` 
+4) Navigate to https://devnetic.appdevleague.org/app/index.html#/mdd-ide
+5) Start editing!
