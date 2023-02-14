@@ -1,0 +1,3 @@
+const codeBlock=require("../components/codeBlock.js"),codeBlockHelper=require("./codeBlocks.js");var converter=new showdown.Converter({extentions:[]});module.exports=function(e){return e=e.replace(/```[\S\s]*?```/g,function(e){let o=e.slice(3,e.indexOf("\n"));e=e.slice(e.indexOf("\n"),-3);return`<div class="codeblock-wrapper">
+            ${new codeBlock({code:codeBlockHelper.escapeHtml(e),language:o.split("-")[0],name:o.split("-")[1]||""})}
+        </div>`}),converter.makeHtml(e)};

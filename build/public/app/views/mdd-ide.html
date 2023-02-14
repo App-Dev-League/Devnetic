@@ -1,0 +1,38 @@
+<html>
+<div style="width:80%;margin-left:auto;margin-right:auto;margin-top:40px">
+    <h2 style="font-weight:700">MDD IDE</h2>
+    <div id="ide-status" style="position:fixed;top:75px;right:30px"></div>
+    <div id="editor-status" style="position:fixed;top:100px;right:30px"></div>
+    <div style="position:fixed;left:40%;top:40%;display:block;text-align:center" id="connection-msg">
+        Attempting to connect to local IDE server...
+        <br>
+        <br>
+        Make sure you are running /devtools/mdeideserver.js
+    </div>
+    <div id="ide" style="margin-top:30px;border-top:1px solid gray;display:none">
+        <div style="display:flex">
+            <div>
+                <h4>Select which file to process:</h4>
+                <select id="select-file" style="width:300px;height:30px;color:#000"></select>
+            </div>
+            <div>
+                <h4>Select which page:</h4>
+                <select id="select-page" style="width:300px;height:30px;color:#000"></select>
+            </div>
+        </div>
+        <div style="display:flex;width:100%;display:none;margin-top:10px;height:calc(100vh - 310px)" id="editor">
+            <div id="code-container" style="width:50%;border:none;outline:0;height:100%;overflow:visible">
+                <iframe frameborder="0" src="./assets/html/code-editor.html" style="width:100%;height:100%;overflow:visible" id="code-frame"></iframe>
+            </div>
+            <div style="width:49%;margin-left:1%;height:100%;overflow:auto;overflow:hidden">
+                <input placeholder="Page Title" id="page-title" style="background-color:transparent;font-size:30px;width:100%;color:#fff;outline:0;border:none;font-weight:700">
+                <div id="output" class="mdd-render"></div>
+            </div>
+        </div>
+        <div style="position:fixed;bottom:20px;right:20px;color:#fff;font-size:large;cursor:pointer;background-color:green;border-radius:5px;padding:10px 20px" onclick="save()">Save</div>
+    </div>
+</div>
+
+</html>
+
+<script>const codeEditorHelper=require("./utils/codeEditor.js"),renderMdd=require("./utils/renderMdd.js");async function connect(){try{if(setIdeStatus("Connecting...","orange"),await sleep(1e3),200!==(await fetch("http://localhost:2248/status")).status)return setIdeStatus("Not Connected!","red");setIdeStatus("Connected","green");let e=await fetch("http://localhost:2248/available-files"),n=(e=await e.json(),[]);delete e.actions,Object.entries(e).forEach(([t,e])=>{e.weeks.forEach(e=>{n.push(t+"/"+e)})}),document.getElementById("select-file").innerHTML=n.map(e=>`<option style="color: black" value="${e}">${e}</option>`)}catch(e){setIdeStatus("Not Connected!","red")}}function sleep(n){return new Promise((e,t)=>{setTimeout(e,n)})}function setIdeStatus(e,t){document.getElementById("ide-status").innerText=e,document.getElementById("ide-status").style.color=t,window.idestate=e,"Connected"===idestate&&(document.getElementById("connection-msg").style.display="none",document.getElementById("ide").style.display="block")}function setEditorStatus(e,t){document.getElementById("editor-status").innerText=e,document.getElementById("editor-status").style.color=t,window.idestate=e}function reloadEditor(){var e=window.currentFile.pages[currentPageNumber].mdd||"No MDD version of this page yet! Get started by deleting this line and re-integrating.";codeEditorHelper.updateContent(e),document.getElementById("page-title").value=window.currentFile.pages[currentPageNumber].title,rerender()}function rerender(){var e=codeEditorHelper.getValue();window.currentFile.pages[currentPageNumber].mdd=e,document.getElementById("output").innerHTML=renderMdd(e)}async function save(){if(window.currentFilePath){window.currentFile.pages[currentPageNumber].title=document.getElementById("page-title").value,setEditorStatus("Uploading code...","orange");let e=await fetch("http://localhost:2248/upload?file="+window.currentFilePath,{method:"PUT",headers:{"Content-Type":"application/json"},body:JSON.stringify(window.currentFile)});await e.text(),setEditorStatus("Ready","green")}}window.idestate="Connecting...",window.monacostate="loading",window.currentFile={},window.currentFilePath="",window.currentPageNumber=0,connect(),document.getElementById("select-file").addEventListener("change",async function(t){setEditorStatus("Download file...","orange");let e=await fetch("http://localhost:2248/available-files"),n=(e=await e.json(),await fetch("http://localhost:2248/download?file="+t.target.value.split("/")[0]+"/"+e[t.target.value.split("/")[0]].weeks.findIndex(e=>e===t.target.value.split("/")[1])));currentFile=await n.json(),currentFilePath=t.target.value.split("/")[0]+"/"+e[t.target.value.split("/")[0]].weeks.findIndex(e=>e===t.target.value.split("/")[1]),document.getElementById("select-page").innerHTML=currentFile.pages.map((e,t)=>`<option style="color: black" ${"information"!==e.type?"disabled":""} value="${t}">${t}${"information"!==e.type?"-not an editable page ":""}</option>`),window.currentPageNumber=0,document.getElementById("editor").style.display="flex",setEditorStatus("Ready","green"),reloadEditor()}),document.getElementById("select-page").addEventListener("change",async function(e){window.currentPageNumber=e.target.value,reloadEditor()}),setEditorStatus("Loading...","orange"),document.getElementById("code-frame").contentWindow.addEventListener("message",e=>{"monacoloaded"===e.data.message&&(setEditorStatus(window.monacostate="Ready","green"),codeEditorHelper.updateLanguage("markdown"),codeEditorHelper.updateContent("Loading..."),document.getElementById("code-frame").contentWindow.listeners.onChange=rerender)})</script>
