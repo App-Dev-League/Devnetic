@@ -48,11 +48,19 @@
         try {
             setIdeStatus("Connecting...", "orange")
             await sleep(1000)
-            let res = await fetch("http://localhost:2248/status");
+            let res = await fetch("http://localhost:2248/status", {
+                headers: {
+					"tApp-Ignore-Cache": "Ignore-Cache"
+				}
+            });
             if (res.status === 200) setIdeStatus("Connected", "green")
             else return setIdeStatus("Not Connected!", "red")
 
-            let files = await fetch("http://localhost:2248/available-files");
+            let files = await fetch("http://localhost:2248/available-files", {
+                headers: {
+					"tApp-Ignore-Cache": "Ignore-Cache"
+				}
+            });
             files = await files.json();
             let allFiles = []
             delete files.actions;
@@ -71,9 +79,17 @@
 
     document.getElementById("select-file").addEventListener("change", async function(e) {
         setEditorStatus("Download file...", "orange");
-        let files = await fetch("http://localhost:2248/available-files");
+        let files = await fetch("http://localhost:2248/available-files", {
+                headers: {
+					"tApp-Ignore-Cache": "Ignore-Cache"
+				}
+            });
         files = await files.json();
-        let res = await fetch("http://localhost:2248/download?file=" + `${e.target.value.split("/")[0]}/${files[e.target.value.split("/")[0]].weeks.findIndex(p => p === e.target.value.split("/")[1])}`)
+        let res = await fetch("http://localhost:2248/download?file=" + `${e.target.value.split("/")[0]}/${files[e.target.value.split("/")[0]].weeks.findIndex(p => p === e.target.value.split("/")[1])}`, {
+                headers: {
+					"tApp-Ignore-Cache": "Ignore-Cache"
+				}
+            })
         currentFile = await res.json()
         currentFilePath = `${e.target.value.split("/")[0]}/${files[e.target.value.split("/")[0]].weeks.findIndex(p => p === e.target.value.split("/")[1])}`
 
@@ -137,7 +153,7 @@
         setEditorStatus("Uploading code...", "orange")
         let res = await fetch("http://localhost:2248/upload?file=" + `${window.currentFilePath}`, {
             method: "PUT",
-            headers: {"Content-Type": "application/json"},
+            headers: {"Content-Type": "application/json", "tApp-Ignore-Cache": "Ignore-Cache"},
             body: JSON.stringify(window.currentFile)
         })
         await res.text()
