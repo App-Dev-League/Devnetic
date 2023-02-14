@@ -1,0 +1,146 @@
+<html>
+<div style="width: 80%; margin-left: auto; margin-right: auto; margin-top: 40px;">
+    <h2 style="font-weight: bold;">MDD IDE</h2>
+    <div id="ide-status" style="position: fixed; top: 75px; right: 30px;"></div>
+    <div id="editor-status" style="position: fixed; top: 100px; right: 30px;"></div>
+    <div style="position: fixed; left: 40%; top: 40%; display: block; text-align: center;" id="connection-msg">
+        Attempting to connect to local IDE server...
+        <br>
+        <br />
+        Make sure you are running /devtools/mdeideserver.js
+    </div>
+    <div id="ide" style="margin-top: 30px; border-top: 1px solid gray; display: none;">
+        <div style="display: flex;">
+            <div>
+                <h4>Select which file to process:</h4>
+                <select id="select-file" style="width: 300px; height: 30px; color: black;"></select>
+            </div>
+            <div>
+                <h4>Select which page:</h4>
+                <select id="select-page" style="width: 300px; height: 30px; color: black;"></select>
+            </div>
+        </div>
+        <div style="display: flex; width: 100%; display: none; margin-top: 10px; height: calc(100vh - 310px)" id="editor">
+            <div id="code-container" style="width: 50%; border: none; outline: none; height: 100%; overflow: visible;">
+                <iframe frameBorder="0" src="./assets/html/code-editor.html" style="width: 100%; height: 100%; overflow: visible;" id="code-frame"></iframe>
+            </div>
+            <div style="width:49%; margin-left: 1%; height: 100%; overflow: auto; overflow: hidden;">
+                <input placeholder="Page Title" id="page-title" style="background-color: transparent; font-size: 30px; width: 100%; color: white; outline: none; border: none; font-weight: bold;">
+                <div id="output" class="mdd-render"></div>
+            </div>
+        </div>
+        <div style="position: fixed; bottom: 20px; right: 20px; color: white; font-size: large; cursor: pointer; background-color: green; border-radius: 5px; padding: 10px 20px;" onClick="save()">Save</div>
+    </div>
+</div>
+
+</html>
+
+<script>
+    const codeEditorHelper = require("./utils/codeEditor.js")
+    const renderMdd = require("./utils/renderMdd.js")
+    window.idestate = "Connecting..."
+    window.monacostate = "loading"
+    window.currentFile = {}
+    window.currentFilePath = ""
+    window.currentPageNumber = 0
+    connect()
+    async function connect() {
+        try {
+            setIdeStatus("Connecting...", "orange")
+            await sleep(1000)
+            let res = await fetch("http://localhost:2248/status");
+            if (res.status === 200) setIdeStatus("Connected", "green")
+            else return setIdeStatus("Not Connected!", "red")
+
+            let files = await fetch("http://localhost:2248/available-files");
+            files = await files.json();
+            let allFiles = []
+            delete files.actions;
+            Object.entries(files).forEach(([key, value]) => {
+                value.weeks.forEach(e => {
+                    allFiles.push(`${key}/${e}`)
+                })
+            })
+            document.getElementById("select-file").innerHTML = allFiles.map(e => `<option style="color: black" value="${e}">${e}</option>`)
+        } catch (e) {
+            setIdeStatus("Not Connected!", "red")
+        }
+    }
+
+
+
+    document.getElementById("select-file").addEventListener("change", async function(e) {
+        setEditorStatus("Download file...", "orange");
+        let files = await fetch("http://localhost:2248/available-files");
+        files = await files.json();
+        let res = await fetch("http://localhost:2248/download?file=" + `${e.target.value.split("/")[0]}/${files[e.target.value.split("/")[0]].weeks.findIndex(p => p === e.target.value.split("/")[1])}`)
+        currentFile = await res.json()
+        currentFilePath = `${e.target.value.split("/")[0]}/${files[e.target.value.split("/")[0]].weeks.findIndex(p => p === e.target.value.split("/")[1])}`
+
+        document.getElementById("select-page").innerHTML = currentFile.pages.map((e, i) => `<option style="color: black" ${e.type !== "information" ? "disabled" : ""} value="${i}">${i}${e.type !== "information" ? "-not an editable page " : ""}</option>`)
+        window.currentPageNumber = 0;
+
+        document.getElementById("editor").style.display = "flex"
+        setEditorStatus("Ready", "green");
+        reloadEditor();
+    })
+    document.getElementById("select-page").addEventListener("change", async function(e) {
+        window.currentPageNumber = e.target.value        
+        reloadEditor();
+    })
+    setEditorStatus("Loading...", "orange")
+    document.getElementById("code-frame").contentWindow.addEventListener("message", (e) => {
+        if (e.data.message !== "monacoloaded") return;
+        window.monacostate = "Ready"
+        setEditorStatus("Ready", "green")
+        codeEditorHelper.updateLanguage("markdown")
+        codeEditorHelper.updateContent("Loading...")
+        document.getElementById("code-frame").contentWindow.listeners.onChange = rerender
+    })
+
+    function sleep(ms) {
+        return new Promise((resolve, reject) => {
+            setTimeout(resolve, ms)
+        })
+    }
+
+    function setIdeStatus(status, color) {
+        document.getElementById("ide-status").innerText = status
+        document.getElementById("ide-status").style.color = color
+        window.idestate = status
+        if (idestate === "Connected") {
+            document.getElementById("connection-msg").style.display = "none"
+            document.getElementById("ide").style.display = "block"
+        }
+    }
+
+    function setEditorStatus(status, color) {
+        document.getElementById("editor-status").innerText = status
+        document.getElementById("editor-status").style.color = color
+        window.idestate = status
+    }
+
+    function reloadEditor() {
+        let pageContents = window.currentFile.pages[currentPageNumber].mdd || "No MDD version of this page yet! Get started by deleting this line and re-integrating."
+        codeEditorHelper.updateContent(pageContents)
+        document.getElementById("page-title").value = window.currentFile.pages[currentPageNumber].title
+        rerender()
+    }
+    function rerender() {
+        let content = codeEditorHelper.getValue()
+        window.currentFile.pages[currentPageNumber].mdd = content
+        document.getElementById("output").innerHTML = renderMdd(content)
+    }
+    async function save() {
+        if (!window.currentFilePath) return;
+        window.currentFile.pages[currentPageNumber].title = document.getElementById("page-title").value
+        setEditorStatus("Uploading code...", "orange")
+        let res = await fetch("http://localhost:2248/upload?file=" + `${window.currentFilePath}`, {
+            method: "PUT",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(window.currentFile)
+        })
+        await res.text()
+        setEditorStatus("Ready", "green")
+    }
+</script>

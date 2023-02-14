@@ -35,7 +35,8 @@
 		"shuffleArray.js",
 		"renderElement.js",
 		"modal.js",
-		"window.js"
+		"window.js",
+		"renderMdd.js"
 	], {
 		path: "./utils/"
 	}, newFileCallback);
@@ -432,6 +433,11 @@
 		console.log("Done")
 		tApp.render(totalPage);
 
+	});
+	tApp.route("#/mdd-ide", function (request) {
+		tApp.get("./views/mdd-ide.html").then(res => res.text()).then(async html => {
+			tApp.render(html);
+		})
 	});
 	tApp.route("#/404", function (request) {
 		tApp.render(`
