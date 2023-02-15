@@ -49,7 +49,9 @@ class EmbededMultipleChoice extends ModuleComponent {
 		this.state.explanation.setState("title", "")
 		if (this.parent.state.alreadyCorrectAnswer === true) return;
 		this.parent.state.alreadyCorrectAnswer = true;
-		tApp.getComponentFromDOM(document.querySelector(".stack-width")).increaseCompletedQuestions();
+		try {
+			tApp.getComponentFromDOM(document.querySelector(".stack-width")).increaseCompletedQuestions();
+		} catch(e){}
 		var canvas = document.querySelector(`[tapp-component="${this.id}"]`).parentElement.parentElement.querySelector(".mc-answer-confetti")
 
 		canvas.confetti = canvas.confetti || confetti.create(canvas, { resize: true });
