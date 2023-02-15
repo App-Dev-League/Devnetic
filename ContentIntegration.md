@@ -34,7 +34,7 @@ content
  **Embedded Multiple Choice**: 
  ```jsx
  <Q>
-	 ?How do you do something?? // question goes between ??
+	 ?How do you do something?? // question goes between ?
 	 !Answer1! // potential answers go in between !!
 	 !Answer2!
 	 !Answer3!* // correct answer is appended by a star *
@@ -45,7 +45,7 @@ content
 	 +Description4+
 	 p: 5 // optional, describes points awarded. Default: 5
 	 c: 1 // optional, describes coins awarded. Default: 1
- <Q/>
+ </Q>
  ```
  **Note**:  `N!Your green note goes hereN!`
  **Warning**:  `W!Your yellow warning goes hereW!`
