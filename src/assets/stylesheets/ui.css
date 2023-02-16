@@ -292,10 +292,58 @@ html {
     filter: blur(3px);
 }
 
+
+
+
 .info-note {
+    background-color: var(--chakra-colors-green-900);
+}
+.info-note > div * {
+    color: var(--chakra-colors-green-100);
+}
+
+.info-note svg path {
+    fill: var(--chakra-colors-green-300);
+}
+
+
+
+
+.info-warning {
+    background-color: var(--chakra-colors-yellow-900);
+}
+.info-warning > div * {
+    color: var(--chakra-colors-yellow-100);
+}
+
+.info-warning svg path {
+    fill: var(--chakra-colors-yellow-300);
+}
+
+.info-error {
+    background-color: var(--chakra-colors-red-900);
+}
+.info-error > div * {
+    color: var(--chakra-colors-red-100);
+}
+
+.info-error svg path {
+    fill: var(--chakra-colors-red-300);
+}
+
+.info-tip {
+    background-color: var(--chakra-colors-blue-900);
+}
+.info-tip > div * {
+    color: var(--chakra-colors-blue-100);
+}
+
+.info-tip svg path {
+    fill: var(--chakra-colors-blue-300);
+}
+.info-annotation {
     white-space: normal !important;
     padding: 12px 20px;
-    background-color: var(--chakra-colors-green-900);
     border-radius: 7px;
     position: relative;
     width: auto !important;
@@ -307,31 +355,26 @@ html {
     flex-direction: column;
     align-items: start;
 }
-.info-note > div {
+.info-annotation > div {
     display: flex;
     align-items: center;
     gap: 10px;
     font-weight: bold;
 }
-.info-note > div * {
-    color: var(--chakra-colors-green-100);
+.info-annotation > div * {
     font-size: 1.05em;
 }
-.info-note > pre {
+.info-annotation > pre {
     margin-left: 30px !important;
     white-space: break-spaces;
     font-size: 0.9em;
 }
-.info-note pre * {
+.info-annotation pre * {
     margin-top: 0 !important;
     margin-bottom: 0 !important;
 }
-.info-note svg {
+.info-annotation svg {
     width: 1.25em;
-}
-
-.info-note svg path {
-    fill: var(--chakra-colors-green-300);
 }
 
 .loading-bar-indeterminate.editor-alert-modal-loading-bar-wrapper {
