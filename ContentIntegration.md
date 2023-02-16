@@ -1,4 +1,5 @@
 
+
 # Lesson Creation
 The markup language that we use: .mdd (markdown devnetic) powers every lesson on Devnetic, and brings Devnetic Elements into markdown. It extends the standard Markdown Syntax with Devnetic Elements. All aspects of MDD is optimized for fast and easy content integration.
 ## JSON Syntax
@@ -23,12 +24,6 @@ Pages are each individual page inside of a lesson/module
 ## MDD Syntax
 *MDD Extends all Markdown syntax!*
 ### Components
-**Code Block**:
-```
-```langname-filename
-content
-```\
-```
  **Divider Line**: `----` (four or more dash symbols, so `--------` would also work)
  **Iframe**: `!!(url)`
  **Embedded Multiple Choice**: 
@@ -47,19 +42,44 @@ content
 	 c: 1 // optional, describes coins awarded. Default: 1
  </Q>
  ```
- **Note**:  `N!Your green note goes hereN!`
- **Warning**:  `W!Your yellow warning goes hereW!`
- **Tip**:  `T!Your blue tip goes hereT!`
- **Error**:  `E!Your red error goes hereE!`
- **Asterix**: `A!Your asterix tooltip goes hereA!`
  **Resources List**: 	
-```markdown
+ ```markdown
 <R>
 	|sourcename|resource title|resource description|resource url|
 	|sourcename|resource title|resource description|resource url|
 	|sourcename|resource title|resource description|resource url|
 </R>
 ```
+ **Asterix**: `A!Your asterix tooltip goes hereA!`
+
+
+ ### The following components support custom names:
+ To use custom names, simply append a `-` after the component delimiter. Then, on the next line, start your actual content.\
+ For example:
+ ```
+ ```js-Hello.js
+	console.log("Hello World")
+ ```ㅤ
+ ```
+Or,
+```
+E!-Very Important!!!
+You need to do this before you do anything else!
+E!
+```
+ **Code Block**:
+```
+```langname
+content
+```\
+```
+ **Note**:  `N!Your green note goes hereN!` - 
+ **Warning**:  `W!Your yellow warning goes hereW!`
+ **Tip**:  `T!Your blue tip goes hereT!`
+ **Error**:  `E!Your red error goes hereE!`
+
+
+  
 
 ## MDD IDE
 The MDD IDE is a powerful WYSIWYG editor. It drastically improves your productivity, as you now don't have to go into each JSON file, copy the mdd attribute, paste into a .md file, make your changes, and then remove all line breaks. \
