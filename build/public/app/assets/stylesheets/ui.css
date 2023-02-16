@@ -294,23 +294,44 @@ html {
 
 .info-note {
     white-space: normal !important;
-    padding: 12px 16px;
-    background-color: var(--chakra-colors-blue-900);
+    padding: 12px 20px;
+    background-color: var(--chakra-colors-green-900);
     border-radius: 7px;
-    padding-left: 50px;
     position: relative;
     width: auto !important;
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    align-items: center;
+    margin-top: 20px;
+    flex-direction: column;
+    align-items: start;
 }
-
+.info-note > div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+}
+.info-note > div * {
+    color: var(--chakra-colors-green-100);
+    font-size: 1.05em;
+}
+.info-note > pre {
+    margin-left: 30px !important;
+    white-space: break-spaces;
+    font-size: 0.9em;
+}
+.info-note pre * {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
 .info-note svg {
     width: 1.25em;
-    top: 18px;
-    position: absolute;
-    left: 20px;
 }
 
 .info-note svg path {
-    fill: var(--chakra-colors-blue-300);
+    fill: var(--chakra-colors-green-300);
 }
 
 .loading-bar-indeterminate.editor-alert-modal-loading-bar-wrapper {
