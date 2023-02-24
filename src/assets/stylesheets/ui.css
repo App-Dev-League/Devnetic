@@ -1048,3 +1048,7 @@ html {
     color: var(--chakra-colors-blue-400);
     text-decoration: underline;
 }
+
+.mdd-render img {
+    width: 100%;
+}

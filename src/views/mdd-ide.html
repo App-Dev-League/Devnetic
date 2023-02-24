@@ -149,6 +149,35 @@
         codeEditorHelper.updateContent("Loading...")
         document.getElementById("code-frame").contentWindow.listeners.onChange = rerender
     })
+    document.getElementById("code-frame").contentWindow.addEventListener("paste", function(event) {
+        var items = (event.clipboardData || event.originalEvent.clipboardData).items;
+        for (index in items) {
+            var item = items[index];
+            if (item.kind === 'file') {
+                var blob = item.getAsFile();
+                var reader = new FileReader();
+                reader.onload = async function(event) {
+                    console.log(event.target.result)
+                    setEditorStatus("Uploading image...", "orange");
+                    let imageURL = await (await fetch(`http://localhost:2248/upload-tmp-image`, {
+                        method: "POST",
+                        body: JSON.stringify({
+                            data: event.target.result
+                        }),
+                        headers: {
+                            "Content-Type": "application/json"
+                        }
+                    })).text()
+                    console.log(imageURL)
+                    document.getElementById("code-frame").contentWindow.codeEditor.trigger("keyboard", "type", {
+                        text: `![Image_Description](${imageURL})`
+                    });
+                    setEditorStatus("Ready", "green")
+                }; // data url!
+                reader.readAsDataURL(blob);
+            }
+        }
+    })
 
     function sleep(ms) {
         return new Promise((resolve, reject) => {
@@ -186,7 +215,13 @@
     }
     async function save() {
         if (!window.currentFilePath) return;
+        let originalPageNumber = currentPageNumber
         if (currentPageNumber !== null) window.currentFile.pages[currentPageNumber].title = document.getElementById("page-title").value
+        let imagesToSave = []
+        window.currentFile = JSON.parse(JSON.stringify(window.currentFile).replace(/http:\/\/localhost:2248\/img\/tmp-file-.{40}/gm, function (e) {
+            imagesToSave.push(e.replace("http://localhost:2248/img/tmp-file-", ""))
+            return `./data/modules/mdd-assets/${e.replace("http://localhost:2248/img/tmp-file-", "")}.png`
+        }))
         setEditorStatus("Uploading code...", "orange")
         let res = await fetch("http://localhost:2248/upload?file=" + `${window.currentFilePath}`, {
             method: "PUT",
@@ -197,6 +232,12 @@
             body: JSON.stringify(window.currentFile)
         })
         await res.text()
+        setEditorStatus("Uploading images...", "orange")
+        await Promise.all(imagesToSave.map(async e => {
+            await fetch(`http://localhost:2248/save-tmp-image/${e}`, {
+                method: "PUT"
+            })
+        }))
         setEditorStatus("Ready", "green")
     }
 </script>
