@@ -4,7 +4,22 @@ const MultipleChoice = require("../components/EmbededMultipleChoice.js")
 
 
 var converter = new showdown.Converter({ extentions: [] });
+converter.setOption('simpleLineBreaks', true);
 
+
+
+
+if (!window.cachedMDDComponents) window.cachedMDDComponents = {}
+// component caching is super important for not getting seizures everytime you make a change in the MDD IDE;
+// it works by looking at the content of any tApp MDD Component (codeblocks, multiple choice questions, etc), and hashing it. 
+// this hash is the key for the entry in the window.cachedMDDComponents object.
+// We then wait for tApp to actually render the component, and then document.getElementByID().innerHTML the component and slap it into the object as the value of the hash
+// then, on subsequent render runs, we hash the value of the component and see if it's in the cachedComponents object. if it is, then we just directly slap in the rendered HTML
+// however, this HTML isn't interactable (because it's not an actual tApp component, just some pre-rendered HTML) So, we also initiate the component, and as soon as the component actually renders, we delete the placeholder HTML
+
+
+// In conclusion, this system is very similar to how frameworks like Next.JS "hydrate" components. It SSRs the component and gets non-interactable HTML. 
+// It ships it to the frontend, and then the frontend will then load the JS at its own pace.
 
 
 module.exports = function renderMdd(mddString) {
@@ -14,8 +29,9 @@ module.exports = function renderMdd(mddString) {
     mddString = mddString.replace(/```[\S\s]*?```/g, function (e) {
         let language = e.slice(3, e.indexOf("\n"))
         let content = e.slice(e.indexOf("\n"), -3)
+        let component = new codeBlock({ code: codeBlockHelper.escapeHtml(content), language: language.split("-")[0], name: language.split("-")[1] || "" })
         return `<div class="codeblock-wrapper">
-            ${new codeBlock({ code: codeBlockHelper.escapeHtml(content), language: language.split("-")[0], name: language.split("-")[1] || "" })}
+            ${findPrerenderedComponents(e, component)}
         </div>`
     })
     mddString = mddString.replace(/!!\(.*\)/g, function (e) {
@@ -55,7 +71,7 @@ module.exports = function renderMdd(mddString) {
             <div class="indicator-symbol">${text}</div>
             <canvas class="mc-answer-confetti"></canvas>
             <h3>${question}</h3>
-            ${multipleChoiceElement}
+            ${findPrerenderedComponents(e, multipleChoiceElement)}
         </div>`
     })
     mddString = mddString.replace(/N!.*?N!/gs, function (e) {
@@ -146,3 +162,21 @@ module.exports = function renderMdd(mddString) {
     return html
 }
 
+
+function findPrerenderedComponents(componentContent, element) {
+    let hash = sha1(componentContent).toString();
+
+    let preparedElement = element.toString().split("\n").filter(e => !!e);
+
+    if (window.cachedMDDComponents[hash]) {
+        preparedElement = [preparedElement[0], window.cachedMDDComponents[hash], preparedElement[preparedElement.length-1]]
+        console.log(preparedElement.join("\n"))
+        return preparedElement.join("\n")
+    } else {
+        setTimeout(() => {
+            console.log(document.querySelector(`[tapp-component='${element.id}']`).innerHTML)
+            window.cachedMDDComponents[hash] = document.querySelector(`[tapp-component='${element.id}']`).innerHTML
+        }, 500)
+        return element.toString();
+    }
+}

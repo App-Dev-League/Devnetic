@@ -190,7 +190,7 @@ header * {
 .mc-answer-option .number {
     color: var(--chakra-colors-blue-300);
     border: 1px solid var(--chakra-colors-gray-600);
-    padding: 3px 9px;
+    padding: 4px 9px;
     border-radius: 100px;
 }
 
