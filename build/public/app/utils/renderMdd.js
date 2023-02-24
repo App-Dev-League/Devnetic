@@ -1,6 +1,6 @@
-const codeBlock=require("../components/codeBlock.js"),codeBlockHelper=require("./codeBlocks.js"),MultipleChoice=require("../components/EmbededMultipleChoice.js");var converter=new showdown.Converter({extentions:[]});module.exports=function(e){let o=0;return e=(e=(e=(e=(e=(e=(e=e.replace(/```[\S\s]*?```/g,function(e){let i=e.slice(3,e.indexOf("\n"));e=e.slice(e.indexOf("\n"),-3);return`<div class="codeblock-wrapper">
+const codeBlock=require("../components/codeBlock.js"),codeBlockHelper=require("./codeBlocks.js"),MultipleChoice=require("../components/EmbededMultipleChoice.js");var converter=new showdown.Converter({extentions:[]});module.exports=function(e){let o=0;return e=(e=(e=(e=(e=(e=(e=(e=e.replace(/```[\S\s]*?```/g,function(e){let i=e.slice(3,e.indexOf("\n"));e=e.slice(e.indexOf("\n"),-3);return`<div class="codeblock-wrapper">
             ${new codeBlock({code:codeBlockHelper.escapeHtml(e),language:i.split("-")[0],name:i.split("-")[1]||""})}
-        </div>`})).replace(/!!\(.*\)/g,function(e){return`<div class="image-wrapper info-text"><iframe src="${e.slice(3,-1)}" style="width: 100%; height: 400px; border-radius: 10px; display: block; margin-left: auto; margin-right: auto;" onload="resizeIframe(this)"></iframe></div>`})).replace(/<Q>.+?<\/Q>/gms,function(e){let i=e.slice(3,-4).split("\n").filter(e=>!!e),s="",n=[],t=[],a=0,r=0,l=0;i.forEach(e=>{let i=e.trim();i.startsWith("?")?s=i.slice(1):i.startsWith("!")?(i.endsWith("*")&&(a=n.length,i=i.slice(0,-1)),n.push(i.slice(1))):i.startsWith("+")?t.push(i.slice(1)):i.startsWith("p:")?r=Number(i.slice(2)):i.startsWith("c:")&&(l=Number(i.slice(2)))});var e="Multiple Choice Question",c=(n.find(e=>"true"===e.toLowerCase())&&n.find(e=>"false"===e.toLowerCase())&&(e="True or False"),new MultipleChoice({answers:n,correct:a,descriptions:t,points:r,coins:l,elementNum:o},null));return o++,`<div class="multiple-choice-wrapper" onclick="document.querySelector('.stack-width').classList.add('blur-all-non-mc-questions')">
+        </div>`})).replace(/!!\(.*\)/g,function(e){return`<div class="image-wrapper info-text"><iframe src="${e.slice(3,-1)}" style="width: 100%; height: 400px; border-radius: 10px; display: block; margin-left: auto; margin-right: auto;" onload="resizeIframe(this)"></iframe></div>`})).replace(/<Q>.+?<\/Q>/gms,function(e){let i=e.slice(3,-4).split("\n").filter(e=>!!e),s="",t=[],a=[],n=0,r=0,l=0;i.forEach(e=>{let i=e.trim();i.startsWith("?")?s=i.slice(1):i.startsWith("!")?(i.endsWith("*")&&(n=t.length,i=i.slice(0,-1)),t.push(i.slice(1))):i.startsWith("+")?a.push(i.slice(1)):i.startsWith("p:")?r=Number(i.slice(2)):i.startsWith("c:")&&(l=Number(i.slice(2)))});var e="Multiple Choice Question",c=(t.find(e=>"true"===e.toLowerCase())&&t.find(e=>"false"===e.toLowerCase())&&(e="True or False"),new MultipleChoice({answers:t,correct:n,descriptions:a,points:r,coins:l,elementNum:o},null));return o++,`<div class="multiple-choice-wrapper" onclick="document.querySelector('.stack-width').classList.add('blur-all-non-mc-questions')">
             <div class="indicator-symbol">${e}</div>
             <canvas class="mc-answer-confetti"></canvas>
             <h3>${s}</h3>
@@ -30,4 +30,14 @@ const codeBlock=require("../components/codeBlock.js"),codeBlockHelper=require(".
             </div>
             <pre style="line-height: 1.2; margin: 0">${converter.makeHtml(i)}</pre>
         </div>
-        `}),converter.makeHtml(e)};
+        `})).replace(/<R>.+?<\/R>/gms,function(e){let i=e.slice(3,-4).split("\n").filter(e=>!!e),s=[];return i.forEach(e=>{let i=e.trim();i&&(i=i.split("|").filter(e=>!!e),s.push({sourcename:i[0],title:i[1],description:i[2],url:i[3]}))}),console.log(s),`<div class="resource-list-wrapper">
+            <span class="resource-list-title">Resources</span>
+            <table>
+                ${s.map(e=>`<tr>
+                    <td class="sourcename">${e.sourcename}</td>
+                    <td class="sourcetitle"><a target="_blank" href="${e.url}">${e.title}</a></td>
+                    <td class="sourcedescription">${e.description}</td>
+                    <td><div class="codicon codicon-copy" onclick="navigator.clipboard.writeText('${e.url}')"></div></td>
+                    </tr>`).join("")}
+            </table>
+        </div>`}),converter.makeHtml(e)};

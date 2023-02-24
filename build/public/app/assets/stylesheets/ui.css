@@ -298,7 +298,8 @@ html {
 .info-note {
     background-color: var(--chakra-colors-green-900);
 }
-.info-note > div * {
+
+.info-note>div * {
     color: var(--chakra-colors-green-100);
 }
 
@@ -312,7 +313,8 @@ html {
 .info-warning {
     background-color: var(--chakra-colors-yellow-900);
 }
-.info-warning > div * {
+
+.info-warning>div * {
     color: var(--chakra-colors-yellow-100);
 }
 
@@ -323,7 +325,8 @@ html {
 .info-error {
     background-color: var(--chakra-colors-red-900);
 }
-.info-error > div * {
+
+.info-error>div * {
     color: var(--chakra-colors-red-100);
 }
 
@@ -334,13 +337,15 @@ html {
 .info-tip {
     background-color: var(--chakra-colors-blue-900);
 }
-.info-tip > div * {
+
+.info-tip>div * {
     color: var(--chakra-colors-blue-100);
 }
 
 .info-tip svg path {
     fill: var(--chakra-colors-blue-300);
 }
+
 .info-annotation {
     white-space: normal !important;
     padding: 12px 20px;
@@ -355,24 +360,29 @@ html {
     flex-direction: column;
     align-items: start;
 }
-.info-annotation > div {
+
+.info-annotation>div {
     display: flex;
     align-items: center;
     gap: 10px;
     font-weight: bold;
 }
-.info-annotation > div * {
+
+.info-annotation>div * {
     font-size: 1.05em;
 }
-.info-annotation > pre {
+
+.info-annotation>pre {
     margin-left: 30px !important;
     white-space: break-spaces;
     font-size: 0.9em;
 }
+
 .info-annotation pre * {
     margin-top: 0 !important;
     margin-bottom: 0 !important;
 }
+
 .info-annotation svg {
     width: 1.25em;
 }
@@ -802,12 +812,15 @@ html {
     left: 20px;
     top: 0;
 }
+
 .left-panel .accordion .accordion-entry:nth-child(2)::before {
     top: 20px;
 }
+
 .left-panel .accordion .accordion-entry:last-child::before {
     top: -20px;
 }
+
 .left-panel .accordion .accordion-entry::after {
     display: block;
     content: "";
@@ -820,21 +833,27 @@ html {
     top: 18px;
     transition: 0.5s all;
 }
+
 .left-panel .accordion .accordion-entry.highlight {
     color: var(--chakra-colors-blue-400);
 }
+
 .left-panel .accordion .accordion-entry.highlight::after {
     background-color: var(--chakra-colors-blue-300);
 }
+
 .left-panel .accordion .accordion-entry.highlight::before {
     background-color: var(--chakra-colors-blue-300);
 }
+
 .left-panel .accordion .accordion-entry.passed::after {
     background-color: var(--chakra-colors-blue-600);
 }
+
 .left-panel .accordion .accordion-entry.passed::before {
     background-color: var(--chakra-colors-blue-600);
 }
+
 @media (max-width: 1000px) {
     .left-panel {
         transform: translateX(-500px);
@@ -842,13 +861,16 @@ html {
         background-color: var(--black);
         z-index: 20;
     }
+
     .left-panel.mobile-opened {
         transform: translateX(0) !important;
     }
+
     .information-wrapper>.stack-width-wrapper {
         margin-left: 0;
         width: 100%;
     }
+
     #progress-panel-mobile-btn {
         display: block !important;
         position: fixed;
@@ -859,13 +881,16 @@ html {
         z-index: 5;
     }
 }
+
 #progress-panel-mobile-btn {
     display: none;
 }
+
 .invisible {
     opacity: 0 !important;
     pointer-events: none !important;
 }
+
 .next-action-d {
     background-color: #10419b;
     margin-top: 70px;
@@ -878,14 +903,17 @@ html {
     margin-bottom: 40px;
     align-items: center;
 }
+
 .next-action-d .welcome-back {
     font-size: 22px;
 }
+
 .next-action-d .action-text {
     display: block;
     margin-top: 5px;
     color: var(--chakra-colors-teal-100);
 }
+
 .next-action-d .left {
     display: inline-block;
     width: 50%;
@@ -894,6 +922,7 @@ html {
     vertical-align: middle;
     margin-bottom: 20px;
 }
+
 .next-action-d .action-btn {
     text-decoration: none;
     display: inline-block;
@@ -914,15 +943,18 @@ html {
     padding-top: 13px;
     padding-bottom: 13px;
 }
+
 .next-action-d .action-btn:hover {
     background-color: #2351a5;
 }
+
 .sec-container {
     display: grid;
     justify-items: center;
     align-items: stretch;
-    grid-template-columns: repeat(2,minmax(0,1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 }
+
 .sec-card {
     background-color: var(--chakra-colors-gray-900);
     padding: 20px;
@@ -930,16 +962,19 @@ html {
     margin-bottom: 20px;
     border-radius: 10px;
 }
+
 .sec-name {
     font-size: 1.3em;
     display: block;
     margin-bottom: 10px;
 }
+
 .sec-description {
     margin-bottom: 15px;
     display: block;
     color: var(--chakra-colors-gray-400)
 }
+
 .sec-btn {
     border-radius: 6px;
     padding: 8px 16px;
@@ -956,4 +991,60 @@ html {
     margin-left: auto;
     width: fit-content;
     text-decoration: none;
+}
+
+.resource-list-wrapper {
+    border-radius: 8px;
+    background-color: var(--chakra-colors-blue-900);
+    overflow: hidden;
+}
+
+.resource-list-title {
+    font-weight: bold;
+    display: block;
+    padding: 10px 20px;
+}
+
+.resource-list-wrapper table {
+    background-color: var(--black);
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.resource-list-wrapper tr {
+    padding: 0px 20px;
+    height: 60px;
+    display: table-row;
+    text-align: left;
+    position: relative;
+}
+
+.resource-list-wrapper tr:nth-child(even) {
+    background-color: var(--darkgray);
+}
+
+.resource-list-wrapper .sourcename {
+    font-size: 0.8rem;
+    color: var(--secondary-white);
+    padding-left: 20px;
+}
+.resource-list-wrapper .codicon {
+    padding-right: 20px;
+    cursor: pointer;
+}
+
+
+.resource-list-wrapper .sourcetitle a {
+    text-decoration: none !important;
+    font-weight: 600;
+}
+
+.resource-list-wrapper .sourcedescription {
+    font-size: 0.9rem;
+    max-width: 60% !important;
+}
+
+.mdd-render a {
+    color: var(--chakra-colors-blue-400);
+    text-decoration: underline;
 }
