@@ -54,7 +54,7 @@
     async function connect() {
         try {
             setIdeStatus("Connecting...", "orange")
-            await sleep(1000)
+            //await sleep(1000)
             let res = await fetch("http://localhost:2248/status", {
                 headers: {
                     "tApp-Ignore-Cache": "Ignore-Cache"
@@ -77,6 +77,10 @@
                 })
             })
             document.getElementById("select-file").innerHTML = allFiles.map(e => `<option style="color: black" value="${e}">${e}</option>`)
+            var evt = document.createEvent("HTMLEvents");
+            evt.initEvent("change", false, true);
+            document.getElementById("select-file").value = "webdev/HTML"
+            document.getElementById("select-file").dispatchEvent(evt);
         } catch (e) {
             setIdeStatus("Not Connected!", "red")
         }
@@ -94,12 +98,12 @@
         await save()
     }
     async function insertPage() {
-        let oldpgnm = window.currentPageNumber+1
-        window.currentFile.pages.splice(window.currentPageNumber+1, 0, {
+        let oldpgnm = window.currentPageNumber + 1
+        window.currentFile.pages.splice(window.currentPageNumber + 1, 0, {
             "type": "information",
             "title": "Insert title here",
             "elements": []
-        },);
+        }, );
         currentPageNumber = null;
         setTimeout(() => {
             window.currentPageNumber = oldpgnm;
