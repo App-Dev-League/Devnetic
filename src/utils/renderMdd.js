@@ -28,7 +28,7 @@ module.exports = function renderMdd(mddString) {
 
     mddString = mddString.replace(/```[\S\s]*?```/g, function (e) {
         let language = e.slice(3, e.indexOf("\n"))
-        let content = e.slice(e.indexOf("\n"), -3)
+        let content = e.slice(e.indexOf("\n"), -3).trim()
         let component = new codeBlock({ code: codeBlockHelper.escapeHtml(content), language: language.split("-")[0], name: language.split("-")[1] || "" })
         return `<div class="codeblock-wrapper">
             ${findPrerenderedComponents(e, component)}
@@ -60,7 +60,7 @@ module.exports = function renderMdd(mddString) {
             else if (command.startsWith("+")) descriptions.push(command.slice(1))
             else if (command.startsWith("p:")) points = Number(command.slice(2));
             else if (command.startsWith("c:")) coins = Number(command.slice(2));
-            else additionalMDD+=command
+            else additionalMDD+=p+"\n"
         })
 
 
@@ -175,13 +175,11 @@ function findPrerenderedComponents(componentContent, element) {
 
     if (window.cachedMDDComponents[hash]) {
         preparedElement = [preparedElement[0], window.cachedMDDComponents[hash], preparedElement[preparedElement.length-1]]
-        console.log(preparedElement.join("\n"))
         return preparedElement.join("\n")
     } else {
         setTimeout(() => {
-            console.log(document.querySelector(`[tapp-component='${element.id}']`).innerHTML)
             window.cachedMDDComponents[hash] = document.querySelector(`[tapp-component='${element.id}']`).innerHTML
         }, 500)
-        return element.toString();
+        return element;
     }
 }
