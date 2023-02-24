@@ -40,6 +40,8 @@ Pages are each individual page inside of a lesson/module
 	 +Description4+
 	 p: 5 // optional, describes points awarded. Default: 5
 	 c: 1 // optional, describes coins awarded. Default: 1
+	 Anything else will be rendered as normal MDD
+	 Stick codeblocks, bullet points, and more, to be rendered inside of the question
  </Q>
  ```
  **Resources List**: 	

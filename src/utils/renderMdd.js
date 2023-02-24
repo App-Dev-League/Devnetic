@@ -48,6 +48,8 @@ module.exports = function renderMdd(mddString) {
         let points = 0;
         let coins = 0;
 
+        let additionalMDD = ""
+
         content.forEach(p => {
             let command = p.trim();
             if (command.startsWith("?")) question = command.slice(1);
@@ -58,6 +60,7 @@ module.exports = function renderMdd(mddString) {
             else if (command.startsWith("+")) descriptions.push(command.slice(1))
             else if (command.startsWith("p:")) points = Number(command.slice(2));
             else if (command.startsWith("c:")) coins = Number(command.slice(2));
+            else additionalMDD+=command
         })
 
 
@@ -70,7 +73,9 @@ module.exports = function renderMdd(mddString) {
         return `<div class="multiple-choice-wrapper" onclick="document.querySelector('.stack-width').classList.add('blur-all-non-mc-questions')">
             <div class="indicator-symbol">${text}</div>
             <canvas class="mc-answer-confetti"></canvas>
-            <h3>${question}</h3>
+            <h3 style="margin-bottom: 0">${question}</h3>
+            ${renderMdd(additionalMDD)}
+            <br>
             ${findPrerenderedComponents(e, multipleChoiceElement)}
         </div>`
     })
