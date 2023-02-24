@@ -1052,3 +1052,7 @@ html {
 .mdd-render img {
     width: 100%;
 }
+
+.mdd-render .mc-answer-container.mc-answer-container-embeded {
+    margin-top: 0 !important;
+}
