@@ -122,7 +122,16 @@
     </div>
     <div class="ui-modal-dimmer"></div>
   </div>
+  <div class="ui-lightbox-wrapper hidden" id="ui-lightbox">
+    <i class="fa-solid fa-xmark"></i>
+    <div class="ui-lightbox">
+      <img>
+      <span class="ui-lightbox-desc"></span>
+    </div>
+    <div class="ui-modal-dimmer"></div>
+  </div>
   <script src="./config.js?v=3"></script>
+  <script>function openlightbox(e){let t=document.getElementById("ui-lightbox");function n(e){"Escape"===e.key&&(t.classList.add("hidden"),document.removeEventListener("keyup",n))}t.querySelector("img").src=e.src,t.querySelector(".ui-lightbox-desc").innerText=e.alt,t.classList.remove("hidden"),t.querySelector(".fa-xmark").onclick=function(){t.classList.add("hidden"),document.removeEventListener("keyup",n)},document.addEventListener("keyup",n)}</script>
   <input id="console-bridge" style="width:0;height:0">
   <div id="window-container"></div>
   <i id="progress-panel-mobile-btn" class="fa-solid fa-bars" onclick='let panel=document.querySelector(".left-panel");panel&&panel.classList.toggle("mobile-opened")'></i>
