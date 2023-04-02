@@ -26,6 +26,7 @@ Pages are each individual page inside of a lesson/module
 ### Components
  **Divider Line**: `----` (four or more dash symbols, so `--------` would also work)
  **Iframe**: `!!(url)`
+ **Image**: `![Image Description](Image URL)` - Image Description will appear underneath the image, as well as in the lightbox.
  **Embedded Multiple Choice**: 
  ```jsx
  <Q>
@@ -47,6 +48,7 @@ Pages are each individual page inside of a lesson/module
  **Resources List**: 	
  ```markdown
 <R>
+	Custom List Name (optional)
 	|sourcename|resource title|resource description|resource url|
 	|sourcename|resource title|resource description|resource url|
 	|sourcename|resource title|resource description|resource url|

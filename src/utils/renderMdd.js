@@ -34,9 +34,15 @@ module.exports = function renderMdd(mddString) {
             ${findPrerenderedComponents(e, component)}
         </div>`
     })
-    mddString = mddString.replace(/!!\(.*\)/g, function (e) {
+    mddString = mddString.replace(/!!\(.*?\)/g, function (e) {
         let url = e.slice(3, -1)
         return `<div class="image-wrapper info-text"><iframe src="${url}" style="width: 100%; height: 400px; border-radius: 10px; display: block; margin-left: auto; margin-right: auto;" onload="resizeIframe(this)"></iframe></div>`
+    })
+    mddString = mddString.replace(/!\[.*\]\(.*\)/g, function (e) {
+        let description = e.split("]")[0].slice(2)
+        let url = e.split("(")[1].slice(0, -1)
+        console.log(url, description)
+        return `<img style="border-radius: 8px" src="${url}" alt="${description}" onclick="openlightbox(this)"> ${description && `\n>${description}`} `
     })
     mddString = mddString.replace(/<Q>.+?<\/Q>/gms, function (e) {
         let content = e.slice(3, -4).split("\n").filter(p => !!p);
@@ -129,12 +135,14 @@ module.exports = function renderMdd(mddString) {
         `
     })
     mddString = mddString.replace(/<R>.+?<\/R>/gms, function (e) {
+        let name;
         let content = e.slice(3, -4).split("\n").filter(p => !!p);
 
         let sources = []
 
         content.forEach(p => {
             let command = p.trim();
+            if (!command.startsWith("|")) return name = command;
             if (!command) return
             command = command.split("|").filter(e => !!e);
             sources.push({
@@ -145,10 +153,8 @@ module.exports = function renderMdd(mddString) {
             })
         })
 
-        console.log(sources)
-
         return `<div class="resource-list-wrapper">
-            <span class="resource-list-title">Resources</span>
+            <span class="resource-list-title">${name || "Resources"}</span>
             <table>
                 ${sources.map(e => `<tr>
                     <td class="sourcename">${e.sourcename}</td>
