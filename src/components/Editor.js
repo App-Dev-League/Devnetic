@@ -1,22 +1,11 @@
 //issues: Dependency manager does not display the current dependencies if you go to a file, modify it, save it, and then open it again.
 
-
-const codeTemplateToCode = require("../utils/codeTemplateToCode.js");
 const codeEditorHelper = require("../utils/codeEditor.js");
 const DB = require("../utils/Database.js");
 const TabbedView = require("./TabbedView.js");
 const plugins = require("../utils/plugins.js");
 
-function makeid(length) {
-	var result = '';
-	var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-	var charactersLength = characters.length;
-	for (var i = 0; i < length; i++) {
-		result += characters.charAt(Math.floor(Math.random() *
-			charactersLength));
-	}
-	return result;
-}
+
 
 class Editor extends tApp.Component {
 	constructor(state, parent) {
@@ -429,7 +418,7 @@ class Editor extends tApp.Component {
 								module = module.slice(0, regexLastIndexOf(module, /("|')/g))
 								console.log(module)
 								if (/^(http(s|):\/\/)/.test(module)) {
-									return module;
+									return `src="${module}"`;
 								}
 								if (module.startsWith("data:")) return module;
 								module = module.replace(/^(.\/|\/)/g, "")
@@ -451,7 +440,7 @@ class Editor extends tApp.Component {
 								}
 								if (module.endsWith(".png") || module.endsWith(".jpg") || module.endsWith(".jpeg") || module.endsWith(".gif")) {
 									moduleCode = codeEditorHelper.getTextWithoutMetaData(moduleCode)
-									return `data:image/png;base64,${btoa(moduleCode)}`
+									return `src=data:image/png;base64,${btoa(moduleCode)}`
 								}
 								moduleCode = codeEditorHelper.getTextWithoutMetaData(moduleCode)
 								return `src="data:text/plain;base64,` + plugins.Base64.encode(moduleCode) + "\""
