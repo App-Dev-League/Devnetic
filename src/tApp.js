@@ -1071,8 +1071,8 @@ class tApp {
 						console.warn("tAppWarning: Persistent caching is not available in this browser.");
 						tApp.config.caching.persistent = false;
 						if (Object.keys(tApp.routes).length > 0) {
-							window.addEventListener("hashchange", () => {
-								tApp.updatePage(window.location.hash);
+							window.addEventListener("hashchange", (event) => {
+								window.transitionPage(event)
 							}, false);
 							tApp.updatePage(window.location.hash);
 						}
@@ -1082,8 +1082,8 @@ class tApp {
 					request.onsuccess = async (event) => {
 						tApp.database = request.result;
 						if (Object.keys(tApp.routes).length > 0) {
-							window.addEventListener("hashchange", () => {
-								tApp.updatePage(window.location.hash);
+							window.addEventListener("hashchange", (event) => {
+								window.transitionPage(event)
 							}, false);
 							tApp.updatePage(window.location.hash);
 						}
@@ -1102,8 +1102,8 @@ class tApp {
 					};
 				} else {
 					if (Object.keys(tApp.routes).length > 0) {
-						window.addEventListener("hashchange", () => {
-							tApp.updatePage(window.location.hash);
+						window.addEventListener("hashchange", (event) => {
+							window.transitionPage(event)
 						}, false);
 						tApp.updatePage(window.location.hash);
 					}

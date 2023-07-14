@@ -1671,6 +1671,9 @@
       </div>
     </div>
   </tapp-main>
+  <div class="left-panel" id="progress-panel">
+    <span class="panel-title"></span>
+  </div>
   <div id="snippets-modal" class="none">
     <div class="background-dimmer"></div>
     <div class="explanation-modal">
@@ -4101,14 +4104,16 @@
       document.getElementById("progress-panel-mobile-btn").classList.remove("invisible")
     } else {
       document.getElementById("progress-panel-mobile-btn").classList.add("invisible")
+      const panel  = document.getElementById("progress-panel");
+			panel.classList.add("invisible")
     }
-    setTimeout(function() {
-      if (window.loadState === "loaded") return;
-      NProgress.configure({
-        trickleSpeed: 500
-      });
-      NProgress.start();
-    }, 100)
+    // setTimeout(function() {
+    //   if (window.loadState === "loaded") return;
+    //   NProgress.configure({
+    //     trickleSpeed: 500
+    //   });
+    //   NProgress.start();
+    // }, 100)
   }
 
   function pageHasLoaded() {

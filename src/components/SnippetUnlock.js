@@ -10,9 +10,7 @@ class SnippetUnlock extends ModuleComponent {
 	render(props) {
 		if (this.data() != null) {
 			this.parent.state.Database.storeSnippet(this.data().snippet);
-			return `<div class="information-wrapper"><div class="left-panel" id="progress-panel">
-			<span class="panel-title"></span>
-		</div>
+			return `<div class="information-wrapper animate-out">
 		<div class="stack-width-wrapper">
 		<div class="stack-width">
 	<h1 class="info-title">Snippet Unlocked: ${tApp.escape(this.data().name || "")}!</h1>

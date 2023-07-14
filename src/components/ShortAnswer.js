@@ -33,9 +33,7 @@ class ShortAnswer extends ModuleComponent {
 			if(this.data().value == null) {
 				this.data().value = "";
 			}
-			let returnStr = `<div class="information-wrapper"><div class="left-panel" id="progress-panel">
-			<span class="panel-title"></span>
-		</div>
+			let returnStr = `<div class="information-wrapper animate-out">
 		<div class="stack-width-wrapper">
 		<div class="stack-width">
 	<h1 class="mc-question">${tApp.escape(this.data().question || "")}</h1>

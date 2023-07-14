@@ -518,3 +518,21 @@ tApp.render = function (param1) {
 	renderFunction(param1)
 }
 
+window.transitionPage = async function(event) {
+	console.log(event)
+	document.querySelectorAll(".animate-out").forEach(element => element.classList.add("animating-out"))
+	await new Promise((resolve, reject) => setTimeout(resolve, 100))
+	document.querySelectorAll("tapp-main").forEach(element => element.classList.add("transitioning-out"))
+	await new Promise((resolve, reject) => setTimeout(resolve, 250))
+	tApp.updatePage(window.location.hash);
+	await new Promise((resolve, reject) => setTimeout(resolve, 250))
+	document.querySelectorAll(".animate-out").forEach(element => element.classList.remove("animating-out"))
+	document.querySelectorAll(".animate-out").forEach(element => element.classList.add("animating-in"))
+	await new Promise((resolve, reject) => setTimeout(resolve, 100))
+	document.querySelectorAll("tapp-main").forEach(element => element.classList.remove("transitioning-out"))
+	document.querySelectorAll("tapp-main").forEach(element => element.classList.add("transitioning-in"))
+	await new Promise((resolve, reject) => setTimeout(resolve, 500))
+	document.querySelectorAll(".animate-out").forEach(element => element.classList.remove("animating-in"))
+	document.querySelectorAll("tapp-main").forEach(element => element.classList.remove("transitioning-in"))
+
+}

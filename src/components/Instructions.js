@@ -29,7 +29,7 @@ class Instructions extends tApp.Component {
 		 <br>
 		 - .cpp
 		</div>`;
-		return `<div>
+		return `<div class="animate-out">
 			<h1 class="info-title">${tApp.escape(this.state.title || "")}</h1>
 			${(this.state.elements || []).map((element, i) => {
 				return renderElement(element, i)

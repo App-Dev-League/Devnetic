@@ -17,6 +17,7 @@ html {
     top: -200px;
     width: 80ch;
     padding: 60px;
+    box-shadow: rgba(0,0,0,0.3) 0px 7px 20px 8px;
 }
 
 .track-header-card .backhome {
@@ -484,6 +485,7 @@ html {
     background-color: rgb(17 24 39/0.75);
     z-index: 99 !important;
     display: block;
+    transition: 0.3s opacity;
 }
 
 .ui-modal .ui-modal-header {
@@ -531,13 +533,13 @@ html {
 }
 
 .ui-modal-wrapper, .ui-modal {
-    transition: 0.5s all;
+    transition: 0.3s all ease-in-out;
 }
 
 .ui-modal-wrapper.hidden .ui-modal {
     opacity: 0;
     pointer-events: none;
-    transform: translate(-50%, -50%) scale(0.5);
+    transform: translate(-50%, -50%) scale(0.9);
 }
 
 .ui-modal-wrapper.hidden .ui-modal-dimmer {
@@ -711,6 +713,8 @@ html {
     top: 0;
     padding-top: 60px;
     overflow: auto;
+    transition: 0.5s opacity;
+    z-index: 9;
 }
 
 .information-wrapper {
@@ -1140,4 +1144,62 @@ blockquote > p {
 .ui-lightbox-wrapper.hidden .fa-xmark {
     opacity: 0;
     pointer-events: none;
+}
+
+
+
+
+/* Page Transitions */
+.transitioning-out {
+    animation: 0.25s transitioning-out forwards cubic-bezier(0.31, 0.18, 0.54, 0.95);
+}
+
+@keyframes transitioning-out {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.transitioning-in {
+    animation: 0.25s transitioning-in forwards cubic-bezier(0.31, 0.18, 0.54, 0.95);
+}
+
+@keyframes transitioning-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+
+.animating-out {
+    animation: 0.5s animating-out forwards cubic-bezier(0.31, 0.18, 0.54, 0.95);
+}
+
+@keyframes animating-out {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-50px);
+    }
+}
+
+.animating-in {
+    animation: 0.5s animating-in forwards cubic-bezier(0.31, 0.18, 0.54, 0.95);
+}
+
+@keyframes animating-in {
+    from {
+        transform: translateY(50px);
+    }
+    to {
+        transform: translateY(0);
+    }
 }

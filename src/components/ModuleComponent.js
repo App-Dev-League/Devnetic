@@ -28,12 +28,12 @@ class ModuleComponent extends tApp.Component {
 			this.updateNextButtonStatus()
 		}
 
-
-		if (this.constructor.name === "Information" || this.constructor.name === "Congratulations" || this.constructor.name === "ShortAnswer" || this.constructor.name === "SnippetUnlock" || this.constructor.name === "MultipleChoice") {
+		if (this.constructor.name === "Information" || this.constructor.name === "Congratulations" || this.constructor.name === "ShortAnswer" || this.constructor.name === "SnippetUnlock" || this.constructor.name === "MultipleChoice"|| this.constructor.name === "EmbededMultipleChoice") {
 			await fetchMenuData()
 			const track = window.location.hash.split("/")[2];
 			const trackName = swap(window.rawModuleData.actions)[track]
 			const panel  = document.getElementById("progress-panel");
+			panel.classList.remove("invisible")
 			const lessonIndex = Number(window.location.hash.split("/")[3]);
 			const pageIndex = Number(window.location.hash.split("/")[4]);
 
