@@ -1,5 +1,5 @@
 const ModuleComponent=require("./ModuleComponent.js"),ExplanationModal=require("./ExplanationModal.js"),MultipleChoiceOption=require("./MultipleChoiceOption.js"),codeBlock=require("./codeBlock.js");class MultipleChoice extends ModuleComponent{constructor(t,s){super(t,s),null==this.state.options&&(this.state.options={}),null==this.state.options[0]&&(this.state.options[0]=new MultipleChoiceOption({index:0},this)),null==this.state.options[1]&&(this.state.options[1]=new MultipleChoiceOption({index:1},this)),null==this.state.options[2]&&(this.state.options[2]=new MultipleChoiceOption({index:2},this)),null==this.state.options[3]&&(this.state.options[3]=new MultipleChoiceOption({index:3},this))}render(t){if(null==this.data()||null==this.data().question)return"<div></div>";null==this.state.explanation?this.state.explanation=new ExplanationModal({points:this.data().points,coins:this.data().coins},this):(this.state.explanation.state.points=this.data().points,this.state.explanation.state.coins=this.data().coins);var s=`
-			<div class="information-wrapper">
+			<div class="information-wrapper animate-out">
 				<div class="stack-width-wrapper">
 			<div class="stack-width">
 	<h1 class="mc-question">${tApp.escape(this.data().question||"")}</h1>

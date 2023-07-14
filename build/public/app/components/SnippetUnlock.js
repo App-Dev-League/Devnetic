@@ -1,4 +1,4 @@
-const ModuleComponent=require("./ModuleComponent.js"),codeTemplateToCode=require("../utils/codeTemplateToCode.js"),codeBlock=require("./codeBlock.js");class SnippetUnlock extends ModuleComponent{constructor(e,t){super(e,t)}render(e){return null!=this.data()?(this.parent.state.Database.storeSnippet(this.data().snippet),`<div class="information-wrapper">
+const ModuleComponent=require("./ModuleComponent.js"),codeTemplateToCode=require("../utils/codeTemplateToCode.js"),codeBlock=require("./codeBlock.js");class SnippetUnlock extends ModuleComponent{constructor(e,t){super(e,t)}render(e){return null!=this.data()?(this.parent.state.Database.storeSnippet(this.data().snippet),`<div class="information-wrapper animate-out">
 		<div class="stack-width-wrapper">
 		<div class="stack-width">
 	<h1 class="info-title">Snippet Unlocked: ${tApp.escape(this.data().name||"")}!</h1>

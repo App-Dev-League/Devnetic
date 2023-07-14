@@ -17,7 +17,7 @@ const codeTemplateToCode=require("../utils/codeTemplateToCode.js"),codeBlock=req
 		 - .pl
 		 <br>
 		 - .cpp
-		</div>`:`<div>
+		</div>`:`<div class="animate-out">
 			<h1 class="info-title">${tApp.escape(this.state.title||"")}</h1>
 			${(this.state.elements||[]).map((t,e)=>renderElement(t,e)).join("")}
 			<button class="info-button" id="continue-button" onclick="{{_this}}.parent.checknext();">${this.state.nextText}</button>

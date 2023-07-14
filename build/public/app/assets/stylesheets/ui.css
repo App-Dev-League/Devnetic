@@ -17,6 +17,7 @@ html {
     top: -200px;
     width: 80ch;
     padding: 60px;
+    box-shadow: rgba(0,0,0,0.3) 0px 7px 20px 8px;
 }
 
 .track-header-card .backhome {
@@ -484,6 +485,7 @@ html {
     background-color: rgb(17 24 39/0.75);
     z-index: 99 !important;
     display: block;
+    transition: 0.3s opacity;
 }
 
 .ui-modal .ui-modal-header {
@@ -531,13 +533,13 @@ html {
 }
 
 .ui-modal-wrapper, .ui-modal {
-    transition: 0.5s all;
+    transition: 0.3s all ease-in-out;
 }
 
 .ui-modal-wrapper.hidden .ui-modal {
     opacity: 0;
     pointer-events: none;
-    transform: translate(-50%, -50%) scale(0.5);
+    transform: translate(-50%, -50%) scale(0.9);
 }
 
 .ui-modal-wrapper.hidden .ui-modal-dimmer {
@@ -1149,7 +1151,7 @@ blockquote > p {
 
 /* Page Transitions */
 .transitioning-out {
-    animation: 0.25s transitioning-out forwards;
+    animation: 0.25s transitioning-out forwards cubic-bezier(0.31, 0.18, 0.54, 0.95);
 }
 
 @keyframes transitioning-out {
@@ -1162,7 +1164,7 @@ blockquote > p {
 }
 
 .transitioning-in {
-    animation: 0.25s transitioning-in forwards;
+    animation: 0.25s transitioning-in forwards cubic-bezier(0.31, 0.18, 0.54, 0.95);
 }
 
 @keyframes transitioning-in {
@@ -1177,7 +1179,7 @@ blockquote > p {
 
 
 .animating-out {
-    animation: 0.35s animating-out forwards linear;
+    animation: 0.5s animating-out forwards cubic-bezier(0.31, 0.18, 0.54, 0.95);
 }
 
 @keyframes animating-out {
@@ -1190,12 +1192,12 @@ blockquote > p {
 }
 
 .animating-in {
-    animation: 0.35s animating-in forwards linear;
+    animation: 0.5s animating-in forwards cubic-bezier(0.31, 0.18, 0.54, 0.95);
 }
 
 @keyframes animating-in {
     from {
-        transform: translateY(-50px);
+        transform: translateY(50px);
     }
     to {
         transform: translateY(0);
