@@ -28,11 +28,11 @@ class ModuleComponent extends tApp.Component {
 			this.updateNextButtonStatus()
 		}
 
-		if (this.constructor.name === "Information" || this.constructor.name === "Congratulations" || this.constructor.name === "ShortAnswer" || this.constructor.name === "SnippetUnlock" || this.constructor.name === "MultipleChoice"|| this.constructor.name === "EmbededMultipleChoice") {
+		if (this.constructor.name === "Information" || this.constructor.name === "Congratulations" || this.constructor.name === "ShortAnswer" || this.constructor.name === "SnippetUnlock" || this.constructor.name === "MultipleChoice" || this.constructor.name === "EmbededMultipleChoice") {
 			await fetchMenuData()
 			const track = window.location.hash.split("/")[2];
 			const trackName = swap(window.rawModuleData.actions)[track]
-			const panel  = document.getElementById("progress-panel");
+			const panel = document.getElementById("progress-panel");
 			panel.classList.remove("invisible")
 			const lessonIndex = Number(window.location.hash.split("/")[3]);
 			const pageIndex = Number(window.location.hash.split("/")[4]);
@@ -43,12 +43,19 @@ class ModuleComponent extends tApp.Component {
 			trackData.forEach((lesson, index) => {
 				let accordion = document.createElement("div");
 				accordion.classList.add("accordion");
-				if (index === lessonIndex) accordion.classList.add("open")
+				if (index === lessonIndex) {
+					accordion.classList.add("open")
+					if (pageIndex === 0) setTimeout(() => {
+						accordion.style.height = `${(trackData[index].pageBreakdown.length + 1) * 43.43}px`
+					}, 100)
+					else
+						accordion.style.height = `${(trackData[index].pageBreakdown.length + 1) * 43.43}px`
+				}
 				accordion.innerHTML = `
 					<span class="accordion-title">${window.rawModuleData[track].weeks[index]}<i class="fa-solid fa-chevron-right"></i></span>
 				`
 				body.appendChild(accordion, body.firstChild);
-				
+
 				trackData[index].pageBreakdown.forEach((info, i) => {
 					let div = document.createElement("a");
 					div.innerHTML = `${info.title.replace(/Week...-/, "")}`
@@ -63,7 +70,13 @@ class ModuleComponent extends tApp.Component {
 				})
 
 				accordion.querySelector(".accordion-title").onclick = function () {
-					this.parentElement.classList.toggle("open")
+					if (this.parentElement.classList.contains("open")) {
+						this.parentElement.classList.remove("open")
+						this.parentElement.style.height = `${43.43}px`
+					} else {
+						this.parentElement.classList.add("open")
+						this.parentElement.style.height = `${(trackData[index].pageBreakdown.length + 1) * 43.43}px`
+					}
 				}
 			})
 
@@ -73,12 +86,12 @@ class ModuleComponent extends tApp.Component {
 		}
 	}
 }
-function swap(json){
+function swap(json) {
 	var ret = {};
-	for(var key in json){
-	  ret[json[key]] = key;
+	for (var key in json) {
+		ret[json[key]] = key;
 	}
 	return ret;
-  }
+}
 
 module.exports = ModuleComponent;
