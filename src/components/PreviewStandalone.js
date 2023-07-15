@@ -8,7 +8,7 @@ const codeEditorHelper = require("../utils/codeEditor.js");
 window.codeEditorHelper = codeEditorHelper;
 
 class CodeEditor extends ModuleComponent {
-    constructor(state, parent) {
+    constructor(state, parent, isLive) {
         super(state, parent);
         if (this.state.editor == null) {
             this.state.editor = new Editor({}, this);
@@ -16,6 +16,7 @@ class CodeEditor extends ModuleComponent {
         if (this.state.codePreview == null) {
             this.state.codePreview = new CodePreview({}, this);
         }
+        this.isLive = isLive
     }
     render(props) {
         document.getElementById("preview-demo-loading-cover").classList.add("none")
@@ -52,29 +53,64 @@ class CodeEditor extends ModuleComponent {
 						<div class="vertical-divider"></div>
 						${this.state.codePreview}
                         <style>
-                        #preview-container {
-                            position: fixed;
-                            width: 100%;
-                            left: 0;
-                            top: 0;
-                            height: 100vh;
-                            z-index: 100;
-                            margin-top: 0 !important;
+                                        
+                            ${this.isLive ? `
+                            #code-frame {
+                                position: fixed;
+                                top: 0;
+                                left: 0;
+                                width: 50vw !important;
+                                height: 100vh !important;
+                                z-index: 100;
+                            }
+                            tapp-main {
+                                overflow: hidden !important;
+                            }
+                            .selected-tab>div {
+                                transform: none !important;
+                            }
+                            #code-editor-component > div {
+                                transform: none !important;
+                            }
+                            #preview {
+                                background: white;
+                                height: 100vh !important;
+                                width: 50vw !important;
+                            }
+                            #preview-container {
+                                position: fixed;
+                                width: 50%;
+                                right: 0;
+                                top: 0;
+                                height: 100vh;
+                                z-index: 100;
+                                margin-top: 0 !important;
+                            }
+                            ` :`
+                            #preview-container {
+                                position: fixed;
+                                width: 100%;
+                                left: 0;
+                                top: 0;
+                                height: 100vh;
+                                z-index: 100;
+                                margin-top: 0 !important;
+                            }
+                            .project-module-tabs {
+                                display: none;
+                            }
+                            #preview {
+                                width: 100% !important;
+                            }
+                            `}
+                        .vertical-divider {
+                            display: none
                         }
                         header {
                             display: none
                         }
-                        .vertical-divider {
-                            display: none
-                        }
-                        .project-module-tabs {
-                            display: none;
-                        }
                         html {
                             background: black;
-                        }
-                        #preview {
-                            width: 100% !important;
                         }
                         </style>
 					</div>`;

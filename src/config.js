@@ -206,6 +206,53 @@
 		tApp.render(modulePage.toString())
 	})
 
+	tApp.route("#/live-demo/<fileType>/<base64EncodedCode>", async function(request) {
+		async function showPage(res, isUserProject = false, isDemo = false) {
+			let { data, type, moduleLength, next, moduleData } = res;
+			window.tAppRequestInstance = request;
+			window.currentModuleData = moduleData;
+			data.isUserProject = isUserProject;
+			data.isDemo = isDemo
+			data.previewIndex = request.data.fileIndex;
+			if (isDemo) data.previewIndex = 0;
+			modulePage.setComponent(new Preview({}, modulePage, true), data);
+		}
+		request.data.base64EncodedCode = window.atob(request.data.base64EncodedCode)
+
+		showPage({
+			type: "project",
+			moduleLength: 1,
+			next: {
+				hasNext: true,
+				module: 0,
+				position: 1
+			},
+			data: {
+				"type": "code_editor",
+				"storage_id": [
+					"temp_demo_cache." + request.data.fileType
+				],
+				"files": [
+					"index." + request.data.fileType
+				],
+				"default": [],
+				"display_type": "web",
+				"elements": [],
+				"hints": [],
+				"validation": [],
+				"points": 0,
+				"coins": 0,
+				"demo_data": {
+					"filename": "index." + request.data.fileType,
+					"fileData": request.data.base64EncodedCode
+				},
+				"live": true
+			}
+		}, false, true)
+		return tApp.render(modulePage.toString())
+
+	})
+
 	tApp.route("#/learn/<track>/<module>/<position>", async function (request) {
 		request.data.module = parseInt(request.data.module);
 		request.data.position = parseInt(request.data.position);

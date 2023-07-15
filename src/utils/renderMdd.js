@@ -29,7 +29,10 @@ module.exports = function renderMdd(mddString) {
     mddString = mddString.replace(/```[\S\s]*?```/g, function (e) {
         let language = e.slice(3, e.indexOf("\n"))
         let content = e.slice(e.indexOf("\n"), -3).trim()
-        let component = new codeBlock({ code: codeBlockHelper.escapeHtml(content), language: language.split("-")[0], name: language.split("-")[1] || "" })
+        let name = language.split("-")[1]?.trim() || "";
+        if (name === "LIVE") return `<div class="image-wrapper info-text"><iframe src="#/live-demo/${ language.split("-")[0]}/${window.btoa(content)}" style="width: 100%; height: 250px; border-radius: 10px; display: block; margin-left: auto; margin-right: auto;" onload="resizeIframe(this)"></iframe></div>`
+
+        let component = new codeBlock({ code: codeBlockHelper.escapeHtml(content), language: language.split("-")[0], name: name })
         return `<div class="codeblock-wrapper">
             ${findPrerenderedComponents(e, component)}
         </div>`
@@ -66,7 +69,7 @@ module.exports = function renderMdd(mddString) {
             else if (command.startsWith("+")) descriptions.push(command.slice(1))
             else if (command.startsWith("p:")) points = Number(command.slice(2));
             else if (command.startsWith("c:")) coins = Number(command.slice(2));
-            else additionalMDD+=p+"\n"
+            else additionalMDD += p + "\n"
         })
 
 
@@ -170,7 +173,7 @@ module.exports = function renderMdd(mddString) {
     let html = converter.makeHtml(mddString)
 
 
-    return html
+    return `<div class="mdd-render">${html}</div>`
 }
 
 
@@ -180,7 +183,7 @@ function findPrerenderedComponents(componentContent, element) {
     let preparedElement = element.toString().split("\n").filter(e => !!e);
 
     if (window.cachedMDDComponents[hash]) {
-        preparedElement = [preparedElement[0], window.cachedMDDComponents[hash], preparedElement[preparedElement.length-1]]
+        preparedElement = [preparedElement[0], window.cachedMDDComponents[hash], preparedElement[preparedElement.length - 1]]
         return preparedElement.join("\n")
     } else {
         setTimeout(() => {

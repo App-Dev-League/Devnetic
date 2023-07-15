@@ -27,6 +27,12 @@ Pages are each individual page inside of a lesson/module
  **Divider Line**: `----` (four or more dash symbols, so `--------` would also work)
  **Iframe**: `!!(url)`
  **Image**: `![Image Description](Image URL)` - Image Description will appear underneath the image, as well as in the lightbox.
+ **Live Code**: You can embed a super simple code editor + output window here. 
+ `````md
+ ```html-LIVE
+My HTML Code. This works for HTML and Browser Javascript.
+ ```
+ `````
  **Embedded Multiple Choice**: 
  ```jsx
  <Q>
@@ -55,7 +61,6 @@ Pages are each individual page inside of a lesson/module
 </R>
 ```
  **Asterix**: `A!Your asterix tooltip goes hereA!`
-
 
  ### The following components support custom names:
  To use custom names, simply append a `-` after the component delimiter. Then, on the next line, start your actual content.\

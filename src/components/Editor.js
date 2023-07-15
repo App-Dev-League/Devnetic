@@ -475,6 +475,7 @@ class Editor extends tApp.Component {
 							})
 							html = "<!--Devnetic Loaded-->" + html
 							html = html.replace("<!DOCTYPE html>", "")
+							html = `<style>*{font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"}</style>\n` + html
 							setPreviewHTML(html)
 
 							if (errored = true) {
@@ -908,13 +909,14 @@ window.addEventListener("message", (event) => {
 				}, false);
 			}
 		}
+		console.log(parentThis.parent.parent.data().isDemo, "asdfasdf")
 		return `<div id="code-editor-tab">
 		<div class="code-editor-options">
 			<span id="code-editor-status" style="display: inline-block; margin-left: 23px; margin-top: 10px;">Downloading code...</span>
 			<span id="code-editor-run-btn" class="home-module home-module-complete" style="margin: 0; width: fit-content; padding-left: 20px; padding-right: 20px; margin-left: 20px; position: relative; z-index: 10">Run</span>
 		</div>
 		<div class="code-editor">
-			<iframe id="code-frame" style="width: 100%; height: 100%; border: none" src="./assets/html/${mode}.html"></iframe>
+			<iframe id="code-frame" style="width: 100%; height: ${parentThis.parent.parent.data().isDemo ? "100%" : "calc(100% - 20px); margin-top: 20px;"}; border: none; " src="./assets/html/${mode}.html"></iframe>
 		</div>
 		</div>`;
 	}
