@@ -1053,6 +1053,23 @@ html {
     text-decoration: underline;
 }
 
+.mdd-render p {
+    color: #e7e7e7;
+    line-height: 1.5;
+    font-size: 17px;
+}
+
+.mdd-render * {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+}
+
+
+.mdd-render h1,.mdd-render h2,.mdd-render h3,.mdd-render h4,.mdd-render h5 {
+    font-weight: bold;
+    margin-bottom: 0px !important;
+    margin-top: 25px !important;
+}
+
 .mdd-render img {
     width: 100%;
 }

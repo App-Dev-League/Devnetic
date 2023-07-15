@@ -1,11 +1,11 @@
-const codeBlock=require("../components/codeBlock.js"),codeBlockHelper=require("./codeBlocks.js"),MultipleChoice=require("../components/EmbededMultipleChoice.js");var converter=new showdown.Converter({extentions:[]});function findPrerenderedComponents(e,i){let t=sha1(e).toString(),n=i.toString().split("\n").filter(e=>!!e);return window.cachedMDDComponents[t]?(n=[n[0],window.cachedMDDComponents[t],n[n.length-1]]).join("\n"):(setTimeout(()=>{window.cachedMDDComponents[t]=document.querySelector(`[tapp-component='${i.id}']`).innerHTML},500),i)}converter.setOption("simpleLineBreaks",!0),window.cachedMDDComponents||(window.cachedMDDComponents={}),module.exports=function p(e){let h=0;return e=(e=(e=(e=(e=(e=(e=(e=(e=e.replace(/```[\S\s]*?```/g,function(e){let i=e.slice(3,e.indexOf("\n"));var t=e.slice(e.indexOf("\n"),-3).trim();return`<div class="codeblock-wrapper">
-            ${findPrerenderedComponents(e,new codeBlock({code:codeBlockHelper.escapeHtml(t),language:i.split("-")[0],name:i.split("-")[1]||""}))}
+const codeBlock=require("../components/codeBlock.js"),codeBlockHelper=require("./codeBlocks.js"),MultipleChoice=require("../components/EmbededMultipleChoice.js");var converter=new showdown.Converter({extentions:[]});function findPrerenderedComponents(e,i){let t=sha1(e).toString(),s=i.toString().split("\n").filter(e=>!!e);return window.cachedMDDComponents[t]?(s=[s[0],window.cachedMDDComponents[t],s[s.length-1]]).join("\n"):(setTimeout(()=>{window.cachedMDDComponents[t]=document.querySelector(`[tapp-component='${i.id}']`).innerHTML},500),i)}converter.setOption("simpleLineBreaks",!0),window.cachedMDDComponents||(window.cachedMDDComponents={}),module.exports=function p(e){let h=0;return e=(e=(e=(e=(e=(e=(e=(e=(e=e.replace(/```[\S\s]*?```/g,function(e){let i=e.slice(3,e.indexOf("\n"));var t=e.slice(e.indexOf("\n"),-3).trim(),s=i.split("-")[1]?.trim()||"";return"LIVE"===s?`<div class="image-wrapper info-text"><iframe src="#/live-demo/${i.split("-")[0]}/${window.btoa(t)}" style="width: 100%; height: 250px; border-radius: 10px; display: block; margin-left: auto; margin-right: auto;" onload="resizeIframe(this)"></iframe></div>`:`<div class="codeblock-wrapper">
+            ${findPrerenderedComponents(e,new codeBlock({code:codeBlockHelper.escapeHtml(t),language:i.split("-")[0],name:s}))}
         </div>`})).replace(/!!\(.*?\)/g,function(e){return`<div class="image-wrapper info-text"><iframe src="${e.slice(3,-1)}" style="width: 100%; height: 400px; border-radius: 10px; display: block; margin-left: auto; margin-right: auto;" onload="resizeIframe(this)"></iframe></div>`})).replace(/!\[.*\]\(.*\)/g,function(e){var i=e.split("]")[0].slice(2),e=e.split("(")[1].slice(0,-1);return console.log(e,i),`<img style="border-radius: 8px" src="${e}" alt="${i}" onclick="openlightbox(this)"> ${i&&`
->`+i} `})).replace(/<Q>.+?<\/Q>/gms,function(e){let i=e.slice(3,-4).split("\n").filter(e=>!!e),t="",n=[],s=[],r=0,o=0,a=0,c="";i.forEach(e=>{let i=e.trim();i.startsWith("?")?t=i.slice(1):i.startsWith("!")?(i.endsWith("*")&&(r=n.length,i=i.slice(0,-1)),n.push(i.slice(1))):i.startsWith("+")?s.push(i.slice(1)):i.startsWith("p:")?o=Number(i.slice(2)):i.startsWith("c:")?a=Number(i.slice(2)):c+=e+"\n"});var l="Multiple Choice Question",d=(n.find(e=>"true"===e.toLowerCase())&&n.find(e=>"false"===e.toLowerCase())&&(l="True or False"),new MultipleChoice({answers:n,correct:r,descriptions:s,points:o,coins:a,elementNum:h},null));return h++,`<div class="multiple-choice-wrapper" onclick="document.querySelector('.stack-width').classList.add('blur-all-non-mc-questions')">
-            <div class="indicator-symbol">${l}</div>
+>`+i} `})).replace(/<Q>.+?<\/Q>/gms,function(e){let i=e.slice(3,-4).split("\n").filter(e=>!!e),t="",s=[],n=[],r=0,a=0,o=0,l="";i.forEach(e=>{let i=e.trim();i.startsWith("?")?t=i.slice(1):i.startsWith("!")?(i.endsWith("*")&&(r=s.length,i=i.slice(0,-1)),s.push(i.slice(1))):i.startsWith("+")?n.push(i.slice(1)):i.startsWith("p:")?a=Number(i.slice(2)):i.startsWith("c:")?o=Number(i.slice(2)):l+=e+"\n"});var c="Multiple Choice Question",d=(s.find(e=>"true"===e.toLowerCase())&&s.find(e=>"false"===e.toLowerCase())&&(c="True or False"),new MultipleChoice({answers:s,correct:r,descriptions:n,points:a,coins:o,elementNum:h},null));return h++,`<div class="multiple-choice-wrapper" onclick="document.querySelector('.stack-width').classList.add('blur-all-non-mc-questions')">
+            <div class="indicator-symbol">${c}</div>
             <canvas class="mc-answer-confetti"></canvas>
             <h3 style="margin-bottom: 0">${t}</h3>
-            ${p(c)}
+            ${p(l)}
             <br>
             ${findPrerenderedComponents(e,d)}
         </div>`})).replace(/N!.*?N!/gs,function(e){let i=e.slice(2,-2),t="Note:";return i.startsWith("-")&&(t=i.slice(1,i.indexOf("\n")),i=i.slice(i.indexOf("\n"))),`<div class="info-annotation info-note">
@@ -33,14 +33,14 @@ const codeBlock=require("../components/codeBlock.js"),codeBlockHelper=require(".
             </div>
             <pre style="line-height: 1.2; margin: 0">${converter.makeHtml(i)}</pre>
         </div>
-        `})).replace(/<R>.+?<\/R>/gms,function(e){let t,i=e.slice(3,-4).split("\n").filter(e=>!!e),n=[];return i.forEach(e=>{let i=e.trim();if(!i.startsWith("|"))return t=i;i&&(i=i.split("|").filter(e=>!!e),n.push({sourcename:i[0],title:i[1],description:i[2],url:i[3]}))}),`<div class="resource-list-wrapper">
+        `})).replace(/<R>.+?<\/R>/gms,function(e){let t,i=e.slice(3,-4).split("\n").filter(e=>!!e),s=[];return i.forEach(e=>{let i=e.trim();if(!i.startsWith("|"))return t=i;i&&(i=i.split("|").filter(e=>!!e),s.push({sourcename:i[0],title:i[1],description:i[2],url:i[3]}))}),`<div class="resource-list-wrapper">
             <span class="resource-list-title">${t||"Resources"}</span>
             <table>
-                ${n.map(e=>`<tr>
+                ${s.map(e=>`<tr>
                     <td class="sourcename">${e.sourcename}</td>
                     <td class="sourcetitle"><a target="_blank" href="${e.url}">${e.title}</a></td>
                     <td class="sourcedescription">${e.description}</td>
                     <td><div class="codicon codicon-copy" onclick="navigator.clipboard.writeText('${e.url}')"></div></td>
                     </tr>`).join("")}
             </table>
-        </div>`}),converter.makeHtml(e)};
+        </div>`}),`<div class="mdd-render">${converter.makeHtml(e)}</div>`};
