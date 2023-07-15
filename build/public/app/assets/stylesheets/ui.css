@@ -755,13 +755,18 @@ html {
 .left-panel .accordion {
     border: 1px solid var(--chakra-colors-gray-700);
     overflow: hidden;
+    transition: 0.5s all;
+    height: 43.43px
 }
+
 
 .left-panel .fa-chevron-right {
     font-size: 12px;
     color: var(--chakra-colors-gray-500);
     float: right;
     display: block;
+    transition: 0.5s all;
+    margin-top: 5px;
 }
 
 .left-panel .accordion.open .fa-chevron-right {
@@ -769,7 +774,7 @@ html {
 }
 
 .left-panel .accordion .accordion-entry {
-    display: none;
+    /* display: none; */
     padding: 12px 16px;
     padding-left: 36px;
     white-space: nowrap;
@@ -778,11 +783,9 @@ html {
     position: relative;
     color: var(--chakra-colors-gray-300);
     text-decoration: none;
-}
-
-.left-panel .accordion.open .accordion-entry {
     display: block;
 }
+
 
 .left-panel .accordion-title:hover {
     background-color: var(--chakra-colors-blue-900);
