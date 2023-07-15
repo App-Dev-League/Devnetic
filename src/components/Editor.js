@@ -184,15 +184,14 @@ class Editor extends tApp.Component {
 				}
 				if (requiredPlugins[checkFileType] && await plugins.checkPluginStatus(requiredPlugins[checkFileType]) === false && requiredPlugins[checkFileType] !== false && !window.alertModals.pluginFileRequired[checkFileType] && window.environment !== "development") {
 					window.alertModals.pluginFileRequired[checkFileType] = true;
-					codeEditorHelper.showAlertModal(`This file extention (.${checkFileType}) requires the ${requiredPlugins[checkFileType]} plugin to run`, [
+					const modal = codeEditorHelper.showAlertModal(`This file extention (.${checkFileType}) requires the ${requiredPlugins[checkFileType]} plugin to run`, [
 						{
 							text: "Install", onclick: function () {
-								document.querySelectorAll(".project-module-tabs")[1].children[0].children[3].click()
-								codeEditorHelper.removeAlertModal(this.parentElement.getAttribute('data-editor-alert-modal-index'))
-								setTimeout(function () {
-									if (document.getElementById("plugin-list-" + requiredPlugins[checkFileType]).querySelector("h5").innerText !== "Install") return;
-									document.getElementById("plugin-list-" + requiredPlugins[checkFileType]).querySelector("h5").click()
-								}, 100)
+								plugins.download(requiredPlugins[checkFileType], function (progress) {
+									modal.querySelector(".editor-alert-modal-loading-bar").style.width = (progress * 100) + "%"
+								}, function (done) {
+									codeEditorHelper.removeAlertModal(modal.getAttribute('data-editor-alert-modal-index'))
+								})
 							}
 						},
 						{
@@ -224,7 +223,7 @@ class Editor extends tApp.Component {
 						let clickIndex = Array.from(e.target.parentNode.children).indexOf(e.target);
 						let storageId = e.target.getAttribute("data-storage_id");
 						let clickedFileName = e.target.innerText.replace(" •", "")
-						let clickedFileType = clickedFileName.split(".")[clickedFileName.split(".").length-1]
+						let clickedFileType = clickedFileName.split(".")[clickedFileName.split(".").length - 1]
 						for (let i in menu.children) {
 							let option = menu.children[i];
 							if (option.nodeName === "HR" || typeof option === "number" || typeof option === "function") continue;
@@ -329,10 +328,10 @@ class Editor extends tApp.Component {
 								}
 							} else if (option.innerText.startsWith("Dependencies")) {
 								if (!(clickedFileType === "js" || clickedFileType === "py")) option.style.display = "none"
-								else option.style.display = "" 
-								option.onclick = function() {
+								else option.style.display = ""
+								option.onclick = function () {
 									e.target.click()
-									setTimeout(function() {
+									setTimeout(function () {
 										codeEditorHelper.showDependencyManager(clickedFileType)
 									}, 500)
 								}
