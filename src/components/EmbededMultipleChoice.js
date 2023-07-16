@@ -64,7 +64,7 @@ class EmbededMultipleChoice extends ModuleComponent {
 			scalar: 0.8
 		});
 		canvas.parentElement.querySelector(".indicator-symbol").style.color = "var(--chakra-colors-green-500)";
-		document.querySelector(".stack-width").children[getElementIndex(canvas.parentElement) + 1].scrollIntoView({
+		(document.querySelector(".stack-width > .mdd-render") || document.querySelector(".stack-width")).children[getElementIndex(canvas.parentElement) + 1].scrollIntoView({
 			behavior: 'auto',
 			block: 'center'
 		});
