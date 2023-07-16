@@ -231,6 +231,51 @@ header * {
     background: var(--chakra-colors-gray-700);
 }
 
+.mc-input {
+    display: block;
+    padding: var(--chakra-space-3);
+    border: 1px solid var(--chakra-colors-gray-600);
+    border-radius: 8px;
+    margin-bottom: 15px;
+    transition: 0.3s all;
+    background: inherit;
+    width: 100%;
+    text-align: left;
+    line-height: 25px;
+    color: var(--chakra-colors-gray-100);
+}
+
+.mc-input:active,.mc-input:focus,.mc-input:focus-visible {
+    border: 1px solid var(--chakra-colors-blue-600);
+}
+
+
+.mc-answer-container.correct_chosen .mc-input-wrapper::after {
+    content: "\eba4";
+    font-family: "Codicon";
+    float: right;
+    color: var(--chakra-colors-green-500);
+    font-size: 18.6667px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: var(--chakra-space-3)
+}
+.mc-answer-container.correct_chosen .mc-input{
+    border: 1px solid var(--chakra-colors-green-500) !important;
+}
+.mc-answer-container.correct_chosen .ui-modal-buttons{
+    height: 0 !important;
+    overflow: hidden;
+}
+.mc-answer-container .ui-modal-buttons{
+    transition: 0.3s all;
+}
+.mc-input-wrapper {
+    position: relative;
+    display: block;
+}
+
 .continue-button-disabled {
     opacity: 0.5;
     cursor: not-allowed !important;
@@ -288,7 +333,7 @@ html {
     position: fixed !important;
 }
 
-.blur-all-non-mc-questions>*:not(.multiple-choice-wrapper) {
+.blur-all-non-mc-questions > .mdd-render > :not(.multiple-choice-wrapper) {
     transition: 0.5s filter;
     filter: blur(3px);
 }

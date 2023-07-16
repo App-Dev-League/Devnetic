@@ -77,3 +77,15 @@ E!Your red error goes hereE!
 <h5>Heading 5</h5>
 <h6>Heading 6</h6>
 ```
+<P>
+   ?What are the first 100 digits of pi? 
+   !hello world
+   ^response.toLowerCase() 
+   +Placeholder
+   +Correct Description
+   +Incorrect Description
+   p:5
+   c:2
+   Anything else will be rendered as normal MDD
+   Stick codeblocks, bullet points, and more, to be rendered inside of the question
+</P>

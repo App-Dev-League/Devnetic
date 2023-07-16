@@ -1,6 +1,7 @@
 const codeBlock = require("../components/codeBlock.js");
 const codeBlockHelper = require("./codeBlocks.js");
 const MultipleChoice = require("../components/EmbededMultipleChoice.js")
+const ShortAnswer = require("../components/EmbeddedShortAnswer.js")
 
 
 var converter = new showdown.Converter({ extentions: [] });
@@ -23,14 +24,14 @@ if (!window.cachedMDDComponents) window.cachedMDDComponents = {}
 
 
 module.exports = function renderMdd(mddString) {
-    let multipleChoiceID = 0;
+    let inlineQuestionID = 0;
 
 
     mddString = mddString.replace(/```[\S\s]*?```/g, function (e) {
         let language = e.slice(3, e.indexOf("\n"))
         let content = e.slice(e.indexOf("\n"), -3).trim()
         let name = language.split("-")[1]?.trim() || "";
-        if (name === "LIVE") return `<div class="image-wrapper info-text"><iframe src="#/live-demo/${ language.split("-")[0]}/${window.btoa(content)}" style="width: 100%; height: 250px; border-radius: 10px; display: block; margin-left: auto; margin-right: auto;" onload="resizeIframe(this)"></iframe></div>`
+        if (name === "LIVE") return `<div class="image-wrapper info-text"><iframe src="#/live-demo/${language.split("-")[0]}/${window.btoa(content)}" style="width: 100%; height: 250px; border-radius: 10px; display: block; margin-left: auto; margin-right: auto;" onload="resizeIframe(this)"></iframe></div>`
 
         let component = new codeBlock({ code: codeBlockHelper.escapeHtml(content), language: language.split("-")[0], name: name })
         return `<div class="codeblock-wrapper">
@@ -77,14 +78,68 @@ module.exports = function renderMdd(mddString) {
         var text = "Multiple Choice Question"
         if (answers.find(e => e.toLowerCase() === "true") && answers.find(e => e.toLowerCase() === "false")) text = "True or False"
 
-        const multipleChoiceElement = new MultipleChoice({ answers: answers, correct: correctAnswer, descriptions: descriptions, points: points, coins: coins, elementNum: multipleChoiceID }, null)
-        multipleChoiceID++
+        const multipleChoiceElement = new MultipleChoice({ answers: answers, correct: correctAnswer, descriptions: descriptions, points: points, coins: coins, elementNum: inlineQuestionID }, null)
+        inlineQuestionID++
         return `<div class="multiple-choice-wrapper" onclick="document.querySelector('.stack-width').classList.add('blur-all-non-mc-questions')">
             <div class="indicator-symbol">${text}</div>
             <canvas class="mc-answer-confetti"></canvas>
-            <h3 style="margin-bottom: 0">${question}</h3>
+            <h3 style="margin-top: 10px !important;">${question}</h3>
             ${renderMdd(additionalMDD)}
-            <br>
+            ${additionalMDD.trim() ? "" : "<br>"}
+            ${findPrerenderedComponents(e, multipleChoiceElement)}
+        </div>`
+    })
+    mddString = mddString.replace(/<P>.+?<\/P>/gms, function (e) {
+        let content = e.slice(3, -4).split("\n").filter(p => !!p);
+
+        let question = ""
+        let correctAnswer = ""
+        let descriptions = []
+        let modifiers = ""
+        let points = 0;
+        let coins = 0;
+
+        let graderFunction = () => { }
+
+        let additionalMDD = ""
+
+        content.forEach(p => {
+            let command = p.trim();
+            if (command.startsWith("?")) question = command.slice(1);
+            else if (command.startsWith("!")) correctAnswer = command.slice(1)
+            else if (command.startsWith("^")) modifiers = command.slice(1)
+            else if (command.startsWith("+")) descriptions.push(command.slice(1))
+            else if (command.startsWith("p:")) points = Number(command.slice(2));
+            else if (command.startsWith("c:")) coins = Number(command.slice(2));
+            else additionalMDD += p + "\n"
+        })
+
+
+        const [placeholder, correctDescription, incorrectDescription] = descriptions;
+        graderFunction = (response) => {
+            let answer = correctAnswer; // provided for modifier function
+            var goodResponse = response;
+            var goodAnswer = answer;
+            if (modifiers) {
+                goodResponse = Function("response", modifiers.includes("return ") ? modifiers : `return ${modifiers}`)(response)
+                goodAnswer = Function("response", modifiers.includes("return ") ? modifiers : `return ${modifiers}`)(answer)
+            }
+            if (typeof goodResponse === "boolean") return response
+            else return goodResponse.trim() === goodAnswer.trim()
+        }
+
+
+
+        var text = "Short Response Question"
+
+        const multipleChoiceElement = new ShortAnswer({placeholder, correctDescription, incorrectDescription, graderFunction, points, coins, elementNum: inlineQuestionID }, null)
+        inlineQuestionID++
+        return `<div class="multiple-choice-wrapper" onclick="document.querySelector('.stack-width').classList.add('blur-all-non-mc-questions')">
+            <div class="indicator-symbol">${text}</div>
+            <canvas class="mc-answer-confetti"></canvas>
+            <h3 style="margin-top: 10px !important;">${question}</h3>
+            ${renderMdd(additionalMDD)}
+            ${additionalMDD.trim() ? "" : "<br>"}
             ${findPrerenderedComponents(e, multipleChoiceElement)}
         </div>`
     })

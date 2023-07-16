@@ -60,6 +60,23 @@ My HTML Code. This works for HTML and Browser Javascript.
 	|sourcename|resource title|resource description|resource url|
 </R>
 ```
+ **Prompt (Short Answer)**: 	
+ ```jsx
+<P>
+	?What are the first 100 digits of pi? // question goes after ?
+	!Correct Answer // Correct Answer to look for. Case sensitive.
+	^response.toLowerCase() // custom answer modifier. Applies to correct answer *and* prompt. 
+	// If returned a string, we will compare string against correct answer. If returned a boolean, we will use boolean to determine if correct or not.
+	// `response` is the user's input. `answer` is the correct answer.
+	+Input Placeholder
+	+Correct Description
+	+Incorrect Description
+	p:5
+	c:2
+	Anything else will be rendered as normal MDD
+    Stick codeblocks, bullet points, and more, to be rendered inside of the question
+</P>
+```
  **Asterix**: `A!Your asterix tooltip goes hereA!`
 
  ### The following components support custom names:

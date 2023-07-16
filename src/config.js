@@ -19,7 +19,8 @@
 		"codeBlock.js",
 		"PluginPanel.js",
 		"PreviewStandalone.js",
-		"EmbededMultipleChoice.js"
+		"EmbededMultipleChoice.js",
+		"EmbeddedShortAnswer.js"
 	], {
 		path: "./components/"
 	}, newFileCallback);
