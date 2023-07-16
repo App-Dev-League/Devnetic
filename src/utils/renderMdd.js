@@ -4,7 +4,7 @@ const MultipleChoice = require("../components/EmbededMultipleChoice.js")
 const ShortAnswer = require("../components/EmbeddedShortAnswer.js")
 
 
-var converter = new showdown.Converter({ extentions: [] });
+var converter = new showdown.Converter({ extentions: [], tables: true });
 converter.setOption('simpleLineBreaks', true);
 
 

@@ -1125,6 +1125,30 @@ html {
 .mdd-render .mc-answer-container.mc-answer-container-embeded {
     margin-top: 0 !important;
 }
+
+.mdd-render table {
+    text-align: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-collapse:collapse;
+    font-size: 0.95rem;
+}
+
+.mdd-render table thead * {
+    font-weight: bold;
+}
+
+.mdd-render table th,
+.mdd-render table td {
+  padding: 8px 16px;
+  border: 1px solid var(--chakra-colors-blue-800);
+  box-sizing: border-box;
+}
+
+.mdd-render table tr:nth-child(2n) {
+    background-color: rgb(42, 67, 101, 0.4);
+}
+
 blockquote {
     color: whitesmoke;
     border-left: 3px solid gray;
