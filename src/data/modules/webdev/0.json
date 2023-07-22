@@ -3,7 +3,7 @@
     "pages": [
         {
             "type": "information",
-            "title": "Week 1 - Quick Intro to Web Development",
+            "title": "Week 1 - Web Development Key Terms",
             "elements": [
                 {
                     "type": "text",
@@ -20,7 +20,8 @@
                     "type": "image",
                     "src": "./data/modules/webdev-assets/img0/0-0.png"
                 }
-            ]
+            ],
+            "mdd": "## Frontend\r\nFrontend is the functionality on the side of the client that includes languages like HTML, Javascript, and CSS. An example of this could be the graphic framework draws the player's avatar and accepts user input in a video game.\r\n## Back End\r\nBackend is the functionality on the side of the server (PHP, Node.js, SQL, etc.) Going back to our video game analogy, this could be the part of the game that keeps track of the map, hp bars, player locations, player damage, etc.\r\n\r\n![A visual representation of Frontend/Backend](./data/modules/mdd-assets/6a1e021d85de17dbdbf81e43235b80998adf1482.png)\r\n"
         },
         {
             "type": "information",
@@ -58,11 +59,12 @@
                     "text": "text",
                     "content": "➔ Separate presentation and content (HTML mainly for structure and CSS for style)"
                 }
-            ]
+            ],
+            "mdd": "## Purpose of HTML\r\n\r\n**Stands for**: Hyper Text Markup Language\r\n**Designs** the layout of text and structure of the web page.\r\n**Formats** content (images, videos, external links, etc.)\r\n\r\n![](./data/modules/mdd-assets/61c6d0a95e4486b5d8869593b20db9b1f5d8c88b.png)\r\n\r\n\r\n## Things to keep in mind\r\n\r\n- Forgiving for wrong syntax, errors, and missing information (code can still contain errors)\r\n\r\n- Semantics/structure (for readability, web crawlers, SEO, etc.) - use proper tags and divisions\r\n\r\n- May render depending on browser/device (test pages on multiple browsers)\r\n\r\n- Separate presentation and content (HTML mainly for structure and CSS for style)\r\n\r\nW!-Keep in mind:\r\nBecause HTML doesn't actually throw any errors if you have a syntax error, it's really important to mantain good code. Otherwise, you'll have a partially broken page that's really hard to debug.\r\nW!"
         },
         {
             "type": "information",
-            "title": "Week 1 - Structuring Websites with HTML",
+            "title": "Week 1 - Introduction to IDEs",
             "elements": [
                 {
                     "type": "text",
@@ -97,7 +99,8 @@
                     "src": "./data/modules/webdev-assets/img0/2-3.html",
                     "width": "70%"
                 }
-            ]
+            ],
+            "mdd": "## What is an IDE?\r\n\r\nIDEs, or Integrated Development Environments, allow for developers to quickly make, test, and break code. Most IDEs have three major components:\r\n- The code editor. This is what you'll be spending most of our time in, and, like the name suggests, is the place where you actually write code.\r\n\r\n- The compiler/builder. This is a piece of code that turns your code into something machines can actually understand. \r\n\r\n- The debugger. This is a program that allows you to debug your code. If something's not running as expected, you'll want to open this.\r\n\r\n\r\n## Different IDEs\r\nIf you're new to software development, we highly recommend [Replit](https://replit.com/), a full development platform that's hosted in the cloud! It's completely free to use, and allows you to edit and run code from anywhere with an internet connection.\r\n\r\nDevnetic also has an IDE! This is the IDE that we'll be using in all of our [projects](#/track/webdev-projects/), featuring a code tester and verifier to make sure your code is running as intended. \r\n\r\n![A list of popular code editors](./data/modules/mdd-assets/6b9b7a96af198be8b00b8df806bcc3a3fe9751a6.png)"
         },
         {
             "type": "information",
@@ -153,7 +156,8 @@
                     "points": 5,
                     "coins": 1
                 }
-            ]
+            ],
+            "mdd": "Below is a super basic HTML document. Almost all websites will follow this structure\r\n\r\n```html\r\n<!DOCTYPE html>\r\n<html>\r\n    <head>\r\n        <meta charset=\"utf-8\">\r\n        <title>My test page</title>\r\n    </head>\r\n\r\n    <body>\r\n        <p>This is my page</p>\r\n    </body>\r\n</html>\r\n```\r\n\r\n## Let's break it down\r\n\r\n`<!DOCTYPE html>`: A remnant of an old HTML practice, telling the browser what version of HTML we are using. (HTML 5).\r\n`<html>`: Wraps all other content, sometimes called the root element\r\n`<head>`: Container for everything that isn’t displayed as content. This is where developers put metadata like page title, file dependencies, and page keywords. The most common metadata tag is `<title>`, which is also what the browser displays in the tab selector\r\n```html\r\n<title>My test page</title>\r\n```\r\n`<body>`: Contains elements that are actually shown on screen.\r\n\r\n<Q>\r\n?What could be included in the below tag?\r\n`<head></head>`\r\n!The header of the websites\r\n!The main content  of the webpage\r\n!The website's metadata*\r\n!The website's footer\r\n+Incorrect! The header of the webpage should be included in the body!\r\n+Incorrect, the main webpage should all be included in the body!\r\n+Correct! The head tags is used to include metadata about the website like it's title and descriptions\r\n+That doesn't seem correct! Try again\r\np:5\r\nc:1\r\n</Q>"
         },
         {
             "type": "information",
@@ -219,63 +223,14 @@
                     "type": "text",
                     "content": "➔ Space between the tag name and the attribute name\n➔ Single or double quotes based on your own preference\n➔ Used for setting certain characteristics or using CSS/Javascript\n➔ Practice: Make an h1 tag with the attribute id equal to top and a p tag with attribute class equal to bottom."
                 }
-            ]
+            ],
+            "mdd": "HTML tags define elements of a webpage. There are two types of tags: **Paired Tags** and **Unpaired Tags**.\r\n### Paired Tags\r\n```html\r\n<element> Content </element>\r\n         |                                  |\r\nOpening Tag               Closing Tag\r\n```\r\n### Unpaired Tag\r\n```html\r\nAttribute Name\r\n           |\r\n<img src=\"cat.jpeg\">\r\n     |                       |\r\nTag Name    Attribute Value\r\n```\r\n\r\n\r\n\r\n## HTML Heading Tags\r\nHeadings are used to define titles and important text. There are six different headings, from 1-6. 1 is the biggest, and 6 is the smallest.\r\n```html-LIVE\r\n<h1>Heading 1</h1>\r\n<h2>Heading 2</h2>\r\n<h3>Heading 3</h3>\r\n<h4>Heading 4</h4>\r\n<h5>Heading 5</h5>\r\n<h6>Heading 6</h6>\r\n```\r\nT!This is an interactive code editor! Feel free to make changes to see what it looks like. CTRL+S or CMD+S to see changes.T!\r\n\r\n## HTML Paragraph Tags\r\nYou can add bodies of text by using the `<p></p>` tag. Just like when writing essays, separate paragraphs with a good structure, keeping a cleaner code structure.\r\n```html-index.html\r\n<p>\r\n  This is a long paragraph, <br/>\r\n  So I am splitting it into <br/>\r\n  multiple lines.\r\n</p>\r\n```\r\n\r\n## Divisions (divs)\r\nWhat if you want to create more structure within your website? Well, you can group your elements together with divs: `<div></div>`. Just like any other element, you can put any element inside of a div and nest infinitely! Besides making your code look nice, divs are also extrememly useful for **styling** your website, which we'll touch on in a later page. Essentially, you can apply a certain style (ex. background: green) to a certain div (group) of elements.\r\n```html\r\n<div>\r\n  <h2>Respiratory System</h2>\r\n  <p>pg. 22</p>\r\n  <ul>\r\n    <li>Respiratory Tract</li>\r\n    <li>Gas Exchange</li>\r\n    <li>Pulomary Diseases</li>\r\n  </ul>\r\n</div>\r\n```"
         },
         {
-            "type": "short_answer",
-            "question": "Create the largest heading on your page with the text: Hello World!",
-            "code_template": "Hello World!",
-            "answers": [
-                "<h1>Hello World!</h1>",
-                "<h1>hello world!</h1>"
-            ],
-            "descriptions": {
-                "<h1>hello world!</h1>": "Correct! The largest heading is <h1>",
-                "<h1>Hello World!</h1>": "Correct! The largest heading is <h1>"
-            },
-            "description_default": "What is the correct syntax for Heading tags? What is the largest heading tag?.",
-            "points": 10,
-            "coins": 3
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What is the smallest header tag?",
-            "code_template": "<h1> -> <h?>",
-            "answers": [
-                "<h7>",
-                "<h6>",
-                "<h2>",
-                "<h4>"
-            ],
-            "correct": 1,
-            "descriptions": [
-                "That's incorrect! Try again",
-                "Correct! h6 is the smallest heading tag",
-                "That's incorrect! Try again",
-                "That doesn't seem correct! Try again"
-            ],
-            "points": 5,
-            "coins": 1
-        },
-        {
-            "type": "multiple_choice",
-            "question": "What does the below tag do?",
-            "code_template": "<br>",
-            "answers": [
-                "Break a line into two",
-                "Add a big space in text",
-                "Make text bolder",
-                "Create a br element"
-            ],
-            "correct": 0,
-            "descriptions": [
-                "Correct! The BR tag adds a line break in text",
-                "Incorrect, try again",
-                "That's incorrect! Try again",
-                "That doesn't seem correct! Try again"
-            ],
-            "points": 5,
-            "coins": 1
+            "type": "information",
+            "title": "Week 1 - Check for Understanding",
+            "elements": [],
+            "mdd": "```html-LIVE\r\nStart Typing\r\n```\r\nT!Use the provided integrated development to test your ideas if you need some extra help! (This is not required)T!\r\n\r\n\r\n#Short Quiz\r\n<P>\r\n?Create the largest heading with the text: Hello World!\r\n!<h1>Hello World!</h1>\r\n^response.toLowerCase().replace(/\\!/g, \"\")\r\n+\r\n+Correct! The H1 Tag creates the biggest default heading in HTML\r\n+Remember that you always need a starting and closing HTML tag.\r\np:5\r\nc:1\r\n</P>\r\n<Q>\r\n?What is the smallest heading tag?\r\n!<h1>\r\n!<h2>\r\n!<h5>\r\n!<h6>*\r\n+That's incorrect! Try again\r\n+That's incorrect! Try again\r\n+That's incorrect! Try again\r\n+Correct! h6 is the smallest heading tag in HTML\r\np:5\r\nc:1\r\n</Q>\r\n<Q>\r\n?What does the below tag do?\r\n```html\r\n<br>\r\n```\r\n!Add a big space in text\r\n!Create a br element\r\n!Make text bolder\r\n!Break a line in two*\r\n+That's not what this tag does :(\r\n+There is a better answer\r\n+That's not what this tag does\r\n+Correct! the br tag breaks a line of text into two\r\np:5\r\nc:1\r\n</Q>"
         },
         {
             "type": "snippet_unlock",
@@ -444,27 +399,13 @@
                     "points": 5,
                     "coins": 1
                 }
-            ]
+            ],
+            "mdd": "## Images\r\nThe `<img>` tag can be used to display images from almost anywhere! It supports external URLs, like `https://example.com/image.png`, and also URLs from your website, like `image.png`. If your website is hosted on `https://mywebsite.com`, the browser will look for the image at `https://mywebsite.com/image.png`\r\n \r\nThe image tag supports two primary attributes: `src` and `alt`\r\n- `src` specifies the location of the image to be used\r\n\r\n- `alt` specifies some text that represents the image (for blind people and website parsers)\r\n\r\n```html-LIVE\r\n<!-- Incorrect way to use a self-closing tag -->\r\n<img src=\"https://devnetic.appdevleague.org/_next/image?url=%2Fimages%2Fdevnetic-logo.png&w=96&q=75\" /></img>\r\n\r\n<!-- Correct way to use a self-closing tag -->\r\n<img src=\"https://devnetic.appdevleague.org/_next/image?url=%2Fimages%2Fdevnetic-logo.png&w=96&q=75\" />\r\n```\r\nN!The \"incorrect\" way to use the image tag still correctly renders N!\r\n\r\n## Hyperlinks\r\nHyperlinks are clickable pieces of text that redirect the user's browser to a different page. Use the anchor (`<a></a>`) tag to accomplish this.\r\n\r\nThe primary attributes to use in the Anchor tag are `href` and `target`\r\n- `href` is the URL to redirect to. This can be either a full URL (\"https://google.com\") or a relative URL (\"/page2\")\r\n\r\n- `target` tells the browser where to open the new page. This is optional, but the most used attribute for target is `_blank`, which tells the browser to open the URL in a new page.\r\n\r\n```html-LIVE\r\n<a href='https://appdevleague.org'>\r\n    Go to ADL's main webpage\r\n</a>\r\n<br>\r\n<a href='https://appdevleague.org' target=\"_blank\">\r\n    Go to ADL in a new tab\r\n</a>\r\n```\r\n\r\n## Ordered List\r\nAn ordered list renders a list with numbers. Use it by inserting a `<ol></ol>` tag and adding `<li></li>` for each list item.\r\nBut what if you want it ordered by letters instead of numbers? Use the `type` attribute, which supports `\"1\"` `\"i\"` `\"I\"` `\"A\"` and `\"a\"`.\r\n```html-LIVE\r\n<ol type ='1'>\r\n    <li>Orange</li>\r\n    <li>Mango</li>\r\n    <li>Banana</li>\r\n    <li>Apple</li>\r\n</o>\r\n```\r\n\r\n## Unordered List\r\nAn unordered list renders a list with bullet points. Use it by inserting a `<ul></ul>` tag and adding `<li></li>` for each list item.\r\nUse the `type` attribute to change the style of the bullet points. This supports `\"disc\"` `\"circle\"` `\"square\"` and `\"none\"`\r\n```html-LIVE\r\n<ul type ='disc'>\r\n    <li>Orange</li>\r\n    <li>Mango</li>\r\n    <li>Banana</li>\r\n    <li>Apple</li>\r\n</ul>\r\n```"
         },
         {
-            "type": "short_answer",
-            "question": "Create an image with a source of https://www.demo.com/test.png and a description of \"A funny image\"",
-            "code_template": "<img>",
-            "answers": [
-                "<img src=\"https://www.demo.com/test.png\" alt=\"A funny image\">",
-                "<img src=\"https://www.demo.com/test.png\"alt=\"A funny image\">",
-                "<img alt=\"A funny image\" src=\"https://www.demo.com/test.png\">",
-                "<img alt=\"A funny image\"src=\"https://www.demo.com/test.png\">"
-            ],
-            "descriptions": {
-                "<img src=\"https://www.demo.com/test.png\" alt=\"A funny image\">": "Correct! That is the correct syntax for creating images in HTML",
-                "<img src=\"https://www.demo.com/test.png\"alt=\"A funny image\">": "Correct! That is the correct syntax for creating images in HTML",
-                "<img alt=\"A funny image\" src=\"https://www.demo.com/test.png\">": "Correct! That is the correct syntax for creating images in HTML",
-                "<img alt=\"A funny image\"src=\"https://www.demo.com/test.png\">": "Correct! That is the correct syntax for creating images in HTML"
-            },
-            "description_default": "Remember that the two main attributes are src and alt",
-            "points": 10,
-            "coins": 3
+            "type": "information",
+            "title": "Week 1 - Check for Understanding",
+            "mdd": "```html-LIVE\r\nStart Typing\r\n```\r\nT!Use the provided integrated development to test your ideas if you need some extra help! (This is not required)T!\r\n\r\n<br>\r\n## Short Quiz\r\n<Q>\r\n?What are the two primary attributes of the below tag?\r\n`<a></a>`\r\n!source and alternative\r\n!source and alt\r\n!src and alt*\r\n!src and alternative\r\n+This isn't correct. Try again!\r\n+This isn't correct. Try again!\r\n+Correct! src is used to describe where the browser should get the image from, and alt describes a brief description of the image!\r\n+This isn't correct. Try again!\r\np:5\r\nc:1\r\n</Q>\r\n\r\n<P>\r\n?Create an image with a source of https://www.demo.com/test.png and a description of \"A funny image\"\r\n!<img src=\"https://www.demo.com/test.png\" alt=\"A funny image\">\r\n^         let x = response.toLowerCase().replace(/ /g, \"\").replace(\"'\", \"\\\"\"); return x.startsWith(\"<img\") && x.endsWith(\"\\\">\") && x.includes('alt=\"A funny image\"') && x.includes('src=\"https://www.demo.com/test.png\"')\r\n+\r\n+Correct!\r\n+Incorrect :( \r\np:5\r\nc:1\r\n\r\n</P>\r\n\r\n<P>\r\n?Make a hyperlink to https://google.com with text \"Google\"\r\n!\r\n^         let x = response.toLowerCase().replace(/ /g, \"\").replace(\"'\", \"\\\"\"); return x.startsWith(\"<a\") && x.endsWith(\"Google</a>\") && x.includes('href=\"https://google.com\"')\r\n+\r\n+Correct!\r\n+Incorrect :( \r\np:5\r\nc:1\r\n\r\n</P>\r\n\r\n\r\n<Q>\r\n?What tag is used for list items?\r\n!<ol></ol>\r\n!<ul></ul>\r\n!<li></li>\r\n!<itm></itm>\r\n+The &lt;ol&gt; tag actually stands for ordered list, and wraps the list item attribute\r\n+The &lt;ul&gt; tag actually stands for unordered list, and wraps the list item attribute\r\n+Correct! &lt;li&gt; stands for List Item\r\n+This isn't a valid HTMl tag. Try again\r\np:5\r\nc:1\r\n</Q>"
         },
         {
             "type": "snippet_unlock",
@@ -492,20 +433,6 @@
             }
         },
         {
-            "type": "short_answer",
-            "question": "How would we make a hyperlink to https://google.com with text \"Google\"?",
-            "code_template": "<a></a>",
-            "answers": [
-                "<a href=\"https://google.com\">Google</a>"
-            ],
-            "descriptions": {
-                "<a href=\"https://google.com\">Google</a>": "Correct!"
-            },
-            "description_default": "Remember that anchor tags have the \"href\" attribute",
-            "points": 10,
-            "coins": 3
-        },
-        {
             "type": "snippet_unlock",
             "name": "Anchor tag",
             "code_template": "<a href=\"\">Text</a>",
@@ -529,26 +456,6 @@
                     }
                 ]
             }
-        },
-        {
-            "type": "multiple_choice",
-            "question": "Which tag is used for list items?",
-            "code_template": "",
-            "answers": [
-                "<li></li>",
-                "<ul></ul>",
-                "<ol></ol>",
-                "<itm></itm>"
-            ],
-            "correct": 0,
-            "descriptions": [
-                "Correct! \"li\" stands for List Item",
-                "Incorrect, remember that \"ul\" stands for Unordered List",
-                "Incorrect, remember that \"ol\" stands for Ordered List",
-                "Incorrect, that tag does not exist in HTML!"
-            ],
-            "points": 5,
-            "coins": 1
         },
         {
             "type": "snippet_unlock",

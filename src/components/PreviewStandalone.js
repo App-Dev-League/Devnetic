@@ -53,8 +53,11 @@ class CodeEditor extends ModuleComponent {
 						<div class="vertical-divider"></div>
 						${this.state.codePreview}
                         <style>
-                                        
+
                             ${this.isLive ? `
+                            .tab-panel-hidden-mobile {
+                                display: block !important;
+                            }
                             #code-frame {
                                 position: fixed;
                                 top: 0;

@@ -218,7 +218,7 @@
 			if (isDemo) data.previewIndex = 0;
 			modulePage.setComponent(new Preview({}, modulePage, true), data);
 		}
-		request.data.base64EncodedCode = window.atob(request.data.base64EncodedCode)
+		request.data.base64EncodedCode = window.atob(decodeURIComponent(request.data.base64EncodedCode))
 
 		showPage({
 			type: "project",

@@ -31,7 +31,7 @@ module.exports = function renderMdd(mddString) {
         let language = e.slice(3, e.indexOf("\n"))
         let content = e.slice(e.indexOf("\n"), -3).trim()
         let name = language.split("-")[1]?.trim() || "";
-        if (name === "LIVE") return `<div class="image-wrapper info-text"><iframe src="#/live-demo/${language.split("-")[0]}/${window.btoa(content)}" style="width: 100%; height: 250px; border-radius: 10px; display: block; margin-left: auto; margin-right: auto;" onload="resizeIframe(this)"></iframe></div>`
+        if (name === "LIVE") return `<div class="image-wrapper info-text"><iframe src="#/live-demo/${language.split("-")[0]}/${encodeURIComponent(window.btoa(content))}" style="width: 100%; height: 250px; border-radius: 10px; display: block; margin-left: auto; margin-right: auto;" onload="resizeIframe(this)"></iframe></div>`
 
         let component = new codeBlock({ code: codeBlockHelper.escapeHtml(content), language: language.split("-")[0], name: name })
         return `<div class="codeblock-wrapper">
