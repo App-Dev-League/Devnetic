@@ -29,7 +29,8 @@
                     "points": 5,
                     "coins": 1
                 }
-            ]
+            ],
+            "mdd": "##What is JavaScript?\r\nJavaScript is a scripting language that is mainly used by developers to make websites more interactive and dynamic to overall improve the user experience. For example JavaScript can allow the website to have animations which can enhance user engagement.  \r\n\r\n![](https://www.freepnglogos.com/uploads/javascript-png/javascript-logo-transparent-logo-javascript-images-3.png)\r\n\r\n##Applications\r\n- **Frontend Development** (animations, transitions, interactive UI elements like sliders, pop-ups)\r\n\r\n- **Backend Development** (Libraries in JavaScript such as Node.js help with server side tasks such as user authentication, building APIs, and working with databases)\r\n\r\n- **Game Development** (JavaScript can be used to make browser-based games)\r\n\r\n- **Desktop Applications** (With Libraries in JavaScript like Electron)\r\n\r\n- **Mobile App Development** (With Libraries in JavaScript like React)\r\n\r\n- **Automation** (To make life easier and do repetitive tasks)\r\n\r\n- Keep constant communication with the server and decrease taskload\r\n\r\n- Execute complex logic, calculations and algorithms for the web page to use\r\n\r\nN!-What Are Libraries? \r\n\r\nLibraries are collections of code that is pre-written, it has functions that are in charge of solving specific problems. Libraries are made in a way so that they are resuable and developers could save time and effort by incorporting well-tested and established features from the libraries to their own projects rather than having to reinvent the wheel.\r\n\r\nLibraries can be small functions for utility such as date-fns to work with dates and times or they can be large comprehensive toolkits to provide complex functionalities such as Node.js to work with web servers. \r\n\r\nN!\r\n\r\n <Q>\r\n\t ?True or False: JavaScript is used for Full Stack Development\r\n\t !True*\r\n\t !False\r\n\t +JavaScript can be used for both frontend and backend development so as a result it can be used for full stack development\r\n     +Remember full stack development involves end-to-end development of applications so this means that it includes both the backend and frontend of an application\r\n\t p: 5 \r\n\t c: 1\r\n </Q>\r\n\r\n"
         },
         {
             "type": "information",
@@ -71,7 +72,8 @@
                     "points": 5,
                     "coins": 1
                 }
-            ]
+            ],
+            "mdd": "A JavaScript statement is a line of code that executes a single action. They include values, operators, expressions, comments, etc. \r\n```typescript\r\nconsole.log('Intro to JS');\r\n\r\ndocument.write('reply').innerHTML = 'no';\r\n\r\nlet a = 1\r\n```\r\nN!-Notice The Structure Of Each JavaScript Statement To Help With The Quiz At The Bottom\r\nN!\r\n\r\nJavaScript comments are used for documentation of code and improving readability. Comments ignored by the JavaScript interpreter. Use `//` for single line comments and `/**/` for multi-line comments.\r\n\r\n```typescript-Comments\r\n// this is a single-line comments\r\n\r\n/*\r\nthis\r\nis\r\na\r\nmulti-line\r\ncomment\r\n*/\r\n```\r\n\r\n <Q>\r\n\t ?True or False: JavaScript Statements do not require semicolons at the end\r\n\t !True*\r\n\t !False\r\n\t +Nice job paying attention to the code blocks! Although it is not required, it is still recommended to add a semicolon at the end\r\n\t +Take a look at the first code block again, specifically the first and last JavaScript statements\r\n\t p: 5 \r\n\t c: 1\r\n </Q>\r\n"
         },
         {
             "type": "information",
@@ -89,7 +91,8 @@
                     "type": "text",
                     "content": "The environment that can store and access variables is the variable's scope.\n  - -Ex. Global variables are in a global environment/scope, so any part of the program can access it\n  - Block scope means that only code within the block can access variables defined within that block\n  - [[monospace]]var[[/]] is function scoped: will access the variable from the next highest environment/function it exists in (any variable defined by var is defined throughout the program)\n  - [[monospace]]let[[/]] is block scoped: accessing variables defined outside the block containing the let declaration will raise an error\nYou can directly call the variable to access its value.\nDeclare constants with the [[monospace]]const[[/]] keyword. Constants must be assigned during declaration and cannot be reassigned. Constants are block-scoped just like variables declared with [[monospace]]let[[/]]. "
                 }
-            ]
+            ],
+            "mdd": "Variables store values that can be used or modified by code.\r\n\r\n![](https://developer.android.com/static/codelabs/basic-android-kotlin-compose-variables/img/8b3e265ba3e6f85f.png)\r\n\r\nLiterals are actual data or values which the variables can contain. \r\n\r\nAssign variables to the literal using the assignment operator, `=`\r\nDecleared using `let`/`var` and the identifier (variable name)\r\nModify the value of a variable by re-assigning it with the `=` operator\r\n\r\n```typescript-Codeblock Name\r\n// x will be set to undefined using var\r\nvar x;\r\n\r\n// when using let, y cannot be accessed until defined\r\nlet y;\r\n\r\n// y can be directly accessed after setting it to a literal\r\ny = 5;\r\n\r\n// directly set z to 5\r\nlet z = 5;\r\n```\r\n\r\n## Extra Things To Note on Variables\r\nThe environment that can store and access variables is the variable's scope.\r\n**For example:** Global variables in a global environment \r\n\r\nBlock scope means that only the code within the block can access variables defined within that block\r\n\r\n`var` is function scoped: will access the variable from the next highest environment/function it exists in (any variable defined by var is defined throughout the program)\r\n\r\n`let` is block scoped: acessing variables outside the block containing the let declaration will raise an error\r\n\r\nYou can directly call the variable to access its value\r\n\r\nDeclare constants with the `const` keyword. Constants must be assigned during declaration and cannot be reassigned. Constants are block-scoped just like variables declared with `let`\r\n\r\n"
         },
         {
             "type": "information",
@@ -119,7 +122,8 @@
                     "type": "code",
                     "content": "console.log('The sky is ${color}');"
                 }
-            ]
+            ],
+            "mdd": "Similar to properties, but instead of storing a value, they can excute an action and/or return a value. THey are called using the dot operator `.` and the method name, followed by parenthesis after the method name and arguments if required. For example: `console.log()`\r\n\r\nJS is loosely typed/dynamic, meaning variables can hold or be assigned to any type. Use the `typeof` operator to check the type of a value or variable. \r\n```typescript\r\nlet answer = 3;\r\nanswer = true;\r\nconsole.log(answer);\r\n```\r\n\r\nStrings can contain any number of characters inside single or double quotes. Strings can be concatenated using the `+` operator like `'hi' + 'bye'`. The backlash turns special characters into strings. Using \\' or \\\" will prevent the string from breaking.\r\n\r\n```typescript\r\nlet color = 'blue';\r\n\r\n//example of string concatenation\r\nconsole.log('The rock is' + color + '.');\r\n\r\n// Using backslash to include a single quote within a string\r\nconsole.log('This is a single quoted string with an escaped single quote: It\\'s raining today.'); \r\n\r\n//Using backslash to include a double quote within a string \r\nconsole.log(\"This is a double-quoted string with an escaped double quote: \\\"Hello, World!\\\"\");\r\n\r\n```\r\n\r\n`\\n` for newline, `\\r` for carriage return, and `\\t` for tab are special characters.\r\nTemplate literals can allow substitution of variables and expression evaluation. \r\n\r\n\r\n\r\n\r\n"
         },
         {
             "title": "Week 3 - JavaScript Numbers, Booleans, Properties, and Arithmetic",
@@ -165,7 +169,8 @@
                     "points": 5,
                     "coins": 1
                 }
-            ]
+            ],
+            "mdd": "Numbers can be any numeric value, stored as a 64 bit floating point. JS does not differentiate between **integer**, **floats** (decimal values), **unsigned** (only positive) / **signed** (can be both positive and negative), etc. unlike other languages. \r\n\r\nThe numbers range from -2^53 + 1 to 2^53 - 1. Operations with float/decimal numbers can have percision error because all floats are stored as an integer multiplied by 2 to the power of another integer (base 2) which can change the actual value. \r\n\r\n**Comparison for floats:** check if the difference of the two numbers is less than a precision threshold; ex. `Math.abs(x-y) < 0.001;`\r\n\r\n**Booleans** can only be `true` or `false`. The are used for if statements, which can help make decisions based on whether something is true or false in code.\r\n\r\nThe JavaScript **console** is a message/output display for developers. It can be used for debugging and to show error/security/network messages. It's accessed in a browser by right clicking and hitting \"inspect\". Log a message to the console with `console.log('message')`. Clear the console with `console.clear()`.\r\n\r\n**Properties** are data contained by the instance of an object or type. An instance's properties can be accessed using the dot operator `.` and the name of the property. For example, the `.length` property of a string\r\n\r\nW!Phew! That was alot of content to go through. Consider taking a break. Don't be overwhelmed, it can definately be alot to remember. \r\n\r\nBut, you can always go back refer to anything incase if you forget! Don't worry, it all comes with practice. W!\r\n\r\n```typescript\r\nlet word = 'hello';\r\nconsole.log(word.length);\r\n```\r\n\r\nJavaScript arithmetic operators evaluate mathematical operations.\r\n- Addition: `x + y`\r\n\r\n- Subtraction: `x - y`\r\n\r\n- Multiplication: `x * y`\r\n\r\n- Division: `x / y`\r\n\r\n- Remainder: `x % y`\r\n\r\n- Exponentiation: `x ** y`\r\n\r\n```typescript\r\nconsole.log(10+5); //15\r\nconsole.log(10-5); //5\r\nconsole.log(10*5); //50\r\nconsole.log(10/5); //2\r\nconsole.log(10%5); //0\r\nconsole.log(10**5); //100000\r\n```\r\n <Q>\r\n\t ?Multiple Choice: What is the correct operator for finding the remainder \r\n\t !//\r\n\t !/\r\n\t !%*\r\n\t !+\r\n\t +That is actually a JavaScript comment! Try again\r\n\t +That operator does division, not remainders\r\n\t +Great job! The % operator finds remainders\r\n\t +That operator is for addition, it cannot be used to find remainders\r\n\t p: 5 \r\n\t c: 1\r\n </Q>\r\n\r\n\r\n\r\n"
         },
         {
             "title": "Week 3 - JavaScript Comparisons",
@@ -179,7 +184,8 @@
                     "type": "code",
                     "content": "console.log(5 == '5'); // true\nconsole.log(5 === '5'); // false\nconsole.log(10 != 5); // true\nconsole.log(10 < 5); // false\nconsole.log(10 > 5); // true\nconsole.log(10 <= 5); // false\nconsole.log(10 >= 5); // true"
                 }
-            ]
+            ],
+            "mdd": "JavaScript comparison operators compare values and return a boolean based on whether the comparison is true or false.\r\n\r\n### Operators\r\n- Equal value: `==`\r\n\r\n- Equal value and type: `===`\r\n\r\n- Not equal: `!=`\r\n\r\n- Less than: `<`\r\n\r\n- Greater than: `>`\r\n\r\n- Less than or equal to: `<=`\r\n\r\n- Greater than or equal to: `>=`\r\n\r\n```typescript-Example \r\nconsole.log(5 == '5'); // true\r\nconsole.log(5 === '5'); // false\r\nconsole.log(10 != 5); // true\r\nconsole.log(10 < 5); // false\r\nconsole.log(10 > 5); // true\r\nconsole.log(10 <= 5); // false\r\nconsole.log(10 >= 5); // true\r\n```\r\n\r\n\r\n"
         },
         {
             "type": "information",
@@ -217,7 +223,8 @@
                     "type": "code",
                     "content": "day = 15; \nif (day === 12) {\n\tconsole.log('On time');\n} else if (day < 12) {\n\tconsole.log('Completed early');\n} else {\n\tconsole.log('Overdue');\n}"
                 }
-            ]
+            ],
+            "mdd": "Conditionals check if a condition is true and executes a code block if so\r\n```typescript\r\nif (condition) {\r\n    // code to be executed\r\n}\r\n```\r\n\r\n\r\n```typescript-Example\r\nlet grade = 89;\r\nconst passingGrade = 86;\r\nif(grade >= passingGrade) {\r\n    console.log('pass');\r\n}\r\n```\r\n`else` and `else if` statements can be added to run code blocks if the first `if` conditional is false\r\n\r\n```typescript-Example\r\nday = 15; \r\nif (day === 12) {\r\n    console.log('On time');\r\n} else if (day < 12) {\r\n    console.log('Completed early');\r\n} else {\r\n    console.log('Overdue');\r\n} \r\n```"
         },
         {
             "title": "Week 3 - JavaScript Functions",
@@ -235,7 +242,8 @@
                     "type": "text",
                     "content": "This function can be called like [[monospace]]name('x', 'y')[[/]]."
                 }
-            ]
+            ],
+            "mdd": "Functions define a reusable block of code. They are efficent and improve code readability. \r\n\r\nInstead of repeating code for the same action, functions can be called in one line to repeat all the code blocks inside of the function, significantly reducing the lines of code in a program. \r\n\r\n```typescript-Example\r\nfunction name(param1, param2) {\r\n    // code to be executed\r\n    return value; // possible return value\r\n}\r\n```\r\nAn example of calling this function: `name('x', 'y')`"
         },
         {
             "title": "Week 3 - DOM",
@@ -249,7 +257,8 @@
                     "type": "code",
                     "content": "document.getElementById('name'); // Access an element using the ID attribute\ndocument.getElementById('name').innerHTML = 'content'; // Set the element content by editing the innerHTML property\ndocument.write('content'); // Outputs on and overwrites HTML document\ndocument.getElementsByTagName('h2'); // access elements of a tag\ndocument.getElementsByClassName('pop-up'); // access elements by the class attribute\ndocument.getElementById('name').src = 'img.jpg'; // Changing the elements's src attribute\ndocument.getElementById('name').innerHTML = 'Coins: ' + calculateProfit(); // Creating dynamic HTML content"
                 }
-            ]
+            ],
+            "mdd": "The `document` object provides functionality for editing, retrieving, and detecting events in the HTML document. \r\n\r\nThese are just a few common ways of editing HTML content, there are other methods to insert HTML or text into the document (innerText, createElement, etc.)\r\n\r\n```typescript-Example\r\ndocument.getElementById('name'); // Access an element using the ID attribute\r\ndocument.getElementById('name').innerHTML = 'content'; // Set the element content by editing the innerHTML property\r\ndocument.write('content'); // Outputs on and overwrites HTML document\r\ndocument.getElementsByTagName('h2'); // access elements of a tag\r\ndocument.getElementsByClassName('pop-up'); // access elements by the class attribute\r\ndocument.getElementById('name').src = 'img.jpg'; // Changing the elements's src attribute\r\ndocument.getElementById('name').innerHTML = 'Coins: ' + calculateProfit(); // Creating dynamic HTML content\r\n```"
         },
         {
             "title": "Week 3 - jQuery",
@@ -271,7 +280,8 @@
                     "type": "code",
                     "content": "element = $('#your_id'); // Simplify getting element by ID\nelement = $('h2'); // Get elements by tag name\nelement = $('.pop_up'); // Get elements by class name\nelement.text('New text'); // set text content\ntext = element.text(); // get element text\nelement.html('<h2>New title</h2>'); // Set HTML content\ncontent = element.html(); // Get HTML content"
                 }
-            ]
+            ],
+            "mdd": "jQuery is most deployed JS library for many years (currently around 80% of the 10 million most popular websites use jQuery). It simplifies DOM manipulation/navigation, event-handling, CSS animation, Ajax, etc. and works on a wide range of browsers. \r\n\r\n![](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Logo_jQuery.svg/1200px-Logo_jQuery.svg.png)\r\n\r\nTo import jQuery, add the following script tag to your HTML:\r\n```html-Importing jQuery into HTML\r\n<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js%22%3E</script>\r\n```\r\n\r\n```typescript-Example\r\nelement = $('#your_id'); // Simplify getting element by ID\r\nelement = $('h2'); // Get elements by tag name\r\nelement = $('.pop_up'); // Get elements by class name\r\nelement.text('New text'); // set text content\r\ntext = element.text(); // get element text\r\nelement.html('<h2>New title</h2>'); // Set HTML content\r\ncontent = element.html(); // Get HTML content\r\n```\r\n"
         },
         {
             "title": "Week 3 - Short Quiz",
@@ -494,17 +504,19 @@
                     "points": 5,
                     "coins": 1
                 }
-            ]
+            ],
+            "mdd": " <Q>\r\n\t ?Which of the following is JavaScript not used for?\r\n\t !Animations\r\n\t !Interactive material\r\n\t !Styling documents*\r\n\t !Implementing logic\r\n\t +JavaScript is a great way to create animations\r\n\t +JavaScript is perfect for interactive material\r\n\t +CSS is used for this reason\r\n\t +JavaScript is great at implementing logic\r\n\t p: 5 \r\n\t c: 1\r\n </Q>\r\n\r\n <Q>\r\n\t ?Which of the following characters can start a comment?\r\n\t !//*\r\n\t !--\r\n\t !++\r\n\t !\\\\\r\n\t +Also, /* can start comments\r\n\t +Incorrect syntax\r\n\t +Incorrect syntax\r\n\t +Check the kind of slash you use\r\n\t p: 5 \r\n\t c: 1\r\n </Q>\r\n\r\n <Q>\r\n\t ?What do developers primairly use the console for?\r\n\t !Viewing their code\r\n\t !Debugging*\r\n\t !Reading the documentation of JavaScript\r\n\t +The console is not a way to view code\r\n\t +Logging variables and viewing errors are great ways to use the console for debugging.\r\n\t +The console does not fulfill this\r\n\t p: 5 \r\n\t c: 1\r\n </Q>\r\n\r\n <Q>\r\n\t ?Which of the following is not a console method?\r\n\t !upload*\r\n\t !log\r\n\t !clear\r\n\t +The upload function doesn't exist!\r\n\t +This prints to the console\r\n\t +This clears all text from the console\r\n\t p: 5 \r\n\t c: 1\r\n </Q>\r\n\r\n <Q>\r\n\t ?Which of the following is an invalid comparison operator?\r\n\t !===\r\n\t !>=\r\n\t !=*\r\n\t !==\r\n\t +'===' checks for equal value and type\r\n\t +'>=' checks if greater than or equal to\r\n\t +'=' assigns a variable a valueand does not compare two variables\r\n\t +'==' checks for equal value\r\n\t p: 5 \r\n\t c: 1\r\n </Q>\r\n\r\n <Q>\r\n\t ?What does a conditional statement do?\r\n\t !Executes a code block if a condition is true*\r\n\t !Catches errors from a code block\r\n\t !Returns a conditional\r\n\t +Also known as the if statement\r\n\t +This is what the try-catch statement is for\r\n     +They simply execute code, not return values\r\n\t p: 5 \r\n\t c: 1\r\n </Q>\r\n\r\n <Q>\r\n\t ?Which of the following is not a method?\r\n\t !document.getElementById\r\n\t !document.getElementsByClassName\r\n\t !document.getElement*\r\n\t !document.getElementsByTagName\r\n\t +This selects an element of a given ID\r\n\t +This selects an element of a given class\r\n\t +This function doesn't exist\r\n\t +This function selects elements of a given tag\r\n\t p: 5 \r\n\t c: 1\r\n </Q>\r\n\r\n <Q>\r\n\t ?What does the following function do?\r\n\t !Adds three numbers together and returns the sum*\r\n\t !Divides three numbers together and returns the remainder\r\n\t !Divides three numbers together and returns the quotient\r\n\t +This may also be used to combine strings!\r\n\t +Remember what the + operator does. (It's similar to its use in Math)\r\n\t +Remember what the + operator does. (It's similar to its use in Math)\r\n\t p: 5 \r\n\t c: 1\r\n```typescript\r\nfunction aFunction(a,b,c){\r\n    return a+b+c;\r\n}\r\n```\r\n </Q>\r\n\r\n <Q>\r\n\t ?What does the following function do?\r\n\t !Adds three numbers together and returns the sum\r\n\t !Finds the lowest number and returns it\r\n\t !Finds the highest number and returns it*\r\n\t +What does the Math.max function do? (It does what it says it does)\r\n\t +What does the Math.max function do? (It does what it says it does)\r\n\t +Great Job!\r\n\t p: 5 \r\n\t c: 1\r\n```typescript\r\nfunction largestNum(a,b,c,d) {\r\n    return Math.max(a,b,c,d);\r\n}\r\n```\r\n </Q>\r\n"
         },
         {
-            "type": "congratulations",
+            "type": "information",
             "title": "Congratulations!",
             "elements": [
                 {
                     "type": "text",
                     "content": "[[h5]]You learned the purpose of JavaScript.[[/]]\n  - Full stack development (client side and server side execution\n  - Animations and interactive elements\n  - Calculations and logic\n[[h5]]You learned some of the components that make up JavaScript code.[[/]]\n  - Comments ([[monospace]]/* comment */[[/]]\n  - Statements (end with [[monospace]];[[/]]\n  - You learned about of the JavaScript console.\n  - Used for displaying messages and outputs\n  - Used for debugging\n  - Right click and inspect to open the console\n  - [[monospace]]console.log[[/]] to print to the console.\n[[h5]]You learned about variables.[[/]]\n  - A way to store values\n  - Assigned with the [[monospace]]=[[/]] sign.\n  - [[monospace]]let x = 0;[[/]]\n  - Constants can't be changed ([[monospace]]const x = 0[[/]]\n[[h5]]You learned about data types[[/]]\n  - string\n  - number\n  - bigint\n  - boolean\n  - undefined\n  - symbol\n  - null\n[[h5]]You learned about arithmetic operators in JavaScript.[[/]]\n  - addition\n  - subtraction\n  - multiplication\n  - division\n  - remainder\n  - exponents\n[[h5]]You learned about comparison operators.[[/]]\n  - == (equal value)\n  - === (equal value and type)\n  - != (not equal)\n  - > and < (greater and less than)\n  - >= and <= (greater and less than or equal to)\n[[h5]]You learned how to utilize some useful JavaScript features[[/]]\n  - Properties (data contained by objects)\n  - Methods\n  - Conditionals\n  - DOM"
                 }
-            ]
+            ],
+            "mdd": "##You learned the purpose of JavaScript.\r\n- Full stack development (client side and server side execution\r\n- Animations and interactive elements\r\n- Calculations and logic\r\n\r\n##You learned some of the components that make up JavaScript code.\r\n- Comments `/* comment */`\r\n- Statements end with `;`\r\n- You learned about of the JavaScript console.\r\n- Used for displaying messages and outputs\r\n- Used for debugging\r\n- Right click and inspect to open the console\r\n- `console.log` to print to the console.\r\n\r\n##You learned about variables.\r\n- A way to store values\r\n- Assigned with the `=` sign.\r\n- let `x = 0;`\r\n- Constants can't be changed `const x = 0`\r\n\r\n## You learned about data types\r\n- string\r\n- number\r\n- bigint\r\n- boolean\r\n- undefined\r\n- symbol\r\n- null\r\n\r\n##You learned about arithmetic operators in JavaScript.  \r\n- addition\r\n- subtraction\r\n- multiplication\r\n- division\r\n- remainder\r\n- exponents\r\n\r\n##You learned about comparison operators.\r\n- == (equal value)\r\n- === (equal value and type)\r\n- != (not equal)\r\n- and < (greater and less than)\r\n- >= and <= (greater and less than or equal to)\r\n\r\n##You learned how to utilize some useful JavaScript features\r\n- Properties (data contained by objects)\r\n- Methods\r\n- Conditionals\r\n- DOM"
         }
     ]
 }
